@@ -32,6 +32,7 @@
     "autoprefixer": "latest",
     "@tailwindcss/postcss": "latest",
     "@vitejs/plugin-react": "latest",
-    "jsdom": "latest"
+    "jsdom": "latest",
+    "@typescript-eslint/parser": "latest"
   }
 }
