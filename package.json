@@ -30,7 +30,7 @@
     "tailwindcss": "latest",
     "postcss": "latest",
     "autoprefixer": "latest",
-    "@tailwindcss/postcss": "latest",
+    "@tailwindcss/vite": "latest",
     "@vitejs/plugin-react": "latest",
     "jsdom": "latest",
     "@typescript-eslint/parser": "latest"
