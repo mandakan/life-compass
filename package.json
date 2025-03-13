@@ -30,6 +30,7 @@
     "postcss": "latest",
     "autoprefixer": "latest",
     "@tailwindcss/postcss": "latest",
-    "@vitejs/plugin-react": "latest"
+    "@vitejs/plugin-react": "latest",
+    "jsdom": "latest"
   }
 }
