@@ -29,6 +29,4 @@ yarn-error.log*
 # Aider generated files
 .aider-cache/
 aider.log
-.aider.chat.history.md
-.aider.input.history
-.aider.tags.cache.v4
+.aider*
