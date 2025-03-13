@@ -20,4 +20,3 @@ describe('storageService', () => {
     expect(retrievedData).toEqual(sampleData);
   });
 });
-```
