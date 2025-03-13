@@ -36,12 +36,10 @@ life_compass/
 - Always define types explicitly for components and functions.
 - Use interfaces instead of types where possible.
 - Example:
-```typescript
 interface User {
   id: number;
   name: string;
 }
-```
 
 ## State Management Strategy
 - Use lightweight state management (React Context API or Zustand).
@@ -61,11 +59,10 @@ interface User {
 ## Styling & Tailwind CSS Conventions
 - Use utility-first approach, avoid unnecessary custom CSS.
 - Example:
-```html
 <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
   Click me
 </button>
-```
+
 
 ## Routing (React Router)
 - Define routes in App.tsx, follow nested routing where needed.
