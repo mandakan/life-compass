@@ -38,9 +38,30 @@
 ## 3. Development Principles
 
 ### Architecture Guidelines
-- **Component-based design:** Keep UI elements modular and reusable.
+- **Component-based design:** Keep UI elements modular and reusable. We are adopting a component-based pattern where components represent self-contained, reusable parts of the UI. This approach supports better maintainability and scalability.
 - **State Management:** Zustand (lightweight alternative to Redux) is used for global state.
 - **Routing:** React Router handles navigation.
+
+### Component-based Architecture
+- **Documentation & Structure:**  
+  - This component-based pattern is documented in this file to stress its importance in our application design.  
+  - The codebase should be structured with a clear separation between reusable UI components, page-level components, utilities, hooks, and state management.  
+  - Use the following folder structure as a guideline:
+    ```
+    life_compass/
+    │── src/
+    │   ├── components/  # Reusable UI components
+    │   ├── pages/       # Page-specific components
+    │   ├── utils/       # Helper functions and utilities
+    │   ├── hooks/       # Custom React hooks (if applicable)
+    │   ├── state/       # Zustand/Redux/Context API state management
+    │   ├── assets/      # Images, icons, styles
+    │   ├── tests/       # Unit and integration tests
+    ```
+- **Next Steps:**
+  - Begin refactoring or building new UI elements into discrete, reusable components.
+  - Ensure each component is self-contained and communicates with other parts of the application through well-defined interfaces.
+  - Adopt and enforce this pattern consistently across new code additions.
 
 ### Code Quality & Best Practices
 - **Linting & Formatting:** ESLint & Prettier ensure consistent code quality.
@@ -60,6 +81,5 @@
 - **IndexedDB will replace Local Storage when scalability is needed.**
 - **React 19 + Tailwind CSS v4 is the chosen frontend stack.**
 - **We will always use the latest stable versions of frameworks and libraries.**
-- **Code quality is enforced through linters, testing, and best practices.**
-
-This document serves as a foundation for technology decisions and will evolve as the project grows.
+- **Our code quality is enforced through linters, testing, and best practices.**
+- **We adopt a component-based architecture to promote modularity and reusability.**
