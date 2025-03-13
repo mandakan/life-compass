@@ -25,4 +25,8 @@ yarn-error.log*
 
 # VSCode settings
 .vscode/
-```^^^^
+
+# Aider generated files
+.aider-cache/
+aider.log
+```
