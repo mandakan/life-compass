@@ -20,8 +20,7 @@ module.exports = [
         version: "detect"
       }
     },
-    rules: {
-      // Add or override rules as needed
-    }
+    rules: {}
   }
 ];
+```
