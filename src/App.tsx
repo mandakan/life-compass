@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
+import MobileNavigation from './components/MobileNavigation';
 import { colors } from './designTokens';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
-const Navigation = () => {
+const DesktopNavigation = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -63,7 +64,12 @@ const Content = () => {
         transition: 'background-color 300ms, color 300ms'
       }}
     >
-      <Navigation />
+      <div className="md:hidden">
+        <MobileNavigation />
+      </div>
+      <div className="hidden md:block">
+        <DesktopNavigation />
+      </div>
       <div style={{ padding: '1rem' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -85,3 +91,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+```
