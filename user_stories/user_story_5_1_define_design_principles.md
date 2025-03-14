@@ -35,3 +35,4 @@ The application should follow a clear and consistent design system to ensure a s
 - How should the design guidelines be documented and distributed to ensure consistency across design and development teams? Document in CONVENTIONS.md and create example pages/views/components.
 - Should we include design tokens (e.g., for colors, spacing, typography) as part of the design system? If so, what standards should these adhere to? I don't know as I'm not familiar with design. Give me your best suggestion based on best-practices for a small project like this.
 - What responsive breakpoints should be defined to ensure optimal layout across various devices? Use tailwind defaults.
+- Should we provide guidelines for interactive states (e.g., hover, focus, active) to ensure consistency in user experience and accessibility?
