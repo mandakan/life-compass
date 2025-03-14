@@ -22,12 +22,18 @@ The application should be optimized for mobile-first usage and adapt seamlessly 
 - Media queries and dynamic scaling adjustments are implemented.
 - Consistent UX is achieved across devices through user testing.
 
-## ❓ Refinement Questions
-1. What specific viewport breakpoints should be prioritized for testing (e.g., 320px, 480px, 768px, 1024px)? Use what is in the design_principes.md or fallback to tailwind defaults.
-2. Should there be a dedicated design for landscape mode, particularly on tablets and larger mobile devices? Yes.
-3. How do we handle scaling of images and media assets, especially on high-resolution screens? In the best way possible to give the most smooth and less distracting experience while following all accessability guidelines and UX principles.
-4. Is there a need to adjust typography sizes and spacing specifically for mobile views? Not that I am aware of at this point.
-5. Are there any performance benchmarks or specific tests for ensuring touch interactions are responsive? No.
-6. Do we require any special animations or transitions that are optimized for mobile devices? Not that i am aware of.
+## ❓ Refinement Questions and Answers
+1. What specific viewport breakpoints should be prioritized for testing (e.g., 320px, 480px, 768px, 1024px)?  
+   Answer: Use the breakpoints defined in design_principles.md if available, otherwise fallback to Tailwind CSS defaults.
+2. Should there be a dedicated design for landscape mode, particularly on tablets and larger mobile devices?  
+   Answer: Yes.
+3. How do we handle scaling of images and media assets, especially on high-resolution screens?  
+   Answer: Scale assets in the best way possible to ensure the smoothest, least distracting experience while following accessibility guidelines and UX principles.
+4. Is there a need to adjust typography sizes and spacing specifically for mobile views?  
+   Answer: Not that I am aware of at this point.
+5. Are there any performance benchmarks or specific tests for ensuring touch interactions are responsive?  
+   Answer: No.
+6. Do we require any special animations or transitions that are optimized for mobile devices?  
+   Answer: Not that I am aware of.
 
-Please provide answers to these questions to further refine the requirements.
+If further clarifications are needed, please let me know.
