@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius } from '../designTokens';
-
-interface LifeArea {
-  id: string;
-  name: string;
-  description: string;
-  rating1: number;
-  rating2: number;
-}
+import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -79,7 +72,6 @@ const CreateLifeCompass: React.FC = () => {
   const [editRating2, setEditRating2] = useState<number>(5);
 
   useEffect(() => {
-    // Check if localStorage is available
     if (!isLocalStorageAvailable()) {
       setStorageAvailable(false);
     }
@@ -147,7 +139,6 @@ const CreateLifeCompass: React.FC = () => {
   const handleRemoveLifeArea = (id: string) => {
     setLifeAreas(lifeAreas.filter(area => area.id !== id));
     if (editingAreaId === id) {
-      // Cancel editing if the area being edited is removed
       handleCancelEdit();
     }
   };
@@ -225,108 +216,6 @@ const CreateLifeCompass: React.FC = () => {
     height: '400px',
     margin: '0 auto',
     marginTop: spacing.large,
-  };
-
-  // Tooltip style for action buttons
-  const tooltipStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: '-1.5rem',
-    backgroundColor: colors.neutral[900],
-    color: '#fff',
-    padding: '0.25rem 0.5rem',
-    borderRadius: borderRadius.small,
-    fontSize: '0.75rem',
-    cursor: 'pointer',
-    display: 'flex',
-    gap: '0.25rem',
-  };
-
-  // Component for rendering a life area card
-  const LifeAreaCard: React.FC<{ area: LifeArea; style?: React.CSSProperties }> = ({ area, style }) => {
-    return (
-      <div style={style}>
-        {editingAreaId === area.id ? (
-          <div style={{ padding: spacing.small }}>
-            <div>
-              <label>
-                Namn:
-                <input
-                  type="text"
-                  value={editName}
-                  onChange={e => setEditName(e.target.value)}
-                  style={{ marginLeft: spacing.small }}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Beskrivning:
-                <input
-                  type="text"
-                  value={editDescription}
-                  onChange={e => setEditDescription(e.target.value)}
-                  style={{ marginLeft: spacing.small }}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Betyg 1 (1-10):
-                <input
-                  type="number"
-                  value={editRating1}
-                  onChange={e => setEditRating1(Number(e.target.value))}
-                  min="1"
-                  max="10"
-                  style={{ marginLeft: spacing.small }}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Betyg 2 (1-10):
-                <input
-                  type="number"
-                  value={editRating2}
-                  onChange={e => setEditRating2(Number(e.target.value))}
-                  min="1"
-                  max="10"
-                  style={{ marginLeft: spacing.small }}
-                />
-              </label>
-            </div>
-            <div style={{ marginTop: spacing.small, display: 'flex', gap: spacing.small }}>
-              <button onClick={handleSaveEditLifeArea}>Spara</button>
-              <button onClick={handleCancelEdit}>Avbryt</button>
-            </div>
-          </div>
-        ) : (
-          <div style={{ padding: spacing.small }}>
-            <h4>{area.name}</h4>
-            <p>{area.description}</p>
-            <p>
-              Betyg: {area.rating1} & {area.rating2}
-            </p>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <div
-                style={tooltipStyle}
-                title="Redigera"
-                onClick={() => handleEditLifeArea(area)}
-              >
-                ✎
-              </div>
-              <div
-                style={tooltipStyle}
-                title="Ta bort"
-                onClick={() => handleRemoveLifeArea(area.id)}
-              >
-                ×
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    );
   };
 
   return (
@@ -448,14 +337,48 @@ const CreateLifeCompass: React.FC = () => {
             const left = center + radius * Math.cos(angle) - cardWidth / 2;
             const top = center + radius * Math.sin(angle) - cardWidth / 2;
             return (
-              <LifeAreaCard key={area.id} area={area} style={{ ...mobileCardStyle, position: 'absolute', width: `${cardWidth}px`, left, top }} />
+              <LifeAreaCard
+                key={area.id}
+                area={area}
+                isEditing={editingAreaId === area.id}
+                editName={editName}
+                editDescription={editDescription}
+                editRating1={editRating1}
+                editRating2={editRating2}
+                onChangeEditName={setEditName}
+                onChangeEditDescription={setEditDescription}
+                onChangeEditRating1={setEditRating1}
+                onChangeEditRating2={setEditRating2}
+                onSaveEdit={handleSaveEditLifeArea}
+                onCancelEdit={handleCancelEdit}
+                onEdit={handleEditLifeArea}
+                onRemove={handleRemoveLifeArea}
+                style={{ ...mobileCardStyle, position: 'absolute', width: `${cardWidth}px`, left, top }}
+              />
             );
           })}
         </div>
       ) : (
         <div style={mobileContainerStyle}>
           {lifeAreas.map(area => (
-            <LifeAreaCard key={area.id} area={area} style={mobileCardStyle} />
+            <LifeAreaCard
+              key={area.id}
+              area={area}
+              isEditing={editingAreaId === area.id}
+              editName={editName}
+              editDescription={editDescription}
+              editRating1={editRating1}
+              editRating2={editRating2}
+              onChangeEditName={setEditName}
+              onChangeEditDescription={setEditDescription}
+              onChangeEditRating1={setEditRating1}
+              onChangeEditRating2={setEditRating2}
+              onSaveEdit={handleSaveEditLifeArea}
+              onCancelEdit={handleCancelEdit}
+              onEdit={handleEditLifeArea}
+              onRemove={handleRemoveLifeArea}
+              style={mobileCardStyle}
+            />
           ))}
         </div>
       )}
