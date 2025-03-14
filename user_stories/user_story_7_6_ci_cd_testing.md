@@ -47,4 +47,3 @@ All tests should be automatically executed in the CI/CD pipeline before code is 
 - Are there any additional quality checks (like linting or security scans) that should also be integrated alongside the tests?
 
 Please provide your feedback on these questions so we can further refine the user story.
-```
