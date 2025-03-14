@@ -18,7 +18,6 @@ const DesktopNavigation = () => {
   return (
     <nav
       style={{
-        marginBottom: '1rem',
         backgroundColor: menu[theme].background,
         padding: '1rem',
         display: 'flex',
@@ -98,7 +97,7 @@ const Content = () => {
       <div className="hidden md:block">
         <DesktopNavigation />
       </div>
-      <div style={{ padding: '1rem' }}>
+      <div>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
