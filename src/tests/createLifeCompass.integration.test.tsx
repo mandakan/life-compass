@@ -31,20 +31,16 @@ describe('CreateLifeCompass Integration Tests', () => {
     );
   };
 
-  test('renders the form with default "Custom" radio selected', () => {
+  test('renders the CreateLifeCompass form correctly', () => {
     renderComponent();
-    expect(screen.getByText(/Create Life Compass/i)).to.exist;
-    const customRadio = screen.getByLabelText(/Custom/i);
-    const predefinedRadio = screen.getByLabelText(/Predefined/i);
-    expect(customRadio.checked).to.be.true;
-    expect(predefinedRadio.checked).to.be.false;
+    expect(screen.getByText(/Skapa Livskompass/i)).to.exist;
+    expect(screen.getByText(/Lägg till livsområde/i)).to.exist;
+    expect(screen.getByText(/Lägg till fördefinierade områden/i)).to.exist;
   });
 
   test('displays validation error when trying to add a life area without a name', () => {
     renderComponent();
-    // Use getAllByText because there are duplicate buttons in the document
     const addButtons = screen.getAllByText(/Lägg till livsområde/i);
-    // Click the first button (the one associated with the form)
     fireEvent.click(addButtons[0]);
     expect(screen.getByText(/Namn är obligatoriskt/i)).to.exist;
   });
@@ -55,10 +51,7 @@ describe('CreateLifeCompass Integration Tests', () => {
     const descriptionInput = screen.getByLabelText(/Beskrivning:/i);
     const detailsInput = screen.getByLabelText(/Detaljer:/i);
     const importanceInput = screen.getByLabelText(/Viktighet \(1-10\):/i);
-    const satisfactionInput = screen.getByLabelText(
-      /Tillfredsställelse \(1-10\):/i,
-    );
-    // There are duplicate buttons so choose the first one.
+    const satisfactionInput = screen.getByLabelText(/Tillfredsställelse \(1-10\):/i);
     const addButtons = screen.getAllByText(/Lägg till livsområde/i);
     const addButton = addButtons[0];
 
@@ -85,7 +78,6 @@ describe('CreateLifeCompass Integration Tests', () => {
   test('prevents duplicate life area names', () => {
     renderComponent();
     const nameInput = screen.getByLabelText(/Namn:/i);
-    // Again, get the first add button.
     const addButtons = screen.getAllByText(/Lägg till livsområde/i);
     const addButton = addButtons[0];
 
@@ -93,28 +85,21 @@ describe('CreateLifeCompass Integration Tests', () => {
     fireEvent.click(addButton);
     expect(screen.getByText(/Career/i)).to.exist;
 
-    // Attempt to add a duplicate life area
     fireEvent.change(nameInput, { target: { value: 'Career' } });
     fireEvent.click(addButton);
-    expect(screen.getByText(/Dubblett: Samma namn får inte användas/i)).to
-      .exist;
+    expect(screen.getByText(/Dubblett: Samma namn får inte användas/i)).to.exist;
   });
 
-  test('switches to predefined life areas when radio is changed', () => {
+  test('adds predefined life areas when button is clicked', () => {
     renderComponent();
-    // There may be duplicate radio inputs so get the first match for the label
-    const predefinedRadio = screen.getAllByLabelText(/Predefined/i)[0];
-    fireEvent.click(predefinedRadio);
-    // Check for a known predefined life area from the JSON file.
+    const predefinedButton = screen.getByText(/Lägg till fördefinierade områden/i);
+    fireEvent.click(predefinedButton);
     expect(
-      screen.getByText(
-        /Intima relationer \/ nära relationer \/ parrelationer/i,
-      ),
+      screen.getByText(/Intima relationer \/ nära relationer \/ parrelationer/i),
     ).to.exist;
   });
 
   test('displays a warning when localStorage is not available', () => {
-    // Simulate localStorage being unavailable using vi.spyOn
     vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
       throw new Error('Local Storage not available');
     });
