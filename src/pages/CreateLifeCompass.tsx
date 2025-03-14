@@ -90,7 +90,8 @@ const CreateLifeCompass: React.FC = () => {
       importance: 5,
       satisfaction: 5,
     };
-    setLifeAreas([...lifeAreas, newArea]);
+    // Insert the new area at the beginning so it appears at the top left of the grid.
+    setLifeAreas([newArea, ...lifeAreas]);
     setEditingAreaId(newArea.id);
     setEditName(newArea.name);
     setEditDescription(newArea.description);
