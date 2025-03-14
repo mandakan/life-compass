@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { colors, spacing, borderRadius } from '../designTokens';
 
 interface LifeArea {
   id: string;
@@ -48,6 +49,17 @@ const predefinedLifeAreas: LifeArea[] = [
   },
 ];
 
+const isLocalStorageAvailable = (): boolean => {
+  try {
+    const testKey = '__local_storage_test__';
+    localStorage.setItem(testKey, testKey);
+    localStorage.removeItem(testKey);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 const CreateLifeCompass: React.FC = () => {
   const [compassType, setCompassType] = useState<'custom' | 'predefined'>('custom');
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
@@ -56,21 +68,34 @@ const CreateLifeCompass: React.FC = () => {
   const [rating1, setRating1] = useState<number>(5);
   const [rating2, setRating2] = useState<number>(5);
   const [error, setError] = useState('');
+  const [storageAvailable, setStorageAvailable] = useState(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
 
   useEffect(() => {
-    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (saved) {
-      try {
-        setLifeAreas(JSON.parse(saved));
-      } catch (err) {
-        console.error('Failed to parse saved life areas', err);
-      }
+    // Check if localStorage is available
+    if (!isLocalStorageAvailable()) {
+      setStorageAvailable(false);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lifeAreas));
-  }, [lifeAreas]);
+    if (storageAvailable) {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (saved) {
+        try {
+          setLifeAreas(JSON.parse(saved));
+        } catch (err) {
+          console.error('Failed to parse saved life areas', err);
+        }
+      }
+    }
+  }, [storageAvailable]);
+
+  useEffect(() => {
+    if (storageAvailable) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lifeAreas));
+    }
+  }, [lifeAreas, storageAvailable]);
 
   useEffect(() => {
     if (compassType === 'predefined') {
@@ -79,6 +104,14 @@ const CreateLifeCompass: React.FC = () => {
       setLifeAreas([]);
     }
   }, [compassType]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleAddLifeArea = () => {
     if (name.trim() === '') {
@@ -108,40 +141,66 @@ const CreateLifeCompass: React.FC = () => {
     setLifeAreas(lifeAreas.filter(area => area.id !== id));
   };
 
-  // Styles for card view
-  const cardContainerStyle: React.CSSProperties = {
+  // Default card style for mobile view
+  const mobileCardStyle: React.CSSProperties = {
+    border: `1px solid ${colors.neutral[300]}`,
+    padding: spacing.medium,
+    borderRadius: borderRadius.small,
+    minWidth: '200px',
+    position: 'relative',
+    backgroundColor: colors.light.background,
+  };
+
+  // Container styles for mobile view
+  const mobileContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '1rem',
+    gap: spacing.medium,
     justifyContent: 'center',
-    marginTop: '1rem'
+    marginTop: spacing.medium,
   };
 
-  const cardStyle: React.CSSProperties = {
-    border: '1px solid #ccc',
-    padding: '1rem',
-    borderRadius: '4px',
-    minWidth: '200px',
-    position: 'relative'
+  // For desktop view, place cards in a circle layout
+  const desktopContainerStyle: React.CSSProperties = {
+    position: 'relative',
+    width: '400px',
+    height: '400px',
+    margin: '0 auto',
+    marginTop: spacing.large,
   };
 
+  // Tooltip style remains the same
   const tooltipStyle: React.CSSProperties = {
     position: 'absolute',
     top: '-1.5rem',
     left: '0',
-    backgroundColor: '#333',
+    backgroundColor: colors.neutral[900],
     color: '#fff',
     padding: '0.25rem 0.5rem',
-    borderRadius: '4px',
-    fontSize: '0.75rem'
+    borderRadius: borderRadius.small,
+    fontSize: '0.75rem',
+    cursor: 'pointer',
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={{ padding: spacing.medium }}>
       <h2>Create Life Compass</h2>
-      <div style={{ marginBottom: '1rem' }}>
+      {!storageAvailable && (
+        <div
+          style={{
+            backgroundColor: colors.accent,
+            color: '#fff',
+            padding: spacing.small,
+            marginBottom: spacing.medium,
+            borderRadius: borderRadius.small,
+          }}
+        >
+          Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
+        </div>
+      )}
+      <div style={{ marginBottom: spacing.medium }}>
         <strong>Välj typ:</strong>
-        <label style={{ marginLeft: '1rem' }}>
+        <label style={{ marginLeft: spacing.medium }}>
           <input
             type="radio"
             name="compassType"
@@ -151,7 +210,7 @@ const CreateLifeCompass: React.FC = () => {
           />
           Custom
         </label>
-        <label style={{ marginLeft: '1rem' }}>
+        <label style={{ marginLeft: spacing.medium }}>
           <input
             type="radio"
             name="compassType"
@@ -163,7 +222,7 @@ const CreateLifeCompass: React.FC = () => {
         </label>
       </div>
       {compassType === 'custom' && (
-        <div style={{ marginBottom: '1rem' }}>
+        <div style={{ marginBottom: spacing.medium }}>
           <div>
             <label>
               Name:
@@ -172,7 +231,7 @@ const CreateLifeCompass: React.FC = () => {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 title="Ange ett unikt namn för livsområdet"
-                style={{ marginLeft: '0.5rem' }}
+                style={{ marginLeft: spacing.small }}
               />
             </label>
           </div>
@@ -184,7 +243,7 @@ const CreateLifeCompass: React.FC = () => {
                 value={description}
                 onChange={e => setDescription(e.target.value)}
                 title="Beskriv kort vad detta livsområde handlar om"
-                style={{ marginLeft: '0.5rem' }}
+                style={{ marginLeft: spacing.small }}
               />
             </label>
           </div>
@@ -198,7 +257,7 @@ const CreateLifeCompass: React.FC = () => {
                 min="1"
                 max="10"
                 title="Ange ett värde mellan 1 och 10"
-                style={{ marginLeft: '0.5rem' }}
+                style={{ marginLeft: spacing.small }}
               />
             </label>
           </div>
@@ -212,26 +271,59 @@ const CreateLifeCompass: React.FC = () => {
                 min="1"
                 max="10"
                 title="Ange ett värde mellan 1 och 10"
-                style={{ marginLeft: '0.5rem' }}
+                style={{ marginLeft: spacing.small }}
               />
             </label>
           </div>
           {error && (
-            <div style={{ color: 'red', marginTop: '0.5rem' }}>{error}</div>
+            <div style={{ color: colors.accent, marginTop: spacing.small }}>{error}</div>
           )}
-          <button onClick={handleAddLifeArea} style={{ marginTop: '1rem' }}>
+          <button onClick={handleAddLifeArea} style={{ marginTop: spacing.medium }}>
             Add Life Area
           </button>
         </div>
       )}
-      <hr style={{ margin: '1rem 0' }} />
+      <hr style={{ margin: `${spacing.medium} 0` }} />
       <h3>Life Areas</h3>
       {lifeAreas.length === 0 ? (
         <p>No life areas added yet.</p>
+      ) : isDesktop ? (
+        <div style={desktopContainerStyle}>
+          {lifeAreas.map((area, index) => {
+            const total = lifeAreas.length;
+            const angle = (2 * Math.PI / total) * index;
+            const radius = 150;
+            const center = 200;
+            const cardWidth = 150;
+            const left = center + radius * Math.cos(angle) - cardWidth / 2;
+            const top = center + radius * Math.sin(angle) - cardWidth / 2;
+            return (
+              <div
+                key={area.id}
+                style={{
+                  ...mobileCardStyle,
+                  position: 'absolute',
+                  width: `${cardWidth}px`,
+                  left,
+                  top,
+                }}
+              >
+                <div style={tooltipStyle} title="Click to remove" onClick={() => handleRemoveLifeArea(area.id)}>
+                  ×
+                </div>
+                <h4>{area.name}</h4>
+                <p>{area.description}</p>
+                <p>
+                  Ratings: {area.rating1} & {area.rating2}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       ) : (
-        <div style={cardContainerStyle}>
+        <div style={mobileContainerStyle}>
           {lifeAreas.map(area => (
-            <div key={area.id} style={cardStyle}>
+            <div key={area.id} style={mobileCardStyle}>
               <div style={tooltipStyle} title="Click to remove" onClick={() => handleRemoveLifeArea(area.id)}>
                 ×
               </div>
@@ -249,3 +341,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```
