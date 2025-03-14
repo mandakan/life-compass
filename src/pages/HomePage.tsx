@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { getUserData, saveUserData } from '../utils/storageService';
+import { colors, typography, transitions } from '../designTokens';
 
 const HomePage: React.FC = () => {
   useEffect(() => {
@@ -13,14 +14,47 @@ const HomePage: React.FC = () => {
     console.log('User data saved.');
   };
 
+  const containerStyle: React.CSSProperties = {
+    backgroundColor: colors.light.background,
+    color: colors.light.text,
+    fontFamily: typography.primaryFont,
+    padding: '2rem',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  };
+
+  const headerStyle: React.CSSProperties = {
+    marginBottom: '1.5rem',
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  };
+
+  const buttonStyle: React.CSSProperties = {
+    backgroundColor: colors.primary,
+    border: 'none',
+    borderRadius: '4px',
+    color: '#fff',
+    padding: '0.75rem 1.5rem',
+    transition: `background-color ${transitions.fast}`,
+    cursor: 'pointer'
+  };
+
   return (
-    <div className="w-full max-w-md rounded-lg bg-gradient-to-br from-gray-50 to-gray-200 p-8 shadow-lg">
-      <h1 className="mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-center text-3xl font-bold text-transparent">
-        Life Compass
-      </h1>
+    <div style={containerStyle}>
+      <h1 style={headerStyle}>Life Compass</h1>
       <button
-        className="w-full rounded bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-white transition-colors hover:from-blue-600 hover:to-blue-700"
+        style={buttonStyle}
         onClick={handleSave}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.secondary;
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.primary;
+        }}
       >
         Save Data
       </button>
