@@ -103,3 +103,18 @@ export const menu = {
     text: colors.dark.text,
   },
 };
+
+export const buttons = {
+  close: {
+    background: colors.primary,
+    color: '#ffffff',
+    padding: spacing.small,
+    border: 'none',
+    borderRadius: borderRadius.small,
+    cursor: 'pointer',
+    transition: transitions.fast,
+  },
+};
+```‬
+
+src/components/LifeAreaCard.tsx
