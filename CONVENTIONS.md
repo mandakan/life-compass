@@ -63,10 +63,7 @@ life_compass/
 ## Styling & Tailwind CSS Conventions
 
 - Use utility-first approach, avoid unnecessary custom CSS.
-- Example:
-  <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-  Click me
-  </button>
+- Use src/designTokens.ts as much as possible instead of local definitions to ensure consistent design across the app.
 
 ## Routing (React Router)
 
