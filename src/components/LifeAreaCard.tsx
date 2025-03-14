@@ -263,9 +263,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           )}
           <div className="grid grid-cols-2 gap-2 mb-2">
             <div className="font-bold" style={{ padding: spacing.small }}>Viktighet:</div>
-            <div style={{ padding: spacing.small }}>{area.importance}</div>
+            <div className="text-right" style={{ padding: spacing.small }}>{area.importance}</div>
             <div className="font-bold" style={{ padding: spacing.small }}>Tillfredsställelse:</div>
-            <div style={{ padding: spacing.small }}>{area.satisfaction}</div>
+            <div className="text-right" style={{ padding: spacing.small }}>{area.satisfaction}</div>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
@@ -289,3 +289,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```
