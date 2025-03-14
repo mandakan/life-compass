@@ -13,14 +13,13 @@ This document outlines coding conventions to ensure consistency, maintainability
 
 life_compass/
 │── src/
-│   ├── components/  # Reusable UI components
-│   ├── pages/       # Page-specific components
-│   ├── utils/       # Helper functions and utilities
-│   ├── hooks/       # Custom React hooks (if applicable)
-│   ├── state/       # Zustand/Redux/Context API state management
-│   ├── assets/      # Images, icons, styles
-│   ├── tests/       # Unit and integration tests
-
+│ ├── components/ # Reusable UI components
+│ ├── pages/ # Page-specific components
+│ ├── utils/ # Helper functions and utilities
+│ ├── hooks/ # Custom React hooks (if applicable)
+│ ├── state/ # Zustand/Redux/Context API state management
+│ ├── assets/ # Images, icons, styles
+│ ├── tests/ # Unit and integration tests
 
 - Keep business logic separate from UI components (no direct API calls inside components).
 - Use named exports for all utility functions and services.
