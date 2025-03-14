@@ -97,4 +97,3 @@ describe('CreateLifeCompass Integration Tests', () => {
     jest.restoreAllMocks();
   });
 });
-```
