@@ -14,12 +14,12 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg shadow-lg p-8 max-w-md w-full">
-      <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+    <div className="w-full max-w-md rounded-lg bg-gradient-to-br from-gray-50 to-gray-200 p-8 shadow-lg">
+      <h1 className="mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-center text-3xl font-bold text-transparent">
         Life Compass
       </h1>
       <button
-        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded transition-colors"
+        className="w-full rounded bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-white transition-colors hover:from-blue-600 hover:to-blue-700"
         onClick={handleSave}
       >
         Save Data

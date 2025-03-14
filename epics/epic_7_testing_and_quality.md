@@ -1,7 +1,7 @@
 ---
-title: "Testing and Quality Assurance"
-type: "epic"
-status: "draft"
+title: 'Testing and Quality Assurance'
+type: 'epic'
+status: 'draft'
 ---
 
 # Testing and Quality Assurance
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a developer, I want the app to be tested and stable before production so that we can deliver a high-quality user experience.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 7.1: Implement Unit Tests for UI Components
 - User Story 7.2: Develop Integration Tests
 - User Story 7.3: Establish Manual Testing Process

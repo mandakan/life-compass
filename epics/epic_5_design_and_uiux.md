@@ -1,7 +1,7 @@
 ---
-title: "Design and UI/UX"
-type: "epic"
-status: "draft"
+title: 'Design and UI/UX'
+type: 'epic'
+status: 'draft'
 ---
 
 # Design and UI/UX
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a user, I want the app to have a simple, accessible, and responsive design that makes it easy to understand and use the features.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 5.1: Define Design Principles
 - User Story 5.2: Implement Mobile-First Layout
 - User Story 5.3: Develop Consistent UI Components

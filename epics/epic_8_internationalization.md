@@ -1,7 +1,7 @@
 ---
-title: "Internationalization (i18n) and Language Support"
-type: "epic"
-status: "draft"
+title: 'Internationalization (i18n) and Language Support'
+type: 'epic'
+status: 'draft'
 ---
 
 # Internationalization (i18n) and Language Support
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a user, I want to be able to change the language of the application so that I can use it in my preferred language.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 8.1: Define Translation Structure
 - User Story 8.2: Implement Language Switcher in UI
 - User Story 8.3: Set Swedish as Default Language

@@ -1,7 +1,7 @@
 ---
-title: "Tracking and Improvement"
-type: "epic"
-status: "draft"
+title: 'Tracking and Improvement'
+type: 'epic'
+status: 'draft'
 ---
 
 # Tracking and Improvement
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a user, I want to track my assessments over time so that I can see if I am making progress and adjust my plan.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 4.1: Compare Life Compass Over Time
 - User Story 4.2: Set Regular Check-ins
 - User Story 4.3: Visualize Progress Over Time

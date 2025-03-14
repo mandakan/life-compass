@@ -1,5 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { getUserData, saveUserData, STORAGE_KEY } from '../utils/storageService';
+import {
+  getUserData,
+  saveUserData,
+  STORAGE_KEY,
+} from '../utils/storageService';
 
 describe('storageService', () => {
   beforeEach(() => {

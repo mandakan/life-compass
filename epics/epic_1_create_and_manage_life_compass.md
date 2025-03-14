@@ -1,7 +1,7 @@
 ---
-title: "Create and Manage Life Compass"
-type: "epic"
-status: "draft"
+title: 'Create and Manage Life Compass'
+type: 'epic'
+status: 'draft'
 ---
 
 # Create and Manage Life Compass
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a user, I want to create and customize a life compass so that I get an overview of my life balance.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 1.1: Create Life Compass
 - User Story 1.2: Customize Life Areas
 - User Story 1.3: Rate Life Areas

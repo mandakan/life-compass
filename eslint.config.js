@@ -1,25 +1,25 @@
 module.exports = [
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      parser: require("@typescript-eslint/parser"),
+      parser: require('@typescript-eslint/parser'),
       parserOptions: {
         ecmaVersion: 2022,
-        sourceType: "module",
+        sourceType: 'module',
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
     plugins: {
-      react: require("eslint-plugin-react"),
-      "react-hooks": require("eslint-plugin-react-hooks")
+      react: require('eslint-plugin-react'),
+      'react-hooks': require('eslint-plugin-react-hooks'),
     },
     settings: {
       react: {
-        version: "detect"
-      }
+        version: 'detect',
+      },
     },
-    rules: {}
-  }
+    rules: {},
+  },
 ];

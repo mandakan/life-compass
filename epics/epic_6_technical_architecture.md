@@ -1,7 +1,7 @@
 ---
-title: "Technical Architecture"
-type: "epic"
-status: "draft"
+title: 'Technical Architecture'
+type: 'epic'
+status: 'draft'
 ---
 
 # Technical Architecture
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a developer, I want a clear architecture and tech stack so that I can build a robust and scalable app.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 6.1: Define Tech Stack and Frameworks
 - User Story 6.2: Implement Local Storage for Data Persistence
 - User Story 6.3: Encrypt Sensitive Data in Local Storage

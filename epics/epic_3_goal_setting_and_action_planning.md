@@ -1,7 +1,7 @@
 ---
-title: "Goal Setting and Action Planning"
-type: "epic"
-status: "draft"
+title: 'Goal Setting and Action Planning'
+type: 'epic'
+status: 'draft'
 ---
 
 # Goal Setting and Action Planning
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a user, I want to set goals and plan actions to improve areas in my life compass.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - User Story 3.1: Set Goals for Life Areas
 - User Story 3.2: Track Goal Progress
 - User Story 3.3: Define Action Steps for Goals
