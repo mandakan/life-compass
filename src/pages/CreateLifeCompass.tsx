@@ -43,11 +43,6 @@ const CreateLifeCompass: React.FC = () => {
     return [];
   });
 
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [details, setDetails] = useState('');
-  const [importance, setImportance] = useState<number>(5);
-  const [satisfaction, setSatisfaction] = useState<number>(5);
   const [error, setError] = useState('');
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
 
@@ -69,30 +64,39 @@ const CreateLifeCompass: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleAddLifeArea = () => {
-    if (name.trim() === '') {
-      setError('Namn är obligatoriskt.');
-      return;
-    }
-    if (lifeAreas.find(area => area.name.toLowerCase() === name.trim().toLowerCase())) {
-      setError('Dubblett: Samma namn får inte användas.');
-      return;
-    }
-    setError('');
+  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
+  const [editName, setEditName] = useState('');
+  const [editDescription, setEditDescription] = useState('');
+  const [editDetails, setEditDetails] = useState('');
+  const [editImportance, setEditImportance] = useState<number>(5);
+  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
+
+  const handleAddNewLifeArea = () => {
+    const defaultName = (() => {
+      const base = "Ny livsområde";
+      let name = base;
+      let counter = 2;
+      while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
+        name = `${base} ${counter}`;
+        counter++;
+      }
+      return name;
+    })();
     const newArea: LifeArea = {
       id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
-      name: name.trim(),
-      description: description.trim(),
-      details: details.trim(),
-      importance,
-      satisfaction,
+      name: defaultName,
+      description: '',
+      details: '',
+      importance: 5,
+      satisfaction: 5,
     };
     setLifeAreas([...lifeAreas, newArea]);
-    setName('');
-    setDescription('');
-    setDetails('');
-    setImportance(5);
-    setSatisfaction(5);
+    setEditingAreaId(newArea.id);
+    setEditName(newArea.name);
+    setEditDescription(newArea.description);
+    setEditDetails(newArea.details);
+    setEditImportance(newArea.importance);
+    setEditSatisfaction(newArea.satisfaction);
   };
 
   const handleAddPredefinedAreas = () => {
@@ -111,13 +115,6 @@ const CreateLifeCompass: React.FC = () => {
       handleCancelEdit();
     }
   };
-
-  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
-  const [editName, setEditName] = useState('');
-  const [editDescription, setEditDescription] = useState('');
-  const [editDetails, setEditDetails] = useState('');
-  const [editImportance, setEditImportance] = useState<number>(5);
-  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
 
   const handleEditLifeArea = (area: LifeArea) => {
     setEditingAreaId(area.id);
@@ -182,7 +179,7 @@ const CreateLifeCompass: React.FC = () => {
     <div style={{ padding: spacing.medium }}>
       <h2>Create Life Compass</h2>
       <p style={{ marginBottom: spacing.medium }}>
-        Vänligen lägg till egna livsområden eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
+        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
       {!storageAvailable && (
         <div
@@ -197,80 +194,15 @@ const CreateLifeCompass: React.FC = () => {
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
-      <div style={{ marginBottom: spacing.medium }}>
-        <div>
-          <label>
-            Namn:
-            <input
-              type="text"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              title="Ange ett unikt namn för livsområdet"
-              style={{ marginLeft: spacing.small }}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Beskrivning:
-            <input
-              type="text"
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-              title="Beskriv kort vad detta livsområde handlar om"
-              style={{ marginLeft: spacing.small }}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Detaljer:
-            <textarea
-              value={details}
-              onChange={e => setDetails(e.target.value)}
-              title="Ange ytterligare detaljer för livsområdet"
-              style={{ marginLeft: spacing.small, verticalAlign: 'top', padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}`, width: '100%', minHeight: '40px' }}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Viktighet (1-10):
-            <input
-              type="number"
-              value={importance}
-              onChange={e => setImportance(Number(e.target.value))}
-              min="1"
-              max="10"
-              title="Ange ett värde mellan 1 och 10"
-              style={{ marginLeft: spacing.small }}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Tillfredsställelse (1-10):
-            <input
-              type="number"
-              value={satisfaction}
-              onChange={e => setSatisfaction(Number(e.target.value))}
-              min="1"
-              max="10"
-              title="Ange ett värde mellan 1 och 10"
-              style={{ marginLeft: spacing.small }}
-            />
-          </label>
-        </div>
-        {error && (
-          <div style={{ color: colors.accent, marginTop: spacing.small }}>{error}</div>
-        )}
-        <button onClick={handleAddLifeArea} style={{ marginTop: spacing.medium }}>
-          Lägg till livsområde
-        </button>
-      </div>
-      <button onClick={handleAddPredefinedAreas} style={{ marginBottom: spacing.medium }}>
+      <button onClick={handleAddNewLifeArea} style={{ marginBottom: spacing.medium }}>
+        Lägg till livsområde
+      </button>
+      <button onClick={handleAddPredefinedAreas} style={{ marginBottom: spacing.medium, marginLeft: spacing.medium }}>
         Lägg till fördefinierade områden
       </button>
+      {error && (
+        <div style={{ color: colors.accent, marginBottom: spacing.medium }}>{error}</div>
+      )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
       <h3>Livsområden</h3>
       {lifeAreas.length === 0 ? (
