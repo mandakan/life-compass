@@ -122,15 +122,15 @@ Instructions:
 
 1. For local development, no additional configuration is needed.
 2. For production build (GitHub Pages deployment), set the environment variable:
-   
+
    On Linux/Mac:
-     export GH_PAGES_BASE=/life-compass/
-   
+   export GH_PAGES_BASE=/life-compass/
+
    On Windows (Command Prompt):
-     set GH_PAGES_BASE=/life-compass/
+   set GH_PAGES_BASE=/life-compass/
 
 3. Build the project:
-     npm run build
+   npm run build
 
 4. Deploy the contents of the build folder to GitHub Pages.
 
