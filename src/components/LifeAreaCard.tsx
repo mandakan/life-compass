@@ -233,6 +233,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: popupWidth,
+                maxWidth: 'calc(100vw - 20px)',
                 backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
                 color: theme === 'light' ? colors.light.text : colors.dark.text,
                 border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
@@ -289,3 +290,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```****
