@@ -34,11 +34,9 @@ const CreateLifeCompass: React.FC = () => {
   const [importance, setImportance] = useState<number>(5);
   const [satisfaction, setSatisfaction] = useState<number>(5);
   const [error, setError] = useState('');
-  // Instead of setting storageAvailable to true by default, compute its value immediately.
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
 
-  // Load saved life areas if localStorage is available
   useEffect(() => {
     if (storageAvailable) {
       try {
@@ -52,7 +50,6 @@ const CreateLifeCompass: React.FC = () => {
     }
   }, [storageAvailable]);
 
-  // Save life areas to localStorage if available
   useEffect(() => {
     if (storageAvailable) {
       try {
@@ -170,34 +167,12 @@ const CreateLifeCompass: React.FC = () => {
     setError('');
   };
 
-  // Themed card style for both mobile and desktop views
   const themedCardStyle: React.CSSProperties = {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
     borderRadius: borderRadius.small,
     minWidth: '200px',
     backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
-  };
-
-  // Container style for mobile view
-  const mobileContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: spacing.medium,
-    justifyContent: 'center',
-    marginTop: spacing.medium,
-  };
-
-  // Updated desktop container to use a grid layout with a maximum of 4 cards per row
-  const desktopContainerStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gap: spacing.medium,
-    marginTop: spacing.medium,
-    justifyContent: 'center',
-    maxWidth: `calc(200px * 4 + ${spacing.medium} * 3)`,
-    marginLeft: 'auto',
-    marginRight: 'auto',
   };
 
   return (
@@ -320,7 +295,7 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length === 0 ? (
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
-        <div style={desktopContainerStyle}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 mx-auto max-w-[848px]">
           {lifeAreas.map(area => (
             <LifeAreaCard
               key={area.id}
@@ -345,7 +320,7 @@ const CreateLifeCompass: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div style={mobileContainerStyle}>
+        <div className="flex flex-wrap gap-4 justify-center mt-4">
           {lifeAreas.map(area => (
             <LifeAreaCard
               key={area.id}
@@ -375,3 +350,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```
