@@ -107,6 +107,11 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 - [ ] User Story 5.4: Optimize Navigation and Usability
 
+✅ **Deployment**
+
+- [ ] User Story 10.1: Automate deployment to GitHub Pages
+- [ ] User Story 10.2: Configure Vite for GitHub Pages
+
 ## 🌟 Phase 3–5 (See previous roadmap for details)
 
 ---
