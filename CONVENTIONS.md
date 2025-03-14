@@ -59,6 +59,7 @@ life_compass/
 - Mobile-first design with responsive scaling.
 - Keep UI components consistent (use Tailwind CSS for styling).
 - Follow WCAG 2.1 for accessibility (contrast, keyboard navigation, aria-labels).
+- Use src/designTokens.ts as much as possible instead of local definitions to ensure consistent design across the app.
 
 ## Styling & Tailwind CSS Conventions
 
