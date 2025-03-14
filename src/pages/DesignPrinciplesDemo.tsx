@@ -5,6 +5,7 @@ function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
   const [buttonHovered, setButtonHovered] = React.useState(false);
   const [darkMode, setDarkMode] = React.useState(false);
+  const [hoverActive, setHoverActive] = React.useState(false);
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
@@ -56,6 +57,48 @@ function DesignPrinciplesDemo() {
     margin: '0.5rem',
     width: '100%',
     maxWidth: '300px'
+  };
+
+  const calloutStyle: React.CSSProperties = {
+    borderLeft: `4px solid ${colors.primary}`,
+    backgroundColor: darkMode ? colors.neutral[800] : colors.neutral[100],
+    padding: '1rem',
+    margin: '1rem 0'
+  };
+
+  const warningStyle: React.CSSProperties = {
+    borderLeft: `4px solid ${colors.accent}`,
+    backgroundColor: darkMode ? colors.neutral[700] : colors.neutral[200],
+    padding: '1rem',
+    margin: '1rem 0'
+  };
+
+  const hoverInfoStyle: React.CSSProperties = {
+    position: 'relative',
+    display: 'inline-block',
+    borderBottom: '1px dotted gray'
+  };
+
+  const tooltipStyle: React.CSSProperties = {
+    visibility: 'hidden',
+    width: '200px',
+    backgroundColor: colors.neutral[900],
+    color: '#fff',
+    textAlign: 'center',
+    borderRadius: '6px',
+    padding: '0.5rem',
+    position: 'absolute',
+    zIndex: 1,
+    bottom: '125%',
+    left: '50%',
+    marginLeft: '-100px',
+    opacity: 0,
+    transition: `opacity ${transitions.fast}`
+  };
+
+  const tooltipVisibleStyle: React.CSSProperties = {
+    visibility: 'visible',
+    opacity: 1
   };
 
   return (
@@ -117,6 +160,33 @@ function DesignPrinciplesDemo() {
           placeholder="Sample Input"
           style={inputStyle}
         />
+      </div>
+      {/* Callout Example */}
+      <div style={calloutStyle}>
+        <h3>Callout</h3>
+        <p>This is an informational callout intended to draw attention to important details.</p>
+      </div>
+      {/* Warning Example */}
+      <div style={warningStyle}>
+        <h3>Warning</h3>
+        <p>This is a warning message to alert users to take caution with a particular action.</p>
+      </div>
+      {/* Hover Information Example */}
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <p>
+          Hover over this{' '}
+          <span
+            style={hoverInfoStyle}
+            onMouseEnter={() => setHoverActive(true)}
+            onMouseLeave={() => setHoverActive(false)}
+          >
+            text
+            <span style={{ ...tooltipStyle, ...(hoverActive ? tooltipVisibleStyle : {}) }}>
+              This is additional hover information.
+            </span>
+          </span>
+          {' '}to see more details.
+        </p>
       </div>
     </div>
   );
