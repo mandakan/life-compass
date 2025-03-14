@@ -67,4 +67,3 @@ jobs:
         with:
           reporter: junit
           path: test-results.xml
-```
