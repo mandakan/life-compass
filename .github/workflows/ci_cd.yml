@@ -65,6 +65,6 @@ jobs:
         if: ${{ always() }}
         uses: dorny/test-reporter@v1
         with:
-          check_name: Vitest Tests
           reporter: junit
           path: test-results.xml
+```
