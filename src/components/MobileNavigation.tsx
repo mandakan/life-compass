@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { colors } from '../designTokens';
+import { colors, menu } from '../designTokens';
 
 const MobileNavigation: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -15,8 +15,8 @@ const MobileNavigation: React.FC = () => {
   return (
     <nav
       style={{
-        backgroundColor: colors.menu[theme].background,
-        color: colors.menu[theme].text,
+        backgroundColor: menu[theme].background,
+        color: menu[theme].text,
         padding: '1rem'
       }}
     >
@@ -87,16 +87,16 @@ const MobileNavigation: React.FC = () => {
       </div>
       {open && (
         <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <a href="/" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
+          <a href="/" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             Home
           </a>
-          <a href="/design-principles" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
+          <a href="/design-principles" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             Design Principles Demo
           </a>
-          <a href="/about" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
+          <a href="/about" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             About
           </a>
-          <a href="/contact" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
+          <a href="/contact" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             Contact
           </a>
         </div>
@@ -106,3 +106,4 @@ const MobileNavigation: React.FC = () => {
 };
 
 export default MobileNavigation;
+```

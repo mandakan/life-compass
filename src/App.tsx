@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import MobileNavigation from './components/MobileNavigation';
-import { colors } from './designTokens';
+import { colors, menu } from './designTokens';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 const DesktopNavigation = () => {
@@ -19,7 +19,7 @@ const DesktopNavigation = () => {
     <nav
       style={{
         marginBottom: '1rem',
-        backgroundColor: colors.menu[theme].background,
+        backgroundColor: menu[theme].background,
         padding: '1rem',
         display: 'flex',
         gap: '1rem',
@@ -30,13 +30,13 @@ const DesktopNavigation = () => {
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <Link
           to="/"
-          style={{ color: colors.menu[theme].text, textDecoration: 'none' }}
+          style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
           Home
         </Link>
         <Link
           to="/design-principles"
-          style={{ color: colors.menu[theme].text, textDecoration: 'none' }}
+          style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
           Design Principles Demo
         </Link>
