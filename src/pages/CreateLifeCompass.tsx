@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
+import { useTheme } from '../context/ThemeContext';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -17,6 +18,7 @@ const isLocalStorageAvailable = (): boolean => {
 };
 
 const CreateLifeCompass: React.FC = () => {
+  const { theme } = useTheme();
   const [compassType, setCompassType] = useState<'custom' | 'predefined'>('custom');
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
@@ -161,13 +163,13 @@ const CreateLifeCompass: React.FC = () => {
     setError('');
   };
 
-  // Default card style for mobile view
-  const mobileCardStyle: React.CSSProperties = {
-    border: `1px solid ${colors.neutral[300]}`,
+  // Themed card style for both mobile and desktop views
+  const themedCardStyle: React.CSSProperties = {
+    border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
     borderRadius: borderRadius.small,
     minWidth: '200px',
-    backgroundColor: colors.light.background,
+    backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
   };
 
   // Container style for mobile view
@@ -327,7 +329,7 @@ const CreateLifeCompass: React.FC = () => {
               onCancelEdit={handleCancelEdit}
               onEdit={handleEditLifeArea}
               onRemove={handleRemoveLifeArea}
-              style={mobileCardStyle}
+              style={themedCardStyle}
             />
           ))}
         </div>
@@ -352,7 +354,7 @@ const CreateLifeCompass: React.FC = () => {
               onCancelEdit={handleCancelEdit}
               onEdit={handleEditLifeArea}
               onRemove={handleRemoveLifeArea}
-              style={mobileCardStyle}
+              style={themedCardStyle}
             />
           ))}
         </div>
