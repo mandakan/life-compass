@@ -26,7 +26,6 @@ const isLocalStorageAvailable = (): boolean => {
 
 const CreateLifeCompass: React.FC = () => {
   const { theme } = useTheme();
-  const [compassType, setCompassType] = useState<'custom' | 'predefined'>('custom');
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -61,12 +60,6 @@ const CreateLifeCompass: React.FC = () => {
   }, [lifeAreas, storageAvailable]);
 
   useEffect(() => {
-    if (compassType === 'predefined') {
-      setLifeAreas(getPredefinedLifeAreas());
-    }
-  }, [compassType]);
-
-  useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 768);
     };
@@ -98,6 +91,16 @@ const CreateLifeCompass: React.FC = () => {
     setDetails('');
     setImportance(5);
     setSatisfaction(5);
+  };
+
+  const handleAddPredefinedAreas = () => {
+    const predefined = getPredefinedLifeAreas();
+    const newAreas = predefined.filter(predef =>
+      !lifeAreas.some(existing => existing.name.toLowerCase() === predef.name.toLowerCase())
+    );
+    if (newAreas.length > 0) {
+      setLifeAreas([...lifeAreas, ...newAreas]);
+    }
   };
 
   const handleRemoveLifeArea = (id: string) => {
@@ -177,7 +180,7 @@ const CreateLifeCompass: React.FC = () => {
     <div style={{ padding: spacing.medium }}>
       <h2>Create Life Compass</h2>
       <p style={{ marginBottom: spacing.medium }}>
-        Vänligen välj typ av livsområden: antingen skapa egna (Custom) eller använd förinställda områden.
+        Vänligen lägg till egna livsområden eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
       {!storageAvailable && (
         <div
@@ -193,101 +196,79 @@ const CreateLifeCompass: React.FC = () => {
         </div>
       )}
       <div style={{ marginBottom: spacing.medium }}>
-        <strong>Välj typ:</strong>
-        <label style={{ marginLeft: spacing.medium }}>
-          <input
-            type="radio"
-            name="compassType"
-            value="custom"
-            checked={compassType === 'custom'}
-            onChange={() => setCompassType('custom')}
-          />
-          Custom
-        </label>
-        <label style={{ marginLeft: spacing.medium }}>
-          <input
-            type="radio"
-            name="compassType"
-            value="predefined"
-            checked={compassType === 'predefined'}
-            onChange={() => setCompassType('predefined')}
-          />
-          Predefined (Förinställda)
-        </label>
-      </div>
-      {compassType === 'custom' && (
-        <div style={{ marginBottom: spacing.medium }}>
-          <div>
-            <label>
-              Namn:
-              <input
-                type="text"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                title="Ange ett unikt namn för livsområdet"
-                style={{ marginLeft: spacing.small }}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Beskrivning:
-              <input
-                type="text"
-                value={description}
-                onChange={e => setDescription(e.target.value)}
-                title="Beskriv kort vad detta livsområde handlar om"
-                style={{ marginLeft: spacing.small }}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Detaljer:
-              <textarea
-                value={details}
-                onChange={e => setDetails(e.target.value)}
-                title="Ange ytterligare detaljer för livsområdet"
-                style={{ marginLeft: spacing.small, verticalAlign: 'top', padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}`, width: '100%', minHeight: '40px' }}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Viktighet (1-10):
-              <input
-                type="number"
-                value={importance}
-                onChange={e => setImportance(Number(e.target.value))}
-                min="1"
-                max="10"
-                title="Ange ett värde mellan 1 och 10"
-                style={{ marginLeft: spacing.small }}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Tillfredsställelse (1-10):
-              <input
-                type="number"
-                value={satisfaction}
-                onChange={e => setSatisfaction(Number(e.target.value))}
-                min="1"
-                max="10"
-                title="Ange ett värde mellan 1 och 10"
-                style={{ marginLeft: spacing.small }}
-              />
-            </label>
-          </div>
-          {error && (
-            <div style={{ color: colors.accent, marginTop: spacing.small }}>{error}</div>
-          )}
-          <button onClick={handleAddLifeArea} style={{ marginTop: spacing.medium }}>
-            Lägg till livsområde
-          </button>
+        <div>
+          <label>
+            Namn:
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              title="Ange ett unikt namn för livsområdet"
+              style={{ marginLeft: spacing.small }}
+            />
+          </label>
         </div>
-      )}
+        <div>
+          <label>
+            Beskrivning:
+            <input
+              type="text"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              title="Beskriv kort vad detta livsområde handlar om"
+              style={{ marginLeft: spacing.small }}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Detaljer:
+            <textarea
+              value={details}
+              onChange={e => setDetails(e.target.value)}
+              title="Ange ytterligare detaljer för livsområdet"
+              style={{ marginLeft: spacing.small, verticalAlign: 'top', padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}`, width: '100%', minHeight: '40px' }}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Viktighet (1-10):
+            <input
+              type="number"
+              value={importance}
+              onChange={e => setImportance(Number(e.target.value))}
+              min="1"
+              max="10"
+              title="Ange ett värde mellan 1 och 10"
+              style={{ marginLeft: spacing.small }}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Tillfredsställelse (1-10):
+            <input
+              type="number"
+              value={satisfaction}
+              onChange={e => setSatisfaction(Number(e.target.value))}
+              min="1"
+              max="10"
+              title="Ange ett värde mellan 1 och 10"
+              style={{ marginLeft: spacing.small }}
+            />
+          </label>
+        </div>
+        {error && (
+          <div style={{ color: colors.accent, marginTop: spacing.small }}>{error}</div>
+        )}
+        <button onClick={handleAddLifeArea} style={{ marginTop: spacing.medium }}>
+          Lägg till livsområde
+        </button>
+      </div>
+      <button onClick={handleAddPredefinedAreas} style={{ marginBottom: spacing.medium }}>
+        Lägg till fördefinierade områden
+      </button>
       <hr style={{ margin: `${spacing.medium} 0` }} />
       <h3>Livsområden</h3>
       {lifeAreas.length === 0 ? (
