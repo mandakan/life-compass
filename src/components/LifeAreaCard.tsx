@@ -88,6 +88,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   const [showDescription, setShowDescription] = useState(false);
   const combinedStyle: React.CSSProperties = { ...defaultCardStyle, ...style };
 
+  // Determine popup width based on viewport width
+  const popupWidth = (typeof window !== 'undefined' && window.innerWidth >= 768) ? '400px' : '250px';
+
   if (isEditing) {
     return (
       <div style={combinedStyle}>
@@ -214,7 +217,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </button>
         </div>
         {showDescription && (
-          <div style={popupStyle}>
+          <div
+            style={{ ...popupStyle, width: popupWidth }}
+            tabIndex={0}
+            onBlur={() => setShowDescription(false)}
+          >
             <p style={{ margin: 0 }}>{area.description}</p>
             <button
               onClick={() => setShowDescription(false)}
