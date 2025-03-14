@@ -112,7 +112,27 @@ This roadmap outlines the different development phases of the Life Compass proje
 - [ ] User Story 10.1: Automate deployment to GitHub Pages
 - [ ] User Story 10.2: Configure Vite for GitHub Pages
 
-## 🌟 Phase 3–5 (See previous roadmap for details)
+---
+
+## 🔧 Deployment Configuration for GitHub Pages
+
+To deploy the Life Compass application on GitHub Pages without breaking routes or asset loading, the Vite configuration is set to use a dynamic base path. In production builds, the application uses the base path specified by the environment variable GH_PAGES_BASE. For example, if your repository is deployed under "/life-compass/", ensure that GH_PAGES_BASE is set accordingly before building the project. For local development the base path remains as '/'.
+
+Instructions:
+
+1. For local development, no additional configuration is needed.
+2. For production build (GitHub Pages deployment), set the environment variable:
+   
+   On Linux/Mac:
+     export GH_PAGES_BASE=/life-compass/
+   
+   On Windows (Command Prompt):
+     set GH_PAGES_BASE=/life-compass/
+
+3. Build the project:
+     npm run build
+
+4. Deploy the contents of the build folder to GitHub Pages.
 
 ---
 
