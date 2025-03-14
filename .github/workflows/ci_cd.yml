@@ -74,46 +74,6 @@ jobs:
           npx vitest run --reporter=junit --outputFile=test-results.xml
         continue-on-error: false
 
-      # Report test results using GITHUB_STEP_SUMMARY for quick insights
-      - name: Generate Job Summary from Vitest
-        run: |
-          echo "### Test Summary 🚀" >> $GITHUB_STEP_SUMMARY
-
-          # Initialize counters
-          TOTAL=0
-          PASSED=0
-          FAILURES=0
-          ERRORS=0
-          SKIPPED=0
-
-          # Iterate over all JUnit XML test report files
-          for file in target/surefire-reports/*.xml; do
-            if [[ -f "$file" ]]; then
-              TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
-              FAILED=$(grep -oP '(?<=failures=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
-              ERR=$(grep -oP '(?<=errors=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
-              SKIP=$(grep -oP '(?<=skipped=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
-
-              TOTAL=$((TOTAL + TESTS))
-              FAILURES=$((FAILURES + FAILED))
-              ERRORS=$((ERRORS + ERR))
-              SKIPPED=$((SKIPPED + SKIP))
-            fi
-          done
-
-          # Ensure no empty values (set to 0 if empty)
-          TOTAL=${TOTAL:-0}
-          FAILURES=${FAILURES:-0}
-          ERRORS=${ERRORS:-0}
-          SKIPPED=${SKIPPED:-0}
-          PASSED=$((TOTAL - FAILURES - ERRORS - SKIPPED))
-
-          echo "| Tests | Passed | Failed | Errors | Skipped |" >> $GITHUB_STEP_SUMMARY
-          echo "|-------|--------|--------|--------|---------|" >> $GITHUB_STEP_SUMMARY
-          echo "| $TOTAL | $PASSED | $FAILURES | $ERRORS | $SKIPPED |" >> $GITHUB_STEP_SUMMARY
-
-        if: always() # Run even if tests fail
-
       # Report test results using test-reporter for detailed insights
       - name: Report Test Results
         uses: dorny/test-reporter@v1
