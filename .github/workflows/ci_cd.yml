@@ -39,11 +39,33 @@ jobs:
 
       # Run linting as an additional quality check
       - name: Run Linting
-        run: npm run lint
+        id: lint
+        run: |
+          echo "### Linting Results 📝" >> $GITHUB_STEP_SUMMARY
+          if npm run lint > lint_output.txt 2>&1; then
+            echo "✅ No linting issues found." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Linting issues detected!" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 10 lint_output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1 # Fail the job if linting fails
+          fi
 
       # Run security scan as an additional quality check
       - name: Run Security Scan
-        run: npm audit --audit-level=moderate
+        id: security_scan
+        run: |
+          echo "### Security Scan Results 🔒" >> $GITHUB_STEP_SUMMARY
+          if npm audit --audit-level=moderate > audit_output.txt 2>&1; then
+            echo "✅ No security vulnerabilities detected." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Security vulnerabilities found!" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 10 audit_output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1 # Fail the job if security vulnerabilities are found
+          fi
 
       # Run tests using Vitest with a JUnit reporter and a retry mechanism for flaky tests
       - name: Run Tests
