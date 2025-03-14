@@ -79,19 +79,20 @@ jobs:
         run: |
           echo "### Test Summary 🚀" >> $GITHUB_STEP_SUMMARY
 
-          # Find all JUnit XML files and extract test result counts
+          # Initialize counters
           TOTAL=0
           PASSED=0
           FAILURES=0
           ERRORS=0
           SKIPPED=0
 
+          # Iterate over all JUnit XML test report files
           for file in target/surefire-reports/*.xml; do
             if [[ -f "$file" ]]; then
-              TESTS=$(xmllint --xpath "string(//testsuite/@tests)" "$file")
-              FAILED=$(xmllint --xpath "string(//testsuite/@failures)" "$file")
-              ERR=$(xmllint --xpath "string(//testsuite/@errors)" "$file")
-              SKIP=$(xmllint --xpath "string(//testsuite/@skipped)" "$file")
+              TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
+              FAILED=$(grep -oP '(?<=failures=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
+              ERR=$(grep -oP '(?<=errors=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
+              SKIP=$(grep -oP '(?<=skipped=")[0-9]+' "$file" | awk '{s+=$1} END {print s}')
 
               TOTAL=$((TOTAL + TESTS))
               FAILURES=$((FAILURES + FAILED))
@@ -100,6 +101,11 @@ jobs:
             fi
           done
 
+          # Ensure no empty values (set to 0 if empty)
+          TOTAL=${TOTAL:-0}
+          FAILURES=${FAILURES:-0}
+          ERRORS=${ERRORS:-0}
+          SKIPPED=${SKIPPED:-0}
           PASSED=$((TOTAL - FAILURES - ERRORS - SKIPPED))
 
           echo "| Tests | Passed | Failed | Errors | Skipped |" >> $GITHUB_STEP_SUMMARY
