@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { colors, spacing, borderRadius } from '../designTokens';
+import { colors, spacing, borderRadius, transitions } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
@@ -70,6 +70,19 @@ const CreateLifeCompass: React.FC = () => {
   const [editDetails, setEditDetails] = useState('');
   const [editImportance, setEditImportance] = useState<number>(5);
   const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
+
+  // Define a universal button style based on theme.
+  const buttonStyle: React.CSSProperties = {
+    backgroundColor: theme === 'light' ? colors.primary : colors.accent,
+    color: '#fff',
+    padding: spacing.small,
+    border: 'none',
+    borderRadius: borderRadius.small,
+    cursor: 'pointer',
+    transition: `background-color ${transitions.fast}`,
+    marginBottom: spacing.medium,
+    marginRight: spacing.medium,
+  };
 
   const handleAddNewLifeArea = () => {
     const defaultName = (() => {
@@ -195,10 +208,10 @@ const CreateLifeCompass: React.FC = () => {
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
-      <button onClick={handleAddNewLifeArea} style={{ marginBottom: spacing.medium }}>
+      <button onClick={handleAddNewLifeArea} style={buttonStyle}>
         Lägg till livsområde
       </button>
-      <button onClick={handleAddPredefinedAreas} style={{ marginBottom: spacing.medium, marginLeft: spacing.medium }}>
+      <button onClick={handleAddPredefinedAreas} style={buttonStyle}>
         Lägg till fördefinierade områden
       </button>
       {error && (
@@ -264,3 +277,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```
