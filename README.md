@@ -85,7 +85,7 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ✅ **Development Environment & Tooling**
 
-- [ ] User Story 7.6: Integrate Testing in CI/CD Pipeline
+- [x] User Story 7.6: Integrate Testing in CI/CD Pipeline
 
 ## 🌟 Phase 2: Core Life Compass Functionality (MVP 1)
 
