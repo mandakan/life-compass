@@ -24,7 +24,7 @@ const DesktopNavigation = () => {
         display: 'flex',
         gap: '1rem',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
       }}
     >
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -47,7 +47,7 @@ const DesktopNavigation = () => {
           backgroundColor: 'transparent',
           border: 'none',
           cursor: 'pointer',
-          padding: 0
+          padding: 0,
         }}
         aria-label="Toggle theme"
       >
@@ -89,7 +89,7 @@ const Content = () => {
         minHeight: '100vh',
         backgroundColor: colors[theme].background,
         color: colors[theme].text,
-        transition: 'background-color 300ms, color 300ms'
+        transition: 'background-color 300ms, color 300ms',
       }}
     >
       <div className="md:hidden">

@@ -81,18 +81,20 @@ function DesignPrinciplesDemo() {
 
   const calloutStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.callout.border}`,
-    backgroundColor: themeMode === 'dark'
-      ? callouts.callout.backgroundDark
-      : callouts.callout.backgroundLight,
+    backgroundColor:
+      themeMode === 'dark'
+        ? callouts.callout.backgroundDark
+        : callouts.callout.backgroundLight,
     padding: spacing.medium,
     margin: `${spacing.medium} 0`,
   };
 
   const warningStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.warning.border}`,
-    backgroundColor: themeMode === 'dark'
-      ? callouts.warning.backgroundDark
-      : callouts.warning.backgroundLight,
+    backgroundColor:
+      themeMode === 'dark'
+        ? callouts.warning.backgroundDark
+        : callouts.warning.backgroundLight,
     padding: spacing.medium,
     margin: `${spacing.medium} 0`,
   };
@@ -129,7 +131,8 @@ function DesignPrinciplesDemo() {
   const progressContainerStyle: React.CSSProperties = {
     width: '100%',
     maxWidth: '400px',
-    backgroundColor: themeMode === 'dark' ? colors.neutral[700] : colors.neutral[300],
+    backgroundColor:
+      themeMode === 'dark' ? colors.neutral[700] : colors.neutral[300],
     borderRadius: borderRadius.small,
     overflow: 'hidden',
     margin: `${spacing.medium} auto`,

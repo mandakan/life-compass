@@ -53,10 +53,12 @@ const HomePage: React.FC = () => {
         style={buttonStyle}
         onClick={handleSave}
         onMouseEnter={e => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.secondary;
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+            colors.secondary;
         }}
         onMouseLeave={e => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.primary;
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+            colors.primary;
         }}
       >
         Save Data
