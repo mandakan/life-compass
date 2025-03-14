@@ -33,5 +33,5 @@ The application should follow a clear and consistent design system to ensure a s
 - Would stakeholders prefer to see prototype/mockups for key pages (such as the landing page and main dashboard) as part of the design document? Yes.
 - Are there any performance considerations (for instance, minimal resource usage in transitions and animations) that should be factored into these principles? Not at this point.
 - How should the design guidelines be documented and distributed to ensure consistency across design and development teams? Document in CONVENTIONS.md and create example pages/views/components.
-- Should we include design tokens (e.g., for colors, spacing, typography) as part of the design system? If so, what standards should these adhere to?
-- What responsive breakpoints should be defined to ensure optimal layout across various devices?
+- Should we include design tokens (e.g., for colors, spacing, typography) as part of the design system? If so, what standards should these adhere to? I don't know as I'm not familiar with design. Give me your best suggestion based on best-practices for a small project like this.
+- What responsive breakpoints should be defined to ensure optimal layout across various devices? Use tailwind defaults.
