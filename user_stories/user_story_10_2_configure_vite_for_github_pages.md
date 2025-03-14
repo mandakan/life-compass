@@ -14,8 +14,10 @@ The Vite configuration should be updated to support GitHub Pages deployment with
 ## ✅ Acceptance Criteria
 
 - `vite.config.ts` is updated with the correct `base` path.
+- Environment variable is used to configure the base path to ensure that it is served from the root path locally
+  and the correct repo path on GitHub Pages.
 - The deployed app works without 404 errors.
-- Instructions for correct configuration are documented in `DEV_SETUP.md`.
+- Instructions for correct configuration are documented in `README.md`.
 
 ## 🎯 Definition of Done
 

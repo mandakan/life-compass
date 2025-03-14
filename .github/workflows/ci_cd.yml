@@ -3,7 +3,7 @@ name: CI/CD Testing Pipeline
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   ci:
@@ -79,6 +79,6 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: VitestTest Results
-          path: test-results.xml  # Adjust based on your report location
-          reporter: java-junit  # Use 'java-junit' for JUnit XML reports
+          path: test-results.xml # Adjust based on your report location
+          reporter: java-junit # Use 'java-junit' for JUnit XML reports
           fail-on-error: true
