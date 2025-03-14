@@ -188,12 +188,16 @@ const CreateLifeCompass: React.FC = () => {
     marginTop: spacing.medium,
   };
 
-  // Updated desktop container to use grid layout without overlap
+  // Updated desktop container to use a grid layout with a maximum of 4 cards per row
   const desktopContainerStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
     gap: spacing.medium,
     marginTop: spacing.medium,
+    justifyContent: 'center',
+    maxWidth: `calc(200px * 4 + ${spacing.medium} * 3)`,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   };
 
   return (
