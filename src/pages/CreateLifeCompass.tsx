@@ -348,4 +348,3 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
-```
