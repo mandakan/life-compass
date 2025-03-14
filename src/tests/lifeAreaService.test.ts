@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import predefinedAreas from '../data/predefinedLifeAreas.json';
 import { LifeArea } from '../components/LifeAreaCard';
@@ -30,3 +31,4 @@ describe('lifeAreaService', () => {
     });
   });
 });
+```
