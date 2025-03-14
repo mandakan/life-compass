@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface LifeArea {
-  id: number;
+  id: string;
   name: string;
   description: string;
   rating1: number;
   rating2: number;
 }
+
+const LOCAL_STORAGE_KEY = 'lifeCompass';
 
 const CreateLifeCompass: React.FC = () => {
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
@@ -16,19 +18,33 @@ const CreateLifeCompass: React.FC = () => {
   const [rating2, setRating2] = useState<number>(5);
   const [error, setError] = useState('');
 
+  useEffect(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (saved) {
+      try {
+        setLifeAreas(JSON.parse(saved));
+      } catch (err) {
+        console.error('Failed to parse saved life areas', err);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lifeAreas));
+  }, [lifeAreas]);
+
   const handleAddLifeArea = () => {
     if (name.trim() === '') {
       setError('Name is required.');
       return;
     }
-    // Validate duplicate name (case insensitive)
     if (lifeAreas.find(area => area.name.toLowerCase() === name.trim().toLowerCase())) {
       setError('Duplicate life area name not allowed.');
       return;
     }
     setError('');
     const newArea: LifeArea = {
-      id: Date.now(),
+      id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
       name: name.trim(),
       description: description.trim(),
       rating1,
@@ -39,6 +55,10 @@ const CreateLifeCompass: React.FC = () => {
     setDescription('');
     setRating1(5);
     setRating2(5);
+  };
+
+  const handleRemoveLifeArea = (id: string) => {
+    setLifeAreas(lifeAreas.filter(area => area.id !== id));
   };
 
   return (
@@ -107,6 +127,9 @@ const CreateLifeCompass: React.FC = () => {
           {lifeAreas.map(area => (
             <li key={area.id}>
               <strong>{area.name}</strong>: {area.description} - Ratings: {area.rating1} & {area.rating2}
+              <button onClick={() => handleRemoveLifeArea(area.id)} style={{ marginLeft: '0.5rem' }}>
+                Remove
+              </button>
             </li>
           ))}
         </ul>
@@ -116,3 +139,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```
