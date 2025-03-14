@@ -52,7 +52,7 @@ jobs:
 
       # Report test results using GITHUB_STEP_SUMMARY and dorny/test-reporter for inline GitHub comments
       - name: Report Test Results
-        if: always()
+        if: ${{ always() }}
         run: |
           echo "## Test Results" >> $GITHUB_STEP_SUMMARY
           if [ -f test-results.xml ]; then
@@ -62,10 +62,9 @@ jobs:
           fi
 
       - name: Inline Test Comments
-        if: always()
+        if: ${{ always() }}
         uses: dorny/test-reporter@v1
         with:
           check_name: Vitest Tests
           reporter: junit
           path: test-results.xml
-```
