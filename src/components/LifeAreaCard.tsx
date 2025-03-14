@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
 
 export interface LifeArea {
@@ -53,6 +53,19 @@ const buttonStyle: React.CSSProperties = {
   padding: spacing.small,
 };
 
+const popupStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '10px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  backgroundColor: colors.light.background,
+  border: `1px solid ${colors.neutral[300]}`,
+  borderRadius: borderRadius.small,
+  padding: spacing.medium,
+  zIndex: 10,
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+};
+
 const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   area,
   isEditing,
@@ -72,6 +85,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onRemove,
   style,
 }) => {
+  const [showDescription, setShowDescription] = useState(false);
   const combinedStyle: React.CSSProperties = { ...defaultCardStyle, ...style };
 
   if (isEditing) {
@@ -184,23 +198,50 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   } else {
     return (
       <div style={combinedStyle}>
-        <div>
-          <h4 style={{ margin: 0, marginBottom: spacing.small }}>{area.name}</h4>
-          <p style={{ margin: 0, marginBottom: spacing.small }}>{area.description}</p>
-          {area.details && (
-            <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
-          )}
-          <p style={{ margin: 0, marginBottom: spacing.small }}>
-            Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
-          </p>
-          <div style={buttonContainerStyle}>
-            <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>
-              ✎
-            </button>
-            <button style={buttonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
-              ×
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: spacing.small }}>
+          <h4 style={{ margin: 0 }}>{area.name}</h4>
+          <button
+            onClick={() => setShowDescription(true)}
+            style={{
+              marginLeft: spacing.small,
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            aria-label="Visa beskrivning"
+          >
+            ℹ️
+          </button>
+        </div>
+        {showDescription && (
+          <div style={popupStyle}>
+            <p style={{ margin: 0 }}>{area.description}</p>
+            <button
+              onClick={() => setShowDescription(false)}
+              style={{
+                marginTop: spacing.small,
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Stäng
             </button>
           </div>
+        )}
+        {area.details && (
+          <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
+        )}
+        <p style={{ margin: 0, marginBottom: spacing.small }}>
+          Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
+        </p>
+        <div style={buttonContainerStyle}>
+          <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>
+            ✎
+          </button>
+          <button style={buttonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
+            ×
+          </button>
         </div>
       </div>
     );
