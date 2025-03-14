@@ -55,3 +55,24 @@ export const interactiveStates = {
     scale: "0.98"
   }
 };
+
+export const callouts = {
+  callout: {
+    border: colors.primary,
+    backgroundLight: colors.neutral[100],
+    backgroundDark: colors.neutral[800]
+  },
+  warning: {
+    border: colors.accent,
+    backgroundLight: colors.neutral[200],
+    backgroundDark: colors.neutral[700]
+  }
+};
+
+export const tooltip = {
+  width: "200px",
+  background: colors.neutral[900],
+  color: "#fff",
+  borderRadius: "6px",
+  padding: "0.5rem"
+};
