@@ -8,7 +8,6 @@ const LOCAL_STORAGE_KEY = 'lifeCompass';
 
 const isLocalStorageAvailable = (): boolean => {
   try {
-    // First check if window.localStorage is accessible
     if (!window.localStorage) {
       return false;
     }
@@ -35,36 +34,32 @@ const CreateLifeCompass: React.FC = () => {
   const [importance, setImportance] = useState<number>(5);
   const [satisfaction, setSatisfaction] = useState<number>(5);
   const [error, setError] = useState('');
-  const [storageAvailable, setStorageAvailable] = useState(true);
+  // Instead of setting storageAvailable to true by default, compute its value immediately.
+  const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
 
-  // Check localStorage availability and handle errors
-  useEffect(() => {
-    try {
-      if (!isLocalStorageAvailable()) {
-        setStorageAvailable(false);
-      }
-    } catch (e) {
-      setStorageAvailable(false);
-    }
-  }, []);
-
+  // Load saved life areas if localStorage is available
   useEffect(() => {
     if (storageAvailable) {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (saved) {
-        try {
+      try {
+        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (saved) {
           setLifeAreas(JSON.parse(saved));
-        } catch (err) {
-          console.error('Failed to parse saved life areas', err);
         }
+      } catch (err) {
+        console.error('Failed to parse saved life areas', err);
       }
     }
   }, [storageAvailable]);
 
+  // Save life areas to localStorage if available
   useEffect(() => {
     if (storageAvailable) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lifeAreas));
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lifeAreas));
+      } catch (err) {
+        console.error('Failed to save life areas', err);
+      }
     }
   }, [lifeAreas, storageAvailable]);
 
