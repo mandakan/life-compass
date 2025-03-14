@@ -295,7 +295,7 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length === 0 ? (
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 mx-auto max-w-[848px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 mx-auto max-w-[1080px]">
           {lifeAreas.map(area => (
             <LifeAreaCard
               key={area.id}

@@ -87,7 +87,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     ...style,
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '300px',
   };
 
   // Determine popup width based on viewport width

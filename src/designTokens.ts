@@ -115,6 +115,3 @@ export const buttons = {
     transition: transitions.fast,
   },
 };
-```‬
-
-src/components/LifeAreaCard.tsx
