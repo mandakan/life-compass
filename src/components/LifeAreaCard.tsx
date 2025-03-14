@@ -87,6 +87,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   // Determine popup width based on viewport width
   const popupWidth = (typeof window !== 'undefined' && window.innerWidth >= 768) ? '400px' : '250px';
 
+  // Define input style using theme
+  const inputStyle: React.CSSProperties = {
+    marginLeft: spacing.small,
+    padding: spacing.small,
+    borderRadius: borderRadius.small,
+    border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
+  };
+
   if (isEditing) {
     return (
       <div style={combinedStyle}>
@@ -98,12 +106,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 type="text"
                 value={editName}
                 onChange={e => onChangeEditName(e.target.value)}
-                style={{
-                  marginLeft: spacing.small,
-                  padding: spacing.small,
-                  borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`,
-                }}
+                style={inputStyle}
               />
             </label>
           </div>
@@ -114,10 +117,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
                 style={{
-                  marginLeft: spacing.small,
-                  padding: spacing.small,
-                  borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`,
+                  ...inputStyle,
                   width: '100%',
                   minHeight: '60px',
                 }}
@@ -131,10 +131,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 value={editDetails}
                 onChange={e => onChangeEditDetails(e.target.value)}
                 style={{
-                  marginLeft: spacing.small,
-                  padding: spacing.small,
-                  borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`,
+                  ...inputStyle,
                   width: '100%',
                   minHeight: '40px',
                 }}
@@ -150,12 +147,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => onChangeEditImportance(Number(e.target.value))}
                 min="1"
                 max="10"
-                style={{
-                  marginLeft: spacing.small,
-                  padding: spacing.small,
-                  borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`,
-                }}
+                style={inputStyle}
               />
             </label>
           </div>
@@ -168,12 +160,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => onChangeEditSatisfaction(Number(e.target.value))}
                 min="1"
                 max="10"
-                style={{
-                  marginLeft: spacing.small,
-                  padding: spacing.small,
-                  borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`,
-                }}
+                style={inputStyle}
               />
             </label>
           </div>
@@ -268,3 +255,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```
