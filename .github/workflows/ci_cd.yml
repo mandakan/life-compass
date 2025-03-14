@@ -47,7 +47,7 @@ jobs:
       - name: Run Tests
         run: |
           # Execute Vitest. Vitest configuration should handle retries (if configured) and output a JUnit report.
-          npx vitest run --reporter=junit
+          npx vitest run --reporter=junit --outputFile=test-results.xml
         continue-on-error: false
 
       # Report test results using GITHUB_STEP_SUMMARY for quick insights
