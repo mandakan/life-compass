@@ -45,7 +45,7 @@ const buttonContainerStyle: React.CSSProperties = {
   marginTop: spacing.medium,
 };
 
-const buttonStyle: React.CSSProperties = {
+const basicButtonStyle: React.CSSProperties = {
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer',
@@ -93,6 +93,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     padding: spacing.small,
     borderRadius: borderRadius.small,
     border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
+  };
+
+  // Define action button style for edit and delete buttons
+  const actionButtonStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: spacing.small,
+    backgroundColor: theme === 'light' ? colors.primary : colors.accent,
+    color: '#fff',
+    border: 'none',
+    padding: spacing.small,
+    borderRadius: borderRadius.small,
+    cursor: 'pointer',
+    transition: `background-color ${transitions.fast}`,
   };
 
   if (isEditing) {
@@ -167,14 +181,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div style={{ marginTop: spacing.small, display: 'flex', gap: spacing.small }}>
             <button
               onClick={onSaveEdit}
-              style={{ padding: spacing.small, borderRadius: borderRadius.small, cursor: 'pointer' }}
+              style={actionButtonStyle}
             >
-              Spara
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
+              </svg>
+              Redigera
             </button>
             <button
               onClick={onCancelEdit}
-              style={{ padding: spacing.small, borderRadius: borderRadius.small, cursor: 'pointer' }}
+              style={actionButtonStyle}
             >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
               Avbryt
             </button>
           </div>
@@ -242,10 +262,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
         </p>
         <div style={buttonContainerStyle}>
-          <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>
+          <button style={actionButtonStyle} title="Redigera" onClick={() => onEdit(area)}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
+            </svg>
             Redigera
           </button>
-          <button style={buttonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
+          <button style={actionButtonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3a.5.5 0 0 0 0 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a.5.5 0 0 0 0-1h-10z"/>
+            </svg>
             Ta bort
           </button>
         </div>
@@ -255,3 +282,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```
