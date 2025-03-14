@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { colors, menu } from '../designTokens';
 
@@ -28,7 +29,9 @@ const MobileNavigation: React.FC = () => {
         }}
       >
         <div style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>
-          Life Compass
+          <Link to="/" style={{ color: menu[theme].text, textDecoration: 'none' }}>
+            Life Compass
+          </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <button
@@ -42,19 +45,11 @@ const MobileNavigation: React.FC = () => {
             aria-label="Toggle theme"
           >
             {theme === 'light' ? (
-              <svg
-                style={iconStyle}
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg style={iconStyle} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
               </svg>
             ) : (
-              <svg
-                style={iconStyle}
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg style={iconStyle} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="12" r="5" />
                 <path d="M12 1v2" />
                 <path d="M12 21v2" />
@@ -85,19 +80,9 @@ const MobileNavigation: React.FC = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               {open ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
@@ -112,30 +97,21 @@ const MobileNavigation: React.FC = () => {
             gap: '0.5rem',
           }}
         >
-          <a
-            href="/"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
+          <Link to="/" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             Home
-          </a>
-          <a
-            href="/design-principles"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
+          </Link>
+          <Link to="/design-principles" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             Design Principles Demo
-          </a>
-          <a
-            href="/about"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
+          </Link>
+          <Link to="/create-life-compass" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
+            Create Life Compass
+          </Link>
+          <Link to="/about" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             About
-          </a>
-          <a
-            href="/contact"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
+          </Link>
+          <Link to="/contact" style={{ color: menu[theme].text, textDecoration: 'underline' }}>
             Contact
-          </a>
+          </Link>
         </div>
       )}
     </nav>
@@ -143,3 +119,4 @@ const MobileNavigation: React.FC = () => {
 };
 
 export default MobileNavigation;
+```^^
