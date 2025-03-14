@@ -5,6 +5,8 @@
 [![Lint](https://github.com/mandakan/life-compass/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/lint.yml)
 [![Vulnerability Scan](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml)
 
+Live App: [https://mandakan.github.io/life-compass/](https://mandakan.github.io/life-compass/)
+
 This project aims to develop a web-based application that helps users reflect on their life balance through a tool called **Life Compass**. The application will allow users to identify and evaluate important life areas, set goals, and track their progress over time.
 
 ## AI-Assisted Development
@@ -141,7 +143,7 @@ Instructions:
 
 ---
 
-# 🔧 Development Guidelines
+## 🔧 Development Guidelines
 
 To ensure maintainability and efficiency while using AI-assisted tools like Aider, follow these **core principles**:
 
