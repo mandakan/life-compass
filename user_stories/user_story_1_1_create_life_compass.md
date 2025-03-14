@@ -29,12 +29,12 @@ The user should be able to create a life compass with customizable life areas. T
 
 ## ❓ Refinement Questions
 
-- What specific UI components or layout patterns should be used to guide the user through the life compass creation process? For the initial design I would like each life area to be represented by a card with a title, description and two numerical ratings (between 1-10). The cards shall be spread out in a circle on desktop devices but since this is a mobile first app adhere to design and UX best practices on smaller screens.
+- What specific UI components or layout patterns should be used to guide the user through the life compass creation process? For the initial design I would like each life area to be represented by a card with a title, description and two numerical ratings (between 1-10). The cards shall be spread out in a circle (or the outer edges of a grid) on desktop devices but since this is a mobile first app adhere to design and UX best practices on smaller screens.
 - How should the system handle scenarios where Local Storage is not available or fails? Inform the user and make sure they understand that nothing will be saved but let them continue with using the app. Maybe have a persistent warning banner visible in these cases?
 - Are there any animations or transitions that are preferred or required during the onboarding of this feature? Use UX and design best practices to create a pleasant experience, ensuring the interaction remains distraction free since users may be experiencing stress or depression.
 - What error messages or fallback behaviors should we implement in case of invalid input or storage errors? Start with a minimal set that prevents the user from losing work.
 - Should we provide tooltips or additional help prompts for first-time users during the creation process? Yes.
 - Are there any design constraints regarding the customization of life areas (e.g., maximum number of areas, character limits) that we should enforce? Not at this stage.
-- Should users be allowed to edit, remove, or reorder life areas after initial creation? Clarify if post-creation modifications are permitted or if this will be handled in a separate user story.
-- How should duplicate life area names be handled? Should the system prevent duplicates or allow them with a warning?
+- Should users be allowed to edit, remove, or reorder life areas after initial creation? Clarify if post-creation modifications are permitted or if this will be handled in a separate user story. Modifications shall be permitted.
+- How should duplicate life area names be handled? Should the system prevent duplicates or allow them with a warning? The system shall prevent duplicates. Use a guid/uuid as unique identifier for each area to avoid using the life area name as unique and primary key. This id shall not be visible to the user.
 
