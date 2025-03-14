@@ -9,12 +9,14 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     permissions:
+      checks: write
+      pull-requests: write
       contents: read
       actions: write
     steps:
       # Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup Node.js environment
       - name: Setup Node.js
