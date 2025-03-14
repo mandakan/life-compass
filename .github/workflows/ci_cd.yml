@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '23'
 
       # Cache node modules for faster builds
       - name: Cache node modules
@@ -60,3 +60,4 @@ jobs:
           else
             echo "Test results file not found." >> $GITHUB_STEP_SUMMARY
           fi
+```
