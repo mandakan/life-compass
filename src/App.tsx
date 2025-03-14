@@ -47,19 +47,19 @@ const DesktopNavigation = () => {
           to="/"
           style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
-          Home
+          Hem
         </Link>
         <Link
           to="/design-principles"
           style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
-          Design Principles Demo
+          Designprinciper
         </Link>
         <Link
           to="/create-life-compass"
           style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
-          Create Life Compass
+          Skapa Livskompass
         </Link>
       </div>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
