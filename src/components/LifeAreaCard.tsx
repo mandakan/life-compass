@@ -108,7 +108,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Importance (1-10):
+              Viktighet (1-10):
               <input
                 type="number"
                 value={editImportance}
@@ -126,7 +126,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Satisfaction (1-10):
+              Tillfredsställelse (1-10):
               <input
                 type="number"
                 value={editSatisfaction}
@@ -156,7 +156,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <h4 style={{ margin: 0, marginBottom: spacing.small }}>{area.name}</h4>
           <p style={{ margin: 0, marginBottom: spacing.small }}>{area.description}</p>
           <p style={{ margin: 0, marginBottom: spacing.small }}>
-            Importance: {area.importance} & Satisfaction: {area.satisfaction}
+            Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
           </p>
           <div style={buttonContainerStyle}>
             <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>
@@ -173,3 +173,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```****
+
+src/pages/CreateLifeCompass.tsx
