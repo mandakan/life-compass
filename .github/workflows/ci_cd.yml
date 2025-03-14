@@ -50,7 +50,7 @@ jobs:
           npx vitest run --reporter=junit
         continue-on-error: false
 
-      # Report test results using GITHUB_STEP_SUMMARY and dorny/test-reporter for inline GitHub comments
+      # Report test results using GITHUB_STEP_SUMMARY for quick insights
       - name: Report Test Results
         if: ${{ always() }}
         run: |
@@ -61,10 +61,12 @@ jobs:
             echo "Test results file not found." >> $GITHUB_STEP_SUMMARY
           fi
 
+      # Post inline test comments on GitHub using the test reporter action
       - name: Inline Test Comments
         if: ${{ always() }}
         uses: dorny/test-reporter@v1
         with:
           name: Vitest Inline Comments
-          reporter: junit
+          reporter: junit-xml
           path: test-results.xml
+```
