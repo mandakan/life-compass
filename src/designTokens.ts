@@ -93,3 +93,15 @@ export const borderRadius = {
   small: '4px',
   medium: '8px',
 };
+
+// New menu tokens for Navbar colors
+export const menu = {
+  light: {
+    background: colors.primary,
+    text: '#ffffff',
+  },
+  dark: {
+    background: colors.dark.background,
+    text: colors.dark.text,
+  },
+};

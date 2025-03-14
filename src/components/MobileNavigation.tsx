@@ -13,13 +13,19 @@ const MobileNavigation: React.FC = () => {
   };
 
   return (
-    <nav className="bg-blue-500 p-4 text-white">
-      <div className="flex items-center justify-between">
-        <div className="text-lg font-bold">Life Compass</div>
-        <div className="flex items-center gap-2">
+    <nav
+      style={{
+        backgroundColor: colors.menu[theme].background,
+        color: colors.menu[theme].text,
+        padding: '1rem'
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>Life Compass</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <button
             onClick={toggleTheme}
-            className="p-0"
+            style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
             aria-label="Toggle theme"
           >
             {theme === 'light' ? (
@@ -50,10 +56,11 @@ const MobileNavigation: React.FC = () => {
           </button>
           <button
             onClick={() => setOpen(!open)}
+            style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
             aria-label="Toggle mobile navigation"
           >
             <svg
-              className="h-6 w-6"
+              style={{ width: '24px', height: '24px' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -79,17 +86,17 @@ const MobileNavigation: React.FC = () => {
         </div>
       </div>
       {open && (
-        <div className="mt-2 flex flex-col space-y-2 md:hidden">
-          <a href="/" className="hover:underline">
+        <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <a href="/" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
             Home
           </a>
-          <a href="/design-principles" className="hover:underline">
+          <a href="/design-principles" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
             Design Principles Demo
           </a>
-          <a href="/about" className="hover:underline">
+          <a href="/about" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
             About
           </a>
-          <a href="/contact" className="hover:underline">
+          <a href="/contact" style={{ color: colors.menu[theme].text, textDecoration: 'underline' }}>
             Contact
           </a>
         </div>
@@ -99,3 +106,4 @@ const MobileNavigation: React.FC = () => {
 };
 
 export default MobileNavigation;
+```
