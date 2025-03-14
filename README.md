@@ -116,8 +116,8 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ✅ **Deployment**
 
-- [ ] User Story 10.1: Automate deployment to GitHub Pages
-- [ ] User Story 10.2: Configure Vite for GitHub Pages
+- [x] User Story 10.1: Automate deployment to GitHub Pages
+- [x] User Story 10.2: Configure Vite for GitHub Pages
 
 ---
 
