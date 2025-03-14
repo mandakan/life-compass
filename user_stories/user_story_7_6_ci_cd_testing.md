@@ -13,14 +13,38 @@ All tests should be automatically executed in the CI/CD pipeline before code is 
 
 ## ✅ Acceptance Criteria
 
-- Unit, integration, and accessibility tests run automatically on each pull request.
+- Unit tests and integration tests run automatically on each pull request.
+- Tests are executed using Vitest and React Testing Library.
 
 ## 🎯 Definition of Done
 
 - Code is only merged if all tests pass successfully.
+- The CI/CD pipeline is configured to run unit and integration tests using Vitest and React Testing Library.
 
 ## ❓ Refinement Questions
 
-- How do we handle flaky tests to prevent blocking deployments?
-- Should we implement parallel test execution for faster results?
-- What reporting tools should we use to visualize test results?
+### Testing Scope and Frameworks
+- We are starting with unit tests and integration tests using Vitest and React Testing Library.
+- In the future, should we expand to include additional types of tests (e.g., accessibility or performance tests)?
+
+### Environment and CI/CD Tooling
+- Which CI/CD platform (GitHub Actions, GitLab CI, CircleCI, etc.) will be used for running these tests?
+- Are there any specific environment configurations required before running the tests?
+
+### Handling Flaky Tests
+- What strategy should we adopt to manage flaky tests? Would you prefer automatic retries, or should we temporarily exempt certain tests?
+- Do we need to set limits on the number of retries for tests that intermittently fail?
+
+### Pipeline Performance
+- Should tests be executed in parallel to speed up the build process? If so, what strategy do you prefer (e.g., splitting tests into multiple jobs)?
+
+### Reporting and Feedback
+- What reporting tools or formats should be used to visualize test results (e.g., JUnit XML, HTML dashboards)?
+- Should test reports be stored as artifacts or published to an external dashboard?
+
+### Definition of Done Enhancements
+- Should the definition of done include a specific code coverage percentage that must be met?
+- Are there any additional quality checks (like linting or security scans) that should also be integrated alongside the tests?
+
+Please provide your feedback on these questions so we can further refine the user story.
+```
