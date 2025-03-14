@@ -34,9 +34,11 @@
     "@tailwindcss/vite": "latest",
     "@vitejs/plugin-react": "latest",
     "jsdom": "latest",
-    "@typescript-eslint/parser": "latest"
+    "@typescript-eslint/parser": "latest",
+    "@types/node": "latest"
   },
   "engines": {
     "node": ">=23"
   }
 }
+```
