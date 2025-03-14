@@ -68,11 +68,11 @@ This roadmap outlines the different development phases of the Life Compass proje
 > Goal: Establish a strong foundation for the project, ensuring clear technical principles and structure.
 
 ✅ **Technical Architecture & Code Structure**
-- [ ] User Story 6.1: Define Tech Stack and Frameworks
-- [ ] User Story 6.5: Use a Modular Code Structure
+- [x] User Story 6.1: Define Tech Stack and Frameworks
+- [x] User Story 6.5: Use a Modular Code Structure
 
 ✅ **Data Management**
-- [ ] User Story 6.2: Implement Local Storage for Data Persistence
+- [x] User Story 6.2: Implement Local Storage for Data Persistence
 - [ ] User Story 6.3: Encrypt Sensitive Data in Local Storage (optional)
 
 ✅ **Development Environment & Tooling**
