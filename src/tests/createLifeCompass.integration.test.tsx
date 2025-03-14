@@ -1,3 +1,4 @@
+import { describe, beforeEach, test, expect } from 'vitest';
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
@@ -96,3 +97,4 @@ describe('CreateLifeCompass Integration Tests', () => {
     jest.restoreAllMocks();
   });
 });
+```
