@@ -76,3 +76,8 @@ export const tooltip = {
   borderRadius: "6px",
   padding: "0.5rem"
 };
+
+export const inputs = {
+  textLight: "#000000",
+  textDark: "#ffffff"
+};

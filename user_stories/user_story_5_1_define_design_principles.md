@@ -17,6 +17,7 @@ The application should follow a clear and consistent design system to ensure a s
 - The design document addresses accessibility requirements (e.g., WCAG 2.1 compliance) and user preferences such as dark mode.
 - The design principles are reviewed by stakeholders and are easily referenced by both development and design teams.
 - A prototype or mockup is developed to demonstrate applying these principles across key pages and UI components.
+- All input fields' text color must have sufficient contrast to meet WCAG guidelines.
 
 ## 🎯 Definition of Done
 

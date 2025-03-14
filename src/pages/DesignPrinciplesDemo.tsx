@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, typography, interactiveStates, transitions, callouts, tooltip } from '../designTokens';
+import { colors, typography, interactiveStates, transitions, callouts, tooltip, inputs } from '../designTokens';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
@@ -56,7 +56,8 @@ function DesignPrinciplesDemo() {
     fontFamily: typography.primaryFont,
     margin: '0.5rem',
     width: '100%',
-    maxWidth: '300px'
+    maxWidth: '300px',
+    color: darkMode ? inputs.textDark : inputs.textLight
   };
 
   const calloutStyle: React.CSSProperties = {
