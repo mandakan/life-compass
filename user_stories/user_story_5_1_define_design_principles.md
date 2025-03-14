@@ -27,9 +27,9 @@ The application should follow a clear and consistent design system to ensure a s
 
 ## ❓ Refinement Questions
 
-- How do we ensure accessibility compliance (e.g., adherence to WCAG 2.1 standards) within our design principles?
-- Should dark mode be implemented as an option, and if so, what are the specific color scheme and contrast requirements?
-- What key UI components (e.g., buttons, forms, cards) should be prioritized for detailed design guidelines in this document?
-- Would stakeholders prefer to see prototype/mockups for key pages (such as the landing page and main dashboard) as part of the design document?
-- Are there any performance considerations (for instance, minimal resource usage in transitions and animations) that should be factored into these principles?
-- How should the design guidelines be documented and distributed to ensure consistency across design and development teams?
+- How do we ensure accessibility compliance (e.g., adherence to WCAG 2.1 standards) within our design principles? According to best-practices.
+- Should dark mode be implemented as an option, and if so, what are the specific color scheme and contrast requirements? Yes, implement dark mode.
+- What key UI components (e.g., buttons, forms, cards) should be prioritized for detailed design guidelines in this document? Cards, buttons and forms.
+- Would stakeholders prefer to see prototype/mockups for key pages (such as the landing page and main dashboard) as part of the design document? Yes.
+- Are there any performance considerations (for instance, minimal resource usage in transitions and animations) that should be factored into these principles? Not at this point.
+- How should the design guidelines be documented and distributed to ensure consistency across design and development teams? Document in CONVENTIONS.md and create example pages/views/components.
