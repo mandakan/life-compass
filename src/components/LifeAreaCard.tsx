@@ -243,10 +243,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         </p>
         <div style={buttonContainerStyle}>
           <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>
-            ✎
+            Redigera
           </button>
           <button style={buttonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
-            ×
+            Ta bort
           </button>
         </div>
       </div>
@@ -255,3 +255,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```^^^^
