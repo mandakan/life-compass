@@ -1,46 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
+import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
-
-const predefinedLifeAreas: LifeArea[] = [
-  {
-    id: 'health',
-    name: 'Hälsa',
-    description: 'Din fysiska och mentala hälsa',
-    rating1: 5,
-    rating2: 5,
-  },
-  {
-    id: 'career',
-    name: 'Karriär',
-    description: 'Dina arbetsmässiga mål och framsteg',
-    rating1: 5,
-    rating2: 5,
-  },
-  {
-    id: 'relationships',
-    name: 'Relationer',
-    description: 'Dina personliga relationer och sociala liv',
-    rating1: 5,
-    rating2: 5,
-  },
-  {
-    id: 'personalDevelopment',
-    name: 'Personlig utveckling',
-    description: 'Din personliga tillväxt och lärande',
-    rating1: 5,
-    rating2: 5,
-  },
-  {
-    id: 'finance',
-    name: 'Ekonomi',
-    description: 'Din ekonomiska trygghet och mål',
-    rating1: 5,
-    rating2: 5,
-  },
-];
 
 const isLocalStorageAvailable = (): boolean => {
   try {
@@ -98,7 +61,7 @@ const CreateLifeCompass: React.FC = () => {
 
   useEffect(() => {
     if (compassType === 'predefined') {
-      setLifeAreas(predefinedLifeAreas);
+      setLifeAreas(getPredefinedLifeAreas());
     } else {
       setLifeAreas([]);
     }
