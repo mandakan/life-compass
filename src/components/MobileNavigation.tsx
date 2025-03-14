@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { colors, menu } from '../designTokens';
 
@@ -28,7 +29,12 @@ const MobileNavigation: React.FC = () => {
         }}
       >
         <div style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>
-          Life Compass
+          <Link
+            to="/"
+            style={{ color: menu[theme].text, textDecoration: 'none' }}
+          >
+            Life Compass
+          </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <button
@@ -112,30 +118,36 @@ const MobileNavigation: React.FC = () => {
             gap: '0.5rem',
           }}
         >
-          <a
-            href="/"
+          <Link
+            to="/"
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Home
-          </a>
-          <a
-            href="/design-principles"
+          </Link>
+          <Link
+            to="/design-principles"
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Design Principles Demo
-          </a>
-          <a
-            href="/about"
+          </Link>
+          <Link
+            to="/create-life-compass"
+            style={{ color: menu[theme].text, textDecoration: 'underline' }}
+          >
+            Create Life Compass
+          </Link>
+          <Link
+            to="/about"
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             About
-          </a>
-          <a
-            href="/contact"
+          </Link>
+          <Link
+            to="/contact"
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Contact
-          </a>
+          </Link>
         </div>
       )}
     </nav>
