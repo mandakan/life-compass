@@ -68,4 +68,3 @@ jobs:
           name: Vitest Inline Comments
           reporter: junit
           path: test-results.xml
-```

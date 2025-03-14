@@ -11,7 +11,6 @@ This document outlines coding conventions to ensure consistency, maintainability
 
 ## File and Folder Structure
 
-```
 life_compass/
 │── src/
 │   ├── components/  # Reusable UI components
@@ -21,7 +20,7 @@ life_compass/
 │   ├── state/       # Zustand/Redux/Context API state management
 │   ├── assets/      # Images, icons, styles
 │   ├── tests/       # Unit and integration tests
-```
+
 
 - Keep business logic separate from UI components (no direct API calls inside components).
 - Use named exports for all utility functions and services.
