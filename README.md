@@ -1,9 +1,9 @@
 # Life Compass
 
-[![CI/CD Workflow](https://github.com/mandakan/life-compass/actions/workflows/ci_cd.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/ci_cd.yml)
-[![Deploy Workflow](https://github.com/mandakan/life-compass/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/deploy.yml)
-[![Lint Workflow](https://github.com/mandakan/life-compass/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/lint.yml)
-[![Vulnerability Scan Workflow](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml)
+[![CI/CD](https://github.com/mandakan/life-compass/actions/workflows/ci_cd.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/ci_cd.yml)
+[![Deploy](https://github.com/mandakan/life-compass/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/deploy.yml)
+[![Lint](https://github.com/mandakan/life-compass/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/lint.yml)
+[![Vulnerability Scan](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml)
 
 This project aims to develop a web-based application that helps users reflect on their life balance through a tool called **Life Compass**. The application will allow users to identify and evaluate important life areas, set goals, and track their progress over time.
 
@@ -267,4 +267,3 @@ For more information about the concepts, tools, and methodologies used in this p
   _A guide to understanding how to contribute to open source projects._
 
 These resources provide additional context and insights into the methodologies and technologies influencing this project.
-```
