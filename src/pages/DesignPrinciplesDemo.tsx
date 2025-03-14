@@ -9,6 +9,7 @@ function DesignPrinciplesDemo() {
   const [progress, setProgress] = React.useState(70);
   const [dropdownValue, setDropdownValue] = React.useState("option1");
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
+  const [sliderValue, setSliderValue] = React.useState(50);
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
@@ -61,6 +62,12 @@ function DesignPrinciplesDemo() {
     width: '100%',
     maxWidth: '300px',
     color: darkMode ? inputs.textDark : inputs.textLight
+  };
+
+  const sliderStyle: React.CSSProperties = {
+    width: '100%',
+    maxWidth: '300px',
+    margin: spacing.small
   };
 
   const calloutStyle: React.CSSProperties = {
@@ -293,6 +300,19 @@ function DesignPrinciplesDemo() {
           /> Check me!
         </label>
       </div>
+      {/* Slider Example */}
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+        <h3>Slider Example</h3>
+        <input
+          type="range"
+          value={sliderValue}
+          onChange={(e) => setSliderValue(Number(e.target.value))}
+          style={sliderStyle}
+          min="0"
+          max="100"
+        />
+        <p>Value: {sliderValue}</p>
+      </div>
       {/* Dragging Handle Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Dragging Handle</h3>
@@ -305,6 +325,19 @@ function DesignPrinciplesDemo() {
         >
           Drag Me
         </div>
+      </div>
+      {/* Typography Examples */}
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+        <h3>Typography Examples</h3>
+        <h1 style={{ fontFamily: typography.primaryFont, fontSize: '2.5rem', margin: spacing.small }}>H1 - Title</h1>
+        <h2 style={{ fontFamily: typography.primaryFont, fontSize: '2rem', margin: spacing.small }}>H2 - Subtitle</h2>
+        <h3 style={{ fontFamily: typography.primaryFont, fontSize: '1.5rem', margin: spacing.small }}>H3 - Section Title</h3>
+        <p style={{ fontFamily: typography.fallbackFont, fontSize: '1rem', margin: spacing.small }}>
+          Body text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+        <p style={{ fontFamily: typography.fallbackFont, fontSize: '0.8rem', margin: spacing.small }}>
+          Caption text example: This is a caption.
+        </p>
       </div>
     </div>
   );
