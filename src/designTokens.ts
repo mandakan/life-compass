@@ -81,3 +81,15 @@ export const inputs = {
   textLight: "#000000",
   textDark: "#ffffff"
 };
+
+// Additional tokens for spacing and border radius
+export const spacing = {
+  small: "0.5rem",
+  medium: "1rem",
+  large: "2rem"
+};
+
+export const borderRadius = {
+  small: "4px",
+  medium: "8px"
+};

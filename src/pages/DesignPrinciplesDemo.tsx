@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, typography, interactiveStates, transitions, callouts, tooltip, inputs } from '../designTokens';
+import { colors, typography, interactiveStates, transitions, callouts, tooltip, inputs, spacing, borderRadius } from '../designTokens';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
@@ -20,19 +20,19 @@ function DesignPrinciplesDemo() {
     minHeight: '100vh',
     fontFamily: typography.primaryFont,
     transition: `background-color ${transitions.medium}, color ${transitions.medium}`,
-    padding: '2rem'
+    padding: spacing.large
   };
 
   const cardStyle: React.CSSProperties = {
     backgroundColor: theme.background,
     color: theme.text,
-    padding: '1rem',
-    borderRadius: '8px',
+    padding: spacing.medium,
+    borderRadius: borderRadius.medium,
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     border: `1px solid ${darkMode ? colors.neutral[700] : colors.neutral[300]}`,
     transition: `all ${transitions.medium}`,
     cursor: 'pointer',
-    margin: '1rem',
+    margin: spacing.medium,
     textAlign: 'center'
   };
 
@@ -45,19 +45,19 @@ function DesignPrinciplesDemo() {
     backgroundColor: colors.primary,
     border: 'none',
     color: '#fff',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '4px',
+    padding: `${spacing.small} ${spacing.medium}`,
+    borderRadius: borderRadius.small,
     transition: `all ${transitions.fast}`,
     cursor: 'pointer',
-    margin: '0.5rem'
+    margin: spacing.small
   };
 
   const inputStyle: React.CSSProperties = {
-    padding: '0.5rem',
-    borderRadius: '4px',
+    padding: spacing.small,
+    borderRadius: borderRadius.small,
     border: `1px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
     fontFamily: typography.primaryFont,
-    margin: '0.5rem',
+    margin: spacing.small,
     width: '100%',
     maxWidth: '300px',
     color: darkMode ? inputs.textDark : inputs.textLight
@@ -66,15 +66,15 @@ function DesignPrinciplesDemo() {
   const calloutStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.callout.border}`,
     backgroundColor: darkMode ? callouts.callout.backgroundDark : callouts.callout.backgroundLight,
-    padding: '1rem',
-    margin: '1rem 0'
+    padding: spacing.medium,
+    margin: `${spacing.medium} 0`
   };
 
   const warningStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.warning.border}`,
     backgroundColor: darkMode ? callouts.warning.backgroundDark : callouts.warning.backgroundLight,
-    padding: '1rem',
-    margin: '1rem 0'
+    padding: spacing.medium,
+    margin: `${spacing.medium} 0`
   };
 
   const hoverInfoStyle: React.CSSProperties = {
@@ -110,9 +110,9 @@ function DesignPrinciplesDemo() {
     width: '100%',
     maxWidth: '400px',
     backgroundColor: darkMode ? colors.neutral[700] : colors.neutral[300],
-    borderRadius: '4px',
+    borderRadius: borderRadius.small,
     overflow: 'hidden',
-    margin: '1rem auto'
+    margin: `${spacing.medium} auto`
   };
 
   const progressBarStyle: React.CSSProperties = {
@@ -130,7 +130,7 @@ function DesignPrinciplesDemo() {
     width: '40px',
     height: '40px',
     animation: 'spin 1s linear infinite',
-    margin: '1rem auto'
+    margin: `${spacing.medium} auto`
   };
 
   // Dragging Handle Style
@@ -138,20 +138,20 @@ function DesignPrinciplesDemo() {
     width: '80px',
     height: '20px',
     backgroundColor: colors.secondary,
-    borderRadius: '4px',
+    borderRadius: borderRadius.small,
     textAlign: 'center',
     lineHeight: '20px',
     cursor: 'grab',
-    margin: '1rem auto'
+    margin: `${spacing.medium} auto`
   };
 
   // Dropdown Style
   const dropdownStyle: React.CSSProperties = {
-    padding: '0.5rem',
-    borderRadius: '4px',
+    padding: spacing.small,
+    borderRadius: borderRadius.small,
     border: `1px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
     fontFamily: typography.primaryFont,
-    margin: '0.5rem auto',
+    margin: spacing.small,
     width: '100%',
     maxWidth: '200px',
     backgroundColor: theme.background,
@@ -160,7 +160,7 @@ function DesignPrinciplesDemo() {
 
   // Checkbox Style
   const checkboxStyle: React.CSSProperties = {
-    margin: '0.5rem'
+    margin: spacing.small
   };
 
   return (
@@ -171,8 +171,8 @@ function DesignPrinciplesDemo() {
           100% { transform: rotate(360deg); }
         }
       `}</style>
-      <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Design Principles Demo</h1>
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: spacing.medium }}>Design Principles Demo</h1>
+      <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
         <button
           style={buttonStyle}
           onClick={toggleDarkMode}
@@ -201,7 +201,7 @@ function DesignPrinciplesDemo() {
         </p>
       </div>
       {/* Button Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <button
           style={buttonStyle}
           onMouseEnter={e => {
@@ -222,7 +222,7 @@ function DesignPrinciplesDemo() {
         </button>
       </div>
       {/* Input Field Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <input
           type="text"
           placeholder="Sample Input"
@@ -240,7 +240,7 @@ function DesignPrinciplesDemo() {
         <p>This is a warning message to alert users to take caution with a particular action.</p>
       </div>
       {/* Hover Information Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <p>
           Hover over this{' '}
           <span
@@ -257,19 +257,19 @@ function DesignPrinciplesDemo() {
         </p>
       </div>
       {/* Progress Bar Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Progress Bar</h3>
         <div style={progressContainerStyle}>
           <div style={progressBarStyle}></div>
         </div>
       </div>
       {/* Spinner Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Spinner</h3>
         <div style={spinnerStyle}></div>
       </div>
       {/* Dropdown Menu Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Dropdown Menu</h3>
         <select
           value={dropdownValue}
@@ -282,7 +282,7 @@ function DesignPrinciplesDemo() {
         </select>
       </div>
       {/* Checkbox Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Checkbox</h3>
         <label>
           <input
@@ -294,7 +294,7 @@ function DesignPrinciplesDemo() {
         </label>
       </div>
       {/* Dragging Handle Example */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Dragging Handle</h3>
         <div
           draggable
