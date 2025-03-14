@@ -2,20 +2,40 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
+import { colors } from './designTokens';
 
 const App: React.FC = () => {
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <div className="min-h-screen bg-gray-100">
-        <nav className="mb-4 flex space-x-4 bg-gray-800 p-4">
-          <Link to="/" className="text-white">
+      <div
+        style={{
+          minHeight: '100vh',
+          backgroundColor: colors.light.background,
+        }}
+      >
+        <nav
+          style={{
+            marginBottom: '1rem',
+            backgroundColor: colors.dark.background,
+            padding: '1rem',
+            display: 'flex',
+            gap: '1rem',
+          }}
+        >
+          <Link
+            to="/"
+            style={{ color: colors.light.text, textDecoration: 'none' }}
+          >
             Home
           </Link>
-          <Link to="/design-principles" className="text-white">
+          <Link
+            to="/design-principles"
+            style={{ color: colors.light.text, textDecoration: 'none' }}
+          >
             Design Principles Demo
           </Link>
         </nav>
-        <div className="p-4">
+        <div style={{ padding: '1rem' }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
@@ -27,3 +47,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+```
