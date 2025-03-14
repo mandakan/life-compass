@@ -65,7 +65,6 @@ const CreateLifeCompass: React.FC = () => {
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  [/* rating values for adding a new area */]
   const [rating1, setRating1] = useState<number>(5);
   const [rating2, setRating2] = useState<number>(5);
   const [error, setError] = useState('');
@@ -333,6 +332,9 @@ const CreateLifeCompass: React.FC = () => {
   return (
     <div style={{ padding: spacing.medium }}>
       <h2>Create Life Compass</h2>
+      <p style={{ marginBottom: spacing.medium }}>
+        Vänligen välj typ av livsområden: antingen skapa egna (Custom) eller använd förinställda områden.
+      </p>
       {!storageAvailable && (
         <div
           style={{
