@@ -1,0 +1,42 @@
+{
+  "name": "life-compass",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "format": "prettier --write .",
+    "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\""
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "zustand": "latest"
+  },
+  "devDependencies": {
+    "vite": "latest",
+    "typescript": "latest",
+    "eslint": "latest",
+    "prettier": "latest",
+    "prettier-plugin-tailwindcss": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "vitest": "latest",
+    "@testing-library/react": "latest",
+    "playwright": "latest",
+    "tailwindcss": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest",
+    "@tailwindcss/vite": "latest",
+    "@vitejs/plugin-react": "latest",
+    "jsdom": "latest",
+    "@typescript-eslint/parser": "latest"
+  },
+  "engines": {
+    "node": ">=23"
+  }
+}

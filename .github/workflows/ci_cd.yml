@@ -1,0 +1,84 @@
+name: CI/CD Testing Pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+      actions: write
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+
+      # Cache node modules for faster builds
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Run linting as an additional quality check
+      - name: Run Linting
+        id: lint
+        run: |
+          echo "### Linting Results 📝" >> $GITHUB_STEP_SUMMARY
+          if npm run lint > lint_output.txt 2>&1; then
+            echo "✅ No linting issues found." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Linting issues detected!" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 10 lint_output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1 # Fail the job if linting fails
+          fi
+
+      # Run security scan as an additional quality check
+      - name: Run Security Scan
+        id: security_scan
+        run: |
+          echo "### Security Scan Results 🔒" >> $GITHUB_STEP_SUMMARY
+          if npm audit --audit-level=moderate > audit_output.txt 2>&1; then
+            echo "✅ No security vulnerabilities detected." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Security vulnerabilities found!" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 10 audit_output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1 # Fail the job if security vulnerabilities are found
+          fi
+
+      # Run tests using Vitest with a JUnit reporter and a retry mechanism for flaky tests
+      - name: Run Tests
+        run: |
+          # Execute Vitest. Vitest configuration should handle retries (if configured) and output a JUnit report.
+          npx vitest run --reporter=junit --outputFile=test-results.xml
+        continue-on-error: false
+
+      # Report test results using test-reporter for detailed insights
+      - name: Report Test Results
+        uses: dorny/test-reporter@v1
+        with:
+          name: VitestTest Results
+          path: test-results.xml  # Adjust based on your report location
+          reporter: java-junit  # Use 'java-junit' for JUnit XML reports
+          fail-on-error: true

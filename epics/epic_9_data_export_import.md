@@ -1,7 +1,7 @@
 ---
-title: "Data Export and Import"
-type: "epic"
-status: "draft"
+title: 'Data Export and Import'
+type: 'epic'
+status: 'draft'
 ---
 
 # Data Export and Import
@@ -9,7 +9,8 @@ status: "draft"
 **Description**  
 As a user, I want to be able to export and import my data so that I can retain my progress, switch devices, or back up my Life Compass.
 
-**Related User Stories:**  
+**Related User Stories:**
+
 - To be added in a later step.
 - User Story 9.1: Export Data as JSON
 - User Story 9.2: Generate a Printable Summary
