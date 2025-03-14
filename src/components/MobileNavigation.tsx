@@ -99,4 +99,3 @@ const MobileNavigation: React.FC = () => {
 };
 
 export default MobileNavigation;
-```
