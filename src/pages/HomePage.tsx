@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     const data = getUserData();
-    console.log('Loaded user data:', data);
+    console.log('Laddade användardata:', data);
   }, []);
 
   const containerStyle: React.CSSProperties = {
@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={containerStyle}>
-      <h1 style={headerStyle}>Life Compass</h1>
+      <h1 style={headerStyle}>Livskompass</h1>
       <Link
         to="/create-life-compass"
         style={buttonStyle}
@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
             colors.primary;
         }}
       >
-        Create Life Compass
+        Skapa Livskompass
       </Link>
     </div>
   );
