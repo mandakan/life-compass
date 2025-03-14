@@ -36,10 +36,10 @@ jobs:
       - name: Run Tests
         run: |
           npx vitest run --reporter=junit --outputFile=test-results.xml
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Report Test Results
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         with:
           name: VitestTest Results
           path: test-results.xml
