@@ -26,28 +26,30 @@ const isLocalStorageAvailable = (): boolean => {
 
 const CreateLifeCompass: React.FC = () => {
   const { theme } = useTheme();
-  const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
+  const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
+  
+  // Initialize lifeAreas from local storage if available, otherwise as empty array.
+  const [lifeAreas, setLifeAreas] = useState<LifeArea[]>(() => {
+    if (storageAvailable) {
+      try {
+        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      } catch (err) {
+        console.error('Failed to parse saved life areas', err);
+      }
+    }
+    return [];
+  });
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [details, setDetails] = useState('');
   const [importance, setImportance] = useState<number>(5);
   const [satisfaction, setSatisfaction] = useState<number>(5);
   const [error, setError] = useState('');
-  const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
-
-  useEffect(() => {
-    if (storageAvailable) {
-      try {
-        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-        if (saved) {
-          setLifeAreas(JSON.parse(saved));
-        }
-      } catch (err) {
-        console.error('Failed to parse saved life areas', err);
-      }
-    }
-  }, [storageAvailable]);
 
   useEffect(() => {
     if (storageAvailable) {
@@ -329,3 +331,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```
