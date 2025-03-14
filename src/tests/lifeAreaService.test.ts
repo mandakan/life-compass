@@ -30,4 +30,3 @@ describe('lifeAreaService', () => {
     });
   });
 });
-```
