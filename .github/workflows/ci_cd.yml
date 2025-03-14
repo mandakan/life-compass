@@ -1,0 +1,71 @@
+name: CI/CD Testing Pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Cache node modules for faster builds
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Run linting as an additional quality check
+      - name: Run Linting
+        run: npm run lint
+
+      # Run security scan as an additional quality check
+      - name: Run Security Scan
+        run: npm audit --audit-level=moderate
+
+      # Run tests using Vitest with a JUnit reporter and a retry mechanism for flaky tests
+      - name: Run Tests
+        run: |
+          # Execute Vitest. Vitest configuration should handle retries (if configured) and output a JUnit report.
+          npx vitest run --reporter=junit
+        continue-on-error: false
+
+      # Report test results using GITHUB_STEP_SUMMARY and dorny/test-reporter for inline GitHub comments
+      - name: Report Test Results
+        if: always()
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          if [ -f test-results.xml ]; then
+            cat test-results.xml >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Test results file not found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Inline Test Comments
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          check_name: Vitest Tests
+          reporter: junit
+          path: test-results.xml
+```
