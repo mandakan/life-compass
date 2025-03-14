@@ -23,14 +23,14 @@ const HomePage: React.FC = () => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   };
 
   const headerStyle: React.CSSProperties = {
     marginBottom: '1.5rem',
     fontSize: '2rem',
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
     color: '#fff',
     padding: '0.75rem 1.5rem',
     transition: `background-color ${transitions.fast}`,
-    cursor: 'pointer'
+    cursor: 'pointer',
   };
 
   return (
@@ -49,11 +49,13 @@ const HomePage: React.FC = () => {
       <button
         style={buttonStyle}
         onClick={handleSave}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.secondary;
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+            colors.secondary;
         }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.primary;
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+            colors.primary;
         }}
       >
         Save Data

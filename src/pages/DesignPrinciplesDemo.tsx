@@ -1,5 +1,15 @@
 import React from 'react';
-import { colors, typography, interactiveStates, transitions, callouts, tooltip, inputs, spacing, borderRadius } from '../designTokens';
+import {
+  colors,
+  typography,
+  interactiveStates,
+  transitions,
+  callouts,
+  tooltip,
+  inputs,
+  spacing,
+  borderRadius,
+} from '../designTokens';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
@@ -7,7 +17,7 @@ function DesignPrinciplesDemo() {
   const [darkMode, setDarkMode] = React.useState(false);
   const [hoverActive, setHoverActive] = React.useState(false);
   const [progress, setProgress] = React.useState(70);
-  const [dropdownValue, setDropdownValue] = React.useState("option1");
+  const [dropdownValue, setDropdownValue] = React.useState('option1');
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
   const [sliderValue, setSliderValue] = React.useState(50);
 
@@ -21,7 +31,7 @@ function DesignPrinciplesDemo() {
     minHeight: '100vh',
     fontFamily: typography.primaryFont,
     transition: `background-color ${transitions.medium}, color ${transitions.medium}`,
-    padding: spacing.large
+    padding: spacing.large,
   };
 
   const cardStyle: React.CSSProperties = {
@@ -34,12 +44,12 @@ function DesignPrinciplesDemo() {
     transition: `all ${transitions.medium}`,
     cursor: 'pointer',
     margin: spacing.medium,
-    textAlign: 'center'
+    textAlign: 'center',
   };
 
   const cardHoverStyle: React.CSSProperties = {
     filter: `brightness(${interactiveStates.hover.brightness})`,
-    boxShadow: interactiveStates.hover.shadow
+    boxShadow: interactiveStates.hover.shadow,
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -50,7 +60,7 @@ function DesignPrinciplesDemo() {
     borderRadius: borderRadius.small,
     transition: `all ${transitions.fast}`,
     cursor: 'pointer',
-    margin: spacing.small
+    margin: spacing.small,
   };
 
   const inputStyle: React.CSSProperties = {
@@ -61,33 +71,37 @@ function DesignPrinciplesDemo() {
     margin: spacing.small,
     width: '100%',
     maxWidth: '300px',
-    color: darkMode ? inputs.textDark : inputs.textLight
+    color: darkMode ? inputs.textDark : inputs.textLight,
   };
 
   const sliderStyle: React.CSSProperties = {
     width: '100%',
     maxWidth: '300px',
-    margin: spacing.small
+    margin: spacing.small,
   };
 
   const calloutStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.callout.border}`,
-    backgroundColor: darkMode ? callouts.callout.backgroundDark : callouts.callout.backgroundLight,
+    backgroundColor: darkMode
+      ? callouts.callout.backgroundDark
+      : callouts.callout.backgroundLight,
     padding: spacing.medium,
-    margin: `${spacing.medium} 0`
+    margin: `${spacing.medium} 0`,
   };
 
   const warningStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.warning.border}`,
-    backgroundColor: darkMode ? callouts.warning.backgroundDark : callouts.warning.backgroundLight,
+    backgroundColor: darkMode
+      ? callouts.warning.backgroundDark
+      : callouts.warning.backgroundLight,
     padding: spacing.medium,
-    margin: `${spacing.medium} 0`
+    margin: `${spacing.medium} 0`,
   };
 
   const hoverInfoStyle: React.CSSProperties = {
     position: 'relative',
     display: 'inline-block',
-    borderBottom: '1px dotted gray'
+    borderBottom: '1px dotted gray',
   };
 
   const tooltipStyle: React.CSSProperties = {
@@ -104,12 +118,12 @@ function DesignPrinciplesDemo() {
     left: '50%',
     marginLeft: `-${parseInt(tooltip.width) / 2}px`,
     opacity: 0,
-    transition: `opacity ${transitions.fast}`
+    transition: `opacity ${transitions.fast}`,
   };
 
   const tooltipVisibleStyle: React.CSSProperties = {
     visibility: 'visible',
-    opacity: 1
+    opacity: 1,
   };
 
   // Progress Bar Styles
@@ -119,14 +133,14 @@ function DesignPrinciplesDemo() {
     backgroundColor: darkMode ? colors.neutral[700] : colors.neutral[300],
     borderRadius: borderRadius.small,
     overflow: 'hidden',
-    margin: `${spacing.medium} auto`
+    margin: `${spacing.medium} auto`,
   };
 
   const progressBarStyle: React.CSSProperties = {
     width: `${progress}%`,
     height: '1rem',
     backgroundColor: colors.primary,
-    transition: `width ${transitions.medium}`
+    transition: `width ${transitions.medium}`,
   };
 
   // Spinner Styles
@@ -137,7 +151,7 @@ function DesignPrinciplesDemo() {
     width: '40px',
     height: '40px',
     animation: 'spin 1s linear infinite',
-    margin: `${spacing.medium} auto`
+    margin: `${spacing.medium} auto`,
   };
 
   // Dragging Handle Style
@@ -149,7 +163,7 @@ function DesignPrinciplesDemo() {
     textAlign: 'center',
     lineHeight: '20px',
     cursor: 'grab',
-    margin: `${spacing.medium} auto`
+    margin: `${spacing.medium} auto`,
   };
 
   // Dropdown Style
@@ -162,12 +176,12 @@ function DesignPrinciplesDemo() {
     width: '100%',
     maxWidth: '200px',
     backgroundColor: theme.background,
-    color: theme.text
+    color: theme.text,
   };
 
   // Checkbox Style
   const checkboxStyle: React.CSSProperties = {
-    margin: spacing.small
+    margin: spacing.small,
   };
 
   return (
@@ -178,7 +192,9 @@ function DesignPrinciplesDemo() {
           100% { transform: rotate(360deg); }
         }
       `}</style>
-      <h1 style={{ textAlign: 'center', marginBottom: spacing.medium }}>Design Principles Demo</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: spacing.medium }}>
+        Design Principles Demo
+      </h1>
       <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
         <button
           style={buttonStyle}
@@ -186,14 +202,16 @@ function DesignPrinciplesDemo() {
           onMouseEnter={() => setButtonHovered(true)}
           onMouseLeave={() => setButtonHovered(false)}
           onFocus={e => {
-            (e.currentTarget as HTMLButtonElement).style.outline = interactiveStates.focus.outline;
-            (e.currentTarget as HTMLButtonElement).style.outlineOffset = interactiveStates.focus.outlineOffset;
+            (e.currentTarget as HTMLButtonElement).style.outline =
+              interactiveStates.focus.outline;
+            (e.currentTarget as HTMLButtonElement).style.outlineOffset =
+              interactiveStates.focus.outlineOffset;
           }}
           onBlur={e => {
             (e.currentTarget as HTMLButtonElement).style.outline = 'none';
           }}
         >
-          Toggle {darkMode ? "Light" : "Dark"} Mode
+          Toggle {darkMode ? 'Light' : 'Dark'} Mode
         </button>
       </div>
       {/* Card Example */}
@@ -204,7 +222,8 @@ function DesignPrinciplesDemo() {
       >
         <h2>Card Component</h2>
         <p>
-          This card demonstrates usage of design tokens for typography, colors, interactive states, and transitions.
+          This card demonstrates usage of design tokens for typography, colors,
+          interactive states, and transitions.
         </p>
       </div>
       {/* Button Example */}
@@ -212,14 +231,17 @@ function DesignPrinciplesDemo() {
         <button
           style={buttonStyle}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.filter = `brightness(${interactiveStates.hover.brightness})`;
+            (e.currentTarget as HTMLButtonElement).style.filter =
+              `brightness(${interactiveStates.hover.brightness})`;
           }}
           onMouseLeave={e => {
             (e.currentTarget as HTMLButtonElement).style.filter = 'none';
           }}
           onFocus={e => {
-            (e.currentTarget as HTMLButtonElement).style.outline = interactiveStates.focus.outline;
-            (e.currentTarget as HTMLButtonElement).style.outlineOffset = interactiveStates.focus.outlineOffset;
+            (e.currentTarget as HTMLButtonElement).style.outline =
+              interactiveStates.focus.outline;
+            (e.currentTarget as HTMLButtonElement).style.outlineOffset =
+              interactiveStates.focus.outlineOffset;
           }}
           onBlur={e => {
             (e.currentTarget as HTMLButtonElement).style.outline = 'none';
@@ -230,21 +252,23 @@ function DesignPrinciplesDemo() {
       </div>
       {/* Input Field Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <input
-          type="text"
-          placeholder="Sample Input"
-          style={inputStyle}
-        />
+        <input type="text" placeholder="Sample Input" style={inputStyle} />
       </div>
       {/* Callout Example */}
       <div style={calloutStyle}>
         <h3>Callout</h3>
-        <p>This is an informational callout intended to draw attention to important details.</p>
+        <p>
+          This is an informational callout intended to draw attention to
+          important details.
+        </p>
       </div>
       {/* Warning Example */}
       <div style={warningStyle}>
         <h3>Warning</h3>
-        <p>This is a warning message to alert users to take caution with a particular action.</p>
+        <p>
+          This is a warning message to alert users to take caution with a
+          particular action.
+        </p>
       </div>
       {/* Hover Information Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
@@ -256,11 +280,16 @@ function DesignPrinciplesDemo() {
             onMouseLeave={() => setHoverActive(false)}
           >
             text
-            <span style={{ ...tooltipStyle, ...(hoverActive ? tooltipVisibleStyle : {}) }}>
+            <span
+              style={{
+                ...tooltipStyle,
+                ...(hoverActive ? tooltipVisibleStyle : {}),
+              }}
+            >
               This is additional hover information.
             </span>
-          </span>
-          {' '}to see more details.
+          </span>{' '}
+          to see more details.
         </p>
       </div>
       {/* Progress Bar Example */}
@@ -280,7 +309,7 @@ function DesignPrinciplesDemo() {
         <h3>Dropdown Menu</h3>
         <select
           value={dropdownValue}
-          onChange={(e) => setDropdownValue(e.target.value)}
+          onChange={e => setDropdownValue(e.target.value)}
           style={dropdownStyle}
         >
           <option value="option1">Option 1</option>
@@ -295,9 +324,10 @@ function DesignPrinciplesDemo() {
           <input
             type="checkbox"
             checked={checkboxChecked}
-            onChange={(e) => setCheckboxChecked(e.target.checked)}
+            onChange={e => setCheckboxChecked(e.target.checked)}
             style={checkboxStyle}
-          /> Check me!
+          />{' '}
+          Check me!
         </label>
       </div>
       {/* Slider Example */}
@@ -306,7 +336,7 @@ function DesignPrinciplesDemo() {
         <input
           type="range"
           value={sliderValue}
-          onChange={(e) => setSliderValue(Number(e.target.value))}
+          onChange={e => setSliderValue(Number(e.target.value))}
           style={sliderStyle}
           min="0"
           max="100"
@@ -319,8 +349,8 @@ function DesignPrinciplesDemo() {
         <div
           draggable
           style={draggingHandleStyle}
-          onDragStart={(e) => {
-            e.dataTransfer.setData("text/plain", "DraggingHandle");
+          onDragStart={e => {
+            e.dataTransfer.setData('text/plain', 'DraggingHandle');
           }}
         >
           Drag Me
@@ -329,13 +359,50 @@ function DesignPrinciplesDemo() {
       {/* Typography Examples */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Typography Examples</h3>
-        <h1 style={{ fontFamily: typography.primaryFont, fontSize: '2.5rem', margin: spacing.small }}>H1 - Title</h1>
-        <h2 style={{ fontFamily: typography.primaryFont, fontSize: '2rem', margin: spacing.small }}>H2 - Subtitle</h2>
-        <h3 style={{ fontFamily: typography.primaryFont, fontSize: '1.5rem', margin: spacing.small }}>H3 - Section Title</h3>
-        <p style={{ fontFamily: typography.fallbackFont, fontSize: '1rem', margin: spacing.small }}>
-          Body text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <h1
+          style={{
+            fontFamily: typography.primaryFont,
+            fontSize: '2.5rem',
+            margin: spacing.small,
+          }}
+        >
+          H1 - Title
+        </h1>
+        <h2
+          style={{
+            fontFamily: typography.primaryFont,
+            fontSize: '2rem',
+            margin: spacing.small,
+          }}
+        >
+          H2 - Subtitle
+        </h2>
+        <h3
+          style={{
+            fontFamily: typography.primaryFont,
+            fontSize: '1.5rem',
+            margin: spacing.small,
+          }}
+        >
+          H3 - Section Title
+        </h3>
+        <p
+          style={{
+            fontFamily: typography.fallbackFont,
+            fontSize: '1rem',
+            margin: spacing.small,
+          }}
+        >
+          Body text example: Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit.
         </p>
-        <p style={{ fontFamily: typography.fallbackFont, fontSize: '0.8rem', margin: spacing.small }}>
+        <p
+          style={{
+            fontFamily: typography.fallbackFont,
+            fontSize: '0.8rem',
+            margin: spacing.small,
+          }}
+        >
           Caption text example: This is a caption.
         </p>
       </div>
