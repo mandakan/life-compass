@@ -205,25 +205,28 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   // Drag and Drop handlers
-  const handleDragStart = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    setDraggedIndex(index);
-    event.dataTransfer.effectAllowed = 'move';
-  };
+  const handleDragStart =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      setDraggedIndex(index);
+      event.dataTransfer.effectAllowed = 'move';
+    };
 
-  const handleDragOver = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
-  };
+  const handleDragOver =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+    };
 
-  const handleDrop = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    if (draggedIndex === null || draggedIndex === index) return;
-    const reordered = [...lifeAreas];
-    const draggedItem = reordered.splice(draggedIndex, 1)[0];
-    reordered.splice(index, 0, draggedItem);
-    setLifeAreas(reordered);
-    setDraggedIndex(null);
-  };
+  const handleDrop =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (draggedIndex === null || draggedIndex === index) return;
+      const reordered = [...lifeAreas];
+      const draggedItem = reordered.splice(draggedIndex, 1)[0];
+      reordered.splice(index, 0, draggedItem);
+      setLifeAreas(reordered);
+      setDraggedIndex(null);
+    };
 
   return (
     <div style={{ padding: spacing.medium }}>
