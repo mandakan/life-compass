@@ -261,18 +261,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           {area.details && (
             <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
           )}
-          <table style={{ width: '100%', marginBottom: spacing.small, borderCollapse: 'collapse' }}>
-            <tbody>
-              <tr>
-                <td style={{ fontWeight: 'bold', padding: spacing.small }}>Viktighet:</td>
-                <td style={{ padding: spacing.small }}>{area.importance}</td>
-              </tr>
-              <tr>
-                <td style={{ fontWeight: 'bold', padding: spacing.small }}>Tillfredsställelse:</td>
-                <td style={{ padding: spacing.small }}>{area.satisfaction}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="grid grid-cols-2 gap-2 mb-2">
+            <div className="font-bold" style={{ padding: spacing.small }}>Viktighet:</div>
+            <div style={{ padding: spacing.small }}>{area.importance}</div>
+            <div className="font-bold" style={{ padding: spacing.small }}>Tillfredsställelse:</div>
+            <div style={{ padding: spacing.small }}>{area.satisfaction}</div>
+          </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
           <button style={actionButtonStyle} title="Redigera" onClick={() => onEdit(area)}>
@@ -295,3 +289,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```
