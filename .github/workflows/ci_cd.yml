@@ -45,4 +45,3 @@ jobs:
           path: test-results.xml
           reporter: java-junit
           fail-on-error: true
-```
