@@ -85,6 +85,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-```^^
-
-src/pages/HomePage.tsx
