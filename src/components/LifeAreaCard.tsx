@@ -92,15 +92,16 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div style={{ marginTop: spacing.small }}>
             <label>
               Beskrivning:
-              <input
-                type="text"
+              <textarea
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
                 style={{
                   marginLeft: spacing.small,
                   padding: spacing.small,
                   borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`
+                  border: `1px solid ${colors.neutral[400]}`,
+                  width: '100%',
+                  minHeight: '60px'
                 }}
               />
             </label>
