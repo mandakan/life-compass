@@ -125,12 +125,6 @@ const MobileNavigation: React.FC = () => {
             Hem
           </Link>
           <Link
-            to="/design-principles"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
-            Designprinciper
-          </Link>
-          <Link
             to="/create-life-compass"
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
@@ -147,6 +141,12 @@ const MobileNavigation: React.FC = () => {
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Kontakt
+          </Link>
+          <Link
+            to="/design-principles"
+            style={{ color: menu[theme].text, textDecoration: 'underline' }}
+          >
+            Designprinciper
           </Link>
           <a
             href="https://github.com/mandakan/life-compass"
