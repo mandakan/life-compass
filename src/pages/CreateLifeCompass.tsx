@@ -86,7 +86,7 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleAddNewLifeArea = () => {
     const defaultName = (() => {
-      const base = "Ny livsområde";
+      const base = "Nytt livsområde";
       let name = base;
       let counter = 2;
       while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
@@ -191,7 +191,7 @@ const CreateLifeCompass: React.FC = () => {
 
   return (
     <div style={{ padding: spacing.medium }}>
-      <h2>Create Life Compass</h2>
+      <h2>Skapa Livskompass</h2>
       <p style={{ marginBottom: spacing.medium }}>
         Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
@@ -277,4 +277,3 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
-```
