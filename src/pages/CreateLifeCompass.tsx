@@ -8,6 +8,14 @@ const LOCAL_STORAGE_KEY = 'lifeCompass';
 
 const isLocalStorageAvailable = (): boolean => {
   try {
+    // First check if window.localStorage is accessible
+    if (!window.localStorage) {
+      return false;
+    }
+  } catch (e) {
+    return false;
+  }
+  try {
     const testKey = '__local_storage_test__';
     localStorage.setItem(testKey, testKey);
     localStorage.removeItem(testKey);
@@ -30,16 +38,13 @@ const CreateLifeCompass: React.FC = () => {
   const [storageAvailable, setStorageAvailable] = useState(true);
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
 
-  // States for editing an existing area
-  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
-  const [editName, setEditName] = useState('');
-  const [editDescription, setEditDescription] = useState('');
-  const [editDetails, setEditDetails] = useState('');
-  const [editImportance, setEditImportance] = useState<number>(5);
-  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
-
+  // Check localStorage availability and handle errors
   useEffect(() => {
-    if (!isLocalStorageAvailable()) {
+    try {
+      if (!isLocalStorageAvailable()) {
+        setStorageAvailable(false);
+      }
+    } catch (e) {
       setStorageAvailable(false);
     }
   }, []);
@@ -111,6 +116,13 @@ const CreateLifeCompass: React.FC = () => {
       handleCancelEdit();
     }
   };
+
+  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
+  const [editName, setEditName] = useState('');
+  const [editDescription, setEditDescription] = useState('');
+  const [editDetails, setEditDetails] = useState('');
+  const [editImportance, setEditImportance] = useState<number>(5);
+  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
 
   const handleEditLifeArea = (area: LifeArea) => {
     setEditingAreaId(area.id);
