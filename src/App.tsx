@@ -64,7 +64,7 @@ const DesktopNavigation = () => {
       </div>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <a
-          href="https://github.com/your-project"
+          href="https://github.com/mandakan/life-compass"
           target="_blank"
           rel="noopener noreferrer"
           style={{

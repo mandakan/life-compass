@@ -149,7 +149,7 @@ const MobileNavigation: React.FC = () => {
             Contact
           </Link>
           <a
-            href="https://github.com/your-project"
+            href="https://github.com/mandakan/life-compass"
             target="_blank"
             rel="noopener noreferrer"
             style={{
