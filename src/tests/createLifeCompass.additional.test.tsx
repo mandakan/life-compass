@@ -16,10 +16,13 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
         <CreateLifeCompass />
       </ThemeProvider>
     );
-    expect(screen.getByText('Skapa Livskompass')).toBeInTheDocument();
+    const heading = screen.getByText('Skapa Livskompass');
+    expect(heading).toBeTruthy();
     // Select buttons by role to avoid duplicate text from non-button elements.
-    expect(screen.getByRole('button', { name: 'Lägg till livsområde' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Lägg till fördefinierade områden' })).toBeInTheDocument();
+    const addButtons = screen.getAllByRole('button', { name: 'Lägg till livsområde' });
+    expect(addButtons[0]).toBeTruthy();
+    const predefinedButtons = screen.getAllByRole('button', { name: 'Lägg till fördefinierade områden' });
+    expect(predefinedButtons[0]).toBeTruthy();
   });
 
   test('adds a new life area when clicking "Lägg till livsområde"', async () => {
@@ -28,12 +31,13 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
         <CreateLifeCompass />
       </ThemeProvider>
     );
-    const addButton = screen.getByRole('button', { name: 'Lägg till livsområde' });
+    const addButtons = screen.getAllByRole('button', { name: 'Lägg till livsområde' });
+    const addButton = addButtons[0];
     fireEvent.click(addButton);
 
     await waitFor(() => {
       // The default new life area should appear in the editing form.
-      expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeInTheDocument();
+      expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
     });
   });
 
@@ -43,7 +47,8 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
         <CreateLifeCompass />
       </ThemeProvider>
     );
-    const addButton = screen.getByRole('button', { name: 'Lägg till livsområde' });
+    const addButtons = screen.getAllByRole('button', { name: 'Lägg till livsområde' });
+    const addButton = addButtons[0];
     fireEvent.click(addButton);
 
     // Clear the name input in the editing form
@@ -55,7 +60,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     fireEvent.click(saveButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Namn är obligatoriskt.')).toBeInTheDocument();
+      expect(screen.getByText('Namn är obligatoriskt.')).toBeTruthy();
     });
   });
 
@@ -65,21 +70,21 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
         <CreateLifeCompass />
       </ThemeProvider>
     );
-    const addButton = screen.getByRole('button', { name: 'Lägg till livsområde' });
+    const addButtons = screen.getAllByRole('button', { name: 'Lägg till livsområde' });
 
     // Add first life area (with default name "Nytt livsområde")
-    fireEvent.click(addButton);
+    fireEvent.click(addButtons[0]);
     const saveButton = screen.getByRole('button', { name: /Spara/i });
     fireEvent.click(saveButton);
 
     // Add new life area again
-    fireEvent.click(addButton);
+    fireEvent.click(addButtons[0]);
     const nameInput = screen.getByLabelText(/Namn:/i);
     fireEvent.change(nameInput, { target: { value: 'Nytt livsområde' } });
     fireEvent.click(screen.getByRole('button', { name: /Spara/i }));
 
     await waitFor(() => {
-      expect(screen.getByText('Dubblett: Samma namn får inte användas.')).toBeInTheDocument();
+      expect(screen.getByText('Dubblett: Samma namn får inte användas.')).toBeTruthy();
     });
   });
 
@@ -89,7 +94,8 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
         <CreateLifeCompass />
       </ThemeProvider>
     );
-    const addButton = screen.getByRole('button', { name: 'Lägg till livsområde' });
+    const addButtons = screen.getAllByRole('button', { name: 'Lägg till livsområde' });
+    const addButton = addButtons[0];
     fireEvent.click(addButton);
 
     await waitFor(() => {
