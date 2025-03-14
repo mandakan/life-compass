@@ -6,12 +6,12 @@ import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="p-4">
-        <nav className="flex space-x-4 mb-4">
+      <div className="min-h-screen bg-gray-100">
+        <nav className="flex space-x-4 mb-4 bg-gray-800 p-4">
           <Link to="/" className="text-white">Home</Link>
           <Link to="/design-principles" className="text-white">Design Principles Demo</Link>
         </nav>
-        <div>
+        <div className="p-4">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
