@@ -107,7 +107,7 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ✅ **UI/UX**
 
-- [ ] User Story 5.1: Define Design Principles
+- [x] User Story 5.1: Define Design Principles
 - [ ] User Story 5.2: Implement Mobile-First Layout
 
 ✅ **Basic Navigation & State Handling**
