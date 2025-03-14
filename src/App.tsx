@@ -12,7 +12,7 @@ const DesktopNavigation = () => {
   const iconStyle = {
     width: '24px',
     height: '24px',
-    fill: theme === 'light' ? colors.dark.text : colors.light.text,
+    fill: theme === 'light' ? colors.light.text : colors.dark.text,
   };
 
   return (
@@ -119,4 +119,6 @@ const App: React.FC = () => {
 };
 
 export default App;
+```****
 
+src/components/MobileNavigation.tsx
