@@ -218,7 +218,6 @@ const CreateLifeCompass: React.FC = () => {
         <div style={{ color: colors.accent, marginBottom: spacing.medium }}>{error}</div>
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
-      <h3>Livsområden</h3>
       {lifeAreas.length === 0 ? (
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
