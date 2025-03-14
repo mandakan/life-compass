@@ -21,8 +21,8 @@ const CreateLifeCompass: React.FC = () => {
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [rating1, setRating1] = useState<number>(5);
-  const [rating2, setRating2] = useState<number>(5);
+  const [importance, setImportance] = useState<number>(5);
+  const [satisfaction, setSatisfaction] = useState<number>(5);
   const [error, setError] = useState('');
   const [storageAvailable, setStorageAvailable] = useState(true);
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
@@ -31,8 +31,8 @@ const CreateLifeCompass: React.FC = () => {
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
   const [editDescription, setEditDescription] = useState('');
-  const [editRating1, setEditRating1] = useState<number>(5);
-  const [editRating2, setEditRating2] = useState<number>(5);
+  const [editImportance, setEditImportance] = useState<number>(5);
+  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
 
   useEffect(() => {
     if (!isLocalStorageAvailable()) {
@@ -89,14 +89,14 @@ const CreateLifeCompass: React.FC = () => {
       id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
       name: name.trim(),
       description: description.trim(),
-      rating1,
-      rating2,
+      importance,
+      satisfaction,
     };
     setLifeAreas([...lifeAreas, newArea]);
     setName('');
     setDescription('');
-    setRating1(5);
-    setRating2(5);
+    setImportance(5);
+    setSatisfaction(5);
   };
 
   const handleRemoveLifeArea = (id: string) => {
@@ -110,8 +110,8 @@ const CreateLifeCompass: React.FC = () => {
     setEditingAreaId(area.id);
     setEditName(area.name);
     setEditDescription(area.description);
-    setEditRating1(area.rating1);
-    setEditRating2(area.rating2);
+    setEditImportance(area.importance);
+    setEditSatisfaction(area.satisfaction);
     setError('');
   };
 
@@ -131,8 +131,8 @@ const CreateLifeCompass: React.FC = () => {
           ...area,
           name: editName.trim(),
           description: editDescription.trim(),
-          rating1: editRating1,
-          rating2: editRating2,
+          importance: editImportance,
+          satisfaction: editSatisfaction,
         };
       }
       return area;
@@ -140,16 +140,16 @@ const CreateLifeCompass: React.FC = () => {
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
-    setEditRating1(5);
-    setEditRating2(5);
+    setEditImportance(5);
+    setEditSatisfaction(5);
   };
 
   const handleCancelEdit = () => {
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
-    setEditRating1(5);
-    setEditRating2(5);
+    setEditImportance(5);
+    setEditSatisfaction(5);
     setError('');
   };
 
@@ -249,11 +249,11 @@ const CreateLifeCompass: React.FC = () => {
           </div>
           <div>
             <label>
-              Betyg 1 (1-10):
+              Importance (1-10):
               <input
                 type="number"
-                value={rating1}
-                onChange={e => setRating1(Number(e.target.value))}
+                value={importance}
+                onChange={e => setImportance(Number(e.target.value))}
                 min="1"
                 max="10"
                 title="Ange ett värde mellan 1 och 10"
@@ -263,11 +263,11 @@ const CreateLifeCompass: React.FC = () => {
           </div>
           <div>
             <label>
-              Betyg 2 (1-10):
+              Satisfaction (1-10):
               <input
                 type="number"
-                value={rating2}
-                onChange={e => setRating2(Number(e.target.value))}
+                value={satisfaction}
+                onChange={e => setSatisfaction(Number(e.target.value))}
                 min="1"
                 max="10"
                 title="Ange ett värde mellan 1 och 10"
@@ -296,12 +296,12 @@ const CreateLifeCompass: React.FC = () => {
               isEditing={editingAreaId === area.id}
               editName={editName}
               editDescription={editDescription}
-              editRating1={editRating1}
-              editRating2={editRating2}
+              editImportance={editImportance}
+              editSatisfaction={editSatisfaction}
               onChangeEditName={setEditName}
               onChangeEditDescription={setEditDescription}
-              onChangeEditRating1={setEditRating1}
-              onChangeEditRating2={setEditRating2}
+              onChangeEditImportance={setEditImportance}
+              onChangeEditSatisfaction={setEditSatisfaction}
               onSaveEdit={handleSaveEditLifeArea}
               onCancelEdit={handleCancelEdit}
               onEdit={handleEditLifeArea}
@@ -319,12 +319,12 @@ const CreateLifeCompass: React.FC = () => {
               isEditing={editingAreaId === area.id}
               editName={editName}
               editDescription={editDescription}
-              editRating1={editRating1}
-              editRating2={editRating2}
+              editImportance={editImportance}
+              editSatisfaction={editSatisfaction}
               onChangeEditName={setEditName}
               onChangeEditDescription={setEditDescription}
-              onChangeEditRating1={setEditRating1}
-              onChangeEditRating2={setEditRating2}
+              onChangeEditImportance={setEditImportance}
+              onChangeEditSatisfaction={setEditSatisfaction}
               onSaveEdit={handleSaveEditLifeArea}
               onCancelEdit={handleCancelEdit}
               onEdit={handleEditLifeArea}

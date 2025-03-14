@@ -5,8 +5,8 @@ export interface LifeArea {
   id: string;
   name: string;
   description: string;
-  rating1: number;
-  rating2: number;
+  importance: number;
+  satisfaction: number;
 }
 
 export interface LifeAreaCardProps {
@@ -14,12 +14,12 @@ export interface LifeAreaCardProps {
   isEditing: boolean;
   editName: string;
   editDescription: string;
-  editRating1: number;
-  editRating2: number;
+  editImportance: number;
+  editSatisfaction: number;
   onChangeEditName: (val: string) => void;
   onChangeEditDescription: (val: string) => void;
-  onChangeEditRating1: (val: number) => void;
-  onChangeEditRating2: (val: number) => void;
+  onChangeEditImportance: (val: number) => void;
+  onChangeEditSatisfaction: (val: number) => void;
   onSaveEdit: () => void;
   onCancelEdit: () => void;
   onEdit: (area: LifeArea) => void;
@@ -55,12 +55,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   isEditing,
   editName,
   editDescription,
-  editRating1,
-  editRating2,
+  editImportance,
+  editSatisfaction,
   onChangeEditName,
   onChangeEditDescription,
-  onChangeEditRating1,
-  onChangeEditRating2,
+  onChangeEditImportance,
+  onChangeEditSatisfaction,
   onSaveEdit,
   onCancelEdit,
   onEdit,
@@ -108,11 +108,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Betyg 1 (1-10):
+              Importance (1-10):
               <input
                 type="number"
-                value={editRating1}
-                onChange={e => onChangeEditRating1(Number(e.target.value))}
+                value={editImportance}
+                onChange={e => onChangeEditImportance(Number(e.target.value))}
                 min="1"
                 max="10"
                 style={{
@@ -126,11 +126,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Betyg 2 (1-10):
+              Satisfaction (1-10):
               <input
                 type="number"
-                value={editRating2}
-                onChange={e => onChangeEditRating2(Number(e.target.value))}
+                value={editSatisfaction}
+                onChange={e => onChangeEditSatisfaction(Number(e.target.value))}
                 min="1"
                 max="10"
                 style={{
@@ -156,7 +156,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <h4 style={{ margin: 0, marginBottom: spacing.small }}>{area.name}</h4>
           <p style={{ margin: 0, marginBottom: spacing.small }}>{area.description}</p>
           <p style={{ margin: 0, marginBottom: spacing.small }}>
-            Betyg: {area.rating1} & {area.rating2}
+            Importance: {area.importance} & Satisfaction: {area.satisfaction}
           </p>
           <div style={buttonContainerStyle}>
             <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>

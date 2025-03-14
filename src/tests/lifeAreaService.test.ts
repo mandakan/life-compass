@@ -23,11 +23,11 @@ describe('lifeAreaService', () => {
       expect(area).toHaveProperty('description');
       expect(typeof area.description).toBe('string');
       
-      expect(area).toHaveProperty('rating1');
-      expect(typeof area.rating1).toBe('number');
+      expect(area).toHaveProperty('importance');
+      expect(typeof area.importance).toBe('number');
 
-      expect(area).toHaveProperty('rating2');
-      expect(typeof area.rating2).toBe('number');
+      expect(area).toHaveProperty('satisfaction');
+      expect(typeof area.satisfaction).toBe('number');
     });
   });
 });
