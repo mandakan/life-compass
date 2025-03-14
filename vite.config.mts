@@ -7,7 +7,7 @@ export default defineConfig({
     process.env.NODE_ENV === 'production'
       ? process.env.GH_PAGES_BASE
         ? process.env.GH_PAGES_BASE
-        : '/life-compass/'
+        : '/life-compass'
       : '/',
   plugins: [react(), tailwindcss()],
   test: {
