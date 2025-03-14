@@ -82,7 +82,6 @@ export const inputs = {
   textDark: '#ffffff',
 };
 
-// Additional tokens for spacing and border radius
 export const spacing = {
   small: '0.5rem',
   medium: '1rem',
@@ -94,14 +93,13 @@ export const borderRadius = {
   medium: '8px',
 };
 
-// New menu tokens for Navbar colors
 export const menu = {
   light: {
     background: colors.primary,
     text: '#ffffff',
   },
   dark: {
-    background: colors.dark.background,
+    background: '#343a40',
     text: colors.dark.text,
   },
 };
