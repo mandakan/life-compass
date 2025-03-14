@@ -171,7 +171,7 @@ const CreateLifeCompass: React.FC = () => {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
     borderRadius: borderRadius.small,
-    minWidth: '200px',
+    width: '100%',
     backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
   };
 
