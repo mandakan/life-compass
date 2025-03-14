@@ -161,26 +161,30 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <label>
               Viktighet (1-10):
               <input
-                type="number"
+                type="range"
                 value={editImportance}
                 onChange={e => onChangeEditImportance(Number(e.target.value))}
                 min="1"
                 max="10"
-                style={inputStyle}
+                step="1"
+                style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
+              <span style={{ marginLeft: spacing.small }}>{editImportance}</span>
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
               Tillfredsställelse (1-10):
               <input
-                type="number"
+                type="range"
                 value={editSatisfaction}
                 onChange={e => onChangeEditSatisfaction(Number(e.target.value))}
                 min="1"
                 max="10"
-                style={inputStyle}
+                step="1"
+                style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
+              <span style={{ marginLeft: spacing.small }}>{editSatisfaction}</span>
             </label>
           </div>
         </div>
@@ -279,7 +283,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <button style={actionButtonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
               <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3a.5.5 0 0 0 0 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a.5.5 0 0 0 0-1h-10z"/>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4h.5a.5.5 0 0 0 0-1h-10z"/>
             </svg>
             Ta bort
           </button>
