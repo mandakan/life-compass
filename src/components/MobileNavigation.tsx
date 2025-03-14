@@ -40,6 +40,9 @@ const MobileNavigation: React.FC = () => {
           <a href="/" className="hover:underline">
             Home
           </a>
+          <a href="/design-principles" className="hover:underline">
+            Design Principles Demo
+          </a>
           <a href="/about" className="hover:underline">
             About
           </a>
@@ -52,6 +55,9 @@ const MobileNavigation: React.FC = () => {
         <div className="mt-2 flex flex-col space-y-2 md:hidden">
           <a href="/" className="hover:underline">
             Home
+          </a>
+          <a href="/design-principles" className="hover:underline">
+            Design Principles Demo
           </a>
           <a href="/about" className="hover:underline">
             About
