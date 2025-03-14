@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { getUserData, saveUserData } from '../utils/storageService';
+import { getUserData } from '../utils/storageService';
 import { colors, typography, transitions } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
+import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const { theme } = useTheme();
@@ -10,12 +11,6 @@ const HomePage: React.FC = () => {
     const data = getUserData();
     console.log('Loaded user data:', data);
   }, []);
-
-  const handleSave = () => {
-    const sampleData = { name: 'User', updated: new Date().toISOString() };
-    saveUserData(sampleData);
-    console.log('User data saved.');
-  };
 
   const containerStyle: React.CSSProperties = {
     backgroundColor: colors[theme].background,
@@ -44,25 +39,27 @@ const HomePage: React.FC = () => {
     padding: '0.75rem 1.5rem',
     transition: `background-color ${transitions.fast}`,
     cursor: 'pointer',
+    textDecoration: 'none',
+    display: 'inline-block',
   };
 
   return (
     <div style={containerStyle}>
       <h1 style={headerStyle}>Life Compass</h1>
-      <button
+      <Link
+        to="/create-life-compass"
         style={buttonStyle}
-        onClick={handleSave}
         onMouseEnter={e => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+          (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
             colors.secondary;
         }}
         onMouseLeave={e => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+          (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
             colors.primary;
         }}
       >
-        Save Data
-      </button>
+        Create Life Compass
+      </Link>
     </div>
   );
 };
