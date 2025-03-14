@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { getUserData, saveUserData } from '../utils/storageService';
 import { colors, typography, transitions } from '../designTokens';
+import { useTheme } from '../context/ThemeContext';
 
 const HomePage: React.FC = () => {
+  const { theme } = useTheme();
+
   useEffect(() => {
     const data = getUserData();
     console.log('Loaded user data:', data);
@@ -15,8 +18,8 @@ const HomePage: React.FC = () => {
   };
 
   const containerStyle: React.CSSProperties = {
-    backgroundColor: colors.light.background,
-    color: colors.light.text,
+    backgroundColor: colors[theme].background,
+    color: colors[theme].text,
     fontFamily: typography.primaryFont,
     padding: '2rem',
     minHeight: '100vh',
@@ -50,12 +53,10 @@ const HomePage: React.FC = () => {
         style={buttonStyle}
         onClick={handleSave}
         onMouseEnter={e => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-            colors.secondary;
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.secondary;
         }}
         onMouseLeave={e => {
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-            colors.primary;
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = colors.primary;
         }}
       >
         Save Data
@@ -65,3 +66,4 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+```
