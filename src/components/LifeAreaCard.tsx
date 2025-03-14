@@ -27,19 +27,6 @@ export interface LifeAreaCardProps {
   style?: React.CSSProperties;
 }
 
-const tooltipStyle: React.CSSProperties = {
-  position: 'absolute',
-  top: '-1.5rem',
-  backgroundColor: colors.neutral[900],
-  color: '#fff',
-  padding: '0.25rem 0.5rem',
-  borderRadius: borderRadius.small,
-  fontSize: '0.75rem',
-  cursor: 'pointer',
-  display: 'flex',
-  gap: '0.25rem',
-};
-
 const defaultCardStyle: React.CSSProperties = {
   border: `1px solid ${colors.neutral[300]}`,
   borderRadius: borderRadius.small,
@@ -48,6 +35,19 @@ const defaultCardStyle: React.CSSProperties = {
   padding: spacing.medium,
   transition: `all ${transitions.medium}`,
   position: 'relative',
+};
+
+const buttonContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  gap: spacing.small,
+  marginTop: spacing.medium,
+};
+
+const buttonStyle: React.CSSProperties = {
+  backgroundColor: 'transparent',
+  border: 'none',
+  cursor: 'pointer',
+  padding: spacing.small,
 };
 
 const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
@@ -80,7 +80,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 type="text"
                 value={editName}
                 onChange={e => onChangeEditName(e.target.value)}
-                style={{ marginLeft: spacing.small, padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}` }}
+                style={{
+                  marginLeft: spacing.small,
+                  padding: spacing.small,
+                  borderRadius: borderRadius.small,
+                  border: `1px solid ${colors.neutral[400]}`
+                }}
               />
             </label>
           </div>
@@ -91,7 +96,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 type="text"
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
-                style={{ marginLeft: spacing.small, padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}` }}
+                style={{
+                  marginLeft: spacing.small,
+                  padding: spacing.small,
+                  borderRadius: borderRadius.small,
+                  border: `1px solid ${colors.neutral[400]}`
+                }}
               />
             </label>
           </div>
@@ -104,7 +114,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => onChangeEditRating1(Number(e.target.value))}
                 min="1"
                 max="10"
-                style={{ marginLeft: spacing.small, padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}` }}
+                style={{
+                  marginLeft: spacing.small,
+                  padding: spacing.small,
+                  borderRadius: borderRadius.small,
+                  border: `1px solid ${colors.neutral[400]}`
+                }}
               />
             </label>
           </div>
@@ -117,7 +132,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => onChangeEditRating2(Number(e.target.value))}
                 min="1"
                 max="10"
-                style={{ marginLeft: spacing.small, padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}` }}
+                style={{
+                  marginLeft: spacing.small,
+                  padding: spacing.small,
+                  borderRadius: borderRadius.small,
+                  border: `1px solid ${colors.neutral[400]}`
+                }}
               />
             </label>
           </div>
@@ -137,13 +157,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <p style={{ margin: 0, marginBottom: spacing.small }}>
             Betyg: {area.rating1} & {area.rating2}
           </p>
-          <div style={{ display: 'flex', gap: spacing.small }}>
-            <div style={tooltipStyle} title="Redigera" onClick={() => onEdit(area)}>
+          <div style={buttonContainerStyle}>
+            <button style={buttonStyle} title="Redigera" onClick={() => onEdit(area)}>
               ✎
-            </div>
-            <div style={tooltipStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
+            </button>
+            <button style={buttonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
               ×
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -152,3 +172,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```
