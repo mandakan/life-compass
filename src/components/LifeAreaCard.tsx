@@ -81,7 +81,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
   };
 
-  // Extend combinedStyle to use flex layout and ensure a minimum height for proper button alignment
+  // Extend combinedStyle to use flex layout for proper content arrangement
   const combinedStyle: React.CSSProperties = {
     ...themeCardStyle,
     ...style,
@@ -261,9 +261,18 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           {area.details && (
             <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
           )}
-          <p style={{ margin: 0, marginBottom: spacing.small }}>
-            Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
-          </p>
+          <table style={{ width: '100%', marginBottom: spacing.small, borderCollapse: 'collapse' }}>
+            <tbody>
+              <tr>
+                <td style={{ fontWeight: 'bold', padding: spacing.small }}>Viktighet:</td>
+                <td style={{ padding: spacing.small }}>{area.importance}</td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 'bold', padding: spacing.small }}>Tillfredsställelse:</td>
+                <td style={{ padding: spacing.small }}>{area.satisfaction}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
           <button style={actionButtonStyle} title="Redigera" onClick={() => onEdit(area)}>
@@ -286,3 +295,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```''''
