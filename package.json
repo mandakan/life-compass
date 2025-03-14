@@ -35,5 +35,8 @@
     "@vitejs/plugin-react": "latest",
     "jsdom": "latest",
     "@typescript-eslint/parser": "latest"
+  },
+  "engines": {
+    "node": ">=23"
   }
 }
