@@ -53,15 +53,17 @@ jobs:
         continue-on-error: false
 
       # Report test results using GITHUB_STEP_SUMMARY for quick insights
-      - name: Report Test Results
-        if: ${{ always() }}
+      - name: Generate Job Summary from Vitest
         run: |
-          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
-          if [ -f test-results.xml ]; then
-            cat test-results.xml >> $GITHUB_STEP_SUMMARY
-          else
-            echo "Test results file not found." >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "### Test Summary 🚀" >> $GITHUB_STEP_SUMMARY
+          PASSED=$(grep -oP '(?<=tests=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
+          FAILURES=$(grep -oP '(?<=failures=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
+          ERRORS=$(grep -oP '(?<=errors=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
+          SKIPPED=$(grep -oP '(?<=skipped=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
+              
+          echo "| Tests | Passed | Failed | Errors | Skipped |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|--------|--------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| $((PASSED+FAILURES+ERRORS+SKIPPED)) | $PASSED | $FAILURES | $ERRORS | $SKIPPED |" >> $GITHUB_STEP_SUMMARY
 
       # Report test results using test-reporter for detailed insights
       - name: Report Test Results
