@@ -4,4 +4,3 @@ import { LifeArea } from '../components/LifeAreaCard';
 export function getPredefinedLifeAreas(): LifeArea[] {
   return predefinedAreas;
 }
-```
