@@ -32,10 +32,8 @@ export interface LifeAreaCardProps {
 }
 
 const defaultCardStyle: React.CSSProperties = {
-  border: `1px solid ${colors.neutral[300]}`,
   borderRadius: borderRadius.small,
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  backgroundColor: colors.light.background,
   padding: spacing.medium,
   transition: `all ${transitions.medium}`,
   position: 'relative',
@@ -74,8 +72,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   style,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
-  const combinedStyle: React.CSSProperties = { ...defaultCardStyle, ...style };
   const { theme } = useTheme();
+
+  // Create card style based on theme
+  const themeCardStyle: React.CSSProperties = {
+    ...defaultCardStyle,
+    backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
+    color: theme === 'light' ? colors.light.text : colors.dark.text,
+    border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
+  };
+
+  const combinedStyle: React.CSSProperties = { ...themeCardStyle, ...style };
 
   // Determine popup width based on viewport width
   const popupWidth = (typeof window !== 'undefined' && window.innerWidth >= 768) ? '400px' : '250px';
@@ -261,4 +268,3 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
-```
