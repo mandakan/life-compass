@@ -10,24 +10,23 @@ import {
   spacing,
   borderRadius,
 } from '../designTokens';
+import { useTheme } from '../context/ThemeContext';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
   const [buttonHovered, setButtonHovered] = React.useState(false);
-  const [darkMode, setDarkMode] = React.useState(false);
   const [hoverActive, setHoverActive] = React.useState(false);
   const [progress, setProgress] = React.useState(70);
   const [dropdownValue, setDropdownValue] = React.useState('option1');
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
   const [sliderValue, setSliderValue] = React.useState(50);
 
-  const toggleDarkMode = () => setDarkMode(prev => !prev);
-
-  const theme = darkMode ? colors.dark : colors.light;
+  const { theme: themeMode, toggleTheme } = useTheme();
+  const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
 
   const containerStyle: React.CSSProperties = {
-    backgroundColor: theme.background,
-    color: theme.text,
+    backgroundColor: currentTheme.background,
+    color: currentTheme.text,
     minHeight: '100vh',
     fontFamily: typography.primaryFont,
     transition: `background-color ${transitions.medium}, color ${transitions.medium}`,
@@ -35,12 +34,12 @@ function DesignPrinciplesDemo() {
   };
 
   const cardStyle: React.CSSProperties = {
-    backgroundColor: theme.background,
-    color: theme.text,
+    backgroundColor: currentTheme.background,
+    color: currentTheme.text,
     padding: spacing.medium,
     borderRadius: borderRadius.medium,
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    border: `1px solid ${darkMode ? colors.neutral[700] : colors.neutral[300]}`,
+    border: `1px solid ${themeMode === 'dark' ? colors.neutral[700] : colors.neutral[300]}`,
     transition: `all ${transitions.medium}`,
     cursor: 'pointer',
     margin: spacing.medium,
@@ -66,12 +65,12 @@ function DesignPrinciplesDemo() {
   const inputStyle: React.CSSProperties = {
     padding: spacing.small,
     borderRadius: borderRadius.small,
-    border: `1px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
+    border: `1px solid ${themeMode === 'dark' ? colors.neutral[600] : colors.neutral[300]}`,
     fontFamily: typography.primaryFont,
     margin: spacing.small,
     width: '100%',
     maxWidth: '300px',
-    color: darkMode ? inputs.textDark : inputs.textLight,
+    color: themeMode === 'dark' ? inputs.textDark : inputs.textLight,
   };
 
   const sliderStyle: React.CSSProperties = {
@@ -82,18 +81,20 @@ function DesignPrinciplesDemo() {
 
   const calloutStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.callout.border}`,
-    backgroundColor: darkMode
-      ? callouts.callout.backgroundDark
-      : callouts.callout.backgroundLight,
+    backgroundColor:
+      themeMode === 'dark'
+        ? callouts.callout.backgroundDark
+        : callouts.callout.backgroundLight,
     padding: spacing.medium,
     margin: `${spacing.medium} 0`,
   };
 
   const warningStyle: React.CSSProperties = {
     borderLeft: `4px solid ${callouts.warning.border}`,
-    backgroundColor: darkMode
-      ? callouts.warning.backgroundDark
-      : callouts.warning.backgroundLight,
+    backgroundColor:
+      themeMode === 'dark'
+        ? callouts.warning.backgroundDark
+        : callouts.warning.backgroundLight,
     padding: spacing.medium,
     margin: `${spacing.medium} 0`,
   };
@@ -130,7 +131,8 @@ function DesignPrinciplesDemo() {
   const progressContainerStyle: React.CSSProperties = {
     width: '100%',
     maxWidth: '400px',
-    backgroundColor: darkMode ? colors.neutral[700] : colors.neutral[300],
+    backgroundColor:
+      themeMode === 'dark' ? colors.neutral[700] : colors.neutral[300],
     borderRadius: borderRadius.small,
     overflow: 'hidden',
     margin: `${spacing.medium} auto`,
@@ -145,7 +147,7 @@ function DesignPrinciplesDemo() {
 
   // Spinner Styles
   const spinnerStyle: React.CSSProperties = {
-    border: `4px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
+    border: `4px solid ${themeMode === 'dark' ? colors.neutral[600] : colors.neutral[300]}`,
     borderTop: `4px solid ${colors.accent}`,
     borderRadius: '50%',
     width: '40px',
@@ -170,13 +172,13 @@ function DesignPrinciplesDemo() {
   const dropdownStyle: React.CSSProperties = {
     padding: spacing.small,
     borderRadius: borderRadius.small,
-    border: `1px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
+    border: `1px solid ${themeMode === 'dark' ? colors.neutral[600] : colors.neutral[300]}`,
     fontFamily: typography.primaryFont,
     margin: spacing.small,
     width: '100%',
     maxWidth: '200px',
-    backgroundColor: theme.background,
-    color: theme.text,
+    backgroundColor: currentTheme.background,
+    color: currentTheme.text,
   };
 
   // Checkbox Style
@@ -198,7 +200,7 @@ function DesignPrinciplesDemo() {
       <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
         <button
           style={buttonStyle}
-          onClick={toggleDarkMode}
+          onClick={toggleTheme}
           onMouseEnter={() => setButtonHovered(true)}
           onMouseLeave={() => setButtonHovered(false)}
           onFocus={e => {
@@ -211,7 +213,7 @@ function DesignPrinciplesDemo() {
             (e.currentTarget as HTMLButtonElement).style.outline = 'none';
           }}
         >
-          Toggle {darkMode ? 'Light' : 'Dark'} Mode
+          Toggle {themeMode === 'light' ? 'Dark' : 'Light'} Mode
         </button>
       </div>
       {/* Card Example */}
