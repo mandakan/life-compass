@@ -63,8 +63,6 @@ const CreateLifeCompass: React.FC = () => {
   useEffect(() => {
     if (compassType === 'predefined') {
       setLifeAreas(getPredefinedLifeAreas());
-    } else {
-      setLifeAreas([]);
     }
   }, [compassType]);
 
@@ -350,3 +348,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```
