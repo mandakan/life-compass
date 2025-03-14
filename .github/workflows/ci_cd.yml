@@ -60,13 +60,3 @@ jobs:
           else
             echo "Test results file not found." >> $GITHUB_STEP_SUMMARY
           fi
-
-      # Post inline test comments on GitHub using the test reporter action
-      - name: Inline Test Comments
-        if: ${{ always() }}
-        uses: dorny/test-reporter@v1
-        with:
-          name: Vitest Inline Comments
-          reporter: junit-xml
-          path: test-results.xml
-          
