@@ -60,3 +60,12 @@ jobs:
           else
             echo "Test results file not found." >> $GITHUB_STEP_SUMMARY
           fi
+
+      # Report test results using test-reporter for detailed insights
+      - name: Report Test Results
+        uses: dorny/test-reporter@v1
+        with:
+          name: VitestTest Results
+          path: test-results.xml  # Adjust based on your report location
+          reporter: java-junit  # Use 'java-junit' for JUnit XML reports
+          fail-on-error: true
