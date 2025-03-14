@@ -6,6 +6,9 @@ function DesignPrinciplesDemo() {
   const [buttonHovered, setButtonHovered] = React.useState(false);
   const [darkMode, setDarkMode] = React.useState(false);
   const [hoverActive, setHoverActive] = React.useState(false);
+  const [progress, setProgress] = React.useState(70);
+  const [dropdownValue, setDropdownValue] = React.useState("option1");
+  const [checkboxChecked, setCheckboxChecked] = React.useState(false);
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
@@ -102,8 +105,72 @@ function DesignPrinciplesDemo() {
     opacity: 1
   };
 
+  // Progress Bar Styles
+  const progressContainerStyle: React.CSSProperties = {
+    width: '100%',
+    maxWidth: '400px',
+    backgroundColor: darkMode ? colors.neutral[700] : colors.neutral[300],
+    borderRadius: '4px',
+    overflow: 'hidden',
+    margin: '1rem auto'
+  };
+
+  const progressBarStyle: React.CSSProperties = {
+    width: `${progress}%`,
+    height: '1rem',
+    backgroundColor: colors.primary,
+    transition: `width ${transitions.medium}`
+  };
+
+  // Spinner Styles
+  const spinnerStyle: React.CSSProperties = {
+    border: `4px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
+    borderTop: `4px solid ${colors.accent}`,
+    borderRadius: '50%',
+    width: '40px',
+    height: '40px',
+    animation: 'spin 1s linear infinite',
+    margin: '1rem auto'
+  };
+
+  // Dragging Handle Style
+  const draggingHandleStyle: React.CSSProperties = {
+    width: '80px',
+    height: '20px',
+    backgroundColor: colors.secondary,
+    borderRadius: '4px',
+    textAlign: 'center',
+    lineHeight: '20px',
+    cursor: 'grab',
+    margin: '1rem auto'
+  };
+
+  // Dropdown Style
+  const dropdownStyle: React.CSSProperties = {
+    padding: '0.5rem',
+    borderRadius: '4px',
+    border: `1px solid ${darkMode ? colors.neutral[600] : colors.neutral[300]}`,
+    fontFamily: typography.primaryFont,
+    margin: '0.5rem auto',
+    width: '100%',
+    maxWidth: '200px',
+    backgroundColor: theme.background,
+    color: theme.text
+  };
+
+  // Checkbox Style
+  const checkboxStyle: React.CSSProperties = {
+    margin: '0.5rem'
+  };
+
   return (
     <div style={containerStyle}>
+      <style>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
       <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Design Principles Demo</h1>
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <button
@@ -188,6 +255,56 @@ function DesignPrinciplesDemo() {
           </span>
           {' '}to see more details.
         </p>
+      </div>
+      {/* Progress Bar Example */}
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <h3>Progress Bar</h3>
+        <div style={progressContainerStyle}>
+          <div style={progressBarStyle}></div>
+        </div>
+      </div>
+      {/* Spinner Example */}
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <h3>Spinner</h3>
+        <div style={spinnerStyle}></div>
+      </div>
+      {/* Dropdown Menu Example */}
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <h3>Dropdown Menu</h3>
+        <select
+          value={dropdownValue}
+          onChange={(e) => setDropdownValue(e.target.value)}
+          style={dropdownStyle}
+        >
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </select>
+      </div>
+      {/* Checkbox Example */}
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <h3>Checkbox</h3>
+        <label>
+          <input
+            type="checkbox"
+            checked={checkboxChecked}
+            onChange={(e) => setCheckboxChecked(e.target.checked)}
+            style={checkboxStyle}
+          /> Check me!
+        </label>
+      </div>
+      {/* Dragging Handle Example */}
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <h3>Dragging Handle</h3>
+        <div
+          draggable
+          style={draggingHandleStyle}
+          onDragStart={(e) => {
+            e.dataTransfer.setData("text/plain", "DraggingHandle");
+          }}
+        >
+          Drag Me
+        </div>
       </div>
     </div>
   );
