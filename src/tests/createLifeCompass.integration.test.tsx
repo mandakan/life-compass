@@ -3,7 +3,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
 import { ThemeProvider } from '../context/ThemeContext';
 import { MemoryRouter } from 'react-router-dom';
-import '@testing-library/jest-dom';
 
 describe('CreateLifeCompass Integration Tests', () => {
   beforeEach(() => {
