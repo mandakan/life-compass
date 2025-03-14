@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <nav
           style={{
             marginBottom: '1rem',
-            backgroundColor: colors.dark.background,
+            backgroundColor: colors.light.background,
             padding: '1rem',
             display: 'flex',
             gap: '1rem',
@@ -38,7 +38,10 @@ const App: React.FC = () => {
         <div style={{ padding: '1rem' }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
+            <Route
+              path="/design-principles"
+              element={<DesignPrinciplesDemo />}
+            />
           </Routes>
         </div>
       </div>
@@ -47,4 +50,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-```
