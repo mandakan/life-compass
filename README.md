@@ -1,5 +1,8 @@
 # Life Compass
 
+[![CI/CD Workflow](https://github.com/your-username/life-compass/actions/workflows/ci_cd.yml/badge.svg?branch=main)](https://github.com/your-username/life-compass/actions/workflows/ci_cd.yml)
+[![Deploy Workflow](https://github.com/your-username/life-compass/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/your-username/life-compass/actions/workflows/deploy.yml)
+
 This project aims to develop a web-based application that helps users reflect on their life balance through a tool called **Life Compass**. The application will allow users to identify and evaluate important life areas, set goals, and track their progress over time.
 
 ## AI-Assisted Development
