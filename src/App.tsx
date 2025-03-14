@@ -138,10 +138,7 @@ const Content = () => {
       <div>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route
-            path="/design-principles"
-            element={<DesignPrinciplesDemo />}
-          />
+          <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
           <Route path="/create-life-compass" element={<CreateLifeCompass />} />
         </Routes>
       </div>
