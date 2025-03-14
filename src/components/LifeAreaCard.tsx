@@ -42,7 +42,6 @@ const defaultCardStyle: React.CSSProperties = {
 const buttonContainerStyle: React.CSSProperties = {
   display: 'flex',
   gap: spacing.small,
-  marginTop: spacing.medium,
 };
 
 const basicButtonStyle: React.CSSProperties = {
@@ -82,7 +81,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
   };
 
-  const combinedStyle: React.CSSProperties = { ...themeCardStyle, ...style };
+  // Extend combinedStyle to use flex layout and ensure a minimum height for proper button alignment
+  const combinedStyle: React.CSSProperties = {
+    ...themeCardStyle,
+    ...style,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '300px',
+  };
 
   // Determine popup width based on viewport width
   const popupWidth = (typeof window !== 'undefined' && window.innerWidth >= 768) ? '400px' : '250px';
@@ -178,90 +184,89 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
           </div>
-          <div style={{ marginTop: spacing.small, display: 'flex', gap: spacing.small }}>
-            <button
-              onClick={onSaveEdit}
-              style={actionButtonStyle}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
-              </svg>
-              Redigera
-            </button>
-            <button
-              onClick={onCancelEdit}
-              style={actionButtonStyle}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
-              Avbryt
-            </button>
-          </div>
+        </div>
+        <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
+          <button
+            onClick={onSaveEdit}
+            style={actionButtonStyle}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
+            </svg>
+            Redigera
+          </button>
+          <button
+            onClick={onCancelEdit}
+            style={actionButtonStyle}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+            Avbryt
+          </button>
         </div>
       </div>
     );
   } else {
-    // Define popup style using theme for better contrast and design
-    const infoPopupStyle: React.CSSProperties = {
-      position: 'absolute',
-      top: '10px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      width: popupWidth,
-      backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
-      color: theme === 'light' ? colors.light.text : colors.dark.text,
-      border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
-      borderRadius: borderRadius.small,
-      padding: spacing.medium,
-      zIndex: 10,
-      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
-    };
-
     return (
       <div style={combinedStyle}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: spacing.small }}>
-          <h4 style={{ margin: 0 }}>{area.name}</h4>
-          <button
-            onClick={() => setShowDescription(true)}
-            style={{
-              marginLeft: spacing.small,
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-            aria-label="Visa beskrivning"
-          >
-            ℹ️
-          </button>
-        </div>
-        {showDescription && (
-          <div
-            style={infoPopupStyle}
-            tabIndex={0}
-            onBlur={() => setShowDescription(false)}
-          >
-            <p style={{ margin: 0 }}>{area.description}</p>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: spacing.small }}>
+            <h4 style={{ margin: 0 }}>{area.name}</h4>
             <button
-              onClick={() => setShowDescription(false)}
+              onClick={() => setShowDescription(true)}
               style={{
-                marginTop: spacing.small,
+                marginLeft: spacing.small,
                 backgroundColor: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
               }}
+              aria-label="Visa beskrivning"
             >
-              Stäng
+              ℹ️
             </button>
           </div>
-        )}
-        {area.details && (
-          <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
-        )}
-        <p style={{ margin: 0, marginBottom: spacing.small }}>
-          Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
-        </p>
-        <div style={buttonContainerStyle}>
+          {showDescription && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '10px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: popupWidth,
+                backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
+                color: theme === 'light' ? colors.light.text : colors.dark.text,
+                border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
+                borderRadius: borderRadius.small,
+                padding: spacing.medium,
+                zIndex: 10,
+                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+              }}
+              tabIndex={0}
+              onBlur={() => setShowDescription(false)}
+            >
+              <p style={{ margin: 0 }}>{area.description}</p>
+              <button
+                onClick={() => setShowDescription(false)}
+                style={{
+                  marginTop: spacing.small,
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                Stäng
+              </button>
+            </div>
+          )}
+          {area.details && (
+            <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
+          )}
+          <p style={{ margin: 0, marginBottom: spacing.small }}>
+            Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
+          </p>
+        </div>
+        <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
           <button style={actionButtonStyle} title="Redigera" onClick={() => onEdit(area)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
