@@ -255,4 +255,3 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
-```^^^^
