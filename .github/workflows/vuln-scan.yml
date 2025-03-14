@@ -23,4 +23,3 @@ jobs:
 
       - name: Run Vulnerability Scan
         run: npm audit --audit-level=moderate
-```
