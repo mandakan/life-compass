@@ -7,6 +7,7 @@ export interface LifeArea {
   description: string;
   importance: number;
   satisfaction: number;
+  details: string;
 }
 
 export interface LifeAreaCardProps {
@@ -16,10 +17,12 @@ export interface LifeAreaCardProps {
   editDescription: string;
   editImportance: number;
   editSatisfaction: number;
+  editDetails: string;
   onChangeEditName: (val: string) => void;
   onChangeEditDescription: (val: string) => void;
   onChangeEditImportance: (val: number) => void;
   onChangeEditSatisfaction: (val: number) => void;
+  onChangeEditDetails: (val: string) => void;
   onSaveEdit: () => void;
   onCancelEdit: () => void;
   onEdit: (area: LifeArea) => void;
@@ -57,10 +60,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   editDescription,
   editImportance,
   editSatisfaction,
+  editDetails,
   onChangeEditName,
   onChangeEditDescription,
   onChangeEditImportance,
   onChangeEditSatisfaction,
+  onChangeEditDetails,
   onSaveEdit,
   onCancelEdit,
   onEdit,
@@ -84,7 +89,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   marginLeft: spacing.small,
                   padding: spacing.small,
                   borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`
+                  border: `1px solid ${colors.neutral[400]}`,
                 }}
               />
             </label>
@@ -101,7 +106,24 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   borderRadius: borderRadius.small,
                   border: `1px solid ${colors.neutral[400]}`,
                   width: '100%',
-                  minHeight: '60px'
+                  minHeight: '60px',
+                }}
+              />
+            </label>
+          </div>
+          <div style={{ marginTop: spacing.small }}>
+            <label>
+              Detaljer:
+              <textarea
+                value={editDetails}
+                onChange={e => onChangeEditDetails(e.target.value)}
+                style={{
+                  marginLeft: spacing.small,
+                  padding: spacing.small,
+                  borderRadius: borderRadius.small,
+                  border: `1px solid ${colors.neutral[400]}`,
+                  width: '100%',
+                  minHeight: '40px',
                 }}
               />
             </label>
@@ -119,7 +141,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   marginLeft: spacing.small,
                   padding: spacing.small,
                   borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`
+                  border: `1px solid ${colors.neutral[400]}`,
                 }}
               />
             </label>
@@ -137,14 +159,24 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   marginLeft: spacing.small,
                   padding: spacing.small,
                   borderRadius: borderRadius.small,
-                  border: `1px solid ${colors.neutral[400]}`
+                  border: `1px solid ${colors.neutral[400]}`,
                 }}
               />
             </label>
           </div>
           <div style={{ marginTop: spacing.small, display: 'flex', gap: spacing.small }}>
-            <button onClick={onSaveEdit} style={{ padding: spacing.small, borderRadius: borderRadius.small, cursor: 'pointer' }}>Spara</button>
-            <button onClick={onCancelEdit} style={{ padding: spacing.small, borderRadius: borderRadius.small, cursor: 'pointer' }}>Avbryt</button>
+            <button
+              onClick={onSaveEdit}
+              style={{ padding: spacing.small, borderRadius: borderRadius.small, cursor: 'pointer' }}
+            >
+              Spara
+            </button>
+            <button
+              onClick={onCancelEdit}
+              style={{ padding: spacing.small, borderRadius: borderRadius.small, cursor: 'pointer' }}
+            >
+              Avbryt
+            </button>
           </div>
         </div>
       </div>
@@ -155,6 +187,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div>
           <h4 style={{ margin: 0, marginBottom: spacing.small }}>{area.name}</h4>
           <p style={{ margin: 0, marginBottom: spacing.small }}>{area.description}</p>
+          {area.details && (
+            <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
+          )}
           <p style={{ margin: 0, marginBottom: spacing.small }}>
             Viktighet: {area.importance} & Tillfredsställelse: {area.satisfaction}
           </p>
@@ -173,4 +208,3 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
-

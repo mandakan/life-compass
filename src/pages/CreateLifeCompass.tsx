@@ -21,6 +21,7 @@ const CreateLifeCompass: React.FC = () => {
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [details, setDetails] = useState('');
   const [importance, setImportance] = useState<number>(5);
   const [satisfaction, setSatisfaction] = useState<number>(5);
   const [error, setError] = useState('');
@@ -31,6 +32,7 @@ const CreateLifeCompass: React.FC = () => {
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
   const [editDescription, setEditDescription] = useState('');
+  const [editDetails, setEditDetails] = useState('');
   const [editImportance, setEditImportance] = useState<number>(5);
   const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
 
@@ -89,12 +91,14 @@ const CreateLifeCompass: React.FC = () => {
       id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
       name: name.trim(),
       description: description.trim(),
+      details: details.trim(),
       importance,
       satisfaction,
     };
     setLifeAreas([...lifeAreas, newArea]);
     setName('');
     setDescription('');
+    setDetails('');
     setImportance(5);
     setSatisfaction(5);
   };
@@ -110,6 +114,7 @@ const CreateLifeCompass: React.FC = () => {
     setEditingAreaId(area.id);
     setEditName(area.name);
     setEditDescription(area.description);
+    setEditDetails(area.details);
     setEditImportance(area.importance);
     setEditSatisfaction(area.satisfaction);
     setError('');
@@ -131,6 +136,7 @@ const CreateLifeCompass: React.FC = () => {
           ...area,
           name: editName.trim(),
           description: editDescription.trim(),
+          details: editDetails.trim(),
           importance: editImportance,
           satisfaction: editSatisfaction,
         };
@@ -140,6 +146,7 @@ const CreateLifeCompass: React.FC = () => {
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
+    setEditDetails('');
     setEditImportance(5);
     setEditSatisfaction(5);
   };
@@ -148,6 +155,7 @@ const CreateLifeCompass: React.FC = () => {
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
+    setEditDetails('');
     setEditImportance(5);
     setEditSatisfaction(5);
     setError('');
@@ -249,7 +257,18 @@ const CreateLifeCompass: React.FC = () => {
           </div>
           <div>
             <label>
-              Importance (1-10):
+              Detaljer:
+              <textarea
+                value={details}
+                onChange={e => setDetails(e.target.value)}
+                title="Ange ytterligare detaljer för livsområdet"
+                style={{ marginLeft: spacing.small, verticalAlign: 'top', padding: spacing.small, borderRadius: borderRadius.small, border: `1px solid ${colors.neutral[400]}`, width: '100%', minHeight: '40px' }}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Viktighet (1-10):
               <input
                 type="number"
                 value={importance}
@@ -263,7 +282,7 @@ const CreateLifeCompass: React.FC = () => {
           </div>
           <div>
             <label>
-              Satisfaction (1-10):
+              Tillfredsställelse (1-10):
               <input
                 type="number"
                 value={satisfaction}
@@ -296,10 +315,12 @@ const CreateLifeCompass: React.FC = () => {
               isEditing={editingAreaId === area.id}
               editName={editName}
               editDescription={editDescription}
+              editDetails={editDetails}
               editImportance={editImportance}
               editSatisfaction={editSatisfaction}
               onChangeEditName={setEditName}
               onChangeEditDescription={setEditDescription}
+              onChangeEditDetails={setEditDetails}
               onChangeEditImportance={setEditImportance}
               onChangeEditSatisfaction={setEditSatisfaction}
               onSaveEdit={handleSaveEditLifeArea}
@@ -319,10 +340,12 @@ const CreateLifeCompass: React.FC = () => {
               isEditing={editingAreaId === area.id}
               editName={editName}
               editDescription={editDescription}
+              editDetails={editDetails}
               editImportance={editImportance}
               editSatisfaction={editSatisfaction}
               onChangeEditName={setEditName}
               onChangeEditDescription={setEditDescription}
+              onChangeEditDetails={setEditDetails}
               onChangeEditImportance={setEditImportance}
               onChangeEditSatisfaction={setEditSatisfaction}
               onSaveEdit={handleSaveEditLifeArea}
