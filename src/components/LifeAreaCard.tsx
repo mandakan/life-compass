@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import { useTheme } from '../context/ThemeContext';
 
 export interface LifeArea {
   id: string;
@@ -53,19 +54,6 @@ const buttonStyle: React.CSSProperties = {
   padding: spacing.small,
 };
 
-const popupStyle: React.CSSProperties = {
-  position: 'absolute',
-  top: '10px',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  backgroundColor: colors.light.background,
-  border: `1px solid ${colors.neutral[300]}`,
-  borderRadius: borderRadius.small,
-  padding: spacing.medium,
-  zIndex: 10,
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-};
-
 const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   area,
   isEditing,
@@ -87,6 +75,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 }) => {
   const [showDescription, setShowDescription] = useState(false);
   const combinedStyle: React.CSSProperties = { ...defaultCardStyle, ...style };
+  const { theme } = useTheme();
 
   // Determine popup width based on viewport width
   const popupWidth = (typeof window !== 'undefined' && window.innerWidth >= 768) ? '400px' : '250px';
@@ -199,6 +188,22 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       </div>
     );
   } else {
+    // Define popup style using theme for better contrast and design
+    const infoPopupStyle: React.CSSProperties = {
+      position: 'absolute',
+      top: '10px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      width: popupWidth,
+      backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
+      color: theme === 'light' ? colors.light.text : colors.dark.text,
+      border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
+      borderRadius: borderRadius.small,
+      padding: spacing.medium,
+      zIndex: 10,
+      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+    };
+
     return (
       <div style={combinedStyle}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: spacing.small }}>
@@ -218,7 +223,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         </div>
         {showDescription && (
           <div
-            style={{ ...popupStyle, width: popupWidth }}
+            style={infoPopupStyle}
             tabIndex={0}
             onBlur={() => setShowDescription(false)}
           >
@@ -256,3 +261,4 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 };
 
 export default LifeAreaCard;
+```
