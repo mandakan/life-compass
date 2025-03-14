@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, typography, interactiveStates, breakpoints, transitions } from '../designTokens';
+import { colors, typography, interactiveStates, transitions, callouts, tooltip } from '../designTokens';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
@@ -60,15 +60,15 @@ function DesignPrinciplesDemo() {
   };
 
   const calloutStyle: React.CSSProperties = {
-    borderLeft: `4px solid ${colors.primary}`,
-    backgroundColor: darkMode ? colors.neutral[800] : colors.neutral[100],
+    borderLeft: `4px solid ${callouts.callout.border}`,
+    backgroundColor: darkMode ? callouts.callout.backgroundDark : callouts.callout.backgroundLight,
     padding: '1rem',
     margin: '1rem 0'
   };
 
   const warningStyle: React.CSSProperties = {
-    borderLeft: `4px solid ${colors.accent}`,
-    backgroundColor: darkMode ? colors.neutral[700] : colors.neutral[200],
+    borderLeft: `4px solid ${callouts.warning.border}`,
+    backgroundColor: darkMode ? callouts.warning.backgroundDark : callouts.warning.backgroundLight,
     padding: '1rem',
     margin: '1rem 0'
   };
@@ -81,17 +81,17 @@ function DesignPrinciplesDemo() {
 
   const tooltipStyle: React.CSSProperties = {
     visibility: 'hidden',
-    width: '200px',
-    backgroundColor: colors.neutral[900],
-    color: '#fff',
+    width: tooltip.width,
+    backgroundColor: tooltip.background,
+    color: tooltip.color,
     textAlign: 'center',
-    borderRadius: '6px',
-    padding: '0.5rem',
+    borderRadius: tooltip.borderRadius,
+    padding: tooltip.padding,
     position: 'absolute',
     zIndex: 1,
     bottom: '125%',
     left: '50%',
-    marginLeft: '-100px',
+    marginLeft: `-${parseInt(tooltip.width) / 2}px`,
     opacity: 0,
     transition: `opacity ${transitions.fast}`
   };
