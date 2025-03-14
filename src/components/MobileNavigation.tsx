@@ -4,7 +4,7 @@ const MobileNavigation: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-500 text-white p-4">
+    <nav className="bg-blue-500 p-4 text-white">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">Life Compass</div>
         <button
@@ -13,7 +13,7 @@ const MobileNavigation: React.FC = () => {
           aria-label="Toggle mobile navigation"
         >
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -36,7 +36,7 @@ const MobileNavigation: React.FC = () => {
             )}
           </svg>
         </button>
-        <div className="hidden md:flex space-x-4">
+        <div className="hidden space-x-4 md:flex">
           <a href="/" className="hover:underline">
             Home
           </a>
@@ -49,7 +49,7 @@ const MobileNavigation: React.FC = () => {
         </div>
       </div>
       {open && (
-        <div className="mt-2 md:hidden flex flex-col space-y-2">
+        <div className="mt-2 flex flex-col space-y-2 md:hidden">
           <a href="/" className="hover:underline">
             Home
           </a>
