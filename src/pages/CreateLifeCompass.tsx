@@ -196,7 +196,6 @@ const CreateLifeCompass: React.FC = () => {
     padding: spacing.medium,
     borderRadius: borderRadius.small,
     minWidth: '200px',
-    position: 'relative',
     backgroundColor: colors.light.background,
   };
 
@@ -209,13 +208,12 @@ const CreateLifeCompass: React.FC = () => {
     marginTop: spacing.medium,
   };
 
-  // For desktop view, place cards in a circle layout
+  // Updated desktop container to use grid layout without overlap
   const desktopContainerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '400px',
-    height: '400px',
-    margin: '0 auto',
-    marginTop: spacing.large,
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: spacing.medium,
+    marginTop: spacing.medium,
   };
 
   return (
@@ -328,35 +326,26 @@ const CreateLifeCompass: React.FC = () => {
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
         <div style={desktopContainerStyle}>
-          {lifeAreas.map((area, index) => {
-            const total = lifeAreas.length;
-            const angle = (2 * Math.PI / total) * index;
-            const radius = 150;
-            const center = 200;
-            const cardWidth = 150;
-            const left = center + radius * Math.cos(angle) - cardWidth / 2;
-            const top = center + radius * Math.sin(angle) - cardWidth / 2;
-            return (
-              <LifeAreaCard
-                key={area.id}
-                area={area}
-                isEditing={editingAreaId === area.id}
-                editName={editName}
-                editDescription={editDescription}
-                editRating1={editRating1}
-                editRating2={editRating2}
-                onChangeEditName={setEditName}
-                onChangeEditDescription={setEditDescription}
-                onChangeEditRating1={setEditRating1}
-                onChangeEditRating2={setEditRating2}
-                onSaveEdit={handleSaveEditLifeArea}
-                onCancelEdit={handleCancelEdit}
-                onEdit={handleEditLifeArea}
-                onRemove={handleRemoveLifeArea}
-                style={{ ...mobileCardStyle, position: 'absolute', width: `${cardWidth}px`, left, top }}
-              />
-            );
-          })}
+          {lifeAreas.map(area => (
+            <LifeAreaCard
+              key={area.id}
+              area={area}
+              isEditing={editingAreaId === area.id}
+              editName={editName}
+              editDescription={editDescription}
+              editRating1={editRating1}
+              editRating2={editRating2}
+              onChangeEditName={setEditName}
+              onChangeEditDescription={setEditDescription}
+              onChangeEditRating1={setEditRating1}
+              onChangeEditRating2={setEditRating2}
+              onSaveEdit={handleSaveEditLifeArea}
+              onCancelEdit={handleCancelEdit}
+              onEdit={handleEditLifeArea}
+              onRemove={handleRemoveLifeArea}
+              style={mobileCardStyle}
+            />
+          ))}
         </div>
       ) : (
         <div style={mobileContainerStyle}>
@@ -387,3 +376,4 @@ const CreateLifeCompass: React.FC = () => {
 };
 
 export default CreateLifeCompass;
+```^^^^
