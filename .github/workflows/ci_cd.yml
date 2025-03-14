@@ -78,14 +78,35 @@ jobs:
       - name: Generate Job Summary from Vitest
         run: |
           echo "### Test Summary 🚀" >> $GITHUB_STEP_SUMMARY
-          PASSED=$(grep -oP '(?<=tests=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
-          FAILURES=$(grep -oP '(?<=failures=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
-          ERRORS=$(grep -oP '(?<=errors=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
-          SKIPPED=$(grep -oP '(?<=skipped=\")\d+' test-results.xml | awk '{s+=$1} END {print s}')
-              
+
+          # Find all JUnit XML files and extract test result counts
+          TOTAL=0
+          PASSED=0
+          FAILURES=0
+          ERRORS=0
+          SKIPPED=0
+
+          for file in target/surefire-reports/*.xml; do
+            if [[ -f "$file" ]]; then
+              TESTS=$(xmllint --xpath "string(//testsuite/@tests)" "$file")
+              FAILED=$(xmllint --xpath "string(//testsuite/@failures)" "$file")
+              ERR=$(xmllint --xpath "string(//testsuite/@errors)" "$file")
+              SKIP=$(xmllint --xpath "string(//testsuite/@skipped)" "$file")
+
+              TOTAL=$((TOTAL + TESTS))
+              FAILURES=$((FAILURES + FAILED))
+              ERRORS=$((ERRORS + ERR))
+              SKIPPED=$((SKIPPED + SKIP))
+            fi
+          done
+
+          PASSED=$((TOTAL - FAILURES - ERRORS - SKIPPED))
+
           echo "| Tests | Passed | Failed | Errors | Skipped |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|--------|--------|--------|---------|" >> $GITHUB_STEP_SUMMARY
-          echo "| $((PASSED+FAILURES+ERRORS+SKIPPED)) | $PASSED | $FAILURES | $ERRORS | $SKIPPED |" >> $GITHUB_STEP_SUMMARY
+          echo "| $TOTAL | $PASSED | $FAILURES | $ERRORS | $SKIPPED |" >> $GITHUB_STEP_SUMMARY
+
+        if: always() # Run even if tests fail
 
       # Report test results using test-reporter for detailed insights
       - name: Report Test Results
