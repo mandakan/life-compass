@@ -1,6 +1,12 @@
 import { describe, beforeEach, afterEach, test, expect, vi } from 'vitest';
 import React from 'react';
-import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  cleanup,
+} from '@testing-library/react';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
 import { ThemeProvider } from '../context/ThemeContext';
 import { MemoryRouter } from 'react-router-dom';
@@ -21,7 +27,7 @@ describe('CreateLifeCompass Integration Tests', () => {
         <MemoryRouter>
           <CreateLifeCompass />
         </MemoryRouter>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
@@ -49,14 +55,20 @@ describe('CreateLifeCompass Integration Tests', () => {
     const descriptionInput = screen.getByLabelText(/Beskrivning:/i);
     const detailsInput = screen.getByLabelText(/Detaljer:/i);
     const importanceInput = screen.getByLabelText(/Viktighet \(1-10\):/i);
-    const satisfactionInput = screen.getByLabelText(/Tillfredsställelse \(1-10\):/i);
+    const satisfactionInput = screen.getByLabelText(
+      /Tillfredsställelse \(1-10\):/i,
+    );
     // There are duplicate buttons so choose the first one.
     const addButtons = screen.getAllByText(/Lägg till livsområde/i);
     const addButton = addButtons[0];
 
     fireEvent.change(nameInput, { target: { value: 'Health' } });
-    fireEvent.change(descriptionInput, { target: { value: 'Maintain fitness and well-being' } });
-    fireEvent.change(detailsInput, { target: { value: 'Regular exercise and balanced diet' } });
+    fireEvent.change(descriptionInput, {
+      target: { value: 'Maintain fitness and well-being' },
+    });
+    fireEvent.change(detailsInput, {
+      target: { value: 'Regular exercise and balanced diet' },
+    });
     fireEvent.change(importanceInput, { target: { value: '8' } });
     fireEvent.change(satisfactionInput, { target: { value: '6' } });
     fireEvent.click(addButton);
@@ -84,7 +96,8 @@ describe('CreateLifeCompass Integration Tests', () => {
     // Attempt to add a duplicate life area
     fireEvent.change(nameInput, { target: { value: 'Career' } });
     fireEvent.click(addButton);
-    expect(screen.getByText(/Dubblett: Samma namn får inte användas/i)).to.exist;
+    expect(screen.getByText(/Dubblett: Samma namn får inte användas/i)).to
+      .exist;
   });
 
   test('switches to predefined life areas when radio is changed', () => {
@@ -93,7 +106,11 @@ describe('CreateLifeCompass Integration Tests', () => {
     const predefinedRadio = screen.getAllByLabelText(/Predefined/i)[0];
     fireEvent.click(predefinedRadio);
     // Check for a known predefined life area from the JSON file.
-    expect(screen.getByText(/Intima relationer \/ nära relationer \/ parrelationer/i)).to.exist;
+    expect(
+      screen.getByText(
+        /Intima relationer \/ nära relationer \/ parrelationer/i,
+      ),
+    ).to.exist;
   });
 
   test('displays a warning when localStorage is not available', () => {

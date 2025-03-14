@@ -27,7 +27,7 @@ const isLocalStorageAvailable = (): boolean => {
 const CreateLifeCompass: React.FC = () => {
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
-  
+
   // Initialize lifeAreas from local storage if available, otherwise as empty array.
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>(() => {
     if (storageAvailable) {
@@ -86,10 +86,12 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleAddNewLifeArea = () => {
     const defaultName = (() => {
-      const base = "Nytt livsområde";
+      const base = 'Nytt livsområde';
       let name = base;
       let counter = 2;
-      while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
+      while (
+        lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())
+      ) {
         name = `${base} ${counter}`;
         counter++;
       }
@@ -115,8 +117,11 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleAddPredefinedAreas = () => {
     const predefined = getPredefinedLifeAreas();
-    const newAreas = predefined.filter(predef =>
-      !lifeAreas.some(existing => existing.name.toLowerCase() === predef.name.toLowerCase())
+    const newAreas = predefined.filter(
+      predef =>
+        !lifeAreas.some(
+          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
+        ),
     );
     if (newAreas.length > 0) {
       setLifeAreas([...lifeAreas, ...newAreas]);
@@ -145,24 +150,32 @@ const CreateLifeCompass: React.FC = () => {
       setError('Namn är obligatoriskt.');
       return;
     }
-    if (lifeAreas.find(area => area.name.toLowerCase() === editName.trim().toLowerCase() && area.id !== editingAreaId)) {
+    if (
+      lifeAreas.find(
+        area =>
+          area.name.toLowerCase() === editName.trim().toLowerCase() &&
+          area.id !== editingAreaId,
+      )
+    ) {
       setError('Dubblett: Samma namn får inte användas.');
       return;
     }
     setError('');
-    setLifeAreas(lifeAreas.map(area => {
-      if (area.id === editingAreaId) {
-        return {
-          ...area,
-          name: editName.trim(),
-          description: editDescription.trim(),
-          details: editDetails.trim(),
-          importance: editImportance,
-          satisfaction: editSatisfaction,
-        };
-      }
-      return area;
-    }));
+    setLifeAreas(
+      lifeAreas.map(area => {
+        if (area.id === editingAreaId) {
+          return {
+            ...area,
+            name: editName.trim(),
+            description: editDescription.trim(),
+            details: editDetails.trim(),
+            importance: editImportance,
+            satisfaction: editSatisfaction,
+          };
+        }
+        return area;
+      }),
+    );
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
@@ -186,14 +199,16 @@ const CreateLifeCompass: React.FC = () => {
     padding: spacing.medium,
     borderRadius: borderRadius.small,
     width: '100%',
-    backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
+    backgroundColor:
+      theme === 'light' ? colors.light.background : colors.dark.background,
   };
 
   return (
     <div style={{ padding: spacing.medium }}>
       <h2>Skapa Livskompass</h2>
       <p style={{ marginBottom: spacing.medium }}>
-        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
+        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller
+        tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
       {!storageAvailable && (
         <div
@@ -215,13 +230,15 @@ const CreateLifeCompass: React.FC = () => {
         Lägg till fördefinierade områden
       </button>
       {error && (
-        <div style={{ color: colors.accent, marginBottom: spacing.medium }}>{error}</div>
+        <div style={{ color: colors.accent, marginBottom: spacing.medium }}>
+          {error}
+        </div>
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
       {lifeAreas.length === 0 ? (
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 mx-auto max-w-[1080px]">
+        <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lifeAreas.map(area => (
             <LifeAreaCard
               key={area.id}
@@ -246,7 +263,7 @@ const CreateLifeCompass: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap gap-4 justify-center mt-4">
+        <div className="mt-4 flex flex-wrap justify-center gap-4">
           {lifeAreas.map(area => (
             <LifeAreaCard
               key={area.id}

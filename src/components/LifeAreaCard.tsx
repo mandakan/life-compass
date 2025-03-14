@@ -76,7 +76,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
     ...defaultCardStyle,
-    backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
+    backgroundColor:
+      theme === 'light' ? colors.light.background : colors.dark.background,
     color: theme === 'light' ? colors.light.text : colors.dark.text,
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
   };
@@ -90,7 +91,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   };
 
   // Determine popup width based on viewport width
-  const popupWidth = (typeof window !== 'undefined' && window.innerWidth >= 768) ? '400px' : '250px';
+  const popupWidth =
+    typeof window !== 'undefined' && window.innerWidth >= 768
+      ? '400px'
+      : '250px';
 
   // Define input style using theme
   const inputStyle: React.CSSProperties = {
@@ -169,7 +173,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 step="1"
                 style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
-              <span style={{ marginLeft: spacing.small }}>{editImportance}</span>
+              <span style={{ marginLeft: spacing.small }}>
+                {editImportance}
+              </span>
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
@@ -184,26 +190,34 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 step="1"
                 style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
-              <span style={{ marginLeft: spacing.small }}>{editSatisfaction}</span>
+              <span style={{ marginLeft: spacing.small }}>
+                {editSatisfaction}
+              </span>
             </label>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
-          <button
-            onClick={onSaveEdit}
-            style={actionButtonStyle}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
+          <button onClick={onSaveEdit} style={actionButtonStyle}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
             </svg>
             Spara
           </button>
-          <button
-            onClick={onCancelEdit}
-            style={actionButtonStyle}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          <button onClick={onCancelEdit} style={actionButtonStyle}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
             </svg>
             Avbryt
           </button>
@@ -214,7 +228,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     return (
       <div style={combinedStyle}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: spacing.small }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: spacing.small,
+            }}
+          >
             <h4 style={{ margin: 0 }}>{area.name}</h4>
             <button
               onClick={() => setShowDescription(true)}
@@ -238,7 +258,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 transform: 'translateX(-50%)',
                 width: popupWidth,
                 maxWidth: 'calc(100vw - 20px)',
-                backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
+                backgroundColor:
+                  theme === 'light'
+                    ? colors.light.background
+                    : colors.dark.background,
                 color: theme === 'light' ? colors.light.text : colors.dark.text,
                 border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
                 borderRadius: borderRadius.small,
@@ -264,26 +287,56 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
           )}
           {area.details && (
-            <p style={{ margin: 0, marginBottom: spacing.small }}>Detaljer: {area.details}</p>
+            <p style={{ margin: 0, marginBottom: spacing.small }}>
+              Detaljer: {area.details}
+            </p>
           )}
-          <div className="grid grid-cols-2 gap-2 mb-2">
-            <div className="font-bold" style={{ padding: spacing.small }}>Viktighet:</div>
-            <div className="text-right" style={{ padding: spacing.small }}>{area.importance}</div>
-            <div className="font-bold" style={{ padding: spacing.small }}>Tillfredsställelse:</div>
-            <div className="text-right" style={{ padding: spacing.small }}>{area.satisfaction}</div>
+          <div className="mb-2 grid grid-cols-2 gap-2">
+            <div className="font-bold" style={{ padding: spacing.small }}>
+              Viktighet:
+            </div>
+            <div className="text-right" style={{ padding: spacing.small }}>
+              {area.importance}
+            </div>
+            <div className="font-bold" style={{ padding: spacing.small }}>
+              Tillfredsställelse:
+            </div>
+            <div className="text-right" style={{ padding: spacing.small }}>
+              {area.satisfaction}
+            </div>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
-          <button style={actionButtonStyle} title="Redigera" onClick={() => onEdit(area)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z"/>
+          <button
+            style={actionButtonStyle}
+            title="Redigera"
+            onClick={() => onEdit(area)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
             </svg>
             Redigera
           </button>
-          <button style={actionButtonStyle} title="Ta bort" onClick={() => onRemove(area.id)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4h.5a.5.5 0 0 0 0-1h-10z"/>
+          <button
+            style={actionButtonStyle}
+            title="Ta bort"
+            onClick={() => onRemove(area.id)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z" />
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4h.5a.5.5 0 0 0 0-1h-10z" />
             </svg>
             Ta bort
           </button>
