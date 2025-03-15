@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
@@ -28,6 +28,7 @@ export interface LifeAreaCardProps {
   onCancelEdit: () => void;
   onEdit: (area: LifeArea) => void;
   onRemove: (id: string) => void;
+  existingNames: string[];
   style?: React.CSSProperties;
 }
 
@@ -68,10 +69,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onCancelEdit,
   onEdit,
   onRemove,
+  existingNames = [],
   style,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
   const { theme } = useTheme();
+
+  // Local state for immediate visual feedback on name change.
+  const [localEditName, setLocalEditName] = useState(editName);
+  useEffect(() => {
+    setLocalEditName(editName);
+  }, [editName]);
 
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
@@ -79,7 +87,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     backgroundColor:
       theme === 'light' ? colors.light.background : colors.dark.background,
     color: theme === 'light' ? colors.light.text : colors.dark.text,
-    border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
+    border: `1px solid ${
+      theme === 'light' ? colors.neutral[300] : colors.neutral[700]
+    }`,
   };
 
   // Extend combinedStyle to use flex layout for proper content arrangement
@@ -104,7 +114,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
   };
 
-  // Define action button style for edit and delete buttons
+  // Define action button style used for both the save and cancel buttons.
   const actionButtonStyle: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
@@ -118,6 +128,46 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     transition: `background-color ${transitions.fast}`,
   };
 
+  // Compute dynamic border color for name input.
+  const trimmedLocalEditName = localEditName.trim();
+  const trimmedOriginalName = area.name.trim();
+  let borderColor =
+    theme === 'light' ? colors.neutral[400] : colors.neutral[600];
+
+  // Exclude current area's original name from duplicate check.
+  const otherNames = existingNames.filter(
+    name => name.trim() !== trimmedOriginalName,
+  );
+
+  if (
+    trimmedLocalEditName !== '' &&
+    trimmedLocalEditName !== trimmedOriginalName
+  ) {
+    if (
+      otherNames.some(
+        name =>
+          name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
+      )
+    ) {
+      borderColor = 'red';
+    } else {
+      borderColor = 'green';
+    }
+  }
+
+  const nameInputStyle: React.CSSProperties = {
+    ...inputStyle,
+    border: `1px solid ${borderColor}`,
+  };
+
+  // Determine if the current local name is considered duplicate (case insensitive, excluding original name).
+  const isDuplicate =
+    trimmedLocalEditName !== '' &&
+    trimmedLocalEditName !== trimmedOriginalName &&
+    otherNames.some(
+      name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
+    );
+
   if (isEditing) {
     return (
       <div style={combinedStyle}>
@@ -127,11 +177,22 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Namn:
               <input
                 type="text"
-                value={editName}
-                onChange={e => onChangeEditName(e.target.value)}
-                style={inputStyle}
+                value={localEditName}
+                onChange={e => {
+                  const value = e.target.value;
+                  setLocalEditName(value);
+                  onChangeEditName(value);
+                }}
+                placeholder="Ange livsområdesnamn"
+                autoFocus
+                style={nameInputStyle}
               />
             </label>
+            {isDuplicate && (
+              <div style={{ color: 'red', marginTop: spacing.small }}>
+                Dubblett: Samma namn får inte användas.
+              </div>
+            )}
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
@@ -197,7 +258,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
-          <button onClick={onSaveEdit} style={actionButtonStyle}>
+          <button
+            onClick={onSaveEdit}
+            style={actionButtonStyle}
+            disabled={isDuplicate}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -326,6 +391,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <button
             style={actionButtonStyle}
             title="Ta bort"
+            aria-label={`Ta bort ${area.name}`}
             onClick={() => onRemove(area.id)}
           >
             <svg

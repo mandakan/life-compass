@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
+import WarningModal from '../components/WarningModal';
+import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 
@@ -46,6 +48,12 @@ const CreateLifeCompass: React.FC = () => {
   const [error, setError] = useState('');
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  // New state for recommendation callout visibility
+  const [showRecommendationCallout, setShowRecommendationCallout] =
+    useState(true);
+  // New state for reset confirmation modal
+  const [showResetModal, setShowResetModal] = useState(false);
 
   useEffect(() => {
     if (storageAvailable) {
@@ -71,6 +79,13 @@ const CreateLifeCompass: React.FC = () => {
   const [editDetails, setEditDetails] = useState('');
   const [editImportance, setEditImportance] = useState<number>(5);
   const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
+
+  const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
+  const [showWarningModal, setShowWarningModal] = useState(false);
+
+  // New state variables for deletion confirmation
+  const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // Define a universal button style based on theme.
   const buttonStyle: React.CSSProperties = {
@@ -129,14 +144,21 @@ const CreateLifeCompass: React.FC = () => {
     }
   };
 
-  const handleRemoveLifeArea = (id: string) => {
-    setLifeAreas(lifeAreas.filter(area => area.id !== id));
-    if (editingAreaId === id) {
-      handleCancelEdit();
+  // Old removal function is replaced by request deletion confirmation
+  const handleRequestDeleteLifeArea = (id: string) => {
+    const candidate = lifeAreas.find(area => area.id === id);
+    if (candidate) {
+      setDeleteCandidate(candidate);
+      setShowDeleteModal(true);
     }
   };
 
   const handleEditLifeArea = (area: LifeArea) => {
+    if (editingAreaId && editingAreaId !== area.id) {
+      setPendingEdit(area);
+      setShowWarningModal(true);
+      return;
+    }
     setEditingAreaId(area.id);
     setEditName(area.name);
     setEditDescription(area.description);
@@ -144,6 +166,25 @@ const CreateLifeCompass: React.FC = () => {
     setEditImportance(area.importance);
     setEditSatisfaction(area.satisfaction);
     setError('');
+  };
+
+  const handleModalConfirm = () => {
+    if (pendingEdit) {
+      setEditingAreaId(pendingEdit.id);
+      setEditName(pendingEdit.name);
+      setEditDescription(pendingEdit.description);
+      setEditDetails(pendingEdit.details);
+      setEditImportance(pendingEdit.importance);
+      setEditSatisfaction(pendingEdit.satisfaction);
+    }
+    setPendingEdit(null);
+    setShowWarningModal(false);
+    setError('');
+  };
+
+  const handleModalCancel = () => {
+    setPendingEdit(null);
+    setShowWarningModal(false);
   };
 
   const handleSaveEditLifeArea = () => {
@@ -195,6 +236,42 @@ const CreateLifeCompass: React.FC = () => {
     setError('');
   };
 
+  // New deletion confirmation handlers
+  const handleDeleteConfirm = () => {
+    if (deleteCandidate) {
+      setLifeAreas(prevLifeAreas =>
+        prevLifeAreas.filter(area => area.id !== deleteCandidate.id),
+      );
+      if (editingAreaId === deleteCandidate.id) {
+        handleCancelEdit();
+      }
+    }
+    setDeleteCandidate(null);
+    setShowDeleteModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteCandidate(null);
+    setShowDeleteModal(false);
+  };
+
+  // New Reset to Default handlers
+  const handleResetConfirm = () => {
+    const predefined = getPredefinedLifeAreas();
+    setLifeAreas(predefined);
+    setEditingAreaId(null);
+    setEditName('');
+    setEditDescription('');
+    setEditDetails('');
+    setEditImportance(5);
+    setEditSatisfaction(5);
+    setShowResetModal(false);
+  };
+
+  const handleResetCancel = () => {
+    setShowResetModal(false);
+  };
+
   const themedCardStyle: React.CSSProperties = {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
@@ -208,24 +285,31 @@ const CreateLifeCompass: React.FC = () => {
   const handleDragStart =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       setDraggedIndex(index);
-      event.dataTransfer.effectAllowed = 'move';
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = 'move';
+      }
     };
 
   const handleDragOver =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+      }
+      setDragOverIndex(index);
     };
 
   const handleDrop =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
-      if (draggedIndex === null || draggedIndex === index) return;
-      const reordered = [...lifeAreas];
-      const draggedItem = reordered.splice(draggedIndex, 1)[0];
-      reordered.splice(index, 0, draggedItem);
-      setLifeAreas(reordered);
+      if (draggedIndex !== null && draggedIndex !== index) {
+        const reordered = [...lifeAreas];
+        const draggedItem = reordered.splice(draggedIndex, 1)[0];
+        reordered.splice(index, 0, draggedItem);
+        setLifeAreas(reordered);
+      }
       setDraggedIndex(null);
+      setDragOverIndex(null);
     };
 
   return (
@@ -248,11 +332,20 @@ const CreateLifeCompass: React.FC = () => {
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
+      {lifeAreas.length > 10 && showRecommendationCallout && (
+        <Callout onDismiss={() => setShowRecommendationCallout(false)}>
+          Vi rekommenderar att hålla antalet livsområden runt 10 för bästa
+          överblick.
+        </Callout>
+      )}
       <button onClick={handleAddNewLifeArea} style={buttonStyle}>
         Lägg till livsområde
       </button>
       <button onClick={handleAddPredefinedAreas} style={buttonStyle}>
         Lägg till fördefinierade områden
+      </button>
+      <button onClick={() => setShowResetModal(true)} style={buttonStyle}>
+        Återställ till standard
       </button>
       {error && (
         <div style={{ color: colors.accent, marginBottom: spacing.medium }}>
@@ -264,69 +357,107 @@ const CreateLifeCompass: React.FC = () => {
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {lifeAreas.map((area, index) => (
-            <div
-              key={area.id}
-              draggable
-              onDragStart={handleDragStart(index)}
-              onDragOver={handleDragOver(index)}
-              onDrop={handleDrop(index)}
-            >
-              <LifeAreaCard
-                area={area}
-                isEditing={editingAreaId === area.id}
-                editName={editName}
-                editDescription={editDescription}
-                editDetails={editDetails}
-                editImportance={editImportance}
-                editSatisfaction={editSatisfaction}
-                onChangeEditName={setEditName}
-                onChangeEditDescription={setEditDescription}
-                onChangeEditDetails={setEditDetails}
-                onChangeEditImportance={setEditImportance}
-                onChangeEditSatisfaction={setEditSatisfaction}
-                onSaveEdit={handleSaveEditLifeArea}
-                onCancelEdit={handleCancelEdit}
-                onEdit={handleEditLifeArea}
-                onRemove={handleRemoveLifeArea}
-                style={themedCardStyle}
-              />
-            </div>
-          ))}
+          {lifeAreas.map((area, index) => {
+            const highlightStyle =
+              dragOverIndex === index
+                ? { border: `2px dashed ${colors.primary}` }
+                : {};
+            return (
+              <div
+                key={area.id}
+                draggable
+                onDragStart={handleDragStart(index)}
+                onDragOver={handleDragOver(index)}
+                onDragEnter={() => setDragOverIndex(index)}
+                onDragLeave={() => setDragOverIndex(null)}
+                onDrop={handleDrop(index)}
+                style={highlightStyle}
+              >
+                <LifeAreaCard
+                  area={area}
+                  isEditing={editingAreaId === area.id}
+                  editName={editName}
+                  editDescription={editDescription}
+                  editDetails={editDetails}
+                  editImportance={editImportance}
+                  editSatisfaction={editSatisfaction}
+                  onChangeEditName={setEditName}
+                  onChangeEditDescription={setEditDescription}
+                  onChangeEditDetails={setEditDetails}
+                  onChangeEditImportance={setEditImportance}
+                  onChangeEditSatisfaction={setEditSatisfaction}
+                  onSaveEdit={handleSaveEditLifeArea}
+                  onCancelEdit={handleCancelEdit}
+                  onEdit={handleEditLifeArea}
+                  onRemove={handleRequestDeleteLifeArea}
+                  existingNames={lifeAreas.map(a => a.name)}
+                  style={themedCardStyle}
+                />
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
-          {lifeAreas.map((area, index) => (
-            <div
-              key={area.id}
-              draggable
-              onDragStart={handleDragStart(index)}
-              onDragOver={handleDragOver(index)}
-              onDrop={handleDrop(index)}
-            >
-              <LifeAreaCard
-                area={area}
-                isEditing={editingAreaId === area.id}
-                editName={editName}
-                editDescription={editDescription}
-                editDetails={editDetails}
-                editImportance={editImportance}
-                editSatisfaction={editSatisfaction}
-                onChangeEditName={setEditName}
-                onChangeEditDescription={setEditDescription}
-                onChangeEditDetails={setEditDetails}
-                onChangeEditImportance={setEditImportance}
-                onChangeEditSatisfaction={setEditSatisfaction}
-                onSaveEdit={handleSaveEditLifeArea}
-                onCancelEdit={handleCancelEdit}
-                onEdit={handleEditLifeArea}
-                onRemove={handleRemoveLifeArea}
-                style={themedCardStyle}
-              />
-            </div>
-          ))}
+          {lifeAreas.map((area, index) => {
+            const highlightStyle =
+              dragOverIndex === index
+                ? { border: `2px dashed ${colors.primary}` }
+                : {};
+            return (
+              <div
+                key={area.id}
+                draggable
+                onDragStart={handleDragStart(index)}
+                onDragOver={handleDragOver(index)}
+                onDragEnter={() => setDragOverIndex(index)}
+                onDragLeave={() => setDragOverIndex(null)}
+                onDrop={handleDrop(index)}
+                style={highlightStyle}
+              >
+                <LifeAreaCard
+                  area={area}
+                  isEditing={editingAreaId === area.id}
+                  editName={editName}
+                  editDescription={editDescription}
+                  editDetails={editDetails}
+                  editImportance={editImportance}
+                  editSatisfaction={editSatisfaction}
+                  onChangeEditName={setEditName}
+                  onChangeEditDescription={setEditDescription}
+                  onChangeEditDetails={setEditDetails}
+                  onChangeEditImportance={setEditImportance}
+                  onChangeEditSatisfaction={setEditSatisfaction}
+                  onSaveEdit={handleSaveEditLifeArea}
+                  onCancelEdit={handleCancelEdit}
+                  onEdit={handleEditLifeArea}
+                  onRemove={handleRequestDeleteLifeArea}
+                  existingNames={lifeAreas.map(a => a.name)}
+                  style={themedCardStyle}
+                />
+              </div>
+            );
+          })}
         </div>
       )}
+      <WarningModal
+        visible={showWarningModal}
+        message="Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
+        onConfirm={handleModalConfirm}
+        onCancel={handleModalCancel}
+      />
+      <WarningModal
+        visible={showDeleteModal}
+        message="Är du säker på att du vill ta bort detta livsområde?"
+        onConfirm={handleDeleteConfirm}
+        onCancel={handleDeleteCancel}
+      />
+      <WarningModal
+        visible={showResetModal}
+        message="Är du säker på att du vill återställa livsområden till standard?"
+        onConfirm={handleResetConfirm}
+        onCancel={handleResetCancel}
+      />
     </div>
   );
 };
