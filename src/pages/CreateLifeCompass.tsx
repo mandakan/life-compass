@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import WarningModal from '../components/WarningModal';
+import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 
@@ -295,42 +296,16 @@ const CreateLifeCompass: React.FC = () => {
             color: '#fff',
             padding: spacing.small,
             marginBottom: spacing.medium,
-            borderRadius: borderRadius.small,
+            borderRadius: borderRadius.small
           }}
         >
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
-        <div
-          style={{
-            backgroundColor: theme === 'light' ? colors.neutral[100] : colors.neutral[800],
-            color: theme === 'light' ? colors.light.text : colors.dark.text,
-            border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
-            borderRadius: borderRadius.small,
-            padding: spacing.small,
-            marginBottom: spacing.medium,
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}
-        >
-          <span>
-            Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.
-          </span>
-          <button
-            onClick={() => setShowRecommendationCallout(false)}
-            style={{
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '1rem'
-            }}
-            aria-label="Stäng rekommendation"
-          >
-            ✖
-          </button>
-        </div>
+        <Callout onDismiss={() => setShowRecommendationCallout(false)}>
+          Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.
+        </Callout>
       )}
       <button onClick={handleAddNewLifeArea} style={buttonStyle}>
         Lägg till livsområde
