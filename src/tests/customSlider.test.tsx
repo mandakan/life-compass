@@ -5,8 +5,10 @@ import CustomSlider from '../components/CustomSlider';
 
 describe('CustomSlider', () => {
   test('renders with initial value and proper aria attributes', () => {
-    const { getByRole } = render(<CustomSlider value={5} onChange={() => {}} />);
-    const slider = getByRole('slider');
+    const { getAllByRole } = render(<CustomSlider value={5} onChange={() => {}} />);
+    const sliders = getAllByRole('slider');
+    // Use the first slider element (ignoring the duplication from StrictMode)
+    const slider = sliders[0];
     expect(slider).toBeInTheDocument();
     expect(slider.getAttribute('aria-valuemin')).toBe("1");
     expect(slider.getAttribute('aria-valuemax')).toBe("10");
@@ -19,8 +21,9 @@ describe('CustomSlider', () => {
     const handleChange = vi.fn((newValue) => {
       sliderValue = newValue;
     });
-    const { getByRole } = render(<CustomSlider value={sliderValue} onChange={handleChange} />);
-    const slider = getByRole('slider');
+    const { getAllByRole } = render(<CustomSlider value={sliderValue} onChange={handleChange} />);
+    const sliders = getAllByRole('slider');
+    const slider = sliders[0];
 
     // Press ArrowRight: should increase by step (default step is 1)
     fireEvent.keyDown(slider, { key: 'ArrowRight', code: 'ArrowRight' });
@@ -44,10 +47,11 @@ describe('CustomSlider', () => {
     const handleChange = vi.fn((newValue) => {
       sliderValue = newValue;
     });
-    const { getByRole } = render(
+    const { getAllByRole } = render(
       <CustomSlider value={sliderValue} onChange={handleChange} min={0} max={20} step={2} />
     );
-    const slider = getByRole('slider');
+    const sliders = getAllByRole('slider');
+    const slider = sliders[0];
 
     // ArrowUp should increase the value by step (2)
     fireEvent.keyDown(slider, { key: 'ArrowUp', code: 'ArrowUp' });
