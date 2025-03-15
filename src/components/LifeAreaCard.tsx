@@ -28,6 +28,7 @@ export interface LifeAreaCardProps {
   onCancelEdit: () => void;
   onEdit: (area: LifeArea) => void;
   onRemove: (id: string) => void;
+  existingNames: string[];
   style?: React.CSSProperties;
 }
 
@@ -68,6 +69,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onCancelEdit,
   onEdit,
   onRemove,
+  existingNames,
   style,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
@@ -118,6 +120,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     transition: `background-color ${transitions.fast}`,
   };
 
+  // Check for duplicate names excluding the current area's original name.
+  const isDuplicate = existingNames.includes(editName) && editName !== area.name;
+
   if (isEditing) {
     return (
       <div style={combinedStyle}>
@@ -134,6 +139,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 style={inputStyle}
               />
             </label>
+            {isDuplicate && (
+              <div style={{ color: 'red', marginTop: spacing.small }}>
+                Namnet används redan. Ange ett unikt namn.
+              </div>
+            )}
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
@@ -199,7 +209,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
-          <button onClick={onSaveEdit} style={actionButtonStyle}>
+          <button onClick={onSaveEdit} style={actionButtonStyle} disabled={isDuplicate}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
