@@ -398,7 +398,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 style={{
                   margin: 0,
                   fontFamily: typography.primaryFont,
-                  fontSize: '1.5rem',
+                  fontSize: '1.4rem',
                   fontWeight: 600,
                   color: theme === 'light' ? colors.primary : colors.accent,
                 }}
