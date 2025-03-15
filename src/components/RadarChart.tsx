@@ -23,12 +23,21 @@ interface RadarChartProps {
   height?: number | string;
 }
 
+const renderTick = (props: any) => {
+  const { payload, x, y, textAnchor } = props;
+  return (
+    <text x={x} y={y} textAnchor={textAnchor} fill={colors.dark.text} fontSize={12}>
+      {payload.value}
+    </text>
+  );
+};
+
 const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 400 }) => {
   return (
     <ResponsiveContainer width={width} height={height}>
       <RechartsRadarChart outerRadius="70%" data={data}>
         <PolarGrid stroke={colors.neutral[300]} />
-        <PolarAngleAxis dataKey="area" stroke={colors.dark.text} />
+        <PolarAngleAxis dataKey="area" tick={renderTick} />
         <PolarRadiusAxis angle={30} domain={[0, 10]} stroke={colors.dark.text} />
         <Radar 
           name="Importance" 
