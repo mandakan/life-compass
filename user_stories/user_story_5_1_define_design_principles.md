@@ -1,7 +1,7 @@
 ---
 title: 'Define Design Principles'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

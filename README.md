@@ -100,7 +100,7 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ✅ **Core Features**
 
-- [ ] User Story 1.1: Create Life Compass
+- [x] User Story 1.1: Create Life Compass
 - [ ] User Story 1.2: Customize Life Areas
 - [ ] User Story 1.3: Rate Life Areas
 - [ ] User Story 1.4: Visualize Life Compass
