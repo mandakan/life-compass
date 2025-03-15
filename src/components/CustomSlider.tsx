@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { colors, typography, spacing, borderRadius, transitions } from '../designTokens';
 
 interface CustomSliderProps {
   value: number;
@@ -18,8 +19,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   max = 10,
   step = 1,
   onChange,
-  trackColor = '#ddd',
-  handleColor = '#3490dc',
+  trackColor = colors.neutral[300],
+  handleColor = colors.primary,
   width = '100%',
   height = 50,
 }) => {
@@ -106,6 +107,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     fontWeight: 'bold',
     cursor: 'pointer',
     userSelect: 'none',
+    fontFamily: typography.primaryFont,
+    transition: `background-color ${transitions.fast}`,
   };
 
   return (
