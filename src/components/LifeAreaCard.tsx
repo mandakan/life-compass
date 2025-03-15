@@ -30,6 +30,7 @@ export interface LifeAreaCardProps {
   onRemove: (id: string) => void;
   existingNames: string[];
   style?: React.CSSProperties;
+  onAutoUpdateRating?: (field: 'importance' | 'satisfaction', newValue: number, area: LifeArea) => void;
 }
 
 const defaultCardStyle: React.CSSProperties = {
@@ -71,6 +72,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onRemove,
   existingNames = [],
   style,
+  onAutoUpdateRating,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
   const { theme } = useTheme();
@@ -228,7 +230,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <input
                 type="range"
                 value={editImportance}
-                onChange={e => onChangeEditImportance(Number(e.target.value))}
+                onChange={e => {
+                  const newValue = Number(e.target.value);
+                  onChangeEditImportance(newValue);
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('importance', newValue, area);
+                  }
+                }}
                 min="1"
                 max="10"
                 step="1"
@@ -245,7 +253,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <input
                 type="range"
                 value={editSatisfaction}
-                onChange={e => onChangeEditSatisfaction(Number(e.target.value))}
+                onChange={e => {
+                  const newValue = Number(e.target.value);
+                  onChangeEditSatisfaction(newValue);
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('satisfaction', newValue, area);
+                  }
+                }}
                 min="1"
                 max="10"
                 step="1"
@@ -356,19 +370,45 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Detaljer: {area.details}
             </p>
           )}
-          <div className="mb-2 grid grid-cols-2 gap-2">
-            <div className="font-bold" style={{ padding: spacing.small }}>
-              Viktighet:
-            </div>
-            <div className="text-right" style={{ padding: spacing.small }}>
-              {area.importance}
-            </div>
-            <div className="font-bold" style={{ padding: spacing.small }}>
-              Tillfredsställelse:
-            </div>
-            <div className="text-right" style={{ padding: spacing.small }}>
-              {area.satisfaction}
-            </div>
+          <div style={{ marginTop: spacing.small }}>
+            <label>
+              Viktighet (1-10):
+              <input
+                type="range"
+                value={area.importance}
+                onChange={(e) => {
+                  const newValue = Number(e.target.value);
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('importance', newValue, area);
+                  }
+                }}
+                min="1"
+                max="10"
+                step="1"
+                style={{ ...inputStyle, width: '100%', padding: 0 }}
+              />
+              <span style={{ marginLeft: spacing.small }}>{area.importance}</span>
+            </label>
+          </div>
+          <div style={{ marginTop: spacing.small }}>
+            <label>
+              Tillfredsställelse (1-10):
+              <input
+                type="range"
+                value={area.satisfaction}
+                onChange={(e) => {
+                  const newValue = Number(e.target.value);
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('satisfaction', newValue, area);
+                  }
+                }}
+                min="1"
+                max="10"
+                step="1"
+                style={{ ...inputStyle, width: '100%', padding: 0 }}
+              />
+              <span style={{ marginLeft: spacing.small }}>{area.satisfaction}</span>
+            </label>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>

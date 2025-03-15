@@ -272,6 +272,18 @@ const CreateLifeCompass: React.FC = () => {
     setShowResetModal(false);
   };
 
+  // Auto-update rating handler for slider changes (auto-save)
+  const handleAutoUpdateRating = (field: 'importance' | 'satisfaction', newValue: number, areaToUpdate: LifeArea) => {
+    setLifeAreas(prevLifeAreas =>
+      prevLifeAreas.map(area => {
+        if (area.id === areaToUpdate.id) {
+          return { ...area, [field]: newValue };
+        }
+        return area;
+      })
+    );
+  };
+
   const themedCardStyle: React.CSSProperties = {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
@@ -392,6 +404,7 @@ const CreateLifeCompass: React.FC = () => {
                   onRemove={handleRequestDeleteLifeArea}
                   existingNames={lifeAreas.map(a => a.name)}
                   style={themedCardStyle}
+                  onAutoUpdateRating={handleAutoUpdateRating}
                 />
               </div>
             );
@@ -434,6 +447,7 @@ const CreateLifeCompass: React.FC = () => {
                   onRemove={handleRequestDeleteLifeArea}
                   existingNames={lifeAreas.map(a => a.name)}
                   style={themedCardStyle}
+                  onAutoUpdateRating={handleAutoUpdateRating}
                 />
               </div>
             );
