@@ -31,8 +31,9 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
   // Use devicePixelRatio to adjust styling for high resolution screens.
   const scaleFactor = window.devicePixelRatio || 1;
-  const tickFontSize = scaleFactor > 1.5 ? 16 : 12;
-  const radarStrokeWidth = scaleFactor > 1.5 ? 3 : 2;
+  const isMobile = window.innerWidth < 768;
+  const tickFontSize = !isMobile ? (scaleFactor > 1.5 ? 20 : 18) : (scaleFactor > 1.5 ? 16 : 12);
+  const radarStrokeWidth = !isMobile ? (scaleFactor > 1.5 ? 4 : 3) : (scaleFactor > 1.5 ? 3 : 2);
 
   const renderTick = (props: any) => {
     const { payload, x, y, textAnchor } = props;
