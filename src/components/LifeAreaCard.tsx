@@ -107,6 +107,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   };
 
   // Compute dynamic style for the name input to provide immediate visual feedback
+  // If a duplicate name is entered (excluding the case where the name hasn't been modified), the border turns red.
+  // If the name is modified and is unique, the border turns green.
   const nameInputStyle: React.CSSProperties = {
     ...inputStyle,
     border: `1px solid ${
