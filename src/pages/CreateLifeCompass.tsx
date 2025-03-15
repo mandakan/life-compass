@@ -48,6 +48,7 @@ const CreateLifeCompass: React.FC = () => {
   const [error, setError] = useState('');
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   // New state for recommendation callout visibility
   const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
 
@@ -269,6 +270,7 @@ const CreateLifeCompass: React.FC = () => {
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
       event.dataTransfer.dropEffect = 'move';
+      setDragOverIndex(index);
     };
 
   const handleDrop =
@@ -280,6 +282,7 @@ const CreateLifeCompass: React.FC = () => {
       reordered.splice(index, 0, draggedItem);
       setLifeAreas(reordered);
       setDraggedIndex(null);
+      setDragOverIndex(null);
     };
 
   return (
@@ -323,69 +326,81 @@ const CreateLifeCompass: React.FC = () => {
         <p>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {lifeAreas.map((area, index) => (
-            <div
-              key={area.id}
-              draggable
-              onDragStart={handleDragStart(index)}
-              onDragOver={handleDragOver(index)}
-              onDrop={handleDrop(index)}
-            >
-              <LifeAreaCard
-                area={area}
-                isEditing={editingAreaId === area.id}
-                editName={editName}
-                editDescription={editDescription}
-                editDetails={editDetails}
-                editImportance={editImportance}
-                editSatisfaction={editSatisfaction}
-                onChangeEditName={setEditName}
-                onChangeEditDescription={setEditDescription}
-                onChangeEditDetails={setEditDetails}
-                onChangeEditImportance={setEditImportance}
-                onChangeEditSatisfaction={setEditSatisfaction}
-                onSaveEdit={handleSaveEditLifeArea}
-                onCancelEdit={handleCancelEdit}
-                onEdit={handleEditLifeArea}
-                onRemove={handleRequestDeleteLifeArea}
-                existingNames={lifeAreas.map(a => a.name)}
-                style={themedCardStyle}
-              />
-            </div>
-          ))}
+          {lifeAreas.map((area, index) => {
+            const highlightStyle = dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
+            return (
+              <div
+                key={area.id}
+                draggable
+                onDragStart={handleDragStart(index)}
+                onDragOver={handleDragOver(index)}
+                onDragEnter={() => setDragOverIndex(index)}
+                onDragLeave={() => setDragOverIndex(null)}
+                onDrop={handleDrop(index)}
+                style={highlightStyle}
+              >
+                <LifeAreaCard
+                  area={area}
+                  isEditing={editingAreaId === area.id}
+                  editName={editName}
+                  editDescription={editDescription}
+                  editDetails={editDetails}
+                  editImportance={editImportance}
+                  editSatisfaction={editSatisfaction}
+                  onChangeEditName={setEditName}
+                  onChangeEditDescription={setEditDescription}
+                  onChangeEditDetails={setEditDetails}
+                  onChangeEditImportance={setEditImportance}
+                  onChangeEditSatisfaction={setEditSatisfaction}
+                  onSaveEdit={handleSaveEditLifeArea}
+                  onCancelEdit={handleCancelEdit}
+                  onEdit={handleEditLifeArea}
+                  onRemove={handleRequestDeleteLifeArea}
+                  existingNames={lifeAreas.map(a => a.name)}
+                  style={themedCardStyle}
+                />
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
-          {lifeAreas.map((area, index) => (
-            <div
-              key={area.id}
-              draggable
-              onDragStart={handleDragStart(index)}
-              onDragOver={handleDragOver(index)}
-              onDrop={handleDrop(index)}
-            >
-              <LifeAreaCard
-                area={area}
-                isEditing={editingAreaId === area.id}
-                editName={editName}
-                editDescription={editDescription}
-                editDetails={editDetails}
-                editImportance={editImportance}
-                editSatisfaction={editSatisfaction}
-                onChangeEditName={setEditName}
-                onChangeEditDescription={setEditDescription}
-                onChangeEditDetails={setEditDetails}
-                onChangeEditImportance={setEditImportance}
-                onChangeEditSatisfaction={setEditSatisfaction}
-                onSaveEdit={handleSaveEditLifeArea}
-                onCancelEdit={handleCancelEdit}
-                onEdit={handleEditLifeArea}
-                onRemove={handleRequestDeleteLifeArea}
-                existingNames={lifeAreas.map(a => a.name)}
-                style={themedCardStyle}
-              />
-            </div>
-          ))}
+          {lifeAreas.map((area, index) => {
+            const highlightStyle = dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
+            return (
+              <div
+                key={area.id}
+                draggable
+                onDragStart={handleDragStart(index)}
+                onDragOver={handleDragOver(index)}
+                onDragEnter={() => setDragOverIndex(index)}
+                onDragLeave={() => setDragOverIndex(null)}
+                onDrop={handleDrop(index)}
+                style={highlightStyle}
+              >
+                <LifeAreaCard
+                  area={area}
+                  isEditing={editingAreaId === area.id}
+                  editName={editName}
+                  editDescription={editDescription}
+                  editDetails={editDetails}
+                  editImportance={editImportance}
+                  editSatisfaction={editSatisfaction}
+                  onChangeEditName={setEditName}
+                  onChangeEditDescription={setEditDescription}
+                  onChangeEditDetails={setEditDetails}
+                  onChangeEditImportance={setEditImportance}
+                  onChangeEditSatisfaction={setEditSatisfaction}
+                  onSaveEdit={handleSaveEditLifeArea}
+                  onCancelEdit={handleCancelEdit}
+                  onEdit={handleEditLifeArea}
+                  onRemove={handleRequestDeleteLifeArea}
+                  existingNames={lifeAreas.map(a => a.name)}
+                  style={themedCardStyle}
+                />
+              </div>
+            );
+          })}
         </div>
       )}
       <WarningModal
