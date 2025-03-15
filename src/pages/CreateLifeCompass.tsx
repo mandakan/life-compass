@@ -232,7 +232,7 @@ const CreateLifeCompass: React.FC = () => {
   // New deletion confirmation handlers
   const handleDeleteConfirm = () => {
     if (deleteCandidate) {
-      setLifeAreas(lifeAreas.filter(area => area.id !== deleteCandidate.id));
+      setLifeAreas(prevLifeAreas => prevLifeAreas.filter(area => area.id !== deleteCandidate.id));
       if (editingAreaId === deleteCandidate.id) {
         handleCancelEdit();
       }
