@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius, transitions, typography } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
+import CustomSlider from '../components/CustomSlider';
 
 export interface LifeArea {
   id: string;
@@ -251,75 +252,41 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div style={{ marginTop: spacing.small }}>
             <label style={{ fontFamily: typography.primaryFont }}>
               Viktighet
-              <input
-                type="range"
+              <CustomSlider
                 value={editImportance}
-                onChange={e => {
-                  const newValue = Number(e.target.value);
+                onChange={(newValue) => {
                   onChangeEditImportance(newValue);
                   triggerHighlightImportance();
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('importance', newValue, area);
                   }
                 }}
-                onMouseDown={e => e.stopPropagation()}
-                onDragStart={e => e.stopPropagation()}
-                min="1"
-                max="10"
-                step="1"
-                style={{ ...inputStyle, width: '100%', padding: 0 }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
               />
-              <span
-                style={{
-                  marginLeft: spacing.small,
-                  transition: `background-color ${transitions.fast}`,
-                  backgroundColor: highlightImportance
-                    ? theme === 'light'
-                      ? 'rgba(52, 144, 220, 0.2)'
-                      : 'rgba(227, 52, 47, 0.2)'
-                    : 'transparent',
-                  fontFamily: typography.primaryFont,
-                }}
-              >
-                {editImportance}
-              </span>
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label style={{ fontFamily: typography.primaryFont }}>
               Tillfredsställelse
-              <input
-                type="range"
+              <CustomSlider
                 value={editSatisfaction}
-                onChange={e => {
-                  const newValue = Number(e.target.value);
+                onChange={(newValue) => {
                   onChangeEditSatisfaction(newValue);
                   triggerHighlightSatisfaction();
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }
                 }}
-                onMouseDown={e => e.stopPropagation()}
-                onDragStart={e => e.stopPropagation()}
-                min="1"
-                max="10"
-                step="1"
-                style={{ ...inputStyle, width: '100%', padding: 0 }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
               />
-              <span
-                style={{
-                  marginLeft: spacing.small,
-                  transition: `background-color ${transitions.fast}`,
-                  backgroundColor: highlightSatisfaction
-                    ? theme === 'light'
-                      ? 'rgba(52, 144, 220, 0.2)'
-                      : 'rgba(227, 52, 47, 0.2)'
-                    : 'transparent',
-                  fontFamily: typography.primaryFont,
-                }}
-              >
-                {editSatisfaction}
-              </span>
             </label>
           </div>
         </div>
@@ -443,69 +410,39 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div style={{ marginTop: spacing.small }}>
             <label style={{ fontFamily: typography.primaryFont }}>
               Viktighet
-              <input
-                type="range"
+              <CustomSlider
                 value={area.importance}
-                onChange={(e) => {
-                  const newValue = Number(e.target.value);
+                onChange={(newValue) => {
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('importance', newValue, area);
                   }
                   triggerHighlightImportance();
                 }}
-                min="1"
-                max="10"
-                step="1"
-                style={{ ...inputStyle, width: '100%', padding: 0 }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
               />
-              <span
-                style={{
-                  marginLeft: spacing.small,
-                  transition: `background-color ${transitions.fast}`,
-                  backgroundColor: highlightImportance
-                    ? theme === 'light'
-                      ? 'rgba(52, 144, 220, 0.2)'
-                      : 'rgba(227, 52, 47, 0.2)'
-                    : 'transparent',
-                  fontFamily: typography.primaryFont,
-                }}
-              >
-                {area.importance}
-              </span>
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label style={{ fontFamily: typography.primaryFont }}>
               Tillfredsställelse
-              <input
-                type="range"
+              <CustomSlider
                 value={area.satisfaction}
-                onChange={(e) => {
-                  const newValue = Number(e.target.value);
+                onChange={(newValue) => {
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }
                   triggerHighlightSatisfaction();
                 }}
-                min="1"
-                max="10"
-                step="1"
-                style={{ ...inputStyle, width: '100%', padding: 0 }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
               />
-              <span
-                style={{
-                  marginLeft: spacing.small,
-                  transition: `background-color ${transitions.fast}`,
-                  backgroundColor: highlightSatisfaction
-                    ? theme === 'light'
-                      ? 'rgba(52, 144, 220, 0.2)'
-                      : 'rgba(227, 52, 47, 0.2)'
-                    : 'transparent',
-                  fontFamily: typography.primaryFont,
-                }}
-              >
-                {area.satisfaction}
-              </span>
             </label>
           </div>
         </div>
