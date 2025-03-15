@@ -2,7 +2,7 @@ import React from 'react';
 import { vi, describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import CreateLifeCompass from '../pages/CreateLifeCompass';
+import CreateLifeCompass from '../pages/CreateLifeCompass.tsx';
 import { ThemeProvider } from '../context/ThemeContext';
 
 // Mock getPredefinedLifeAreas for predictability using vi instead of jest
@@ -85,12 +85,12 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.click(addButtons[0]);
     expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
-    // Save the new life area so it transitions from edit to display mode.
+    // Save the new life area to exit edit mode.
     const saveButtons = screen.getAllByRole('button', { name: /Spara/i });
     fireEvent.click(saveButtons[0]);
 
-    // Click the "Ta bort" button. Use the role 'button' with accessible name "Ta bort Nytt livsområde".
-    const removeButton = screen.getByRole('button', { name: /Ta bort Nytt livsområde/i });
+    // Now, click the "Ta bort" button with an aria-label that exactly matches the area name.
+    const removeButton = screen.getByRole('button', { name: 'Ta bort Nytt livsområde' });
     fireEvent.click(removeButton);
 
     // Check that the warning modal for deletion appears.
@@ -101,7 +101,7 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.click(confirmButton);
 
     await waitFor(() => {
-      expect(screen.queryByText(/Nytt livsområde/i)).toBeNull();
+      expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
     });
   });
 

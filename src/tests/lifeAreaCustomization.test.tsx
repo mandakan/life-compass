@@ -85,8 +85,12 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.click(addButtons[0]);
     expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
-    // Click the "Ta bort" button with an aria-label that includes the area name.
-    const removeButton = screen.getByRole('button', { name: /Ta bort Nytt livsområde/i });
+    // Save the new life area so it exits edit mode.
+    const saveButtons = screen.getAllByRole('button', { name: /Spara/i });
+    fireEvent.click(saveButtons[0]);
+
+    // Now, click the "Ta bort" button with an aria-label that exactly matches the area name.
+    const removeButton = screen.getByRole('button', { name: 'Ta bort Nytt livsområde' });
     fireEvent.click(removeButton);
 
     // Check that the warning modal for deletion appears.
