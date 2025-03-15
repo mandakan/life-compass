@@ -76,6 +76,10 @@ const CreateLifeCompass: React.FC = () => {
   const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
   const [showWarningModal, setShowWarningModal] = useState(false);
 
+  // New state variables for deletion confirmation
+  const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   // Define a universal button style based on theme.
   const buttonStyle: React.CSSProperties = {
     backgroundColor: theme === 'light' ? colors.primary : colors.accent,
@@ -133,10 +137,12 @@ const CreateLifeCompass: React.FC = () => {
     }
   };
 
-  const handleRemoveLifeArea = (id: string) => {
-    setLifeAreas(lifeAreas.filter(area => area.id !== id));
-    if (editingAreaId === id) {
-      handleCancelEdit();
+  // Old removal function is replaced by request deletion confirmation
+  const handleRequestDeleteLifeArea = (id: string) => {
+    const candidate = lifeAreas.find(area => area.id === id);
+    if (candidate) {
+      setDeleteCandidate(candidate);
+      setShowDeleteModal(true);
     }
   };
 
@@ -221,6 +227,23 @@ const CreateLifeCompass: React.FC = () => {
     setEditImportance(5);
     setEditSatisfaction(5);
     setError('');
+  };
+
+  // New deletion confirmation handlers
+  const handleDeleteConfirm = () => {
+    if (deleteCandidate) {
+      setLifeAreas(lifeAreas.filter(area => area.id !== deleteCandidate.id));
+      if (editingAreaId === deleteCandidate.id) {
+        handleCancelEdit();
+      }
+    }
+    setDeleteCandidate(null);
+    setShowDeleteModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteCandidate(null);
+    setShowDeleteModal(false);
   };
 
   const themedCardStyle: React.CSSProperties = {
@@ -316,7 +339,7 @@ const CreateLifeCompass: React.FC = () => {
                 onSaveEdit={handleSaveEditLifeArea}
                 onCancelEdit={handleCancelEdit}
                 onEdit={handleEditLifeArea}
-                onRemove={handleRemoveLifeArea}
+                onRemove={handleRequestDeleteLifeArea}
                 existingNames={lifeAreas.map(a => a.name)}
                 style={themedCardStyle}
               />
@@ -349,7 +372,7 @@ const CreateLifeCompass: React.FC = () => {
                 onSaveEdit={handleSaveEditLifeArea}
                 onCancelEdit={handleCancelEdit}
                 onEdit={handleEditLifeArea}
-                onRemove={handleRemoveLifeArea}
+                onRemove={handleRequestDeleteLifeArea}
                 existingNames={lifeAreas.map(a => a.name)}
                 style={themedCardStyle}
               />
@@ -362,6 +385,12 @@ const CreateLifeCompass: React.FC = () => {
         message="Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
         onConfirm={handleModalConfirm}
         onCancel={handleModalCancel}
+      />
+      <WarningModal
+        visible={showDeleteModal}
+        message="Är du säker på att du vill ta bort detta livsområde?"
+        onConfirm={handleDeleteConfirm}
+        onCancel={handleDeleteCancel}
       />
     </div>
   );
