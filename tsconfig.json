@@ -17,7 +17,8 @@
       "context/*": ["context/*"],
       "utils/*": ["utils/*"],
       "pages/*": ["pages/*"],
-      "designTokens": ["designTokens.ts"]
+      "designTokens": ["designTokens.ts"],
+      "src/*": ["./src/*"]
     }
   },
   "include": ["src"]

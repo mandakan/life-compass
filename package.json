@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "latest",
     "@testing-library/react": "latest",
     "@types/node": "latest",
+    "@types/react": "^19.0.10",
     "@typescript-eslint/parser": "latest",
     "@vitejs/plugin-react": "latest",
     "autoprefixer": "latest",
@@ -35,8 +36,8 @@
     "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest",
-    "vitest": "latest",
-    "vite-tsconfig-paths": "latest"
+    "vite-tsconfig-paths": "latest",
+    "vitest": "latest"
   },
   "engines": {
     "node": ">=23"
