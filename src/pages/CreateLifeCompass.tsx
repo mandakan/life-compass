@@ -387,16 +387,6 @@ const CreateLifeCompass: React.FC = () => {
     <div
       style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}
     >
-      <h2 style={{ fontFamily: typography.primaryFont }}>Skapa Livskompass</h2>
-      <p
-        style={{
-          marginBottom: spacing.medium,
-          fontFamily: typography.primaryFont,
-        }}
-      >
-        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller
-        tryck på knappen nedan för att lägga till de fördefinierade områdena.
-      </p>
       {!storageAvailable && (
         <div
           style={{
