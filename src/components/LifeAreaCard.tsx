@@ -394,7 +394,15 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               >
                 ℹ️
               </button>
-              <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>
+              <h4
+                style={{
+                  margin: 0,
+                  fontFamily: typography.primaryFont,
+                  fontSize: '1.5rem',
+                  fontWeight: 600,
+                  color: theme === 'light' ? colors.primary : colors.accent,
+                }}
+              >
                 {area.name}
               </h4>
             </div>
@@ -412,9 +420,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       ? colors.light.background
                       : colors.dark.background,
                   color: theme === 'light' ? colors.light.text : colors.dark.text,
-                  border: `2px solid ${
-                    theme === 'light' ? colors.primary : colors.accent
-                  }`,
+                  border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
                   borderRadius: borderRadius.small,
                   padding: spacing.medium,
                   zIndex: 10,
