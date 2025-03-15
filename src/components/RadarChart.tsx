@@ -15,6 +15,7 @@ interface RadarChartData {
   area: string;
   importance: number;
   satisfaction: number;
+  description: string;
 }
 
 interface RadarChartProps {
@@ -30,6 +31,21 @@ const renderTick = (props: any) => {
       {payload.value}
     </text>
   );
+};
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    const dataPoint = payload[0].payload;
+    return (
+      <div style={{ backgroundColor: colors.light.background, border: `1px solid ${colors.neutral[400]}`, padding: 10 }}>
+        <p><strong>{label}</strong></p>
+        <p>Importance: {dataPoint.importance}</p>
+        <p>Satisfaction: {dataPoint.satisfaction}</p>
+        <p>Description: {dataPoint.description}</p>
+      </div>
+    );
+  }
+  return null;
 };
 
 const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 400 }) => {
@@ -53,7 +69,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
           fill={colors.accent} 
           fillOpacity={0.6} 
         />
-        <Tooltip contentStyle={{ backgroundColor: colors.light.background, borderColor: colors.neutral[400] }} />
+        <Tooltip content={<CustomTooltip />} />
         <Legend />
       </RechartsRadarChart>
     </ResponsiveContainer>

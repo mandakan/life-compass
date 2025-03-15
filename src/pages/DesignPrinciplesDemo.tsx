@@ -188,11 +188,11 @@ function DesignPrinciplesDemo() {
 
   // Radar Chart demo data
   const radarData = [
-    { area: 'Work', importance: 8, satisfaction: 6 },
-    { area: 'Health', importance: 9, satisfaction: 7 },
-    { area: 'Family', importance: 7, satisfaction: 8 },
-    { area: 'Finance', importance: 6, satisfaction: 5 },
-    { area: 'Leisure', importance: 5, satisfaction: 4 },
+    { area: 'Work', importance: 8, satisfaction: 6, description: 'Focus on project deadlines and meetings.' },
+    { area: 'Health', importance: 9, satisfaction: 7, description: 'Regular workout and balanced diet.' },
+    { area: 'Family', importance: 7, satisfaction: 8, description: 'Family time and gatherings.' },
+    { area: 'Finance', importance: 6, satisfaction: 5, description: 'Budgeting and savings management.' },
+    { area: 'Leisure', importance: 5, satisfaction: 4, description: 'Relaxation and hobbies during free time.' },
   ];
 
   return (
