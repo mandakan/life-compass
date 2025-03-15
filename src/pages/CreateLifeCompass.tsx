@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { colors, spacing, borderRadius, transitions, typography } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import WarningModal from '../components/WarningModal';
@@ -50,10 +50,12 @@ const CreateLifeCompass: React.FC = () => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   // New state for recommendation callout visibility
-  const [showRecommendationCallout, setShowRecommendationCallout] =
-    useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
   // New state for reset confirmation modal
   const [showResetModal, setShowResetModal] = useState(false);
+
+  // Create a ref to store container elements for each card.
+  const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   useEffect(() => {
     if (storageAvailable) {
@@ -290,41 +292,41 @@ const CreateLifeCompass: React.FC = () => {
     padding: spacing.medium,
     borderRadius: borderRadius.small,
     width: '100%',
-    backgroundColor:
-      theme === 'light' ? colors.light.background : colors.dark.background,
+    backgroundColor: theme === 'light' ? colors.light.background : colors.dark.background,
     fontFamily: typography.primaryFont,
   };
 
   // Drag and Drop handlers
-  const handleDragStart =
-    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-      setDraggedIndex(index);
-      if (event.dataTransfer) {
-        event.dataTransfer.effectAllowed = 'move';
-      }
-    };
+  const handleDragStart = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+    const cardEl = containerRefs.current[index];
+    if (cardEl && event.dataTransfer) {
+      event.dataTransfer.setDragImage(cardEl, cardEl.clientWidth / 2, cardEl.clientHeight / 2);
+    }
+    setDraggedIndex(index);
+    if (event.dataTransfer) {
+      event.dataTransfer.effectAllowed = 'move';
+    }
+  };
 
-  const handleDragOver =
-    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      if (event.dataTransfer) {
-        event.dataTransfer.dropEffect = 'move';
-      }
-      setDragOverIndex(index);
-    };
+  const handleDragOver = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    if (event.dataTransfer) {
+      event.dataTransfer.dropEffect = 'move';
+    }
+    setDragOverIndex(index);
+  };
 
-  const handleDrop =
-    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      if (draggedIndex !== null && draggedIndex !== index) {
-        const reordered = [...lifeAreas];
-        const draggedItem = reordered.splice(draggedIndex, 1)[0];
-        reordered.splice(index, 0, draggedItem);
-        setLifeAreas(reordered);
-      }
-      setDraggedIndex(null);
-      setDragOverIndex(null);
-    };
+  const handleDrop = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    if (draggedIndex !== null && draggedIndex !== index) {
+      const reordered = [...lifeAreas];
+      const draggedItem = reordered.splice(draggedIndex, 1)[0];
+      reordered.splice(index, 0, draggedItem);
+      setLifeAreas(reordered);
+    }
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+  };
 
   return (
     <div style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}>
@@ -369,13 +371,11 @@ const CreateLifeCompass: React.FC = () => {
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lifeAreas.map((area, index) => {
-            const highlightStyle =
-              dragOverIndex === index
-                ? { border: `2px dashed ${colors.primary}` }
-                : {};
+            const highlightStyle = dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
             return (
               <div
                 key={area.id}
+                ref={el => (containerRefs.current[index] = el)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
                 onDragLeave={() => setDragOverIndex(null)}
@@ -414,13 +414,11 @@ const CreateLifeCompass: React.FC = () => {
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
           {lifeAreas.map((area, index) => {
-            const highlightStyle =
-              dragOverIndex === index
-                ? { border: `2px dashed ${colors.primary}` }
-                : {};
+            const highlightStyle = dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
             return (
               <div
                 key={area.id}
+                ref={el => (containerRefs.current[index] = el)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
                 onDragLeave={() => setDragOverIndex(null)}
