@@ -104,20 +104,38 @@ This roadmap outlines the different development phases of the Life Compass proje
 - [x] User Story 1.2: Customize Life Areas
 - [x] User Story 1.3: Rate Life Areas
 - [ ] User Story 1.4: Visualize Life Compass
+- [x] User Story 1.5: Save and Load Life Compass
+- [x] User Story 1.6: Reset Life Compass
 
 ✅ **UI/UX**
 
 - [x] User Story 5.1: Define Design Principles
 - [x] User Story 5.2: Implement Mobile-First Layout
 
-✅ **Basic Navigation & State Handling**
-
-- [ ] User Story 5.4: Optimize Navigation and Usability
-
 ✅ **Deployment**
 
 - [x] User Story 10.1: Automate deployment to GitHub Pages
 - [x] User Story 10.2: Configure Vite for GitHub Pages
+
+## 🌟 Phase 3: Enhanced Functionality & Additional Features
+
+> Goal: Elevate the application with advanced features including improved navigation, onboarding, sorting, dark mode support, and robust export/import capabilities with appropriate warnings.
+
+### UI Enhancements
+
+- [ ] User Story 5.4: Optimize Navigation and Usability
+- [ ] User Story 5.6: Dark Mode Support
+
+### Additional Life Compass Features
+
+- [ ] User Story 1.7: Onboarding Tutorial
+- [ ] User Story 2.2: Sort Life Areas by Gap
+
+### Data Export/Import & Warnings
+
+- [ ] User Story 9.1: Export JSON
+- [ ] User Story 9.4: Import JSON
+- [ ] User Story 9.5: Warn on Overwrite
 
 ---
 
