@@ -1,5 +1,11 @@
 import React from 'react';
-import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  typography,
+} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 interface WarningModalProps {
@@ -34,6 +40,7 @@ const WarningModal: React.FC<WarningModalProps> = ({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1000,
+    fontFamily: typography.primaryFont,
   };
 
   const modalStyle: React.CSSProperties = {
@@ -45,6 +52,7 @@ const WarningModal: React.FC<WarningModalProps> = ({
     maxWidth: '90%',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     transition: `all ${transitions.medium}`,
+    fontFamily: typography.primaryFont,
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -56,6 +64,7 @@ const WarningModal: React.FC<WarningModalProps> = ({
     cursor: 'pointer',
     transition: `background-color ${transitions.fast}`,
     marginRight: spacing.small,
+    fontFamily: typography.primaryFont,
   };
 
   const cancelButtonStyle: React.CSSProperties = {

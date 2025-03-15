@@ -1,9 +1,15 @@
 import React from 'react';
-import { colors, spacing, borderRadius, callouts } from '../designTokens';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  callouts,
+  typography,
+} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 interface CalloutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onDismiss?: () => void;
 }
 
@@ -28,6 +34,7 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    fontFamily: typography.primaryFont,
   };
 
   const dismissBtnStyle: React.CSSProperties = {
@@ -35,11 +42,15 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
     border: 'none',
     cursor: 'pointer',
     fontSize: '1rem',
+    fontFamily: typography.primaryFont,
   };
 
   return (
     <div style={calloutStyle}>
-      <span>{children}</span>
+      <span>
+        {children ||
+          'Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.'}
+      </span>
       {onDismiss && (
         <button
           onClick={onDismiss}

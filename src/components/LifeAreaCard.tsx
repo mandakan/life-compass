@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  typography,
+} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
+import CustomSlider from '../components/CustomSlider';
 
 export interface LifeArea {
   id: string;
@@ -30,6 +37,12 @@ export interface LifeAreaCardProps {
   onRemove: (id: string) => void;
   existingNames: string[];
   style?: React.CSSProperties;
+  onAutoUpdateRating?: (
+    field: 'importance' | 'satisfaction',
+    newValue: number,
+    area: LifeArea,
+  ) => void;
+  dragHandle?: React.HTMLAttributes<HTMLDivElement>;
 }
 
 const defaultCardStyle: React.CSSProperties = {
@@ -71,6 +84,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onRemove,
   existingNames = [],
   style,
+  onAutoUpdateRating,
+  dragHandle,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
   const { theme } = useTheme();
@@ -80,6 +95,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   useEffect(() => {
     setLocalEditName(editName);
   }, [editName]);
+
+  // States for visual feedback on slider changes
+  const [highlightImportance, setHighlightImportance] = useState(false);
+  const [highlightSatisfaction, setHighlightSatisfaction] = useState(false);
 
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
@@ -168,6 +187,22 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
     );
 
+  // Function to trigger visual feedback for importance
+  const triggerHighlightImportance = () => {
+    setHighlightImportance(true);
+    setTimeout(() => {
+      setHighlightImportance(false);
+    }, 400);
+  };
+
+  // Function to trigger visual feedback for satisfaction
+  const triggerHighlightSatisfaction = () => {
+    setHighlightSatisfaction(true);
+    setTimeout(() => {
+      setHighlightSatisfaction(false);
+    }, 400);
+  };
+
   if (isEditing) {
     return (
       <div style={combinedStyle}>
@@ -189,13 +224,19 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
             {isDuplicate && (
-              <div style={{ color: 'red', marginTop: spacing.small }}>
+              <div
+                style={{
+                  color: 'red',
+                  marginTop: spacing.small,
+                  fontFamily: typography.primaryFont,
+                }}
+              >
                 Dubblett: Samma namn får inte användas.
               </div>
             )}
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Beskrivning:
               <textarea
                 value={editDescription}
@@ -204,12 +245,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   ...inputStyle,
                   width: '100%',
                   minHeight: '60px',
+                  fontFamily: typography.primaryFont,
                 }}
               />
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Detaljer:
               <textarea
                 value={editDetails}
@@ -218,42 +260,49 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   ...inputStyle,
                   width: '100%',
                   minHeight: '40px',
+                  fontFamily: typography.primaryFont,
                 }}
               />
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
-              Viktighet (1-10):
-              <input
-                type="range"
+            <label style={{ fontFamily: typography.primaryFont }}>
+              Viktighet
+              <CustomSlider
                 value={editImportance}
-                onChange={e => onChangeEditImportance(Number(e.target.value))}
-                min="1"
-                max="10"
-                step="1"
-                style={{ ...inputStyle, width: '100%', padding: 0 }}
+                onChange={newValue => {
+                  onChangeEditImportance(newValue);
+                  triggerHighlightImportance();
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('importance', newValue, area);
+                  }
+                }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
               />
-              <span style={{ marginLeft: spacing.small }}>
-                {editImportance}
-              </span>
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
-              Tillfredsställelse (1-10):
-              <input
-                type="range"
+            <label style={{ fontFamily: typography.primaryFont }}>
+              Tillfredsställelse
+              <CustomSlider
                 value={editSatisfaction}
-                onChange={e => onChangeEditSatisfaction(Number(e.target.value))}
-                min="1"
-                max="10"
-                step="1"
-                style={{ ...inputStyle, width: '100%', padding: 0 }}
+                onChange={newValue => {
+                  onChangeEditSatisfaction(newValue);
+                  triggerHighlightSatisfaction();
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('satisfaction', newValue, area);
+                  }
+                }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
               />
-              <span style={{ marginLeft: spacing.small }}>
-                {editSatisfaction}
-              </span>
             </label>
           </div>
         </div>
@@ -292,6 +341,34 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   } else {
     return (
       <div style={combinedStyle}>
+        <div
+          style={{
+            position: 'absolute',
+            top: spacing.small,
+            right: spacing.small,
+            cursor: 'grab',
+            opacity: 0.9,
+          }}
+          role="img"
+          aria-label="Drag to reorder life area"
+          {...(dragHandle || {})}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <title>Drag to reorder life area</title>
+            <circle cx="4" cy="3" r="1.5" />
+            <circle cx="12" cy="3" r="1.5" />
+            <circle cx="4" cy="8" r="1.5" />
+            <circle cx="12" cy="8" r="1.5" />
+            <circle cx="4" cy="13" r="1.5" />
+            <circle cx="12" cy="13" r="1.5" />
+          </svg>
+        </div>
         <div>
           <div
             style={{
@@ -300,11 +377,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               marginBottom: spacing.small,
             }}
           >
-            <h4 style={{ margin: 0 }}>{area.name}</h4>
             <button
               onClick={() => setShowDescription(true)}
               style={{
-                marginLeft: spacing.small,
+                marginRight: spacing.small,
                 backgroundColor: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
@@ -313,6 +389,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             >
               ℹ️
             </button>
+            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>
+              {area.name}
+            </h4>
           </div>
           {showDescription && (
             <div
@@ -333,11 +412,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 padding: spacing.medium,
                 zIndex: 10,
                 boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+                fontFamily: typography.primaryFont,
               }}
               tabIndex={0}
               onBlur={() => setShowDescription(false)}
             >
-              <p style={{ margin: 0 }}>{area.description}</p>
+              <p style={{ margin: 0, fontFamily: typography.primaryFont }}>
+                {area.description}
+              </p>
               <button
                 onClick={() => setShowDescription(false)}
                 style={{
@@ -345,6 +427,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   backgroundColor: 'transparent',
                   border: 'none',
                   cursor: 'pointer',
+                  fontFamily: typography.primaryFont,
                 }}
               >
                 Stäng
@@ -352,23 +435,53 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
           )}
           {area.details && (
-            <p style={{ margin: 0, marginBottom: spacing.small }}>
+            <p
+              style={{
+                margin: 0,
+                marginBottom: spacing.small,
+                fontFamily: typography.primaryFont,
+              }}
+            >
               Detaljer: {area.details}
             </p>
           )}
-          <div className="mb-2 grid grid-cols-2 gap-2">
-            <div className="font-bold" style={{ padding: spacing.small }}>
-              Viktighet:
-            </div>
-            <div className="text-right" style={{ padding: spacing.small }}>
-              {area.importance}
-            </div>
-            <div className="font-bold" style={{ padding: spacing.small }}>
-              Tillfredsställelse:
-            </div>
-            <div className="text-right" style={{ padding: spacing.small }}>
-              {area.satisfaction}
-            </div>
+          <div style={{ marginTop: spacing.small }}>
+            <label style={{ fontFamily: typography.primaryFont }}>
+              Viktighet
+              <CustomSlider
+                value={area.importance}
+                onChange={newValue => {
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('importance', newValue, area);
+                  }
+                  triggerHighlightImportance();
+                }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
+              />
+            </label>
+          </div>
+          <div style={{ marginTop: spacing.small }}>
+            <label style={{ fontFamily: typography.primaryFont }}>
+              Tillfredsställelse
+              <CustomSlider
+                value={area.satisfaction}
+                onChange={newValue => {
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('satisfaction', newValue, area);
+                  }
+                  triggerHighlightSatisfaction();
+                }}
+                min={1}
+                max={10}
+                step={1}
+                width="100%"
+                height={50}
+              />
+            </label>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>

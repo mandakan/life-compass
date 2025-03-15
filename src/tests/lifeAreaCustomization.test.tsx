@@ -85,7 +85,7 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.change(secondNameInput, { target: { value: 'Unique Area' } });
     const secondSaveButtons = screen.getAllByRole('button', { name: /Spara/i });
     // Since the duplicate check should disable saving, expect the button to be disabled
-    expect(secondSaveButtons[0].disabled).toBe(true);
+    expect((secondSaveButtons[0] as HTMLButtonElement).disabled).toBe(true);
   });
 
   test('removes a life area after confirmation in the deletion modal', async () => {
@@ -175,10 +175,13 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     const firstAreaName = headings[0].textContent;
     const secondAreaName = headings[1].textContent;
 
-    // Retrieve draggable container elements by finding the "Redigera" buttons and then getting the closest draggable div.
-    const editButtons = screen.getAllByRole('button', { name: /Redigera/i });
-    const firstDraggable = editButtons[0].closest('div[draggable="true"]');
-    const secondDraggable = editButtons[1].closest('div[draggable="true"]');
+    // Retrieve the drag handle elements using their role "img" with the aria-label.
+    const dragHandles = screen.getAllByRole('img', {
+      name: 'Drag to reorder life area',
+    });
+    expect(dragHandles.length).toBeGreaterThanOrEqual(2);
+    const firstDraggable = dragHandles[0].closest('div[draggable="true"]');
+    const secondDraggable = dragHandles[1].closest('div[draggable="true"]');
     expect(firstDraggable).toBeDefined();
     expect(secondDraggable).toBeDefined();
 

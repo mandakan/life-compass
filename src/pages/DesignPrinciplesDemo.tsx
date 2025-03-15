@@ -11,15 +11,15 @@ import {
   borderRadius,
 } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
+import CustomSlider from '../components/CustomSlider';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = React.useState(false);
   const [buttonHovered, setButtonHovered] = React.useState(false);
   const [hoverActive, setHoverActive] = React.useState(false);
-  const [progress, setProgress] = React.useState(70);
+  const [sliderValue, setSliderValue] = React.useState(5);
   const [dropdownValue, setDropdownValue] = React.useState('option1');
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
-  const [sliderValue, setSliderValue] = React.useState(50);
 
   const { theme: themeMode, toggleTheme } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
@@ -74,8 +74,7 @@ function DesignPrinciplesDemo() {
   };
 
   const sliderStyle: React.CSSProperties = {
-    width: '100%',
-    maxWidth: '300px',
+    width: '300px',
     margin: spacing.small,
   };
 
@@ -139,7 +138,7 @@ function DesignPrinciplesDemo() {
   };
 
   const progressBarStyle: React.CSSProperties = {
-    width: `${progress}%`,
+    width: `70%`,
     height: '1rem',
     backgroundColor: colors.primary,
     transition: `width ${transitions.medium}`,
@@ -332,18 +331,31 @@ function DesignPrinciplesDemo() {
           Check me!
         </label>
       </div>
-      {/* Slider Example */}
+      {/* Custom Slider Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Slider Example</h3>
+        <h3>Custom Slider Example</h3>
+        <CustomSlider
+          value={sliderValue}
+          onChange={newValue => setSliderValue(newValue)}
+          min={1}
+          max={10}
+          width="300px"
+        />
+        <p>Slider Value: {sliderValue}</p>
+      </div>
+      {/* Default Slider Example */}
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+        <h3>Default Slider Example</h3>
         <input
           type="range"
           value={sliderValue}
+          min={1}
+          max={10}
+          step={1}
           onChange={e => setSliderValue(Number(e.target.value))}
           style={sliderStyle}
-          min="0"
-          max="100"
         />
-        <p>Value: {sliderValue}</p>
+        <p>Slider Value: {sliderValue}</p>
       </div>
       {/* Dragging Handle Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>

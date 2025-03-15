@@ -13,5 +13,8 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
   test: {
     environment: 'jsdom',
+    coverage: {
+      reporter: ['text', 'json', 'html'],
+    },
   },
 });

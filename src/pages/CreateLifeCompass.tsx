@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  typography,
+} from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import WarningModal from '../components/WarningModal';
 import Callout from '../components/Callout';
@@ -55,6 +61,9 @@ const CreateLifeCompass: React.FC = () => {
   // New state for reset confirmation modal
   const [showResetModal, setShowResetModal] = useState(false);
 
+  // Create a ref to store container elements for each card.
+  const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
   useEffect(() => {
     if (storageAvailable) {
       try {
@@ -98,6 +107,7 @@ const CreateLifeCompass: React.FC = () => {
     transition: `background-color ${transitions.fast}`,
     marginBottom: spacing.medium,
     marginRight: spacing.medium,
+    fontFamily: typography.primaryFont,
   };
 
   const handleAddNewLifeArea = () => {
@@ -272,6 +282,22 @@ const CreateLifeCompass: React.FC = () => {
     setShowResetModal(false);
   };
 
+  // Auto-update rating handler for slider changes (auto-save)
+  const handleAutoUpdateRating = (
+    field: 'importance' | 'satisfaction',
+    newValue: number,
+    areaToUpdate: LifeArea,
+  ) => {
+    setLifeAreas(prevLifeAreas =>
+      prevLifeAreas.map(area => {
+        if (area.id === areaToUpdate.id) {
+          return { ...area, [field]: newValue };
+        }
+        return area;
+      }),
+    );
+  };
+
   const themedCardStyle: React.CSSProperties = {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
@@ -279,15 +305,23 @@ const CreateLifeCompass: React.FC = () => {
     width: '100%',
     backgroundColor:
       theme === 'light' ? colors.light.background : colors.dark.background,
+    fontFamily: typography.primaryFont,
   };
 
   // Drag and Drop handlers
   const handleDragStart =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-      setDraggedIndex(index);
-      if (event.dataTransfer) {
+      const cardEl = containerRefs.current[index];
+      if (cardEl && event.dataTransfer) {
+        event.dataTransfer.setDragImage(
+          cardEl,
+          cardEl.clientWidth / 2,
+          cardEl.clientHeight / 2,
+        );
+        event.dataTransfer.setData('text/plain', index.toString());
         event.dataTransfer.effectAllowed = 'move';
       }
+      setDraggedIndex(index);
     };
 
   const handleDragOver =
@@ -302,9 +336,21 @@ const CreateLifeCompass: React.FC = () => {
   const handleDrop =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
-      if (draggedIndex !== null && draggedIndex !== index) {
+      let draggedIdx: number | null = null;
+      if (event.dataTransfer) {
+        const data = event.dataTransfer.getData('text/plain');
+        const parsedIndex = parseInt(data, 10);
+        if (!isNaN(parsedIndex)) {
+          draggedIdx = parsedIndex;
+        } else {
+          draggedIdx = draggedIndex;
+        }
+      } else {
+        draggedIdx = draggedIndex;
+      }
+      if (draggedIdx !== null && draggedIdx !== index) {
         const reordered = [...lifeAreas];
-        const draggedItem = reordered.splice(draggedIndex, 1)[0];
+        const draggedItem = reordered.splice(draggedIdx, 1)[0];
         reordered.splice(index, 0, draggedItem);
         setLifeAreas(reordered);
       }
@@ -313,9 +359,16 @@ const CreateLifeCompass: React.FC = () => {
     };
 
   return (
-    <div style={{ padding: spacing.medium }}>
-      <h2>Skapa Livskompass</h2>
-      <p style={{ marginBottom: spacing.medium }}>
+    <div
+      style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}
+    >
+      <h2 style={{ fontFamily: typography.primaryFont }}>Skapa Livskompass</h2>
+      <p
+        style={{
+          marginBottom: spacing.medium,
+          fontFamily: typography.primaryFont,
+        }}
+      >
         Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller
         tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
@@ -327,16 +380,14 @@ const CreateLifeCompass: React.FC = () => {
             padding: spacing.small,
             marginBottom: spacing.medium,
             borderRadius: borderRadius.small,
+            fontFamily: typography.primaryFont,
           }}
         >
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
-        <Callout onDismiss={() => setShowRecommendationCallout(false)}>
-          Vi rekommenderar att hålla antalet livsområden runt 10 för bästa
-          överblick.
-        </Callout>
+        <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
       <button onClick={handleAddNewLifeArea} style={buttonStyle}>
         Lägg till livsområde
@@ -348,13 +399,21 @@ const CreateLifeCompass: React.FC = () => {
         Återställ till standard
       </button>
       {error && (
-        <div style={{ color: colors.accent, marginBottom: spacing.medium }}>
+        <div
+          style={{
+            color: colors.accent,
+            marginBottom: spacing.medium,
+            fontFamily: typography.primaryFont,
+          }}
+        >
           {error}
         </div>
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
       {lifeAreas.length === 0 ? (
-        <p>Inga livsområden tillagda än.</p>
+        <p style={{ fontFamily: typography.primaryFont }}>
+          Inga livsområden tillagda än.
+        </p>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lifeAreas.map((area, index) => {
@@ -365,8 +424,7 @@ const CreateLifeCompass: React.FC = () => {
             return (
               <div
                 key={area.id}
-                draggable
-                onDragStart={handleDragStart(index)}
+                ref={el => (containerRefs.current[index] = el)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
                 onDragLeave={() => setDragOverIndex(null)}
@@ -392,6 +450,11 @@ const CreateLifeCompass: React.FC = () => {
                   onRemove={handleRequestDeleteLifeArea}
                   existingNames={lifeAreas.map(a => a.name)}
                   style={themedCardStyle}
+                  onAutoUpdateRating={handleAutoUpdateRating}
+                  dragHandle={{
+                    draggable: editingAreaId === area.id ? false : true,
+                    onDragStart: handleDragStart(index),
+                  }}
                 />
               </div>
             );
@@ -407,8 +470,7 @@ const CreateLifeCompass: React.FC = () => {
             return (
               <div
                 key={area.id}
-                draggable
-                onDragStart={handleDragStart(index)}
+                ref={el => (containerRefs.current[index] = el)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
                 onDragLeave={() => setDragOverIndex(null)}
@@ -434,6 +496,11 @@ const CreateLifeCompass: React.FC = () => {
                   onRemove={handleRequestDeleteLifeArea}
                   existingNames={lifeAreas.map(a => a.name)}
                   style={themedCardStyle}
+                  onAutoUpdateRating={handleAutoUpdateRating}
+                  dragHandle={{
+                    draggable: editingAreaId === area.id ? false : true,
+                    onDragStart: handleDragStart(index),
+                  }}
                 />
               </div>
             );
