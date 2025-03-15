@@ -154,6 +154,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
       aria-valuemax={max}
       aria-valuenow={value}
       aria-label="Custom slider"
+      autoFocus
     >
       <div style={trackStyle} aria-hidden="true" />
       <div style={handleStyle} aria-hidden="true">
