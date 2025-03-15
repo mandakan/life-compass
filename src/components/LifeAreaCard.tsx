@@ -175,7 +175,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </label>
             {isDuplicate && (
               <div style={{ color: 'red', marginTop: spacing.small }}>
-                Namnet används redan. Ange ett unikt namn.
+                Dubblett: Samma namn får inte användas.
               </div>
             )}
           </div>
