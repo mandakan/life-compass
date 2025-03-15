@@ -2,7 +2,7 @@ import React from 'react';
 import { vi, describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import CreateLifeCompass from '../pages/CreateLifeCompass';
+import CreateLifeCompass from '../pages/CreateLifeCompass.tsx';
 import { ThemeProvider } from '../context/ThemeContext';
 
 // Mock getPredefinedLifeAreas for predictability using vi instead of jest
@@ -85,8 +85,8 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.click(addButtons[0]);
     expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
-    // Click the "Ta bort" button. Use the role 'button' with accessible name "Ta bort".
-    const removeButton = screen.getByRole('button', { name: /Ta bort/i });
+    // Click the "Ta bort" button with an aria-label that includes the area name.
+    const removeButton = screen.getByRole('button', { name: /Ta bort Nytt livsområde/i });
     fireEvent.click(removeButton);
 
     // Check that the warning modal for deletion appears.
