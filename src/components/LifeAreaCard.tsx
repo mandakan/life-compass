@@ -472,9 +472,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       setInlineDetailsValue(e.target.value);
                     }}
                     onBlur={() => {
-                      console.log('Saving inline details:', inlineDetailsValue);
+                      console.log('1. Saving inline details:', inlineDetailsValue);
+                      console.log('1. area.details:', area.details);
                       onChangeEditDetails(inlineDetailsValue);
+                      console.log('2. Saving inline details:', inlineDetailsValue);
+                      console.log('2. area.details:', area.details);
                       setEditingDetailsInline(false);
+                      console.log('3. Saving inline details:', inlineDetailsValue);
+                      console.log('3. area.details:', area.details);
                     }}
                     autoFocus
                     style={{
