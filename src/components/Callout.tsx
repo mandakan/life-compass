@@ -18,6 +18,7 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
     backgroundColor: background,
     color: textColor,
     border: `1px solid ${borderColor}`,
+    borderLeft: `6px solid ${borderColor}`,
     borderRadius: borderRadius.small,
     padding: spacing.small,
     marginBottom: spacing.medium,
