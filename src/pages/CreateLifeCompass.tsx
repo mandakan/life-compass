@@ -318,10 +318,14 @@ const CreateLifeCompass: React.FC = () => {
   const handleDrop = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     let draggedIdx: number | null = null;
-    const data = event.dataTransfer.getData("text/plain");
-    const parsedIndex = parseInt(data, 10);
-    if (!isNaN(parsedIndex)) {
-      draggedIdx = parsedIndex;
+    if (event.dataTransfer) {
+      const data = event.dataTransfer.getData("text/plain");
+      const parsedIndex = parseInt(data, 10);
+      if (!isNaN(parsedIndex)) {
+        draggedIdx = parsedIndex;
+      } else {
+        draggedIdx = draggedIndex;
+      }
     } else {
       draggedIdx = draggedIndex;
     }
