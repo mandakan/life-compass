@@ -29,6 +29,10 @@ interface RadarChartProps {
 const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = '100%', aspect }) => {
   const { theme: themeMode } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
+  // Use devicePixelRatio to adjust styling for high resolution screens.
+  const scaleFactor = window.devicePixelRatio || 1;
+  const tickFontSize = scaleFactor > 1.5 ? 16 : 12;
+  const radarStrokeWidth = scaleFactor > 1.5 ? 3 : 2;
 
   const renderTick = (props: any) => {
     const { payload, x, y, textAnchor } = props;
@@ -38,7 +42,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
         y={y}
         textAnchor={textAnchor}
         fill={currentTheme.text}
-        fontSize={12}
+        fontSize={tickFontSize}
       >
         {payload.value}
       </text>
@@ -78,14 +82,16 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
           dataKey="importance" 
           stroke={colors.primary} 
           fill={colors.primary} 
-          fillOpacity={0.6} 
+          fillOpacity={0.6}
+          strokeWidth={radarStrokeWidth} 
         />
         <Radar 
           name="Satisfaction" 
           dataKey="satisfaction" 
           stroke={colors.accent} 
           fill={colors.accent} 
-          fillOpacity={0.6} 
+          fillOpacity={0.6}
+          strokeWidth={radarStrokeWidth} 
         />
         <Tooltip content={<CustomTooltip />} />
         <Legend />
