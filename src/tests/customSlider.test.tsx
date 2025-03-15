@@ -7,6 +7,7 @@ describe('CustomSlider', () => {
   test('renders with initial value and proper aria attributes', () => {
     const { getAllByRole } = render(<CustomSlider value={5} onChange={() => {}} />);
     const sliders = getAllByRole('slider');
+    
     // Use the first slider element (ignoring the duplication from StrictMode)
     const slider = sliders[0];
     expect(slider).to.exist;
@@ -27,7 +28,8 @@ describe('CustomSlider', () => {
 
     // Explicitly focus the slider handle before sending key events.
     slider.focus();
-
+    expect(document.activeElement).toBe(slider);
+    
     // Press ArrowRight: should increase by step (default step is 1)
     fireEvent.keyDown(slider, { key: 'ArrowRight', code: 'ArrowRight' });
     expect(handleChange).toHaveBeenCalledWith(6);
