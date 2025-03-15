@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { describe, test, expect } from 'vitest';
 import CustomSlider from '../components/CustomSlider';
 
 describe('CustomSlider', () => {
@@ -15,7 +16,7 @@ describe('CustomSlider', () => {
 
   test('updates value correctly using arrow keys and home/end keys', () => {
     let sliderValue = 5;
-    const handleChange = jest.fn((newValue) => {
+    const handleChange = vi.fn((newValue) => {
       sliderValue = newValue;
     });
     const { getByRole } = render(<CustomSlider value={sliderValue} onChange={handleChange} />);
@@ -40,7 +41,7 @@ describe('CustomSlider', () => {
 
   test('respects custom min, max, and step values', () => {
     let sliderValue = 3;
-    const handleChange = jest.fn((newValue) => {
+    const handleChange = vi.fn((newValue) => {
       sliderValue = newValue;
     });
     const { getByRole } = render(

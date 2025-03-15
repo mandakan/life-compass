@@ -302,6 +302,8 @@ const CreateLifeCompass: React.FC = () => {
     if (cardEl && event.dataTransfer) {
       event.dataTransfer.setDragImage(cardEl, cardEl.clientWidth / 2, cardEl.clientHeight / 2);
     }
+    // Store the dragged index in dataTransfer for proper simulation.
+    event.dataTransfer.setData("text/plain", index.toString());
     setDraggedIndex(index);
     if (event.dataTransfer) {
       event.dataTransfer.effectAllowed = 'move';
@@ -318,9 +320,11 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleDrop = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    if (draggedIndex !== null && draggedIndex !== index) {
+    const draggedIndexStr = event.dataTransfer.getData("text/plain");
+    const draggedIdx = draggedIndexStr ? parseInt(draggedIndexStr, 10) : draggedIndex;
+    if (draggedIdx !== null && draggedIdx !== index) {
       const reordered = [...lifeAreas];
-      const draggedItem = reordered.splice(draggedIndex, 1)[0];
+      const draggedItem = reordered.splice(draggedIdx, 1)[0];
       reordered.splice(index, 0, draggedItem);
       setLifeAreas(reordered);
     }
