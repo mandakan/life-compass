@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, spacing, borderRadius, callouts } from '../designTokens';
+import { colors, spacing, borderRadius, callouts, typography } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 interface CalloutProps {
@@ -28,6 +28,7 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    fontFamily: typography.primaryFont,
   };
 
   const dismissBtnStyle: React.CSSProperties = {
@@ -35,6 +36,7 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
     border: 'none',
     cursor: 'pointer',
     fontSize: '1rem',
+    fontFamily: typography.primaryFont,
   };
 
   return (
