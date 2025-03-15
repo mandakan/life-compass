@@ -382,11 +382,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               marginBottom: spacing.small,
             }}
           >
-            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>{area.name}</h4>
             <button
               onClick={() => setShowDescription(true)}
               style={{
-                marginLeft: spacing.small,
+                marginRight: spacing.small,
                 backgroundColor: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
@@ -395,6 +394,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             >
               ℹ️
             </button>
+            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>{area.name}</h4>
           </div>
           {showDescription && (
             <div
