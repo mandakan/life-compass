@@ -128,25 +128,30 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     transition: `background-color ${transitions.fast}`,
   };
 
-  // Compute dynamic style for the name input to provide immediate visual feedback.
-  // If a duplicate name is entered (excluding the unmodified name), the border turns red.
-  // If the name is modified and is unique, the border turns green.
+  // Compute dynamic border color for name input.
+  const trimmedLocalEditName = localEditName.trim();
+  const trimmedOriginalName = area.name.trim();
+  let borderColor = theme === 'light' ? colors.neutral[400] : colors.neutral[600];
+
+  // Exclude current area's original name from duplicate check.
+  const otherNames = existingNames.filter(name => name.trim() !== trimmedOriginalName);
+
+  if (trimmedLocalEditName !== '' && trimmedLocalEditName !== trimmedOriginalName) {
+    if (otherNames.some(name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase())) {
+      borderColor = 'red';
+    } else {
+      borderColor = 'green';
+    }
+  }
+
   const nameInputStyle: React.CSSProperties = {
     ...inputStyle,
-    border: `1px solid ${
-      // Exclude the current area's original name when checking for duplicates.
-      existingNames.filter(name => name !== area.name).includes(localEditName)
-        ? 'red'
-        : localEditName !== area.name
-        ? 'green'
-        : theme === 'light'
-        ? colors.neutral[400]
-        : colors.neutral[600]
-    }`,
+    border: `1px solid ${borderColor}`,
   };
 
-  // Determine if the current local name is a duplicate (excluding the original name).
-  const isDuplicate = existingNames.filter(name => name !== area.name).includes(localEditName);
+  // Determine if the current local name is considered duplicate (case insensitive, excluding original name).
+  const isDuplicate = (trimmedLocalEditName !== '' && trimmedLocalEditName !== trimmedOriginalName) &&
+    otherNames.some(name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase());
 
   if (isEditing) {
     return (
