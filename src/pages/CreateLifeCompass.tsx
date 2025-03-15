@@ -137,6 +137,9 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   const handleEditLifeArea = (area: LifeArea) => {
+    if (error !== '' && editingAreaId !== area.id) {
+      return;
+    }
     setEditingAreaId(area.id);
     setEditName(area.name);
     setEditDescription(area.description);
