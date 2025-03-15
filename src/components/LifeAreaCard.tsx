@@ -83,6 +83,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     setLocalEditName(editName);
   }, [editName]);
 
+  // States for visual feedback on slider changes
+  const [highlightImportance, setHighlightImportance] = useState(false);
+  const [highlightSatisfaction, setHighlightSatisfaction] = useState(false);
+
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
     ...defaultCardStyle,
@@ -170,6 +174,22 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
     );
 
+  // Function to trigger visual feedback for importance
+  const triggerHighlightImportance = () => {
+    setHighlightImportance(true);
+    setTimeout(() => {
+      setHighlightImportance(false);
+    }, 400);
+  };
+
+  // Function to trigger visual feedback for satisfaction
+  const triggerHighlightSatisfaction = () => {
+    setHighlightSatisfaction(true);
+    setTimeout(() => {
+      setHighlightSatisfaction(false);
+    }, 400);
+  };
+
   if (isEditing) {
     return (
       <div style={combinedStyle}>
@@ -233,6 +253,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => {
                   const newValue = Number(e.target.value);
                   onChangeEditImportance(newValue);
+                  triggerHighlightImportance();
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('importance', newValue, area);
                   }
@@ -244,7 +265,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 step="1"
                 style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
-              <span style={{ marginLeft: spacing.small }}>
+              <span
+                style={{
+                  marginLeft: spacing.small,
+                  transition: `background-color ${transitions.fast}`,
+                  backgroundColor: highlightImportance
+                    ? theme === 'light'
+                      ? 'rgba(52, 144, 220, 0.2)'
+                      : 'rgba(227, 52, 47, 0.2)'
+                    : 'transparent',
+                }}
+              >
                 {editImportance}
               </span>
             </label>
@@ -258,6 +289,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => {
                   const newValue = Number(e.target.value);
                   onChangeEditSatisfaction(newValue);
+                  triggerHighlightSatisfaction();
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }
@@ -269,7 +301,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 step="1"
                 style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
-              <span style={{ marginLeft: spacing.small }}>
+              <span
+                style={{
+                  marginLeft: spacing.small,
+                  transition: `background-color ${transitions.fast}`,
+                  backgroundColor: highlightSatisfaction
+                    ? theme === 'light'
+                      ? 'rgba(52, 144, 220, 0.2)'
+                      : 'rgba(227, 52, 47, 0.2)'
+                    : 'transparent',
+                }}
+              >
                 {editSatisfaction}
               </span>
             </label>
@@ -385,13 +427,26 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('importance', newValue, area);
                   }
+                  triggerHighlightImportance();
                 }}
                 min="1"
                 max="10"
                 step="1"
                 style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
-              <span style={{ marginLeft: spacing.small }}>{area.importance}</span>
+              <span
+                style={{
+                  marginLeft: spacing.small,
+                  transition: `background-color ${transitions.fast}`,
+                  backgroundColor: highlightImportance
+                    ? theme === 'light'
+                      ? 'rgba(52, 144, 220, 0.2)'
+                      : 'rgba(227, 52, 47, 0.2)'
+                    : 'transparent',
+                }}
+              >
+                {area.importance}
+              </span>
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
@@ -405,13 +460,26 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }
+                  triggerHighlightSatisfaction();
                 }}
                 min="1"
                 max="10"
                 step="1"
                 style={{ ...inputStyle, width: '100%', padding: 0 }}
               />
-              <span style={{ marginLeft: spacing.small }}>{area.satisfaction}</span>
+              <span
+                style={{
+                  marginLeft: spacing.small,
+                  transition: `background-color ${transitions.fast}`,
+                  backgroundColor: highlightSatisfaction
+                    ? theme === 'light'
+                      ? 'rgba(52, 144, 220, 0.2)'
+                      : 'rgba(227, 52, 47, 0.2)'
+                    : 'transparent',
+                }}
+              >
+                {area.satisfaction}
+              </span>
             </label>
           </div>
         </div>
