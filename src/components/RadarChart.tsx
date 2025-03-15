@@ -71,7 +71,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
       <RechartsRadarChart outerRadius="70%" data={data}>
         <PolarGrid stroke={colors.neutral[300]} />
         <PolarAngleAxis dataKey="area" tick={renderTick} />
-        <PolarRadiusAxis angle={30} domain={[0, 10]} stroke={currentTheme.text} />
+        <PolarRadiusAxis angle={30} domain={[0, 10]} tick={false} axisLine={false} />
         <Radar 
           name="Importance" 
           dataKey="importance" 
