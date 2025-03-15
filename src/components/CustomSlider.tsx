@@ -27,6 +27,11 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   const trackRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
 
+  useEffect(() => {
+    // Autofocus the slider container on mount so that keyboard events get captured.
+    trackRef.current?.focus();
+  }, []);
+
   const getPercentage = () => {
     return (value - min) / (max - min);
   };
