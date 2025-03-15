@@ -276,11 +276,12 @@ const CreateLifeCompass: React.FC = () => {
   const handleDrop =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
-      if (draggedIndex === null || draggedIndex === index) return;
-      const reordered = [...lifeAreas];
-      const draggedItem = reordered.splice(draggedIndex, 1)[0];
-      reordered.splice(index, 0, draggedItem);
-      setLifeAreas(reordered);
+      if (draggedIndex !== null && draggedIndex !== index) {
+        const reordered = [...lifeAreas];
+        const draggedItem = reordered.splice(draggedIndex, 1)[0];
+        reordered.splice(index, 0, draggedItem);
+        setLifeAreas(reordered);
+      }
       setDraggedIndex(null);
       setDragOverIndex(null);
     };
