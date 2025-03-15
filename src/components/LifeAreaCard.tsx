@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
@@ -75,13 +75,21 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   const [showDescription, setShowDescription] = useState(false);
   const { theme } = useTheme();
 
+  // Local state for immediate visual feedback on name change.
+  const [localEditName, setLocalEditName] = useState(editName);
+  useEffect(() => {
+    setLocalEditName(editName);
+  }, [editName]);
+
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
     ...defaultCardStyle,
     backgroundColor:
       theme === 'light' ? colors.light.background : colors.dark.background,
     color: theme === 'light' ? colors.light.text : colors.dark.text,
-    border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
+    border: `1px solid ${
+      theme === 'light' ? colors.neutral[300] : colors.neutral[700]
+    }`,
   };
 
   // Extend combinedStyle to use flex layout for proper content arrangement
@@ -106,42 +114,24 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
   };
 
-  // Compute dynamic style for the name input to provide immediate visual feedback
-  // If a duplicate name is entered (excluding the case where the name hasn't been modified), the border turns red.
+  // Compute dynamic style for the name input to provide immediate visual feedback.
+  // If a duplicate name is entered (excluding the unmodified name), the border turns red.
   // If the name is modified and is unique, the border turns green.
   const nameInputStyle: React.CSSProperties = {
     ...inputStyle,
     border: `1px solid ${
-      isEditing
-        ? (existingNames.includes(editName) && editName !== area.name
-            ? 'red'
-            : editName !== area.name
-            ? 'green'
-            : theme === 'light'
-            ? colors.neutral[400]
-            : colors.neutral[600])
+      existingNames.includes(localEditName) && localEditName !== area.name
+        ? 'red'
+        : localEditName !== area.name
+        ? 'green'
         : theme === 'light'
         ? colors.neutral[400]
         : colors.neutral[600]
     }`,
   };
 
-  // Define action button style for edit and delete buttons
-  const actionButtonStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: spacing.small,
-    backgroundColor: theme === 'light' ? colors.primary : colors.accent,
-    color: '#fff',
-    border: 'none',
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    cursor: 'pointer',
-    transition: `background-color ${transitions.fast}`,
-  };
-
-  // Check for duplicate names excluding the current area's original name.
-  const isDuplicate = existingNames.includes(editName) && editName !== area.name;
+  // Determine if the current local name is a duplicate.
+  const isDuplicate = existingNames.includes(localEditName) && localEditName !== area.name;
 
   if (isEditing) {
     return (
@@ -152,8 +142,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Namn:
               <input
                 type="text"
-                value={editName}
-                onChange={e => onChangeEditName(e.target.value)}
+                value={localEditName}
+                onChange={e => {
+                  const value = e.target.value;
+                  setLocalEditName(value);
+                  onChangeEditName(value);
+                }}
                 placeholder="Ange livsområdesnamn"
                 autoFocus
                 style={nameInputStyle}
