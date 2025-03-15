@@ -35,7 +35,8 @@
     "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest",
-    "vitest": "latest"
+    "vitest": "latest",
+    "vite-tsconfig-paths": "latest"
   },
   "engines": {
     "node": ">=23"
