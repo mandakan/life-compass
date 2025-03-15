@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   colors,
   spacing,
@@ -106,28 +106,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   useEffect(() => {
     setInlineDetailsValue(area.details);
   }, [area.details]);
-
-  // Ref for detecting clicks outside the inline details editor.
-  const detailsRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        editingDetailsInline &&
-        detailsRef.current &&
-        !detailsRef.current.contains(event.target as Node)
-      ) {
-        console.log('Saving inline details:', inlineDetailsValue);
-        onChangeEditDetails(inlineDetailsValue);
-        setEditingDetailsInline(false);
-      }
-    }
-    if (editingDetailsInline) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [editingDetailsInline, inlineDetailsValue, onChangeEditDetails]);
 
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
@@ -487,7 +465,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               </div>
             )}
             <div style={{ marginBottom: spacing.small }}>
-              <div ref={detailsRef} onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
+              <div onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
                 {editingDetailsInline ? (
                   <textarea
                     value={inlineDetailsValue}
