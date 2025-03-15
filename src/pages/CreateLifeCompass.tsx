@@ -322,9 +322,10 @@ const CreateLifeCompass: React.FC = () => {
     event.preventDefault();
     let draggedIdx: number | null = null;
     const data = event.dataTransfer.getData("text/plain");
-    if (data) {
-      draggedIdx = parseInt(data, 10);
-    } else if (draggedIndex !== null) {
+    const parsedIndex = parseInt(data, 10);
+    if (!isNaN(parsedIndex)) {
+      draggedIdx = parsedIndex;
+    } else {
       draggedIdx = draggedIndex;
     }
     if (draggedIdx !== null && draggedIdx !== index) {
