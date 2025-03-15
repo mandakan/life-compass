@@ -9,11 +9,11 @@ describe('CustomSlider', () => {
     const sliders = getAllByRole('slider');
     // Use the first slider element (ignoring the duplication from StrictMode)
     const slider = sliders[0];
-    expect(slider).toBeInTheDocument();
-    expect(slider.getAttribute('aria-valuemin')).toBe("1");
-    expect(slider.getAttribute('aria-valuemax')).toBe("10");
-    expect(slider.getAttribute('aria-valuenow')).toBe("5");
-    expect(slider).toHaveTextContent("5");
+    expect(slider).to.exist;
+    expect(slider.getAttribute('aria-valuemin')).to.equal("1");
+    expect(slider.getAttribute('aria-valuemax')).to.equal("10");
+    expect(slider.getAttribute('aria-valuenow')).to.equal("5");
+    expect(slider.textContent).to.contain("5");
   });
 
   test('updates value correctly using arrow keys and home/end keys', () => {
