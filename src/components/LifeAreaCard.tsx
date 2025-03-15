@@ -237,6 +237,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     onAutoUpdateRating('importance', newValue, area);
                   }
                 }}
+                onMouseDown={(e) => e.stopPropagation()}
                 min="1"
                 max="10"
                 step="1"
@@ -260,6 +261,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }
                 }}
+                onMouseDown={(e) => e.stopPropagation()}
                 min="1"
                 max="10"
                 step="1"
@@ -382,6 +384,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     onAutoUpdateRating('importance', newValue, area);
                   }
                 }}
+                onMouseDown={(e) => e.stopPropagation()}
                 min="1"
                 max="10"
                 step="1"
@@ -402,6 +405,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }
                 }}
+                onMouseDown={(e) => e.stopPropagation()}
                 min="1"
                 max="10"
                 step="1"
