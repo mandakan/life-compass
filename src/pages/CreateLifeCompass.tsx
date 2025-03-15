@@ -51,6 +51,8 @@ const CreateLifeCompass: React.FC = () => {
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   // New state for recommendation callout visibility
   const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
+  // New state for reset confirmation modal
+  const [showResetModal, setShowResetModal] = useState(false);
 
   useEffect(() => {
     if (storageAvailable) {
@@ -250,6 +252,23 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
+  // New Reset to Default handlers
+  const handleResetConfirm = () => {
+    const predefined = getPredefinedLifeAreas();
+    setLifeAreas(predefined);
+    setEditingAreaId(null);
+    setEditName('');
+    setEditDescription('');
+    setEditDetails('');
+    setEditImportance(5);
+    setEditSatisfaction(5);
+    setShowResetModal(false);
+  };
+
+  const handleResetCancel = () => {
+    setShowResetModal(false);
+  };
+
   const themedCardStyle: React.CSSProperties = {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
@@ -316,6 +335,9 @@ const CreateLifeCompass: React.FC = () => {
       </button>
       <button onClick={handleAddPredefinedAreas} style={buttonStyle}>
         Lägg till fördefinierade områden
+      </button>
+      <button onClick={() => setShowResetModal(true)} style={buttonStyle}>
+        Återställ till standard
       </button>
       {error && (
         <div style={{ color: colors.accent, marginBottom: spacing.medium }}>
@@ -415,6 +437,12 @@ const CreateLifeCompass: React.FC = () => {
         message="Är du säker på att du vill ta bort detta livsområde?"
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
+      />
+      <WarningModal
+        visible={showResetModal}
+        message="Är du säker på att du vill återställa livsområden till standard?"
+        onConfirm={handleResetConfirm}
+        onCancel={handleResetCancel}
       />
     </div>
   );
