@@ -114,6 +114,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
   };
 
+  // Define action button style used for both the save and cancel buttons.
+  const actionButtonStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: spacing.small,
+    backgroundColor: theme === 'light' ? colors.primary : colors.accent,
+    color: '#fff',
+    border: 'none',
+    padding: spacing.small,
+    borderRadius: borderRadius.small,
+    cursor: 'pointer',
+    transition: `background-color ${transitions.fast}`,
+  };
+
   // Compute dynamic style for the name input to provide immediate visual feedback.
   // If a duplicate name is entered (excluding the unmodified name), the border turns red.
   // If the name is modified and is unique, the border turns green.
