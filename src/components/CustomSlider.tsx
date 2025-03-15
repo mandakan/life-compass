@@ -28,8 +28,12 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
-    // Autofocus the slider container on mount so that keyboard events get captured.
-    trackRef.current?.focus();
+    // Autofocus the slider handle when component mounts so that keyboard events get captured.
+    if (trackRef.current) {
+      // Find the slider handle (the child that renders the value) and focus it.
+      const handle = trackRef.current.querySelector('[role="slider"]') as HTMLElement;
+      handle?.focus();
+    }
   }, []);
 
   const getPercentage = () => {
@@ -80,7 +84,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     };
   }, [dragging]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     switch (e.key) {
       case 'ArrowLeft':
       case 'ArrowDown':
@@ -147,17 +151,19 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
       style={containerStyle}
       ref={trackRef}
       onMouseDown={handleMouseDown}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="slider"
-      aria-valuemin={min}
-      aria-valuemax={max}
-      aria-valuenow={value}
-      aria-label="Custom slider"
-      autoFocus
     >
       <div style={trackStyle} aria-hidden="true" />
-      <div style={handleStyle} aria-hidden="true">
+      <div
+        style={handleStyle}
+        tabIndex={0}
+        role="slider"
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuenow={value}
+        aria-label="Custom slider"
+        onKeyDown={handleKeyDown}
+        autoFocus
+      >
         {value}
       </div>
     </div>
