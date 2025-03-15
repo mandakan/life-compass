@@ -82,6 +82,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     position: 'relative',
     width: width,
     height: height,
+    margin: '0 auto'
   };
 
   const trackStyle: React.CSSProperties = {
