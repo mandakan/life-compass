@@ -50,7 +50,8 @@ const CreateLifeCompass: React.FC = () => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   // New state for recommendation callout visibility
-  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] =
+    useState(true);
   // New state for reset confirmation modal
   const [showResetModal, setShowResetModal] = useState(false);
 
@@ -78,7 +79,7 @@ const CreateLifeCompass: React.FC = () => {
   const [editDetails, setEditDetails] = useState('');
   const [editImportance, setEditImportance] = useState<number>(5);
   const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
-  
+
   const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
   const [showWarningModal, setShowWarningModal] = useState(false);
 
@@ -238,7 +239,9 @@ const CreateLifeCompass: React.FC = () => {
   // New deletion confirmation handlers
   const handleDeleteConfirm = () => {
     if (deleteCandidate) {
-      setLifeAreas(prevLifeAreas => prevLifeAreas.filter(area => area.id !== deleteCandidate.id));
+      setLifeAreas(prevLifeAreas =>
+        prevLifeAreas.filter(area => area.id !== deleteCandidate.id),
+      );
       if (editingAreaId === deleteCandidate.id) {
         handleCancelEdit();
       }
@@ -323,7 +326,7 @@ const CreateLifeCompass: React.FC = () => {
             color: '#fff',
             padding: spacing.small,
             marginBottom: spacing.medium,
-            borderRadius: borderRadius.small
+            borderRadius: borderRadius.small,
           }}
         >
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
@@ -331,7 +334,8 @@ const CreateLifeCompass: React.FC = () => {
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)}>
-          Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.
+          Vi rekommenderar att hålla antalet livsområden runt 10 för bästa
+          överblick.
         </Callout>
       )}
       <button onClick={handleAddNewLifeArea} style={buttonStyle}>
@@ -354,7 +358,10 @@ const CreateLifeCompass: React.FC = () => {
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lifeAreas.map((area, index) => {
-            const highlightStyle = dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
+            const highlightStyle =
+              dragOverIndex === index
+                ? { border: `2px dashed ${colors.primary}` }
+                : {};
             return (
               <div
                 key={area.id}
@@ -393,7 +400,10 @@ const CreateLifeCompass: React.FC = () => {
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
           {lifeAreas.map((area, index) => {
-            const highlightStyle = dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
+            const highlightStyle =
+              dragOverIndex === index
+                ? { border: `2px dashed ${colors.primary}` }
+                : {};
             return (
               <div
                 key={area.id}

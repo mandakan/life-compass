@@ -9,12 +9,18 @@ interface WarningModalProps {
   onCancel: () => void;
 }
 
-const WarningModal: React.FC<WarningModalProps> = ({ visible, message, onConfirm, onCancel }) => {
+const WarningModal: React.FC<WarningModalProps> = ({
+  visible,
+  message,
+  onConfirm,
+  onCancel,
+}) => {
   if (!visible) return null;
 
   const { theme } = useTheme();
 
-  const background = theme === 'light' ? colors.light.background : colors.dark.background;
+  const background =
+    theme === 'light' ? colors.light.background : colors.dark.background;
   const text = theme === 'light' ? colors.light.text : colors.dark.text;
 
   const overlayStyle: React.CSSProperties = {

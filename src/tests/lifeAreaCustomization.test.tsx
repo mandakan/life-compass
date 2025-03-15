@@ -36,12 +36,14 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
   test('adds a new life area when "Lägg till livsområde" is clicked', () => {
     renderComponent();
-    const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
+    const addButtons = screen.getAllByRole('button', {
+      name: /Lägg till livsområde/i,
+    });
     // Choose first button that matches
     const addButton = addButtons[0];
     fireEvent.click(addButton);
@@ -51,7 +53,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
   test('adds predefined life areas when "Lägg till fördefinierade områden" is clicked', async () => {
     renderComponent();
-    const predefButtons = screen.getAllByRole('button', { name: /Lägg till fördefinierade områden/i });
+    const predefButtons = screen.getAllByRole('button', {
+      name: /Lägg till fördefinierade områden/i,
+    });
     const addPredefButton = predefButtons[0];
     fireEvent.click(addPredefButton);
     expect(await screen.findByText(/Area 1/i)).toBeTruthy();
@@ -61,17 +65,22 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
   test('renames a life area and prevents duplicate names', async () => {
     renderComponent();
     // Add first life area and rename it to "Unique Area"
-    const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
+    const addButtons = screen.getAllByRole('button', {
+      name: /Lägg till livsområde/i,
+    });
     fireEvent.click(addButtons[0]);
     const firstNameInput = screen.getByPlaceholderText(/Ange livsområdesnamn/i);
     fireEvent.change(firstNameInput, { target: { value: 'Unique Area' } });
     const saveButtons = screen.getAllByRole('button', { name: /Spara/i });
     fireEvent.click(saveButtons[0]);
-    expect(screen.getByRole('heading', { level: 4, name: /Unique Area/i })).toBeTruthy();
+    expect(
+      screen.getByRole('heading', { level: 4, name: /Unique Area/i }),
+    ).toBeTruthy();
 
     // Add a second life area and try to rename to the same "Unique Area"
     fireEvent.click(addButtons[0]);
-    const allNameInputs = screen.getAllByPlaceholderText(/Ange livsområdesnamn/i);
+    const allNameInputs =
+      screen.getAllByPlaceholderText(/Ange livsområdesnamn/i);
     const secondNameInput = allNameInputs[0]; // assuming the newly added area's input
     fireEvent.change(secondNameInput, { target: { value: 'Unique Area' } });
     const secondSaveButtons = screen.getAllByRole('button', { name: /Spara/i });
@@ -81,7 +90,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
   test('removes a life area after confirmation in the deletion modal', async () => {
     renderComponent();
-    const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
+    const addButtons = screen.getAllByRole('button', {
+      name: /Lägg till livsområde/i,
+    });
     fireEvent.click(addButtons[0]);
     expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
@@ -90,11 +101,15 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.click(saveButtons[0]);
 
     // Now, click the "Ta bort" button with an aria-label that exactly matches the area name.
-    const removeButton = screen.getByRole('button', { name: 'Ta bort Nytt livsområde' });
+    const removeButton = screen.getByRole('button', {
+      name: 'Ta bort Nytt livsområde',
+    });
     fireEvent.click(removeButton);
 
     // Check that the warning modal for deletion appears.
-    expect(screen.getByText(/Är du säker på att du vill ta bort detta livsområde/i)).toBeTruthy();
+    expect(
+      screen.getByText(/Är du säker på att du vill ta bort detta livsområde/i),
+    ).toBeTruthy();
 
     // Confirm deletion by clicking "Fortsätt"
     const confirmButton = screen.getByRole('button', { name: /Fortsätt/i });
@@ -107,19 +122,29 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
   test('resets life areas to predefined ones after confirmation in the reset modal', async () => {
     renderComponent();
-    const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
+    const addButtons = screen.getAllByRole('button', {
+      name: /Lägg till livsområde/i,
+    });
     fireEvent.click(addButtons[0]);
     expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
     // Click "Återställ till standard" using button role.
-    const resetButtons = screen.getAllByRole('button', { name: /Återställ till standard/i });
+    const resetButtons = screen.getAllByRole('button', {
+      name: /Återställ till standard/i,
+    });
     fireEvent.click(resetButtons[0]);
 
     // Check that the reset modal appears.
-    expect(screen.getByText(/Är du säker på att du vill återställa livsområden till standard/i)).toBeTruthy();
+    expect(
+      screen.getByText(
+        /Är du säker på att du vill återställa livsområden till standard/i,
+      ),
+    ).toBeTruthy();
 
     // Confirm reset by clicking "Fortsätt"
-    const confirmResetButton = screen.getByRole('button', { name: /Fortsätt/i });
+    const confirmResetButton = screen.getByRole('button', {
+      name: /Fortsätt/i,
+    });
     fireEvent.click(confirmResetButton);
 
     expect(await screen.findByText(/Area 1/i)).toBeTruthy();
@@ -130,7 +155,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
   test('reorders life areas using drag and drop simulation', async () => {
     renderComponent();
-    const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
+    const addButtons = screen.getAllByRole('button', {
+      name: /Lägg till livsområde/i,
+    });
     // Add two life areas.
     fireEvent.click(addButtons[0]);
     // Save the first life area

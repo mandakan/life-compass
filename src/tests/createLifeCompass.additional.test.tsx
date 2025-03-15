@@ -13,7 +13,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     const heading = screen.getByText('Skapa Livskompass');
     expect(heading).toBeTruthy();
@@ -32,7 +32,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
       name: 'Lägg till livsområde',
@@ -50,7 +50,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
       name: 'Lägg till livsområde',
@@ -75,7 +75,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
       name: 'Lägg till livsområde',
@@ -94,7 +94,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('Dubblett: Samma namn får inte användas.')
+        screen.getByText('Dubblett: Samma namn får inte användas.'),
       ).toBeTruthy();
     });
   });
@@ -103,7 +103,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
       name: 'Lägg till livsområde',

@@ -131,13 +131,24 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   // Compute dynamic border color for name input.
   const trimmedLocalEditName = localEditName.trim();
   const trimmedOriginalName = area.name.trim();
-  let borderColor = theme === 'light' ? colors.neutral[400] : colors.neutral[600];
+  let borderColor =
+    theme === 'light' ? colors.neutral[400] : colors.neutral[600];
 
   // Exclude current area's original name from duplicate check.
-  const otherNames = existingNames.filter(name => name.trim() !== trimmedOriginalName);
+  const otherNames = existingNames.filter(
+    name => name.trim() !== trimmedOriginalName,
+  );
 
-  if (trimmedLocalEditName !== '' && trimmedLocalEditName !== trimmedOriginalName) {
-    if (otherNames.some(name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase())) {
+  if (
+    trimmedLocalEditName !== '' &&
+    trimmedLocalEditName !== trimmedOriginalName
+  ) {
+    if (
+      otherNames.some(
+        name =>
+          name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
+      )
+    ) {
       borderColor = 'red';
     } else {
       borderColor = 'green';
@@ -150,8 +161,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   };
 
   // Determine if the current local name is considered duplicate (case insensitive, excluding original name).
-  const isDuplicate = (trimmedLocalEditName !== '' && trimmedLocalEditName !== trimmedOriginalName) &&
-    otherNames.some(name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase());
+  const isDuplicate =
+    trimmedLocalEditName !== '' &&
+    trimmedLocalEditName !== trimmedOriginalName &&
+    otherNames.some(
+      name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
+    );
 
   if (isEditing) {
     return (
@@ -243,7 +258,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
-          <button onClick={onSaveEdit} style={actionButtonStyle} disabled={isDuplicate}>
+          <button
+            onClick={onSaveEdit}
+            style={actionButtonStyle}
+            disabled={isDuplicate}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
