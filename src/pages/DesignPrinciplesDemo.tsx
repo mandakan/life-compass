@@ -433,7 +433,7 @@ function DesignPrinciplesDemo() {
       {/* Radar Chart Demo */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Life Compass Radar Chart Demo</h3>
-        <RadarChart data={radarData} height={400} width="90%" />
+        <RadarChart data={radarData} height={800} width="90%" />
       </div>
     </div>
   );
