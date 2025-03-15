@@ -25,6 +25,9 @@ describe('CustomSlider', () => {
     const sliders = getAllByRole('slider');
     const slider = sliders[0];
 
+    // Explicitly focus the slider handle before sending key events.
+    slider.focus();
+
     // Press ArrowRight: should increase by step (default step is 1)
     fireEvent.keyDown(slider, { key: 'ArrowRight', code: 'ArrowRight' });
     expect(handleChange).toHaveBeenCalledWith(6);
@@ -52,6 +55,9 @@ describe('CustomSlider', () => {
     );
     const sliders = getAllByRole('slider');
     const slider = sliders[0];
+
+    // Explicitly focus the slider handle before sending key events.
+    slider.focus();
 
     // ArrowUp should increase the value by step (2)
     fireEvent.keyDown(slider, { key: 'ArrowUp', code: 'ArrowUp' });
