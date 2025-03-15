@@ -489,7 +489,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     }}
                   />
                 ) : (
-                  <span>{area.details || 'Klicka för att redigera detaljer'}</span>
+                  <span>{inlineDetailsValue || 'Klicka för att redigera detaljer'}</span>
                 )}
               </div>
             </div>
