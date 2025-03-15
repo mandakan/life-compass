@@ -89,9 +89,15 @@ const CreateLifeCompass: React.FC = () => {
   useEffect(() => {
     const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
     window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
-    return () => {
+  }, []);
+
+  // Effect to continuously update scroll position in localStorage
+  useEffect(() => {
+    const handleScroll = () => {
       localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
