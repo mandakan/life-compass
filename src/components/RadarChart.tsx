@@ -7,7 +7,7 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
   Tooltip,
-  Legend
+  Legend,
 } from 'recharts';
 import { colors } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
@@ -26,14 +26,31 @@ interface RadarChartProps {
   aspect?: number;
 }
 
-const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = '100%', aspect }) => {
+const RadarChart: React.FC<RadarChartProps> = ({
+  data,
+  width = '100%',
+  height = '100%',
+  aspect,
+}) => {
   const { theme: themeMode } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
   // Use devicePixelRatio to adjust styling for high resolution screens.
   const scaleFactor = window.devicePixelRatio || 1;
   const isMobile = window.innerWidth < 768;
-  const tickFontSize = !isMobile ? (scaleFactor > 1.5 ? 20 : 18) : (scaleFactor > 1.5 ? 16 : 12);
-  const radarStrokeWidth = !isMobile ? (scaleFactor > 1.5 ? 4 : 3) : (scaleFactor > 1.5 ? 3 : 2);
+  const tickFontSize = !isMobile
+    ? scaleFactor > 1.5
+      ? 20
+      : 18
+    : scaleFactor > 1.5
+      ? 16
+      : 12;
+  const radarStrokeWidth = !isMobile
+    ? scaleFactor > 1.5
+      ? 4
+      : 3
+    : scaleFactor > 1.5
+      ? 3
+      : 2;
   const axisStrokeWidth = !isMobile ? 2 : 1;
 
   // Arrange the data so that the four longest area names are spread evenly along the circle.
@@ -90,9 +107,17 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
       lines = [firstLine, secondLine];
     }
     return (
-      <text x={x} y={y} textAnchor={textAnchor} fill={currentTheme.text} fontSize={tickFontSize}>
+      <text
+        x={x}
+        y={y}
+        textAnchor={textAnchor}
+        fill={currentTheme.text}
+        fontSize={tickFontSize}
+      >
         {lines.map((line, index) => (
-          <tspan key={index} x={x} dy={index === 0 ? 0 : "1.2em"}>{line}</tspan>
+          <tspan key={index} x={x} dy={index === 0 ? 0 : '1.2em'}>
+            {line}
+          </tspan>
         ))}
       </text>
     );
@@ -107,10 +132,12 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
             backgroundColor: currentTheme.background,
             border: `1px solid ${colors.neutral[400]}`,
             padding: 10,
-            color: currentTheme.text
+            color: currentTheme.text,
           }}
         >
-          <p><strong>{label}</strong></p>
+          <p>
+            <strong>{label}</strong>
+          </p>
           <p>Betydelse: {dataPoint.importance}</p>
           <p>Tillfredsställelse: {dataPoint.satisfaction}</p>
           <p>Beskrivning: {dataPoint.description}</p>
@@ -134,23 +161,26 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
           angle={30}
           domain={[0, 10]}
           tick={false}
-          axisLine={{ stroke: colors.neutral[300], strokeWidth: axisStrokeWidth }}
+          axisLine={{
+            stroke: colors.neutral[300],
+            strokeWidth: axisStrokeWidth,
+          }}
         />
-        <Radar 
-          name="Betydelse" 
-          dataKey="importance" 
-          stroke={colors.primary} 
-          fill={colors.primary} 
+        <Radar
+          name="Betydelse"
+          dataKey="importance"
+          stroke={colors.primary}
+          fill={colors.primary}
           fillOpacity={0.6}
-          strokeWidth={radarStrokeWidth} 
+          strokeWidth={radarStrokeWidth}
         />
-        <Radar 
-          name="Tillfredsställelse" 
-          dataKey="satisfaction" 
-          stroke={colors.accent} 
-          fill={colors.accent} 
+        <Radar
+          name="Tillfredsställelse"
+          dataKey="satisfaction"
+          stroke={colors.accent}
+          fill={colors.accent}
           fillOpacity={0.6}
-          strokeWidth={radarStrokeWidth} 
+          strokeWidth={radarStrokeWidth}
         />
         <Tooltip content={<CustomTooltip />} />
         <Legend />

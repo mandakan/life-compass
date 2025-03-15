@@ -57,7 +57,8 @@ const CreateLifeCompass: React.FC = () => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   // New state for recommendation callout visibility
-  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] =
+    useState(true);
   // New state for reset confirmation modal
   const [showResetModal, setShowResetModal] = useState(false);
   // New state for toggling between card view and radar chart view
@@ -287,7 +288,10 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   // New inline details update handler
-  const handleInlineDetailsChange = (newDetails: string, areaToUpdate: LifeArea) => {
+  const handleInlineDetailsChange = (
+    newDetails: string,
+    areaToUpdate: LifeArea,
+  ) => {
     setLifeAreas(prevLifeAreas =>
       prevLifeAreas.map(area => {
         if (area.id === areaToUpdate.id) {
@@ -380,10 +384,18 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}>
+    <div
+      style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}
+    >
       <h2 style={{ fontFamily: typography.primaryFont }}>Skapa Livskompass</h2>
-      <p style={{ marginBottom: spacing.medium, fontFamily: typography.primaryFont }}>
-        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
+      <p
+        style={{
+          marginBottom: spacing.medium,
+          fontFamily: typography.primaryFont,
+        }}
+      >
+        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller
+        tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
       {!storageAvailable && (
         <div
@@ -411,24 +423,42 @@ const CreateLifeCompass: React.FC = () => {
       <button onClick={() => setShowResetModal(true)} style={toggleButtonStyle}>
         Återställ till standard
       </button>
-      <button onClick={() => setShowRadar(prev => !prev)} style={toggleButtonStyle}>
+      <button
+        onClick={() => setShowRadar(prev => !prev)}
+        style={toggleButtonStyle}
+      >
         {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
       </button>
       {error && (
-        <div style={{ color: colors.accent, marginBottom: spacing.medium, fontFamily: typography.primaryFont }}>
+        <div
+          style={{
+            color: colors.accent,
+            marginBottom: spacing.medium,
+            fontFamily: typography.primaryFont,
+          }}
+        >
           {error}
         </div>
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
       {showRadar ? (
-        <div style={{ marginTop: spacing.medium, width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div
+          style={{
+            marginTop: spacing.medium,
+            width: '100%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+        >
           <RadarChart data={radarData} width="100%" aspect={1} />
         </div>
       ) : isDesktop ? (
-        <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {lifeAreas.map((area, index) => {
             const highlightStyle =
-              dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
+              dragOverIndex === index
+                ? { border: `2px dashed ${colors.primary}` }
+                : {};
             return (
               <div
                 key={area.id}
@@ -438,7 +468,7 @@ const CreateLifeCompass: React.FC = () => {
                 onDragLeave={() => setDragOverIndex(null)}
                 onDrop={handleDrop(index)}
                 style={highlightStyle}
-                className="w-full h-full flex"
+                className="flex h-full w-full"
               >
                 <LifeAreaCard
                   area={area}
@@ -474,7 +504,9 @@ const CreateLifeCompass: React.FC = () => {
         <div className="mt-4 flex flex-wrap justify-center gap-4">
           {lifeAreas.map((area, index) => {
             const highlightStyle =
-              dragOverIndex === index ? { border: `2px dashed ${colors.primary}` } : {};
+              dragOverIndex === index
+                ? { border: `2px dashed ${colors.primary}` }
+                : {};
             return (
               <div
                 key={area.id}
@@ -484,7 +516,7 @@ const CreateLifeCompass: React.FC = () => {
                 onDragLeave={() => setDragOverIndex(null)}
                 onDrop={handleDrop(index)}
                 style={highlightStyle}
-                className="w-full h-full flex"
+                className="flex h-full w-full"
               >
                 <LifeAreaCard
                   area={area}

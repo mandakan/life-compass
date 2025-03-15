@@ -188,11 +188,36 @@ function DesignPrinciplesDemo() {
 
   // Radar Chart demo data
   const radarData = [
-    { area: 'Arbete', importance: 8, satisfaction: 6, description: 'Fokusera på projektdeadlines och möten.' },
-    { area: 'Hälsa', importance: 9, satisfaction: 7, description: 'Regelbunden träning och balanserad kost.' },
-    { area: 'Familj', importance: 7, satisfaction: 8, description: 'Familjetid och sammankomster.' },
-    { area: 'Ekonomi', importance: 6, satisfaction: 5, description: 'Budgetering och sparande.' },
-    { area: 'Fritid', importance: 5, satisfaction: 4, description: 'Avkoppling och hobbies på fritiden.' },
+    {
+      area: 'Arbete',
+      importance: 8,
+      satisfaction: 6,
+      description: 'Fokusera på projektdeadlines och möten.',
+    },
+    {
+      area: 'Hälsa',
+      importance: 9,
+      satisfaction: 7,
+      description: 'Regelbunden träning och balanserad kost.',
+    },
+    {
+      area: 'Familj',
+      importance: 7,
+      satisfaction: 8,
+      description: 'Familjetid och sammankomster.',
+    },
+    {
+      area: 'Ekonomi',
+      importance: 6,
+      satisfaction: 5,
+      description: 'Budgetering och sparande.',
+    },
+    {
+      area: 'Fritid',
+      importance: 5,
+      satisfaction: 4,
+      description: 'Avkoppling och hobbies på fritiden.',
+    },
   ];
 
   return (
@@ -233,7 +258,8 @@ function DesignPrinciplesDemo() {
       >
         <h2>Kortkomponent</h2>
         <p>
-          Detta kort demonstrerar användningen av design tokens för typografi, färger, interaktiva tillstånd och övergångar.
+          Detta kort demonstrerar användningen av design tokens för typografi,
+          färger, interaktiva tillstånd och övergångar.
         </p>
       </div>
       {/* Button Example */}
@@ -262,7 +288,11 @@ function DesignPrinciplesDemo() {
       </div>
       {/* Input Field Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <input type="text" placeholder="Exempel på inmatning" style={inputStyle} />
+        <input
+          type="text"
+          placeholder="Exempel på inmatning"
+          style={inputStyle}
+        />
       </div>
       {/* Callout Example */}
       <div style={calloutStyle}>
@@ -275,7 +305,8 @@ function DesignPrinciplesDemo() {
       <div style={warningStyle}>
         <h3>Varning</h3>
         <p>
-          Detta är ett varningsmeddelande för att uppmana försiktighet vid en specifik åtgärd.
+          Detta är ett varningsmeddelande för att uppmana försiktighet vid en
+          specifik åtgärd.
         </p>
       </div>
       {/* Hover Information Example */}
@@ -414,7 +445,8 @@ function DesignPrinciplesDemo() {
             margin: spacing.small,
           }}
         >
-          Exempel på brödtext: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Exempel på brödtext: Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit.
         </p>
         <p
           style={{

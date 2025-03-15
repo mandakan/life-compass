@@ -224,12 +224,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   // Style for the inline editable details box (non-edit mode)
   const detailsBoxStyle: React.CSSProperties = {
-    backgroundColor: theme === 'light' ? colors.neutral[100] : colors.neutral[800],
+    backgroundColor:
+      theme === 'light' ? colors.neutral[100] : colors.neutral[800],
     padding: spacing.small,
     borderRadius: borderRadius.small,
     cursor: 'text',
     fontFamily: typography.primaryFont,
-    minHeight: '80px',
+    minHeight: '100px',
   };
 
   if (isEditing) {
@@ -446,7 +447,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     theme === 'light'
                       ? colors.light.background
                       : colors.dark.background,
-                  color: theme === 'light' ? colors.light.text : colors.dark.text,
+                  color:
+                    theme === 'light' ? colors.light.text : colors.dark.text,
                   border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
                   borderRadius: borderRadius.small,
                   padding: spacing.medium,
@@ -475,17 +477,29 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               </div>
             )}
             <div style={{ marginBottom: spacing.small }}>
-              <div onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
+              <div
+                onClick={() => setEditingDetailsInline(true)}
+                style={detailsBoxStyle}
+              >
                 {editingDetailsInline ? (
-                  <div style={{ display: 'flex', height: '100%' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      height: '100%',
+                      flexDirection: 'column',
+                    }}
+                  >
                     <textarea
                       ref={inlineDetailsRef}
                       value={inlineDetailsValue}
-                      onChange={(e) => {
+                      onChange={e => {
                         setInlineDetailsValue(e.target.value);
                       }}
                       onBlur={() => {
-                        console.log('Saving inline details:', inlineDetailsValue);
+                        console.log(
+                          'Saving inline details:',
+                          inlineDetailsValue,
+                        );
                         if (onInlineDetailsChange) {
                           onInlineDetailsChange(inlineDetailsValue, area);
                         } else {
@@ -502,12 +516,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                         backgroundColor: detailsBoxStyle.backgroundColor,
                         resize: 'none',
                         outline: 'none',
-                        flex: 1
+                        flex: 1,
                       }}
                     />
                   </div>
                 ) : (
-                  <span>{area.details || 'Klicka för att redigera detaljer'}</span>
+                  <span>
+                    {area.details || 'Klicka för att redigera detaljer'}
+                  </span>
                 )}
               </div>
             </div>
