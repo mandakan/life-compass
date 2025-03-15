@@ -100,6 +100,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   const [highlightImportance, setHighlightImportance] = useState(false);
   const [highlightSatisfaction, setHighlightSatisfaction] = useState(false);
 
+  // Local state for inline editing of details when not in edit mode.
+  const [editingDetailsInline, setEditingDetailsInline] = useState(false);
+  const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);
+  useEffect(() => {
+    setInlineDetailsValue(area.details);
+  }, [area.details]);
+
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
     ...defaultCardStyle,
@@ -203,6 +210,16 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     setTimeout(() => {
       setHighlightSatisfaction(false);
     }, 400);
+  };
+
+  // Style for the inline editable details box (non-edit mode)
+  const detailsBoxStyle: React.CSSProperties = {
+    backgroundColor: theme === 'light' ? colors.neutral[100] : colors.neutral[800],
+    padding: spacing.small,
+    borderRadius: borderRadius.small,
+    cursor: 'text',
+    fontFamily: typography.primaryFont,
+    minHeight: '40px',
   };
 
   if (isEditing) {
@@ -447,17 +464,37 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 </button>
               </div>
             )}
-            {area.details && (
-              <p
-                style={{
-                  margin: 0,
-                  marginBottom: spacing.small,
-                  fontFamily: typography.primaryFont,
-                }}
-              >
-                Detaljer: {area.details}
-              </p>
-            )}
+            <div style={{ marginBottom: spacing.small }}>
+              <label style={{ fontFamily: typography.primaryFont, display: 'block', marginBottom: spacing.small }}>
+                Detaljer:
+              </label>
+              <div onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
+                {editingDetailsInline ? (
+                  <textarea
+                    value={inlineDetailsValue}
+                    onChange={(e) => {
+                      setInlineDetailsValue(e.target.value);
+                    }}
+                    onBlur={() => {
+                      onChangeEditDetails(inlineDetailsValue);
+                      setEditingDetailsInline(false);
+                    }}
+                    autoFocus
+                    style={{
+                      width: '100%',
+                      padding: spacing.small,
+                      fontFamily: typography.primaryFont,
+                      border: 'none',
+                      backgroundColor: detailsBoxStyle.backgroundColor,
+                      resize: 'none',
+                      outline: 'none'
+                    }}
+                  />
+                ) : (
+                  <span>{area.details || 'Klicka för att redigera detaljer'}</span>
+                )}
+              </div>
+            </div>
           </div>
           <div style={{ marginTop: 'auto' }}>
             <div style={{ marginTop: spacing.small }}>
