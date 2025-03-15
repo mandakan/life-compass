@@ -289,6 +289,7 @@ const CreateLifeCompass: React.FC = () => {
                 onCancelEdit={handleCancelEdit}
                 onEdit={handleEditLifeArea}
                 onRemove={handleRemoveLifeArea}
+                existingNames={lifeAreas.map(a => a.name)}
                 style={themedCardStyle}
               />
             </div>
@@ -321,6 +322,7 @@ const CreateLifeCompass: React.FC = () => {
                 onCancelEdit={handleCancelEdit}
                 onEdit={handleEditLifeArea}
                 onRemove={handleRemoveLifeArea}
+                existingNames={lifeAreas.map(a => a.name)}
                 style={themedCardStyle}
               />
             </div>
