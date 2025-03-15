@@ -465,9 +465,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               </div>
             )}
             <div style={{ marginBottom: spacing.small }}>
-              <label style={{ fontFamily: typography.primaryFont, display: 'block', marginBottom: spacing.small }}>
-                Detaljer:
-              </label>
               <div onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
                 {editingDetailsInline ? (
                   <textarea
