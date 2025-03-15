@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   colors,
   spacing,
@@ -105,8 +105,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   // Local state for inline editing of details when not in edit mode.
   const [editingDetailsInline, setEditingDetailsInline] = useState(false);
   const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);
-  // Removed the useEffect that resets inlineDetailsValue on area.details change
-  // to allow persistence of user edits.
+  // Create a ref for the inline editing textarea.
+  const inlineDetailsRef = useRef<HTMLTextAreaElement>(null);
+
+  // When entering inline edit mode, focus the textarea and place the caret at the end.
+  useEffect(() => {
+    if (editingDetailsInline && inlineDetailsRef.current) {
+      inlineDetailsRef.current.focus();
+      const len = inlineDetailsValue.length;
+      inlineDetailsRef.current.setSelectionRange(len, len);
+    }
+  }, [editingDetailsInline, inlineDetailsValue]);
 
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
@@ -469,6 +478,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <div onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
                 {editingDetailsInline ? (
                   <textarea
+                    ref={inlineDetailsRef}
                     value={inlineDetailsValue}
                     onChange={(e) => {
                       setInlineDetailsValue(e.target.value);
