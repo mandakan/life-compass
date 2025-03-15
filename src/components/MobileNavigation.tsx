@@ -133,20 +133,6 @@ const MobileNavigation: React.FC = () => {
             Skapa Livskompass
           </Link>
           <Link
-            to="/about"
-            onClick={() => setOpen(false)}
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
-            Om
-          </Link>
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
-            Kontakt
-          </Link>
-          <Link
             to="/design-principles"
             onClick={() => setOpen(false)}
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
