@@ -3,7 +3,7 @@ import { colors, spacing, borderRadius, callouts } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 interface CalloutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onDismiss?: () => void;
 }
 
@@ -39,7 +39,10 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
 
   return (
     <div style={calloutStyle}>
-      <span>{children}</span>
+      <span>
+        {children ||
+          "Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick."}
+      </span>
       {onDismiss && (
         <button
           onClick={onDismiss}
