@@ -226,7 +226,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Viktighet (1-10):
+              Viktighet
               <input
                 type="range"
                 value={editImportance}
@@ -251,7 +251,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Tillfredsställelse (1-10):
+              Tillfredsställelse
               <input
                 type="range"
                 value={editSatisfaction}
@@ -376,7 +376,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           )}
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Viktighet (1-10):
+              Viktighet
               <input
                 type="range"
                 value={area.importance}
@@ -398,7 +398,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label>
-              Tillfredsställelse (1-10):
+              Tillfredsställelse
               <input
                 type="range"
                 value={area.satisfaction}
