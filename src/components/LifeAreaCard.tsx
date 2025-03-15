@@ -116,6 +116,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         detailsRef.current &&
         !detailsRef.current.contains(event.target as Node)
       ) {
+        console.log('Saving inline details:', inlineDetailsValue);
         onChangeEditDetails(inlineDetailsValue);
         setEditingDetailsInline(false);
       }
@@ -494,6 +495,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       setInlineDetailsValue(e.target.value);
                     }}
                     onBlur={() => {
+                      console.log('Saving inline details:', inlineDetailsValue);
                       onChangeEditDetails(inlineDetailsValue);
                       setEditingDetailsInline(false);
                     }}
