@@ -229,7 +229,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     borderRadius: borderRadius.small,
     cursor: 'text',
     fontFamily: typography.primaryFont,
-    minHeight: '40px',
+    minHeight: '80px',
   };
 
   if (isEditing) {
