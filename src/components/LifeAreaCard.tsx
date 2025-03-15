@@ -359,7 +359,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div style={{ position: 'absolute', top: spacing.small, right: spacing.small, cursor: 'grab', opacity: 0.9 }} role="img" aria-label="Drag to reorder life area">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
             <title>Drag to reorder life area</title>
-            <path d="M2 12.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0-7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+            <circle cx="4" cy="3" r="1.5"/>
+            <circle cx="12" cy="3" r="1.5"/>
+            <circle cx="4" cy="8" r="1.5"/>
+            <circle cx="12" cy="8" r="1.5"/>
+            <circle cx="4" cy="13" r="1.5"/>
+            <circle cx="12" cy="13" r="1.5"/>
           </svg>
         </div>
         <div>
