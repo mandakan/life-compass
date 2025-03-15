@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
+import WarningModal from '../components/WarningModal';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 
@@ -71,6 +72,9 @@ const CreateLifeCompass: React.FC = () => {
   const [editDetails, setEditDetails] = useState('');
   const [editImportance, setEditImportance] = useState<number>(5);
   const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
+  
+  const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
+  const [showWarningModal, setShowWarningModal] = useState(false);
 
   // Define a universal button style based on theme.
   const buttonStyle: React.CSSProperties = {
@@ -138,12 +142,9 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleEditLifeArea = (area: LifeArea) => {
     if (editingAreaId && editingAreaId !== area.id) {
-      const confirmSwitch = window.confirm(
-        "Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
-      );
-      if (!confirmSwitch) {
-        return;
-      }
+      setPendingEdit(area);
+      setShowWarningModal(true);
+      return;
     }
     setEditingAreaId(area.id);
     setEditName(area.name);
@@ -152,6 +153,25 @@ const CreateLifeCompass: React.FC = () => {
     setEditImportance(area.importance);
     setEditSatisfaction(area.satisfaction);
     setError('');
+  };
+
+  const handleModalConfirm = () => {
+    if (pendingEdit) {
+      setEditingAreaId(pendingEdit.id);
+      setEditName(pendingEdit.name);
+      setEditDescription(pendingEdit.description);
+      setEditDetails(pendingEdit.details);
+      setEditImportance(pendingEdit.importance);
+      setEditSatisfaction(pendingEdit.satisfaction);
+    }
+    setPendingEdit(null);
+    setShowWarningModal(false);
+    setError('');
+  };
+
+  const handleModalCancel = () => {
+    setPendingEdit(null);
+    setShowWarningModal(false);
   };
 
   const handleSaveEditLifeArea = () => {
@@ -337,6 +357,12 @@ const CreateLifeCompass: React.FC = () => {
           ))}
         </div>
       )}
+      <WarningModal
+        visible={showWarningModal}
+        message="Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
+        onConfirm={handleModalConfirm}
+        onCancel={handleModalCancel}
+      />
     </div>
   );
 };
