@@ -74,8 +74,7 @@ function DesignPrinciplesDemo() {
   };
 
   const sliderStyle: React.CSSProperties = {
-    width: '100%',
-    maxWidth: '300px',
+    width: '300px',
     margin: spacing.small,
   };
 
@@ -340,6 +339,21 @@ function DesignPrinciplesDemo() {
           onChange={(newValue) => setSliderValue(newValue)}
           min={1}
           max={10}
+          width="300px"
+        />
+        <p>Slider Value: {sliderValue}</p>
+      </div>
+      {/* Default Slider Example */}
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+        <h3>Default Slider Example</h3>
+        <input 
+          type="range" 
+          value={sliderValue} 
+          min={1}
+          max={10}
+          step={1}
+          onChange={e => setSliderValue(Number(e.target.value))}
+          style={sliderStyle}
         />
         <p>Slider Value: {sliderValue}</p>
       </div>
