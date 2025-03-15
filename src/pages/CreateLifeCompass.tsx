@@ -409,7 +409,7 @@ const CreateLifeCompass: React.FC = () => {
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
       {showRadar ? (
-        <div style={{ marginTop: spacing.medium, width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div style={{ marginTop: spacing.medium, width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
           <RadarChart data={radarData} width="100%" aspect={1} />
         </div>
       ) : isDesktop ? (
