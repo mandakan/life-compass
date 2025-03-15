@@ -1,5 +1,6 @@
 import React from 'react';
 import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import { useTheme } from '../context/ThemeContext';
 
 interface WarningModalProps {
   visible: boolean;
@@ -10,6 +11,11 @@ interface WarningModalProps {
 
 const WarningModal: React.FC<WarningModalProps> = ({ visible, message, onConfirm, onCancel }) => {
   if (!visible) return null;
+
+  const { theme } = useTheme();
+
+  const background = theme === 'light' ? colors.light.background : colors.dark.background;
+  const text = theme === 'light' ? colors.light.text : colors.dark.text;
 
   const overlayStyle: React.CSSProperties = {
     position: 'fixed',
@@ -25,8 +31,8 @@ const WarningModal: React.FC<WarningModalProps> = ({ visible, message, onConfirm
   };
 
   const modalStyle: React.CSSProperties = {
-    backgroundColor: colors.light.background,
-    color: colors.light.text,
+    backgroundColor: background,
+    color: text,
     padding: spacing.medium,
     borderRadius: borderRadius.medium || '8px',
     minWidth: '300px',
