@@ -137,8 +137,13 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   const handleEditLifeArea = (area: LifeArea) => {
-    if (error !== '' && editingAreaId !== area.id) {
-      return;
+    if (editingAreaId && editingAreaId !== area.id) {
+      const confirmSwitch = window.confirm(
+        "Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
+      );
+      if (!confirmSwitch) {
+        return;
+      }
     }
     setEditingAreaId(area.id);
     setEditName(area.name);
