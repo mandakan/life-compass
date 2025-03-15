@@ -376,8 +376,6 @@ const CreateLifeCompass: React.FC = () => {
             return (
               <div
                 key={area.id}
-                draggable={editingAreaId === area.id ? false : true}
-                onDragStart={handleDragStart(index)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
                 onDragLeave={() => setDragOverIndex(null)}
@@ -404,6 +402,10 @@ const CreateLifeCompass: React.FC = () => {
                   existingNames={lifeAreas.map(a => a.name)}
                   style={themedCardStyle}
                   onAutoUpdateRating={handleAutoUpdateRating}
+                  dragHandle={{
+                    draggable: editingAreaId === area.id ? false : true,
+                    onDragStart: handleDragStart(index)
+                  }}
                 />
               </div>
             );
@@ -419,8 +421,6 @@ const CreateLifeCompass: React.FC = () => {
             return (
               <div
                 key={area.id}
-                draggable={editingAreaId === area.id ? false : true}
-                onDragStart={handleDragStart(index)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
                 onDragLeave={() => setDragOverIndex(null)}
@@ -447,6 +447,10 @@ const CreateLifeCompass: React.FC = () => {
                   existingNames={lifeAreas.map(a => a.name)}
                   style={themedCardStyle}
                   onAutoUpdateRating={handleAutoUpdateRating}
+                  dragHandle={{
+                    draggable: editingAreaId === area.id ? false : true,
+                    onDragStart: handleDragStart(index)
+                  }}
                 />
               </div>
             );

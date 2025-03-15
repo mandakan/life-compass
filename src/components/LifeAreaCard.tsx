@@ -31,6 +31,7 @@ export interface LifeAreaCardProps {
   existingNames: string[];
   style?: React.CSSProperties;
   onAutoUpdateRating?: (field: 'importance' | 'satisfaction', newValue: number, area: LifeArea) => void;
+  dragHandle?: React.HTMLAttributes<HTMLDivElement>;
 }
 
 const defaultCardStyle: React.CSSProperties = {
@@ -73,6 +74,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   existingNames = [],
   style,
   onAutoUpdateRating,
+  dragHandle,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
   const { theme } = useTheme();
@@ -356,7 +358,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   } else {
     return (
       <div style={combinedStyle}>
-        <div style={{ position: 'absolute', top: spacing.small, right: spacing.small, cursor: 'grab', opacity: 0.9 }} role="img" aria-label="Drag to reorder life area">
+        <div
+          style={{ position: 'absolute', top: spacing.small, right: spacing.small, cursor: 'grab', opacity: 0.9 }}
+          role="img"
+          aria-label="Drag to reorder life area"
+          {...(dragHandle || {})}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
             <title>Drag to reorder life area</title>
             <circle cx="4" cy="3" r="1.5"/>
