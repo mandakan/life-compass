@@ -106,6 +106,24 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
   };
 
+  // Compute dynamic style for the name input to provide immediate visual feedback
+  const nameInputStyle: React.CSSProperties = {
+    ...inputStyle,
+    border: `1px solid ${
+      isEditing
+        ? (existingNames.includes(editName) && editName !== area.name
+            ? 'red'
+            : editName !== area.name
+            ? 'green'
+            : theme === 'light'
+            ? colors.neutral[400]
+            : colors.neutral[600])
+        : theme === 'light'
+        ? colors.neutral[400]
+        : colors.neutral[600]
+    }`,
+  };
+
   // Define action button style for edit and delete buttons
   const actionButtonStyle: React.CSSProperties = {
     display: 'flex',
@@ -136,7 +154,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 onChange={e => onChangeEditName(e.target.value)}
                 placeholder="Ange livsområdesnamn"
                 autoFocus
-                style={inputStyle}
+                style={nameInputStyle}
               />
             </label>
             {isDuplicate && (
