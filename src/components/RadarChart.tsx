@@ -111,9 +111,9 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
           }}
         >
           <p><strong>{label}</strong></p>
-          <p>Importance: {dataPoint.importance}</p>
-          <p>Satisfaction: {dataPoint.satisfaction}</p>
-          <p>Description: {dataPoint.description}</p>
+          <p>Betydelse: {dataPoint.importance}</p>
+          <p>Tillfredsställelse: {dataPoint.satisfaction}</p>
+          <p>Beskrivning: {dataPoint.description}</p>
         </div>
       );
     }
@@ -137,7 +137,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
           axisLine={{ stroke: colors.neutral[300], strokeWidth: axisStrokeWidth }}
         />
         <Radar 
-          name="Importance" 
+          name="Betydelse" 
           dataKey="importance" 
           stroke={colors.primary} 
           fill={colors.primary} 
@@ -145,7 +145,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
           strokeWidth={radarStrokeWidth} 
         />
         <Radar 
-          name="Satisfaction" 
+          name="Tillfredsställelse" 
           dataKey="satisfaction" 
           stroke={colors.accent} 
           fill={colors.accent} 
