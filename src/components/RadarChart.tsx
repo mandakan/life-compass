@@ -10,6 +10,7 @@ import {
   Legend
 } from 'recharts';
 import { colors } from '../designTokens';
+import { useTheme } from '../context/ThemeContext';
 
 interface RadarChartData {
   area: string;
@@ -24,37 +25,53 @@ interface RadarChartProps {
   height?: number | string;
 }
 
-const renderTick = (props: any) => {
-  const { payload, x, y, textAnchor } = props;
-  return (
-    <text x={x} y={y} textAnchor={textAnchor} fill={colors.dark.text} fontSize={12}>
-      {payload.value}
-    </text>
-  );
-};
-
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    const dataPoint = payload[0].payload;
-    return (
-      <div style={{ backgroundColor: colors.light.background, border: `1px solid ${colors.neutral[400]}`, padding: 10 }}>
-        <p><strong>{label}</strong></p>
-        <p>Importance: {dataPoint.importance}</p>
-        <p>Satisfaction: {dataPoint.satisfaction}</p>
-        <p>Description: {dataPoint.description}</p>
-      </div>
-    );
-  }
-  return null;
-};
-
 const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 400 }) => {
+  const { theme: themeMode } = useTheme();
+  const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
+
+  const renderTick = (props: any) => {
+    const { payload, x, y, textAnchor } = props;
+    return (
+      <text
+        x={x}
+        y={y}
+        textAnchor={textAnchor}
+        fill={currentTheme.text}
+        fontSize={12}
+      >
+        {payload.value}
+      </text>
+    );
+  };
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      const dataPoint = payload[0].payload;
+      return (
+        <div
+          style={{
+            backgroundColor: currentTheme.background,
+            border: `1px solid ${colors.neutral[400]}`,
+            padding: 10,
+            color: currentTheme.text
+          }}
+        >
+          <p><strong>{label}</strong></p>
+          <p>Importance: {dataPoint.importance}</p>
+          <p>Satisfaction: {dataPoint.satisfaction}</p>
+          <p>Description: {dataPoint.description}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <ResponsiveContainer width={width} height={height}>
       <RechartsRadarChart outerRadius="70%" data={data}>
         <PolarGrid stroke={colors.neutral[300]} />
         <PolarAngleAxis dataKey="area" tick={renderTick} />
-        <PolarRadiusAxis angle={30} domain={[0, 10]} stroke={colors.dark.text} />
+        <PolarRadiusAxis angle={30} domain={[0, 10]} stroke={currentTheme.text} />
         <Radar 
           name="Importance" 
           dataKey="importance" 
