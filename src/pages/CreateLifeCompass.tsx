@@ -394,7 +394,11 @@ const CreateLifeCompass: React.FC = () => {
 
   return (
     <div
-      style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}
+      style={{
+        padding: spacing.medium,
+        paddingTop: !isDesktop ? `calc(${spacing.medium} + 60px)` : spacing.medium,
+        fontFamily: typography.primaryFont,
+      }}
     >
       {!storageAvailable && (
         <div
