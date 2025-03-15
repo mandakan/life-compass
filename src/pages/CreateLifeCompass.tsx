@@ -87,14 +87,22 @@ const CreateLifeCompass: React.FC = () => {
 
   // New effect for scroll restoration for the CreateLifeCompass page.
   useEffect(() => {
-    const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
-    window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
+    const savedScrollPosition = localStorage.getItem(
+      'createlifecompassScrollPosition',
+    );
+    window.scrollTo(
+      0,
+      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
+    );
   }, []);
 
   // Effect to continuously update scroll position in localStorage
   useEffect(() => {
     const handleScroll = () => {
-      localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
+      localStorage.setItem(
+        'createlifecompassScrollPosition',
+        window.scrollY.toString(),
+      );
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -402,7 +410,9 @@ const CreateLifeCompass: React.FC = () => {
     <div
       style={{
         padding: spacing.medium,
-        paddingTop: !isDesktop ? `calc(${spacing.medium} + 60px)` : spacing.medium,
+        paddingTop: !isDesktop
+          ? `calc(${spacing.medium} + 60px)`
+          : spacing.medium,
         fontFamily: typography.primaryFont,
       }}
     >
