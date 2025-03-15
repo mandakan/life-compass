@@ -150,8 +150,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
       aria-valuenow={value}
       aria-label="Custom slider"
     >
-      <div style={trackStyle} />
-      <div style={handleStyle}>
+      <div style={trackStyle} aria-hidden="true" />
+      <div style={handleStyle} aria-hidden="true">
         {value}
       </div>
     </div>
