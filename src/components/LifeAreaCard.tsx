@@ -284,7 +284,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   max={10}
                   step={1}
                   width="100%"
-                  height={50}
+                  height={40}
                 />
               </label>
             </div>
@@ -304,7 +304,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   max={10}
                   step={1}
                   width="100%"
-                  height={50}
+                  height={40}
                 />
               </label>
             </div>
@@ -398,8 +398,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 style={{
                   margin: 0,
                   fontFamily: typography.primaryFont,
-                  fontSize: '1.2rem',
-                  fontWeight: 500,
+                  fontSize: '1.1rem',
+                  fontWeight: 400,
                   color: theme === 'light' ? colors.primary : colors.accent,
                 }}
               >
@@ -475,11 +475,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   max={10}
                   step={1}
                   width="100%"
-                  height={50}
+                  height={40}
                 />
               </label>
             </div>
-            <div style={{ marginTop: spacing.small }}>
+            <div style={{ marginBottom: spacing.small }}>
               <label style={{ fontFamily: typography.primaryFont }}>
                 Tillfredsställelse
                 <CustomSlider
@@ -494,7 +494,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   max={10}
                   step={1}
                   width="100%"
-                  height={50}
+                  height={40}
                 />
               </label>
             </div>
