@@ -121,7 +121,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   };
 
   // Check for duplicate names excluding the current area's original name.
-  const isDuplicate = existingNames.includes(editName) && editName !== area.name;
+  const isDuplicate = (existingNames || []).includes(editName) && editName !== area.name;
 
   if (isEditing) {
     return (
