@@ -85,7 +85,7 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.change(secondNameInput, { target: { value: 'Unique Area' } });
     const secondSaveButtons = screen.getAllByRole('button', { name: /Spara/i });
     // Since the duplicate check should disable saving, expect the button to be disabled
-    expect(secondSaveButtons[0].disabled).toBe(true);
+    expect((secondSaveButtons[0] as HTMLButtonElement).disabled).toBe(true);
   });
 
   test('removes a life area after confirmation in the deletion modal', async () => {

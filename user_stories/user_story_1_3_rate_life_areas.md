@@ -1,7 +1,7 @@
 ---
 title: 'Rate Life Areas'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 
