@@ -112,11 +112,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   };
 
   // Extend combinedStyle to use flex layout for proper content arrangement
+  // and ensure the card expands to fill available space.
   const combinedStyle: React.CSSProperties = {
     ...themeCardStyle,
     ...style,
     display: 'flex',
     flexDirection: 'column',
+    flexGrow: 1,
   };
 
   // Determine popup width based on viewport width
