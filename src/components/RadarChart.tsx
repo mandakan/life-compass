@@ -36,15 +36,24 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
 
   const renderTick = (props: any) => {
     const { payload, x, y, textAnchor } = props;
+    const value = payload.value;
+    let lines = [value];
+    // For left- and right-most ticks (textAnchor "start" or "end"), split into two lines if necessary.
+    if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 5) {
+      const mid = Math.floor(value.length / 2);
+      let breakIndex = value.lastIndexOf(' ', mid);
+      if (breakIndex === -1) {
+        breakIndex = mid;
+      }
+      const firstLine = value.substring(0, breakIndex).trim();
+      const secondLine = value.substring(breakIndex).trim();
+      lines = [firstLine, secondLine];
+    }
     return (
-      <text
-        x={x}
-        y={y}
-        textAnchor={textAnchor}
-        fill={currentTheme.text}
-        fontSize={tickFontSize}
-      >
-        {payload.value}
+      <text x={x} y={y} textAnchor={textAnchor} fill={currentTheme.text} fontSize={tickFontSize}>
+        {lines.map((line, index) => (
+          <tspan key={index} x={x} dy={index === 0 ? 0 : "1.2em"}>{line}</tspan>
+        ))}
       </text>
     );
   };
