@@ -103,9 +103,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   // Local state for inline editing of details when not in edit mode.
   const [editingDetailsInline, setEditingDetailsInline] = useState(false);
   const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);
-  useEffect(() => {
-    setInlineDetailsValue(area.details);
-  }, [area.details]);
+  // Removed useEffect that reset inlineDetailsValue on area.details change,
+  // because it prevented the updated inline value from persisting.
 
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
@@ -489,7 +488,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     }}
                   />
                 ) : (
-                  <span>{inlineDetailsValue || 'Klicka för att redigera detaljer'}</span>
+                  <span>{area.details || 'Klicka för att redigera detaljer'}</span>
                 )}
               </div>
             </div>
