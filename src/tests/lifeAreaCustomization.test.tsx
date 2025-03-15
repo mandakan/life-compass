@@ -2,7 +2,7 @@ import React from 'react';
 import { vi, describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import CreateLifeCompass from '../pages/CreateLifeCompass';
+import CreateLifeCompass from '../pages/CreateLifeCompass.tsx';
 import { ThemeProvider } from '../context/ThemeContext';
 
 // Mock getPredefinedLifeAreas for predictability using vi instead of jest

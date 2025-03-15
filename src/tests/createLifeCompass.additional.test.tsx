@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import CreateLifeCompass from '../pages/CreateLifeCompass';
+import CreateLifeCompass from '../pages/CreateLifeCompass.tsx';
 import { ThemeProvider } from '../context/ThemeContext';
 
 describe('CreateLifeCompass additional tests for User Story 1', () => {
