@@ -35,6 +35,13 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
   const tickFontSize = !isMobile ? (scaleFactor > 1.5 ? 20 : 18) : (scaleFactor > 1.5 ? 16 : 12);
   const radarStrokeWidth = !isMobile ? (scaleFactor > 1.5 ? 4 : 3) : (scaleFactor > 1.5 ? 3 : 2);
 
+  // Sort the data so the areas with the longest names are at the top and bottom.
+  const sortedData = React.useMemo(() => {
+    if (data.length < 2) return data;
+    const sorted = [...data].sort((a, b) => b.area.length - a.area.length);
+    return [sorted[0], ...sorted.slice(2), sorted[1]];
+  }, [data]);
+
   const renderTick = (props: any) => {
     const { payload, x, y, textAnchor } = props;
     const value = payload.value;
@@ -83,7 +90,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
 
   return (
     <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
-      <RechartsRadarChart outerRadius="70%" data={data}>
+      <RechartsRadarChart outerRadius="70%" data={sortedData}>
         <PolarGrid stroke={colors.neutral[300]} />
         <PolarAngleAxis dataKey="area" tick={renderTick} />
         <PolarRadiusAxis angle={30} domain={[0, 10]} tick={false} axisLine={false} />
