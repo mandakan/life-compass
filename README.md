@@ -119,12 +119,20 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ## 🌟 Phase 3: Enhanced Functionality & Additional Features
 
-> Goal: Elevate the application with advanced features including improved navigation, onboarding, and robust export/import capabilities.
+> Goal: Elevate the application with advanced features including improved navigation, onboarding, sorting, dark mode support, and robust export/import capabilities with appropriate warnings.
 
+### UI Enhancements
 - [ ] User Story 5.4: Optimize Navigation and Usability
+- [ ] User Story 5.6: Dark Mode Support
+
+### Additional Life Compass Features
 - [ ] User Story 1.7: Onboarding Tutorial
+- [ ] User Story 2.2: Sort Life Areas by Gap
+
+### Data Export/Import & Warnings
 - [ ] User Story 9.1: Export JSON
 - [ ] User Story 9.4: Import JSON
+- [ ] User Story 9.5: Warn on Overwrite
 
 ---
 
