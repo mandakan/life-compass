@@ -28,9 +28,9 @@ The user should see a dynamic and intuitive graphical representation of their Li
 
 ## ❓ Refinement Questions
 
-- Should we offer alternative visualization options (e.g., bar chart, line graph) to complement the radar chart?
-- How should the visualization adapt for users with color vision deficiencies or other visual impairments? (e.g., use of color adjustments or patterns)
-- What level of detail should be shown when a user hovers over or focuses on a specific data point in the radar chart?
-- In scenarios with incomplete data, what fallback visualization or messaging should be displayed?
-- What performance considerations should be taken into account for real-time updates, especially on lower-powered devices?
-- Should the exported image or PDF include additional contextual information (e.g., legends, annotations)?
+- Should we offer alternative visualization options (e.g., bar chart, line graph) to complement the radar chart? Not at this point but maybe later. Keep this in mind.
+- How should the visualization adapt for users with color vision deficiencies or other visual impairments? (e.g., use of color adjustments or patterns). According to accessability best practices.
+- What level of detail should be shown when a user hovers over or focuses on a specific data point in the radar chart? Importance, satisfaction and detail.
+- In scenarios with incomplete data, what fallback visualization or messaging should be displayed? Something simple.
+- What performance considerations should be taken into account for real-time updates, especially on lower-powered devices? None at this point.
+- Should the exported image or PDF include additional contextual information (e.g., legends, annotations)? Yes please.
