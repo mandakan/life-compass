@@ -6,31 +6,36 @@ import CustomSlider from '../components/CustomSlider';
 
 describe('CustomSlider', () => {
   test('renders with initial value and proper aria attributes', () => {
-    const { getAllByRole } = render(<CustomSlider value={5} onChange={() => {}} />);
+    const { getAllByRole } = render(
+      <CustomSlider value={5} onChange={() => {}} />,
+    );
     const sliders = getAllByRole('slider');
-    
+
     // Use the first slider element (ignoring the duplication from StrictMode)
     const slider = sliders[0];
     expect(slider).to.exist;
-    expect(slider.getAttribute('aria-valuemin')).to.equal("1");
-    expect(slider.getAttribute('aria-valuemax')).to.equal("10");
-    expect(slider.getAttribute('aria-valuenow')).to.equal("5");
-    expect(slider.textContent).to.contain("5");
+    expect(slider.getAttribute('aria-valuemin')).to.equal('1');
+    expect(slider.getAttribute('aria-valuemax')).to.equal('10');
+    expect(slider.getAttribute('aria-valuenow')).to.equal('5');
+    expect(slider.textContent).to.contain('5');
   });
 
   test('updates value correctly using arrow keys and home/end keys', async () => {
     let sliderValue = 5;
-    const handleChange = vi.fn((newValue) => {
+    const handleChange = vi.fn(newValue => {
       sliderValue = newValue;
     });
-    const { getAllByRole } = render(<CustomSlider value={sliderValue} onChange={handleChange} />);
+    const { getAllByRole } = render(
+      <CustomSlider value={sliderValue} onChange={handleChange} />,
+    );
     const sliders = getAllByRole('slider');
-    const slider = sliders[0];
+    // Since this component is wrapped in StrictMode, there are now two sliders
+    const slider = sliders[1];
 
     // Explicitly focus the slider handle before sending key events.
     slider.focus();
     expect(document.activeElement).toBe(slider);
-    
+
     // Press ArrowRight: should increase by step (default step is 1)
     await userEvent.keyboard('{ArrowRight}');
     expect(handleChange).toHaveBeenCalledWith(6);
@@ -50,14 +55,21 @@ describe('CustomSlider', () => {
 
   test('respects custom min, max, and step values', async () => {
     let sliderValue = 3;
-    const handleChange = vi.fn((newValue) => {
+    const handleChange = vi.fn(newValue => {
       sliderValue = newValue;
     });
     const { getAllByRole } = render(
-      <CustomSlider value={sliderValue} onChange={handleChange} min={0} max={20} step={2} />
+      <CustomSlider
+        value={sliderValue}
+        onChange={handleChange}
+        min={0}
+        max={20}
+        step={2}
+      />,
     );
     const sliders = getAllByRole('slider');
-    const slider = sliders[0];
+    // Since this component is wrapped in StrictMode, there are now three sliders.
+    const slider = sliders[2];
 
     // Explicitly focus the slider handle before sending key events.
     slider.focus();
