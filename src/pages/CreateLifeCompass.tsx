@@ -85,6 +85,15 @@ const CreateLifeCompass: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // New effect for scroll restoration for the CreateLifeCompass page.
+  useEffect(() => {
+    const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
+    window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
+    return () => {
+      localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
+    };
+  }, []);
+
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
   const [editDescription, setEditDescription] = useState('');
