@@ -286,6 +286,18 @@ const CreateLifeCompass: React.FC = () => {
     );
   };
 
+  // New inline details update handler
+  const handleInlineDetailsChange = (newDetails: string, areaToUpdate: LifeArea) => {
+    setLifeAreas(prevLifeAreas =>
+      prevLifeAreas.map(area => {
+        if (area.id === areaToUpdate.id) {
+          return { ...area, details: newDetails };
+        }
+        return area;
+      }),
+    );
+  };
+
   const themedCardStyle: React.CSSProperties = {
     border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
     padding: spacing.medium,
@@ -452,6 +464,7 @@ const CreateLifeCompass: React.FC = () => {
                     draggable: editingAreaId === area.id ? false : true,
                     onDragStart: handleDragStart(index),
                   }}
+                  onInlineDetailsChange={handleInlineDetailsChange}
                 />
               </div>
             );
@@ -497,6 +510,7 @@ const CreateLifeCompass: React.FC = () => {
                     draggable: editingAreaId === area.id ? false : true,
                     onDragStart: handleDragStart(index),
                   }}
+                  onInlineDetailsChange={handleInlineDetailsChange}
                 />
               </div>
             );

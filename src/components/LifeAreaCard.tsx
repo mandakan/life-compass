@@ -43,6 +43,7 @@ export interface LifeAreaCardProps {
     area: LifeArea,
   ) => void;
   dragHandle?: React.HTMLAttributes<HTMLDivElement>;
+  onInlineDetailsChange?: (val: string, area: LifeArea) => void;
 }
 
 const defaultCardStyle: React.CSSProperties = {
@@ -86,6 +87,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   style,
   onAutoUpdateRating,
   dragHandle,
+  onInlineDetailsChange,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
   const { theme } = useTheme();
@@ -103,8 +105,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   // Local state for inline editing of details when not in edit mode.
   const [editingDetailsInline, setEditingDetailsInline] = useState(false);
   const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);
-  // Removed useEffect that reset inlineDetailsValue on area.details change,
-  // because it prevented the updated inline value from persisting.
+  // Removed the useEffect that resets inlineDetailsValue on area.details change
+  // to allow persistence of user edits.
 
   // Create card style based on theme
   const themeCardStyle: React.CSSProperties = {
@@ -472,14 +474,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       setInlineDetailsValue(e.target.value);
                     }}
                     onBlur={() => {
-                      console.log('1. Saving inline details:', inlineDetailsValue);
-                      console.log('1. area.details:', area.details);
-                      onChangeEditDetails(inlineDetailsValue);
-                      console.log('2. Saving inline details:', inlineDetailsValue);
-                      console.log('2. area.details:', area.details);
+                      console.log('Saving inline details:', inlineDetailsValue);
+                      if (onInlineDetailsChange) {
+                        onInlineDetailsChange(inlineDetailsValue, area);
+                      } else {
+                        onChangeEditDetails(inlineDetailsValue);
+                      }
                       setEditingDetailsInline(false);
-                      console.log('3. Saving inline details:', inlineDetailsValue);
-                      console.log('3. area.details:', area.details);
                     }}
                     autoFocus
                     style={{
