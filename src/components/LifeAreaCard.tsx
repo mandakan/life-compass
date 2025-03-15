@@ -129,6 +129,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 type="text"
                 value={editName}
                 onChange={e => onChangeEditName(e.target.value)}
+                placeholder="Ange livsområdesnamn"
+                autoFocus
                 style={inputStyle}
               />
             </label>
