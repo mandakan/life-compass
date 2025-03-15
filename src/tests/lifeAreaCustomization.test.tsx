@@ -45,7 +45,8 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     // Choose first button that matches
     const addButton = addButtons[0];
     fireEvent.click(addButton);
-    expect(screen.getByRole('heading', { level: 4, name: /Nytt livsområde/i })).to.exist;
+    // The new life area card is in edit mode so we expect the input with title "Nytt livsområde"
+    expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
   });
 
   test('adds predefined life areas when "Lägg till fördefinierade områden" is clicked', async () => {
@@ -53,8 +54,8 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     const predefButtons = screen.getAllByRole('button', { name: /Lägg till fördefinierade områden/i });
     const addPredefButton = predefButtons[0];
     fireEvent.click(addPredefButton);
-    expect(await screen.findByText(/Area 1/i)).to.exist;
-    expect(await screen.findByText(/Area 2/i)).to.exist;
+    expect(await screen.findByText(/Area 1/i)).toBeTruthy();
+    expect(await screen.findByText(/Area 2/i)).toBeTruthy();
   });
 
   test('renames a life area and prevents duplicate names', async () => {
@@ -66,7 +67,7 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.change(firstNameInput, { target: { value: 'Unique Area' } });
     const saveButtons = screen.getAllByRole('button', { name: /Spara/i });
     fireEvent.click(saveButtons[0]);
-    expect(screen.getByRole('heading', { level: 4, name: /Unique Area/i })).to.exist;
+    expect(screen.getByRole('heading', { level: 4, name: /Unique Area/i })).toBeTruthy();
 
     // Add a second life area and try to rename to the same "Unique Area"
     fireEvent.click(addButtons[0]);
@@ -82,21 +83,21 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     renderComponent();
     const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
     fireEvent.click(addButtons[0]);
-    expect(screen.getByRole('heading', { level: 4, name: /Nytt livsområde/i })).to.exist;
+    expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
     // Click the "Ta bort" button. Use the role 'button' with accessible name "Ta bort".
     const removeButton = screen.getByRole('button', { name: /Ta bort/i });
     fireEvent.click(removeButton);
 
     // Check that the warning modal for deletion appears.
-    expect(screen.getByText(/Är du säker på att du vill ta bort detta livsområde/i)).to.exist;
+    expect(screen.getByText(/Är du säker på att du vill ta bort detta livsområde/i)).toBeTruthy();
 
     // Confirm deletion by clicking "Fortsätt"
     const confirmButton = screen.getByRole('button', { name: /Fortsätt/i });
     fireEvent.click(confirmButton);
 
     await waitFor(() => {
-      expect(screen.queryByRole('heading', { level: 4, name: /Nytt livsområde/i })).toBeNull();
+      expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
     });
   });
 
@@ -104,22 +105,23 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     renderComponent();
     const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
     fireEvent.click(addButtons[0]);
-    expect(screen.getByRole('heading', { level: 4, name: /Nytt livsområde/i })).to.exist;
+    expect(screen.getByDisplayValue(/Nytt livsområde/i)).toBeTruthy();
 
     // Click "Återställ till standard" using button role.
     const resetButtons = screen.getAllByRole('button', { name: /Återställ till standard/i });
     fireEvent.click(resetButtons[0]);
 
     // Check that the reset modal appears.
-    expect(screen.getByText(/Är du säker på att du vill återställa livsområden till standard/i)).to.exist;
+    expect(screen.getByText(/Är du säker på att du vill återställa livsområden till standard/i)).toBeTruthy();
 
     // Confirm reset by clicking "Fortsätt"
     const confirmResetButton = screen.getByRole('button', { name: /Fortsätt/i });
     fireEvent.click(confirmResetButton);
 
-    expect(await screen.findByText(/Area 1/i)).to.exist;
-    expect(await screen.findByText(/Area 2/i)).to.exist;
-    expect(screen.queryByRole('heading', { level: 4, name: /Nytt livsområde/i })).toBeNull();
+    expect(await screen.findByText(/Area 1/i)).toBeTruthy();
+    expect(await screen.findByText(/Area 2/i)).toBeTruthy();
+    // Ensure the custom unsaved life area is removed
+    expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
   });
 
   test('reorders life areas using drag and drop simulation', async () => {
@@ -127,7 +129,13 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     const addButtons = screen.getAllByRole('button', { name: /Lägg till livsområde/i });
     // Add two life areas.
     fireEvent.click(addButtons[0]);
+    // Save the first life area
+    const saveButtons = screen.getAllByRole('button', { name: /Spara/i });
+    fireEvent.click(saveButtons[0]);
     fireEvent.click(addButtons[0]);
+    // Save the second life area
+    const saveButtonsAfter = screen.getAllByRole('button', { name: /Spara/i });
+    fireEvent.click(saveButtonsAfter[0]);
 
     // Get headings of life areas (assuming h4 elements).
     const headings = screen.getAllByRole('heading', { level: 4 });
