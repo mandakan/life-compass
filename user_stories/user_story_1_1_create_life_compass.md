@@ -1,7 +1,7 @@
 ---
 title: 'Create Life Compass'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

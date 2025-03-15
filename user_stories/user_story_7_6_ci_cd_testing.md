@@ -1,7 +1,7 @@
 ---
 title: 'Integrate Testing in CI/CD Pipeline'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

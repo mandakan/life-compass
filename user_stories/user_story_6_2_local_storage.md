@@ -1,7 +1,7 @@
 ---
 title: 'Implement Local Storage for Data Persistence'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

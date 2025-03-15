@@ -1,7 +1,7 @@
 ---
 title: 'Implement Mobile-First Layout'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

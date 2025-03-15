@@ -1,7 +1,7 @@
 ---
 title: 'Define Tech Stack and Frameworks'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

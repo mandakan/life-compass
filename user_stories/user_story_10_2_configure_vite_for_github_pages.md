@@ -1,7 +1,7 @@
 ---
 title: 'Configure Vite for GitHub Pages'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

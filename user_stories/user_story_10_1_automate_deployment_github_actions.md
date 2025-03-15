@@ -1,7 +1,7 @@
 ---
 title: 'Automate Deployment with GitHub Actions'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 
