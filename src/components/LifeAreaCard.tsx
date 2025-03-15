@@ -267,45 +267,47 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
           </div>
-          <div style={{ marginTop: spacing.small }}>
-            <label style={{ fontFamily: typography.primaryFont }}>
-              Betydelse
-              <CustomSlider
-                value={editImportance}
-                onChange={newValue => {
-                  onChangeEditImportance(newValue);
-                  triggerHighlightImportance();
-                  if (onAutoUpdateRating) {
-                    onAutoUpdateRating('importance', newValue, area);
-                  }
-                }}
-                min={1}
-                max={10}
-                step={1}
-                width="100%"
-                height={50}
-              />
-            </label>
-          </div>
-          <div style={{ marginTop: spacing.small }}>
-            <label style={{ fontFamily: typography.primaryFont }}>
-              Tillfredsställelse
-              <CustomSlider
-                value={editSatisfaction}
-                onChange={newValue => {
-                  onChangeEditSatisfaction(newValue);
-                  triggerHighlightSatisfaction();
-                  if (onAutoUpdateRating) {
-                    onAutoUpdateRating('satisfaction', newValue, area);
-                  }
-                }}
-                min={1}
-                max={10}
-                step={1}
-                width="100%"
-                height={50}
-              />
-            </label>
+          <div style={{ marginTop: 'auto' }}>
+            <div style={{ marginTop: spacing.small }}>
+              <label style={{ fontFamily: typography.primaryFont }}>
+                Betydelse
+                <CustomSlider
+                  value={editImportance}
+                  onChange={newValue => {
+                    onChangeEditImportance(newValue);
+                    triggerHighlightImportance();
+                    if (onAutoUpdateRating) {
+                      onAutoUpdateRating('importance', newValue, area);
+                    }
+                  }}
+                  min={1}
+                  max={10}
+                  step={1}
+                  width="100%"
+                  height={50}
+                />
+              </label>
+            </div>
+            <div style={{ marginTop: spacing.small }}>
+              <label style={{ fontFamily: typography.primaryFont }}>
+                Tillfredsställelse
+                <CustomSlider
+                  value={editSatisfaction}
+                  onChange={newValue => {
+                    onChangeEditSatisfaction(newValue);
+                    triggerHighlightSatisfaction();
+                    if (onAutoUpdateRating) {
+                      onAutoUpdateRating('satisfaction', newValue, area);
+                    }
+                  }}
+                  min={1}
+                  max={10}
+                  step={1}
+                  width="100%"
+                  height={50}
+                />
+              </label>
+            </div>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
@@ -371,119 +373,125 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <circle cx="12" cy="13" r="1.5" />
           </svg>
         </div>
-        <div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginBottom: spacing.small,
-            }}
-          >
-            <button
-              onClick={() => setShowDescription(true)}
-              style={{
-                marginRight: spacing.small,
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-              aria-label="Visa beskrivning"
-            >
-              ℹ️
-            </button>
-            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>
-              {area.name}
-            </h4>
-          </div>
-          {showDescription && (
+        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <div>
             <div
               style={{
-                position: 'absolute',
-                top: '10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: popupWidth,
-                maxWidth: 'calc(100vw - 20px)',
-                backgroundColor:
-                  theme === 'light'
-                    ? colors.light.background
-                    : colors.dark.background,
-                color: theme === 'light' ? colors.light.text : colors.dark.text,
-                border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
-                borderRadius: borderRadius.small,
-                padding: spacing.medium,
-                zIndex: 10,
-                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
-                fontFamily: typography.primaryFont,
+                display: 'flex',
+                alignItems: 'center',
+                marginBottom: spacing.small,
               }}
-              tabIndex={0}
-              onBlur={() => setShowDescription(false)}
             >
-              <p style={{ margin: 0, fontFamily: typography.primaryFont }}>
-                {area.description}
-              </p>
               <button
-                onClick={() => setShowDescription(false)}
+                onClick={() => setShowDescription(true)}
                 style={{
-                  marginTop: spacing.small,
+                  marginRight: spacing.small,
                   backgroundColor: 'transparent',
                   border: 'none',
                   cursor: 'pointer',
+                }}
+                aria-label="Visa beskrivning"
+              >
+                ℹ️
+              </button>
+              <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>
+                {area.name}
+              </h4>
+            </div>
+            {showDescription && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: popupWidth,
+                  maxWidth: 'calc(100vw - 20px)',
+                  backgroundColor:
+                    theme === 'light'
+                      ? colors.light.background
+                      : colors.dark.background,
+                  color: theme === 'light' ? colors.light.text : colors.dark.text,
+                  border: `2px solid ${
+                    theme === 'light' ? colors.primary : colors.accent
+                  }`,
+                  borderRadius: borderRadius.small,
+                  padding: spacing.medium,
+                  zIndex: 10,
+                  boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+                  fontFamily: typography.primaryFont,
+                }}
+                tabIndex={0}
+                onBlur={() => setShowDescription(false)}
+              >
+                <p style={{ margin: 0, fontFamily: typography.primaryFont }}>
+                  {area.description}
+                </p>
+                <button
+                  onClick={() => setShowDescription(false)}
+                  style={{
+                    marginTop: spacing.small,
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: typography.primaryFont,
+                  }}
+                >
+                  Stäng
+                </button>
+              </div>
+            )}
+            {area.details && (
+              <p
+                style={{
+                  margin: 0,
+                  marginBottom: spacing.small,
                   fontFamily: typography.primaryFont,
                 }}
               >
-                Stäng
-              </button>
-            </div>
-          )}
-          {area.details && (
-            <p
-              style={{
-                margin: 0,
-                marginBottom: spacing.small,
-                fontFamily: typography.primaryFont,
-              }}
-            >
-              Detaljer: {area.details}
-            </p>
-          )}
-          <div style={{ marginTop: spacing.small }}>
-            <label style={{ fontFamily: typography.primaryFont }}>
-              Betydelse
-              <CustomSlider
-                value={area.importance}
-                onChange={newValue => {
-                  if (onAutoUpdateRating) {
-                    onAutoUpdateRating('importance', newValue, area);
-                  }
-                  triggerHighlightImportance();
-                }}
-                min={1}
-                max={10}
-                step={1}
-                width="100%"
-                height={50}
-              />
-            </label>
+                Detaljer: {area.details}
+              </p>
+            )}
           </div>
-          <div style={{ marginTop: spacing.small }}>
-            <label style={{ fontFamily: typography.primaryFont }}>
-              Tillfredsställelse
-              <CustomSlider
-                value={area.satisfaction}
-                onChange={newValue => {
-                  if (onAutoUpdateRating) {
-                    onAutoUpdateRating('satisfaction', newValue, area);
-                  }
-                  triggerHighlightSatisfaction();
-                }}
-                min={1}
-                max={10}
-                step={1}
-                width="100%"
-                height={50}
-              />
-            </label>
+          <div style={{ marginTop: 'auto' }}>
+            <div style={{ marginTop: spacing.small }}>
+              <label style={{ fontFamily: typography.primaryFont }}>
+                Betydelse
+                <CustomSlider
+                  value={area.importance}
+                  onChange={newValue => {
+                    if (onAutoUpdateRating) {
+                      onAutoUpdateRating('importance', newValue, area);
+                    }
+                    triggerHighlightImportance();
+                  }}
+                  min={1}
+                  max={10}
+                  step={1}
+                  width="100%"
+                  height={50}
+                />
+              </label>
+            </div>
+            <div style={{ marginTop: spacing.small }}>
+              <label style={{ fontFamily: typography.primaryFont }}>
+                Tillfredsställelse
+                <CustomSlider
+                  value={area.satisfaction}
+                  onChange={newValue => {
+                    if (onAutoUpdateRating) {
+                      onAutoUpdateRating('satisfaction', newValue, area);
+                    }
+                    triggerHighlightSatisfaction();
+                  }}
+                  min={1}
+                  max={10}
+                  step={1}
+                  width="100%"
+                  height={50}
+                />
+              </label>
+            </div>
           </div>
         </div>
         <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
