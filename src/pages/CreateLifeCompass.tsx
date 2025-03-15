@@ -282,13 +282,17 @@ const CreateLifeCompass: React.FC = () => {
   const handleDragStart =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       setDraggedIndex(index);
-      event.dataTransfer.effectAllowed = 'move';
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = 'move';
+      }
     };
 
   const handleDragOver =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+      }
       setDragOverIndex(index);
     };
 
