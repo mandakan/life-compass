@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import { colors, spacing, borderRadius, transitions, typography } from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import WarningModal from '../components/WarningModal';
 import Callout from '../components/Callout';
@@ -98,6 +98,7 @@ const CreateLifeCompass: React.FC = () => {
     transition: `background-color ${transitions.fast}`,
     marginBottom: spacing.medium,
     marginRight: spacing.medium,
+    fontFamily: typography.primaryFont,
   };
 
   const handleAddNewLifeArea = () => {
@@ -291,6 +292,7 @@ const CreateLifeCompass: React.FC = () => {
     width: '100%',
     backgroundColor:
       theme === 'light' ? colors.light.background : colors.dark.background,
+    fontFamily: typography.primaryFont,
   };
 
   // Drag and Drop handlers
@@ -325,11 +327,10 @@ const CreateLifeCompass: React.FC = () => {
     };
 
   return (
-    <div style={{ padding: spacing.medium }}>
-      <h2>Skapa Livskompass</h2>
-      <p style={{ marginBottom: spacing.medium }}>
-        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller
-        tryck på knappen nedan för att lägga till de fördefinierade områdena.
+    <div style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}>
+      <h2 style={{ fontFamily: typography.primaryFont }}>Skapa Livskompass</h2>
+      <p style={{ marginBottom: spacing.medium, fontFamily: typography.primaryFont }}>
+        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller tryck på knappen nedan för att lägga till de fördefinierade områdena.
       </p>
       {!storageAvailable && (
         <div
@@ -339,16 +340,14 @@ const CreateLifeCompass: React.FC = () => {
             padding: spacing.small,
             marginBottom: spacing.medium,
             borderRadius: borderRadius.small,
+            fontFamily: typography.primaryFont,
           }}
         >
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
-        <Callout onDismiss={() => setShowRecommendationCallout(false)}>
-          Vi rekommenderar att hålla antalet livsområden runt 10 för bästa
-          överblick.
-        </Callout>
+        <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
       <button onClick={handleAddNewLifeArea} style={buttonStyle}>
         Lägg till livsområde
@@ -360,13 +359,13 @@ const CreateLifeCompass: React.FC = () => {
         Återställ till standard
       </button>
       {error && (
-        <div style={{ color: colors.accent, marginBottom: spacing.medium }}>
+        <div style={{ color: colors.accent, marginBottom: spacing.medium, fontFamily: typography.primaryFont }}>
           {error}
         </div>
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
       {lifeAreas.length === 0 ? (
-        <p>Inga livsområden tillagda än.</p>
+        <p style={{ fontFamily: typography.primaryFont }}>Inga livsområden tillagda än.</p>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {lifeAreas.map((area, index) => {

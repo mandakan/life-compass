@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { colors, spacing, borderRadius, transitions } from '../designTokens';
+import { colors, spacing, borderRadius, transitions, typography } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 export interface LifeArea {
@@ -211,13 +211,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
             {isDuplicate && (
-              <div style={{ color: 'red', marginTop: spacing.small }}>
+              <div style={{ color: 'red', marginTop: spacing.small, fontFamily: typography.primaryFont }}>
                 Dubblett: Samma namn får inte användas.
               </div>
             )}
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Beskrivning:
               <textarea
                 value={editDescription}
@@ -226,12 +226,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   ...inputStyle,
                   width: '100%',
                   minHeight: '60px',
+                  fontFamily: typography.primaryFont,
                 }}
               />
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Detaljer:
               <textarea
                 value={editDetails}
@@ -240,12 +241,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   ...inputStyle,
                   width: '100%',
                   minHeight: '40px',
+                  fontFamily: typography.primaryFont,
                 }}
               />
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Viktighet
               <input
                 type="range"
@@ -274,6 +276,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       ? 'rgba(52, 144, 220, 0.2)'
                       : 'rgba(227, 52, 47, 0.2)'
                     : 'transparent',
+                  fontFamily: typography.primaryFont,
                 }}
               >
                 {editImportance}
@@ -281,7 +284,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Tillfredsställelse
               <input
                 type="range"
@@ -310,6 +313,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       ? 'rgba(52, 144, 220, 0.2)'
                       : 'rgba(227, 52, 47, 0.2)'
                     : 'transparent',
+                  fontFamily: typography.primaryFont,
                 }}
               >
                 {editSatisfaction}
@@ -360,7 +364,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               marginBottom: spacing.small,
             }}
           >
-            <h4 style={{ margin: 0 }}>{area.name}</h4>
+            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>{area.name}</h4>
             <button
               onClick={() => setShowDescription(true)}
               style={{
@@ -393,11 +397,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 padding: spacing.medium,
                 zIndex: 10,
                 boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+                fontFamily: typography.primaryFont,
               }}
               tabIndex={0}
               onBlur={() => setShowDescription(false)}
             >
-              <p style={{ margin: 0 }}>{area.description}</p>
+              <p style={{ margin: 0, fontFamily: typography.primaryFont }}>{area.description}</p>
               <button
                 onClick={() => setShowDescription(false)}
                 style={{
@@ -405,6 +410,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   backgroundColor: 'transparent',
                   border: 'none',
                   cursor: 'pointer',
+                  fontFamily: typography.primaryFont,
                 }}
               >
                 Stäng
@@ -412,12 +418,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
           )}
           {area.details && (
-            <p style={{ margin: 0, marginBottom: spacing.small }}>
+            <p style={{ margin: 0, marginBottom: spacing.small, fontFamily: typography.primaryFont }}>
               Detaljer: {area.details}
             </p>
           )}
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Viktighet
               <input
                 type="range"
@@ -443,6 +449,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       ? 'rgba(52, 144, 220, 0.2)'
                       : 'rgba(227, 52, 47, 0.2)'
                     : 'transparent',
+                  fontFamily: typography.primaryFont,
                 }}
               >
                 {area.importance}
@@ -450,7 +457,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </label>
           </div>
           <div style={{ marginTop: spacing.small }}>
-            <label>
+            <label style={{ fontFamily: typography.primaryFont }}>
               Tillfredsställelse
               <input
                 type="range"
@@ -476,6 +483,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       ? 'rgba(52, 144, 220, 0.2)'
                       : 'rgba(227, 52, 47, 0.2)'
                     : 'transparent',
+                  fontFamily: typography.primaryFont,
                 }}
               >
                 {area.satisfaction}
