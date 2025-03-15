@@ -34,12 +34,35 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
   const isMobile = window.innerWidth < 768;
   const tickFontSize = !isMobile ? (scaleFactor > 1.5 ? 20 : 18) : (scaleFactor > 1.5 ? 16 : 12);
   const radarStrokeWidth = !isMobile ? (scaleFactor > 1.5 ? 4 : 3) : (scaleFactor > 1.5 ? 3 : 2);
+  const axisStrokeWidth = !isMobile ? 2 : 1;
 
-  // Sort the data so the areas with the longest names are at the top and bottom.
-  const sortedData = React.useMemo(() => {
-    if (data.length < 2) return data;
+  // Arrange the data so that the two longest area names are placed at the top and bottom.
+  const arrangedData = React.useMemo(() => {
+    const n = data.length;
+    if (n < 2) return data;
+    // Sort descending by area name length.
     const sorted = [...data].sort((a, b) => b.area.length - a.area.length);
-    return [sorted[0], ...sorted.slice(2), sorted[1]];
+    const longest = sorted[0];
+    const secondLongest = sorted[1];
+    const others = sorted.slice(2);
+    const result = new Array(n);
+    // Place the longest at index 0 (which, with startAngle=90, will be at the top)
+    result[0] = longest;
+    // Place the second longest at the index that is diametrically opposite (approximately)
+    result[Math.floor(n / 2)] = secondLongest;
+    // Fill remaining positions with the other elements in their sorted order.
+    let idx = 0;
+    for (let other of others) {
+      // Find next available slot
+      while (idx < n && result[idx] !== undefined) {
+        idx++;
+      }
+      if (idx < n) {
+        result[idx] = other;
+        idx++;
+      }
+    }
+    return result;
   }, [data]);
 
   const renderTick = (props: any) => {
@@ -90,10 +113,20 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
 
   return (
     <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
-      <RechartsRadarChart outerRadius="70%" data={sortedData}>
-        <PolarGrid stroke={colors.neutral[300]} />
+      <RechartsRadarChart
+        outerRadius="70%"
+        data={arrangedData}
+        startAngle={90}
+        endAngle={-270}
+      >
+        <PolarGrid stroke={colors.neutral[300]} strokeWidth={axisStrokeWidth} />
         <PolarAngleAxis dataKey="area" tick={renderTick} />
-        <PolarRadiusAxis angle={30} domain={[0, 10]} tick={false} axisLine={false} />
+        <PolarRadiusAxis
+          angle={30}
+          domain={[0, 10]}
+          tick={false}
+          axisLine={{ stroke: colors.neutral[300], strokeWidth: axisStrokeWidth }}
+        />
         <Radar 
           name="Importance" 
           dataKey="importance" 
