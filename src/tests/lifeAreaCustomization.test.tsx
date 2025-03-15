@@ -7,6 +7,7 @@ import { ThemeProvider } from '../context/ThemeContext';
 
 // Mock getPredefinedLifeAreas for predictability using vi instead of jest
 vi.mock('../utils/lifeAreaService', () => ({
+  __esModule: true,
   getPredefinedLifeAreas: vi.fn(() => [
     {
       id: 'predef1',
