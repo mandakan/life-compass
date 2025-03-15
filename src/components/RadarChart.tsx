@@ -36,30 +36,39 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
   const radarStrokeWidth = !isMobile ? (scaleFactor > 1.5 ? 4 : 3) : (scaleFactor > 1.5 ? 3 : 2);
   const axisStrokeWidth = !isMobile ? 2 : 1;
 
-  // Arrange the data so that the two longest area names are placed at the top and bottom.
+  // Arrange the data so that the four longest area names are spread evenly along the circle.
   const arrangedData = React.useMemo(() => {
     const n = data.length;
-    if (n < 2) return data;
-    // Sort descending by area name length.
+    if (n < 4) {
+      // If less than 4 areas, no special arrangement.
+      return data;
+    }
+    // Sort data descending by area name length.
     const sorted = [...data].sort((a, b) => b.area.length - a.area.length);
-    const longest = sorted[0];
-    const secondLongest = sorted[1];
-    const others = sorted.slice(2);
+    const longestFour = sorted.slice(0, 4);
+    const others = sorted.slice(4);
+    // Determine evenly spaced positions using Tailwind's breakpoints idea: positions at 0, n/4, n/2, and 3n/4.
+    const pos0 = 0;
+    const pos1 = Math.floor(n / 4);
+    const pos2 = Math.floor(n / 2);
+    const pos3 = Math.floor((3 * n) / 4);
     const result = new Array(n);
-    // Place the longest at index 0 (which, with startAngle=90, will be at the top)
-    result[0] = longest;
-    // Place the second longest at the index that is diametrically opposite (approximately)
-    result[Math.floor(n / 2)] = secondLongest;
-    // Fill remaining positions with the other elements in their sorted order.
-    let idx = 0;
-    for (let other of others) {
-      // Find next available slot
-      while (idx < n && result[idx] !== undefined) {
-        idx++;
-      }
-      if (idx < n) {
-        result[idx] = other;
-        idx++;
+    // Place the four longest in descending order at these positions.
+    result[pos0] = longestFour[0];
+    result[pos1] = longestFour[1];
+    result[pos2] = longestFour[2];
+    result[pos3] = longestFour[3];
+    // Fill in remaining positions with the others in their original sorted order.
+    let otherIndex = 0;
+    for (let i = 0; i < n; i++) {
+      if (result[i] === undefined) {
+        if (otherIndex < others.length) {
+          result[i] = others[otherIndex];
+          otherIndex++;
+        } else {
+          // If no more others left, fill with remaining longestFour (if any duplicates, though unlikely)
+          result[i] = longestFour[0];
+        }
       }
     }
     return result;
