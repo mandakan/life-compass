@@ -25,7 +25,7 @@ interface RadarChartProps {
   height?: number | string;
 }
 
-const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 800 }) => {
+const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = '100%' }) => {
   const { theme: themeMode } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
 
