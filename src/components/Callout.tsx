@@ -1,5 +1,11 @@
 import React from 'react';
-import { colors, spacing, borderRadius, callouts, typography } from '../designTokens';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  callouts,
+  typography,
+} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 interface CalloutProps {
@@ -43,7 +49,7 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
     <div style={calloutStyle}>
       <span>
         {children ||
-          "Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick."}
+          'Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.'}
       </span>
       {onDismiss && (
         <button

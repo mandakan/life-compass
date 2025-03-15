@@ -336,7 +336,7 @@ function DesignPrinciplesDemo() {
         <h3>Custom Slider Example</h3>
         <CustomSlider
           value={sliderValue}
-          onChange={(newValue) => setSliderValue(newValue)}
+          onChange={newValue => setSliderValue(newValue)}
           min={1}
           max={10}
           width="300px"
@@ -346,9 +346,9 @@ function DesignPrinciplesDemo() {
       {/* Default Slider Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <h3>Default Slider Example</h3>
-        <input 
-          type="range" 
-          value={sliderValue} 
+        <input
+          type="range"
+          value={sliderValue}
           min={1}
           max={10}
           step={1}

@@ -38,7 +38,8 @@
     "typescript": "latest",
     "vite": "latest",
     "vite-tsconfig-paths": "latest",
-    "vitest": "latest"
+    "vitest": "latest",
+    "@testing-library/user-event": "latest"
   },
   "engines": {
     "node": ">=23"

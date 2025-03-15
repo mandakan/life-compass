@@ -1,5 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { colors, typography, spacing, borderRadius, transitions } from '../designTokens';
+import {
+  colors,
+  typography,
+  spacing,
+  borderRadius,
+  transitions,
+} from '../designTokens';
 
 interface CustomSliderProps {
   value: number;
@@ -31,7 +37,9 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     // Autofocus the slider handle when component mounts so that keyboard events get captured.
     if (trackRef.current) {
       // Find the slider handle (the child that renders the value) and focus it.
-      const handle = trackRef.current.querySelector('[role="slider"]') as HTMLElement;
+      const handle = trackRef.current.querySelector(
+        '[role="slider"]',
+      ) as HTMLElement;
       handle?.focus();
     }
   }, []);
@@ -42,7 +50,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 
   const calculateValue = (clientX: number) => {
     if (!trackRef.current) return value;
-    const { left, width: trackWidth } = trackRef.current.getBoundingClientRect();
+    const { left, width: trackWidth } =
+      trackRef.current.getBoundingClientRect();
     let percent = (clientX - left) / trackWidth;
     percent = Math.max(0, Math.min(1, percent));
     const range = max - min;
@@ -116,7 +125,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     position: 'relative',
     width: width,
     height: height,
-    margin: '0 auto'
+    margin: '0 auto',
   };
 
   const trackStyle: React.CSSProperties = {
@@ -147,11 +156,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   };
 
   return (
-    <div
-      style={containerStyle}
-      ref={trackRef}
-      onMouseDown={handleMouseDown}
-    >
+    <div style={containerStyle} ref={trackRef} onMouseDown={handleMouseDown}>
       <div style={trackStyle} aria-hidden="true" />
       <div
         style={handleStyle}

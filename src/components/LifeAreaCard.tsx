@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { colors, spacing, borderRadius, transitions, typography } from '../designTokens';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  typography,
+} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
 
@@ -31,7 +37,11 @@ export interface LifeAreaCardProps {
   onRemove: (id: string) => void;
   existingNames: string[];
   style?: React.CSSProperties;
-  onAutoUpdateRating?: (field: 'importance' | 'satisfaction', newValue: number, area: LifeArea) => void;
+  onAutoUpdateRating?: (
+    field: 'importance' | 'satisfaction',
+    newValue: number,
+    area: LifeArea,
+  ) => void;
   dragHandle?: React.HTMLAttributes<HTMLDivElement>;
 }
 
@@ -214,7 +224,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
             {isDuplicate && (
-              <div style={{ color: 'red', marginTop: spacing.small, fontFamily: typography.primaryFont }}>
+              <div
+                style={{
+                  color: 'red',
+                  marginTop: spacing.small,
+                  fontFamily: typography.primaryFont,
+                }}
+              >
                 Dubblett: Samma namn får inte användas.
               </div>
             )}
@@ -254,7 +270,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Viktighet
               <CustomSlider
                 value={editImportance}
-                onChange={(newValue) => {
+                onChange={newValue => {
                   onChangeEditImportance(newValue);
                   triggerHighlightImportance();
                   if (onAutoUpdateRating) {
@@ -274,7 +290,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Tillfredsställelse
               <CustomSlider
                 value={editSatisfaction}
-                onChange={(newValue) => {
+                onChange={newValue => {
                   onChangeEditSatisfaction(newValue);
                   triggerHighlightSatisfaction();
                   if (onAutoUpdateRating) {
@@ -326,19 +342,31 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     return (
       <div style={combinedStyle}>
         <div
-          style={{ position: 'absolute', top: spacing.small, right: spacing.small, cursor: 'grab', opacity: 0.9 }}
+          style={{
+            position: 'absolute',
+            top: spacing.small,
+            right: spacing.small,
+            cursor: 'grab',
+            opacity: 0.9,
+          }}
           role="img"
           aria-label="Drag to reorder life area"
           {...(dragHandle || {})}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
             <title>Drag to reorder life area</title>
-            <circle cx="4" cy="3" r="1.5"/>
-            <circle cx="12" cy="3" r="1.5"/>
-            <circle cx="4" cy="8" r="1.5"/>
-            <circle cx="12" cy="8" r="1.5"/>
-            <circle cx="4" cy="13" r="1.5"/>
-            <circle cx="12" cy="13" r="1.5"/>
+            <circle cx="4" cy="3" r="1.5" />
+            <circle cx="12" cy="3" r="1.5" />
+            <circle cx="4" cy="8" r="1.5" />
+            <circle cx="12" cy="8" r="1.5" />
+            <circle cx="4" cy="13" r="1.5" />
+            <circle cx="12" cy="13" r="1.5" />
           </svg>
         </div>
         <div>
@@ -361,7 +389,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             >
               ℹ️
             </button>
-            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>{area.name}</h4>
+            <h4 style={{ margin: 0, fontFamily: typography.primaryFont }}>
+              {area.name}
+            </h4>
           </div>
           {showDescription && (
             <div
@@ -387,7 +417,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               tabIndex={0}
               onBlur={() => setShowDescription(false)}
             >
-              <p style={{ margin: 0, fontFamily: typography.primaryFont }}>{area.description}</p>
+              <p style={{ margin: 0, fontFamily: typography.primaryFont }}>
+                {area.description}
+              </p>
               <button
                 onClick={() => setShowDescription(false)}
                 style={{
@@ -403,7 +435,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
           )}
           {area.details && (
-            <p style={{ margin: 0, marginBottom: spacing.small, fontFamily: typography.primaryFont }}>
+            <p
+              style={{
+                margin: 0,
+                marginBottom: spacing.small,
+                fontFamily: typography.primaryFont,
+              }}
+            >
               Detaljer: {area.details}
             </p>
           )}
@@ -412,7 +450,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Viktighet
               <CustomSlider
                 value={area.importance}
-                onChange={(newValue) => {
+                onChange={newValue => {
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('importance', newValue, area);
                   }
@@ -431,7 +469,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               Tillfredsställelse
               <CustomSlider
                 value={area.satisfaction}
-                onChange={(newValue) => {
+                onChange={newValue => {
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('satisfaction', newValue, area);
                   }

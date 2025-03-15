@@ -176,7 +176,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     const secondAreaName = headings[1].textContent;
 
     // Retrieve the drag handle elements using their role "img" with the aria-label.
-    const dragHandles = screen.getAllByRole('img', { name: "Drag to reorder life area" });
+    const dragHandles = screen.getAllByRole('img', {
+      name: 'Drag to reorder life area',
+    });
     expect(dragHandles.length).toBeGreaterThanOrEqual(2);
     const firstDraggable = dragHandles[0].closest('div[draggable="true"]');
     const secondDraggable = dragHandles[1].closest('div[draggable="true"]');

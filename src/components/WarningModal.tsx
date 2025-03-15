@@ -1,5 +1,11 @@
 import React from 'react';
-import { colors, spacing, borderRadius, transitions, typography } from '../designTokens';
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  typography,
+} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 
 interface WarningModalProps {
