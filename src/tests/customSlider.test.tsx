@@ -1,6 +1,7 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
 import CustomSlider from '../components/CustomSlider';
 
 describe('CustomSlider', () => {
