@@ -426,6 +426,7 @@ const CreateLifeCompass: React.FC = () => {
                 onDragLeave={() => setDragOverIndex(null)}
                 onDrop={handleDrop(index)}
                 style={highlightStyle}
+                className="w-full"
               >
                 <LifeAreaCard
                   area={area}
@@ -470,6 +471,7 @@ const CreateLifeCompass: React.FC = () => {
                 onDragLeave={() => setDragOverIndex(null)}
                 onDrop={handleDrop(index)}
                 style={highlightStyle}
+                className="w-full"
               >
                 <LifeAreaCard
                   area={area}
