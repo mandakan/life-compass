@@ -493,6 +493,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     onChange={(e) => {
                       setInlineDetailsValue(e.target.value);
                     }}
+                    onBlur={() => {
+                      onChangeEditDetails(inlineDetailsValue);
+                      setEditingDetailsInline(false);
+                    }}
                     autoFocus
                     style={{
                       width: '100%',
