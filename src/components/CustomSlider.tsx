@@ -75,6 +75,31 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     };
   }, [dragging]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        e.preventDefault();
+        onChange(Math.max(min, value - step));
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        e.preventDefault();
+        onChange(Math.min(max, value + step));
+        break;
+      case 'Home':
+        e.preventDefault();
+        onChange(min);
+        break;
+      case 'End':
+        e.preventDefault();
+        onChange(max);
+        break;
+      default:
+        break;
+    }
+  };
+
   const percentage = getPercentage();
   const handleSize = 30;
 
@@ -113,7 +138,18 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   };
 
   return (
-    <div style={containerStyle} ref={trackRef} onMouseDown={handleMouseDown}>
+    <div
+      style={containerStyle}
+      ref={trackRef}
+      onMouseDown={handleMouseDown}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="slider"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      aria-label="Custom slider"
+    >
       <div style={trackStyle} />
       <div style={handleStyle}>
         {value}
