@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import React from 'react';
 import { vi, describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
