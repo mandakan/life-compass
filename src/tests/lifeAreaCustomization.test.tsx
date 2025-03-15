@@ -4,9 +4,9 @@ import { act } from 'react-dom/test-utils';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
 import { ThemeProvider } from '../context/ThemeContext';
 
-// Mock getPredefinedLifeAreas for predictability
-jest.mock('../utils/lifeAreaService', () => ({
-  getPredefinedLifeAreas: jest.fn(() => [
+// Mock getPredefinedLifeAreas for predictability using vi instead of jest
+vi.mock('../utils/lifeAreaService', () => ({
+  getPredefinedLifeAreas: vi.fn(() => [
     {
       id: 'predef1',
       name: 'Area 1',
@@ -146,11 +146,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
       fireEvent.dragEnd(firstDraggable);
     }
 
-    // Since the drag-and-drop reordering updates the list ordering, verify the order has changed.
-    // Note: Due to limitations in simulating DnD, we only check that the component processed events without error.
+    // Verify that the order has changed (we check that the first heading text is different)
     const updatedHeadings = screen.getAllByRole('heading', { level: 4 });
     const updatedFirstAreaName = updatedHeadings[0].textContent;
-    // It is possible that the order may change; we check that the name is not the original first area.
     expect(updatedFirstAreaName).not.toBe(firstAreaName);
   });
 });
