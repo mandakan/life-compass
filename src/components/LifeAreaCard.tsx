@@ -477,32 +477,35 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div style={{ marginBottom: spacing.small }}>
               <div onClick={() => setEditingDetailsInline(true)} style={detailsBoxStyle}>
                 {editingDetailsInline ? (
-                  <textarea
-                    ref={inlineDetailsRef}
-                    value={inlineDetailsValue}
-                    onChange={(e) => {
-                      setInlineDetailsValue(e.target.value);
-                    }}
-                    onBlur={() => {
-                      console.log('Saving inline details:', inlineDetailsValue);
-                      if (onInlineDetailsChange) {
-                        onInlineDetailsChange(inlineDetailsValue, area);
-                      } else {
-                        onChangeEditDetails(inlineDetailsValue);
-                      }
-                      setEditingDetailsInline(false);
-                    }}
-                    autoFocus
-                    style={{
-                      width: '100%',
-                      padding: spacing.small,
-                      fontFamily: typography.primaryFont,
-                      border: 'none',
-                      backgroundColor: detailsBoxStyle.backgroundColor,
-                      resize: 'none',
-                      outline: 'none'
-                    }}
-                  />
+                  <div style={{ display: 'flex', height: '100%' }}>
+                    <textarea
+                      ref={inlineDetailsRef}
+                      value={inlineDetailsValue}
+                      onChange={(e) => {
+                        setInlineDetailsValue(e.target.value);
+                      }}
+                      onBlur={() => {
+                        console.log('Saving inline details:', inlineDetailsValue);
+                        if (onInlineDetailsChange) {
+                          onInlineDetailsChange(inlineDetailsValue, area);
+                        } else {
+                          onChangeEditDetails(inlineDetailsValue);
+                        }
+                        setEditingDetailsInline(false);
+                      }}
+                      autoFocus
+                      style={{
+                        width: '100%',
+                        padding: spacing.small,
+                        fontFamily: typography.primaryFont,
+                        border: 'none',
+                        backgroundColor: detailsBoxStyle.backgroundColor,
+                        resize: 'none',
+                        outline: 'none',
+                        flex: 1
+                      }}
+                    />
+                  </div>
                 ) : (
                   <span>{area.details || 'Klicka för att redigera detaljer'}</span>
                 )}
