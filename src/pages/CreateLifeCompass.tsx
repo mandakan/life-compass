@@ -377,7 +377,7 @@ const CreateLifeCompass: React.FC = () => {
             return (
               <div
                 key={area.id}
-                draggable
+                draggable={editingAreaId === area.id ? false : true}
                 onDragStart={handleDragStart(index)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
@@ -420,7 +420,7 @@ const CreateLifeCompass: React.FC = () => {
             return (
               <div
                 key={area.id}
-                draggable
+                draggable={editingAreaId === area.id ? false : true}
                 onDragStart={handleDragStart(index)}
                 onDragOver={handleDragOver(index)}
                 onDragEnter={() => setDragOverIndex(index)}
