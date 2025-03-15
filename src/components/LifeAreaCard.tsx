@@ -134,7 +134,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   const nameInputStyle: React.CSSProperties = {
     ...inputStyle,
     border: `1px solid ${
-      existingNames.includes(localEditName) && localEditName !== area.name
+      // Exclude the current area's original name when checking for duplicates.
+      existingNames.filter(name => name !== area.name).includes(localEditName)
         ? 'red'
         : localEditName !== area.name
         ? 'green'
@@ -144,8 +145,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     }`,
   };
 
-  // Determine if the current local name is a duplicate.
-  const isDuplicate = existingNames.includes(localEditName) && localEditName !== area.name;
+  // Determine if the current local name is a duplicate (excluding the original name).
+  const isDuplicate = existingNames.filter(name => name !== area.name).includes(localEditName);
 
   if (isEditing) {
     return (
