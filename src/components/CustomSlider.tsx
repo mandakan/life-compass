@@ -162,7 +162,6 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         aria-valuenow={value}
         aria-label="Custom slider"
         onKeyDown={handleKeyDown}
-        autoFocus
       >
         {value}
       </div>
