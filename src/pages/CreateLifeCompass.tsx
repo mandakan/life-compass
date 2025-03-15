@@ -47,6 +47,8 @@ const CreateLifeCompass: React.FC = () => {
   const [error, setError] = useState('');
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  // New state for recommendation callout visibility
+  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
 
   useEffect(() => {
     if (storageAvailable) {
@@ -297,6 +299,37 @@ const CreateLifeCompass: React.FC = () => {
           }}
         >
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
+        </div>
+      )}
+      {lifeAreas.length > 10 && showRecommendationCallout && (
+        <div
+          style={{
+            backgroundColor: theme === 'light' ? colors.neutral[100] : colors.neutral[800],
+            color: theme === 'light' ? colors.light.text : colors.dark.text,
+            border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
+            borderRadius: borderRadius.small,
+            padding: spacing.small,
+            marginBottom: spacing.medium,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <span>
+            Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.
+          </span>
+          <button
+            onClick={() => setShowRecommendationCallout(false)}
+            style={{
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '1rem'
+            }}
+            aria-label="Stäng rekommendation"
+          >
+            ✖
+          </button>
         </div>
       )}
       <button onClick={handleAddNewLifeArea} style={buttonStyle}>
