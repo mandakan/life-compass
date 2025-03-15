@@ -23,9 +23,10 @@ interface RadarChartProps {
   data: RadarChartData[];
   width?: number | string;
   height?: number | string;
+  aspect?: number;
 }
 
-const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = '100%' }) => {
+const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = '100%', aspect }) => {
   const { theme: themeMode } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
 
@@ -67,7 +68,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
   };
 
   return (
-    <ResponsiveContainer width={width} height={height}>
+    <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
       <RechartsRadarChart outerRadius="70%" data={data}>
         <PolarGrid stroke={colors.neutral[300]} />
         <PolarAngleAxis dataKey="area" tick={renderTick} />
