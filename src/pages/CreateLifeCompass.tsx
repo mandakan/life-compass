@@ -301,13 +301,10 @@ const CreateLifeCompass: React.FC = () => {
     const cardEl = containerRefs.current[index];
     if (cardEl && event.dataTransfer) {
       event.dataTransfer.setDragImage(cardEl, cardEl.clientWidth / 2, cardEl.clientHeight / 2);
-    }
-    // Store the dragged index in dataTransfer for proper simulation.
-    event.dataTransfer.setData("text/plain", index.toString());
-    setDraggedIndex(index);
-    if (event.dataTransfer) {
+      event.dataTransfer.setData("text/plain", index.toString());
       event.dataTransfer.effectAllowed = 'move';
     }
+    setDraggedIndex(index);
   };
 
   const handleDragOver = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
