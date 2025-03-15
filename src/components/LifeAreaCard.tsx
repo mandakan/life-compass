@@ -70,14 +70,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   isEditing,
   editName,
   editDescription,
+  editDetails,
   editImportance,
   editSatisfaction,
-  editDetails,
   onChangeEditName,
   onChangeEditDescription,
+  onChangeEditDetails,
   onChangeEditImportance,
   onChangeEditSatisfaction,
-  onChangeEditDetails,
   onSaveEdit,
   onCancelEdit,
   onEdit,
@@ -267,7 +267,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div style={{ marginTop: spacing.small }}>
             <label style={{ fontFamily: typography.primaryFont }}>
-              Viktighet
+              Betydelse
               <CustomSlider
                 value={editImportance}
                 onChange={newValue => {
@@ -447,7 +447,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           )}
           <div style={{ marginTop: spacing.small }}>
             <label style={{ fontFamily: typography.primaryFont }}>
-              Viktighet
+              Betydelse
               <CustomSlider
                 value={area.importance}
                 onChange={newValue => {
