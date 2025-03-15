@@ -372,6 +372,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <button
             style={actionButtonStyle}
             title="Ta bort"
+            aria-label={`Ta bort ${area.name}`}
             onClick={() => onRemove(area.id)}
           >
             <svg
