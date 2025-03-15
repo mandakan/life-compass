@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, test, expect, vi } from 'vitest';
 import CustomSlider from '../components/CustomSlider';
 
@@ -17,7 +18,7 @@ describe('CustomSlider', () => {
     expect(slider.textContent).to.contain("5");
   });
 
-  test('updates value correctly using arrow keys and home/end keys', () => {
+  test('updates value correctly using arrow keys and home/end keys', async () => {
     let sliderValue = 5;
     const handleChange = vi.fn((newValue) => {
       sliderValue = newValue;
@@ -31,23 +32,23 @@ describe('CustomSlider', () => {
     expect(document.activeElement).toBe(slider);
     
     // Press ArrowRight: should increase by step (default step is 1)
-    fireEvent.keyDown(slider, { key: 'ArrowRight', code: 'ArrowRight' });
+    await userEvent.keyboard('{ArrowRight}');
     expect(handleChange).toHaveBeenCalledWith(6);
 
     // Press ArrowLeft: should decrease by step
-    fireEvent.keyDown(slider, { key: 'ArrowLeft', code: 'ArrowLeft' });
+    await userEvent.keyboard('{ArrowLeft}');
     expect(handleChange).toHaveBeenCalledWith(4);
 
     // Press End: should set value to max (10)
-    fireEvent.keyDown(slider, { key: 'End', code: 'End' });
+    await userEvent.keyboard('{End}');
     expect(handleChange).toHaveBeenCalledWith(10);
 
     // Press Home: should set value to min (1)
-    fireEvent.keyDown(slider, { key: 'Home', code: 'Home' });
+    await userEvent.keyboard('{Home}');
     expect(handleChange).toHaveBeenCalledWith(1);
   });
 
-  test('respects custom min, max, and step values', () => {
+  test('respects custom min, max, and step values', async () => {
     let sliderValue = 3;
     const handleChange = vi.fn((newValue) => {
       sliderValue = newValue;
@@ -62,11 +63,11 @@ describe('CustomSlider', () => {
     slider.focus();
 
     // ArrowUp should increase the value by step (2)
-    fireEvent.keyDown(slider, { key: 'ArrowUp', code: 'ArrowUp' });
+    await userEvent.keyboard('{ArrowUp}');
     expect(handleChange).toHaveBeenCalledWith(5);
 
     // ArrowDown should decrease the value by step (2)
-    fireEvent.keyDown(slider, { key: 'ArrowDown', code: 'ArrowDown' });
+    await userEvent.keyboard('{ArrowDown}');
     expect(handleChange).toHaveBeenCalledWith(1);
   });
 });
