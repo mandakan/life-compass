@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   colors,
   typography,
@@ -12,14 +12,15 @@ import {
 } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
+import RadarChart from '../components/RadarChart';
 
 function DesignPrinciplesDemo() {
-  const [cardHovered, setCardHovered] = React.useState(false);
-  const [buttonHovered, setButtonHovered] = React.useState(false);
-  const [hoverActive, setHoverActive] = React.useState(false);
-  const [sliderValue, setSliderValue] = React.useState(5);
-  const [dropdownValue, setDropdownValue] = React.useState('option1');
-  const [checkboxChecked, setCheckboxChecked] = React.useState(false);
+  const [cardHovered, setCardHovered] = useState(false);
+  const [buttonHovered, setButtonHovered] = useState(false);
+  const [hoverActive, setHoverActive] = useState(false);
+  const [sliderValue, setSliderValue] = useState(5);
+  const [dropdownValue, setDropdownValue] = useState('option1');
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   const { theme: themeMode, toggleTheme } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
@@ -184,6 +185,15 @@ function DesignPrinciplesDemo() {
   const checkboxStyle: React.CSSProperties = {
     margin: spacing.small,
   };
+
+  // Radar Chart demo data
+  const radarData = [
+    { area: 'Work', importance: 8, satisfaction: 6 },
+    { area: 'Health', importance: 9, satisfaction: 7 },
+    { area: 'Family', importance: 7, satisfaction: 8 },
+    { area: 'Finance', importance: 6, satisfaction: 5 },
+    { area: 'Leisure', importance: 5, satisfaction: 4 },
+  ];
 
   return (
     <div style={containerStyle}>
@@ -419,6 +429,11 @@ function DesignPrinciplesDemo() {
         >
           Caption text example: This is a caption.
         </p>
+      </div>
+      {/* Radar Chart Demo */}
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+        <h3>Life Compass Radar Chart Demo</h3>
+        <RadarChart data={radarData} height={400} />
       </div>
     </div>
   );
