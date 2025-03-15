@@ -39,7 +39,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, width = '100%', height = 
     const value = payload.value;
     let lines = [value];
     // For left- and right-most ticks (textAnchor "start" or "end"), split into two lines if necessary.
-    if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 5) {
+    if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 10) {
       const mid = Math.floor(value.length / 2);
       let breakIndex = value.lastIndexOf(' ', mid);
       if (breakIndex === -1) {
