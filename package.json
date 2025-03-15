@@ -15,7 +15,8 @@
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
-    "zustand": "latest"
+    "zustand": "latest",
+    "recharts": "latest"
   },
   "devDependencies": {
     "@tailwindcss/vite": "latest",

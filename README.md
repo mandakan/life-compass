@@ -103,7 +103,7 @@ This roadmap outlines the different development phases of the Life Compass proje
 - [x] User Story 1.1: Create Life Compass
 - [x] User Story 1.2: Customize Life Areas
 - [x] User Story 1.3: Rate Life Areas
-- [ ] User Story 1.4: Visualize Life Compass
+- [x] User Story 1.4: Visualize Life Compass
 - [x] User Story 1.5: Save and Load Life Compass
 - [x] User Story 1.6: Reset Life Compass
 

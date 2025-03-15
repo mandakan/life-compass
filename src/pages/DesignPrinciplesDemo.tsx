@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   colors,
   typography,
@@ -12,14 +12,15 @@ import {
 } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
+import RadarChart from '../components/RadarChart';
 
 function DesignPrinciplesDemo() {
-  const [cardHovered, setCardHovered] = React.useState(false);
-  const [buttonHovered, setButtonHovered] = React.useState(false);
-  const [hoverActive, setHoverActive] = React.useState(false);
-  const [sliderValue, setSliderValue] = React.useState(5);
-  const [dropdownValue, setDropdownValue] = React.useState('option1');
-  const [checkboxChecked, setCheckboxChecked] = React.useState(false);
+  const [cardHovered, setCardHovered] = useState(false);
+  const [buttonHovered, setButtonHovered] = useState(false);
+  const [hoverActive, setHoverActive] = useState(false);
+  const [sliderValue, setSliderValue] = useState(5);
+  const [dropdownValue, setDropdownValue] = useState('option1');
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   const { theme: themeMode, toggleTheme } = useTheme();
   const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
@@ -185,6 +186,40 @@ function DesignPrinciplesDemo() {
     margin: spacing.small,
   };
 
+  // Radar Chart demo data
+  const radarData = [
+    {
+      area: 'Arbete',
+      importance: 8,
+      satisfaction: 6,
+      description: 'Fokusera på projektdeadlines och möten.',
+    },
+    {
+      area: 'Hälsa',
+      importance: 9,
+      satisfaction: 7,
+      description: 'Regelbunden träning och balanserad kost.',
+    },
+    {
+      area: 'Familj',
+      importance: 7,
+      satisfaction: 8,
+      description: 'Familjetid och sammankomster.',
+    },
+    {
+      area: 'Ekonomi',
+      importance: 6,
+      satisfaction: 5,
+      description: 'Budgetering och sparande.',
+    },
+    {
+      area: 'Fritid',
+      importance: 5,
+      satisfaction: 4,
+      description: 'Avkoppling och hobbies på fritiden.',
+    },
+  ];
+
   return (
     <div style={containerStyle}>
       <style>{`
@@ -194,7 +229,7 @@ function DesignPrinciplesDemo() {
         }
       `}</style>
       <h1 style={{ textAlign: 'center', marginBottom: spacing.medium }}>
-        Design Principles Demo
+        Designprinciper Demo
       </h1>
       <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
         <button
@@ -212,7 +247,7 @@ function DesignPrinciplesDemo() {
             (e.currentTarget as HTMLButtonElement).style.outline = 'none';
           }}
         >
-          Toggle {themeMode === 'light' ? 'Dark' : 'Light'} Mode
+          Växla till {themeMode === 'light' ? 'mörkt' : 'ljust'} läge
         </button>
       </div>
       {/* Card Example */}
@@ -221,10 +256,10 @@ function DesignPrinciplesDemo() {
         onMouseEnter={() => setCardHovered(true)}
         onMouseLeave={() => setCardHovered(false)}
       >
-        <h2>Card Component</h2>
+        <h2>Kortkomponent</h2>
         <p>
-          This card demonstrates usage of design tokens for typography, colors,
-          interactive states, and transitions.
+          Detta kort demonstrerar användningen av design tokens för typografi,
+          färger, interaktiva tillstånd och övergångar.
         </p>
       </div>
       {/* Button Example */}
@@ -248,33 +283,36 @@ function DesignPrinciplesDemo() {
             (e.currentTarget as HTMLButtonElement).style.outline = 'none';
           }}
         >
-          Example Button
+          Exempelkknapp
         </button>
       </div>
       {/* Input Field Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <input type="text" placeholder="Sample Input" style={inputStyle} />
+        <input
+          type="text"
+          placeholder="Exempel på inmatning"
+          style={inputStyle}
+        />
       </div>
       {/* Callout Example */}
       <div style={calloutStyle}>
-        <h3>Callout</h3>
+        <h3>Notis</h3>
         <p>
-          This is an informational callout intended to draw attention to
-          important details.
+          Detta är en informationsruta avsedd att uppmärksamma viktiga detaljer.
         </p>
       </div>
       {/* Warning Example */}
       <div style={warningStyle}>
-        <h3>Warning</h3>
+        <h3>Varning</h3>
         <p>
-          This is a warning message to alert users to take caution with a
-          particular action.
+          Detta är ett varningsmeddelande för att uppmana försiktighet vid en
+          specifik åtgärd.
         </p>
       </div>
       {/* Hover Information Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
         <p>
-          Hover over this{' '}
+          Hovra över denna{' '}
           <span
             style={hoverInfoStyle}
             onMouseEnter={() => setHoverActive(true)}
@@ -287,40 +325,40 @@ function DesignPrinciplesDemo() {
                 ...(hoverActive ? tooltipVisibleStyle : {}),
               }}
             >
-              This is additional hover information.
+              Detta är ytterligare information vid hovring.
             </span>
           </span>{' '}
-          to see more details.
+          för att se mer information.
         </p>
       </div>
       {/* Progress Bar Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Progress Bar</h3>
+        <h3>Framstegsindikator</h3>
         <div style={progressContainerStyle}>
           <div style={progressBarStyle}></div>
         </div>
       </div>
       {/* Spinner Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Spinner</h3>
+        <h3>Laddningssymbol</h3>
         <div style={spinnerStyle}></div>
       </div>
       {/* Dropdown Menu Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Dropdown Menu</h3>
+        <h3>Rullgardinsmeny</h3>
         <select
           value={dropdownValue}
           onChange={e => setDropdownValue(e.target.value)}
           style={dropdownStyle}
         >
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          <option value="option1">Alternativ 1</option>
+          <option value="option2">Alternativ 2</option>
+          <option value="option3">Alternativ 3</option>
         </select>
       </div>
       {/* Checkbox Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Checkbox</h3>
+        <h3>Kryssruta</h3>
         <label>
           <input
             type="checkbox"
@@ -328,12 +366,12 @@ function DesignPrinciplesDemo() {
             onChange={e => setCheckboxChecked(e.target.checked)}
             style={checkboxStyle}
           />{' '}
-          Check me!
+          Markera mig!
         </label>
       </div>
       {/* Custom Slider Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Custom Slider Example</h3>
+        <h3>Anpassat reglage-exempel</h3>
         <CustomSlider
           value={sliderValue}
           onChange={newValue => setSliderValue(newValue)}
@@ -341,11 +379,11 @@ function DesignPrinciplesDemo() {
           max={10}
           width="300px"
         />
-        <p>Slider Value: {sliderValue}</p>
+        <p>Reglagevärde: {sliderValue}</p>
       </div>
       {/* Default Slider Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Default Slider Example</h3>
+        <h3>Standardreglage-exempel</h3>
         <input
           type="range"
           value={sliderValue}
@@ -355,11 +393,11 @@ function DesignPrinciplesDemo() {
           onChange={e => setSliderValue(Number(e.target.value))}
           style={sliderStyle}
         />
-        <p>Slider Value: {sliderValue}</p>
+        <p>Reglagevärde: {sliderValue}</p>
       </div>
       {/* Dragging Handle Example */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Dragging Handle</h3>
+        <h3>Dra mig</h3>
         <div
           draggable
           style={draggingHandleStyle}
@@ -367,12 +405,12 @@ function DesignPrinciplesDemo() {
             e.dataTransfer.setData('text/plain', 'DraggingHandle');
           }}
         >
-          Drag Me
+          Dra mig
         </div>
       </div>
       {/* Typography Examples */}
       <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Typography Examples</h3>
+        <h3>Exempel på typografi</h3>
         <h1
           style={{
             fontFamily: typography.primaryFont,
@@ -380,7 +418,7 @@ function DesignPrinciplesDemo() {
             margin: spacing.small,
           }}
         >
-          H1 - Title
+          H1 - Rubrik
         </h1>
         <h2
           style={{
@@ -389,7 +427,7 @@ function DesignPrinciplesDemo() {
             margin: spacing.small,
           }}
         >
-          H2 - Subtitle
+          H2 - Underrubrik
         </h2>
         <h3
           style={{
@@ -398,7 +436,7 @@ function DesignPrinciplesDemo() {
             margin: spacing.small,
           }}
         >
-          H3 - Section Title
+          H3 - Avsnittsrubrik
         </h3>
         <p
           style={{
@@ -407,8 +445,8 @@ function DesignPrinciplesDemo() {
             margin: spacing.small,
           }}
         >
-          Body text example: Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit.
+          Exempel på brödtext: Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit.
         </p>
         <p
           style={{
@@ -417,8 +455,13 @@ function DesignPrinciplesDemo() {
             margin: spacing.small,
           }}
         >
-          Caption text example: This is a caption.
+          Exempel på bildtext: Detta är en bildtext.
         </p>
+      </div>
+      {/* Radar Chart Demo */}
+      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+        <h3>Exempel på Livskompass Radar Diagram</h3>
+        <RadarChart data={radarData} width="90%" aspect={1} />
       </div>
     </div>
   );

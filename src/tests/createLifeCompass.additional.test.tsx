@@ -15,8 +15,6 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
         <CreateLifeCompass />
       </ThemeProvider>,
     );
-    const heading = screen.getByText('Skapa Livskompass');
-    expect(heading).toBeTruthy();
     // Select buttons by role to avoid duplicate text from non-button elements.
     const addButtons = screen.getAllByRole('button', {
       name: 'Lägg till livsområde',

@@ -11,6 +11,7 @@ import WarningModal from '../components/WarningModal';
 import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
+import RadarChart from '../components/RadarChart';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -60,6 +61,8 @@ const CreateLifeCompass: React.FC = () => {
     useState(true);
   // New state for reset confirmation modal
   const [showResetModal, setShowResetModal] = useState(false);
+  // New state for toggling between card view and radar chart view
+  const [showRadar, setShowRadar] = useState(false);
 
   // Create a ref to store container elements for each card.
   const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
@@ -82,6 +85,29 @@ const CreateLifeCompass: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // New effect for scroll restoration for the CreateLifeCompass page.
+  useEffect(() => {
+    const savedScrollPosition = localStorage.getItem(
+      'createlifecompassScrollPosition',
+    );
+    window.scrollTo(
+      0,
+      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
+    );
+  }, []);
+
+  // Effect to continuously update scroll position in localStorage
+  useEffect(() => {
+    const handleScroll = () => {
+      localStorage.setItem(
+        'createlifecompassScrollPosition',
+        window.scrollY.toString(),
+      );
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
   const [editDescription, setEditDescription] = useState('');
@@ -96,18 +122,21 @@ const CreateLifeCompass: React.FC = () => {
   const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  // Define a universal button style based on theme.
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: theme === 'light' ? colors.primary : colors.accent,
-    color: '#fff',
-    padding: spacing.small,
-    border: 'none',
-    borderRadius: borderRadius.small,
-    cursor: 'pointer',
-    transition: `background-color ${transitions.fast}`,
-    marginBottom: spacing.medium,
-    marginRight: spacing.medium,
-    fontFamily: typography.primaryFont,
+  // New Reset to Default handlers
+  const handleResetConfirm = () => {
+    const predefined = getPredefinedLifeAreas();
+    setLifeAreas(predefined);
+    setEditingAreaId(null);
+    setEditName('');
+    setEditDescription('');
+    setEditDetails('');
+    setEditImportance(5);
+    setEditSatisfaction(5);
+    setShowResetModal(false);
+  };
+
+  const handleResetCancel = () => {
+    setShowResetModal(false);
   };
 
   const handleAddNewLifeArea = () => {
@@ -154,7 +183,7 @@ const CreateLifeCompass: React.FC = () => {
     }
   };
 
-  // Old removal function is replaced by request deletion confirmation
+  // Request deletion confirmation
   const handleRequestDeleteLifeArea = (id: string) => {
     const candidate = lifeAreas.find(area => area.id === id);
     if (candidate) {
@@ -265,23 +294,6 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
-  // New Reset to Default handlers
-  const handleResetConfirm = () => {
-    const predefined = getPredefinedLifeAreas();
-    setLifeAreas(predefined);
-    setEditingAreaId(null);
-    setEditName('');
-    setEditDescription('');
-    setEditDetails('');
-    setEditImportance(5);
-    setEditSatisfaction(5);
-    setShowResetModal(false);
-  };
-
-  const handleResetCancel = () => {
-    setShowResetModal(false);
-  };
-
   // Auto-update rating handler for slider changes (auto-save)
   const handleAutoUpdateRating = (
     field: 'importance' | 'satisfaction',
@@ -292,6 +304,21 @@ const CreateLifeCompass: React.FC = () => {
       prevLifeAreas.map(area => {
         if (area.id === areaToUpdate.id) {
           return { ...area, [field]: newValue };
+        }
+        return area;
+      }),
+    );
+  };
+
+  // New inline details update handler
+  const handleInlineDetailsChange = (
+    newDetails: string,
+    areaToUpdate: LifeArea,
+  ) => {
+    setLifeAreas(prevLifeAreas =>
+      prevLifeAreas.map(area => {
+        if (area.id === areaToUpdate.id) {
+          return { ...area, details: newDetails };
         }
         return area;
       }),
@@ -358,20 +385,37 @@ const CreateLifeCompass: React.FC = () => {
       setDragOverIndex(null);
     };
 
+  // Map lifeAreas to radar chart data format
+  const radarData = lifeAreas.map(area => ({
+    area: area.name,
+    importance: area.importance,
+    satisfaction: area.satisfaction,
+    description: area.details,
+  }));
+
+  // Button style for toggling views
+  const toggleButtonStyle: React.CSSProperties = {
+    backgroundColor: colors.primary,
+    color: '#fff',
+    padding: spacing.small,
+    border: 'none',
+    borderRadius: borderRadius.small,
+    cursor: 'pointer',
+    margin: spacing.small,
+    transition: `all ${transitions.fast}`,
+    fontFamily: typography.primaryFont,
+  };
+
   return (
     <div
-      style={{ padding: spacing.medium, fontFamily: typography.primaryFont }}
+      style={{
+        padding: spacing.medium,
+        paddingTop: !isDesktop
+          ? `calc(${spacing.medium} + 60px)`
+          : spacing.medium,
+        fontFamily: typography.primaryFont,
+      }}
     >
-      <h2 style={{ fontFamily: typography.primaryFont }}>Skapa Livskompass</h2>
-      <p
-        style={{
-          marginBottom: spacing.medium,
-          fontFamily: typography.primaryFont,
-        }}
-      >
-        Klicka på "Lägg till livsområde" för att skapa ett nytt livsområde eller
-        tryck på knappen nedan för att lägga till de fördefinierade områdena.
-      </p>
       {!storageAvailable && (
         <div
           style={{
@@ -389,14 +433,20 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-      <button onClick={handleAddNewLifeArea} style={buttonStyle}>
+      <button onClick={handleAddNewLifeArea} style={toggleButtonStyle}>
         Lägg till livsområde
       </button>
-      <button onClick={handleAddPredefinedAreas} style={buttonStyle}>
+      <button onClick={handleAddPredefinedAreas} style={toggleButtonStyle}>
         Lägg till fördefinierade områden
       </button>
-      <button onClick={() => setShowResetModal(true)} style={buttonStyle}>
+      <button onClick={() => setShowResetModal(true)} style={toggleButtonStyle}>
         Återställ till standard
+      </button>
+      <button
+        onClick={() => setShowRadar(prev => !prev)}
+        style={toggleButtonStyle}
+      >
+        {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
       </button>
       {error && (
         <div
@@ -410,12 +460,19 @@ const CreateLifeCompass: React.FC = () => {
         </div>
       )}
       <hr style={{ margin: `${spacing.medium} 0` }} />
-      {lifeAreas.length === 0 ? (
-        <p style={{ fontFamily: typography.primaryFont }}>
-          Inga livsområden tillagda än.
-        </p>
+      {showRadar ? (
+        <div
+          style={{
+            marginTop: spacing.medium,
+            width: '100%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+        >
+          <RadarChart data={radarData} width="100%" aspect={1} />
+        </div>
       ) : isDesktop ? (
-        <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {lifeAreas.map((area, index) => {
             const highlightStyle =
               dragOverIndex === index
@@ -430,6 +487,7 @@ const CreateLifeCompass: React.FC = () => {
                 onDragLeave={() => setDragOverIndex(null)}
                 onDrop={handleDrop(index)}
                 style={highlightStyle}
+                className="flex h-full w-full"
               >
                 <LifeAreaCard
                   area={area}
@@ -455,6 +513,7 @@ const CreateLifeCompass: React.FC = () => {
                     draggable: editingAreaId === area.id ? false : true,
                     onDragStart: handleDragStart(index),
                   }}
+                  onInlineDetailsChange={handleInlineDetailsChange}
                 />
               </div>
             );
@@ -476,6 +535,7 @@ const CreateLifeCompass: React.FC = () => {
                 onDragLeave={() => setDragOverIndex(null)}
                 onDrop={handleDrop(index)}
                 style={highlightStyle}
+                className="flex h-full w-full"
               >
                 <LifeAreaCard
                   area={area}
@@ -501,6 +561,7 @@ const CreateLifeCompass: React.FC = () => {
                     draggable: editingAreaId === area.id ? false : true,
                     onDragStart: handleDragStart(index),
                   }}
+                  onInlineDetailsChange={handleInlineDetailsChange}
                 />
               </div>
             );

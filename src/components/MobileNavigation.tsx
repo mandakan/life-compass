@@ -16,6 +16,11 @@ const MobileNavigation: React.FC = () => {
   return (
     <nav
       style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        zIndex: 1000,
         backgroundColor: menu[theme].background,
         color: menu[theme].text,
         padding: '1rem',
@@ -120,36 +125,28 @@ const MobileNavigation: React.FC = () => {
         >
           <Link
             to="/"
+            onClick={() => setOpen(false)}
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Hem
           </Link>
           <Link
             to="/create-life-compass"
+            onClick={() => setOpen(false)}
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Skapa Livskompass
           </Link>
           <Link
-            to="/about"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
-            Om
-          </Link>
-          <Link
-            to="/contact"
-            style={{ color: menu[theme].text, textDecoration: 'underline' }}
-          >
-            Kontakt
-          </Link>
-          <Link
             to="/design-principles"
+            onClick={() => setOpen(false)}
             style={{ color: menu[theme].text, textDecoration: 'underline' }}
           >
             Designprinciper
           </Link>
           <a
             href="https://github.com/mandakan/life-compass"
+            onClick={() => setOpen(false)}
             target="_blank"
             rel="noopener noreferrer"
             style={{
