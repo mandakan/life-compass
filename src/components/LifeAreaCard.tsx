@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { LifeArea } from '../types/LifeArea';
 import CustomSlider from '../components/CustomSlider';
-//import { LifeArea } from './LifeAreaCardTypes';
 import WarningMessage from '../components/WarningMessage';
 
 export interface LifeAreaCardProps {
@@ -89,8 +89,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
     );
 
-  // Compute class for name input border: default uses theme variable --border,
-  // if changed and non duplicate, use green border; if duplicate, red border.
   const nameInputBorderClass = isDuplicate
     ? "border-red-500"
     : (trimmedLocalEditName !== "" && trimmedLocalEditName !== trimmedOriginalName)
