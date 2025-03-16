@@ -30,6 +30,7 @@ const DesktopNavigation: React.FC = () => {
   return (
     <nav
       style={{
+        width: '100%',
         backgroundColor: menu[theme].background,
         padding: '1rem',
         display: 'flex',
