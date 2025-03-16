@@ -86,11 +86,11 @@ const CreateLifeCompass: React.FC = () => {
 
   useEffect(() => {
     const savedScrollPosition = localStorage.getItem(
-      'createlifecompassScrollPosition'
+      'createlifecompassScrollPosition',
     );
     window.scrollTo(
       0,
-      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0
+      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
     );
   }, []);
 
@@ -98,7 +98,7 @@ const CreateLifeCompass: React.FC = () => {
     const handleScroll = () => {
       localStorage.setItem(
         'createlifecompassScrollPosition',
-        window.scrollY.toString()
+        window.scrollY.toString(),
       );
     };
     window.addEventListener('scroll', handleScroll);
@@ -127,9 +127,7 @@ const CreateLifeCompass: React.FC = () => {
       let name = base;
       let counter = 2;
       while (
-        lifeAreas.find(
-          area => area.name.toLowerCase() === name.toLowerCase()
-        )
+        lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())
       ) {
         name = `${base} ${counter}`;
         counter++;
@@ -167,9 +165,8 @@ const CreateLifeCompass: React.FC = () => {
     const newAreas = predefined.filter(
       predef =>
         !lifeAreas.some(
-          existing =>
-            existing.name.toLowerCase() === predef.name.toLowerCase()
-        )
+          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
+        ),
     );
     if (newAreas.length > 0) {
       setLifeAreas([...lifeAreas, ...newAreas]);
@@ -227,7 +224,7 @@ const CreateLifeCompass: React.FC = () => {
       lifeAreas.find(
         area =>
           area.name.toLowerCase() === editName.trim().toLowerCase() &&
-          area.id !== editingAreaId
+          area.id !== editingAreaId,
       )
     ) {
       setError('Dubblett: Samma namn får inte användas.');
@@ -247,7 +244,7 @@ const CreateLifeCompass: React.FC = () => {
           };
         }
         return area;
-      })
+      }),
     );
     setEditingAreaId(null);
     setEditName('');
@@ -263,7 +260,7 @@ const CreateLifeCompass: React.FC = () => {
   const handleCancelEdit = () => {
     if (editingAreaId && newAreaId === editingAreaId) {
       setLifeAreas(prevLifeAreas =>
-        prevLifeAreas.filter(area => area.id !== editingAreaId)
+        prevLifeAreas.filter(area => area.id !== editingAreaId),
       );
       setNewAreaId(null);
     }
@@ -279,7 +276,7 @@ const CreateLifeCompass: React.FC = () => {
   const handleDeleteConfirm = () => {
     if (deleteCandidate) {
       setLifeAreas(prevLifeAreas =>
-        prevLifeAreas.filter(area => area.id !== deleteCandidate.id)
+        prevLifeAreas.filter(area => area.id !== deleteCandidate.id),
       );
       if (editingAreaId === deleteCandidate.id) {
         handleCancelEdit();
@@ -326,7 +323,7 @@ const CreateLifeCompass: React.FC = () => {
   const handleAutoUpdateRating = (
     field: 'importance' | 'satisfaction',
     newValue: number,
-    areaToUpdate: LifeArea
+    areaToUpdate: LifeArea,
   ) => {
     setLifeAreas(prevLifeAreas =>
       prevLifeAreas.map(area => {
@@ -334,13 +331,13 @@ const CreateLifeCompass: React.FC = () => {
           return { ...area, [field]: newValue };
         }
         return area;
-      })
+      }),
     );
   };
 
   const handleInlineDetailsChange = (
     newDetails: string,
-    areaToUpdate: LifeArea
+    areaToUpdate: LifeArea,
   ) => {
     setLifeAreas(prevLifeAreas =>
       prevLifeAreas.map(area => {
@@ -348,7 +345,7 @@ const CreateLifeCompass: React.FC = () => {
           return { ...area, details: newDetails };
         }
         return area;
-      })
+      }),
     );
   };
 
@@ -359,7 +356,7 @@ const CreateLifeCompass: React.FC = () => {
         event.dataTransfer.setDragImage(
           cardEl,
           cardEl.clientWidth / 2,
-          cardEl.clientHeight / 2
+          cardEl.clientHeight / 2,
         );
         event.dataTransfer.setData('text/plain', index.toString());
         event.dataTransfer.effectAllowed = 'move';
@@ -470,9 +467,7 @@ const CreateLifeCompass: React.FC = () => {
         />
       )}
       {error && (
-        <div className="mb-4 font-sans text-[var(--color-accent)]">
-          {error}
-        </div>
+        <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
       {isDesktop && <hr className="my-4" />}
       {showRadar ? (
