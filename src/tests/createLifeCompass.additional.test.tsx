@@ -57,7 +57,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     fireEvent.click(addButton);
 
     // Clear the name input in the editing form
-    const nameInput = screen.getByLabelText(/Namn:/i);
+    const nameInput = screen.getByLabelText(/Namn/i);
     fireEvent.change(nameInput, { target: { value: '' } });
 
     // Click the save button ("Spara") within the editing form
@@ -86,7 +86,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
 
     // Add new life area again
     fireEvent.click(addButtons[0]);
-    const nameInput = screen.getByLabelText(/Namn:/i);
+    const nameInput = screen.getByLabelText(/Namn/i);
     fireEvent.change(nameInput, { target: { value: 'Nytt livsområde' } });
     fireEvent.click(screen.getByRole('button', { name: /Spara/i }));
 
