@@ -344,7 +344,7 @@ const CreateLifeCompass: React.FC = () => {
   }));
 
   return (
-    <div className="p-4 pt-[calc(1rem+60px)] md:pt-4 font-sans">
+    <div className="p-4 pt-[calc(1rem+60px)] md:pt-4 font-sans bg-[var(--bg)]">
       {!storageAvailable && (
         <div className="bg-[var(--accent)] text-white p-2 mb-4 rounded-sm font-sans">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
