@@ -7,6 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
 import CustomButton from '../components/CustomButton';
 import ExportButton from '../components/ExportButton';
+import DesktopToolbar from '../components/DesktopToolbar';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -372,21 +373,13 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-      <div>
-        <CustomButton onClick={handleAddNewLifeArea}>
-          Lägg till livsområde
-        </CustomButton>
-        <CustomButton onClick={handleAddPredefinedAreas}>
-          Lägg till fördefinierade områden
-        </CustomButton>
-        <CustomButton onClick={() => setShowResetModal(true)}>
-          Återställ till standard
-        </CustomButton>
-        <CustomButton onClick={() => setShowRadar(prev => !prev)}>
-          {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
-        </CustomButton>
-        <ExportButton />
-      </div>
+      <DesktopToolbar
+        onAddNewLifeArea={handleAddNewLifeArea}
+        onAddPredefinedAreas={handleAddPredefinedAreas}
+        onReset={() => setShowResetModal(true)}
+        onToggleRadar={() => setShowRadar(prev => !prev)}
+        showRadar={showRadar}
+      />
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
