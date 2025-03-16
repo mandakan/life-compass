@@ -76,7 +76,7 @@ const DesktopNavigation: React.FC = () => {
           {settingsIcon}
         </button>
         {showSettings && (
-          <div className="absolute top-full right-0 z-50 w-72 rounded-lg border border-[var(--border)] bg-[var(--menu-bg)] p-6">
+          <div className="absolute top-full right-0 z-50 w-72 rounded-lg border border-[var(--border)] bg-[var(--menu-bg)] p-2">
             <SettingsMenu />
           </div>
         )}

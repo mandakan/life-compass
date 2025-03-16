@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
+import LifeAreaCard from '../components/LifeAreaCard';
+import { LifeArea } from '../types/LifeArea';
 import WarningModal from '../components/WarningModal';
 import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
-import CustomButton from '../components/CustomButton';
-import ExportButton from '../components/ExportButton';
 import DesktopToolbar from '../components/DesktopToolbar';
 import FloatingToolbar from '../components/FloatingToolbar';
 import { parseAndValidateJSON } from '../utils/importService';
@@ -399,7 +398,7 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem+60px)]' : 'pt-4'} font-sans`}>
+    <div className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
