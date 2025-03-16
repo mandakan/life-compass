@@ -70,6 +70,7 @@
             "required": [
               "id",
               "name",
+              "description",
               "importance",
               "satisfaction",
               "details"
