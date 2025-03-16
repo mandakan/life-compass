@@ -14,9 +14,13 @@ This plan outlines step-by-step tasks to implement dark mode support as defined 
 - CustomSlider (src/components/CustomSlider.tsx)
 - LifeAreaCard (src/components/LifeAreaCard.tsx)
 - MobileNavigation (src/components/MobileNavigation.tsx)
+- DesktopNavigation (src/components/DesktopNavigation.tsx)
 - RadarChart (src/components/RadarChart.tsx)
 - WarningModal (src/components/WarningModal.tsx)
 - Pages with inline styles and theme adjustments (e.g., CreateLifeCompass and DesignPrinciplesDemo)
+- SettingsPage (src/pages/SettingsPage.tsx)
+- SettingsMenu (src/components/SettingsMenu.tsx)
+- ToggleSwitch (src/components/ToggleSwitch.tsx)
 
 ## Phase 2: Establish Theme Token Infrastructure
 - Create CSS variables for colors, backgrounds, and text in the global stylesheet (src/index.css).
