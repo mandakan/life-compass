@@ -4,6 +4,9 @@
 
 /* Default Light Theme */
 :root {
+    --color-primary: #3490dc;
+    --color-secondary: #ffed4a;
+    --color-accent: #e3342f;
     --bg: #ffffff;            /* General background */
     --callout-bg: #ebf8ff;     /* Callout background */
     --border: #2b6cb0;         /* Borders */
@@ -15,9 +18,9 @@
     --on-accent: #ffffff;      /* Text color on accent */
     --focus-ring: #ffed4a;     /* Focus outline */
     --details-bg: #f8f9fa;     /* Background for details box */
-    --primary: #3490dc;        /* Primary color */
+    --primary: var(--color-primary);       /* Primary color */
     --on-primary: #ffffff;     /* Text on primary */
-    --secondary: #ffed4a;      /* Secondary color */
+    --secondary: var(--color-secondary);     /* Secondary color */
     --hover-bg: #e2e8f0;       /* Hover effect background */    
     /* Menu */
     --menu-bg: #3490dc;
@@ -35,6 +38,9 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
+    --color-primary: #3490dc;
+    --color-secondary: #ffed4a;
+    --color-accent: #e3342f;
     --bg: #2d3748;
     --callout-bg: #343a40;
     --border: #63b3ed;
@@ -45,9 +51,9 @@
     --on-accent: #ffffff;
     --focus-ring: #ffed4a;
     --details-bg: #343a40;
-    --primary: #3490dc;
+    --primary: var(--color-primary);
     --on-primary: #ffffff;
-    --secondary: #ffed4a;
+    --secondary: var(--color-secondary);
     --hover-bg: #4a5568;       /* Hover effect background */    
     /* Menu */
     --menu-bg: #1a202c;        /* Darker menu background for contrast */
@@ -65,6 +71,9 @@
 
 /* High Contrast Theme */
 [data-theme="high-contrast"] {
+    --color-primary: #00ffff;
+    --color-secondary: #ffed4a;
+    --color-accent: #ff00ff;
     --bg: #000000;
     --callout-bg: #000000;
     --border: #ffff00;
@@ -75,9 +84,9 @@
     --on-accent: #000000;
     --focus-ring: #ff00ff;
     --details-bg: #000000;
-    --primary: #00ffff;        /* Cyan for strong contrast */
+    --primary: var(--color-primary);
     --on-primary: #000000;
-    --secondary: #ffed4a;
+    --secondary: var(--color-secondary);
     --hover-bg: #222222;       /* Dark gray for hover feedback */   
     /* Menu */
     --menu-bg: #000000;
@@ -103,9 +112,8 @@ body {
 
 a {
     color: var(--accent, #3490dc);
-  }
+}
 
-/* Additional global styles can be added here */
 .mobile-nav-link {
   color: var(--menu-text) !important;
 }
