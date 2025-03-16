@@ -108,6 +108,9 @@ const CreateLifeCompass: React.FC = () => {
   const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Track newly created card ID so we know to remove it if editing is aborted.
+  const [newAreaId, setNewAreaId] = useState<string | null>(null);
+
   // Modified to accept an optional insertionIndex.
   const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
@@ -137,6 +140,7 @@ const CreateLifeCompass: React.FC = () => {
     } else {
       setLifeAreas([...lifeAreas, newArea]);
     }
+    setNewAreaId(newArea.id);
     setEditingAreaId(newArea.id);
     setEditName(newArea.name);
     setEditDescription(newArea.description);
@@ -234,9 +238,18 @@ const CreateLifeCompass: React.FC = () => {
     setEditDetails('');
     setEditImportance(5);
     setEditSatisfaction(5);
+    // Clear newAreaId since the new card has been saved.
+    if (newAreaId === editingAreaId) {
+      setNewAreaId(null);
+    }
   };
 
   const handleCancelEdit = () => {
+    if (editingAreaId && newAreaId === editingAreaId) {
+      // Remove the newly created card if editing is aborted.
+      setLifeAreas(prevLifeAreas => prevLifeAreas.filter(area => area.id !== editingAreaId));
+      setNewAreaId(null);
+    }
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
