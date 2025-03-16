@@ -7,7 +7,8 @@ export function exportData(): string {
   const lifeAreasStr = localStorage.getItem('lifeAreas');
   const historyStr = localStorage.getItem('history');
 
-  const userSettings = userSettingsStr ? JSON.parse(userSettingsStr) : {};
+  // Provide default values for userSettings to satisfy the schema requirements
+  const userSettings = userSettingsStr ? JSON.parse(userSettingsStr) : { language: "en", theme: "light" };
   const lifeAreas = lifeAreasStr ? JSON.parse(lifeAreasStr) : [];
   const history = historyStr ? JSON.parse(historyStr) : [];
 
