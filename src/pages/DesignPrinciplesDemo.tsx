@@ -3,6 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
 import RadarChart from '../components/RadarChart';
 import ToggleSwitch from '../components/ToggleSwitch';
+import WarningMessage from '../components/WarningMessage';
 
 function DesignPrinciplesDemo() {
   const [sliderValue, setSliderValue] = useState(5);
@@ -68,14 +69,8 @@ function DesignPrinciplesDemo() {
           Detta är en informationsruta avsedd att uppmärksamma viktiga detaljer.
         </p>
       </div>
-      {/* Warning Example */}
-      <div className="border-l-4 border-[var(--warning-border)] bg-[var(--warning-bg)] p-4 my-4">
-        <h3 className="text-lg font-semibold mb-2">Varning</h3>
-        <p>
-          Detta är ett varningsmeddelande för att uppmana försiktighet vid en
-          specifik åtgärd.
-        </p>
-      </div>
+      {/* Warning Example (Extracted to WarningMessage component) */}
+      <WarningMessage />
       {/* Hover Information Example */}
       <div className="text-center mt-8">
         <p>
