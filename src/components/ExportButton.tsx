@@ -30,9 +30,7 @@ const ExportButton: React.FC = () => {
 
   return (
     <>
-      <CustomButton onClick={handleExport}>
-        Exportera
-      </CustomButton>
+      <CustomButton onClick={handleExport}>Exportera</CustomButton>
       {error && (
         <WarningModal
           visible={true}

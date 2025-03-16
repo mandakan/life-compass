@@ -14,10 +14,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "exportTimestamp",
-        "version"
-      ],
+      "required": ["exportTimestamp", "version"],
       "additionalProperties": false
     },
     "data": {
@@ -31,16 +28,10 @@
             },
             "theme": {
               "type": "string",
-              "enum": [
-                "light",
-                "dark"
-              ]
+              "enum": ["light", "dark"]
             }
           },
-          "required": [
-            "language",
-            "theme"
-          ],
+          "required": ["language", "theme"],
           "additionalProperties": true
         },
         "lifeAreas": {
@@ -85,17 +76,10 @@
           }
         }
       },
-      "required": [
-        "userSettings",
-        "lifeAreas",
-        "history"
-      ],
+      "required": ["userSettings", "lifeAreas", "history"],
       "additionalProperties": false
     }
   },
-  "required": [
-    "metadata",
-    "data"
-  ],
+  "required": ["metadata", "data"],
   "additionalProperties": false
 }

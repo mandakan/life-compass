@@ -7,7 +7,12 @@ interface WarningModalProps {
   onCancel: () => void;
 }
 
-const WarningModal: React.FC<WarningModalProps> = ({ visible, message, onConfirm, onCancel }) => {
+const WarningModal: React.FC<WarningModalProps> = ({
+  visible,
+  message,
+  onConfirm,
+  onCancel,
+}) => {
   if (!visible) return null;
 
   return (

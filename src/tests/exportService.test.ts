@@ -16,7 +16,7 @@ describe('exportData', () => {
 
     // Check data properties with defaults
     expect(data.data).toHaveProperty('userSettings');
-    expect(data.data.userSettings).toEqual({ language: "en", theme: "light" });
+    expect(data.data.userSettings).toEqual({ language: 'en', theme: 'light' });
     expect(data.data).toHaveProperty('lifeAreas');
     expect(Array.isArray(data.data.lifeAreas)).toBe(true);
     expect(data.data.lifeAreas.length).toBe(0);
@@ -26,12 +26,19 @@ describe('exportData', () => {
   });
 
   it('should export provided userSettings, life areas and history from localStorage', () => {
-    const customUserSettings = { language: "sv", theme: "dark", custom: true };
+    const customUserSettings = { language: 'sv', theme: 'dark', custom: true };
     const customLifeAreas = [
-      { id: "1", name: "Testområde", description: "En kort beskrivning", importance: 7, satisfaction: 6, details: "Detaljerad information" }
+      {
+        id: '1',
+        name: 'Testområde',
+        description: 'En kort beskrivning',
+        importance: 7,
+        satisfaction: 6,
+        details: 'Detaljerad information',
+      },
     ];
     const customHistory = [
-      { action: "edit", timestamp: "2023-10-10T10:00:00Z" }
+      { action: 'edit', timestamp: '2023-10-10T10:00:00Z' },
     ];
 
     localStorage.setItem('userSettings', JSON.stringify(customUserSettings));
@@ -48,7 +55,7 @@ describe('exportData', () => {
 
   it('should throw an error if exported data does not conform to schema', () => {
     // Set an invalid userSettings (missing the required 'language' property)
-    localStorage.setItem('userSettings', JSON.stringify({ theme: "dark" }));
+    localStorage.setItem('userSettings', JSON.stringify({ theme: 'dark' }));
     expect(() => {
       exportData();
     }).toThrow(/Export data does not conform to schema/);

@@ -10,7 +10,7 @@ interface FloatingToolbarProps {
   onImportFile: (fileContent: string) => void;
 }
 
-const FloatingToolbar: React.FC<FloatingToolbarProps> = (props) => {
+const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = () => {
@@ -45,7 +45,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = (props) => {
   return (
     <>
       {expanded && (
-        <div className="fixed bottom-20 right-4 z-50 bg-[var(--color-bg)] p-4 rounded-md shadow-lg border border-[var(--border)]">
+        <div className="fixed right-4 bottom-20 z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg">
           <DesktopToolbar
             onAddNewLifeArea={handleAddNewLifeArea}
             onAddPredefinedAreas={handleAddPredefinedAreas}
@@ -56,12 +56,12 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = (props) => {
           />
         </div>
       )}
-      <button 
+      <button
         onClick={toggleExpanded}
-        className="fixed bottom-4 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none"
+        className="fixed right-4 bottom-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none"
         aria-label="Quick Actions"
       >
-        {expanded ? "×" : "☰"}
+        {expanded ? '×' : '☰'}
       </button>
     </>
   );

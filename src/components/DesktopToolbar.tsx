@@ -32,17 +32,12 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
       <CustomButton onClick={onAddPredefinedAreas}>
         Lägg till fördefinierade områden
       </CustomButton>
-      <CustomButton onClick={onReset}>
-        Återställ till standard
-      </CustomButton>
+      <CustomButton onClick={onReset}>Återställ till standard</CustomButton>
       <CustomButton onClick={onToggleRadar}>
         {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
       </CustomButton>
       <ExportButton />
-      <ImportButton 
-        onFileSelected={onImportFile} 
-        onError={handleImportError} 
-      />
+      <ImportButton onFileSelected={onImportFile} onError={handleImportError} />
     </div>
   );
 };

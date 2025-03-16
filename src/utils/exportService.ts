@@ -10,7 +10,9 @@ export function exportData(): string {
   const historyStr = localStorage.getItem('history');
 
   // Provide default values for userSettings to satisfy the schema requirements
-  const userSettings = userSettingsStr ? JSON.parse(userSettingsStr) : { language: "en", theme: "light" };
+  const userSettings = userSettingsStr
+    ? JSON.parse(userSettingsStr)
+    : { language: 'en', theme: 'light' };
   const lifeAreas = lifeAreasStr ? JSON.parse(lifeAreasStr) : [];
   const history = historyStr ? JSON.parse(historyStr) : [];
 
@@ -18,13 +20,13 @@ export function exportData(): string {
   const exportJsonObj = {
     metadata: {
       exportTimestamp: new Date().toISOString(),
-      version: "1.0.0"
+      version: '1.0.0',
     },
     data: {
       userSettings: userSettings,
       lifeAreas: lifeAreas,
-      history: history
-    }
+      history: history,
+    },
   };
 
   // Validate against the predetermined JSON schema
@@ -32,7 +34,10 @@ export function exportData(): string {
   const validate = ajv.compile(schema);
   const valid = validate(exportJsonObj);
   if (!valid) {
-    throw new Error("Export data does not conform to schema: " + JSON.stringify(validate.errors));
+    throw new Error(
+      'Export data does not conform to schema: ' +
+        JSON.stringify(validate.errors),
+    );
   }
 
   return JSON.stringify(exportJsonObj, null, 2);

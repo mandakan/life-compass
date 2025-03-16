@@ -1,5 +1,5 @@
-import Ajv from "ajv";
-import exportImportSchema from "../schemas/exportImportSchema.json";
+import Ajv from 'ajv';
+import exportImportSchema from '../schemas/exportImportSchema.json';
 
 const ajv = new Ajv({ allErrors: true, strict: false });
 const validate = ajv.compile(exportImportSchema);
@@ -15,7 +15,7 @@ export function parseAndValidateJSON(content: string): ValidationResult {
   try {
     jsonData = JSON.parse(content);
   } catch (e) {
-    return { valid: false, errors: ["Ogiltigt JSON-format."] };
+    return { valid: false, errors: ['Ogiltigt JSON-format.'] };
   }
 
   const isValid = validate(jsonData);

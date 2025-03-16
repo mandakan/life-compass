@@ -398,7 +398,9 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}>
+    <div
+      className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}
+    >
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
@@ -537,14 +539,18 @@ const CreateLifeCompass: React.FC = () => {
       />
       <ImportPreviewModal
         visible={previewVisible}
-        metadata={importedData ? importedData.metadata : { exportTimestamp: '', version: '' }}
+        metadata={
+          importedData
+            ? importedData.metadata
+            : { exportTimestamp: '', version: '' }
+        }
         data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
         onConfirm={handleConfirmImport}
         onCancel={handleCancelImport}
       />
-      <SuccessModal 
-        visible={showSuccessModal} 
-        message="Import lyckades!" 
+      <SuccessModal
+        visible={showSuccessModal}
+        message="Import lyckades!"
         onClose={() => setShowSuccessModal(false)}
       />
     </div>

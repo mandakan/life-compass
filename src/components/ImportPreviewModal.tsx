@@ -27,10 +27,18 @@ const ImportPreviewModal: React.FC<ImportPreviewModalProps> = ({
       visible={visible}
       message={
         <div>
-          <p><strong>Exporterad:</strong> {metadata.exportTimestamp}</p>
-          <p><strong>Version:</strong> {metadata.version}</p>
-          <p><strong>Antal livsområden:</strong> {data.lifeAreas.length}</p>
-          <p><strong>Antal historik-poster:</strong> {data.history.length}</p>
+          <p>
+            <strong>Exporterad:</strong> {metadata.exportTimestamp}
+          </p>
+          <p>
+            <strong>Version:</strong> {metadata.version}
+          </p>
+          <p>
+            <strong>Antal livsområden:</strong> {data.lifeAreas.length}
+          </p>
+          <p>
+            <strong>Antal historik-poster:</strong> {data.history.length}
+          </p>
           <p>Vill du importera dessa data?</p>
         </div>
       }

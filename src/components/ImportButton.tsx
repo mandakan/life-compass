@@ -6,7 +6,10 @@ interface ImportButtonProps {
   onError?: (error: string) => void;
 }
 
-const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) => {
+const ImportButton: React.FC<ImportButtonProps> = ({
+  onFileSelected,
+  onError,
+}) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
@@ -25,13 +28,13 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
       }
       // Clear the input value to allow re-selection of the same file if needed.
       if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+        fileInputRef.current.value = '';
       }
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = e => {
       const content = e.target?.result as string;
       try {
         JSON.parse(content);
@@ -43,7 +46,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
       }
       // Clear the input value to allow the same file to be imported again.
       if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+        fileInputRef.current.value = '';
       }
     };
     reader.onerror = () => {
@@ -52,7 +55,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
       }
       // Clear the input value to allow re-selection.
       if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+        fileInputRef.current.value = '';
       }
     };
     reader.readAsText(file);
@@ -60,9 +63,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
 
   return (
     <>
-      <CustomButton onClick={handleButtonClick}>
-        Importera
-      </CustomButton>
+      <CustomButton onClick={handleButtonClick}>Importera</CustomButton>
       <input
         type="file"
         accept="application/json"
