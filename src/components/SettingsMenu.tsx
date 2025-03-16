@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import ToggleSwitch from './ToggleSwitch';
 
 const SettingsMenu: React.FC = () => {
   const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } = useContext(ThemeContext);
 
-  const handleToggle = () => {
-    toggleTheme();
+  const handleThemeToggle = (checked: boolean) => {
+    if (checked && theme !== 'dark') {
+      toggleTheme();
+    }
+    if (!checked && theme !== 'light') {
+      toggleTheme();
+    }
   };
 
   const handleFollowSystemChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,13 +23,11 @@ const SettingsMenu: React.FC = () => {
       <h2 className="text-lg font-bold mb-4">Inställningar</h2>
       <div className="mb-4">
         <label className="flex items-center text-text">
-          <span className="mr-2">Växla tema (Nuvarande: {theme})</span>
-          <button
-            onClick={handleToggle}
-            className="px-3 py-2 bg-primary text-white rounded"
-          >
-            Växla tema
-          </button>
+          <span className="mr-2">Mörkt läge</span>
+          <ToggleSwitch
+            checked={theme === 'dark'}
+            onChange={handleThemeToggle}
+          />
         </label>
       </div>
       <div>
