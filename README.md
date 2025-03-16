@@ -124,7 +124,7 @@ This roadmap outlines the different development phases of the Life Compass proje
 ### UI Enhancements
 
 - [ ] User Story 5.4: Optimize Navigation and Usability
-- [ ] User Story 5.6: Dark Mode Support
+- [x] User Story 5.6: Dark Mode Support
 
 ### Additional Life Compass Features
 

@@ -9,8 +9,6 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { colors } from '../designTokens';
-import { useTheme } from '../context/ThemeContext';
 
 interface RadarChartData {
   area: string;
@@ -32,8 +30,6 @@ const RadarChart: React.FC<RadarChartProps> = ({
   height = '100%',
   aspect,
 }) => {
-  const { theme: themeMode } = useTheme();
-  const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
   // Use devicePixelRatio to adjust styling for high resolution screens.
   const scaleFactor = window.devicePixelRatio || 1;
   const isMobile = window.innerWidth < 768;
@@ -64,7 +60,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
     const sorted = [...data].sort((a, b) => b.area.length - a.area.length);
     const longestFour = sorted.slice(0, 4);
     const others = sorted.slice(4);
-    // Determine evenly spaced positions using Tailwind's breakpoints idea: positions at 0, n/4, n/2, and 3n/4.
+    // Determine evenly spaced positions: positions at 0, n/4, n/2, and 3n/4.
     const pos0 = 0;
     const pos1 = Math.floor(n / 4);
     const pos2 = Math.floor(n / 2);
@@ -83,7 +79,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
           result[i] = others[otherIndex];
           otherIndex++;
         } else {
-          // If no more others left, fill with remaining longestFour (if any duplicates, though unlikely)
+          // If no more others left, fill with remaining longestFour.
           result[i] = longestFour[0];
         }
       }
@@ -111,7 +107,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
         x={x}
         y={y}
         textAnchor={textAnchor}
-        fill={currentTheme.text}
+        fill="var(--text)"
         fontSize={tickFontSize}
       >
         {lines.map((line, index) => (
@@ -129,10 +125,10 @@ const RadarChart: React.FC<RadarChartProps> = ({
       return (
         <div
           style={{
-            backgroundColor: currentTheme.background,
-            border: `1px solid ${colors.neutral[400]}`,
+            backgroundColor: 'var(--bg)',
+            border: `1px solid var(--border)`,
             padding: 10,
-            color: currentTheme.text,
+            color: 'var(--text)',
           }}
         >
           <p>
@@ -148,44 +144,49 @@ const RadarChart: React.FC<RadarChartProps> = ({
   };
 
   return (
-    <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
-      <RechartsRadarChart
-        outerRadius="70%"
-        data={arrangedData}
-        startAngle={90}
-        endAngle={-270}
+    <div className="bg-[var(--bg)]">
+      <ResponsiveContainer
+        width={width}
+        {...(aspect ? { aspect } : { height })}
       >
-        <PolarGrid stroke={colors.neutral[300]} strokeWidth={axisStrokeWidth} />
-        <PolarAngleAxis dataKey="area" tick={renderTick} />
-        <PolarRadiusAxis
-          angle={30}
-          domain={[0, 10]}
-          tick={false}
-          axisLine={{
-            stroke: colors.neutral[300],
-            strokeWidth: axisStrokeWidth,
-          }}
-        />
-        <Radar
-          name="Betydelse"
-          dataKey="importance"
-          stroke={colors.primary}
-          fill={colors.primary}
-          fillOpacity={0.6}
-          strokeWidth={radarStrokeWidth}
-        />
-        <Radar
-          name="Tillfredsställelse"
-          dataKey="satisfaction"
-          stroke={colors.accent}
-          fill={colors.accent}
-          fillOpacity={0.6}
-          strokeWidth={radarStrokeWidth}
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-      </RechartsRadarChart>
-    </ResponsiveContainer>
+        <RechartsRadarChart
+          outerRadius="70%"
+          data={arrangedData}
+          startAngle={90}
+          endAngle={-270}
+        >
+          <PolarGrid stroke="var(--border)" strokeWidth={axisStrokeWidth} />
+          <PolarAngleAxis dataKey="area" tick={renderTick} />
+          <PolarRadiusAxis
+            angle={30}
+            domain={[0, 10]}
+            tick={false}
+            axisLine={{
+              stroke: 'var(--border)',
+              strokeWidth: axisStrokeWidth,
+            }}
+          />
+          <Radar
+            name="Betydelse"
+            dataKey="importance"
+            stroke="var(--chart-series-1)"
+            fill="var(--chart-series-1)"
+            fillOpacity={0.6}
+            strokeWidth={radarStrokeWidth}
+          />
+          <Radar
+            name="Tillfredsställelse"
+            dataKey="satisfaction"
+            stroke="var(--chart-series-2)"
+            fill="var(--chart-series-2)"
+            fillOpacity={0.6}
+            strokeWidth={radarStrokeWidth}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend />
+        </RechartsRadarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

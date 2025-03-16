@@ -1,22 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  colors,
-  spacing,
-  borderRadius,
-  transitions,
-  typography,
-} from '../designTokens';
-import { useTheme } from '../context/ThemeContext';
+import { LifeArea } from '../types/LifeArea';
 import CustomSlider from '../components/CustomSlider';
-
-export interface LifeArea {
-  id: string;
-  name: string;
-  description: string;
-  importance: number;
-  satisfaction: number;
-  details: string;
-}
+import WarningMessage from '../components/WarningMessage';
 
 export interface LifeAreaCardProps {
   area: LifeArea;
@@ -46,26 +31,6 @@ export interface LifeAreaCardProps {
   onInlineDetailsChange?: (val: string, area: LifeArea) => void;
 }
 
-const defaultCardStyle: React.CSSProperties = {
-  borderRadius: borderRadius.small,
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  padding: spacing.medium,
-  transition: `all ${transitions.medium}`,
-  position: 'relative',
-};
-
-const buttonContainerStyle: React.CSSProperties = {
-  display: 'flex',
-  gap: spacing.small,
-};
-
-const basicButtonStyle: React.CSSProperties = {
-  backgroundColor: 'transparent',
-  border: 'none',
-  cursor: 'pointer',
-  padding: spacing.small,
-};
-
 const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   area,
   isEditing,
@@ -84,31 +49,23 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onEdit,
   onRemove,
   existingNames = [],
-  style,
   onAutoUpdateRating,
   dragHandle,
   onInlineDetailsChange,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
-  const { theme } = useTheme();
-
-  // Local state for immediate visual feedback on name change.
   const [localEditName, setLocalEditName] = useState(editName);
   useEffect(() => {
     setLocalEditName(editName);
   }, [editName]);
 
-  // States for visual feedback on slider changes
   const [highlightImportance, setHighlightImportance] = useState(false);
   const [highlightSatisfaction, setHighlightSatisfaction] = useState(false);
 
-  // Local state for inline editing of details when not in edit mode.
   const [editingDetailsInline, setEditingDetailsInline] = useState(false);
   const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);
-  // Create a ref for the inline editing textarea.
   const inlineDetailsRef = useRef<HTMLTextAreaElement>(null);
 
-  // When entering inline edit mode, focus the textarea and place the caret at the end.
   useEffect(() => {
     if (editingDetailsInline && inlineDetailsRef.current) {
       inlineDetailsRef.current.focus();
@@ -117,88 +74,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     }
   }, [editingDetailsInline, inlineDetailsValue]);
 
-  // Create card style based on theme
-  const themeCardStyle: React.CSSProperties = {
-    ...defaultCardStyle,
-    backgroundColor:
-      theme === 'light' ? colors.light.background : colors.dark.background,
-    color: theme === 'light' ? colors.light.text : colors.dark.text,
-    border: `1px solid ${
-      theme === 'light' ? colors.neutral[300] : colors.neutral[700]
-    }`,
-  };
+  const popupWidthClass = 'w-[250px] md:w-[400px] max-w-[calc(100vw-20px)]';
 
-  // Extend combinedStyle to use flex layout for proper content arrangement
-  // and ensure the card expands to fill available space.
-  const combinedStyle: React.CSSProperties = {
-    ...themeCardStyle,
-    ...style,
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-  };
-
-  // Determine popup width based on viewport width
-  const popupWidth =
-    typeof window !== 'undefined' && window.innerWidth >= 768
-      ? '400px'
-      : '250px';
-
-  // Define input style using theme
-  const inputStyle: React.CSSProperties = {
-    marginLeft: spacing.small,
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    border: `1px solid ${theme === 'light' ? colors.neutral[400] : colors.neutral[600]}`,
-  };
-
-  // Define action button style used for both the save and cancel buttons.
-  const actionButtonStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: spacing.small,
-    backgroundColor: theme === 'light' ? colors.primary : colors.accent,
-    color: '#fff',
-    border: 'none',
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    cursor: 'pointer',
-    transition: `background-color ${transitions.fast}`,
-  };
-
-  // Compute dynamic border color for name input.
   const trimmedLocalEditName = localEditName.trim();
   const trimmedOriginalName = area.name.trim();
-  let borderColor =
-    theme === 'light' ? colors.neutral[400] : colors.neutral[600];
-
-  // Exclude current area's original name from duplicate check.
   const otherNames = existingNames.filter(
     name => name.trim() !== trimmedOriginalName,
   );
 
-  if (
-    trimmedLocalEditName !== '' &&
-    trimmedLocalEditName !== trimmedOriginalName
-  ) {
-    if (
-      otherNames.some(
-        name =>
-          name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
-      )
-    ) {
-      borderColor = 'red';
-    } else {
-      borderColor = 'green';
-    }
-  }
-
-  const nameInputStyle: React.CSSProperties = {
-    ...inputStyle,
-    border: `1px solid ${borderColor}`,
-  };
-
-  // Determine if the current local name is considered duplicate (case insensitive, excluding original name).
   const isDuplicate =
     trimmedLocalEditName !== '' &&
     trimmedLocalEditName !== trimmedOriginalName &&
@@ -206,39 +89,27 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
     );
 
-  // Function to trigger visual feedback for importance
-  const triggerHighlightImportance = () => {
-    setHighlightImportance(true);
-    setTimeout(() => {
-      setHighlightImportance(false);
-    }, 400);
-  };
+  const nameInputBorderClass = isDuplicate
+    ? 'border-red-500'
+    : trimmedLocalEditName !== '' &&
+        trimmedLocalEditName !== trimmedOriginalName
+      ? 'border-green-500'
+      : 'border-[var(--border)]';
 
-  // Function to trigger visual feedback for satisfaction
-  const triggerHighlightSatisfaction = () => {
-    setHighlightSatisfaction(true);
-    setTimeout(() => {
-      setHighlightSatisfaction(false);
-    }, 400);
-  };
+  const nameInputClasses = `ml-2 px-2 py-1 rounded-sm border font-sans ${nameInputBorderClass}`;
 
-  // Style for the inline editable details box (non-edit mode)
-  const detailsBoxStyle: React.CSSProperties = {
-    backgroundColor:
-      theme === 'light' ? colors.neutral[100] : colors.neutral[800],
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    cursor: 'text',
-    fontFamily: typography.primaryFont,
-    minHeight: '100px',
-  };
+  const commonInputClasses =
+    'ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
+
+  const actionButtonClasses =
+    'flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors';
 
   if (isEditing) {
     return (
-      <div style={combinedStyle}>
+      <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div>
           <div>
-            <label>
+            <label className="font-sans">
               Namn:
               <input
                 type="text"
@@ -250,60 +121,48 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 }}
                 placeholder="Ange livsområdesnamn"
                 autoFocus
-                style={nameInputStyle}
+                className={nameInputClasses}
               />
             </label>
             {isDuplicate && (
-              <div
-                style={{
-                  color: 'red',
-                  marginTop: spacing.small,
-                  fontFamily: typography.primaryFont,
-                }}
-              >
-                Dubblett: Samma namn får inte användas.
-              </div>
+              <WarningMessage
+                title="Dubblett"
+                message="Samma namn får inte användas."
+              />
             )}
           </div>
-          <div style={{ marginTop: spacing.small }}>
-            <label style={{ fontFamily: typography.primaryFont }}>
+          <div className="mt-2">
+            <label className="font-sans">
               Beskrivning:
               <textarea
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
-                style={{
-                  ...inputStyle,
-                  width: '100%',
-                  minHeight: '60px',
-                  fontFamily: typography.primaryFont,
-                }}
+                className={`${commonInputClasses} min-h-[60px]`}
               />
             </label>
           </div>
-          <div style={{ marginTop: spacing.small }}>
-            <label style={{ fontFamily: typography.primaryFont }}>
+          <div className="mt-2">
+            <label className="font-sans">
               Detaljer:
               <textarea
                 value={editDetails}
                 onChange={e => onChangeEditDetails(e.target.value)}
-                style={{
-                  ...inputStyle,
-                  width: '100%',
-                  minHeight: '40px',
-                  fontFamily: typography.primaryFont,
-                }}
+                className={`${commonInputClasses} min-h-[40px]`}
               />
             </label>
           </div>
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ marginTop: spacing.small }}>
-              <label style={{ fontFamily: typography.primaryFont }}>
+          <div className="mt-auto">
+            <div className="mt-2 font-sans">
+              <label>
                 Betydelse
                 <CustomSlider
                   value={editImportance}
                   onChange={newValue => {
                     onChangeEditImportance(newValue);
-                    triggerHighlightImportance();
+                    setHighlightImportance(true);
+                    setTimeout(() => {
+                      setHighlightImportance(false);
+                    }, 400);
                     if (onAutoUpdateRating) {
                       onAutoUpdateRating('importance', newValue, area);
                     }
@@ -316,14 +175,17 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 />
               </label>
             </div>
-            <div style={{ marginTop: spacing.small }}>
-              <label style={{ fontFamily: typography.primaryFont }}>
+            <div className="mt-2 font-sans">
+              <label>
                 Tillfredsställelse
                 <CustomSlider
                   value={editSatisfaction}
                   onChange={newValue => {
                     onChangeEditSatisfaction(newValue);
-                    triggerHighlightSatisfaction();
+                    setHighlightSatisfaction(true);
+                    setTimeout(() => {
+                      setHighlightSatisfaction(false);
+                    }, 400);
                     if (onAutoUpdateRating) {
                       onAutoUpdateRating('satisfaction', newValue, area);
                     }
@@ -338,10 +200,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
           </div>
         </div>
-        <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
+        <div className="mt-auto flex gap-2">
           <button
             onClick={onSaveEdit}
-            style={actionButtonStyle}
+            className={actionButtonClasses}
             disabled={isDuplicate}
           >
             <svg
@@ -355,7 +217,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </svg>
             Spara
           </button>
-          <button onClick={onCancelEdit} style={actionButtonStyle}>
+          <button onClick={onCancelEdit} className={actionButtonClasses}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -372,123 +234,64 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     );
   } else {
     return (
-      <div style={combinedStyle}>
+      <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div
-          style={{
-            position: 'absolute',
-            top: spacing.small,
-            right: spacing.small,
-            cursor: 'grab',
-            opacity: 0.9,
-          }}
+          className="absolute top-2 right-2.5 cursor-grab opacity-90"
           role="img"
           aria-label="Drag to reorder life area"
           {...(dragHandle || {})}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            viewBox="0 0 16 16"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
           >
-            <title>Drag to reorder life area</title>
-            <circle cx="4" cy="3" r="1.5" />
-            <circle cx="12" cy="3" r="1.5" />
-            <circle cx="4" cy="8" r="1.5" />
-            <circle cx="12" cy="8" r="1.5" />
-            <circle cx="4" cy="13" r="1.5" />
-            <circle cx="12" cy="13" r="1.5" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+            />
           </svg>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+        <div className="flex flex-grow flex-col">
           <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: spacing.small,
-              }}
-            >
+            <div className="mb-2 flex items-center">
               <button
                 onClick={() => setShowDescription(true)}
-                style={{
-                  marginRight: spacing.small,
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                }}
+                className="mr-2 cursor-pointer border-none bg-transparent"
                 aria-label="Visa beskrivning"
               >
                 ℹ️
               </button>
-              <h4
-                style={{
-                  margin: 0,
-                  fontFamily: typography.primaryFont,
-                  fontSize: '1.1rem',
-                  fontWeight: 400,
-                  color: theme === 'light' ? colors.primary : colors.accent,
-                }}
-              >
+              <h4 className="m-0 font-sans text-lg font-normal text-[var(--color-primary)]">
                 {area.name}
               </h4>
             </div>
             {showDescription && (
               <div
-                style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: popupWidth,
-                  maxWidth: 'calc(100vw - 20px)',
-                  backgroundColor:
-                    theme === 'light'
-                      ? colors.light.background
-                      : colors.dark.background,
-                  color:
-                    theme === 'light' ? colors.light.text : colors.dark.text,
-                  border: `2px solid ${theme === 'light' ? colors.primary : colors.accent}`,
-                  borderRadius: borderRadius.small,
-                  padding: spacing.medium,
-                  zIndex: 10,
-                  boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
-                  fontFamily: typography.primaryFont,
-                }}
+                className={`absolute top-2 left-1/2 -translate-x-1/2 transform ${popupWidthClass} z-10 rounded-sm border-2 border-[var(--color-accent)] bg-[var(--color-bg)] p-4 font-sans text-[var(--color-text)] shadow-lg`}
                 tabIndex={0}
                 onBlur={() => setShowDescription(false)}
               >
-                <p style={{ margin: 0, fontFamily: typography.primaryFont }}>
-                  {area.description}
-                </p>
+                <p className="m-0 font-sans">{area.description}</p>
                 <button
                   onClick={() => setShowDescription(false)}
-                  style={{
-                    marginTop: spacing.small,
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontFamily: typography.primaryFont,
-                  }}
+                  className="mt-2 cursor-pointer border-none bg-transparent font-sans"
                 >
                   Stäng
                 </button>
               </div>
             )}
-            <div style={{ marginBottom: spacing.small }}>
+            <div className="mb-2">
               <div
                 onClick={() => setEditingDetailsInline(true)}
-                style={detailsBoxStyle}
+                className="min-h-[100px] cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans"
               >
                 {editingDetailsInline ? (
-                  <div
-                    style={{
-                      display: 'flex',
-                      height: '100%',
-                      flexDirection: 'column',
-                    }}
-                  >
+                  <div className="flex h-full flex-col">
                     <textarea
                       ref={inlineDetailsRef}
                       value={inlineDetailsValue}
@@ -496,10 +299,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                         setInlineDetailsValue(e.target.value);
                       }}
                       onBlur={() => {
-                        console.log(
-                          'Saving inline details:',
-                          inlineDetailsValue,
-                        );
                         if (onInlineDetailsChange) {
                           onInlineDetailsChange(inlineDetailsValue, area);
                         } else {
@@ -508,29 +307,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                         setEditingDetailsInline(false);
                       }}
                       autoFocus
-                      style={{
-                        width: '100%',
-                        padding: spacing.small,
-                        fontFamily: typography.primaryFont,
-                        border: 'none',
-                        backgroundColor: detailsBoxStyle.backgroundColor,
-                        resize: 'none',
-                        outline: 'none',
-                        flex: 1,
-                      }}
+                      className="w-full resize-none bg-[var(--details-bg)] px-2 py-1 font-sans outline-none"
                     />
                   </div>
                 ) : (
-                  <span>
+                  <span className="font-sans">
                     {area.details || 'Klicka för att redigera detaljer'}
                   </span>
                 )}
               </div>
             </div>
           </div>
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ marginTop: spacing.small }}>
-              <label style={{ fontFamily: typography.primaryFont }}>
+          <div className="mt-auto">
+            <div className="mt-2 font-sans">
+              <label>
                 Betydelse
                 <CustomSlider
                   value={area.importance}
@@ -538,7 +328,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     if (onAutoUpdateRating) {
                       onAutoUpdateRating('importance', newValue, area);
                     }
-                    triggerHighlightImportance();
+                    setHighlightImportance(true);
+                    setTimeout(() => {
+                      setHighlightImportance(false);
+                    }, 400);
                   }}
                   min={1}
                   max={10}
@@ -548,8 +341,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 />
               </label>
             </div>
-            <div style={{ marginBottom: spacing.small }}>
-              <label style={{ fontFamily: typography.primaryFont }}>
+            <div className="mt-2 font-sans">
+              <label>
                 Tillfredsställelse
                 <CustomSlider
                   value={area.satisfaction}
@@ -557,7 +350,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     if (onAutoUpdateRating) {
                       onAutoUpdateRating('satisfaction', newValue, area);
                     }
-                    triggerHighlightSatisfaction();
+                    setHighlightSatisfaction(true);
+                    setTimeout(() => {
+                      setHighlightSatisfaction(false);
+                    }, 400);
                   }}
                   min={1}
                   max={10}
@@ -569,9 +365,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
           </div>
         </div>
-        <div style={{ marginTop: 'auto', ...buttonContainerStyle }}>
+        <div className="mt-auto flex gap-2">
           <button
-            style={actionButtonStyle}
+            className={actionButtonClasses}
             title="Redigera"
             onClick={() => onEdit(area)}
           >
@@ -587,7 +383,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             Redigera
           </button>
           <button
-            style={actionButtonStyle}
+            className={actionButtonClasses}
             title="Ta bort"
             aria-label={`Ta bort ${area.name}`}
             onClick={() => onRemove(area.id)}

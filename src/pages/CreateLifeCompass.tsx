@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  colors,
-  spacing,
-  borderRadius,
-  transitions,
-  typography,
-} from '../designTokens';
 import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
 import WarningModal from '../components/WarningModal';
 import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
+import CustomButton from '../components/CustomButton';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -37,7 +31,6 @@ const CreateLifeCompass: React.FC = () => {
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
 
-  // Initialize lifeAreas from local storage if available, otherwise as empty array.
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>(() => {
     if (storageAvailable) {
       try {
@@ -56,15 +49,11 @@ const CreateLifeCompass: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  // New state for recommendation callout visibility
   const [showRecommendationCallout, setShowRecommendationCallout] =
     useState(true);
-  // New state for reset confirmation modal
   const [showResetModal, setShowResetModal] = useState(false);
-  // New state for toggling between card view and radar chart view
   const [showRadar, setShowRadar] = useState(false);
 
-  // Create a ref to store container elements for each card.
   const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   useEffect(() => {
@@ -85,7 +74,6 @@ const CreateLifeCompass: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // New effect for scroll restoration for the CreateLifeCompass page.
   useEffect(() => {
     const savedScrollPosition = localStorage.getItem(
       'createlifecompassScrollPosition',
@@ -96,7 +84,6 @@ const CreateLifeCompass: React.FC = () => {
     );
   }, []);
 
-  // Effect to continuously update scroll position in localStorage
   useEffect(() => {
     const handleScroll = () => {
       localStorage.setItem(
@@ -118,11 +105,9 @@ const CreateLifeCompass: React.FC = () => {
   const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
   const [showWarningModal, setShowWarningModal] = useState(false);
 
-  // New state variables for deletion confirmation
   const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  // New Reset to Default handlers
   const handleResetConfirm = () => {
     const predefined = getPredefinedLifeAreas();
     setLifeAreas(predefined);
@@ -160,7 +145,6 @@ const CreateLifeCompass: React.FC = () => {
       importance: 5,
       satisfaction: 5,
     };
-    // Insert the new area at the beginning so it appears at the top left of the grid.
     setLifeAreas([newArea, ...lifeAreas]);
     setEditingAreaId(newArea.id);
     setEditName(newArea.name);
@@ -183,7 +167,6 @@ const CreateLifeCompass: React.FC = () => {
     }
   };
 
-  // Request deletion confirmation
   const handleRequestDeleteLifeArea = (id: string) => {
     const candidate = lifeAreas.find(area => area.id === id);
     if (candidate) {
@@ -275,7 +258,6 @@ const CreateLifeCompass: React.FC = () => {
     setError('');
   };
 
-  // New deletion confirmation handlers
   const handleDeleteConfirm = () => {
     if (deleteCandidate) {
       setLifeAreas(prevLifeAreas =>
@@ -294,7 +276,6 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
-  // Auto-update rating handler for slider changes (auto-save)
   const handleAutoUpdateRating = (
     field: 'importance' | 'satisfaction',
     newValue: number,
@@ -310,7 +291,6 @@ const CreateLifeCompass: React.FC = () => {
     );
   };
 
-  // New inline details update handler
   const handleInlineDetailsChange = (
     newDetails: string,
     areaToUpdate: LifeArea,
@@ -325,17 +305,6 @@ const CreateLifeCompass: React.FC = () => {
     );
   };
 
-  const themedCardStyle: React.CSSProperties = {
-    border: `1px solid ${theme === 'light' ? colors.neutral[300] : colors.neutral[700]}`,
-    padding: spacing.medium,
-    borderRadius: borderRadius.small,
-    width: '100%',
-    backgroundColor:
-      theme === 'light' ? colors.light.background : colors.dark.background,
-    fontFamily: typography.primaryFont,
-  };
-
-  // Drag and Drop handlers
   const handleDragStart =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
       const cardEl = containerRefs.current[index];
@@ -385,7 +354,6 @@ const CreateLifeCompass: React.FC = () => {
       setDragOverIndex(null);
     };
 
-  // Map lifeAreas to radar chart data format
   const radarData = lifeAreas.map(area => ({
     area: area.name,
     importance: area.importance,
@@ -393,179 +361,119 @@ const CreateLifeCompass: React.FC = () => {
     description: area.details,
   }));
 
-  // Button style for toggling views
-  const toggleButtonStyle: React.CSSProperties = {
-    backgroundColor: colors.primary,
-    color: '#fff',
-    padding: spacing.small,
-    border: 'none',
-    borderRadius: borderRadius.small,
-    cursor: 'pointer',
-    margin: spacing.small,
-    transition: `all ${transitions.fast}`,
-    fontFamily: typography.primaryFont,
-  };
-
   return (
-    <div
-      style={{
-        padding: spacing.medium,
-        paddingTop: !isDesktop
-          ? `calc(${spacing.medium} + 60px)`
-          : spacing.medium,
-        fontFamily: typography.primaryFont,
-      }}
-    >
+    <div className="bg-[var(--color-bg)] p-4 pt-[calc(1rem+60px)] font-sans md:pt-4">
       {!storageAvailable && (
-        <div
-          style={{
-            backgroundColor: colors.accent,
-            color: '#fff',
-            padding: spacing.small,
-            marginBottom: spacing.medium,
-            borderRadius: borderRadius.small,
-            fontFamily: typography.primaryFont,
-          }}
-        >
+        <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-      <button onClick={handleAddNewLifeArea} style={toggleButtonStyle}>
-        Lägg till livsområde
-      </button>
-      <button onClick={handleAddPredefinedAreas} style={toggleButtonStyle}>
-        Lägg till fördefinierade områden
-      </button>
-      <button onClick={() => setShowResetModal(true)} style={toggleButtonStyle}>
-        Återställ till standard
-      </button>
-      <button
-        onClick={() => setShowRadar(prev => !prev)}
-        style={toggleButtonStyle}
-      >
-        {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
-      </button>
+      <div>
+        <CustomButton onClick={handleAddNewLifeArea}>
+          Lägg till livsområde
+        </CustomButton>
+        <CustomButton onClick={handleAddPredefinedAreas}>
+          Lägg till fördefinierade områden
+        </CustomButton>
+        <CustomButton onClick={() => setShowResetModal(true)}>
+          Återställ till standard
+        </CustomButton>
+        <CustomButton onClick={() => setShowRadar(prev => !prev)}>
+          {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
+        </CustomButton>
+      </div>
       {error && (
-        <div
-          style={{
-            color: colors.accent,
-            marginBottom: spacing.medium,
-            fontFamily: typography.primaryFont,
-          }}
-        >
-          {error}
-        </div>
+        <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
-      <hr style={{ margin: `${spacing.medium} 0` }} />
+      <hr className="my-4" />
       {showRadar ? (
-        <div
-          style={{
-            marginTop: spacing.medium,
-            width: '100%',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-          }}
-        >
+        <div className="mx-auto mt-4 w-full">
           <RadarChart data={radarData} width="100%" aspect={1} />
         </div>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-          {lifeAreas.map((area, index) => {
-            const highlightStyle =
-              dragOverIndex === index
-                ? { border: `2px dashed ${colors.primary}` }
-                : {};
-            return (
-              <div
-                key={area.id}
-                ref={el => (containerRefs.current[index] = el)}
-                onDragOver={handleDragOver(index)}
-                onDragEnter={() => setDragOverIndex(index)}
-                onDragLeave={() => setDragOverIndex(null)}
-                onDrop={handleDrop(index)}
-                style={highlightStyle}
-                className="flex h-full w-full"
-              >
-                <LifeAreaCard
-                  area={area}
-                  isEditing={editingAreaId === area.id}
-                  editName={editName}
-                  editDescription={editDescription}
-                  editDetails={editDetails}
-                  editImportance={editImportance}
-                  editSatisfaction={editSatisfaction}
-                  onChangeEditName={setEditName}
-                  onChangeEditDescription={setEditDescription}
-                  onChangeEditDetails={setEditDetails}
-                  onChangeEditImportance={setEditImportance}
-                  onChangeEditSatisfaction={setEditSatisfaction}
-                  onSaveEdit={handleSaveEditLifeArea}
-                  onCancelEdit={handleCancelEdit}
-                  onEdit={handleEditLifeArea}
-                  onRemove={handleRequestDeleteLifeArea}
-                  existingNames={lifeAreas.map(a => a.name)}
-                  style={themedCardStyle}
-                  onAutoUpdateRating={handleAutoUpdateRating}
-                  dragHandle={{
-                    draggable: editingAreaId === area.id ? false : true,
-                    onDragStart: handleDragStart(index),
-                  }}
-                  onInlineDetailsChange={handleInlineDetailsChange}
-                />
-              </div>
-            );
-          })}
+          {lifeAreas.map((area, index) => (
+            <div
+              key={area.id}
+              ref={el => (containerRefs.current[index] = el)}
+              onDragOver={handleDragOver(index)}
+              onDragEnter={() => setDragOverIndex(index)}
+              onDragLeave={() => setDragOverIndex(null)}
+              onDrop={handleDrop(index)}
+              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+            >
+              <LifeAreaCard
+                area={area}
+                isEditing={editingAreaId === area.id}
+                editName={editName}
+                editDescription={editDescription}
+                editDetails={editDetails}
+                editImportance={editImportance}
+                editSatisfaction={editSatisfaction}
+                onChangeEditName={setEditName}
+                onChangeEditDescription={setEditDescription}
+                onChangeEditDetails={setEditDetails}
+                onChangeEditImportance={setEditImportance}
+                onChangeEditSatisfaction={setEditSatisfaction}
+                onSaveEdit={handleSaveEditLifeArea}
+                onCancelEdit={handleCancelEdit}
+                onEdit={handleEditLifeArea}
+                onRemove={handleRequestDeleteLifeArea}
+                existingNames={lifeAreas.map(a => a.name)}
+                className="w-full rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 font-sans"
+                onAutoUpdateRating={handleAutoUpdateRating}
+                dragHandle={{
+                  draggable: editingAreaId === area.id ? false : true,
+                  onDragStart: handleDragStart(index),
+                }}
+                onInlineDetailsChange={handleInlineDetailsChange}
+              />
+            </div>
+          ))}
         </div>
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
-          {lifeAreas.map((area, index) => {
-            const highlightStyle =
-              dragOverIndex === index
-                ? { border: `2px dashed ${colors.primary}` }
-                : {};
-            return (
-              <div
-                key={area.id}
-                ref={el => (containerRefs.current[index] = el)}
-                onDragOver={handleDragOver(index)}
-                onDragEnter={() => setDragOverIndex(index)}
-                onDragLeave={() => setDragOverIndex(null)}
-                onDrop={handleDrop(index)}
-                style={highlightStyle}
-                className="flex h-full w-full"
-              >
-                <LifeAreaCard
-                  area={area}
-                  isEditing={editingAreaId === area.id}
-                  editName={editName}
-                  editDescription={editDescription}
-                  editDetails={editDetails}
-                  editImportance={editImportance}
-                  editSatisfaction={editSatisfaction}
-                  onChangeEditName={setEditName}
-                  onChangeEditDescription={setEditDescription}
-                  onChangeEditDetails={setEditDetails}
-                  onChangeEditImportance={setEditImportance}
-                  onChangeEditSatisfaction={setEditSatisfaction}
-                  onSaveEdit={handleSaveEditLifeArea}
-                  onCancelEdit={handleCancelEdit}
-                  onEdit={handleEditLifeArea}
-                  onRemove={handleRequestDeleteLifeArea}
-                  existingNames={lifeAreas.map(a => a.name)}
-                  style={themedCardStyle}
-                  onAutoUpdateRating={handleAutoUpdateRating}
-                  dragHandle={{
-                    draggable: editingAreaId === area.id ? false : true,
-                    onDragStart: handleDragStart(index),
-                  }}
-                  onInlineDetailsChange={handleInlineDetailsChange}
-                />
-              </div>
-            );
-          })}
+          {lifeAreas.map((area, index) => (
+            <div
+              key={area.id}
+              ref={el => (containerRefs.current[index] = el)}
+              onDragOver={handleDragOver(index)}
+              onDragEnter={() => setDragOverIndex(index)}
+              onDragLeave={() => setDragOverIndex(null)}
+              onDrop={handleDrop(index)}
+              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+            >
+              <LifeAreaCard
+                area={area}
+                isEditing={editingAreaId === area.id}
+                editName={editName}
+                editDescription={editDescription}
+                editDetails={editDetails}
+                editImportance={editImportance}
+                editSatisfaction={editSatisfaction}
+                onChangeEditName={setEditName}
+                onChangeEditDescription={setEditDescription}
+                onChangeEditDetails={setEditDetails}
+                onChangeEditImportance={setEditImportance}
+                onChangeEditSatisfaction={setEditSatisfaction}
+                onSaveEdit={handleSaveEditLifeArea}
+                onCancelEdit={handleCancelEdit}
+                onEdit={handleEditLifeArea}
+                onRemove={handleRequestDeleteLifeArea}
+                existingNames={lifeAreas.map(a => a.name)}
+                className="w-full rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 font-sans"
+                onAutoUpdateRating={handleAutoUpdateRating}
+                dragHandle={{
+                  draggable: editingAreaId === area.id ? false : true,
+                  onDragStart: handleDragStart(index),
+                }}
+                onInlineDetailsChange={handleInlineDetailsChange}
+              />
+            </div>
+          ))}
         </div>
       )}
       <WarningModal
