@@ -236,24 +236,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     return (
       <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div
-          className="absolute top-2 right-2.5 cursor-grab opacity-90"
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-grab opacity-90"
           role="img"
           aria-label="Drag to reorder life area"
           {...(dragHandle || {})}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            width="24"
+            height="24"
+            fill="currentColor"
             viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-            />
+            <line x1="4" y1="8" x2="20" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <line x1="4" y1="16" x2="20" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </div>
         <div className="flex flex-grow flex-col">
