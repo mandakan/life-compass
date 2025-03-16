@@ -5,6 +5,7 @@ import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
+import CustomButton from '../components/CustomButton';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -354,18 +355,18 @@ const CreateLifeCompass: React.FC = () => {
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
       <div>
-        <button onClick={handleAddNewLifeArea} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        <CustomButton onClick={handleAddNewLifeArea}>
           Lägg till livsområde
-        </button>
-        <button onClick={handleAddPredefinedAreas} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        </CustomButton>
+        <CustomButton onClick={handleAddPredefinedAreas}>
           Lägg till fördefinierade områden
-        </button>
-        <button onClick={() => setShowResetModal(true)} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        </CustomButton>
+        <CustomButton onClick={() => setShowResetModal(true)}>
           Återställ till standard
-        </button>
-        <button onClick={() => setShowRadar(prev => !prev)} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        </CustomButton>
+        <CustomButton onClick={() => setShowRadar(prev => !prev)}>
           {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
-        </button>
+        </CustomButton>
       </div>
       {error && (
         <div className="text-[var(--color-accent)] mb-4 font-sans">
