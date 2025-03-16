@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { colors, menu } from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
+import SettingsMenu from './SettingsMenu';
 
 const DesktopNavigation: React.FC = () => {
   const { theme } = useTheme();
+  const [showSettings, setShowSettings] = useState(false);
+
+  const toggleSettings = () => {
+    setShowSettings(prev => !prev);
+  };
 
   const iconStyle = {
     width: '24px',
@@ -27,6 +33,34 @@ const DesktopNavigation: React.FC = () => {
     </svg>
   );
 
+  const cogIcon = (
+    <svg
+      style={{
+        width: '24px',
+        height: '24px',
+        fill: theme === 'light' ? colors.light.text : colors.dark.text,
+        marginLeft: '0.5rem',
+      }}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 15c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83l-0.06.06a1.65 1.65 0 00-1.82.33 1.65 1.65 0 01-1 1.51 2 2 0 01-2.45-.12l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 01-1-1.51 2 2 0 01-2.45.12l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 01-1-1.51 2 2 0 01-.12-2.45l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 01-1.51-1 2 2 0 01.12-2.45l.06-.06a1.65 1.65 0 00-.33-1.82 1.65 1.65 0 011.51-1 2 2 0 012.45.12l.06.06a1.65 1.65 0 001.82.33h0a1.65 1.65 0 011 1.51 2 2 0 012.45-.12l.06.06a1.65 1.65 0 001.82-.33 1.65 1.65 0 011.51 1 2 2 0 01.12 2.45l-.06.06a1.65 1.65 0 00-.33 1.82 1.65 1.65 0 011.51 1 2 2 0 01-.12 2.45l-.06.06a1.65 1.65 0 00-.33 1.82 1.65 1.65 0 01-1.51 1 2 2 0 01-2.45-.12l-.06-.06a1.65 1.65 0 00-1.82-.33h0a1.65 1.65 0 01-1.51-1 2 2 0 01.12-2.45l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 01-1-1.51 2 2 0 01.12-2.45l.06-.06a1.65 1.65 0 00-.33-1.82 1.65 1.65 0 011.51-1 2 2 0 012.45.12l.06.06a1.65 1.65 0 001.82.33 1.65 1.65 0 011 1.51 2 2 0 012.45-.12l.06.06a1.65 1.65 0 001.82.33z"
+      />
+    </svg>
+  );
+
   return (
     <nav
       style={{
@@ -37,6 +71,7 @@ const DesktopNavigation: React.FC = () => {
         gap: '1rem',
         alignItems: 'center',
         justifyContent: 'space-between',
+        position: 'relative',
       }}
     >
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -44,7 +79,7 @@ const DesktopNavigation: React.FC = () => {
           to="/"
           style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
-            <h1 className="text-xl font-bold">Livskompass</h1> 
+          <h1 className="text-xl font-bold">Livskompass</h1>
         </Link>
         <Link
           to="/create-life-compass"
@@ -59,7 +94,14 @@ const DesktopNavigation: React.FC = () => {
           Designprinciper
         </Link>
       </div>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+          position: 'relative',
+        }}
+      >
         <a
           href="https://github.com/mandakan/life-compass"
           target="_blank"
@@ -74,6 +116,34 @@ const DesktopNavigation: React.FC = () => {
           {githubIcon}
           <span>GitHub</span>
         </a>
+        <button
+          onClick={toggleSettings}
+          style={{
+            backgroundColor: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+          }}
+          aria-label="Toggle settings menu"
+        >
+          {cogIcon}
+        </button>
+        {showSettings && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '100%',
+              right: 0,
+              backgroundColor: menu[theme].background,
+              border: '1px solid #ccc',
+              padding: '1rem',
+              borderRadius: '8px',
+              zIndex: 1000,
+            }}
+          >
+            <SettingsMenu />
+          </div>
+        )}
       </div>
     </nav>
   );
