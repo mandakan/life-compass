@@ -15,6 +15,7 @@
   --details-bg: #f8f9fa;      /* background for details box */
   --primary: #3490dc;        /* primary color */
   --secondary: #ffed4a;      /* secondary color */
+  --on-primary: #ffffff;     /* text color when using primary background */
 }
 
 /* Dark Theme */
@@ -29,6 +30,7 @@
   --details-bg: #343a40;      /* background for details box in dark mode */
   --primary: #3490dc;        /* primary color remains same */
   --secondary: #ffed4a;      /* secondary color remains same */
+  --on-primary: #ffffff;     /* text color on primary background remains white */
 }
 
 /* High Contrast Theme */
@@ -43,6 +45,7 @@
   --details-bg: #000000;      /* background for details box in high contrast */
   --primary: #3490dc;        /* primary color remains same */
   --secondary: #ffed4a;      /* secondary color remains same */
+  --on-primary: #ffffff;     /* text color on primary background remains white */
 }
 
 /* Global styles leveraging the defined CSS variables */

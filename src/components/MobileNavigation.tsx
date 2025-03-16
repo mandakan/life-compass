@@ -5,10 +5,10 @@ const MobileNavigation: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[var(--bg)] text-[var(--text)] p-4">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[var(--primary)] text-[var(--on-primary)] p-4">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">
-          <Link to="/" className="text-[var(--text)] no-underline">
+          <Link to="/" className="text-[var(--on-primary)] no-underline">
             Livskompass
           </Link>
         </div>
@@ -49,28 +49,28 @@ const MobileNavigation: React.FC = () => {
           <Link
             to="/"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--text)]"
+            className="underline text-[var(--on-primary)]"
           >
             Hem
           </Link>
           <Link
             to="/create-life-compass"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--text)]"
+            className="underline text-[var(--on-primary)]"
           >
             Skapa Livskompass
           </Link>
           <Link
             to="/design-principles"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--text)]"
+            className="underline text-[var(--on-primary)]"
           >
             Designprinciper
           </Link>
           <Link
             to="/settings"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--text)]"
+            className="underline text-[var(--on-primary)]"
           >
             Inställningar
           </Link>
@@ -79,7 +79,7 @@ const MobileNavigation: React.FC = () => {
             onClick={() => setOpen(false)}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-[var(--text)] flex items-center"
+            className="underline text-[var(--on-primary)] flex items-center"
           >
             <svg
               className="w-6 h-6 mr-2"
