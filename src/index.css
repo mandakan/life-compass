@@ -1,46 +1,39 @@
 @import 'tailwindcss';
 
-/* Global CSS variables for theming and accessibility */
-:root {
-  /* Colors from designTokens.ts */
-  --color-primary: #3490dc;
-  --color-secondary: #ffed4a;
-  --color-accent: #e3342f;
-  
-  /* Light Theme */
-  --color-bg: #ffffff; /* Background: designTokens.light.background */
-  --color-text: #212529; /* Text: designTokens.light.text */
-  --color-callout-border: #3490dc;
-  --color-callout-bg: #f8f9fa;
-  --color-warning-border: #e3342f;
-  --color-warning-bg: #e9ecef;
+/* Global styles including CSS variables for theming */
 
-  /* Toggle Switch Variables */
-  --toggle-off-bg: #d1d5db; /* light gray */
-  --toggle-on-bg: #3490dc; /* primary color */
-  --toggle-handle-bg: #ffffff; /* white */
+/* Default Light Theme */
+:root {
+  --callout-bg: #ebf8ff;     /* light blue */
+  --callout-border: #2b6cb0; /* dark blue */
+  --text: #1a202c;           /* dark text */
+  /* Other global CSS variables can be defined here */
 }
 
+/* Dark Theme */
 [data-theme="dark"] {
-  /* Dark Theme Overrides */
-  --color-bg: #212529; /* Background: designTokens.dark.background */
-  --color-text: #f8f9fa; /* Text: designTokens.dark.text */
-  --color-callout-bg: #343a40;
-  --color-warning-bg: #495057;
+  --callout-bg: #2d3748;     /* dark grayish blue */
+  --callout-border: #63b3ed; /* light blue */
+  --text: #edf2f7;           /* light text */
+}
 
-  /* Toggle Switch Variables for dark mode */
-  --toggle-off-bg: #4b5563;  /* darker gray */
-  --toggle-on-bg: #2563eb;  /* blue tone */
-  --toggle-handle-bg: #f9fafb; /* off-white */
+/* High Contrast Theme */
+[data-theme="high-contrast"] {
+  --callout-bg: #000000;     /* black */
+  --callout-border: #ffff00; /* yellow */
+  --text: #ffffff;           /* white */
 }
 
 /* Global styles leveraging the defined CSS variables */
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  margin: 0;
   font-family: 'Inter', sans-serif;
+  background-color: var(--bg, #ffffff);
+  color: var(--text);
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-primary, #3490dc);
 }
+
+/* Additional global styles can be added here */
