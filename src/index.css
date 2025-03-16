@@ -4,31 +4,35 @@
 
 /* Default Light Theme */
 :root {
-  --callout-bg: #ebf8ff;     /* light blue */
-  --callout-border: #2b6cb0; /* dark blue */
-  --text: #1a202c;           /* dark text */
+  --bg: #ebf8ff;     /* light blue for callout background */
+  --border: #2b6cb0; /* dark blue for callout left border */
+  --text: #1a202c;   /* dark text */
   /* Other global CSS variables can be defined here */
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --callout-bg: #2d3748;     /* dark grayish blue */
-  --callout-border: #63b3ed; /* light blue */
-  --text: #edf2f7;           /* light text */
+  --bg: #2d3748;     /* dark grayish blue for callout background */
+  --border: #63b3ed; /* light blue for callout left border */
+  --text: #edf2f7;   /* light text */
 }
 
 /* High Contrast Theme */
 [data-theme="high-contrast"] {
-  --callout-bg: #000000;     /* black */
-  --callout-border: #ffff00; /* yellow */
-  --text: #ffffff;           /* white */
+  --bg: #000000;     /* black for callout background */
+  --border: #ffff00; /* yellow for callout left border */
+  --text: #ffffff;   /* white text */
 }
 
 /* Global styles leveraging the defined CSS variables */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg, #ffffff);
+  /* 
+     Note: The --bg variable here is used for callout background.
+     If the application background needs to be different, consider using a separate variable.
+  */
+  background-color: var(--app-bg, #ffffff);
   color: var(--text);
 }
 
