@@ -144,44 +144,46 @@ const RadarChart: React.FC<RadarChartProps> = ({
   };
 
   return (
-    <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
-      <RechartsRadarChart
-        outerRadius="70%"
-        data={arrangedData}
-        startAngle={90}
-        endAngle={-270}
-      >
-        <PolarGrid stroke="var(--border)" strokeWidth={axisStrokeWidth} />
-        <PolarAngleAxis dataKey="area" tick={renderTick} />
-        <PolarRadiusAxis
-          angle={30}
-          domain={[0, 10]}
-          tick={false}
-          axisLine={{
-            stroke: 'var(--border)',
-            strokeWidth: axisStrokeWidth,
-          }}
-        />
-        <Radar
-          name="Betydelse"
-          dataKey="importance"
-          stroke="var(--chart-series-1)"
-          fill="var(--chart-series-1)"
-          fillOpacity={0.6}
-          strokeWidth={radarStrokeWidth}
-        />
-        <Radar
-          name="Tillfredsställelse"
-          dataKey="satisfaction"
-          stroke="var(--chart-series-2)"
-          fill="var(--chart-series-2)"
-          fillOpacity={0.6}
-          strokeWidth={radarStrokeWidth}
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-      </RechartsRadarChart>
-    </ResponsiveContainer>
+    <div className="bg-[var(--bg)]">
+      <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
+        <RechartsRadarChart
+          outerRadius="70%"
+          data={arrangedData}
+          startAngle={90}
+          endAngle={-270}
+        >
+          <PolarGrid stroke="var(--border)" strokeWidth={axisStrokeWidth} />
+          <PolarAngleAxis dataKey="area" tick={renderTick} />
+          <PolarRadiusAxis
+            angle={30}
+            domain={[0, 10]}
+            tick={false}
+            axisLine={{
+              stroke: 'var(--border)',
+              strokeWidth: axisStrokeWidth,
+            }}
+          />
+          <Radar
+            name="Betydelse"
+            dataKey="importance"
+            stroke="var(--chart-series-1)"
+            fill="var(--chart-series-1)"
+            fillOpacity={0.6}
+            strokeWidth={radarStrokeWidth}
+          />
+          <Radar
+            name="Tillfredsställelse"
+            dataKey="satisfaction"
+            stroke="var(--chart-series-2)"
+            fill="var(--chart-series-2)"
+            fillOpacity={0.6}
+            strokeWidth={radarStrokeWidth}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend />
+        </RechartsRadarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
