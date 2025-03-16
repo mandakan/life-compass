@@ -1,5 +1,5 @@
 import predefinedAreas from '../data/predefinedLifeAreas.json';
-import { LifeArea } from '../components/LifeAreaCard';
+import { LifeArea } from '../types/LifeArea';
 
 export function getPredefinedLifeAreas(): LifeArea[] {
   return predefinedAreas;
