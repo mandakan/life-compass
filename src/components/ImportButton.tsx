@@ -49,7 +49,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
   return (
     <>
       <CustomButton onClick={handleButtonClick}>
-        Importera JSON
+        Importera
       </CustomButton>
       <input
         type="file"
