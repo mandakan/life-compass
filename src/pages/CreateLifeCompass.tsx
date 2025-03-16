@@ -411,8 +411,7 @@ const CreateLifeCompass: React.FC = () => {
         onReset={() => setShowResetModal(true)}
         onToggleRadar={() => setShowRadar(prev => !prev)}
         showRadar={showRadar}
-        // Pass the new import callback to DesktopToolbar so that its ImportButton calls handleImportFile
-        // Other props remain unchanged.
+        onImportFile={handleImportFile}
       />
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>

@@ -9,6 +9,7 @@ interface DesktopToolbarProps {
   onReset: () => void;
   onToggleRadar: () => void;
   showRadar: boolean;
+  onImportFile: (fileContent: string) => void;
 }
 
 const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
@@ -17,12 +18,8 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
   onReset,
   onToggleRadar,
   showRadar,
+  onImportFile,
 }) => {
-  const handleImportFile = (fileContent: string) => {
-    console.log("Importerad filinnehåll:", fileContent);
-    // TODO: Process the JSON content in later steps.
-  };
-
   const handleImportError = (error: string) => {
     alert(error);
   };
@@ -43,7 +40,7 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
       </CustomButton>
       <ExportButton />
       <ImportButton 
-        onFileSelected={handleImportFile} 
+        onFileSelected={onImportFile} 
         onError={handleImportError} 
       />
     </div>
