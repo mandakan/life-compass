@@ -28,12 +28,12 @@ The application should allow users to export their data as a human-readable JSON
 
 ## ❓ Refinement Questions
 
-- Should we allow users to select or filter specific data to export, e.g., excluding history or certain settings?
-- How do we ensure the exported file is structured in a way that supports future imports and potential changes in the data schema?
-- Should exported files include additional metadata such as timestamps, versioning information, or user identifiers?
-- What precautions should be considered regarding sensitive data? Should there be an option to exclude or mask such information?
-- How should error conditions be handled? For example, if local storage is unavailable or data is corrupted.
-- Should the JSON export support compression (e.g., .zip) for large data sets?
-- What is the required JSON schema and how can it be validated programmatically both on export and import?
-- Are there any performance considerations for the export process when dealing with large data sets?
-- Should we provide a sample JSON schema in the documentation for developers and advanced users?
+- Should we allow users to select or filter specific data to export, e.g., excluding history or certain settings? No, not at this point.
+- How do we ensure the exported file is structured in a way that supports future imports and potential changes in the data schema? Good question. Maybe keep some kind of versioning of the export format.
+- Should exported files include additional metadata such as timestamps, versioning information, or user identifiers? Yes.
+- What precautions should be considered regarding sensitive data? Should there be an option to exclude or mask such information? No.
+- How should error conditions be handled? For example, if local storage is unavailable or data is corrupted. Show an error to the user.
+- Should the JSON export support compression (e.g., .zip) for large data sets? Yes but only for very large datasets.
+- What is the required JSON schema and how can it be validated programmatically both on export and import? We need to derive this from the internal data format.
+- Are there any performance considerations for the export process when dealing with large data sets? No.
+- Should we provide a sample JSON schema in the documentation for developers and advanced users? Not as top prio at this point.

@@ -30,11 +30,11 @@ Users should be able to restore their Life Compass data from a previously export
 
 ## ❓ Refinement Questions
 
-- How should we handle version mismatches between the current application data schema and the imported JSON file?
-- Should the import process allow users to preview the data before confirming the import?
-- What is the expected behavior if the imported file contains incomplete or unexpected fields?
-- How should duplicate or conflicting data be managed during the import process?
-- What security measures should be in place to validate, sanitize, and securely process the imported JSON file?
-- Should the import process be fully asynchronous, and what kind of progress indicators or cancellation options should be provided?
-- Are there any performance considerations when importing large JSON files, and how can these be mitigated?
-- What specific user feedback should be provided in cases of errors, success, or partial import results?
+- How should we handle version mismatches between the current application data schema and the imported JSON file? Show a warning and make a best effort of importing the data anyway if the user agrees.
+- Should the import process allow users to preview the data before confirming the import? Yes, at least on a summary level.
+- What is the expected behavior if the imported file contains incomplete or unexpected fields? Ignore unexpected fields and use default values for incomplete fields. Show a warning for these conditions if they occur.
+- How should duplicate or conflicting data be managed during the import process? Do not import duplicates. Provide user feedback that duplicates were removed.
+- What security measures should be in place to validate, sanitize, and securely process the imported JSON file? It should at least check for valid json.
+- Should the import process be fully asynchronous, and what kind of progress indicators or cancellation options should be provided? The datasets are so small so they can be synchronous.
+- Are there any performance considerations when importing large JSON files, and how can these be mitigated? No.
+- What specific user feedback should be provided in cases of errors, success, or partial import results? The user must be made aware of all errors or warnings that occur during import.
