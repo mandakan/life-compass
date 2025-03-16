@@ -34,12 +34,12 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  // Retrieve user preference from localStorage; default to following system preference.
-  const localFollowSystem =
-    localStorage.getItem('followSystem') === 'false' ? false : true;
+  const DEFAULT_FOLLOW_SYSTEM = true;
+  const localFollowSystemRaw = localStorage.getItem('followSystem');
+  const initialFollowSystem =
+    localFollowSystemRaw === null ? DEFAULT_FOLLOW_SYSTEM : localFollowSystemRaw === 'true';
   const localTheme = localStorage.getItem('theme') as Theme | null;
 
-  // Function to get the current system theme using matchMedia.
   const getSystemTheme = (): Theme => {
     if (
       window.matchMedia &&
@@ -51,13 +51,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   };
 
   const [systemTheme, setSystemTheme] = useState<Theme>(getSystemTheme());
-  const [followSystem, setFollowSystemState] =
-    useState<boolean>(localFollowSystem);
+  const [followSystem, setFollowSystemState] = useState<boolean>(initialFollowSystem);
   const [theme, setThemeState] = useState<Theme>(
-    localTheme && !localFollowSystem ? localTheme : systemTheme,
+    localTheme && !initialFollowSystem ? localTheme : systemTheme
   );
 
-  // Apply the theme to the document element and persist preferences.
   useEffect(() => {
     if (followSystem) {
       setThemeState(systemTheme);
@@ -69,7 +67,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     applyTheme(theme);
   }, [theme, followSystem, systemTheme]);
 
-  // Listen for changes in the system preferred color scheme.
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (event: MediaQueryListEvent) => {
@@ -90,7 +87,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     };
   }, []);
 
-  // Toggle theme and disable system follow on manual toggle.
   const toggleTheme = () => {
     setFollowSystemState(false);
     setThemeState(prev => (prev === 'light' ? 'dark' : 'light'));
