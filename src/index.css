@@ -5,46 +5,47 @@
 /* Default Light Theme */
 :root {
   --bg: #ebf8ff;     /* light blue for callout background */
-  --border: #2b6cb0; /* dark blue for callout left border */
+  --border: #2b6cb0; /* dark blue for borders */
   --text: #1a202c;   /* dark text */
   --font-primary: 'Inter', sans-serif;
   --slider-track: #dee2e6;  /* default track color from neutral[300] */
   --slider-handle: #3490dc; /* primary color */
-  /* Other global CSS variables can be defined here */
+  --accent: #3490dc;  /* accent color for highlights and buttons */
+  --details-bg: #f8f9fa; /* background for details box */
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --bg: #2d3748;     /* dark grayish blue for callout background */
-  --border: #63b3ed; /* light blue for callout left border */
-  --text: #edf2f7;   /* light text */
-  --slider-track: #495057; /* darker neutral for track */
-  --slider-handle: #3490dc; /* primary color remains */
+  --bg: #2d3748;         /* dark grayish blue for callout background */
+  --border: #63b3ed;     /* light blue for borders */
+  --text: #edf2f7;       /* light text */
+  --slider-track: #495057;/* darker neutral for track */
+  --slider-handle: #3490dc;/* primary color remains */
+  --accent: #e3342f;     /* accent color for dark mode */
+  --details-bg: #343a40;  /* background for details box in dark mode */
 }
 
 /* High Contrast Theme */
 [data-theme="high-contrast"] {
-  --bg: #000000;     /* black for callout background */
-  --border: #ffff00; /* yellow for callout left border */
-  --text: #ffffff;   /* white text */
-  --slider-track: #ffff00; /* yellow for track */
-  --slider-handle: #ffffff; /* white for handle */
+  --bg: #000000;         /* black for callout background */
+  --border: #ffff00;     /* yellow for borders */
+  --text: #ffffff;       /* white text */
+  --slider-track: #ffff00;/* yellow for slider track */
+  --slider-handle: #ffffff;/* white slider handle */
+  --accent: #ffff00;     /* accent color for high contrast */
+  --details-bg: #000000;  /* background for details box in high contrast */
 }
 
 /* Global styles leveraging the defined CSS variables */
 body {
   margin: 0;
   font-family: var(--font-primary);
-  /* 
-     Note: The --bg variable here is used for callout background.
-     If the application background needs to be different, consider using a separate variable.
-  */
   background-color: var(--app-bg, #ffffff);
   color: var(--text);
 }
 
 a {
-  color: var(--color-primary, #3490dc);
+  color: var(--accent, #3490dc);
 }
 
 /* Additional global styles can be added here */
