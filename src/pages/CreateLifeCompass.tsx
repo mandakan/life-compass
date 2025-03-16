@@ -344,9 +344,9 @@ const CreateLifeCompass: React.FC = () => {
   }));
 
   return (
-    <div className="p-4 pt-[calc(1rem+60px)] md:pt-4 font-sans bg-[var(--bg)]">
+    <div className="p-4 pt-[calc(1rem+60px)] md:pt-4 font-sans bg-[var(--color-bg)]">
       {!storageAvailable && (
-        <div className="bg-[var(--accent)] text-white p-2 mb-4 rounded-sm font-sans">
+        <div className="bg-[var(--color-accent)] text-white p-2 mb-4 rounded-sm font-sans">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
@@ -354,21 +354,21 @@ const CreateLifeCompass: React.FC = () => {
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
       <div>
-        <button onClick={handleAddNewLifeArea} className="bg-[var(--primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        <button onClick={handleAddNewLifeArea} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
           Lägg till livsområde
         </button>
-        <button onClick={handleAddPredefinedAreas} className="bg-[var(--primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        <button onClick={handleAddPredefinedAreas} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
           Lägg till fördefinierade områden
         </button>
-        <button onClick={() => setShowResetModal(true)} className="bg-[var(--primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        <button onClick={() => setShowResetModal(true)} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
           Återställ till standard
         </button>
-        <button onClick={() => setShowRadar(prev => !prev)} className="bg-[var(--primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
+        <button onClick={() => setShowRadar(prev => !prev)} className="bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded-sm cursor-pointer m-2 transition-all duration-150 font-sans">
           {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
         </button>
       </div>
       {error && (
-        <div className="text-[var(--accent)] mb-4 font-sans">
+        <div className="text-[var(--color-accent)] mb-4 font-sans">
           {error}
         </div>
       )}
@@ -387,7 +387,7 @@ const CreateLifeCompass: React.FC = () => {
               onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
               onDrop={handleDrop(index)}
-              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--primary)]' : ''}`}
+              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
             >
               <LifeAreaCard
                 area={area}
@@ -407,7 +407,7 @@ const CreateLifeCompass: React.FC = () => {
                 onEdit={handleEditLifeArea}
                 onRemove={handleRequestDeleteLifeArea}
                 existingNames={lifeAreas.map(a => a.name)}
-                className="border border-[var(--border)] p-4 rounded-sm w-full bg-[var(--bg)] font-sans"
+                className="border border-[var(--border)] p-4 rounded-sm w-full bg-[var(--color-bg)] font-sans"
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
@@ -428,7 +428,7 @@ const CreateLifeCompass: React.FC = () => {
               onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
               onDrop={handleDrop(index)}
-              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--primary)]' : ''}`}
+              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
             >
               <LifeAreaCard
                 area={area}
@@ -448,7 +448,7 @@ const CreateLifeCompass: React.FC = () => {
                 onEdit={handleEditLifeArea}
                 onRemove={handleRequestDeleteLifeArea}
                 existingNames={lifeAreas.map(a => a.name)}
-                className="border border-[var(--border)] p-4 rounded-sm w-full bg-[var(--bg)] font-sans"
+                className="border border-[var(--border)] p-4 rounded-sm w-full bg-[var(--color-bg)] font-sans"
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
