@@ -23,8 +23,8 @@ const SettingsMenu: React.FC = () => {
     <div className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
       <h2 className="mb-4 text-lg font-bold">Inställningar</h2>
       <div className="mb-4">
-        <label className="flex items-center text-[var(--color-text)]">
-          <span className="mr-2">Mörkt läge</span>
+        <label className="flex items-center justify-between text-[var(--color-text)]">
+          <span>Mörkt läge</span>
           <ToggleSwitch
             checked={theme === 'dark'}
             onChange={handleThemeToggle}
@@ -32,13 +32,12 @@ const SettingsMenu: React.FC = () => {
         </label>
       </div>
       <div>
-        <label className="flex items-center text-[var(--color-text)]">
-          <span className="ml-2">Följ systemtema (System: {systemTheme})</span>
+        <label className="flex items-center justify-between text-[var(--color-text)]">
+          <span>Följ systemtema (System: {systemTheme})</span>
           <ToggleSwitch
             checked={followSystem}
             onChange={handleFollowSystemToggle}
           />
-          
         </label>
       </div>
     </div>
