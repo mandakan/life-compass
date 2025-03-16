@@ -108,23 +108,8 @@ const CreateLifeCompass: React.FC = () => {
   const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const handleResetConfirm = () => {
-    const predefined = getPredefinedLifeAreas();
-    setLifeAreas(predefined);
-    setEditingAreaId(null);
-    setEditName('');
-    setEditDescription('');
-    setEditDetails('');
-    setEditImportance(5);
-    setEditSatisfaction(5);
-    setShowResetModal(false);
-  };
-
-  const handleResetCancel = () => {
-    setShowResetModal(false);
-  };
-
-  const handleAddNewLifeArea = () => {
+  // Modified to accept an optional insertionIndex.
+  const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
       const base = 'Nytt livsområde';
       let name = base;
@@ -143,7 +128,15 @@ const CreateLifeCompass: React.FC = () => {
       importance: 5,
       satisfaction: 5,
     };
-    setLifeAreas([newArea, ...lifeAreas]);
+    if (typeof insertionIndex === 'number') {
+      setLifeAreas([
+        ...lifeAreas.slice(0, insertionIndex),
+        newArea,
+        ...lifeAreas.slice(insertionIndex)
+      ]);
+    } else {
+      setLifeAreas([...lifeAreas, newArea]);
+    }
     setEditingAreaId(newArea.id);
     setEditName(newArea.name);
     setEditDescription(newArea.description);
@@ -395,7 +388,7 @@ const CreateLifeCompass: React.FC = () => {
       )}
       {isDesktop ? (
         <DesktopToolbar
-          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddNewLifeArea={() => handleAddNewLifeArea()}
           onAddPredefinedAreas={handleAddPredefinedAreas}
           onReset={() => setShowResetModal(true)}
           onToggleRadar={() => setShowRadar(prev => !prev)}
@@ -404,7 +397,7 @@ const CreateLifeCompass: React.FC = () => {
         />
       ) : (
         <FloatingToolbar
-          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddNewLifeArea={() => handleAddNewLifeArea()}
           onAddPredefinedAreas={handleAddPredefinedAreas}
           onReset={() => setShowResetModal(true)}
           onToggleRadar={() => setShowRadar(prev => !prev)}
@@ -461,7 +454,7 @@ const CreateLifeCompass: React.FC = () => {
             </div>
           ))}
           <div
-            onClick={handleAddNewLifeArea}
+            onClick={() => handleAddNewLifeArea(lifeAreas.length)}
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
             <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
@@ -508,7 +501,7 @@ const CreateLifeCompass: React.FC = () => {
             </div>
           ))}
           <div
-            onClick={handleAddNewLifeArea}
+            onClick={() => handleAddNewLifeArea(lifeAreas.length)}
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
             <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
