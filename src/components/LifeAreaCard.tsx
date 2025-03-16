@@ -236,7 +236,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     return (
       <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div
-          className="absolute top-2 left-2.5 cursor-grab opacity-90"
+          className="absolute top-2 right-2.5 cursor-grab opacity-90"
           role="img"
           aria-label="Drag to reorder life area"
           {...(dragHandle || {})}
