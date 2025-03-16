@@ -438,15 +438,21 @@ const CreateLifeCompass: React.FC = () => {
         </div>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            onClick={handleAddNewLifeArea}
+            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+          >
+            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
+          </div>
           {lifeAreas.map((area, index) => (
             <div
               key={area.id}
               ref={el => (containerRefs.current[index] = el)}
-              onDragOver={handleDragOver(index)}
-              onDragEnter={() => setDragOverIndex(index)}
+              onDragOver={handleDragOver(index + 1)}
+              onDragEnter={() => setDragOverIndex(index + 1)}
               onDragLeave={() => setDragOverIndex(null)}
-              onDrop={handleDrop(index)}
-              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+              onDrop={handleDrop(index + 1)}
+              className={`flex h-full w-full ${dragOverIndex === index + 1 ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
             >
               <LifeAreaCard
                 area={area}
@@ -470,7 +476,7 @@ const CreateLifeCompass: React.FC = () => {
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
-                  onDragStart: handleDragStart(index),
+                  onDragStart: handleDragStart(index + 1),
                 }}
                 onInlineDetailsChange={handleInlineDetailsChange}
               />
@@ -479,15 +485,21 @@ const CreateLifeCompass: React.FC = () => {
         </div>
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
+          <div
+            onClick={handleAddNewLifeArea}
+            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+          >
+            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
+          </div>
           {lifeAreas.map((area, index) => (
             <div
               key={area.id}
               ref={el => (containerRefs.current[index] = el)}
-              onDragOver={handleDragOver(index)}
-              onDragEnter={() => setDragOverIndex(index)}
+              onDragOver={handleDragOver(index + 1)}
+              onDragEnter={() => setDragOverIndex(index + 1)}
               onDragLeave={() => setDragOverIndex(null)}
-              onDrop={handleDrop(index)}
-              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+              onDrop={handleDrop(index + 1)}
+              className={`flex h-full w-full ${dragOverIndex === index + 1 ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
             >
               <LifeAreaCard
                 area={area}
@@ -511,7 +523,7 @@ const CreateLifeCompass: React.FC = () => {
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
-                  onDragStart: handleDragStart(index),
+                  onDragStart: handleDragStart(index + 1),
                 }}
                 onInlineDetailsChange={handleInlineDetailsChange}
               />
