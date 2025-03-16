@@ -136,9 +136,10 @@ const DesktopNavigation: React.FC = () => {
               right: 0,
               backgroundColor: menu[theme].background,
               border: '1px solid #ccc',
-              padding: '1rem',
+              padding: '1.5rem',
               borderRadius: '8px',
               zIndex: 1000,
+              width: '300px',
             }}
           >
             <SettingsMenu />
