@@ -17,17 +17,42 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = (props) => {
     setExpanded(prev => !prev);
   };
 
+  const handleAddNewLifeArea = () => {
+    props.onAddNewLifeArea();
+    setExpanded(false);
+  };
+
+  const handleAddPredefinedAreas = () => {
+    props.onAddPredefinedAreas();
+    setExpanded(false);
+  };
+
+  const handleReset = () => {
+    props.onReset();
+    setExpanded(false);
+  };
+
+  const handleToggleRadar = () => {
+    props.onToggleRadar();
+    setExpanded(false);
+  };
+
+  const handleImportFile = (fileContent: string) => {
+    props.onImportFile(fileContent);
+    setExpanded(false);
+  };
+
   return (
     <>
       {expanded && (
         <div className="fixed bottom-20 right-4 z-50 bg-[var(--color-bg)] p-4 rounded-md shadow-lg border border-[var(--border)]">
           <DesktopToolbar
-            onAddNewLifeArea={props.onAddNewLifeArea}
-            onAddPredefinedAreas={props.onAddPredefinedAreas}
-            onReset={props.onReset}
-            onToggleRadar={props.onToggleRadar}
+            onAddNewLifeArea={handleAddNewLifeArea}
+            onAddPredefinedAreas={handleAddPredefinedAreas}
+            onReset={handleReset}
+            onToggleRadar={handleToggleRadar}
             showRadar={props.showRadar}
-            onImportFile={props.onImportFile}
+            onImportFile={handleImportFile}
           />
         </div>
       )}
