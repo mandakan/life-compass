@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+import { describe, it, expect, beforeEach } from 'vitest';
 import { exportData } from '../utils/exportService';
 
 describe('exportData', () => {
