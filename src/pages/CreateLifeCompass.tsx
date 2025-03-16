@@ -54,8 +54,7 @@ const CreateLifeCompass: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [showRecommendationCallout, setShowRecommendationCallout] =
-    useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -84,21 +83,13 @@ const CreateLifeCompass: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const savedScrollPosition = localStorage.getItem(
-      'createlifecompassScrollPosition',
-    );
-    window.scrollTo(
-      0,
-      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
-    );
+    const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
+    window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      localStorage.setItem(
-        'createlifecompassScrollPosition',
-        window.scrollY.toString(),
-      );
+      localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -138,9 +129,7 @@ const CreateLifeCompass: React.FC = () => {
       const base = 'Nytt livsområde';
       let name = base;
       let counter = 2;
-      while (
-        lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())
-      ) {
+      while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
         name = `${base} ${counter}`;
         counter++;
       }
@@ -166,10 +155,7 @@ const CreateLifeCompass: React.FC = () => {
   const handleAddPredefinedAreas = () => {
     const predefined = getPredefinedLifeAreas();
     const newAreas = predefined.filter(
-      predef =>
-        !lifeAreas.some(
-          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
-        ),
+      predef => !lifeAreas.some(existing => existing.name.toLowerCase() === predef.name.toLowerCase())
     );
     if (newAreas.length > 0) {
       setLifeAreas([...lifeAreas, ...newAreas]);
@@ -398,9 +384,7 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div
-      className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}
-    >
+    <div className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
@@ -438,21 +422,15 @@ const CreateLifeCompass: React.FC = () => {
         </div>
       ) : isDesktop ? (
         <div className="mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-          <div
-            onClick={handleAddNewLifeArea}
-            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
-          >
-            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
-          </div>
           {lifeAreas.map((area, index) => (
             <div
               key={area.id}
               ref={el => (containerRefs.current[index] = el)}
-              onDragOver={handleDragOver(index + 1)}
-              onDragEnter={() => setDragOverIndex(index + 1)}
+              onDragOver={handleDragOver(index)}
+              onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
-              onDrop={handleDrop(index + 1)}
-              className={`flex h-full w-full ${dragOverIndex === index + 1 ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+              onDrop={handleDrop(index)}
+              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
             >
               <LifeAreaCard
                 area={area}
@@ -476,30 +454,30 @@ const CreateLifeCompass: React.FC = () => {
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
-                  onDragStart: handleDragStart(index + 1),
+                  onDragStart: handleDragStart(index),
                 }}
                 onInlineDetailsChange={handleInlineDetailsChange}
               />
             </div>
           ))}
+          <div
+            onClick={handleAddNewLifeArea}
+            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+          >
+            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
+          </div>
         </div>
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
-          <div
-            onClick={handleAddNewLifeArea}
-            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
-          >
-            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
-          </div>
           {lifeAreas.map((area, index) => (
             <div
               key={area.id}
               ref={el => (containerRefs.current[index] = el)}
-              onDragOver={handleDragOver(index + 1)}
-              onDragEnter={() => setDragOverIndex(index + 1)}
+              onDragOver={handleDragOver(index)}
+              onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
-              onDrop={handleDrop(index + 1)}
-              className={`flex h-full w-full ${dragOverIndex === index + 1 ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+              onDrop={handleDrop(index)}
+              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
             >
               <LifeAreaCard
                 area={area}
@@ -523,12 +501,18 @@ const CreateLifeCompass: React.FC = () => {
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
-                  onDragStart: handleDragStart(index + 1),
+                  onDragStart: handleDragStart(index),
                 }}
                 onInlineDetailsChange={handleInlineDetailsChange}
               />
             </div>
           ))}
+          <div
+            onClick={handleAddNewLifeArea}
+            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+          >
+            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
+          </div>
         </div>
       )}
       <WarningModal
@@ -551,11 +535,7 @@ const CreateLifeCompass: React.FC = () => {
       />
       <ImportPreviewModal
         visible={previewVisible}
-        metadata={
-          importedData
-            ? importedData.metadata
-            : { exportTimestamp: '', version: '' }
-        }
+        metadata={importedData ? importedData.metadata : { exportTimestamp: '', version: '' }}
         data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
         onConfirm={handleConfirmImport}
         onCancel={handleCancelImport}
