@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { getUserData } from '../utils/storageService';
 import { useTheme } from '../context/ThemeContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import CustomButton from '../components/CustomButton';
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const data = getUserData();
     console.log('Laddade användardata:', data);
@@ -12,12 +15,9 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-bg text-text font-sans p-8 flex flex-col items-center justify-center">
       <h1 className="mb-6 text-2xl font-bold text-center">Livskompass</h1>
-      <Link
-        to="/create-life-compass"
-        className="bg-primary hover:bg-secondary text-white rounded px-6 py-3 transition-colors duration-150 cursor-pointer no-underline inline-block"
-      >
+      <CustomButton onClick={() => navigate("/create-life-compass")}>
         Skapa Livskompass
-      </Link>
+      </CustomButton>
     </div>
   );
 };
