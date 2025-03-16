@@ -91,9 +91,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     fireEvent.click(screen.getByRole('button', { name: /Spara/i }));
 
     await waitFor(() => {
-      expect(
-        screen.getByText('Samma namn får inte användas.'),
-      ).toBeTruthy();
+      expect(screen.getByText('Samma namn får inte användas.')).toBeTruthy();
     });
   });
 

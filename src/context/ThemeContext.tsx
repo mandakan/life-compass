@@ -37,7 +37,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const DEFAULT_FOLLOW_SYSTEM = true;
   const localFollowSystemRaw = localStorage.getItem('followSystem');
   const initialFollowSystem =
-    localFollowSystemRaw === null ? DEFAULT_FOLLOW_SYSTEM : localFollowSystemRaw === 'true';
+    localFollowSystemRaw === null
+      ? DEFAULT_FOLLOW_SYSTEM
+      : localFollowSystemRaw === 'true';
   const localTheme = localStorage.getItem('theme') as Theme | null;
 
   const getSystemTheme = (): Theme => {
@@ -51,9 +53,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   };
 
   const [systemTheme, setSystemTheme] = useState<Theme>(getSystemTheme());
-  const [followSystem, setFollowSystemState] = useState<boolean>(initialFollowSystem);
+  const [followSystem, setFollowSystemState] =
+    useState<boolean>(initialFollowSystem);
   const [theme, setThemeState] = useState<Theme>(
-    localTheme && !initialFollowSystem ? localTheme : systemTheme
+    localTheme && !initialFollowSystem ? localTheme : systemTheme,
   );
 
   useEffect(() => {
