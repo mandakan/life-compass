@@ -291,25 +291,23 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 className="min-h-[100px] cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans"
               >
                 {editingDetailsInline ? (
-                  <div className="flex h-full flex-col py-0">
-                    <textarea
-                      ref={inlineDetailsRef}
-                      value={inlineDetailsValue}
-                      onChange={e => {
-                        setInlineDetailsValue(e.target.value);
-                      }}
-                      onBlur={() => {
-                        if (onInlineDetailsChange) {
-                          onInlineDetailsChange(inlineDetailsValue, area);
-                        } else {
-                          onChangeEditDetails(inlineDetailsValue);
-                        }
-                        setEditingDetailsInline(false);
-                      }}
-                      autoFocus
-                      className="w-full h-full flex bg-[var(--details-bg)] px-0 py-0 my-0 pb-0 font-sans outline-none"
-                    />
-                  </div>
+                  <textarea
+                    ref={inlineDetailsRef}
+                    value={inlineDetailsValue}
+                    onChange={e => {
+                      setInlineDetailsValue(e.target.value);
+                    }}
+                    onBlur={() => {
+                      if (onInlineDetailsChange) {
+                        onInlineDetailsChange(inlineDetailsValue, area);
+                      } else {
+                        onChangeEditDetails(inlineDetailsValue);
+                      }
+                      setEditingDetailsInline(false);
+                    }}
+                    autoFocus
+                    className="w-full h-full block bg-[var(--details-bg)] px-0 py-0 font-sans outline-none resize-none"
+                  />
                 ) : (
                   <span className="font-sans">
                     {area.details || 'Klicka för att redigera detaljer'}
