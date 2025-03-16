@@ -16,12 +16,16 @@
   --primary: #3490dc;        /* primary color */
   --secondary: #ffed4a;      /* secondary color */
   --on-primary: #ffffff;     /* text color when using primary background */
+
+  /* New menu CSS variables extracted from design tokens */
+  --menu-bg: #3490dc;        /* from menu.light.background */
+  --menu-text: #ffffff;      /* from menu.light.text */
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
   --bg: #2d3748;            /* dark mode general background */
-  --callout-bg: #343a40;      /* dark mode callout background */
+  --callout-bg: #343a40;     /* dark mode callout background */
   --border: #63b3ed;         /* light blue for borders */
   --text: #edf2f7;           /* light text */
   --slider-track: #495057;    /* darker neutral for track */
@@ -31,12 +35,16 @@
   --primary: #3490dc;        /* primary color remains same */
   --secondary: #ffed4a;      /* secondary color remains same */
   --on-primary: #ffffff;     /* text color on primary background remains white */
+
+  /* New menu CSS variables for dark theme */
+  --menu-bg: #343a40;        /* from menu.dark.background */
+  --menu-text: #f8f9fa;      /* from menu.dark.text */
 }
 
 /* High Contrast Theme */
 [data-theme="high-contrast"] {
   --bg: #000000;            /* black for general background */
-  --callout-bg: #000000;      /* callout background for high contrast */
+  --callout-bg: #000000;     /* callout background for high contrast */
   --border: #ffff00;         /* yellow for borders */
   --text: #ffffff;           /* white text */
   --slider-track: #ffff00;    /* yellow for slider track */
@@ -46,6 +54,10 @@
   --primary: #3490dc;        /* primary color remains same */
   --secondary: #ffed4a;      /* secondary color remains same */
   --on-primary: #ffffff;     /* text color on primary background remains white */
+
+  /* New menu CSS variables for high contrast */
+  --menu-bg: #000000;
+  --menu-text: #ffffff;
 }
 
 /* Global styles leveraging the defined CSS variables */
