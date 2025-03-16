@@ -23,6 +23,10 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
       if (onError) {
         onError('Ogiltig filtyp. Vänligen välj en JSON-fil.');
       }
+      // Clear the input value to allow re-selection of the same file if needed.
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
       return;
     }
 
@@ -37,10 +41,18 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
           onError('Filen kunde inte läsas som giltig JSON.');
         }
       }
+      // Clear the input value to allow the same file to be imported again.
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     };
     reader.onerror = () => {
       if (onError) {
         onError('Ett fel inträffade vid läsning av filen.');
+      }
+      // Clear the input value to allow re-selection.
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
       }
     };
     reader.readAsText(file);
