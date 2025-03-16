@@ -12,6 +12,8 @@
   --slider-handle: #3490dc; /* primary color */
   --accent: #3490dc;  /* accent color for highlights and buttons */
   --details-bg: #f8f9fa; /* background for details box */
+  --primary: #3490dc; /* primary color */
+  --secondary: #ffed4a; /* secondary color */
 }
 
 /* Dark Theme */
@@ -23,6 +25,8 @@
   --slider-handle: #3490dc;/* primary color remains */
   --accent: #e3342f;     /* accent color for dark mode */
   --details-bg: #343a40;  /* background for details box in dark mode */
+  --primary: #3490dc; /* primary color remains same */
+  --secondary: #ffed4a; /* secondary color remains same */
 }
 
 /* High Contrast Theme */
@@ -34,6 +38,8 @@
   --slider-handle: #ffffff;/* white slider handle */
   --accent: #ffff00;     /* accent color for high contrast */
   --details-bg: #000000;  /* background for details box in high contrast */
+  --primary: #3490dc; /* primary color remains same */
+  --secondary: #ffed4a; /* secondary color remains same */
 }
 
 /* Global styles leveraging the defined CSS variables */
