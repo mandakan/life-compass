@@ -8,6 +8,7 @@ interface FloatingToolbarProps {
   onToggleRadar: () => void;
   showRadar: boolean;
   onImportFile: (fileContent: string) => void;
+  onRemoveAll: () => void;
 }
 
 const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
@@ -42,6 +43,11 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
     setExpanded(false);
   };
 
+  const handleRemoveAll = () => {
+    props.onRemoveAll();
+    setExpanded(false);
+  };
+
   return (
     <>
       {expanded && (
@@ -53,6 +59,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             onToggleRadar={handleToggleRadar}
             showRadar={props.showRadar}
             onImportFile={handleImportFile}
+            onRemoveAll={handleRemoveAll}
           />
         </div>
       )}

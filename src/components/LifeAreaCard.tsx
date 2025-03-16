@@ -96,10 +96,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       ? 'border-green-500'
       : 'border-[var(--border)]';
 
-  const nameInputClasses = `ml-2 px-2 py-1 rounded-sm border font-sans ${nameInputBorderClass}`;
+  const nameInputClasses = `ml-0 px-2 py-1 rounded-sm border w-full font-sans ${nameInputBorderClass}`;
 
   const commonInputClasses =
-    'ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
+    'ml-0 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
 
   const actionButtonClasses =
     'flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors';
@@ -110,7 +110,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div>
           <div>
             <label className="font-sans">
-              Namn:
+              Namn
               <input
                 type="text"
                 value={localEditName}
@@ -133,7 +133,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div className="mt-2">
             <label className="font-sans">
-              Beskrivning:
+              Beskrivning
               <textarea
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
@@ -143,11 +143,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div className="mt-2">
             <label className="font-sans">
-              Detaljer:
+              Detaljer
               <textarea
                 value={editDetails}
                 onChange={e => onChangeEditDetails(e.target.value)}
-                className={`${commonInputClasses} min-h-[40px]`}
+                className={`${commonInputClasses} min-h-[120px]`}
               />
             </label>
           </div>
@@ -236,23 +236,35 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     return (
       <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div
-          className="absolute top-2 right-2.5 cursor-grab opacity-90"
+          className="absolute top-0 left-1/2 -translate-x-1/2 cursor-grab opacity-90"
           role="img"
           aria-label="Drag to reorder life area"
           {...(dragHandle || {})}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            width="24"
+            height="24"
+            fill="currentColor"
             viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
           >
-            <path
+            <line
+              x1="4"
+              y1="8"
+              x2="20"
+              y2="8"
+              stroke="currentColor"
+              strokeWidth="2"
               strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+            />
+            <line
+              x1="4"
+              y1="14"
+              x2="20"
+              y2="14"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
             />
           </svg>
         </div>
@@ -264,7 +276,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 className="mr-2 cursor-pointer border-none bg-transparent"
                 aria-label="Visa beskrivning"
               >
-                ℹ️
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
               </button>
               <h4 className="m-0 font-sans text-lg font-normal text-[var(--color-primary)]">
                 {area.name}
@@ -288,28 +313,26 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div className="mb-2">
               <div
                 onClick={() => setEditingDetailsInline(true)}
-                className="min-h-[100px] cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans"
+                className={`min-h-[120px] ${editingDetailsInline ? 'flex' : ''} cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans`}
               >
                 {editingDetailsInline ? (
-                  <div className="flex h-full flex-col">
-                    <textarea
-                      ref={inlineDetailsRef}
-                      value={inlineDetailsValue}
-                      onChange={e => {
-                        setInlineDetailsValue(e.target.value);
-                      }}
-                      onBlur={() => {
-                        if (onInlineDetailsChange) {
-                          onInlineDetailsChange(inlineDetailsValue, area);
-                        } else {
-                          onChangeEditDetails(inlineDetailsValue);
-                        }
-                        setEditingDetailsInline(false);
-                      }}
-                      autoFocus
-                      className="w-full resize-none bg-[var(--details-bg)] px-2 py-1 font-sans outline-none"
-                    />
-                  </div>
+                  <textarea
+                    ref={inlineDetailsRef}
+                    value={inlineDetailsValue}
+                    onChange={e => {
+                      setInlineDetailsValue(e.target.value);
+                    }}
+                    onBlur={() => {
+                      if (onInlineDetailsChange) {
+                        onInlineDetailsChange(inlineDetailsValue, area);
+                      } else {
+                        onChangeEditDetails(inlineDetailsValue);
+                      }
+                      setEditingDetailsInline(false);
+                    }}
+                    autoFocus
+                    className="block w-full flex-1 resize-none bg-[var(--details-bg)] px-0 py-0 font-sans outline-none"
+                  />
                 ) : (
                   <span className="font-sans">
                     {area.details || 'Klicka för att redigera detaljer'}

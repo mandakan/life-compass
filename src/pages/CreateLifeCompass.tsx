@@ -59,6 +59,7 @@ const CreateLifeCompass: React.FC = () => {
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showRemoveAllModal, setShowRemoveAllModal] = useState(false);
 
   const [importedData, setImportedData] = useState<any | null>(null);
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -117,23 +118,10 @@ const CreateLifeCompass: React.FC = () => {
   const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const handleResetConfirm = () => {
-    const predefined = getPredefinedLifeAreas();
-    setLifeAreas(predefined);
-    setEditingAreaId(null);
-    setEditName('');
-    setEditDescription('');
-    setEditDetails('');
-    setEditImportance(5);
-    setEditSatisfaction(5);
-    setShowResetModal(false);
-  };
+  // Track newly created card ID so we know to remove it if editing is aborted.
+  const [newAreaId, setNewAreaId] = useState<string | null>(null);
 
-  const handleResetCancel = () => {
-    setShowResetModal(false);
-  };
-
-  const handleAddNewLifeArea = () => {
+  const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
       const base = 'Nytt livsområde';
       let name = base;
@@ -154,7 +142,16 @@ const CreateLifeCompass: React.FC = () => {
       importance: 5,
       satisfaction: 5,
     };
-    setLifeAreas([newArea, ...lifeAreas]);
+    if (typeof insertionIndex === 'number') {
+      setLifeAreas([
+        ...lifeAreas.slice(0, insertionIndex),
+        newArea,
+        ...lifeAreas.slice(insertionIndex),
+      ]);
+    } else {
+      setLifeAreas([...lifeAreas, newArea]);
+    }
+    setNewAreaId(newArea.id);
     setEditingAreaId(newArea.id);
     setEditName(newArea.name);
     setEditDescription(newArea.description);
@@ -255,9 +252,18 @@ const CreateLifeCompass: React.FC = () => {
     setEditDetails('');
     setEditImportance(5);
     setEditSatisfaction(5);
+    if (newAreaId === editingAreaId) {
+      setNewAreaId(null);
+    }
   };
 
   const handleCancelEdit = () => {
+    if (editingAreaId && newAreaId === editingAreaId) {
+      setLifeAreas(prevLifeAreas =>
+        prevLifeAreas.filter(area => area.id !== editingAreaId),
+      );
+      setNewAreaId(null);
+    }
     setEditingAreaId(null);
     setEditName('');
     setEditDescription('');
@@ -283,6 +289,35 @@ const CreateLifeCompass: React.FC = () => {
   const handleDeleteCancel = () => {
     setDeleteCandidate(null);
     setShowDeleteModal(false);
+  };
+
+  const handleResetConfirm = () => {
+    const predefined = getPredefinedLifeAreas();
+    setLifeAreas(predefined);
+    setEditingAreaId(null);
+    setEditName('');
+    setEditDescription('');
+    setEditDetails('');
+    setEditImportance(5);
+    setEditSatisfaction(5);
+    setShowResetModal(false);
+  };
+
+  const handleResetCancel = () => {
+    setShowResetModal(false);
+  };
+
+  const handleRemoveAllLifeAreas = () => {
+    setShowRemoveAllModal(true);
+  };
+
+  const handleRemoveAllConfirm = () => {
+    setLifeAreas([]);
+    setShowRemoveAllModal(false);
+  };
+
+  const handleRemoveAllCancel = () => {
+    setShowRemoveAllModal(false);
   };
 
   const handleAutoUpdateRating = (
@@ -385,7 +420,6 @@ const CreateLifeCompass: React.FC = () => {
   const handleConfirmImport = () => {
     if (importedData && importedData.data) {
       setLifeAreas(importedData.data.lifeAreas);
-      // Optionally update userSettings or history here.
       setPreviewVisible(false);
       setImportedData(null);
       setShowSuccessModal(true);
@@ -399,7 +433,9 @@ const CreateLifeCompass: React.FC = () => {
 
   return (
     <div
-      className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}
+      className={`bg-[var(--color-bg)] p-4 ${
+        isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'
+      } font-sans`}
     >
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
@@ -411,21 +447,23 @@ const CreateLifeCompass: React.FC = () => {
       )}
       {isDesktop ? (
         <DesktopToolbar
-          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddNewLifeArea={() => handleAddNewLifeArea()}
           onAddPredefinedAreas={handleAddPredefinedAreas}
           onReset={() => setShowResetModal(true)}
           onToggleRadar={() => setShowRadar(prev => !prev)}
           showRadar={showRadar}
           onImportFile={handleImportFile}
+          onRemoveAll={handleRemoveAllLifeAreas}
         />
       ) : (
         <FloatingToolbar
-          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddNewLifeArea={() => handleAddNewLifeArea()}
           onAddPredefinedAreas={handleAddPredefinedAreas}
           onReset={() => setShowResetModal(true)}
           onToggleRadar={() => setShowRadar(prev => !prev)}
           showRadar={showRadar}
           onImportFile={handleImportFile}
+          onRemoveAll={handleRemoveAllLifeAreas}
         />
       )}
       {error && (
@@ -446,7 +484,11 @@ const CreateLifeCompass: React.FC = () => {
               onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
               onDrop={handleDrop(index)}
-              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+              className={`flex h-full w-full ${
+                dragOverIndex === index
+                  ? 'border-2 border-dashed border-[var(--color-primary)]'
+                  : ''
+              }`}
             >
               <LifeAreaCard
                 area={area}
@@ -476,6 +518,14 @@ const CreateLifeCompass: React.FC = () => {
               />
             </div>
           ))}
+          <div
+            onClick={() => handleAddNewLifeArea(lifeAreas.length)}
+            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+          >
+            <span className="text-[var(--color-primary)]">
+              + Lägg till nytt livsområde
+            </span>
+          </div>
         </div>
       ) : (
         <div className="mt-4 flex flex-wrap justify-center gap-4">
@@ -487,7 +537,11 @@ const CreateLifeCompass: React.FC = () => {
               onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
               onDrop={handleDrop(index)}
-              className={`flex h-full w-full ${dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''}`}
+              className={`flex h-full w-full ${
+                dragOverIndex === index
+                  ? 'border-2 border-dashed border-[var(--color-primary)]'
+                  : ''
+              }`}
             >
               <LifeAreaCard
                 area={area}
@@ -517,6 +571,14 @@ const CreateLifeCompass: React.FC = () => {
               />
             </div>
           ))}
+          <div
+            onClick={() => handleAddNewLifeArea(lifeAreas.length)}
+            className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+          >
+            <span className="text-[var(--color-primary)]">
+              + Lägg till nytt livsområde
+            </span>
+          </div>
         </div>
       )}
       <WarningModal
@@ -536,6 +598,12 @@ const CreateLifeCompass: React.FC = () => {
         message="Är du säker på att du vill återställa livsområden till standard?"
         onConfirm={handleResetConfirm}
         onCancel={handleResetCancel}
+      />
+      <WarningModal
+        visible={showRemoveAllModal}
+        message="Är du säker på att du vill ta bort alla livsområden?"
+        onConfirm={handleRemoveAllConfirm}
+        onCancel={handleRemoveAllCancel}
       />
       <ImportPreviewModal
         visible={previewVisible}

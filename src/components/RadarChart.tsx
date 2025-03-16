@@ -107,7 +107,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
         x={x}
         y={y}
         textAnchor={textAnchor}
-        fill="var(--text)"
+        fill="var(--color-text)"
         fontSize={tickFontSize}
       >
         {lines.map((line, index) => (
@@ -125,10 +125,10 @@ const RadarChart: React.FC<RadarChartProps> = ({
       return (
         <div
           style={{
-            backgroundColor: 'var(--bg)',
+            backgroundColor: 'var(--color-bg)',
             border: `1px solid var(--border)`,
             padding: 10,
-            color: 'var(--text)',
+            color: 'var(--color-text)',
           }}
         >
           <p>

@@ -7,6 +7,7 @@ import MobileNavigation from './components/MobileNavigation';
 import DesktopNavigation from './components/DesktopNavigation';
 import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
+import AppSettingsProvider from './context/AppSettingsContext';
 
 const Content = () => {
   return (
@@ -42,9 +43,11 @@ const Content = () => {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <Router basename={import.meta.env.BASE_URL}>
-        <Content />
-      </Router>
+      <AppSettingsProvider>
+        <Router basename={import.meta.env.BASE_URL}>
+          <Content />
+        </Router>
+      </AppSettingsProvider>
     </ThemeProvider>
   );
 };

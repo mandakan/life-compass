@@ -17,23 +17,23 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     );
     // Select buttons by role to avoid duplicate text from non-button elements.
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     expect(addButtons[0]).toBeTruthy();
     const predefinedButtons = screen.getAllByRole('button', {
-      name: 'Lägg till fördefinierade områden',
+      name: 'Lägg till fördefinierade',
     });
     expect(predefinedButtons[0]).toBeTruthy();
   });
 
-  test('adds a new life area when clicking "Lägg till livsområde"', async () => {
+  test('adds a new life area when clicking "Lägg till"', async () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     const addButton = addButtons[0];
     fireEvent.click(addButton);
@@ -51,13 +51,13 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     const addButton = addButtons[0];
     fireEvent.click(addButton);
 
     // Clear the name input in the editing form
-    const nameInput = screen.getByLabelText(/Namn:/i);
+    const nameInput = screen.getByLabelText(/Namn/i);
     fireEvent.change(nameInput, { target: { value: '' } });
 
     // Click the save button ("Spara") within the editing form
@@ -76,7 +76,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
 
     // Add first life area (with default name "Nytt livsområde")
@@ -86,7 +86,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
 
     // Add new life area again
     fireEvent.click(addButtons[0]);
-    const nameInput = screen.getByLabelText(/Namn:/i);
+    const nameInput = screen.getByLabelText(/Namn/i);
     fireEvent.change(nameInput, { target: { value: 'Nytt livsområde' } });
     fireEvent.click(screen.getByRole('button', { name: /Spara/i }));
 
@@ -102,7 +102,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     const addButton = addButtons[0];
     fireEvent.click(addButton);
