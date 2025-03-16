@@ -13,6 +13,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
 import RadarChart from '../components/RadarChart';
+import ToggleSwitch from '../components/ToggleSwitch';
 
 function DesignPrinciplesDemo() {
   const [cardHovered, setCardHovered] = useState(false);
@@ -249,6 +250,14 @@ function DesignPrinciplesDemo() {
         >
           Växla till {themeMode === 'light' ? 'mörkt' : 'ljust'} läge
         </button>
+      </div>
+      {/* Toggle Switch Example */}
+      <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
+        <h2>Dark Mode Toggle Switch</h2>
+        <ToggleSwitch
+          checked={themeMode === 'dark'}
+          onChange={() => toggleTheme()}
+        />
       </div>
       {/* Card Example */}
       <div
