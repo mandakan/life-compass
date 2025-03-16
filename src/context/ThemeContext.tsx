@@ -1,4 +1,10 @@
-import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useContext,
+} from 'react';
 import { setTheme as applyTheme } from '../utils/themeUtils';
 
 export type Theme = 'light' | 'dark';
@@ -29,21 +35,26 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Retrieve user preference from localStorage; default to following system preference.
-  const localFollowSystem = localStorage.getItem('followSystem') === 'false' ? false : true;
+  const localFollowSystem =
+    localStorage.getItem('followSystem') === 'false' ? false : true;
   const localTheme = localStorage.getItem('theme') as Theme | null;
 
   // Function to get the current system theme using matchMedia.
   const getSystemTheme = (): Theme => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
       return 'dark';
     }
     return 'light';
   };
 
   const [systemTheme, setSystemTheme] = useState<Theme>(getSystemTheme());
-  const [followSystem, setFollowSystemState] = useState<boolean>(localFollowSystem);
+  const [followSystem, setFollowSystemState] =
+    useState<boolean>(localFollowSystem);
   const [theme, setThemeState] = useState<Theme>(
-    localTheme && !localFollowSystem ? localTheme : systemTheme
+    localTheme && !localFollowSystem ? localTheme : systemTheme,
   );
 
   // Apply the theme to the document element and persist preferences.
@@ -102,5 +113,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     },
   };
 
-  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

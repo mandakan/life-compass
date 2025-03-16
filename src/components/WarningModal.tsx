@@ -16,19 +16,19 @@ const WarningModal: React.FC<WarningModalProps> = ({
   if (!visible) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black/50 font-sans">
-      <div className="bg-[var(--color-bg)] text-[var(--color-text)] p-4 rounded-md min-w-[300px] max-w-[90%] shadow-lg transition-all duration-300">
+    <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/50 font-sans">
+      <div className="max-w-[90%] min-w-[300px] rounded-md bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg transition-all duration-300">
         <p>{message}</p>
         <div className="mt-4 text-right">
           <button
             onClick={onCancel}
-            className="mr-2 bg-[var(--color-primary)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
+            className="mr-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-3 py-1 text-white transition-colors duration-150"
           >
             Avbryt
           </button>
           <button
             onClick={onConfirm}
-            className="bg-[var(--color-accent)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
+            className="cursor-pointer rounded-sm bg-[var(--color-accent)] px-3 py-1 text-white transition-colors duration-150"
           >
             Fortsätt
           </button>

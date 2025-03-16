@@ -6,16 +6,20 @@ interface ToggleSwitchProps {
   label?: string;
 }
 
-const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ checked, onChange, label }) => {
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
+  checked,
+  onChange,
+  label,
+}) => {
   return (
-    <label className="relative inline-flex items-center cursor-pointer">
+    <label className="relative inline-flex cursor-pointer items-center">
       <input
         type="checkbox"
         checked={checked}
         onChange={e => onChange(e.target.checked)}
-        className="sr-only peer"
+        className="peer sr-only"
       />
-      <div className="w-11 h-6 bg-[var(--color-secondary)] rounded-full peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[var(--color-primary)] transition-colors duration-200 ease-in-out peer-checked:bg-[var(--color-primary)] peer-checked:after:translate-x-full peer-checked:after:border-[var(--color-bg)] after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-[var(--color-text)] after:border-[var(--border)] after:rounded-full after:h-5 after:w-5 after:transition-all dark:peer-focus:ring-[var(--color-primary)]" />
+      <div className="h-6 w-11 rounded-full bg-[var(--color-secondary)] transition-colors duration-200 ease-in-out peer-checked:bg-[var(--color-primary)] peer-focus:ring-2 peer-focus:ring-[var(--color-primary)] peer-focus:outline-none after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border-[var(--border)] after:bg-[var(--color-text)] after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-[var(--color-bg)] dark:peer-focus:ring-[var(--color-primary)]" />
       {label && (
         <span className="ml-3 text-sm font-medium text-[var(--color-text)]">
           {label}

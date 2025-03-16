@@ -26,7 +26,9 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     // Autofocus the slider handle when component mounts so that keyboard events get captured.
     if (trackRef.current) {
       // Find the slider handle (the child that renders the value) and focus it.
-      const handle = trackRef.current.querySelector('[role="slider"]') as HTMLElement;
+      const handle = trackRef.current.querySelector(
+        '[role="slider"]',
+      ) as HTMLElement;
       handle?.focus();
     }
   }, []);
@@ -37,7 +39,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 
   const calculateValue = (clientX: number) => {
     if (!trackRef.current) return value;
-    const { left, width: trackWidth } = trackRef.current.getBoundingClientRect();
+    const { left, width: trackWidth } =
+      trackRef.current.getBoundingClientRect();
     let percent = (clientX - left) / trackWidth;
     percent = Math.max(0, Math.min(1, percent));
     const range = max - min;
@@ -116,7 +119,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     >
       <div
         aria-hidden="true"
-        className="absolute w-full h-1 bg-[var(--slider-track)]"
+        className="absolute h-1 w-full bg-[var(--slider-track)]"
         style={{ top: height / 2 - 2 }}
       />
       <div
@@ -127,7 +130,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         aria-valuenow={value}
         aria-label="Custom slider"
         onKeyDown={handleKeyDown}
-        className="absolute flex justify-center items-center text-white font-bold cursor-pointer select-none transition-colors bg-[var(--slider-handle)] rounded-full"
+        className="absolute flex cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-white transition-colors select-none"
         style={{
           width: handleSize,
           height: handleSize,

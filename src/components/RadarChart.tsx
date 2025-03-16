@@ -145,7 +145,10 @@ const RadarChart: React.FC<RadarChartProps> = ({
 
   return (
     <div className="bg-[var(--bg)]">
-      <ResponsiveContainer width={width} {...(aspect ? { aspect } : { height })}>
+      <ResponsiveContainer
+        width={width}
+        {...(aspect ? { aspect } : { height })}
+      >
         <RechartsRadarChart
           outerRadius="70%"
           data={arrangedData}

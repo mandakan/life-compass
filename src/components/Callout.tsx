@@ -7,7 +7,7 @@ interface CalloutProps {
 
 const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
   return (
-    <div className="bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--border)] border-l-6 rounded-sm p-2 mb-4 flex justify-between items-center font-sans">
+    <div className="mb-4 flex items-center justify-between rounded-sm border border-l-6 border-[var(--border)] bg-[var(--color-bg)] p-2 font-sans text-[var(--color-text)]">
       <span>
         {children ||
           'Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.'}
@@ -15,7 +15,7 @@ const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="bg-transparent border-none cursor-pointer text-base font-sans"
+          className="cursor-pointer border-none bg-transparent font-sans text-base"
           aria-label="Dismissera callout"
         >
           ✖

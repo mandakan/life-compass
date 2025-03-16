@@ -13,7 +13,7 @@ const DesktopNavigation: React.FC = () => {
 
   const githubIcon = (
     <svg
-      className="w-6 h-6 mr-2"
+      className="mr-2 h-6 w-6"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -24,7 +24,7 @@ const DesktopNavigation: React.FC = () => {
 
   const cogIcon = (
     <svg
-      className="w-6 h-6 ml-2"
+      className="ml-2 h-6 w-6"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -46,19 +46,25 @@ const DesktopNavigation: React.FC = () => {
   );
 
   return (
-    <nav className="w-full bg-[var(--menu-bg)] py-4 flex justify-between items-center relative px-4">
-      <div className="flex gap-4 items-center">
+    <nav className="relative flex w-full items-center justify-between bg-[var(--menu-bg)] px-4 py-4">
+      <div className="flex items-center gap-4">
         <Link to="/" className="!text-[var(--menu-text)] no-underline">
           <h1 className="text-xl font-bold">Livskompass</h1>
         </Link>
-        <Link to="/create-life-compass" className="!text-[var(--menu-text)] no-underline">
+        <Link
+          to="/create-life-compass"
+          className="!text-[var(--menu-text)] no-underline"
+        >
           Skapa Livskompass
         </Link>
-        <Link to="/design-principles" className="!text-[var(--menu-text)] no-underline">
+        <Link
+          to="/design-principles"
+          className="!text-[var(--menu-text)] no-underline"
+        >
           Designprinciper
         </Link>
       </div>
-      <div className="flex gap-4 items-center relative">
+      <div className="relative flex items-center gap-4">
         <a
           href="https://github.com/mandakan/life-compass"
           target="_blank"
@@ -70,13 +76,13 @@ const DesktopNavigation: React.FC = () => {
         </a>
         <button
           onClick={toggleSettings}
-          className="bg-transparent border-0 cursor-pointer p-0"
+          className="cursor-pointer border-0 bg-transparent p-0"
           aria-label="Toggle settings menu"
         >
           {cogIcon}
         </button>
         {showSettings && (
-          <div className="absolute top-full right-0 bg-[var(--menu-bg)] border border-[var(--border)] p-6 rounded-lg z-50 w-72">
+          <div className="absolute top-full right-0 z-50 w-72 rounded-lg border border-[var(--border)] bg-[var(--menu-bg)] p-6">
             <SettingsMenu />
           </div>
         )}

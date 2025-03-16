@@ -13,9 +13,9 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bg text-text font-sans p-8 flex flex-col items-center justify-center">
-      <h1 className="mb-6 text-2xl font-bold text-center">Livskompass</h1>
-      <CustomButton onClick={() => navigate("/create-life-compass")}>
+    <div className="bg-bg text-text flex min-h-screen flex-col items-center justify-center p-8 font-sans">
+      <h1 className="mb-6 text-center text-2xl font-bold">Livskompass</h1>
+      <CustomButton onClick={() => navigate('/create-life-compass')}>
         Skapa Livskompass
       </CustomButton>
     </div>

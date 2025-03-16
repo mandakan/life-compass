@@ -5,21 +5,24 @@ const MobileNavigation: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[var(--menu-bg)] text-[var(--menu-text)] p-4">
+    <nav className="fixed top-0 left-0 z-50 w-full bg-[var(--menu-bg)] p-4 text-[var(--menu-text)]">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">
-          <Link to="/" className="text-[var(--menu-text)] no-underline mobile-nav-link">
+          <Link
+            to="/"
+            className="mobile-nav-link text-[var(--menu-text)] no-underline"
+          >
             Livskompass
           </Link>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setOpen(!open)}
-            className="bg-transparent border-0 cursor-pointer p-0"
+            className="cursor-pointer border-0 bg-transparent p-0"
             aria-label="Toggle mobile navigation"
           >
             <svg
-              className="w-6 h-6"
+              className="h-6 w-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -49,28 +52,28 @@ const MobileNavigation: React.FC = () => {
           <Link
             to="/"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--menu-text)] mobile-nav-link"
+            className="mobile-nav-link text-[var(--menu-text)] underline"
           >
             Hem
           </Link>
           <Link
             to="/create-life-compass"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--menu-text)] mobile-nav-link"
+            className="mobile-nav-link text-[var(--menu-text)] underline"
           >
             Skapa Livskompass
           </Link>
           <Link
             to="/design-principles"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--menu-text)] mobile-nav-link"
+            className="mobile-nav-link text-[var(--menu-text)] underline"
           >
             Designprinciper
           </Link>
           <Link
             to="/settings"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--menu-text)] mobile-nav-link"
+            className="mobile-nav-link text-[var(--menu-text)] underline"
           >
             Inställningar
           </Link>
@@ -79,10 +82,10 @@ const MobileNavigation: React.FC = () => {
             onClick={() => setOpen(false)}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-[var(--menu-text)] flex items-center mobile-nav-link"
+            className="mobile-nav-link flex items-center text-[var(--menu-text)] underline"
           >
             <svg
-              className="w-6 h-6 mr-2"
+              className="mr-2 h-6 w-6"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"

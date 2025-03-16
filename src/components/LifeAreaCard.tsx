@@ -74,7 +74,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     }
   }, [editingDetailsInline, inlineDetailsValue]);
 
-  const popupWidthClass = "w-[250px] md:w-[400px] max-w-[calc(100vw-20px)]";
+  const popupWidthClass = 'w-[250px] md:w-[400px] max-w-[calc(100vw-20px)]';
 
   const trimmedLocalEditName = localEditName.trim();
   const trimmedOriginalName = area.name.trim();
@@ -90,20 +90,23 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     );
 
   const nameInputBorderClass = isDuplicate
-    ? "border-red-500"
-    : (trimmedLocalEditName !== "" && trimmedLocalEditName !== trimmedOriginalName)
-      ? "border-green-500"
-      : "border-[var(--border)]";
+    ? 'border-red-500'
+    : trimmedLocalEditName !== '' &&
+        trimmedLocalEditName !== trimmedOriginalName
+      ? 'border-green-500'
+      : 'border-[var(--border)]';
 
   const nameInputClasses = `ml-2 px-2 py-1 rounded-sm border font-sans ${nameInputBorderClass}`;
 
-  const commonInputClasses = "ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans";
+  const commonInputClasses =
+    'ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
 
-  const actionButtonClasses = "flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors";
+  const actionButtonClasses =
+    'flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors';
 
   if (isEditing) {
     return (
-      <div className="rounded-sm shadow-sm p-4 transition-all relative flex flex-col flex-grow bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--border)]">
+      <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div>
           <div>
             <label className="font-sans">
@@ -122,7 +125,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
             {isDuplicate && (
-              <WarningMessage title="Dubblett" message="Samma namn får inte användas." />
+              <WarningMessage
+                title="Dubblett"
+                message="Samma namn får inte användas."
+              />
             )}
           </div>
           <div className="mt-2">
@@ -228,7 +234,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     );
   } else {
     return (
-      <div className="rounded-sm shadow-sm p-4 transition-all relative flex flex-col flex-grow bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--border)]">
+      <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
         <div
           className="absolute top-2 left-2.5 cursor-grab opacity-90"
           role="img"
@@ -251,12 +257,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <circle cx="12" cy="13" r="1.5" />
           </svg>
         </div>
-        <div className="flex flex-col flex-grow">
+        <div className="flex flex-grow flex-col">
           <div>
-            <div className="flex items-center mb-2">
+            <div className="mb-2 flex items-center">
               <button
                 onClick={() => setShowDescription(true)}
-                className="mr-2 bg-transparent border-none cursor-pointer"
+                className="mr-2 cursor-pointer border-none bg-transparent"
                 aria-label="Visa beskrivning"
               >
                 ℹ️
@@ -267,14 +273,14 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             {showDescription && (
               <div
-                className={`absolute top-2 left-1/2 transform -translate-x-1/2 ${popupWidthClass} bg-[var(--color-bg)] text-[var(--color-text)] border-2 border-[var(--color-accent)] rounded-sm p-4 z-10 shadow-lg font-sans`}
+                className={`absolute top-2 left-1/2 -translate-x-1/2 transform ${popupWidthClass} z-10 rounded-sm border-2 border-[var(--color-accent)] bg-[var(--color-bg)] p-4 font-sans text-[var(--color-text)] shadow-lg`}
                 tabIndex={0}
                 onBlur={() => setShowDescription(false)}
               >
                 <p className="m-0 font-sans">{area.description}</p>
                 <button
                   onClick={() => setShowDescription(false)}
-                  className="mt-2 bg-transparent border-none cursor-pointer font-sans"
+                  className="mt-2 cursor-pointer border-none bg-transparent font-sans"
                 >
                   Stäng
                 </button>
@@ -283,10 +289,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div className="mb-2">
               <div
                 onClick={() => setEditingDetailsInline(true)}
-                className="bg-[var(--details-bg)] px-2 py-1 rounded-sm cursor-text font-sans min-h-[100px]"
+                className="min-h-[100px] cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans"
               >
                 {editingDetailsInline ? (
-                  <div className="flex flex-col h-full">
+                  <div className="flex h-full flex-col">
                     <textarea
                       ref={inlineDetailsRef}
                       value={inlineDetailsValue}
@@ -302,7 +308,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                         setEditingDetailsInline(false);
                       }}
                       autoFocus
-                      className="w-full px-2 py-1 outline-none resize-none font-sans bg-[var(--details-bg)]"
+                      className="w-full resize-none bg-[var(--details-bg)] px-2 py-1 font-sans outline-none"
                     />
                   </div>
                 ) : (

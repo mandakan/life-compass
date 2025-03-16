@@ -7,7 +7,8 @@ export function setTheme(theme: 'light' | 'dark'): void {
 }
 
 export function toggleTheme(currentTheme: 'light' | 'dark'): 'light' | 'dark' {
-  const newTheme: 'light' | 'dark' = currentTheme === 'light' ? 'dark' : 'light';
+  const newTheme: 'light' | 'dark' =
+    currentTheme === 'light' ? 'dark' : 'light';
   setTheme(newTheme);
   return newTheme;
 }

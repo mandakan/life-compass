@@ -49,7 +49,8 @@ const CreateLifeCompass: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] =
+    useState(true);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
 
@@ -74,13 +75,21 @@ const CreateLifeCompass: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
-    window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
+    const savedScrollPosition = localStorage.getItem(
+      'createlifecompassScrollPosition',
+    );
+    window.scrollTo(
+      0,
+      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
+    );
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
+      localStorage.setItem(
+        'createlifecompassScrollPosition',
+        window.scrollY.toString(),
+      );
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -120,7 +129,9 @@ const CreateLifeCompass: React.FC = () => {
       const base = 'Nytt livsområde';
       let name = base;
       let counter = 2;
-      while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
+      while (
+        lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())
+      ) {
         name = `${base} ${counter}`;
         counter++;
       }
@@ -145,8 +156,11 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleAddPredefinedAreas = () => {
     const predefined = getPredefinedLifeAreas();
-    const newAreas = predefined.filter(predef =>
-      !lifeAreas.some(existing => existing.name.toLowerCase() === predef.name.toLowerCase())
+    const newAreas = predefined.filter(
+      predef =>
+        !lifeAreas.some(
+          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
+        ),
     );
     if (newAreas.length > 0) {
       setLifeAreas([...lifeAreas, ...newAreas]);
@@ -204,7 +218,7 @@ const CreateLifeCompass: React.FC = () => {
       lifeAreas.find(
         area =>
           area.name.toLowerCase() === editName.trim().toLowerCase() &&
-          area.id !== editingAreaId
+          area.id !== editingAreaId,
       )
     ) {
       setError('Dubblett: Samma namn får inte användas.');
@@ -224,7 +238,7 @@ const CreateLifeCompass: React.FC = () => {
           };
         }
         return area;
-      })
+      }),
     );
     setEditingAreaId(null);
     setEditName('');
@@ -247,7 +261,7 @@ const CreateLifeCompass: React.FC = () => {
   const handleDeleteConfirm = () => {
     if (deleteCandidate) {
       setLifeAreas(prevLifeAreas =>
-        prevLifeAreas.filter(area => area.id !== deleteCandidate.id)
+        prevLifeAreas.filter(area => area.id !== deleteCandidate.id),
       );
       if (editingAreaId === deleteCandidate.id) {
         handleCancelEdit();
@@ -265,7 +279,7 @@ const CreateLifeCompass: React.FC = () => {
   const handleAutoUpdateRating = (
     field: 'importance' | 'satisfaction',
     newValue: number,
-    areaToUpdate: LifeArea
+    areaToUpdate: LifeArea,
   ) => {
     setLifeAreas(prevLifeAreas =>
       prevLifeAreas.map(area => {
@@ -273,13 +287,13 @@ const CreateLifeCompass: React.FC = () => {
           return { ...area, [field]: newValue };
         }
         return area;
-      })
+      }),
     );
   };
 
   const handleInlineDetailsChange = (
     newDetails: string,
-    areaToUpdate: LifeArea
+    areaToUpdate: LifeArea,
   ) => {
     setLifeAreas(prevLifeAreas =>
       prevLifeAreas.map(area => {
@@ -287,55 +301,58 @@ const CreateLifeCompass: React.FC = () => {
           return { ...area, details: newDetails };
         }
         return area;
-      })
+      }),
     );
   };
 
-  const handleDragStart = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    const cardEl = containerRefs.current[index];
-    if (cardEl && event.dataTransfer) {
-      event.dataTransfer.setDragImage(
-        cardEl,
-        cardEl.clientWidth / 2,
-        cardEl.clientHeight / 2
-      );
-      event.dataTransfer.setData('text/plain', index.toString());
-      event.dataTransfer.effectAllowed = 'move';
-    }
-    setDraggedIndex(index);
-  };
+  const handleDragStart =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      const cardEl = containerRefs.current[index];
+      if (cardEl && event.dataTransfer) {
+        event.dataTransfer.setDragImage(
+          cardEl,
+          cardEl.clientWidth / 2,
+          cardEl.clientHeight / 2,
+        );
+        event.dataTransfer.setData('text/plain', index.toString());
+        event.dataTransfer.effectAllowed = 'move';
+      }
+      setDraggedIndex(index);
+    };
 
-  const handleDragOver = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    if (event.dataTransfer) {
-      event.dataTransfer.dropEffect = 'move';
-    }
-    setDragOverIndex(index);
-  };
+  const handleDragOver =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+      }
+      setDragOverIndex(index);
+    };
 
-  const handleDrop = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    let draggedIdx: number | null = null;
-    if (event.dataTransfer) {
-      const data = event.dataTransfer.getData('text/plain');
-      const parsedIndex = parseInt(data, 10);
-      if (!isNaN(parsedIndex)) {
-        draggedIdx = parsedIndex;
+  const handleDrop =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      let draggedIdx: number | null = null;
+      if (event.dataTransfer) {
+        const data = event.dataTransfer.getData('text/plain');
+        const parsedIndex = parseInt(data, 10);
+        if (!isNaN(parsedIndex)) {
+          draggedIdx = parsedIndex;
+        } else {
+          draggedIdx = draggedIndex;
+        }
       } else {
         draggedIdx = draggedIndex;
       }
-    } else {
-      draggedIdx = draggedIndex;
-    }
-    if (draggedIdx !== null && draggedIdx !== index) {
-      const reordered = [...lifeAreas];
-      const draggedItem = reordered.splice(draggedIdx, 1)[0];
-      reordered.splice(index, 0, draggedItem);
-      setLifeAreas(reordered);
-    }
-    setDraggedIndex(null);
-    setDragOverIndex(null);
-  };
+      if (draggedIdx !== null && draggedIdx !== index) {
+        const reordered = [...lifeAreas];
+        const draggedItem = reordered.splice(draggedIdx, 1)[0];
+        reordered.splice(index, 0, draggedItem);
+        setLifeAreas(reordered);
+      }
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+    };
 
   const radarData = lifeAreas.map(area => ({
     area: area.name,
@@ -345,9 +362,9 @@ const CreateLifeCompass: React.FC = () => {
   }));
 
   return (
-    <div className="p-4 pt-[calc(1rem+60px)] md:pt-4 font-sans bg-[var(--color-bg)]">
+    <div className="bg-[var(--color-bg)] p-4 pt-[calc(1rem+60px)] font-sans md:pt-4">
       {!storageAvailable && (
-        <div className="bg-[var(--color-accent)] text-white p-2 mb-4 rounded-sm font-sans">
+        <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
         </div>
       )}
@@ -369,13 +386,11 @@ const CreateLifeCompass: React.FC = () => {
         </CustomButton>
       </div>
       {error && (
-        <div className="text-[var(--color-accent)] mb-4 font-sans">
-          {error}
-        </div>
+        <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
       <hr className="my-4" />
       {showRadar ? (
-        <div className="mt-4 w-full mx-auto">
+        <div className="mx-auto mt-4 w-full">
           <RadarChart data={radarData} width="100%" aspect={1} />
         </div>
       ) : isDesktop ? (
@@ -408,7 +423,7 @@ const CreateLifeCompass: React.FC = () => {
                 onEdit={handleEditLifeArea}
                 onRemove={handleRequestDeleteLifeArea}
                 existingNames={lifeAreas.map(a => a.name)}
-                className="border border-[var(--border)] p-4 rounded-sm w-full bg-[var(--color-bg)] font-sans"
+                className="w-full rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 font-sans"
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,
@@ -449,7 +464,7 @@ const CreateLifeCompass: React.FC = () => {
                 onEdit={handleEditLifeArea}
                 onRemove={handleRequestDeleteLifeArea}
                 existingNames={lifeAreas.map(a => a.name)}
-                className="border border-[var(--border)] p-4 rounded-sm w-full bg-[var(--color-bg)] font-sans"
+                className="w-full rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 font-sans"
                 onAutoUpdateRating={handleAutoUpdateRating}
                 dragHandle={{
                   draggable: editingAreaId === area.id ? false : true,

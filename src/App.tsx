@@ -10,21 +10,27 @@ import { ThemeProvider } from './context/ThemeContext';
 
 const Content = () => {
   return (
-    <div className="min-h-screen bg-bg text-text transition-colors duration-300 flex">
-      <div className="flex-1 flex flex-col">
+    <div className="bg-bg text-text flex min-h-screen transition-colors duration-300">
+      <div className="flex flex-1 flex-col">
         <header className="bg-primary text-[var(--on-primary)]">
           <div className="hidden md:block">
             <DesktopNavigation />
           </div>
-          <div className="md:hidden p-4">
+          <div className="p-4 md:hidden">
             <MobileNavigation />
           </div>
         </header>
         <main className="flex-1 p-4">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
-            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
+            <Route
+              path="/design-principles"
+              element={<DesignPrinciplesDemo />}
+            />
+            <Route
+              path="/create-life-compass"
+              element={<CreateLifeCompass />}
+            />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
