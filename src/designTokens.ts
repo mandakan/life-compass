@@ -128,6 +128,8 @@ export const themeVariables = {
     '--color-text': colors.light.text,
     '--border': colors.primary,
     '--font-primary': typography.primaryFont,
+    '--menu-bg': menu.light.background,
+    '--menu-text': menu.light.text,
   },
   dark: {
     '--color-primary': colors.primary,
@@ -137,5 +139,7 @@ export const themeVariables = {
     '--color-text': colors.dark.text,
     '--border': colors.primary,
     '--font-primary': typography.primaryFont,
+    '--menu-bg': menu.dark.background,
+    '--menu-text': menu.dark.text,
   },
 };

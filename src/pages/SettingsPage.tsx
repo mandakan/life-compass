@@ -1,21 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SettingsMenu from '../components/SettingsMenu';
-import { useTheme } from '../context/ThemeContext';
-import { menu } from '../designTokens';
 
 const SettingsPage: React.FC = () => {
-  const { theme } = useTheme();
-
   return (
-    <div className="min-h-screen bg-bg text-text">
-      <header
-        className="p-4"
-        style={{ backgroundColor: menu[theme].background, color: menu[theme].text }}
-      >
+    <div className="min-h-screen bg-bg text-text font-sans">
+      <header className="p-4 bg-[var(--menu-bg)] text-[var(--menu-text)]">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold">Inställningar</h1>
-          <Link to="/" className="underline" style={{ color: menu[theme].text }}>
+          <Link to="/" className="underline text-[var(--menu-text)]">
             Tillbaka
           </Link>
         </div>
