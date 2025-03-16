@@ -6,6 +6,7 @@ import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
 import CustomButton from '../components/CustomButton';
+import ExportButton from '../components/ExportButton';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -384,6 +385,7 @@ const CreateLifeCompass: React.FC = () => {
         <CustomButton onClick={() => setShowRadar(prev => !prev)}>
           {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
         </CustomButton>
+        <ExportButton />
       </div>
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
