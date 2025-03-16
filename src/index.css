@@ -1,1 +1,37 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global CSS variables for theming and accessibility */
+:root {
+  --color-primary: #3490dc;
+  --color-secondary: #ffed4a;
+  --color-accent: #e3342f;
+
+  /* Light Theme */
+  --color-bg: #ffffff; /* Light background for high contrast */
+  --color-text: #212529; /* Dark text for high contrast */
+  --color-callout-border: #3490dc;
+  --color-callout-bg: #f8f9fa;
+  --color-warning-border: #e3342f;
+  --color-warning-bg: #e9ecef;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Overrides */
+  --color-bg: #212529; /* Dark background for high contrast */
+  --color-text: #f8f9fa; /* Light text for high contrast */
+  --color-callout-bg: #343a40;
+  --color-warning-bg: #495057;
+}
+
+/* Global styles leveraging the defined CSS variables */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  color: var(--color-primary);
+}
