@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { exportData } from '../utils/exportService';
 
 describe('exportData', () => {
