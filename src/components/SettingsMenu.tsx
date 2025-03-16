@@ -15,10 +15,8 @@ const SettingsMenu: React.FC = () => {
     }
   };
 
-  const handleFollowSystemChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setFollowSystem(event.target.checked);
+  const handleFollowSystemToggle = (checked: boolean) => {
+    setFollowSystem(checked);
   };
 
   return (
@@ -35,13 +33,11 @@ const SettingsMenu: React.FC = () => {
       </div>
       <div>
         <label className="flex items-center text-[var(--color-text)]">
-          <input
-            type="checkbox"
+          <ToggleSwitch
             checked={followSystem}
-            onChange={handleFollowSystemChange}
-            className="mr-2"
+            onChange={handleFollowSystemToggle}
           />
-          <span>Följ systemtema (System: {systemTheme})</span>
+          <span className="ml-2">Följ systemtema (System: {systemTheme})</span>
         </label>
       </div>
     </div>
