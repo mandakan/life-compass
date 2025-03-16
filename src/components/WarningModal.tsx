@@ -2,7 +2,7 @@ import React from 'react';
 
 interface WarningModalProps {
   visible: boolean;
-  message: string;
+  message: string | React.ReactNode;
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -18,7 +18,7 @@ const WarningModal: React.FC<WarningModalProps> = ({
   return (
     <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/50 font-sans">
       <div className="max-w-[90%] min-w-[300px] rounded-md bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg transition-all duration-300">
-        <p>{message}</p>
+        <div>{message}</div>
         <div className="mt-4 text-right">
           <button
             onClick={onCancel}

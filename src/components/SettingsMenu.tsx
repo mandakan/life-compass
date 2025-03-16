@@ -15,18 +15,16 @@ const SettingsMenu: React.FC = () => {
     }
   };
 
-  const handleFollowSystemChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setFollowSystem(event.target.checked);
+  const handleFollowSystemToggle = (checked: boolean) => {
+    setFollowSystem(checked);
   };
 
   return (
     <div className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
       <h2 className="mb-4 text-lg font-bold">Inställningar</h2>
       <div className="mb-4">
-        <label className="flex items-center text-[var(--color-text)]">
-          <span className="mr-2">Mörkt läge</span>
+        <label className="flex items-center justify-between text-[var(--color-text)]">
+          <span>Mörkt läge</span>
           <ToggleSwitch
             checked={theme === 'dark'}
             onChange={handleThemeToggle}
@@ -34,14 +32,12 @@ const SettingsMenu: React.FC = () => {
         </label>
       </div>
       <div>
-        <label className="flex items-center text-[var(--color-text)]">
-          <input
-            type="checkbox"
+        <label className="flex items-center justify-between text-[var(--color-text)]">
+          <span>Följ systemtema ({systemTheme})</span>
+          <ToggleSwitch
             checked={followSystem}
-            onChange={handleFollowSystemChange}
-            className="mr-2"
+            onChange={handleFollowSystemToggle}
           />
-          <span>Följ systemtema (System: {systemTheme})</span>
         </label>
       </div>
     </div>

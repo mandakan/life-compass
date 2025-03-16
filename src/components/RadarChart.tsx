@@ -173,6 +173,8 @@ const RadarChart: React.FC<RadarChartProps> = ({
             fill="var(--chart-series-1)"
             fillOpacity={0.6}
             strokeWidth={radarStrokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <Radar
             name="Tillfredsställelse"
@@ -181,6 +183,8 @@ const RadarChart: React.FC<RadarChartProps> = ({
             fill="var(--chart-series-2)"
             fillOpacity={0.6}
             strokeWidth={radarStrokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend />

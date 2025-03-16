@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import LifeAreaCard, { LifeArea } from '../components/LifeAreaCard';
+import LifeAreaCard from '../components/LifeAreaCard';
+import { LifeArea } from '../types/LifeArea';
 import WarningModal from '../components/WarningModal';
 import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
-import CustomButton from '../components/CustomButton';
+import DesktopToolbar from '../components/DesktopToolbar';
+import FloatingToolbar from '../components/FloatingToolbar';
+import { parseAndValidateJSON } from '../utils/importService';
+import ImportPreviewModal from '../components/ImportPreviewModal';
+import SuccessModal from '../components/SuccessModal';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -53,6 +58,10 @@ const CreateLifeCompass: React.FC = () => {
     useState(true);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const [importedData, setImportedData] = useState<any | null>(null);
+  const [previewVisible, setPreviewVisible] = useState(false);
 
   const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
@@ -361,8 +370,37 @@ const CreateLifeCompass: React.FC = () => {
     description: area.details,
   }));
 
+  const handleImportFile = (fileContent: string) => {
+    const result = parseAndValidateJSON(fileContent);
+    if (!result.valid) {
+      if (result.errors) {
+        alert('Fel vid import: ' + result.errors.join(', '));
+      }
+      return;
+    }
+    setImportedData(result.data);
+    setPreviewVisible(true);
+  };
+
+  const handleConfirmImport = () => {
+    if (importedData && importedData.data) {
+      setLifeAreas(importedData.data.lifeAreas);
+      // Optionally update userSettings or history here.
+      setPreviewVisible(false);
+      setImportedData(null);
+      setShowSuccessModal(true);
+    }
+  };
+
+  const handleCancelImport = () => {
+    setPreviewVisible(false);
+    setImportedData(null);
+  };
+
   return (
-    <div className="bg-[var(--color-bg)] p-4 pt-[calc(1rem+60px)] font-sans md:pt-4">
+    <div
+      className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}
+    >
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
@@ -371,24 +409,29 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-      <div>
-        <CustomButton onClick={handleAddNewLifeArea}>
-          Lägg till livsområde
-        </CustomButton>
-        <CustomButton onClick={handleAddPredefinedAreas}>
-          Lägg till fördefinierade områden
-        </CustomButton>
-        <CustomButton onClick={() => setShowResetModal(true)}>
-          Återställ till standard
-        </CustomButton>
-        <CustomButton onClick={() => setShowRadar(prev => !prev)}>
-          {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
-        </CustomButton>
-      </div>
+      {isDesktop ? (
+        <DesktopToolbar
+          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddPredefinedAreas={handleAddPredefinedAreas}
+          onReset={() => setShowResetModal(true)}
+          onToggleRadar={() => setShowRadar(prev => !prev)}
+          showRadar={showRadar}
+          onImportFile={handleImportFile}
+        />
+      ) : (
+        <FloatingToolbar
+          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddPredefinedAreas={handleAddPredefinedAreas}
+          onReset={() => setShowResetModal(true)}
+          onToggleRadar={() => setShowRadar(prev => !prev)}
+          showRadar={showRadar}
+          onImportFile={handleImportFile}
+        />
+      )}
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
-      <hr className="my-4" />
+      {isDesktop && <hr className="my-4" />}
       {showRadar ? (
         <div className="mx-auto mt-4 w-full">
           <RadarChart data={radarData} width="100%" aspect={1} />
@@ -493,6 +536,22 @@ const CreateLifeCompass: React.FC = () => {
         message="Är du säker på att du vill återställa livsområden till standard?"
         onConfirm={handleResetConfirm}
         onCancel={handleResetCancel}
+      />
+      <ImportPreviewModal
+        visible={previewVisible}
+        metadata={
+          importedData
+            ? importedData.metadata
+            : { exportTimestamp: '', version: '' }
+        }
+        data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
+        onConfirm={handleConfirmImport}
+        onCancel={handleCancelImport}
+      />
+      <SuccessModal
+        visible={showSuccessModal}
+        message="Import lyckades!"
+        onClose={() => setShowSuccessModal(false)}
       />
     </div>
   );
