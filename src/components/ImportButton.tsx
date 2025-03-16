@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import CustomButton from './CustomButton';
 
 interface ImportButtonProps {
   onFileSelected: (fileContent: string) => void;
@@ -47,9 +48,9 @@ const ImportButton: React.FC<ImportButtonProps> = ({ onFileSelected, onError }) 
 
   return (
     <>
-      <button onClick={handleButtonClick} className="mr-2">
+      <CustomButton onClick={handleButtonClick}>
         Importera JSON
-      </button>
+      </CustomButton>
       <input
         type="file"
         accept="application/json"
