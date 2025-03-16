@@ -17,9 +17,6 @@ const Content = () => {
       </aside>
       <div className="flex-1 flex flex-col">
         <header className="bg-primary text-white">
-          <div className="p-4">
-            <h1 className="text-xl font-bold">Life Compass</h1>
-          </div>
           <div className="hidden md:block">
             <DesktopNavigation />
           </div>
