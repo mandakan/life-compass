@@ -1,338 +1,91 @@
 import React, { useState } from 'react';
-import {
-  colors,
-  typography,
-  interactiveStates,
-  transitions,
-  callouts,
-  tooltip,
-  inputs,
-  spacing,
-  borderRadius,
-} from '../designTokens';
 import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
 import RadarChart from '../components/RadarChart';
 import ToggleSwitch from '../components/ToggleSwitch';
 
 function DesignPrinciplesDemo() {
-  const [cardHovered, setCardHovered] = useState(false);
-  const [buttonHovered, setButtonHovered] = useState(false);
-  const [hoverActive, setHoverActive] = useState(false);
   const [sliderValue, setSliderValue] = useState(5);
   const [dropdownValue, setDropdownValue] = useState('option1');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
-
   const { theme: themeMode, toggleTheme } = useTheme();
-  const currentTheme = themeMode === 'light' ? colors.light : colors.dark;
-
-  const containerStyle: React.CSSProperties = {
-    backgroundColor: currentTheme.background,
-    color: currentTheme.text,
-    minHeight: '100vh',
-    fontFamily: typography.primaryFont,
-    transition: `background-color ${transitions.medium}, color ${transitions.medium}`,
-    padding: spacing.large,
-  };
-
-  const cardStyle: React.CSSProperties = {
-    backgroundColor: currentTheme.background,
-    color: currentTheme.text,
-    padding: spacing.medium,
-    borderRadius: borderRadius.medium,
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    border: `1px solid ${themeMode === 'dark' ? colors.neutral[700] : colors.neutral[300]}`,
-    transition: `all ${transitions.medium}`,
-    cursor: 'pointer',
-    margin: spacing.medium,
-    textAlign: 'center',
-  };
-
-  const cardHoverStyle: React.CSSProperties = {
-    filter: `brightness(${interactiveStates.hover.brightness})`,
-    boxShadow: interactiveStates.hover.shadow,
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: colors.primary,
-    border: 'none',
-    color: '#fff',
-    padding: `${spacing.small} ${spacing.medium}`,
-    borderRadius: borderRadius.small,
-    transition: `all ${transitions.fast}`,
-    cursor: 'pointer',
-    margin: spacing.small,
-  };
-
-  const inputStyle: React.CSSProperties = {
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    border: `1px solid ${themeMode === 'dark' ? colors.neutral[600] : colors.neutral[300]}`,
-    fontFamily: typography.primaryFont,
-    margin: spacing.small,
-    width: '100%',
-    maxWidth: '300px',
-    color: themeMode === 'dark' ? inputs.textDark : inputs.textLight,
-  };
-
-  const sliderStyle: React.CSSProperties = {
-    width: '300px',
-    margin: spacing.small,
-  };
-
-  const calloutStyle: React.CSSProperties = {
-    borderLeft: `4px solid ${callouts.callout.border}`,
-    backgroundColor:
-      themeMode === 'dark'
-        ? callouts.callout.backgroundDark
-        : callouts.callout.backgroundLight,
-    padding: spacing.medium,
-    margin: `${spacing.medium} 0`,
-  };
-
-  const warningStyle: React.CSSProperties = {
-    borderLeft: `4px solid ${callouts.warning.border}`,
-    backgroundColor:
-      themeMode === 'dark'
-        ? callouts.warning.backgroundDark
-        : callouts.warning.backgroundLight,
-    padding: spacing.medium,
-    margin: `${spacing.medium} 0`,
-  };
-
-  const hoverInfoStyle: React.CSSProperties = {
-    position: 'relative',
-    display: 'inline-block',
-    borderBottom: '1px dotted gray',
-  };
-
-  const tooltipStyle: React.CSSProperties = {
-    visibility: 'hidden',
-    width: tooltip.width,
-    backgroundColor: tooltip.background,
-    color: tooltip.color,
-    textAlign: 'center',
-    borderRadius: tooltip.borderRadius,
-    padding: tooltip.padding,
-    position: 'absolute',
-    zIndex: 1,
-    bottom: '125%',
-    left: '50%',
-    marginLeft: `-${parseInt(tooltip.width) / 2}px`,
-    opacity: 0,
-    transition: `opacity ${transitions.fast}`,
-  };
-
-  const tooltipVisibleStyle: React.CSSProperties = {
-    visibility: 'visible',
-    opacity: 1,
-  };
-
-  // Progress Bar Styles
-  const progressContainerStyle: React.CSSProperties = {
-    width: '100%',
-    maxWidth: '400px',
-    backgroundColor:
-      themeMode === 'dark' ? colors.neutral[700] : colors.neutral[300],
-    borderRadius: borderRadius.small,
-    overflow: 'hidden',
-    margin: `${spacing.medium} auto`,
-  };
-
-  const progressBarStyle: React.CSSProperties = {
-    width: `70%`,
-    height: '1rem',
-    backgroundColor: colors.primary,
-    transition: `width ${transitions.medium}`,
-  };
-
-  // Spinner Styles
-  const spinnerStyle: React.CSSProperties = {
-    border: `4px solid ${themeMode === 'dark' ? colors.neutral[600] : colors.neutral[300]}`,
-    borderTop: `4px solid ${colors.accent}`,
-    borderRadius: '50%',
-    width: '40px',
-    height: '40px',
-    animation: 'spin 1s linear infinite',
-    margin: `${spacing.medium} auto`,
-  };
-
-  // Dragging Handle Style
-  const draggingHandleStyle: React.CSSProperties = {
-    width: '80px',
-    height: '20px',
-    backgroundColor: colors.secondary,
-    borderRadius: borderRadius.small,
-    textAlign: 'center',
-    lineHeight: '20px',
-    cursor: 'grab',
-    margin: `${spacing.medium} auto`,
-  };
-
-  // Dropdown Style
-  const dropdownStyle: React.CSSProperties = {
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    border: `1px solid ${themeMode === 'dark' ? colors.neutral[600] : colors.neutral[300]}`,
-    fontFamily: typography.primaryFont,
-    margin: spacing.small,
-    width: '100%',
-    maxWidth: '200px',
-    backgroundColor: currentTheme.background,
-    color: currentTheme.text,
-  };
-
-  // Checkbox Style
-  const checkboxStyle: React.CSSProperties = {
-    margin: spacing.small,
-  };
-
-  // Radar Chart demo data
-  const radarData = [
-    {
-      area: 'Arbete',
-      importance: 8,
-      satisfaction: 6,
-      description: 'Fokusera på projektdeadlines och möten.',
-    },
-    {
-      area: 'Hälsa',
-      importance: 9,
-      satisfaction: 7,
-      description: 'Regelbunden träning och balanserad kost.',
-    },
-    {
-      area: 'Familj',
-      importance: 7,
-      satisfaction: 8,
-      description: 'Familjetid och sammankomster.',
-    },
-    {
-      area: 'Ekonomi',
-      importance: 6,
-      satisfaction: 5,
-      description: 'Budgetering och sparande.',
-    },
-    {
-      area: 'Fritid',
-      importance: 5,
-      satisfaction: 4,
-      description: 'Avkoppling och hobbies på fritiden.',
-    },
-  ];
 
   return (
-    <div style={containerStyle}>
+    <div className="bg-[var(--bg)] text-[var(--text)] min-h-screen font-sans transition-colors duration-300 p-8">
       <style>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
       `}</style>
-      <h1 style={{ textAlign: 'center', marginBottom: spacing.medium }}>
-        Designprinciper Demo
-      </h1>
-      <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
+      <h1 className="text-center mb-8">Designprinciper Demo</h1>
+      <div className="text-center mb-8">
         <button
-          style={buttonStyle}
+          className="bg-[var(--primary)] text-[var(--on-primary)] py-2 px-4 rounded-sm transition-all duration-150 cursor-pointer mx-2 focus:outline-none focus:ring focus:ring-[var(--focus-ring)]"
           onClick={toggleTheme}
-          onMouseEnter={() => setButtonHovered(true)}
-          onMouseLeave={() => setButtonHovered(false)}
-          onFocus={e => {
-            (e.currentTarget as HTMLButtonElement).style.outline =
-              interactiveStates.focus.outline;
-            (e.currentTarget as HTMLButtonElement).style.outlineOffset =
-              interactiveStates.focus.outlineOffset;
-          }}
-          onBlur={e => {
-            (e.currentTarget as HTMLButtonElement).style.outline = 'none';
-          }}
         >
           Växla till {themeMode === 'light' ? 'mörkt' : 'ljust'} läge
         </button>
       </div>
       {/* Toggle Switch Example */}
-      <div style={{ textAlign: 'center', marginBottom: spacing.large }}>
-        <h2>Dark Mode Toggle Switch</h2>
+      <div className="text-center mb-8">
+        <h2 className="text-xl mb-2">Dark Mode Toggle Switch</h2>
         <ToggleSwitch
           checked={themeMode === 'dark'}
-          onChange={() => toggleTheme()}
+          onChange={toggleTheme}
         />
       </div>
       {/* Card Example */}
       <div
-        style={{ ...cardStyle, ...(cardHovered ? cardHoverStyle : {}) }}
-        onMouseEnter={() => setCardHovered(true)}
-        onMouseLeave={() => setCardHovered(false)}
+        className="bg-[var(--bg)] text-[var(--text)] p-4 rounded-md shadow border transition-all duration-300 cursor-pointer m-4 text-center hover:filter hover:brightness-95 hover:shadow-lg"
       >
-        <h2>Kortkomponent</h2>
+        <h2 className="text-lg font-semibold mb-2">Kortkomponent</h2>
         <p>
           Detta kort demonstrerar användningen av design tokens för typografi,
           färger, interaktiva tillstånd och övergångar.
         </p>
       </div>
       {/* Button Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+      <div className="text-center mt-8">
         <button
-          style={buttonStyle}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.filter =
-              `brightness(${interactiveStates.hover.brightness})`;
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.filter = 'none';
-          }}
-          onFocus={e => {
-            (e.currentTarget as HTMLButtonElement).style.outline =
-              interactiveStates.focus.outline;
-            (e.currentTarget as HTMLButtonElement).style.outlineOffset =
-              interactiveStates.focus.outlineOffset;
-          }}
-          onBlur={e => {
-            (e.currentTarget as HTMLButtonElement).style.outline = 'none';
-          }}
+          className="bg-[var(--primary)] text-[var(--on-primary)] py-2 px-4 rounded-sm transition-all duration-150 cursor-pointer mx-2 focus:outline-none focus:ring focus:ring-[var(--focus-ring)] hover:brightness-95"
         >
           Exempelkknapp
         </button>
       </div>
       {/* Input Field Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+      <div className="text-center mt-8">
         <input
           type="text"
           placeholder="Exempel på inmatning"
-          style={inputStyle}
+          className="p-2 rounded border border-[var(--border)] font-sans m-2 w-full max-w-xs text-[var(--text)]"
         />
       </div>
       {/* Callout Example */}
-      <div style={calloutStyle}>
-        <h3>Notis</h3>
+      <div className="border-l-4 border-[var(--primary)] bg-[var(--callout-bg)] p-4 my-4">
+        <h3 className="text-lg font-semibold mb-2">Notis</h3>
         <p>
           Detta är en informationsruta avsedd att uppmärksamma viktiga detaljer.
         </p>
       </div>
       {/* Warning Example */}
-      <div style={warningStyle}>
-        <h3>Varning</h3>
+      <div className="border-l-4 border-[var(--warning-border)] bg-[var(--warning-bg)] p-4 my-4">
+        <h3 className="text-lg font-semibold mb-2">Varning</h3>
         <p>
           Detta är ett varningsmeddelande för att uppmana försiktighet vid en
           specifik åtgärd.
         </p>
       </div>
       {/* Hover Information Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
+      <div className="text-center mt-8">
         <p>
           Hovra över denna{' '}
-          <span
-            style={hoverInfoStyle}
-            onMouseEnter={() => setHoverActive(true)}
-            onMouseLeave={() => setHoverActive(false)}
+          <span 
+            className="relative inline-block group border-b border-dotted border-gray-500"
           >
             text
             <span
-              style={{
-                ...tooltipStyle,
-                ...(hoverActive ? tooltipVisibleStyle : {}),
-              }}
+              className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-[200px] bg-[var(--bg)] text-[var(--text)] text-center rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
             >
               Detta är ytterligare information vid hovring.
             </span>
@@ -341,24 +94,24 @@ function DesignPrinciplesDemo() {
         </p>
       </div>
       {/* Progress Bar Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Framstegsindikator</h3>
-        <div style={progressContainerStyle}>
-          <div style={progressBarStyle}></div>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Framstegsindikator</h3>
+        <div className="w-full max-w-md bg-[var(--border)] rounded-sm overflow-hidden mx-auto my-4">
+          <div className="h-4 bg-[var(--primary)] transition-all duration-300" style={{ width: '70%' }}></div>
         </div>
       </div>
       {/* Spinner Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Laddningssymbol</h3>
-        <div style={spinnerStyle}></div>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Laddningssymbol</h3>
+        <div className="w-10 h-10 border-4 border-[var(--border)] border-t-[var(--accent)] rounded-full animate-spin mx-auto my-4"></div>
       </div>
       {/* Dropdown Menu Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Rullgardinsmeny</h3>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Rullgardinsmeny</h3>
         <select
           value={dropdownValue}
           onChange={e => setDropdownValue(e.target.value)}
-          style={dropdownStyle}
+          className="p-2 rounded border border-[var(--border)] font-sans m-2 w-full max-w-xs bg-[var(--bg)] text-[var(--text)]"
         >
           <option value="option1">Alternativ 1</option>
           <option value="option2">Alternativ 2</option>
@@ -366,21 +119,21 @@ function DesignPrinciplesDemo() {
         </select>
       </div>
       {/* Checkbox Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Kryssruta</h3>
-        <label>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Kryssruta</h3>
+        <label className="inline-flex items-center">
           <input
             type="checkbox"
             checked={checkboxChecked}
             onChange={e => setCheckboxChecked(e.target.checked)}
-            style={checkboxStyle}
-          />{' '}
+            className="m-2"
+          />
           Markera mig!
         </label>
       </div>
       {/* Custom Slider Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Anpassat reglage-exempel</h3>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Anpassat reglage-exempel</h3>
         <CustomSlider
           value={sliderValue}
           onChange={newValue => setSliderValue(newValue)}
@@ -391,8 +144,8 @@ function DesignPrinciplesDemo() {
         <p>Reglagevärde: {sliderValue}</p>
       </div>
       {/* Default Slider Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Standardreglage-exempel</h3>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Standardreglage-exempel</h3>
         <input
           type="range"
           value={sliderValue}
@@ -400,16 +153,16 @@ function DesignPrinciplesDemo() {
           max={10}
           step={1}
           onChange={e => setSliderValue(Number(e.target.value))}
-          style={sliderStyle}
+          className="w-72 m-2"
         />
         <p>Reglagevärde: {sliderValue}</p>
       </div>
       {/* Dragging Handle Example */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Dra mig</h3>
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Dra mig</h3>
         <div
           draggable
-          style={draggingHandleStyle}
+          className="w-20 h-5 bg-[var(--secondary)] rounded-sm text-center leading-5 cursor-grab mx-auto my-4"
           onDragStart={e => {
             e.dataTransfer.setData('text/plain', 'DraggingHandle');
           }}
@@ -418,59 +171,33 @@ function DesignPrinciplesDemo() {
         </div>
       </div>
       {/* Typography Examples */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Exempel på typografi</h3>
-        <h1
-          style={{
-            fontFamily: typography.primaryFont,
-            fontSize: '2.5rem',
-            margin: spacing.small,
-          }}
-        >
-          H1 - Rubrik
-        </h1>
-        <h2
-          style={{
-            fontFamily: typography.primaryFont,
-            fontSize: '2rem',
-            margin: spacing.small,
-          }}
-        >
-          H2 - Underrubrik
-        </h2>
-        <h3
-          style={{
-            fontFamily: typography.primaryFont,
-            fontSize: '1.5rem',
-            margin: spacing.small,
-          }}
-        >
-          H3 - Avsnittsrubrik
-        </h3>
-        <p
-          style={{
-            fontFamily: typography.fallbackFont,
-            fontSize: '1rem',
-            margin: spacing.small,
-          }}
-        >
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Exempel på typografi</h3>
+        <h1 className="font-sans text-4xl m-2">H1 - Rubrik</h1>
+        <h2 className="font-sans text-3xl m-2">H2 - Underrubrik</h2>
+        <h3 className="font-sans text-2xl m-2">H3 - Avsnittsrubrik</h3>
+        <p className="font-sans text-base m-2">
           Exempel på brödtext: Lorem ipsum dolor sit amet, consectetur
           adipiscing elit.
         </p>
-        <p
-          style={{
-            fontFamily: typography.fallbackFont,
-            fontSize: '0.8rem',
-            margin: spacing.small,
-          }}
-        >
+        <p className="font-sans text-sm m-2">
           Exempel på bildtext: Detta är en bildtext.
         </p>
       </div>
       {/* Radar Chart Demo */}
-      <div style={{ textAlign: 'center', marginTop: spacing.large }}>
-        <h3>Exempel på Livskompass Radar Diagram</h3>
-        <RadarChart data={radarData} width="90%" aspect={1} />
+      <div className="text-center mt-8">
+        <h3 className="text-lg font-semibold mb-2">Exempel på Livskompass Radar Diagram</h3>
+        <RadarChart 
+          data={[
+            { area: 'Arbete', importance: 8, satisfaction: 6, description: 'Fokusera på projektdeadlines och möten.' },
+            { area: 'Hälsa', importance: 9, satisfaction: 7, description: 'Regelbunden träning och balanserad kost.' },
+            { area: 'Familj', importance: 7, satisfaction: 8, description: 'Familjetid och sammankomster.' },
+            { area: 'Ekonomi', importance: 6, satisfaction: 5, description: 'Budgetering och sparande.' },
+            { area: 'Fritid', importance: 5, satisfaction: 4, description: 'Avkoppling och hobbies på fritiden.' }
+          ]}
+          width="90%"
+          aspect={1}
+        />
       </div>
     </div>
   );

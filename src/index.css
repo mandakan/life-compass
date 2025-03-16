@@ -28,6 +28,9 @@
     --chart-series-3: #2ca02c; /* Green - Positive trend */
     --chart-series-4: #d62728; /* Red - Alerts, negative trends */
     --chart-series-5: #9467bd; /* Purple - Additional category */
+    /* Warning Callout */
+    --warning-border: #e3342f;
+    --warning-bg: #e9ecef;
 }
 
 /* Dark Theme */
@@ -49,13 +52,15 @@
     /* Menu */
     --menu-bg: #1a202c;        /* Darker menu background for contrast */
     --menu-text: #e2e8f0;      /* Slightly lighter text */
-
     /* Chart colors */
     --chart-series-1: #63b3ed; /* Lighter blue */
     --chart-series-2: #ffb347; /* Softer orange */
     --chart-series-3: #68d391; /* Brighter green */
     --chart-series-4: #fc8181; /* Lighter red */
     --chart-series-5: #b794f4; /* Brighter purple */
+    /* Warning Callout */
+    --warning-border: #e3342f;
+    --warning-bg: #495057;
 }
 
 /* High Contrast Theme */
@@ -77,14 +82,17 @@
     /* Menu */
     --menu-bg: #000000;
     --menu-text: #ffffff;
-
     /* Chart colors */
     --chart-series-1: #ffff00; /* Yellow */
     --chart-series-2: #ff00ff; /* Magenta */
     --chart-series-3: #00ffff; /* Cyan */
     --chart-series-4: #ff0000; /* Red */
     --chart-series-5: #ffffff; /* White */
+    /* Warning Callout */
+    --warning-border: #ff00ff;
+    --warning-bg: #000000;
 }
+
 /* Global styles leveraging the defined CSS variables */
 body {
   margin: 0;
