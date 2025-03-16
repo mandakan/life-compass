@@ -9,6 +9,15 @@ This plan outlines step-by-step tasks to implement dark mode support as defined 
 - Finalize how Tailwind CSS will reference CSS variables (update tailwind.config.js if necessary).
 - Identify impacted UI components that require theme-specific styles and adjustments.
 
+## Impacted UI Components
+- Callout (src/components/Callout.tsx)
+- CustomSlider (src/components/CustomSlider.tsx)
+- LifeAreaCard (src/components/LifeAreaCard.tsx)
+- MobileNavigation (src/components/MobileNavigation.tsx)
+- RadarChart (src/components/RadarChart.tsx)
+- WarningModal (src/components/WarningModal.tsx)
+- Pages with inline styles and theme adjustments (e.g., CreateLifeCompass and DesignPrinciplesDemo)
+
 ## Phase 2: Establish Theme Token Infrastructure
 - Create CSS variables for colors, backgrounds, and text in the global stylesheet (src/index.css).
 - Set up default (light) theme variables at the :root level.
