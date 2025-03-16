@@ -147,7 +147,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <textarea
                 value={editDetails}
                 onChange={e => onChangeEditDetails(e.target.value)}
-                className={`${commonInputClasses} min-h-[40px]`}
+                className={`${commonInputClasses} min-h-[60px]`}
               />
             </label>
           </div>
