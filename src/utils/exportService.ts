@@ -4,7 +4,9 @@ import schema from '../schemas/exportImportSchema.json';
 export function exportData(): string {
   // Gather data from local storage, adjust keys if needed
   const userSettingsStr = localStorage.getItem('userSettings');
-  const lifeAreasStr = localStorage.getItem('lifeAreas');
+  // Previously, life areas were read from a non-existent or wrong key.
+  // Life areas are stored under the key "lifeCompass", so we update accordingly.
+  const lifeAreasStr = localStorage.getItem('lifeCompass');
   const historyStr = localStorage.getItem('history');
 
   // Provide default values for userSettings to satisfy the schema requirements
