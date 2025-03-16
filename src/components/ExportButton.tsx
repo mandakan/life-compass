@@ -1,5 +1,6 @@
 import React from 'react';
 import { exportData } from '../utils/exportService';
+import CustomButton from './CustomButton';
 
 const ExportButton: React.FC = () => {
   const handleExport = () => {
@@ -21,9 +22,9 @@ const ExportButton: React.FC = () => {
   };
 
   return (
-    <button onClick={handleExport} className="p-2 bg-blue-500 text-white rounded">
+    <CustomButton onClick={handleExport}>
       Export Data as JSON
-    </button>
+    </CustomButton>
   );
 };
 
