@@ -165,16 +165,16 @@ const RadarChart: React.FC<RadarChartProps> = ({
         <Radar
           name="Betydelse"
           dataKey="importance"
-          stroke="var(--primary)"
-          fill="var(--primary)"
+          stroke="var(--chart-series-1)"
+          fill="var(--chart-series-1)"
           fillOpacity={0.6}
           strokeWidth={radarStrokeWidth}
         />
         <Radar
           name="Tillfredsställelse"
           dataKey="satisfaction"
-          stroke="var(--accent)"
-          fill="var(--accent)"
+          stroke="var(--chart-series-2)"
+          fill="var(--chart-series-2)"
           fillOpacity={0.6}
           strokeWidth={radarStrokeWidth}
         />
