@@ -14,15 +14,15 @@ const SettingsMenu: React.FC = () => {
 
   return (
     <div className="p-4 bg-bg text-text">
-      <h2 className="text-lg font-bold mb-4">Settings</h2>
+      <h2 className="text-lg font-bold mb-4">Inställningar</h2>
       <div className="mb-4">
         <label className="flex items-center text-text">
-          <span className="mr-2">Theme Toggle (Current: {theme})</span>
+          <span className="mr-2">Växla tema (Nuvarande: {theme})</span>
           <button
             onClick={handleToggle}
             className="px-3 py-2 bg-primary text-white rounded"
           >
-            Toggle Theme
+            Växla tema
           </button>
         </label>
       </div>
@@ -34,7 +34,7 @@ const SettingsMenu: React.FC = () => {
             onChange={handleFollowSystemChange}
             className="mr-2"
           />
-          <span>Follow System Theme (System: {systemTheme})</span>
+          <span>Följ systemtema (System: {systemTheme})</span>
         </label>
       </div>
     </div>
