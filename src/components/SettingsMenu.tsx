@@ -19,10 +19,10 @@ const SettingsMenu: React.FC = () => {
   };
 
   return (
-    <div className="p-4 bg-bg text-text">
+    <div className="p-4 bg-[var(--color-bg)] text-[var(--color-text)]">
       <h2 className="text-lg font-bold mb-4">Inställningar</h2>
       <div className="mb-4">
-        <label className="flex items-center text-text">
+        <label className="flex items-center text-[var(--color-text)]">
           <span className="mr-2">Mörkt läge</span>
           <ToggleSwitch
             checked={theme === 'dark'}
@@ -31,7 +31,7 @@ const SettingsMenu: React.FC = () => {
         </label>
       </div>
       <div>
-        <label className="flex items-center text-text">
+        <label className="flex items-center text-[var(--color-text)]">
           <input
             type="checkbox"
             checked={followSystem}
