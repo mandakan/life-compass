@@ -16,12 +16,14 @@ const Content = () => {
         <SettingsMenu />
       </aside>
       <div className="flex-1 flex flex-col">
-        <header className="bg-primary text-white p-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold">Life Compass</h1>
+        <header className="bg-primary text-white">
+          <div className="p-4">
+            <h1 className="text-xl font-bold">Life Compass</h1>
+          </div>
           <div className="hidden md:block">
             <DesktopNavigation />
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden p-4">
             <MobileNavigation />
           </div>
         </header>
