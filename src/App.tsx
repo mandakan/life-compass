@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
 import MobileNavigation from './components/MobileNavigation';
+import SettingsMenu from './components/SettingsMenu';
 import { colors, menu } from './designTokens';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
@@ -119,21 +120,28 @@ const DesktopNavigation = () => {
 };
 
 const Content = () => {
-  // Using Tailwind CSS classes to apply background and text colors from CSS variables
   return (
-    <div className="min-h-screen bg-bg text-text transition-colors duration-300">
-      <div className="md:hidden">
-        <MobileNavigation />
-      </div>
-      <div className="hidden md:block">
-        <DesktopNavigation />
-      </div>
-      <div>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
-          <Route path="/create-life-compass" element={<CreateLifeCompass />} />
-        </Routes>
+    <div className="min-h-screen bg-bg text-text transition-colors duration-300 flex">
+      {/* Sidebar with SettingsMenu for desktop view */}
+      <aside className="hidden md:block w-64 bg-gray-100 border-r">
+        <SettingsMenu />
+      </aside>
+      <div className="flex-1 flex flex-col">
+        <header className="bg-primary text-white p-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold">Life Compass</h1>
+          <MobileNavigation />
+        </header>
+        <main className="flex-1 p-4">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
+            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
+          </Routes>
+        </main>
+        {/* Footer with SettingsMenu for mobile view */}
+        <footer className="md:hidden bg-gray-100 p-4 border-t">
+          <SettingsMenu />
+        </footer>
       </div>
     </div>
   );
