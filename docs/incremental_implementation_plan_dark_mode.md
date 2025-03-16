@@ -57,3 +57,15 @@ This plan outlines step-by-step tasks to implement dark mode support as defined 
 - Monitor user feedback after deployment.
 - Adjust CSS variables or theme logic based on accessibility audits and user experience.
 - Plan future enhancements for additional high-contrast themes if necessary.
+
+## Prompt to update components
+Refactor the [Component/Page] named **[COMPONENT_NAME]** to properly use CSS variables instead of inline styles or JavaScript-based conditional theming. Ensure that:
+
+1. It references CSS variables (`var(--bg)`, `var(--text)`, `var(--border)`, etc.) directly in Tailwind classes instead of using inline styles.
+2. Any existing hardcoded colors or conditional JavaScript theming logic (`theme === "dark" ? ... : ...`) should be **replaced with CSS variables**.
+3. Any missing theme-related CSS variables should be **extracted from the component’s existing colors** and **added to the global styles** (`:root`, `[data-theme="dark"]`, `[data-theme="high-contrast"]`).
+4. The component should dynamically switch themes based on the `data-theme` attribute on `<html>`.
+5. Replace any font styling using `font-[var(--font-...)]` with the appropriate Tailwind utility classes (e.g., `font-sans`, `font-serif`).
+6. Ensure that all **distinct design elements** (such as **borders, accents, background highlights, callouts, shadows, or other visually significant details**) remain clearly distinguishable across different themes, preserving contrast and accessibility.
+
+Keep all functionality the same while making sure the component supports **dynamic theme switching efficiently** without requiring inline styles or JavaScript conditionals for colors.

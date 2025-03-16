@@ -69,10 +69,10 @@ body {
 }
 
 a {
-  color: var(--accent, #3490dc);
-}
+    color: var(--accent, #3490dc);
+  }
 
 /* Additional global styles can be added here */
 .mobile-nav-link {
-  color: var(--on-primary) !important;
+  color: var(--menu-text) !important;
 }

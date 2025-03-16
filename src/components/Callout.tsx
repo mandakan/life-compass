@@ -7,7 +7,7 @@ interface CalloutProps {
 
 const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
   return (
-    <div className="bg-[var(--bg)] text-[var(--text)] border border-[var(--border)] border-l-6 rounded-sm p-2 mb-4 flex justify-between items-center font-sans">
+    <div className="bg-[var(--callout-bg)] text-[var(--text)] border border-[var(--border)] border-l-6 rounded-sm p-2 mb-4 flex justify-between items-center font-sans">
       <span>
         {children ||
           'Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.'}
