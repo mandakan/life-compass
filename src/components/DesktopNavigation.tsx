@@ -76,7 +76,7 @@ const DesktopNavigation: React.FC = () => {
           {cogIcon}
         </button>
         {showSettings && (
-          <div className="absolute top-full right-0 bg-[var(--menu-bg)] border border-gray-300 p-6 rounded-lg z-50 w-72">
+          <div className="absolute top-full right-0 bg-[var(--menu-bg)] border border-[var(--border)] p-6 rounded-lg z-50 w-72">
             <SettingsMenu />
           </div>
         )}

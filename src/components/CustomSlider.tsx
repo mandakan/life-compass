@@ -26,9 +26,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     // Autofocus the slider handle when component mounts so that keyboard events get captured.
     if (trackRef.current) {
       // Find the slider handle (the child that renders the value) and focus it.
-      const handle = trackRef.current.querySelector(
-        '[role="slider"]',
-      ) as HTMLElement;
+      const handle = trackRef.current.querySelector('[role="slider"]') as HTMLElement;
       handle?.focus();
     }
   }, []);
@@ -39,8 +37,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
 
   const calculateValue = (clientX: number) => {
     if (!trackRef.current) return value;
-    const { left, width: trackWidth } =
-      trackRef.current.getBoundingClientRect();
+    const { left, width: trackWidth } = trackRef.current.getBoundingClientRect();
     let percent = (clientX - left) / trackWidth;
     percent = Math.max(0, Math.min(1, percent));
     const range = max - min;
