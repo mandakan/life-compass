@@ -119,16 +119,9 @@ const DesktopNavigation = () => {
 };
 
 const Content = () => {
-  const { theme } = useTheme();
+  // Using Tailwind CSS classes to apply background and text colors from CSS variables
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        backgroundColor: colors[theme].background,
-        color: colors[theme].text,
-        transition: 'background-color 300ms, color 300ms',
-      }}
-    >
+    <div className="min-h-screen bg-bg text-text transition-colors duration-300">
       <div className="md:hidden">
         <MobileNavigation />
       </div>
