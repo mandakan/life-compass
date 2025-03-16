@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import SettingsMenu from './SettingsMenu';
+import { AppSettingsContext } from '../context/AppSettingsContext';
 
 const DesktopNavigation: React.FC = () => {
   const { theme } = useTheme();
+  const { showDevTools } = useContext(AppSettingsContext);
   const [showSettings, setShowSettings] = useState(false);
 
   const toggleSettings = () => {
@@ -51,12 +53,14 @@ const DesktopNavigation: React.FC = () => {
         >
           Skapa Livskompass
         </Link>
-        <Link
-          to="/design-principles"
-          className="!text-[var(--menu-text)] no-underline"
-        >
-          Designprinciper
-        </Link>
+        {showDevTools && (
+          <Link
+            to="/design-principles"
+            className="!text-[var(--menu-text)] no-underline"
+          >
+            Designprinciper
+          </Link>
+        )}
       </div>
       <div className="relative flex items-center gap-4">
         <a

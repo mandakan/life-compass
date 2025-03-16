@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AppSettingsContext } from '../context/AppSettingsContext';
 
 const MobileNavigation: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const { showDevTools } = useContext(AppSettingsContext);
 
   return (
     <nav className="fixed top-0 left-0 z-50 w-full bg-[var(--menu-bg)] p-4 text-[var(--menu-text)]">
@@ -63,13 +65,15 @@ const MobileNavigation: React.FC = () => {
           >
             Skapa Livskompass
           </Link>
-          <Link
-            to="/design-principles"
-            onClick={() => setOpen(false)}
-            className="mobile-nav-link text-[var(--menu-text)] underline"
-          >
-            Designprinciper
-          </Link>
+          {showDevTools && (
+            <Link
+              to="/design-principles"
+              onClick={() => setOpen(false)}
+              className="mobile-nav-link text-[var(--menu-text)] underline"
+            >
+              Designprinciper
+            </Link>
+          )}
           <Link
             to="/settings"
             onClick={() => setOpen(false)}
