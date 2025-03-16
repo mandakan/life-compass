@@ -1,7 +1,7 @@
 ---
 title: 'Import Data from JSON'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 'Export Data as JSON'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

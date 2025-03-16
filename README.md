@@ -133,8 +133,8 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ### Data Export/Import & Warnings
 
-- [ ] User Story 9.1: Export JSON
-- [ ] User Story 9.4: Import JSON
+- [x] User Story 9.1: Export JSON
+- [x] User Story 9.4: Import JSON
 - [ ] User Story 9.5: Warn on Overwrite
 
 ---
