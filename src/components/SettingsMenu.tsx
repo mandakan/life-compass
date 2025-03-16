@@ -13,10 +13,10 @@ const SettingsMenu: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-bg text-text">
       <h2 className="text-lg font-bold mb-4">Settings</h2>
       <div className="mb-4">
-        <label className="flex items-center">
+        <label className="flex items-center text-text">
           <span className="mr-2">Theme Toggle (Current: {theme})</span>
           <button
             onClick={handleToggle}
@@ -27,7 +27,7 @@ const SettingsMenu: React.FC = () => {
         </label>
       </div>
       <div>
-        <label className="flex items-center">
+        <label className="flex items-center text-text">
           <input
             type="checkbox"
             checked={followSystem}
