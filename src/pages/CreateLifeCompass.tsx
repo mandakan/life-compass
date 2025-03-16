@@ -264,6 +264,22 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
+  const handleResetConfirm = () => {
+    const predefined = getPredefinedLifeAreas();
+    setLifeAreas(predefined);
+    setEditingAreaId(null);
+    setEditName('');
+    setEditDescription('');
+    setEditDetails('');
+    setEditImportance(5);
+    setEditSatisfaction(5);
+    setShowResetModal(false);
+  };
+
+  const handleResetCancel = () => {
+    setShowResetModal(false);
+  };
+
   const handleAutoUpdateRating = (
     field: 'importance' | 'satisfaction',
     newValue: number,
