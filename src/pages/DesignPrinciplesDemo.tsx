@@ -3,6 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import CustomSlider from '../components/CustomSlider';
 import RadarChart from '../components/RadarChart';
 import ToggleSwitch from '../components/ToggleSwitch';
+import Callout from '../components/Callout';
 import WarningMessage from '../components/WarningMessage';
 
 function DesignPrinciplesDemo() {
@@ -63,12 +64,12 @@ function DesignPrinciplesDemo() {
         />
       </div>
       {/* Callout Example */}
-      <div className="border-l-4 border-[var(--primary)] bg-[var(--callout-bg)] p-4 my-4">
+      <Callout onDismiss={() => {}}>
         <h3 className="text-lg font-semibold mb-2">Notis</h3>
         <p>
           Detta är en informationsruta avsedd att uppmärksamma viktiga detaljer.
         </p>
-      </div>
+      </Callout>
       {/* Warning Example (Extracted to WarningMessage component) */}
       <WarningMessage />
       {/* Hover Information Example */}
