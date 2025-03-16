@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Life Compass Export/Import Schema",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "exportTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": ["exportTimestamp", "version"],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "userSettings": {
+          "type": "object",
+          "properties": {
+            "language": {
+              "type": "string"
+            },
+            "theme": {
+              "type": "string",
+              "enum": ["light", "dark"]
+            }
+          },
+          "required": ["language", "theme"],
+          "additionalProperties": true
+        },
+        "lifeAreas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "importance": {
+                "type": "number"
+              },
+              "satisfaction": {
+                "type": "number"
+              }
+            },
+            "required": ["id", "name", "importance", "satisfaction"],
+            "additionalProperties": true
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": ["userSettings", "lifeAreas", "history"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["metadata", "data"],
+  "additionalProperties": false
+}
