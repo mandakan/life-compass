@@ -33,11 +33,12 @@ const SettingsMenu: React.FC = () => {
       </div>
       <div>
         <label className="flex items-center text-[var(--color-text)]">
+          <span className="ml-2">Följ systemtema (System: {systemTheme})</span>
           <ToggleSwitch
             checked={followSystem}
             onChange={handleFollowSystemToggle}
           />
-          <span className="ml-2">Följ systemtema (System: {systemTheme})</span>
+          
         </label>
       </div>
     </div>
