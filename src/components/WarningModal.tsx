@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-  colors,
-  spacing,
-  borderRadius,
-  transitions,
-  typography,
-} from '../designTokens';
-import { useTheme } from '../context/ThemeContext';
 
 interface WarningModalProps {
   visible: boolean;
@@ -23,64 +15,21 @@ const WarningModal: React.FC<WarningModalProps> = ({
 }) => {
   if (!visible) return null;
 
-  const { theme } = useTheme();
-
-  const background =
-    theme === 'light' ? colors.light.background : colors.dark.background;
-  const text = theme === 'light' ? colors.light.text : colors.dark.text;
-
-  const overlayStyle: React.CSSProperties = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1000,
-    fontFamily: typography.primaryFont,
-  };
-
-  const modalStyle: React.CSSProperties = {
-    backgroundColor: background,
-    color: text,
-    padding: spacing.medium,
-    borderRadius: borderRadius.medium || '8px',
-    minWidth: '300px',
-    maxWidth: '90%',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-    transition: `all ${transitions.medium}`,
-    fontFamily: typography.primaryFont,
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: colors.primary,
-    color: '#fff',
-    border: 'none',
-    padding: spacing.small,
-    borderRadius: borderRadius.small,
-    cursor: 'pointer',
-    transition: `background-color ${transitions.fast}`,
-    marginRight: spacing.small,
-    fontFamily: typography.primaryFont,
-  };
-
-  const cancelButtonStyle: React.CSSProperties = {
-    ...buttonStyle,
-    backgroundColor: colors.accent,
-  };
-
   return (
-    <div style={overlayStyle}>
-      <div style={modalStyle}>
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black/50 font-sans">
+      <div className="bg-[var(--bg)] text-[var(--text)] p-4 rounded-md min-w-[300px] max-w-[90%] shadow-lg transition-all duration-300">
         <p>{message}</p>
-        <div style={{ marginTop: spacing.medium, textAlign: 'right' }}>
-          <button onClick={onCancel} style={cancelButtonStyle}>
+        <div className="mt-4 text-right">
+          <button
+            onClick={onCancel}
+            className="mr-2 bg-[var(--accent)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
+          >
             Avbryt
           </button>
-          <button onClick={onConfirm} style={buttonStyle}>
+          <button
+            onClick={onConfirm}
+            className="bg-[var(--primary)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
+          >
             Fortsätt
           </button>
         </div>
