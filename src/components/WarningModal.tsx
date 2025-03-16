@@ -22,13 +22,13 @@ const WarningModal: React.FC<WarningModalProps> = ({
         <div className="mt-4 text-right">
           <button
             onClick={onCancel}
-            className="mr-2 bg-[var(--accent)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
+            className="mr-2 bg-[var(--primary)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
           >
             Avbryt
           </button>
           <button
             onClick={onConfirm}
-            className="bg-[var(--primary)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
+            className="bg-[var(--accent)] text-white px-3 py-1 rounded-sm cursor-pointer transition-colors duration-150"
           >
             Fortsätt
           </button>

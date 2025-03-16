@@ -100,7 +100,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   const commonInputClasses = "ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans";
 
-  const actionButtonClasses = "flex items-center gap-2 bg-[var(--accent)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors";
+  const actionButtonClasses = "flex items-center gap-2 bg-[var(--primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors";
 
   if (isEditing) {
     return (
@@ -264,7 +264,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               >
                 ℹ️
               </button>
-              <h4 className="m-0 font-sans text-lg font-normal text-[var(--accent)]">
+              <h4 className="m-0 font-sans text-lg font-normal text-[var(--primary)]">
                 {area.name}
               </h4>
             </div>
