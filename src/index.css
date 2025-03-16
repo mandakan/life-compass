@@ -50,7 +50,7 @@
   --accent: #f56565; /* Adjusted accent color (red for contrast) */
   --on-accent: #ffffff;
   --focus-ring: #ffed4a;
-  --details-bg: #343a40;
+  --details-bg: #4a5568; /* Increased contrast from color-bg */
   --primary: var(--color-primary);
   --on-primary: #ffffff;
   --secondary: var(--color-secondary);
