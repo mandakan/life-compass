@@ -124,7 +124,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
             {isDuplicate && (
-              <WarningMessage message="Dubblett: Samma namn får inte användas." />
+              <WarningMessage title="Dubblett" message="Samma namn får inte användas." />
             )}
           </div>
           <div className="mt-2">
