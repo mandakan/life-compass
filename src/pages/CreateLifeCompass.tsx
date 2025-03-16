@@ -399,7 +399,7 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div className="bg-[var(--color-bg)] p-4 pt-[calc(1rem+60px)] font-sans md:pt-4">
+    <div className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem+60px)]' : 'pt-4'} font-sans`}>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
@@ -430,7 +430,7 @@ const CreateLifeCompass: React.FC = () => {
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
-      <hr className="my-4" />
+      {isDesktop && <hr className="my-4" />}
       {showRadar ? (
         <div className="mx-auto mt-4 w-full">
           <RadarChart data={radarData} width="100%" aspect={1} />
