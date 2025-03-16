@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CustomSlider from '../components/CustomSlider';
-import { LifeArea } from './LifeAreaCardTypes';
+//import { LifeArea } from './LifeAreaCardTypes';
 import WarningMessage from '../components/WarningMessage';
 
 export interface LifeAreaCardProps {
