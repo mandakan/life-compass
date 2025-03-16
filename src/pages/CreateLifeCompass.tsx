@@ -10,6 +10,7 @@ import ExportButton from '../components/ExportButton';
 import DesktopToolbar from '../components/DesktopToolbar';
 import { parseAndValidateJSON } from '../utils/importService';
 import ImportPreviewModal from '../components/ImportPreviewModal';
+import SuccessModal from '../components/SuccessModal';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -57,6 +58,7 @@ const CreateLifeCompass: React.FC = () => {
     useState(true);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [importedData, setImportedData] = useState<any | null>(null);
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -386,7 +388,7 @@ const CreateLifeCompass: React.FC = () => {
       // Optionally update userSettings or history here.
       setPreviewVisible(false);
       setImportedData(null);
-      alert('Import lyckades!');
+      setShowSuccessModal(true);
     }
   };
 
@@ -528,6 +530,11 @@ const CreateLifeCompass: React.FC = () => {
         data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
         onConfirm={handleConfirmImport}
         onCancel={handleCancelImport}
+      />
+      <SuccessModal 
+        visible={showSuccessModal} 
+        message="Import lyckades!" 
+        onClose={() => setShowSuccessModal(false)}
       />
     </div>
   );
