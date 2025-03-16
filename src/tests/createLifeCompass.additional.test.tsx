@@ -92,7 +92,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('Dubblett: Samma namn får inte användas.'),
+        screen.getByText('Samma namn får inte användas.'),
       ).toBeTruthy();
     });
   });
