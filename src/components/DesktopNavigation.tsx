@@ -44,7 +44,9 @@ const DesktopNavigation: React.FC = () => {
           to="/"
           style={{ color: menu[theme].text, textDecoration: 'none' }}
         >
-          Hem
+                    <div className="p-4">
+                      <h1 className="text-xl font-bold">Livskompass</h1>
+                    </div>
         </Link>
         <Link
           to="/create-life-compass"
