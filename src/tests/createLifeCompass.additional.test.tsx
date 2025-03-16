@@ -17,23 +17,23 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
     );
     // Select buttons by role to avoid duplicate text from non-button elements.
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     expect(addButtons[0]).toBeTruthy();
     const predefinedButtons = screen.getAllByRole('button', {
-      name: 'Lägg till fördefinierade områden',
+      name: 'Lägg till fördefinierade',
     });
     expect(predefinedButtons[0]).toBeTruthy();
   });
 
-  test('adds a new life area when clicking "Lägg till livsområde"', async () => {
+  test('adds a new life area when clicking "Lägg till"', async () => {
     render(
       <ThemeProvider>
         <CreateLifeCompass />
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     const addButton = addButtons[0];
     fireEvent.click(addButton);
@@ -51,7 +51,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     const addButton = addButtons[0];
     fireEvent.click(addButton);
@@ -76,7 +76,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
 
     // Add first life area (with default name "Nytt livsområde")
@@ -102,7 +102,7 @@ describe('CreateLifeCompass additional tests for User Story 1', () => {
       </ThemeProvider>,
     );
     const addButtons = screen.getAllByRole('button', {
-      name: 'Lägg till livsområde',
+      name: 'Lägg till',
     });
     const addButton = addButtons[0];
     fireEvent.click(addButton);
