@@ -1,7 +1,7 @@
 ---
 title: 'Implement Dark Mode'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Should'
 ---
 
