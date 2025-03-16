@@ -241,21 +241,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           aria-label="Drag to reorder life area"
           {...(dragHandle || {})}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <title>Drag to reorder life area</title>
-            <circle cx="4" cy="3" r="1.5" />
-            <circle cx="12" cy="3" r="1.5" />
-            <circle cx="4" cy="8" r="1.5" />
-            <circle cx="12" cy="8" r="1.5" />
-            <circle cx="4" cy="13" r="1.5" />
-            <circle cx="12" cy="13" r="1.5" />
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+</svg>
+
         </div>
         <div className="flex flex-grow flex-col">
           <div>

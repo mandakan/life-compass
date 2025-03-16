@@ -22,27 +22,11 @@ const DesktopNavigation: React.FC = () => {
     </svg>
   );
 
-  const cogIcon = (
-    <svg
-      className="ml-2 h-6 w-6"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 15c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83l-0.06.06a1.65 1.65 0 00-1.82.33 1.65 1.65 0 01-1 1.51 2 2 0 01-2.45-.12l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 01-1-1.51 2 2 0 01-2.45.12l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 01-1-1.51 2 2 0 01-.12-2.45l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 01-1.51-1 2 2 0 01.12-2.45l.06-.06a1.65 1.65 0 00-.33-1.82 1.65 1.65 0 011.51-1 2 2 0 012.45.12l.06.06a1.65 1.65 0 001.82.33h0a1.65 1.65 0 011 1.51 2 2 0 012.45-.12l.06.06a1.65 1.65 0 001.82.33 1.65 1.65 0 011.51 1 2 2 0 01.12 2.45l-.06.06a1.65 1.65 0 00-.33 1.82 1.65 1.65 0 011.51 1 2 2 0 01-.12 2.45l-.06.06a1.65 1.65 0 00-.33 1.82 1.65 1.65 0 01-1.51 1 2 2 0 01-2.45-.12l-.06-.06a1.65 1.65 0 00-1.82-.33h0a1.65 1.65 0 01-1.51-1 2 2 0 01.12-2.45l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 01-1-1.51 2 2 0 01.12-2.45l.06-.06a1.65 1.65 0 00-.33-1.82 1.65 1.65 0 011.51-1 2 2 0 012.45.12l.06.06a1.65 1.65 0 001.82.33 1.65 1.65 0 011 1.51 2 2 0 012.45-.12l.06.06a1.65 1.65 0 001.82.33z"
-      />
-    </svg>
+  const settingsIcon = (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+</svg>
+
   );
 
   return (
@@ -79,7 +63,7 @@ const DesktopNavigation: React.FC = () => {
           className="cursor-pointer border-0 bg-transparent p-0"
           aria-label="Toggle settings menu"
         >
-          {cogIcon}
+          {settingsIcon}
         </button>
         {showSettings && (
           <div className="absolute top-full right-0 z-50 w-72 rounded-lg border border-[var(--border)] bg-[var(--menu-bg)] p-6">
