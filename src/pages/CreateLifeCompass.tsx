@@ -8,6 +8,8 @@ import RadarChart from '../components/RadarChart';
 import CustomButton from '../components/CustomButton';
 import ExportButton from '../components/ExportButton';
 import DesktopToolbar from '../components/DesktopToolbar';
+import { parseAndValidateJSON } from '../utils/importService';
+import ImportPreviewModal from '../components/ImportPreviewModal';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -55,6 +57,9 @@ const CreateLifeCompass: React.FC = () => {
     useState(true);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
+
+  const [importedData, setImportedData] = useState<any | null>(null);
+  const [previewVisible, setPreviewVisible] = useState(false);
 
   const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
@@ -363,6 +368,33 @@ const CreateLifeCompass: React.FC = () => {
     description: area.details,
   }));
 
+  const handleImportFile = (fileContent: string) => {
+    const result = parseAndValidateJSON(fileContent);
+    if (!result.valid) {
+      if (result.errors) {
+        alert('Fel vid import: ' + result.errors.join(', '));
+      }
+      return;
+    }
+    setImportedData(result.data);
+    setPreviewVisible(true);
+  };
+
+  const handleConfirmImport = () => {
+    if (importedData && importedData.data) {
+      setLifeAreas(importedData.data.lifeAreas);
+      // Optionally update userSettings or history here.
+      setPreviewVisible(false);
+      setImportedData(null);
+      alert('Import lyckades!');
+    }
+  };
+
+  const handleCancelImport = () => {
+    setPreviewVisible(false);
+    setImportedData(null);
+  };
+
   return (
     <div className="bg-[var(--color-bg)] p-4 pt-[calc(1rem+60px)] font-sans md:pt-4">
       {!storageAvailable && (
@@ -379,6 +411,8 @@ const CreateLifeCompass: React.FC = () => {
         onReset={() => setShowResetModal(true)}
         onToggleRadar={() => setShowRadar(prev => !prev)}
         showRadar={showRadar}
+        // Pass the new import callback to DesktopToolbar so that its ImportButton calls handleImportFile
+        // Other props remain unchanged.
       />
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
@@ -488,6 +522,13 @@ const CreateLifeCompass: React.FC = () => {
         message="Är du säker på att du vill återställa livsområden till standard?"
         onConfirm={handleResetConfirm}
         onCancel={handleResetCancel}
+      />
+      <ImportPreviewModal
+        visible={previewVisible}
+        metadata={importedData ? importedData.metadata : { exportTimestamp: '', version: '' }}
+        data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
+        onConfirm={handleConfirmImport}
+        onCancel={handleCancelImport}
       />
     </div>
   );
