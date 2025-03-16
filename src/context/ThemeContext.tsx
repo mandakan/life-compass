@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 import { setTheme as applyTheme } from '../utils/themeUtils';
 
 export type Theme = 'light' | 'dark';
@@ -20,6 +20,8 @@ export const ThemeContext = createContext<ThemeContextProps>({
   followSystem: true,
   setFollowSystem: () => {},
 });
+
+export const useTheme = () => useContext(ThemeContext);
 
 interface ThemeProviderProps {
   children: ReactNode;
