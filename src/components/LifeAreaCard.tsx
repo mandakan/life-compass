@@ -96,10 +96,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       ? 'border-green-500'
       : 'border-[var(--border)]';
 
-  const nameInputClasses = `ml-2 px-2 py-1 rounded-sm border font-sans ${nameInputBorderClass}`;
+  const nameInputClasses = `ml-0 px-2 py-1 rounded-sm border w-full font-sans ${nameInputBorderClass}`;
 
   const commonInputClasses =
-    'ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
+    'ml-0 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
 
   const actionButtonClasses =
     'flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors';
@@ -110,7 +110,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div>
           <div>
             <label className="font-sans">
-              Namn:
+              Namn
               <input
                 type="text"
                 value={localEditName}
@@ -133,7 +133,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div className="mt-2">
             <label className="font-sans">
-              Beskrivning:
+              Beskrivning
               <textarea
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
@@ -143,11 +143,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div className="mt-2">
             <label className="font-sans">
-              Detaljer:
+              Detaljer
               <textarea
                 value={editDetails}
                 onChange={e => onChangeEditDetails(e.target.value)}
-                className={`${commonInputClasses} min-h-[60px]`}
+                className={`${commonInputClasses} min-h-[120px]`}
               />
             </label>
           </div>
