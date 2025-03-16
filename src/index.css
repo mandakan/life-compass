@@ -61,3 +61,6 @@ a {
 }
 
 /* Additional global styles can be added here */
+.mobile-nav-link {
+  color: var(--on-primary) !important;
+}

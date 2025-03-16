@@ -8,7 +8,7 @@ const MobileNavigation: React.FC = () => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-[var(--primary)] text-[var(--on-primary)] p-4">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">
-          <Link to="/" className="text-[var(--on-primary)] no-underline">
+          <Link to="/" className="text-[var(--on-primary)] no-underline mobile-nav-link">
             Livskompass
           </Link>
         </div>
@@ -49,28 +49,28 @@ const MobileNavigation: React.FC = () => {
           <Link
             to="/"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--on-primary)]"
+            className="underline text-[var(--on-primary)] mobile-nav-link"
           >
             Hem
           </Link>
           <Link
             to="/create-life-compass"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--on-primary)]"
+            className="underline text-[var(--on-primary)] mobile-nav-link"
           >
             Skapa Livskompass
           </Link>
           <Link
             to="/design-principles"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--on-primary)]"
+            className="underline text-[var(--on-primary)] mobile-nav-link"
           >
             Designprinciper
           </Link>
           <Link
             to="/settings"
             onClick={() => setOpen(false)}
-            className="underline text-[var(--on-primary)]"
+            className="underline text-[var(--on-primary)] mobile-nav-link"
           >
             Inställningar
           </Link>
@@ -79,7 +79,7 @@ const MobileNavigation: React.FC = () => {
             onClick={() => setOpen(false)}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-[var(--on-primary)] flex items-center"
+            className="underline text-[var(--on-primary)] flex items-center mobile-nav-link"
           >
             <svg
               className="w-6 h-6 mr-2"
