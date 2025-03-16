@@ -115,3 +115,21 @@ export const buttons = {
     transition: transitions.fast,
   },
 };
+
+// New export mapping theme variables used by Tailwind CSS utility classes.
+// These CSS variables can be injected into your global CSS (for example, via a custom Tailwind plugin or in your index.css)
+// to ensure that classes like bg-bg, text-text, and border-border have the correct values depending on the active theme.
+export const themeVariables = {
+  light: {
+    '--bg': colors.light.background,
+    '--text': colors.light.text,
+    '--border': colors.primary,
+    '--font-primary': typography.primaryFont,
+  },
+  dark: {
+    '--bg': colors.dark.background,
+    '--text': colors.dark.text,
+    '--border': colors.primary,
+    '--font-primary': typography.primaryFont,
+  },
+};
