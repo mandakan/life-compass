@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CustomSlider from '../components/CustomSlider';
 import { LifeArea } from './LifeAreaCardTypes';
+import WarningMessage from '../components/WarningMessage';
 
 export interface LifeAreaCardProps {
   area: LifeArea;
@@ -123,9 +124,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </label>
             {isDuplicate && (
-              <div className="text-red-500 mt-2 font-sans">
-                Dubblett: Samma namn får inte användas.
-              </div>
+              <WarningMessage message="Dubblett: Samma namn får inte användas." />
             )}
           </div>
           <div className="mt-2">
