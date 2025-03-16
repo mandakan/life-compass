@@ -101,11 +101,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   const commonInputClasses = "ml-2 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans";
 
-  const actionButtonClasses = "flex items-center gap-2 bg-[var(--primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors";
+  const actionButtonClasses = "flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors";
 
   if (isEditing) {
     return (
-      <div className="rounded-sm shadow-sm p-4 transition-all relative flex flex-col flex-grow bg-[var(--bg)] text-[var(--text)] border border-[var(--border)]">
+      <div className="rounded-sm shadow-sm p-4 transition-all relative flex flex-col flex-grow bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--border)]">
         <div>
           <div>
             <label className="font-sans">
@@ -230,7 +230,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     );
   } else {
     return (
-      <div className="rounded-sm shadow-sm p-4 transition-all relative flex flex-col flex-grow bg-[var(--bg)] text-[var(--text)] border border-[var(--border)]">
+      <div className="rounded-sm shadow-sm p-4 transition-all relative flex flex-col flex-grow bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--border)]">
         <div
           className="absolute top-2 left-2.5 cursor-grab opacity-90"
           role="img"
@@ -263,13 +263,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               >
                 ℹ️
               </button>
-              <h4 className="m-0 font-sans text-lg font-normal text-[var(--primary)]">
+              <h4 className="m-0 font-sans text-lg font-normal text-[var(--color-primary)]">
                 {area.name}
               </h4>
             </div>
             {showDescription && (
               <div
-                className={`absolute top-2 left-1/2 transform -translate-x-1/2 ${popupWidthClass} bg-[var(--bg)] text-[var(--text)] border-2 border-[var(--accent)] rounded-sm p-4 z-10 shadow-lg font-sans`}
+                className={`absolute top-2 left-1/2 transform -translate-x-1/2 ${popupWidthClass} bg-[var(--color-bg)] text-[var(--color-text)] border-2 border-[var(--color-accent)] rounded-sm p-4 z-10 shadow-lg font-sans`}
                 tabIndex={0}
                 onBlur={() => setShowDescription(false)}
               >
