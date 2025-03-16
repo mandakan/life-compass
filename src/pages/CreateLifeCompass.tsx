@@ -8,6 +8,7 @@ import RadarChart from '../components/RadarChart';
 import CustomButton from '../components/CustomButton';
 import ExportButton from '../components/ExportButton';
 import DesktopToolbar from '../components/DesktopToolbar';
+import FloatingToolbar from '../components/FloatingToolbar';
 import { parseAndValidateJSON } from '../utils/importService';
 import ImportPreviewModal from '../components/ImportPreviewModal';
 import SuccessModal from '../components/SuccessModal';
@@ -407,14 +408,25 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-      <DesktopToolbar
-        onAddNewLifeArea={handleAddNewLifeArea}
-        onAddPredefinedAreas={handleAddPredefinedAreas}
-        onReset={() => setShowResetModal(true)}
-        onToggleRadar={() => setShowRadar(prev => !prev)}
-        showRadar={showRadar}
-        onImportFile={handleImportFile}
-      />
+      {isDesktop ? (
+        <DesktopToolbar
+          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddPredefinedAreas={handleAddPredefinedAreas}
+          onReset={() => setShowResetModal(true)}
+          onToggleRadar={() => setShowRadar(prev => !prev)}
+          showRadar={showRadar}
+          onImportFile={handleImportFile}
+        />
+      ) : (
+        <FloatingToolbar
+          onAddNewLifeArea={handleAddNewLifeArea}
+          onAddPredefinedAreas={handleAddPredefinedAreas}
+          onReset={() => setShowResetModal(true)}
+          onToggleRadar={() => setShowRadar(prev => !prev)}
+          showRadar={showRadar}
+          onImportFile={handleImportFile}
+        />
+      )}
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
