@@ -31,7 +31,7 @@ const ExportButton: React.FC = () => {
   return (
     <>
       <CustomButton onClick={handleExport}>
-        Export Data as JSON
+        Exportera
       </CustomButton>
       {error && (
         <WarningModal
