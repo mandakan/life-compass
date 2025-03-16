@@ -10,6 +10,7 @@ interface DesktopToolbarProps {
   onToggleRadar: () => void;
   showRadar: boolean;
   onImportFile: (fileContent: string) => void;
+  onRemoveAll: () => void;
 }
 
 const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
@@ -19,6 +20,7 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
   onToggleRadar,
   showRadar,
   onImportFile,
+  onRemoveAll,
 }) => {
   const handleImportError = (error: string) => {
     alert(error);
@@ -32,7 +34,12 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
       <CustomButton onClick={onAddPredefinedAreas}>
         Lägg till fördefinierade områden
       </CustomButton>
-      <CustomButton onClick={onReset}>Återställ till standard</CustomButton>
+      <CustomButton onClick={onReset}>
+        Återställ till standard
+      </CustomButton>
+      <CustomButton onClick={onRemoveAll}>
+        Ta bort alla livsområden
+      </CustomButton>
       <CustomButton onClick={onToggleRadar}>
         {showRadar ? 'Visa kortvy' : 'Visa radarvy'}
       </CustomButton>
