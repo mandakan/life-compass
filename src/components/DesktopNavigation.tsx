@@ -48,13 +48,13 @@ const DesktopNavigation: React.FC = () => {
   return (
     <nav className="w-full bg-[var(--menu-bg)] py-4 flex justify-between items-center relative px-4">
       <div className="flex gap-4 items-center">
-        <Link to="/" className="text-[var(--menu-text)] no-underline">
+        <Link to="/" className="!text-[var(--menu-text)] no-underline">
           <h1 className="text-xl font-bold">Livskompass</h1>
         </Link>
-        <Link to="/create-life-compass" className="text-[var(--menu-text)] no-underline">
+        <Link to="/create-life-compass" className="!text-[var(--menu-text)] no-underline">
           Skapa Livskompass
         </Link>
-        <Link to="/design-principles" className="text-[var(--menu-text)] no-underline">
+        <Link to="/design-principles" className="!text-[var(--menu-text)] no-underline">
           Designprinciper
         </Link>
       </div>
@@ -63,7 +63,7 @@ const DesktopNavigation: React.FC = () => {
           href="https://github.com/mandakan/life-compass"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-[var(--menu-text)] no-underline"
+          className="flex items-center !text-[var(--menu-text)] no-underline"
         >
           {githubIcon}
           <span>GitHub</span>
