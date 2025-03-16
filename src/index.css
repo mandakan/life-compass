@@ -7,6 +7,9 @@
   --bg: #ebf8ff;     /* light blue for callout background */
   --border: #2b6cb0; /* dark blue for callout left border */
   --text: #1a202c;   /* dark text */
+  --font-primary: 'Inter', sans-serif;
+  --slider-track: #dee2e6;  /* default track color from neutral[300] */
+  --slider-handle: #3490dc; /* primary color */
   /* Other global CSS variables can be defined here */
 }
 
@@ -15,6 +18,8 @@
   --bg: #2d3748;     /* dark grayish blue for callout background */
   --border: #63b3ed; /* light blue for callout left border */
   --text: #edf2f7;   /* light text */
+  --slider-track: #495057; /* darker neutral for track */
+  --slider-handle: #3490dc; /* primary color remains */
 }
 
 /* High Contrast Theme */
@@ -22,12 +27,14 @@
   --bg: #000000;     /* black for callout background */
   --border: #ffff00; /* yellow for callout left border */
   --text: #ffffff;   /* white text */
+  --slider-track: #ffff00; /* yellow for track */
+  --slider-handle: #ffffff; /* white for handle */
 }
 
 /* Global styles leveraging the defined CSS variables */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-primary);
   /* 
      Note: The --bg variable here is used for callout background.
      If the application background needs to be different, consider using a separate variable.

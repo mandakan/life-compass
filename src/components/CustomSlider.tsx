@@ -1,11 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import {
-  colors,
-  typography,
-  spacing,
-  borderRadius,
-  transitions,
-} from '../designTokens';
 
 interface CustomSliderProps {
   value: number;
@@ -13,8 +6,6 @@ interface CustomSliderProps {
   max?: number;
   step?: number;
   onChange: (value: number) => void;
-  trackColor?: string;
-  handleColor?: string;
   width?: number | string;
   height?: number;
 }
@@ -25,8 +16,6 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   max = 10,
   step = 1,
   onChange,
-  trackColor = colors.neutral[300],
-  handleColor = colors.primary,
   width = '100%',
   height = 50,
 }) => {
@@ -121,45 +110,19 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   const percentage = getPercentage();
   const handleSize = 30;
 
-  const containerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: width,
-    height: height,
-    margin: '0 auto',
-  };
-
-  const trackStyle: React.CSSProperties = {
-    position: 'absolute',
-    width: '100%',
-    height: 4,
-    backgroundColor: trackColor,
-    top: height / 2 - 2,
-  };
-
-  const handleStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: (height - handleSize) / 2,
-    left: `calc(${percentage * 100}% - ${handleSize / 2}px)`,
-    width: handleSize,
-    height: handleSize,
-    borderRadius: '50%',
-    backgroundColor: handleColor,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#fff',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    userSelect: 'none',
-    fontFamily: typography.primaryFont,
-    transition: `background-color ${transitions.fast}`,
-  };
-
   return (
-    <div style={containerStyle} ref={trackRef} onMouseDown={handleMouseDown}>
-      <div style={trackStyle} aria-hidden="true" />
+    <div
+      ref={trackRef}
+      style={{ width: width, height: height }}
+      className="relative mx-auto"
+      onMouseDown={handleMouseDown}
+    >
       <div
-        style={handleStyle}
+        aria-hidden="true"
+        className="absolute w-full h-1 bg-[var(--slider-track)]"
+        style={{ top: height / 2 - 2 }}
+      />
+      <div
         tabIndex={0}
         role="slider"
         aria-valuemin={min}
@@ -167,6 +130,13 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         aria-valuenow={value}
         aria-label="Custom slider"
         onKeyDown={handleKeyDown}
+        className="absolute flex justify-center items-center text-white font-bold cursor-pointer select-none transition-colors bg-[var(--slider-handle)] rounded-full"
+        style={{
+          width: handleSize,
+          height: handleSize,
+          top: (height - handleSize) / 2,
+          left: `calc(${percentage * 100}% - ${handleSize / 2}px)`,
+        }}
       >
         {value}
       </div>
