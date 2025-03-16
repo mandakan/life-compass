@@ -108,6 +108,13 @@ const MobileNavigation: React.FC = () => {
           >
             Designprinciper
           </Link>
+          <Link
+            to="/settings"
+            onClick={() => setOpen(false)}
+            style={{ color: menu[theme].text, textDecoration: 'underline' }}
+          >
+            Inställningar
+          </Link>
           <a
             href="https://github.com/mandakan/life-compass"
             onClick={() => setOpen(false)}

@@ -5,6 +5,7 @@ import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
 import MobileNavigation from './components/MobileNavigation';
 import DesktopNavigation from './components/DesktopNavigation';
+import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
 
 const Content = () => {
@@ -24,6 +25,7 @@ const Content = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
             <Route path="/create-life-compass" element={<CreateLifeCompass />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
       </div>
