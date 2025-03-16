@@ -4,62 +4,87 @@
 
 /* Default Light Theme */
 :root {
-  --bg: #ffffff;            /* general background is now white */
-  --callout-bg: #ebf8ff;      /* separate callout background color */
-  --border: #2b6cb0;         /* dark blue for borders */
-  --text: #1a202c;           /* dark text */
-  --font-primary: 'Inter', sans-serif;
-  --slider-track: #dee2e6;   /* default track color from neutral[300] */
-  --slider-handle: #3490dc;   /* primary color */
-  --accent: #3490dc;         /* accent color for highlights and buttons */
-  --details-bg: #f8f9fa;      /* background for details box */
-  --primary: #3490dc;        /* primary color */
-  --secondary: #ffed4a;      /* secondary color */
-  --on-primary: #ffffff;     /* text color when using primary background */
-
-  /* New menu CSS variables extracted from design tokens */
-  --menu-bg: #3490dc;        /* from menu.light.background */
-  --menu-text: #ffffff;      /* from menu.light.text */
+    --bg: #ffffff;            /* General background */
+    --callout-bg: #ebf8ff;     /* Callout background */
+    --border: #2b6cb0;         /* Borders */
+    --text: #1a202c;           /* Text color */
+    --font-primary: 'Inter', sans-serif;
+    --slider-track: #dee2e6;   /* Slider track */
+    --slider-handle: #3490dc;  /* Primary color */
+    --accent: #e53e3e;         /* Adjusted accent color (red for contrast) */
+    --on-accent: #ffffff;      /* Text color on accent */
+    --focus-ring: #ffed4a;     /* Focus outline */
+    --details-bg: #f8f9fa;     /* Background for details box */
+    --primary: #3490dc;        /* Primary color */
+    --on-primary: #ffffff;     /* Text on primary */
+    --secondary: #ffed4a;      /* Secondary color */
+    --hover-bg: #e2e8f0;       /* Hover effect background */    
+    /* Menu */
+    --menu-bg: #3490dc;
+    --menu-text: #ffffff;   
+    /* Chart colors */
+    --chart-series-1: #1f77b4; /* Blue - Main data */
+    --chart-series-2: #ff7f0e; /* Orange - Complementary */
+    --chart-series-3: #2ca02c; /* Green - Positive trend */
+    --chart-series-4: #d62728; /* Red - Alerts, negative trends */
+    --chart-series-5: #9467bd; /* Purple - Additional category */
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --bg: #2d3748;            /* dark mode general background */
-  --callout-bg: #343a40;     /* dark mode callout background */
-  --border: #63b3ed;         /* light blue for borders */
-  --text: #edf2f7;           /* light text */
-  --slider-track: #495057;    /* darker neutral for track */
-  --slider-handle: #3490dc;   /* primary color remains */
-  --accent: #e3342f;         /* accent color for dark mode */
-  --details-bg: #343a40;      /* background for details box in dark mode */
-  --primary: #3490dc;        /* primary color remains same */
-  --secondary: #ffed4a;      /* secondary color remains same */
-  --on-primary: #ffffff;     /* text color on primary background remains white */
+    --bg: #2d3748;
+    --callout-bg: #343a40;
+    --border: #63b3ed;
+    --text: #edf2f7;
+    --slider-track: #495057;
+    --slider-handle: #3490dc;
+    --accent: #f56565;         /* Adjusted accent color (red for contrast) */
+    --on-accent: #ffffff;
+    --focus-ring: #ffed4a;
+    --details-bg: #343a40;
+    --primary: #3490dc;
+    --on-primary: #ffffff;
+    --secondary: #ffed4a;
+    --hover-bg: #4a5568;       /* Hover effect background */    
+    /* Menu */
+    --menu-bg: #1a202c;        /* Darker menu background for contrast */
+    --menu-text: #e2e8f0;      /* Slightly lighter text */
 
-  /* New menu CSS variables for dark theme */
-  --menu-bg: #343a40;        /* from menu.dark.background */
-  --menu-text: #f8f9fa;      /* from menu.dark.text */
+    /* Chart colors */
+    --chart-series-1: #63b3ed; /* Lighter blue */
+    --chart-series-2: #ffb347; /* Softer orange */
+    --chart-series-3: #68d391; /* Brighter green */
+    --chart-series-4: #fc8181; /* Lighter red */
+    --chart-series-5: #b794f4; /* Brighter purple */
 }
 
 /* High Contrast Theme */
 [data-theme="high-contrast"] {
-  --bg: #000000;            /* black for general background */
-  --callout-bg: #000000;     /* callout background for high contrast */
-  --border: #ffff00;         /* yellow for borders */
-  --text: #ffffff;           /* white text */
-  --slider-track: #ffff00;    /* yellow for slider track */
-  --slider-handle: #ffffff;   /* white slider handle */
-  --accent: #ffff00;         /* accent color for high contrast */
-  --details-bg: #000000;      /* background for details box in high contrast */
-  --primary: #3490dc;        /* primary color remains same */
-  --secondary: #ffed4a;      /* secondary color remains same */
-  --on-primary: #ffffff;     /* text color on primary background remains white */
+    --bg: #000000;
+    --callout-bg: #000000;
+    --border: #ffff00;
+    --text: #ffffff;
+    --slider-track: #ffff00;
+    --slider-handle: #ffffff;
+    --accent: #ff00ff;         /* Magenta for maximum contrast */
+    --on-accent: #000000;
+    --focus-ring: #ff00ff;
+    --details-bg: #000000;
+    --primary: #00ffff;        /* Cyan for strong contrast */
+    --on-primary: #000000;
+    --secondary: #ffed4a;
+    --hover-bg: #222222;       /* Dark gray for hover feedback */   
+    /* Menu */
+    --menu-bg: #000000;
+    --menu-text: #ffffff;
 
-  /* New menu CSS variables for high contrast */
-  --menu-bg: #000000;
-  --menu-text: #ffffff;
+    /* Chart colors */
+    --chart-series-1: #ffff00; /* Yellow */
+    --chart-series-2: #ff00ff; /* Magenta */
+    --chart-series-3: #00ffff; /* Cyan */
+    --chart-series-4: #ff0000; /* Red */
+    --chart-series-5: #ffffff; /* White */
 }
-
 /* Global styles leveraging the defined CSS variables */
 body {
   margin: 0;
