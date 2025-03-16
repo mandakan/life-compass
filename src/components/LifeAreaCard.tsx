@@ -288,7 +288,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div className="mb-2">
               <div
                 onClick={() => setEditingDetailsInline(true)}
-                className={`min-h-[100px] ${editingDetailsInline ? "flex" : ""} cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans`}
+                className={`min-h-[120px] ${editingDetailsInline ? 'flex' : ''} cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans`}
               >
                 {editingDetailsInline ? (
                   <textarea
@@ -306,7 +306,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                       setEditingDetailsInline(false);
                     }}
                     autoFocus
-                    className="w-full flex-1 block bg-[var(--details-bg)] px-0 py-0 font-sans outline-none resize-none"
+                    className="block w-full flex-1 resize-none bg-[var(--details-bg)] px-0 py-0 font-sans outline-none"
                   />
                 ) : (
                   <span className="font-sans">

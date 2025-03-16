@@ -54,7 +54,8 @@ const CreateLifeCompass: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] =
+    useState(true);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -83,13 +84,21 @@ const CreateLifeCompass: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
-    window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
+    const savedScrollPosition = localStorage.getItem(
+      'createlifecompassScrollPosition',
+    );
+    window.scrollTo(
+      0,
+      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
+    );
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
+      localStorage.setItem(
+        'createlifecompassScrollPosition',
+        window.scrollY.toString(),
+      );
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -117,7 +126,9 @@ const CreateLifeCompass: React.FC = () => {
       const base = 'Nytt livsområde';
       let name = base;
       let counter = 2;
-      while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
+      while (
+        lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())
+      ) {
         name = `${base} ${counter}`;
         counter++;
       }
@@ -135,7 +146,7 @@ const CreateLifeCompass: React.FC = () => {
       setLifeAreas([
         ...lifeAreas.slice(0, insertionIndex),
         newArea,
-        ...lifeAreas.slice(insertionIndex)
+        ...lifeAreas.slice(insertionIndex),
       ]);
     } else {
       setLifeAreas([...lifeAreas, newArea]);
@@ -152,7 +163,10 @@ const CreateLifeCompass: React.FC = () => {
   const handleAddPredefinedAreas = () => {
     const predefined = getPredefinedLifeAreas();
     const newAreas = predefined.filter(
-      predef => !lifeAreas.some(existing => existing.name.toLowerCase() === predef.name.toLowerCase())
+      predef =>
+        !lifeAreas.some(
+          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
+        ),
     );
     if (newAreas.length > 0) {
       setLifeAreas([...lifeAreas, ...newAreas]);
@@ -247,7 +261,9 @@ const CreateLifeCompass: React.FC = () => {
   const handleCancelEdit = () => {
     if (editingAreaId && newAreaId === editingAreaId) {
       // Remove the newly created card if editing is aborted.
-      setLifeAreas(prevLifeAreas => prevLifeAreas.filter(area => area.id !== editingAreaId));
+      setLifeAreas(prevLifeAreas =>
+        prevLifeAreas.filter(area => area.id !== editingAreaId),
+      );
       setNewAreaId(null);
     }
     setEditingAreaId(null);
@@ -406,7 +422,9 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}>
+    <div
+      className={`bg-[var(--color-bg)] p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}
+    >
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
@@ -486,7 +504,9 @@ const CreateLifeCompass: React.FC = () => {
             onClick={() => handleAddNewLifeArea(lifeAreas.length)}
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
-            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
+            <span className="text-[var(--color-primary)]">
+              + Lägg till nytt livsområde
+            </span>
           </div>
         </div>
       ) : (
@@ -533,7 +553,9 @@ const CreateLifeCompass: React.FC = () => {
             onClick={() => handleAddNewLifeArea(lifeAreas.length)}
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
-            <span className="text-[var(--color-primary)]">+ Lägg till nytt livsområde</span>
+            <span className="text-[var(--color-primary)]">
+              + Lägg till nytt livsområde
+            </span>
           </div>
         </div>
       )}
@@ -557,7 +579,11 @@ const CreateLifeCompass: React.FC = () => {
       />
       <ImportPreviewModal
         visible={previewVisible}
-        metadata={importedData ? importedData.metadata : { exportTimestamp: '', version: '' }}
+        metadata={
+          importedData
+            ? importedData.metadata
+            : { exportTimestamp: '', version: '' }
+        }
         data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
         onConfirm={handleConfirmImport}
         onCancel={handleCancelImport}

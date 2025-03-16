@@ -14,7 +14,9 @@ interface AppSettingsProviderProps {
   children: ReactNode;
 }
 
-export const AppSettingsProvider: React.FC<AppSettingsProviderProps> = ({ children }) => {
+export const AppSettingsProvider: React.FC<AppSettingsProviderProps> = ({
+  children,
+}) => {
   const [showDevTools, setShowDevTools] = useState<boolean>(false);
 
   return (
