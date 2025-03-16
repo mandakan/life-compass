@@ -291,7 +291,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 className="min-h-[100px] cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1 font-sans"
               >
                 {editingDetailsInline ? (
-                  <div className="flex h-full flex-col">
+                  <div className="flex h-full flex-col py-0">
                     <textarea
                       ref={inlineDetailsRef}
                       value={inlineDetailsValue}
@@ -307,7 +307,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                         setEditingDetailsInline(false);
                       }}
                       autoFocus
-                      className="w-full resize-none bg-[var(--details-bg)] px-2 py-1 font-sans outline-none"
+                      className="w-full h-full flex bg-[var(--details-bg)] px-0 py-0 my-0 pb-0 font-sans outline-none"
                     />
                   </div>
                 ) : (
