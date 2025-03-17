@@ -302,6 +302,7 @@ const CreateLifeCompass: React.FC = () => {
     setEditDetails('');
     setEditImportance(5);
     setEditSatisfaction(5);
+    setNewAreaId(null);
     setShowResetModal(false);
   };
 
