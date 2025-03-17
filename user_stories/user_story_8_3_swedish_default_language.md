@@ -1,7 +1,7 @@
 ---
 title: 'Set Swedish as Default Language'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

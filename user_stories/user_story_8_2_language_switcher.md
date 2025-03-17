@@ -1,7 +1,7 @@
 ---
 title: 'Implement Language Switcher in UI'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 
