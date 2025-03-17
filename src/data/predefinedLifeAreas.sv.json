@@ -1,0 +1,82 @@
+[
+  {
+    "id": "intima-relationer",
+    "name": "Intima relationer / nära relationer / parrelationer",
+    "description": "Beskriv hur du vill vara i en nära relation. Skriv vilken typ av förhållande du vill ha. Försök fokusera på din roll i relationen.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "familjerelationer",
+    "name": "Familjerelationer",
+    "description": "Beskriv hur du vill vara som bror/syster, far/mor, son/dotter. Beskriv vilka kvaliteter du vill ha i dessa relationer. Beskriv hur du skulle behandla andra i dessa relationer om du vore ditt perfekta jag.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "vanner-socialt-liv",
+    "name": "Vänner / socialt liv",
+    "description": "Skriv vad det innebär att vara en god vän. Om du hade möjlighet att vara en perfekt vän, hur skulle du bete dig då? Försök beskriva ett idealiskt vänskapsförhållande.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "arbete",
+    "name": "Arbete",
+    "description": "Beskriv den typ av arbete du vill arbeta med, det kan vara specifikt eller generellt. Kom ihåg att det är en idealvärld vi föreställer oss. Beskriv varför detta perfekta arbete tilltalar dig. Diskutera sedan vilken typ av medarbetare du vill vara. Hur vill du att dina arbetsrelationer ska se ut?",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "utbildning-och-personlig-utveckling",
+    "name": "Utbildning och personlig utveckling",
+    "description": "Vad vill du utbilda dig inom? Vad är viktigt i ditt liv? Vad är du nyfiken på? Varför vill du utbilda dig överhuvudtaget? Om du skulle vilja genomföra en informell eller formell utbildning, så skriv om vilken typ av utbildning som tilltalar dig.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "fritidsaktiviteter",
+    "name": "Fritidsaktiviteter",
+    "description": "Beskriv det sorts liv du vill leva på din fritid. Ta med intressen, hobbies, sporter och fritidsaktiviteter.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "andlighet-och-harmoni",
+    "name": "Andlighet och harmoni",
+    "description": "Det här behöver inte innebära organiserad religion. Vad som menas med andlighet är helt enkelt det du tycker att det betyder. Det kan handla om att uppleva naturen eller gå i kyrkan. Om detta är en viktig del av ditt liv, så skriver du om hur du vill att det ska vara precis som i de andra områdena. Om det inte är en viktig del i ditt liv så hoppar du till nästa punkt.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "samhallsengagemang",
+    "name": "Samhällsengagemang",
+    "description": "För vissa människor är det viktigt att delta i samhällsangelägenheter. Vissa tycker till exempel att det är viktigt att arbeta frivilligt för hemlösa eller äldre människor. Andra vill delta i politik eller grupper som engagerar sig i vissa sakfrågor. Om samhällsfrågor av det här slaget är en viktig del av livet för dig, så skriver du här om riktningen du vill ta i dessa områden. Skriv om vad som tilltalar dig i detta område.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "egenvard",
+    "name": "Egenvård",
+    "description": "Hälsa och fysiskt välmående. Här kan du skriva om dina värderingar som är kopplade till att bibehålla fysisk hälsa. Skriv om ämnen som handlar om hälsan, som sömn, rökning, motion, mat med mera.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "foraldraskap",
+    "name": "Föräldraskap",
+    "description": "Om det är så att du har barn själv, är förälder. Vad är viktigt för dig i det här området? Hur vill du vara som förälder? Beskriv den typ av förhållande som du vill ha. Försök fokusera på din roll.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  }
+]
