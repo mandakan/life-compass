@@ -6,11 +6,11 @@ module.exports = {
   keepRemoved: false,
   keySeparator: '.',
   lexers: {
-    js: ["JavascriptLexer"],
-    jsx: ["JsxLexer"],  // Add JSX support
-    ts: ["JavascriptLexer"],
-    tsx: ["JsxLexer"],  // Add TSX support
-    default: ["JavascriptLexer"]
+    js: ['JavascriptLexer'],
+    jsx: ['JsxLexer'], // Add JSX support
+    ts: ['JavascriptLexer'],
+    tsx: ['JsxLexer'], // Add TSX support
+    default: ['JavascriptLexer'],
   },
   lineEnding: 'auto',
   locales: ['en', 'sv'],
@@ -22,9 +22,8 @@ module.exports = {
   failOnWarnings: false,
   debug: true,
   updateMissing: true,
-  input: ["src/**/*.{js,jsx,ts,tsx}"],
-  defaultValue: (lng, ns, key) => (key), // Use Swedish text as the default in `sv.json`
-  keySeparator: "_",
+  input: ['src/**/*.{js,jsx,ts,tsx}'],
+  defaultValue: (lng, ns, key) => key, // Use Swedish text as the default in `sv.json`
+  keySeparator: '_',
   keyAsDefaultValue: false,
-
 };

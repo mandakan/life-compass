@@ -30,16 +30,16 @@ const SettingsMenu: React.FC = () => {
 
   return (
     <div className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
-      <h2 className="mb-4 text-lg font-bold">{t("settings")}</h2>
+      <h2 className="mb-4 text-lg font-bold">{t('settings')}</h2>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>{t("language") || "Language"}</span>
+          <span>{t('language') || 'Language'}</span>
           <LanguageSwitcher />
         </label>
       </div>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>{t("dark_mode")}</span>
+          <span>{t('dark_mode')}</span>
           <ToggleSwitch
             checked={theme === 'dark'}
             onChange={handleThemeToggle}
@@ -48,7 +48,7 @@ const SettingsMenu: React.FC = () => {
       </div>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>{t("follow_system_theme", { system: systemTheme })}</span>
+          <span>{t('follow_system_theme', { system: systemTheme })}</span>
           <ToggleSwitch
             checked={followSystem}
             onChange={handleFollowSystemToggle}
@@ -57,7 +57,7 @@ const SettingsMenu: React.FC = () => {
       </div>
       <div>
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>{t("show_dev_tools")}</span>
+          <span>{t('show_dev_tools')}</span>
           <ToggleSwitch
             checked={showDevTools}
             onChange={handleDevToolsToggle}

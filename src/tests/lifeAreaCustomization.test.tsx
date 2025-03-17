@@ -10,9 +10,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
   const renderComponent = () =>
     render(
-        <ThemeProvider>
-          <CreateLifeCompass />
-        </ThemeProvider>
+      <ThemeProvider>
+        <CreateLifeCompass />
+      </ThemeProvider>,
     );
 
   test('adds a new life area when "Lägg till" is clicked', () => {
@@ -55,7 +55,8 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
     // Add a second life area and try to rename to the same "Unique Area"
     fireEvent.click(addButtons[0]);
-    const allNameInputs = screen.getAllByPlaceholderText(/Ange livsområdesnamn/i);
+    const allNameInputs =
+      screen.getAllByPlaceholderText(/Ange livsområdesnamn/i);
     const secondNameInput = allNameInputs[0]; // assuming the newly added area's input
     fireEvent.change(secondNameInput, { target: { value: 'Unique Area' } });
     const secondSaveButtons = screen.getAllByRole('button', { name: /Spara/i });
@@ -83,7 +84,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
     // Check that the warning modal for deletion appears.
     expect(
-      screen.getByText(/Varning: Detta kommer att ta bort livsområdet och alla dess data. Vill du fortsätta?/i),
+      screen.getByText(
+        /Varning: Detta kommer att ta bort livsområdet och alla dess data. Vill du fortsätta?/i,
+      ),
     ).toBeTruthy();
 
     // Confirm deletion by clicking "Fortsätt"

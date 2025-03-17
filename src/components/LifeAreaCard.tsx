@@ -112,7 +112,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div>
           <div>
             <label className="font-sans">
-              {t("name")}
+              {t('name')}
               <input
                 type="text"
                 value={localEditName}
@@ -121,21 +121,21 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   setLocalEditName(value);
                   onChangeEditName(value);
                 }}
-                placeholder={t("enter_life_area_name")}
+                placeholder={t('enter_life_area_name')}
                 autoFocus
                 className={nameInputClasses}
               />
             </label>
             {isDuplicate && (
               <WarningMessage
-                title={t("duplicate")}
-                message={t("duplicate_name_not_allowed")}
+                title={t('duplicate')}
+                message={t('duplicate_name_not_allowed')}
               />
             )}
           </div>
           <div className="mt-2">
             <label className="font-sans">
-              {t("description")}
+              {t('description')}
               <textarea
                 value={editDescription}
                 onChange={e => onChangeEditDescription(e.target.value)}
@@ -145,7 +145,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
           <div className="mt-2">
             <label className="font-sans">
-              {t("details")}
+              {t('details')}
               <textarea
                 value={editDetails}
                 onChange={e => onChangeEditDetails(e.target.value)}
@@ -156,7 +156,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div className="mt-auto">
             <div className="mt-2 font-sans">
               <label>
-                {t("importance")}
+                {t('importance')}
                 <CustomSlider
                   value={editImportance}
                   onChange={newValue => {
@@ -179,7 +179,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-                {t("satisfaction")}
+                {t('satisfaction')}
                 <CustomSlider
                   value={editSatisfaction}
                   onChange={newValue => {
@@ -217,7 +217,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             >
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
             </svg>
-            {t("save")}
+            {t('save')}
           </button>
           <button onClick={onCancelEdit} className={actionButtonClasses}>
             <svg
@@ -229,7 +229,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             >
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
             </svg>
-            {t("cancel")}
+            {t('cancel')}
           </button>
         </div>
       </div>
@@ -240,7 +240,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 cursor-grab opacity-90"
           role="img"
-          aria-label={t("drag_to_reorder_life_area")}
+          aria-label={t('drag_to_reorder_life_area')}
           {...(dragHandle || {})}
         >
           <svg
@@ -276,7 +276,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <button
                 onClick={() => setShowDescription(true)}
                 className="mr-2 cursor-pointer border-none bg-transparent"
-                aria-label={t("show_description")}
+                aria-label={t('show_description')}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -308,7 +308,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   onClick={() => setShowDescription(false)}
                   className="mt-2 cursor-pointer border-none bg-transparent font-sans"
                 >
-                  {t("close")}
+                  {t('close')}
                 </button>
               </div>
             )}
@@ -337,7 +337,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   />
                 ) : (
                   <span className="font-sans">
-                    {area.details || t("click_to_edit_details")}
+                    {area.details || t('click_to_edit_details')}
                   </span>
                 )}
               </div>
@@ -346,7 +346,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div className="mt-auto">
             <div className="mt-2 font-sans">
               <label>
-                {t("importance")}
+                {t('importance')}
                 <CustomSlider
                   value={area.importance}
                   onChange={newValue => {
@@ -368,7 +368,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-                {t("satisfaction")}
+                {t('satisfaction')}
                 <CustomSlider
                   value={area.satisfaction}
                   onChange={newValue => {
@@ -393,7 +393,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div className="mt-auto flex gap-2">
           <button
             className={actionButtonClasses}
-            title={t("edit")}
+            title={t('edit')}
             onClick={() => onEdit(area)}
           >
             <svg
@@ -405,12 +405,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             >
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
             </svg>
-            {t("edit")}
+            {t('edit')}
           </button>
           <button
             className={actionButtonClasses}
-            title={t("delete")}
-            aria-label={`${t("delete")} ${area.name}`}
+            title={t('delete')}
+            aria-label={`${t('delete')} ${area.name}`}
             onClick={() => onRemove(area.id)}
           >
             <svg
@@ -423,7 +423,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z" />
               <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4h.5a.5.5 0 0 0 0-1h-10z" />
             </svg>
-            {t("delete")}
+            {t('delete')}
           </button>
         </div>
       </div>

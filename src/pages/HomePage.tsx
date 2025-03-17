@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
         Skapa Livskompass
       </CustomButton>
       <div className="mt-4">
-      <LanguageSwitcher />
+        <LanguageSwitcher />
       </div>
     </div>
   );

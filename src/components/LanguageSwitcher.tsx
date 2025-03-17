@@ -17,7 +17,8 @@ const languages: Language[] = [
 ];
 
 const LanguageSwitcher: React.FC = () => {
-  const initialLang = localStorage.getItem('selectedLanguage') || i18next.language || 'en';
+  const initialLang =
+    localStorage.getItem('selectedLanguage') || i18next.language || 'en';
   const [selectedLanguage, setSelectedLanguage] = useState<string>(initialLang);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,10 @@ const LanguageSwitcher: React.FC = () => {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setDropdownOpen(false);
       }
     }
@@ -49,18 +53,20 @@ const LanguageSwitcher: React.FC = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const selectedLangObj = languages.find(lang => lang.code === selectedLanguage);
+  const selectedLangObj = languages.find(
+    lang => lang.code === selectedLanguage,
+  );
 
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         ref={buttonRef}
         type="button"
-        className="inline-flex justify-center min-w-max w-full rounded-md shadow-sm px-4 py-2 text-sm font-medium focus:outline-none hover:bg-[var(--hover-bg)]"
+        className="inline-flex w-full min-w-max justify-center rounded-md px-4 py-2 text-sm font-medium shadow-sm hover:bg-[var(--hover-bg)] focus:outline-none"
         style={{
-          backgroundColor: "var(--color-bg)",
-          border: "1px solid var(--border)",
-          color: "var(--color-text)"
+          backgroundColor: 'var(--color-bg)',
+          border: '1px solid var(--border)',
+          color: 'var(--color-text)',
         }}
         aria-haspopup="listbox"
         aria-expanded={dropdownOpen}
@@ -84,12 +90,14 @@ const LanguageSwitcher: React.FC = () => {
 
       {dropdownOpen && (
         <ul
-          className="absolute z-10 mt-2 shadow-lg rounded-md py-1 text-base focus:outline-none"
+          className="absolute z-10 mt-2 rounded-md py-1 text-base shadow-lg focus:outline-none"
           style={{
-            backgroundColor: "var(--color-bg)",
-            border: "1px solid var(--border)",
-            width: "auto",
-            minWidth: buttonRef.current ? `${buttonRef.current.offsetWidth}px` : "100%"
+            backgroundColor: 'var(--color-bg)',
+            border: '1px solid var(--border)',
+            width: 'auto',
+            minWidth: buttonRef.current
+              ? `${buttonRef.current.offsetWidth}px`
+              : '100%',
           }}
           role="listbox"
           tabIndex={-1}
@@ -101,11 +109,13 @@ const LanguageSwitcher: React.FC = () => {
               id={lang.code}
               role="option"
               aria-selected={selectedLanguage === lang.code}
-              className={`cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm ${
-                selectedLanguage === lang.code ? "text-[var(--accent)]" : "text-[var(--color-text)]"
+              className={`relative cursor-pointer py-2 pr-9 pl-3 text-sm select-none ${
+                selectedLanguage === lang.code
+                  ? 'text-[var(--accent)]'
+                  : 'text-[var(--color-text)]'
               } hover:bg-[var(--hover-bg)]`}
               onClick={() => handleLanguageSelect(lang.code)}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   handleLanguageSelect(lang.code);
                 }
@@ -113,10 +123,13 @@ const LanguageSwitcher: React.FC = () => {
               tabIndex={0}
             >
               <div className="flex items-center">
-                <span className="font-normal ml-3 block truncate">
+                <span className="ml-3 block truncate font-normal">
                   {lang.name}
                   {!lang.verified && (
-                    <span className="ml-1" title="This language is not verified">
+                    <span
+                      className="ml-1"
+                      title="This language is not verified"
+                    >
                       ⚠
                     </span>
                   )}

@@ -47,20 +47,20 @@ const DesktopNavigation: React.FC = () => {
     <nav className="relative flex w-full items-center justify-between bg-[var(--menu-bg)] px-4 py-4">
       <div className="flex items-center gap-4">
         <Link to="/" className="!text-[var(--menu-text)] no-underline">
-          <h1 className="text-xl font-bold">{t("life_compass")}</h1>
+          <h1 className="text-xl font-bold">{t('life_compass')}</h1>
         </Link>
         <Link
           to="/create-life-compass"
           className="!text-[var(--menu-text)] no-underline"
         >
-          {t("create_life_compass")}
+          {t('create_life_compass')}
         </Link>
         {showDevTools && (
           <Link
             to="/design-principles"
             className="!text-[var(--menu-text)] no-underline"
           >
-            {t("design_principles")}
+            {t('design_principles')}
           </Link>
         )}
       </div>
@@ -72,12 +72,12 @@ const DesktopNavigation: React.FC = () => {
           className="flex items-center !text-[var(--menu-text)] no-underline"
         >
           {githubIcon}
-          <span>{t("github")}</span>
+          <span>{t('github')}</span>
         </a>
         <button
           onClick={toggleSettings}
           className="cursor-pointer border-0 bg-transparent p-0"
-          aria-label={t("toggle_settings_menu")}
+          aria-label={t('toggle_settings_menu')}
         >
           {settingsIcon}
         </button>

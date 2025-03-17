@@ -11,11 +11,9 @@ const WarningMessage: React.FC<WarningMessageProps> = ({ message, title }) => {
   return (
     <div className="my-4 border-l-4 border-[var(--color-accent)] bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
       <h3 className="mb-2 text-lg font-semibold">
-        {title ? title : t("warning")}
+        {title ? title : t('warning')}
       </h3>
-      <p>
-        {message ? message : t("default_warning_message")}
-      </p>
+      <p>{message ? message : t('default_warning_message')}</p>
     </div>
   );
 };

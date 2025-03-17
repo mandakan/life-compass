@@ -22,7 +22,7 @@ const ExportButton: React.FC = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error: any) {
-      setError(t("error_exporting_data") + ': ' + error.message);
+      setError(t('error_exporting_data') + ': ' + error.message);
     }
   };
 
@@ -32,7 +32,7 @@ const ExportButton: React.FC = () => {
 
   return (
     <>
-      <CustomButton onClick={handleExport}>{t("export")}</CustomButton>
+      <CustomButton onClick={handleExport}>{t('export')}</CustomButton>
       {error && (
         <WarningModal
           visible={true}

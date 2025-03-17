@@ -30,18 +30,18 @@ const ImportPreviewModal: React.FC<ImportPreviewModalProps> = ({
       message={
         <div>
           <p>
-            <strong>{t("exported")}:</strong> {metadata.exportTimestamp}
+            <strong>{t('exported')}:</strong> {metadata.exportTimestamp}
           </p>
           <p>
-            <strong>{t("version")}:</strong> {metadata.version}
+            <strong>{t('version')}:</strong> {metadata.version}
           </p>
           <p>
-            <strong>{t("life_areas_count")}:</strong> {data.lifeAreas.length}
+            <strong>{t('life_areas_count')}:</strong> {data.lifeAreas.length}
           </p>
           <p>
-            <strong>{t("history_count")}:</strong> {data.history.length}
+            <strong>{t('history_count')}:</strong> {data.history.length}
           </p>
-          <p>{t("import_data_prompt")}</p>
+          <p>{t('import_data_prompt')}</p>
         </div>
       }
       onConfirm={onConfirm}

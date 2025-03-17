@@ -26,7 +26,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
 
     if (file.type !== 'application/json') {
       if (onError) {
-        onError(t("invalid_file_type"));
+        onError(t('invalid_file_type'));
       }
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -42,7 +42,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
         onFileSelected(content);
       } catch (err) {
         if (onError) {
-          onError(t("invalid_json_file"));
+          onError(t('invalid_json_file'));
         }
       }
       if (fileInputRef.current) {
@@ -51,7 +51,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
     };
     reader.onerror = () => {
       if (onError) {
-        onError(t("error_reading_file"));
+        onError(t('error_reading_file'));
       }
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -62,7 +62,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
 
   return (
     <>
-      <CustomButton onClick={handleButtonClick}>{t("import")}</CustomButton>
+      <CustomButton onClick={handleButtonClick}>{t('import')}</CustomButton>
       <input
         type="file"
         accept="application/json"

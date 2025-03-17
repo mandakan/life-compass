@@ -1,6 +1,7 @@
 import React from 'react';
 
-interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface CustomButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 

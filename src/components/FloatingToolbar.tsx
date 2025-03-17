@@ -68,7 +68,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       <button
         onClick={toggleExpanded}
         className="fixed right-4 bottom-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none"
-        aria-label={t("quick_actions")}
+        aria-label={t('quick_actions')}
       >
         {expanded ? '×' : '☰'}
       </button>
