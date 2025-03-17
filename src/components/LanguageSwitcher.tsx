@@ -20,6 +20,7 @@ const LanguageSwitcher: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('selectedLanguage');
@@ -56,6 +57,7 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
+        ref={buttonRef}
         type="button"
         className="inline-flex justify-center min-w-max w-full rounded-md shadow-sm px-4 py-2 text-sm font-medium focus:outline-none hover:bg-[var(--hover-bg)]"
         style={{
@@ -85,10 +87,12 @@ const LanguageSwitcher: React.FC = () => {
 
       {dropdownOpen && (
         <ul
-          className="absolute z-10 mt-2 w-full shadow-lg rounded-md py-1 text-base focus:outline-none"
+          className="absolute z-10 mt-2 shadow-lg rounded-md py-1 text-base focus:outline-none"
           style={{
             backgroundColor: "var(--color-bg)",
-            border: "1px solid var(--border)"
+            border: "1px solid var(--border)",
+            width: "auto",
+            minWidth: buttonRef.current ? `${buttonRef.current.offsetWidth}px` : "100%"
           }}
           role="listbox"
           tabIndex={-1}
@@ -100,7 +104,9 @@ const LanguageSwitcher: React.FC = () => {
               id={lang.code}
               role="option"
               aria-selected={selectedLanguage === lang.code}
-              className={`cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm ${selectedLanguage === lang.code ? "text-[var(--accent)]" : "text-[var(--color-text)]"} hover:bg-[var(--hover-bg)]`}
+              className={`cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm ${
+                selectedLanguage === lang.code ? "text-[var(--accent)]" : "text-[var(--color-text)]"
+              } hover:bg-[var(--hover-bg)]`}
               onClick={() => handleLanguageSelect(lang.code)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
