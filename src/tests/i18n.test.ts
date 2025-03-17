@@ -41,12 +41,9 @@ describe("i18n translation parser", () => {
 });
 
 describe("i18n fallback behavior", () => {
-  test("missing key defaults appropriately", async () => {
-    // Ensure the language is set to English.
-    await i18n.changeLanguage("en");
-    // For a key that doesn't exist, i18next should return the key itself
-    // or the provided defaultValue if specified.
+  test("missing key defaults appropriately", () => {
+    // Assume the language is already set to English.
     const missingKeyResult = i18n.t("nonexistent_key", { defaultValue: "nonexistent_key" });
     expect(missingKeyResult).toBe("nonexistent_key");
-  }, 10000);
+  });
 });
