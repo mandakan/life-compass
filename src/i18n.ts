@@ -27,6 +27,7 @@ i18n
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage'],
+      cleanCode: true
     },
     supportedLngs: ['en', 'sv', 'de', 'da', 'nl', 'nb'],
     nonExplicitSupportedLngs: true,
