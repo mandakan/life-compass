@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface WarningModalProps {
   visible: boolean;
@@ -13,6 +14,7 @@ const WarningModal: React.FC<WarningModalProps> = ({
   onConfirm,
   onCancel,
 }) => {
+  const { t } = useTranslation();
   if (!visible) return null;
 
   return (
@@ -24,13 +26,13 @@ const WarningModal: React.FC<WarningModalProps> = ({
             onClick={onCancel}
             className="mr-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-3 py-1 text-white transition-colors duration-150"
           >
-            Avbryt
+            {t("Avbryt")}
           </button>
           <button
             onClick={onConfirm}
             className="cursor-pointer rounded-sm bg-[var(--color-accent)] px-3 py-1 text-white transition-colors duration-150"
           >
-            Fortsätt
+            {t("Fortsätt")}
           </button>
         </div>
       </div>
