@@ -10,7 +10,7 @@ describe("LanguageSwitcher Component", () => {
     i18next.changeLanguage("en");
   });
 
-  it("renders without errors and shows the initially selected language", () => {
+  test("renders without errors and shows the initially selected language", () => {
     render(<LanguageSwitcher />);
     // The initial button label should reflect the language from localStorage or i18next default.
     const button = screen.getByRole("button");
@@ -19,7 +19,7 @@ describe("LanguageSwitcher Component", () => {
     expect(button.textContent).toMatch(/english/i);
   });
 
-  it("opens dropdown and displays all language options", async () => {
+  test("opens dropdown and displays all language options", async () => {
     render(<LanguageSwitcher />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
@@ -39,7 +39,7 @@ describe("LanguageSwitcher Component", () => {
     expect(optionNorwegian).toBeInTheDocument();
   });
 
-  it("changes language when a different option is selected", async () => {
+  test("changes language when a different option is selected", async () => {
     render(<LanguageSwitcher />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
@@ -56,7 +56,7 @@ describe("LanguageSwitcher Component", () => {
     expect(localStorage.getItem("selectedLanguage")).toBe("sv");
   });
 
-  it("handles keyboard selection for language options", async () => {
+  test("handles keyboard selection for language options", async () => {
     render(<LanguageSwitcher />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
@@ -70,7 +70,7 @@ describe("LanguageSwitcher Component", () => {
     expect(localStorage.getItem("selectedLanguage")).toBe("sv");
   });
 
-  it("closes the dropdown when clicking outside", async () => {
+  test("closes the dropdown when clicking outside", async () => {
     const { container } = render(<LanguageSwitcher />);
     const button = screen.getByRole("button");
     fireEvent.click(button);
