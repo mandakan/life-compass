@@ -3,29 +3,49 @@ import { vi, describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
 import { ThemeProvider } from '../context/ThemeContext';
+import i18n from 'i18next';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
 
-// Mock getPredefinedLifeAreas for predictability using vi instead of jest
-vi.mock('../utils/lifeAreaService', () => ({
-  __esModule: true,
-  getPredefinedLifeAreas: vi.fn(() => [
-    {
-      id: 'predef1',
-      name: 'Area 1',
-      description: 'desc 1',
-      details: 'details 1',
-      importance: 5,
-      satisfaction: 5,
+const testI18n = i18n.createInstance();
+testI18n.use(initReactI18next).init({
+  lng: 'sv',
+  fallbackLng: 'en',
+  resources: {
+    en: {
+      translation: {
+        "dismiss_callout": "Dismiss Callout",
+        "Lägg till": "Lägg till",
+        "Lägg till fördefinierade": "Lägg till fördefinierade",
+        "Nytt livsområde": "Nytt livsområde",
+        "Spara": "Spara",
+        "Ta bort Nytt livsområde": "Ta bort Nytt livsområde",
+        "Är du säker på att du vill ta bort detta livsområde?": "Är du säker på att du vill ta bort detta livsområde?",
+        "Fortsätt": "Fortsätt",
+        "Återställ": "Återställ",
+        "Är du säker på att du vill återställa livsområden till standard?": "Är du säker på att du vill återställa livsområden till standard?",
+        "Drag to reorder life area": "Drag to reorder life area"
+      }
     },
-    {
-      id: 'predef2',
-      name: 'Area 2',
-      description: 'desc 2',
-      details: 'details 2',
-      importance: 5,
-      satisfaction: 5,
-    },
-  ]),
-}));
+    sv: {
+      translation: {
+        "dismiss_callout": "Stäng avisering",
+        "Lägg till": "Lägg till",
+        "Lägg till fördefinierade": "Lägg till fördefinierade",
+        "Nytt livsområde": "Nytt livsområde",
+        "Spara": "Spara",
+        "Ta bort Nytt livsområde": "Ta bort Nytt livsområde",
+        "Är du säker på att du vill ta bort detta livsområde?": "Är du säker på att du vill ta bort detta livsområde?",
+        "Fortsätt": "Fortsätt",
+        "Återställ": "Återställ",
+        "Är du säker på att du vill återställa livsområden till standard?": "Är du säker på att du vill återställa livsområden till standard?",
+        "Drag to reorder life area": "Drag to reorder life area"
+      }
+    }
+  },
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 describe('CreateLifeCompass Integration and Unit Tests', () => {
   beforeEach(() => {
@@ -34,9 +54,11 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
   const renderComponent = () =>
     render(
-      <ThemeProvider>
-        <CreateLifeCompass />
-      </ThemeProvider>,
+      <I18nextProvider i18n={testI18n}>
+        <ThemeProvider>
+          <CreateLifeCompass />
+        </ThemeProvider>
+      </I18nextProvider>
     );
 
   test('adds a new life area when "Lägg till" is clicked', () => {
