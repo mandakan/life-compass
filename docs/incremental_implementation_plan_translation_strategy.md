@@ -18,13 +18,13 @@ This plan outlines the incremental steps to implement the translation strategy i
   - Enable logging of missing translation keys in development (disabled in production).
 
 ### Step 2: Organize Translation Files
-- Create a dedicated translations directory (e.g., `/src/translations` or `/public/locales`).
+- Create a dedicated translations directory (e.g., `/public/locales`).
 - Adopt a flat JSON file structure with naming patterns such as `en.json`, `sv.json`, etc.
 - Insert a version field (e.g., `"version": "1.0.0"`) in each JSON file to ensure version consistency.
 - Ensure the JSON structure supports pluralization and gender-specific rules as needed.
 
 ### Step 3: Implement Dynamic Loading of Translation Files
-- Configure i18next to load the language files dynamically based on the user's selection.
+- Configure i18next to load the language files dynamically based on the user's browser language or selection.
 - Add a mechanism to verify the version field in the translation files. If the version does not match `"1.0.0"`, log a warning and fallback gracefully.
 - Write automated tests to ensure that:
   - Files load correctly.
