@@ -46,7 +46,7 @@
   "import_error": "Fejl under import:",
   "local_storage_not_available": "Advarsel: Lokal lagring er ikke tilgængelig. Dine data bliver ikke gemt.",
   "plus_add_new_life_area": "+ Tilføj nyt livsområde",
-  "unsaved_changes_warning": "Du har usaved ændringer. Vil du fortsætte?",
+  "unsaved_changes_warning": "Du har unsaved ændringer. Vil du fortsætte?",
   "remove_life_area_warning": "Advarsel: Dette vil fjerne livsområdet og alle tilknyttede data. Vil du fortsætte?",
   "reset_life_compass_warning": "Er du sikker på, at du vil nulstille livsområderne til standardværdier?",
   "remove_all_life_areas_warning": "Advarsel: Dette vil fjerne alle livsområder og alle data. Vil du fortsætte?",
@@ -55,5 +55,5 @@
   "dark_mode": "Mørk tilstand",
   "follow_system_theme": "Følg systemtema",
   "show_dev_tools": "Vis udviklerværktøjer",
-  "back": "Tillbaka"
+  "back": "Tilbage"
 }
