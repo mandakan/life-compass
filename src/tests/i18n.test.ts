@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, afterEach } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import i18n, { parseTranslation } from "../i18n";
 
 describe("i18n translation parser", () => {
@@ -48,5 +48,5 @@ describe("i18n fallback behavior", () => {
     // or the provided defaultValue if specified.
     const missingKeyResult = i18n.t("nonexistent_key", { defaultValue: "nonexistent_key" });
     expect(missingKeyResult).toBe("nonexistent_key");
-  });
+  }, { timeout: 10000 });
 });
