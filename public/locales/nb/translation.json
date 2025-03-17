@@ -50,5 +50,9 @@
   "remove_life_area_warning": "Advarsel: Dette vil fjerne livsområdet og alle tilhørende data. Vil du fortsette?",
   "reset_life_compass_warning": "Er du sikker på at du vil tilbakestille livsområdene til standard?",
   "remove_all_life_areas_warning": "Advarsel: Dette vil fjerne alle livsområder og alle data. Vil du fortsette?",
-  "import_successful": "Importen var vellykket."
+  "import_successful": "Importen var vellykket.",
+  "language": "Språk",
+  "dark_mode": "Mörkt läge",
+  "follow_system_theme": "Följ systemtema",
+  "show_dev_tools": "Visa utvecklarverktyg"
 }

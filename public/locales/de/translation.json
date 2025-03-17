@@ -50,5 +50,9 @@
   "remove_life_area_warning": "Warnung: Dadurch wird der Lebensbereich und alle zugehörigen Daten entfernt. Möchten Sie fortfahren?",
   "reset_life_compass_warning": "Sind Sie sicher, dass Sie die Lebensbereiche auf die Standardwerte zurücksetzen möchten?",
   "remove_all_life_areas_warning": "Warnung: Dadurch werden alle Lebensbereiche und alle Daten entfernt. Möchten Sie fortfahren?",
-  "import_successful": "Import erfolgreich."
+  "import_successful": "Import erfolgreich.",
+  "language": "Språk",
+  "dark_mode": "Mörkt läge",
+  "follow_system_theme": "Följ systemtema",
+  "show_dev_tools": "Visa utvecklarverktyg"
 }

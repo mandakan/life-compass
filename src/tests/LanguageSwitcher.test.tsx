@@ -12,14 +12,16 @@ describe("LanguageSwitcher Component", () => {
 
   test("renders without errors and shows the initially selected language", () => {
     render(<LanguageSwitcher />);
-    const button = screen.getByRole("button", { name: /english/i });
+    const buttons = screen.getAllByRole("button", { name: /english/i });
+    const button = buttons[0];
     expect(document.body.contains(button)).toBe(true);
     expect(button.textContent).toMatch(/english/i);
   });
 
   test("opens dropdown and displays all language options", async () => {
     render(<LanguageSwitcher />);
-    const button = screen.getByRole("button", { name: /english/i });
+    const buttons = screen.getAllByRole("button", { name: /english/i });
+    const button = buttons[0];
     fireEvent.click(button);
 
     const optionEnglish = await screen.findByRole("option", { name: /english/i });
@@ -39,7 +41,8 @@ describe("LanguageSwitcher Component", () => {
 
   test("changes language when a different option is selected", async () => {
     render(<LanguageSwitcher />);
-    const button = screen.getByRole("button", { name: /english/i });
+    const buttons = screen.getAllByRole("button", { name: /english/i });
+    const button = buttons[0];
     fireEvent.click(button);
     const optionSwedish = await screen.findByRole("option", { name: /svenska/i });
     fireEvent.click(optionSwedish);
@@ -54,7 +57,8 @@ describe("LanguageSwitcher Component", () => {
 
   test("handles keyboard selection for language options", async () => {
     render(<LanguageSwitcher />);
-    const button = screen.getByRole("button", { name: /english/i });
+    const buttons = screen.getAllByRole("button", { name: /english/i });
+    const button = buttons[0];
     fireEvent.click(button);
     const options = await screen.findAllByRole("option");
     fireEvent.keyDown(options[1], { key: "Enter", code: "Enter" });

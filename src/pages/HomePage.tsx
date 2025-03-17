@@ -3,6 +3,7 @@ import { getUserData } from '../utils/storageService';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
+import LanguageSwitcher from 'components/LanguageSwitcher';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +19,9 @@ const HomePage: React.FC = () => {
       <CustomButton onClick={() => navigate('/create-life-compass')}>
         Skapa Livskompass
       </CustomButton>
+      <div className="mt-4">
+      <LanguageSwitcher />
+      </div>
     </div>
   );
 };
