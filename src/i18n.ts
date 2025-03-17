@@ -47,4 +47,13 @@ i18n
     },
   });
 
+// Handle language resource load failure (e.g., offline or missing file) by falling back to English.
+i18n.on('failedLoading', (lng, ns, msg) => {
+  console.error(`Failed loading language resources for '${lng}' namespace '${ns}': ${msg}. Falling back to English.`);
+  if (lng !== 'en') {
+    i18n.changeLanguage('en');
+    localStorage.setItem('selectedLanguage', 'en');
+  }
+});
+
 export default i18n;
