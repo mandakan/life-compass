@@ -1,2 +1,6 @@
 # alone
-read: CONVENTIONS.md
+read:
+  - CONVENTIONS.md
+  - src/designTokens.ts
+  - docs/design_principles.md
+

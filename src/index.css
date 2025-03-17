@@ -117,3 +117,15 @@ a {
 .mobile-nav-link {
   color: var(--menu-text) !important;
 }
+
+.bg-gradient {
+  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
+}
+
+[data-theme='dark'] .bg-gradient {
+  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
+}
+
+[data-theme='high-contrast'] .bg-gradient {
+  background: linear-gradient(to bottom, var(--color-bg), var(--accent));
+}

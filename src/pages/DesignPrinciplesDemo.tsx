@@ -5,6 +5,7 @@ import RadarChart from '../components/RadarChart';
 import ToggleSwitch from '../components/ToggleSwitch';
 import Callout from '../components/Callout';
 import WarningMessage from '../components/WarningMessage';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 function DesignPrinciplesDemo() {
   const [sliderValue, setSliderValue] = useState(5);
@@ -21,6 +22,9 @@ function DesignPrinciplesDemo() {
         }
       `}</style>
       <h1 className="mb-8 text-center">Designprinciper Demo</h1>
+      <div className="mb-8 text-center">
+        <LanguageSwitcher />
+      </div>
       <div className="mb-8 text-center">
         <button
           className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none"

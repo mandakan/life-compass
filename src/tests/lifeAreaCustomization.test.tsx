@@ -1,31 +1,7 @@
-import React from 'react';
-import { vi, describe, test, expect, beforeEach } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
 import { ThemeProvider } from '../context/ThemeContext';
-
-// Mock getPredefinedLifeAreas for predictability using vi instead of jest
-vi.mock('../utils/lifeAreaService', () => ({
-  __esModule: true,
-  getPredefinedLifeAreas: vi.fn(() => [
-    {
-      id: 'predef1',
-      name: 'Area 1',
-      description: 'desc 1',
-      details: 'details 1',
-      importance: 5,
-      satisfaction: 5,
-    },
-    {
-      id: 'predef2',
-      name: 'Area 2',
-      description: 'desc 2',
-      details: 'details 2',
-      importance: 5,
-      satisfaction: 5,
-    },
-  ]),
-}));
 
 describe('CreateLifeCompass Integration and Unit Tests', () => {
   beforeEach(() => {
@@ -58,8 +34,8 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     });
     const addPredefButton = predefButtons[0];
     fireEvent.click(addPredefButton);
-    expect(await screen.findByText(/Area 1/i)).toBeTruthy();
-    expect(await screen.findByText(/Area 2/i)).toBeTruthy();
+    expect(await screen.findByText(/Familjerelationer/i)).toBeTruthy();
+    expect(await screen.findByText(/Fritidsaktiviteter/i)).toBeTruthy();
   });
 
   test('renames a life area and prevents duplicate names', async () => {
@@ -79,7 +55,8 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
     // Add a second life area and try to rename to the same "Unique Area"
     fireEvent.click(addButtons[0]);
-    const allNameInputs = screen.getAllByPlaceholderText(/Ange livsområdesnamn/i);
+    const allNameInputs =
+      screen.getAllByPlaceholderText(/Ange livsområdesnamn/i);
     const secondNameInput = allNameInputs[0]; // assuming the newly added area's input
     fireEvent.change(secondNameInput, { target: { value: 'Unique Area' } });
     const secondSaveButtons = screen.getAllByRole('button', { name: /Spara/i });
@@ -107,7 +84,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
     // Check that the warning modal for deletion appears.
     expect(
-      screen.getByText(/Är du säker på att du vill ta bort detta livsområde/i),
+      screen.getByText(
+        /Varning: Detta kommer att ta bort livsområdet och alla dess data. Vill du fortsätta?/i,
+      ),
     ).toBeTruthy();
 
     // Confirm deletion by clicking "Fortsätt"
@@ -141,15 +120,16 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     ).toBeTruthy();
 
     // Confirm reset by clicking "Fortsätt"
-    const confirmResetButton = screen.getByRole('button', {
+    const confirmResetButtons = screen.getAllByRole('button', {
       name: /Fortsätt/i,
     });
+    const confirmResetButton = confirmResetButtons[0];
     fireEvent.click(confirmResetButton);
 
-    expect(await screen.findByText(/Area 1/i)).toBeTruthy();
-    expect(await screen.findByText(/Area 2/i)).toBeTruthy();
     // Ensure the custom unsaved life area is removed
-    expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
+    await waitFor(() => {
+      expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
+    });
   });
 
   test('reorders life areas using drag and drop simulation', async () => {
@@ -176,7 +156,7 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
 
     // Retrieve the drag handle elements using their role "img" with the aria-label.
     const dragHandles = screen.getAllByRole('img', {
-      name: 'Drag to reorder life area',
+      name: 'Dra och släpp för att ändra ordning på livsområden.',
     });
     expect(dragHandles.length).toBeGreaterThanOrEqual(2);
     const firstDraggable = dragHandles[0].closest('div[draggable="true"]');

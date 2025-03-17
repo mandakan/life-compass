@@ -11,6 +11,7 @@ import FloatingToolbar from '../components/FloatingToolbar';
 import { parseAndValidateJSON } from '../utils/importService';
 import ImportPreviewModal from '../components/ImportPreviewModal';
 import SuccessModal from '../components/SuccessModal';
+import { useTranslation } from 'react-i18next';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -33,6 +34,7 @@ const isLocalStorageAvailable = (): boolean => {
 };
 
 const CreateLifeCompass: React.FC = () => {
+  const { t } = useTranslation();
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
 
@@ -121,9 +123,21 @@ const CreateLifeCompass: React.FC = () => {
   // Track newly created card ID so we know to remove it if editing is aborted.
   const [newAreaId, setNewAreaId] = useState<string | null>(null);
 
+  // New useEffect to clear editing state if the edited area is no longer in lifeAreas
+  useEffect(() => {
+    if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
+      setEditingAreaId(null);
+      setEditName('');
+      setEditDescription('');
+      setEditDetails('');
+      setEditImportance(5);
+      setEditSatisfaction(5);
+    }
+  }, [lifeAreas, editingAreaId]);
+
   const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
-      const base = 'Nytt livsområde';
+      const base = t('new_life_area');
       let name = base;
       let counter = 2;
       while (
@@ -160,8 +174,8 @@ const CreateLifeCompass: React.FC = () => {
     setEditSatisfaction(newArea.satisfaction);
   };
 
-  const handleAddPredefinedAreas = () => {
-    const predefined = getPredefinedLifeAreas();
+  const handleAddPredefinedAreas = async () => {
+    const predefined = await getPredefinedLifeAreas();
     const newAreas = predefined.filter(
       predef =>
         !lifeAreas.some(
@@ -217,7 +231,7 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleSaveEditLifeArea = () => {
     if (editName.trim() === '') {
-      setError('Namn är obligatoriskt.');
+      setError(t('name_is_required'));
       return;
     }
     if (
@@ -227,7 +241,7 @@ const CreateLifeCompass: React.FC = () => {
           area.id !== editingAreaId,
       )
     ) {
-      setError('Dubblett: Samma namn får inte användas.');
+      setError(t('duplicate_name_not_allowed'));
       return;
     }
     setError('');
@@ -291,8 +305,8 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
-  const handleResetConfirm = () => {
-    const predefined = getPredefinedLifeAreas();
+  const handleResetConfirm = async () => {
+    const predefined = await getPredefinedLifeAreas();
     setLifeAreas(predefined);
     setEditingAreaId(null);
     setEditName('');
@@ -300,6 +314,7 @@ const CreateLifeCompass: React.FC = () => {
     setEditDetails('');
     setEditImportance(5);
     setEditSatisfaction(5);
+    setNewAreaId(null);
     setShowResetModal(false);
   };
 
@@ -409,7 +424,7 @@ const CreateLifeCompass: React.FC = () => {
     const result = parseAndValidateJSON(fileContent);
     if (!result.valid) {
       if (result.errors) {
-        alert('Fel vid import: ' + result.errors.join(', '));
+        alert(t('import_error') + result.errors.join(', '));
       }
       return;
     }
@@ -439,7 +454,7 @@ const CreateLifeCompass: React.FC = () => {
     >
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
-          Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
+          {t('local_storage_not_available')}
         </div>
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
@@ -523,7 +538,7 @@ const CreateLifeCompass: React.FC = () => {
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
             <span className="text-[var(--color-primary)]">
-              + Lägg till nytt livsområde
+              {t('plus_add_new_life_area')}
             </span>
           </div>
         </div>
@@ -576,32 +591,32 @@ const CreateLifeCompass: React.FC = () => {
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
             <span className="text-[var(--color-primary)]">
-              + Lägg till nytt livsområde
+              {t('+ Lägg till nytt livsområde')}
             </span>
           </div>
         </div>
       )}
       <WarningModal
         visible={showWarningModal}
-        message="Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
+        message={t('unsaved_changes_warning')}
         onConfirm={handleModalConfirm}
         onCancel={handleModalCancel}
       />
       <WarningModal
         visible={showDeleteModal}
-        message="Är du säker på att du vill ta bort detta livsområde?"
+        message={t('remove_life_area_warning')}
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
       />
       <WarningModal
         visible={showResetModal}
-        message="Är du säker på att du vill återställa livsområden till standard?"
+        message={t('reset_life_compass_warning')}
         onConfirm={handleResetConfirm}
         onCancel={handleResetCancel}
       />
       <WarningModal
         visible={showRemoveAllModal}
-        message="Är du säker på att du vill ta bort alla livsområden?"
+        message={t('remove_all_life_areas_warning')}
         onConfirm={handleRemoveAllConfirm}
         onCancel={handleRemoveAllCancel}
       />
@@ -618,7 +633,7 @@ const CreateLifeCompass: React.FC = () => {
       />
       <SuccessModal
         visible={showSuccessModal}
-        message="Import lyckades!"
+        message={t('import_successful')}
         onClose={() => setShowSuccessModal(false)}
       />
     </div>

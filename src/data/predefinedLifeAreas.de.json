@@ -1,0 +1,82 @@
+[
+  {
+    "id": "intima-relationer",
+    "name": "Intime Beziehungen / Nahe Beziehungen / Partnerschaft",
+    "description": "Beschreibe, wie du in einer intimen Beziehung sein möchtest. Schreibe, welche Art von Beziehung du dir wünschst, und konzentriere dich auf deine Rolle in dieser Beziehung.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "familjerelationer",
+    "name": "Familienbeziehungen",
+    "description": "Beschreibe, wie du als Geschwister, Elternteil oder Kind sein möchtest. Skizziere die Eigenschaften, die diese Beziehungen haben sollen, und wie du andere behandeln würdest, wenn du dein ideales Selbst wärst.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "vanner-socialt-liv",
+    "name": "Freunde / Soziales Leben",
+    "description": "Erkläre, was es bedeutet, ein guter Freund zu sein. Wenn du der perfekte Freund sein könntest, wie würdest du dich verhalten? Beschreibe eine ideale Freundschaft und ein soziales Leben.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "arbete",
+    "name": "Arbeit",
+    "description": "Beschreibe die Art von Arbeit, die du ausüben möchtest – sei es spezifisch oder allgemein. Erkläre, warum dir dieser ideale Job gefällt und welche Art von Kollege du sein möchtest.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "utbildning-och-personlig-utveckling",
+    "name": "Ausbildung und persönliche Entwicklung",
+    "description": "Was möchtest du lernen? Beschreibe die Form der Ausbildung oder persönlichen Entwicklung, die dich anspricht, ob formell oder informell.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "fritidsaktiviteter",
+    "name": "Freizeitaktivitäten",
+    "description": "Beschreibe den Lebensstil, den du in deiner Freizeit führen möchtest. Beziehe deine Hobbys, Sportarten und anderen Freizeitinteressen mit ein, um ein vollständiges Bild zu schaffen.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "andlighet-och-harmoni",
+    "name": "Spiritualität und Harmonie",
+    "description": "Unabhängig davon, ob du einer organisierten Religion folgst oder nicht, erkläre, was Spiritualität für dich bedeutet. Beschreibe, wie du ein Gefühl von Harmonie und Verbundenheit erleben möchtest.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "samhallsengagemang",
+    "name": "Gesellschaftliches Engagement",
+    "description": "Wenn dir gesellschaftliches Engagement wichtig ist, beschreibe, wie du beitragen oder teilnehmen möchtest. Skizziere, welche Aspekte des sozialen Engagements dich ansprechen.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "egenvard",
+    "name": "Selbstfürsorge",
+    "description": "Konzentriere dich auf deine Gesundheit und dein Wohlbefinden. Erkläre deine Prioritäten in Bezug auf körperliche Gesundheit, einschließlich Schlaf, Bewegung, Ernährung und allgemeiner Selbstfürsorge.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "foraldraskap",
+    "name": "Elternschaft",
+    "description": "Wenn du bereits Eltern bist oder es planst zu werden, beschreibe, was in dieser Rolle für dich wichtig ist. Skizziere, welche Art von Beziehung du zu deinen Kindern wünschst und welche Eigenschaften du verkörpern möchtest.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  }
+]

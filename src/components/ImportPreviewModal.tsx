@@ -1,5 +1,6 @@
 import React from 'react';
 import WarningModal from './WarningModal';
+import { useTranslation } from 'react-i18next';
 
 interface ImportPreviewModalProps {
   visible: boolean;
@@ -22,24 +23,25 @@ const ImportPreviewModal: React.FC<ImportPreviewModalProps> = ({
   onConfirm,
   onCancel,
 }) => {
+  const { t } = useTranslation();
   return (
     <WarningModal
       visible={visible}
       message={
         <div>
           <p>
-            <strong>Exporterad:</strong> {metadata.exportTimestamp}
+            <strong>{t('exported')}:</strong> {metadata.exportTimestamp}
           </p>
           <p>
-            <strong>Version:</strong> {metadata.version}
+            <strong>{t('version')}:</strong> {metadata.version}
           </p>
           <p>
-            <strong>Antal livsområden:</strong> {data.lifeAreas.length}
+            <strong>{t('life_areas_count')}:</strong> {data.lifeAreas.length}
           </p>
           <p>
-            <strong>Antal historik-poster:</strong> {data.history.length}
+            <strong>{t('history_count')}:</strong> {data.history.length}
           </p>
-          <p>Vill du importera dessa data?</p>
+          <p>{t('import_data_prompt')}</p>
         </div>
       }
       onConfirm={onConfirm}

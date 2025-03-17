@@ -1,0 +1,82 @@
+[
+  {
+    "id": "intima-relationer",
+    "name": "Intieme Relaties / Hechte Relaties / Partnerschap",
+    "description": "Beschrijf hoe je wilt zijn in een intieme relatie. Schrijf welk type relatie je verlangt, en focus op jouw rol in die relatie.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "familjerelationer",
+    "name": "Familierelaties",
+    "description": "Beschrijf hoe je wilt zijn als broer, zus, ouder of kind. Schets de eigenschappen die je in deze relaties wenst, en hoe je anderen zou behandelen als je jouw ideale zelf was.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "vanner-socialt-liv",
+    "name": "Vrienden / Sociaal Leven",
+    "description": "Leg uit wat het betekent een goede vriend te zijn. Als je de perfecte vriend kon zijn, hoe zou je je dan gedragen? Beschrijf een ideale vriendschap en een sociaal leven.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "arbete",
+    "name": "Werk",
+    "description": "Beschrijf het type werk dat je wilt doen—of het nu specifiek of algemeen is. Leg uit waarom deze ideale baan je aanspreekt en wat voor collega je wilt zijn.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "utbildning-och-personlig-utveckling",
+    "name": "Onderwijs en Persoonlijke Ontwikkeling",
+    "description": "Wat wil je leren? Beschrijf de vorm van onderwijs of persoonlijke ontwikkeling die je aanspreekt, of deze nu formeel of informeel is.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "fritidsaktiviteter",
+    "name": "Vrijetijdsactiviteiten",
+    "description": "Beschrijf de levensstijl die je wilt in je vrije tijd. Neem je hobby's, sporten en andere vrijetijdsinteresses op om een compleet beeld te schetsen.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "andlighet-och-harmoni",
+    "name": "Spiritualiteit en Harmonie",
+    "description": "Of je nu een georganiseerde religie volgt of niet, leg uit wat spiritualiteit voor jou betekent. Beschrijf hoe je een gevoel van harmonie en verbinding zou willen ervaren.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "samhallsengagemang",
+    "name": "Gemeenschapsbetrokkenheid",
+    "description": "Als betrokkenheid bij de gemeenschap belangrijk voor je is, beschrijf dan hoe je wilt bijdragen of deelnemen. Schets welke aspecten van maatschappelijke betrokkenheid je aanspreken.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "egenvard",
+    "name": "Zelfzorg",
+    "description": "Richt je op je gezondheid en welzijn. Leg uit wat je prioriteiten zijn op het gebied van fysieke gezondheid, inclusief slaap, lichaamsbeweging, voeding en algemene zelfzorg.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "foraldraskap",
+    "name": "Ouderschap",
+    "description": "Als je ouder bent of ouder wilt worden, beschrijf dan wat belangrijk voor je is in deze rol. Schets het type relatie dat je met je kinderen wenst en welke eigenschappen je wilt belichamen.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  }
+]

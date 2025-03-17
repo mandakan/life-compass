@@ -1,0 +1,82 @@
+[
+  {
+    "id": "intima-relationer",
+    "name": "Nære relasjoner / Intime relasjoner / Partnerskap",
+    "description": "Beskriv hvordan du ønsker å være i et intimt forhold. Skriv hvilken type forhold du ønsker, og fokuser på din rolle i forholdet.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "familjerelationer",
+    "name": "Familierelasjoner",
+    "description": "Beskriv hvordan du ønsker å være som søsken, forelder eller barn. Beskriv hvilke egenskaper du ønsker at disse relasjonene skal ha, og hvordan du ville behandle andre hvis du var ditt ideelle selv.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "vanner-socialt-liv",
+    "name": "Venner / Sosialt liv",
+    "description": "Forklar hva det betyr å være en god venn. Hvis du kunne være den perfekte vennen, hvordan ville du oppføre deg? Beskriv et ideelt vennskap og sosialt liv.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "arbete",
+    "name": "Arbeid",
+    "description": "Beskriv hvilken type arbeid du ønsker å gjøre – enten spesifikt eller generelt. Forklar hvorfor denne ideelle jobben appellerer til deg og hvilken type kollega du ønsker å være.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "utbildning-och-personlig-utveckling",
+    "name": "Utdanning og personlig utvikling",
+    "description": "Hva ønsker du å lære? Beskriv formen for utdanning eller personlig utvikling som appellerer til deg, enten det er formelt eller uformelt.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "fritidsaktiviteter",
+    "name": "Fritidsaktiviteter",
+    "description": "Beskriv livsstilen du ønsker i fritiden din. Inkluder dine hobbyer, sport og andre fritidsinteresser for å skape et helhetlig bilde.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "andlighet-och-harmoni",
+    "name": "Åndelighet og harmoni",
+    "description": "Uansett om du følger en organisert religion eller ikke, forklar hva åndelighet betyr for deg. Beskriv hvordan du ønsker å oppleve en følelse av harmoni og tilknytning.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "samhallsengagemang",
+    "name": "Samfunnsengasjement",
+    "description": "Hvis samfunnsdeltakelse er viktig for deg, beskriv hvordan du ønsker å bidra eller delta. Skisser hvilke aspekter av samfunnsengasjement som appellerer til deg.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "egenvard",
+    "name": "Egenomsorg",
+    "description": "Fokuser på din helse og velvære. Forklar dine prioriteringer når det gjelder fysisk helse, inkludert søvn, trening, kosthold og generell egenomsorg.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "foraldraskap",
+    "name": "Foreldreskap",
+    "description": "Hvis du er eller planlegger å bli forelder, beskriv hva som er viktig for deg i denne rollen. Skisser hvilken type forhold du ønsker med dine barn og hvilke egenskaper du ønsker å legemliggjøre.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  }
+]

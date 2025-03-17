@@ -1,0 +1,82 @@
+[
+  {
+    "id": "intima-relationer",
+    "name": "Intimate Relationships / Close Relationships / Partnership",
+    "description": "Describe how you want to be in an intimate relationship. Write what type of relationship you desire, and focus on your role in that relationship.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "familjerelationer",
+    "name": "Family Relationships",
+    "description": "Describe how you want to be as a sibling, parent, or child. Outline the qualities you wish these relationships to have and how you would treat others if you were your ideal self.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "vanner-socialt-liv",
+    "name": "Friends / Social Life",
+    "description": "Explain what it means to be a good friend. If you could be the perfect friend, how would you behave? Describe an ideal friendship and social life.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "arbete",
+    "name": "Work",
+    "description": "Describe the type of work you want to do—be it specific or general. Explain why this ideal job appeals to you and what kind of coworker you wish to be.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "utbildning-och-personlig-utveckling",
+    "name": "Education and Personal Development",
+    "description": "What do you want to learn? Describe the form of education or personal development that appeals to you, whether formal or informal.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "fritidsaktiviteter",
+    "name": "Leisure Activities",
+    "description": "Describe the lifestyle you want during your free time. Include your hobbies, sports, and other leisure interests to create a well-rounded picture.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "andlighet-och-harmoni",
+    "name": "Spirituality and Harmony",
+    "description": "Whether or not you follow an organized religion, explain what spirituality means to you. Describe how you would like to experience a sense of harmony and connection.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "samhallsengagemang",
+    "name": "Community Engagement",
+    "description": "If community involvement is important to you, describe how you wish to contribute or participate. Outline what aspects of social engagement appeal to you.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "egenvard",
+    "name": "Self-Care",
+    "description": "Focus on your health and well-being. Explain your priorities regarding physical health, including sleep, exercise, diet, and overall self-care.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  },
+  {
+    "id": "foraldraskap",
+    "name": "Parenting",
+    "description": "If you are or plan to be a parent, describe what is important for you in this role. Outline the kind of relationship you desire with your children and what qualities you wish to embody.",
+    "importance": 5,
+    "satisfaction": 5,
+    "details": ""
+  }
+]
