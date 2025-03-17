@@ -30,14 +30,14 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
 
   return (
     <div>
-      <CustomButton onClick={onAddNewLifeArea}>{t("Lägg till")}</CustomButton>
+      <CustomButton onClick={onAddNewLifeArea}>{t("add")}</CustomButton>
       <CustomButton onClick={onAddPredefinedAreas}>
-        {t("Lägg till fördefinierade")}
+        {t("add_predefined")}
       </CustomButton>
-      <CustomButton onClick={onReset}>{t("Återställ")}</CustomButton>
-      <CustomButton onClick={onRemoveAll}>{t("Ta bort alla")}</CustomButton>
+      <CustomButton onClick={onReset}>{t("reset")}</CustomButton>
+      <CustomButton onClick={onRemoveAll}>{t("delete_all")}</CustomButton>
       <CustomButton onClick={onToggleRadar}>
-        {showRadar ? t("Kortvy") : t("Radarvy")}
+        {showRadar ? t("card_view") : t("radar_view")}
       </CustomButton>
       <ExportButton />
       <ImportButton onFileSelected={onImportFile} onError={handleImportError} />

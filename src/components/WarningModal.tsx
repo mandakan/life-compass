@@ -26,13 +26,13 @@ const WarningModal: React.FC<WarningModalProps> = ({
             onClick={onCancel}
             className="mr-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-3 py-1 text-white transition-colors duration-150"
           >
-            {t("Avbryt")}
+            {t("cancel")}
           </button>
           <button
             onClick={onConfirm}
             className="cursor-pointer rounded-sm bg-[var(--color-accent)] px-3 py-1 text-white transition-colors duration-150"
           >
-            {t("Fortsätt")}
+            {t("continue")}
           </button>
         </div>
       </div>

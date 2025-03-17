@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import CustomButton from './CustomButton';
+import { useTranslation } from 'react-i18next';
 
 interface ImportButtonProps {
   onFileSelected: (fileContent: string) => void;
@@ -10,6 +11,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
   onFileSelected,
   onError,
 }) => {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
@@ -24,9 +26,8 @@ const ImportButton: React.FC<ImportButtonProps> = ({
 
     if (file.type !== 'application/json') {
       if (onError) {
-        onError('Ogiltig filtyp. Vänligen välj en JSON-fil.');
+        onError(t("invalid_file_type"));
       }
-      // Clear the input value to allow re-selection of the same file if needed.
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
@@ -41,19 +42,17 @@ const ImportButton: React.FC<ImportButtonProps> = ({
         onFileSelected(content);
       } catch (err) {
         if (onError) {
-          onError('Filen kunde inte läsas som giltig JSON.');
+          onError(t("invalid_json_file"));
         }
       }
-      // Clear the input value to allow the same file to be imported again.
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
     };
     reader.onerror = () => {
       if (onError) {
-        onError('Ett fel inträffade vid läsning av filen.');
+        onError(t("error_reading_file"));
       }
-      // Clear the input value to allow re-selection.
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
@@ -63,7 +62,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
 
   return (
     <>
-      <CustomButton onClick={handleButtonClick}>Importera</CustomButton>
+      <CustomButton onClick={handleButtonClick}>{t("import")}</CustomButton>
       <input
         type="file"
         accept="application/json"

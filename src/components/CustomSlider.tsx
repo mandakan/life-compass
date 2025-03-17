@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface CustomSliderProps {
   value: number;
@@ -19,13 +20,12 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   width = '100%',
   height = 50,
 }) => {
+  const { t } = useTranslation();
   const trackRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
-    // Autofocus the slider handle when component mounts so that keyboard events get captured.
     if (trackRef.current) {
-      // Find the slider handle (the child that renders the value) and focus it.
       const handle = trackRef.current.querySelector(
         '[role="slider"]',
       ) as HTMLElement;
@@ -128,7 +128,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
-        aria-label="Custom slider"
+        aria-label={t("custom_slider")}
         onKeyDown={handleKeyDown}
         className="absolute flex cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-white transition-colors select-none"
         style={{

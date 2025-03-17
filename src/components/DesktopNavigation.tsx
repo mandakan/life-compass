@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import SettingsMenu from './SettingsMenu';
 import { AppSettingsContext } from '../context/AppSettingsContext';
+import { useTranslation } from 'react-i18next';
 
 const DesktopNavigation: React.FC = () => {
+  const { t } = useTranslation();
   const { theme } = useTheme();
   const { showDevTools } = useContext(AppSettingsContext);
   const [showSettings, setShowSettings] = useState(false);
@@ -45,20 +47,20 @@ const DesktopNavigation: React.FC = () => {
     <nav className="relative flex w-full items-center justify-between bg-[var(--menu-bg)] px-4 py-4">
       <div className="flex items-center gap-4">
         <Link to="/" className="!text-[var(--menu-text)] no-underline">
-          <h1 className="text-xl font-bold">Livskompass</h1>
+          <h1 className="text-xl font-bold">{t("life_compass")}</h1>
         </Link>
         <Link
           to="/create-life-compass"
           className="!text-[var(--menu-text)] no-underline"
         >
-          Skapa Livskompass
+          {t("create_life_compass")}
         </Link>
         {showDevTools && (
           <Link
             to="/design-principles"
             className="!text-[var(--menu-text)] no-underline"
           >
-            Designprinciper
+            {t("design_principles")}
           </Link>
         )}
       </div>
@@ -70,12 +72,12 @@ const DesktopNavigation: React.FC = () => {
           className="flex items-center !text-[var(--menu-text)] no-underline"
         >
           {githubIcon}
-          <span>GitHub</span>
+          <span>{t("github")}</span>
         </a>
         <button
           onClick={toggleSettings}
           className="cursor-pointer border-0 bg-transparent p-0"
-          aria-label="Toggle settings menu"
+          aria-label={t("toggle_settings_menu")}
         >
           {settingsIcon}
         </button>

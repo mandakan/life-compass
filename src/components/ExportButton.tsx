@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { exportData } from '../utils/exportService';
 import CustomButton from './CustomButton';
 import WarningModal from './WarningModal';
+import { useTranslation } from 'react-i18next';
 
 const ExportButton: React.FC = () => {
+  const { t } = useTranslation();
   const [error, setError] = useState('');
 
   const handleExport = () => {
@@ -20,7 +22,7 @@ const ExportButton: React.FC = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error: any) {
-      setError('Error exporting data: ' + error.message);
+      setError(t("error_exporting_data") + ': ' + error.message);
     }
   };
 
@@ -30,7 +32,7 @@ const ExportButton: React.FC = () => {
 
   return (
     <>
-      <CustomButton onClick={handleExport}>Exportera</CustomButton>
+      <CustomButton onClick={handleExport}>{t("export")}</CustomButton>
       {error && (
         <WarningModal
           visible={true}

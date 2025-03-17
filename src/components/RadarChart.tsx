@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 interface RadarChartData {
   area: string;
@@ -30,7 +31,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
   height = '100%',
   aspect,
 }) => {
-  // Use devicePixelRatio to adjust styling for high resolution screens.
+  const { t } = useTranslation();
   const scaleFactor = window.devicePixelRatio || 1;
   const isMobile = window.innerWidth < 768;
   const tickFontSize = !isMobile
@@ -49,29 +50,23 @@ const RadarChart: React.FC<RadarChartProps> = ({
       : 2;
   const axisStrokeWidth = !isMobile ? 2 : 1;
 
-  // Arrange the data so that the four longest area names are spread evenly along the circle.
   const arrangedData = React.useMemo(() => {
     const n = data.length;
     if (n < 4) {
-      // If less than 4 areas, no special arrangement.
       return data;
     }
-    // Sort data descending by area name length.
     const sorted = [...data].sort((a, b) => b.area.length - a.area.length);
     const longestFour = sorted.slice(0, 4);
     const others = sorted.slice(4);
-    // Determine evenly spaced positions: positions at 0, n/4, n/2, and 3n/4.
     const pos0 = 0;
     const pos1 = Math.floor(n / 4);
     const pos2 = Math.floor(n / 2);
     const pos3 = Math.floor((3 * n) / 4);
     const result = new Array(n);
-    // Place the four longest in descending order at these positions.
     result[pos0] = longestFour[0];
     result[pos1] = longestFour[1];
     result[pos2] = longestFour[2];
     result[pos3] = longestFour[3];
-    // Fill in remaining positions with the others in their original sorted order.
     let otherIndex = 0;
     for (let i = 0; i < n; i++) {
       if (result[i] === undefined) {
@@ -79,7 +74,6 @@ const RadarChart: React.FC<RadarChartProps> = ({
           result[i] = others[otherIndex];
           otherIndex++;
         } else {
-          // If no more others left, fill with remaining longestFour.
           result[i] = longestFour[0];
         }
       }
@@ -91,7 +85,6 @@ const RadarChart: React.FC<RadarChartProps> = ({
     const { payload, x, y, textAnchor } = props;
     const value = payload.value;
     let lines = [value];
-    // For left- and right-most ticks (textAnchor "start" or "end"), split into two lines if necessary.
     if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 10) {
       const mid = Math.floor(value.length / 2);
       let breakIndex = value.lastIndexOf(' ', mid);
@@ -134,9 +127,9 @@ const RadarChart: React.FC<RadarChartProps> = ({
           <p>
             <strong>{label}</strong>
           </p>
-          <p>Betydelse: {dataPoint.importance}</p>
-          <p>Tillfredsställelse: {dataPoint.satisfaction}</p>
-          <p>Beskrivning: {dataPoint.description}</p>
+          <p>{t("importance")}: {dataPoint.importance}</p>
+          <p>{t("satisfaction")}: {dataPoint.satisfaction}</p>
+          <p>{t("description")}: {dataPoint.description}</p>
         </div>
       );
     }
@@ -167,7 +160,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
             }}
           />
           <Radar
-            name="Betydelse"
+            name={t("importance")}
             dataKey="importance"
             stroke="var(--chart-series-1)"
             fill="var(--chart-series-1)"
@@ -177,7 +170,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
             strokeLinejoin="round"
           />
           <Radar
-            name="Tillfredsställelse"
+            name={t("satisfaction")}
             dataKey="satisfaction"
             stroke="var(--chart-series-2)"
             fill="var(--chart-series-2)"

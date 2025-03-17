@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 import ToggleSwitch from './ToggleSwitch';
 import { AppSettingsContext } from '../context/AppSettingsContext';
+import { useTranslation } from 'react-i18next';
 
 const SettingsMenu: React.FC = () => {
+  const { t } = useTranslation();
   const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } =
     useContext(ThemeContext);
   const { showDevTools, setShowDevTools } = useContext(AppSettingsContext);
@@ -27,10 +29,10 @@ const SettingsMenu: React.FC = () => {
 
   return (
     <div className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
-      <h2 className="mb-4 text-lg font-bold">Inställningar</h2>
+      <h2 className="mb-4 text-lg font-bold">{t("settings")}</h2>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>Mörkt läge</span>
+          <span>{t("dark_mode")}</span>
           <ToggleSwitch
             checked={theme === 'dark'}
             onChange={handleThemeToggle}
@@ -39,7 +41,7 @@ const SettingsMenu: React.FC = () => {
       </div>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>Följ systemtema ({systemTheme})</span>
+          <span>{t("follow_system_theme", { system: systemTheme })}</span>
           <ToggleSwitch
             checked={followSystem}
             onChange={handleFollowSystemToggle}
@@ -48,7 +50,7 @@ const SettingsMenu: React.FC = () => {
       </div>
       <div>
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>Visa utvecklingsverktyg</span>
+          <span>{t("show_dev_tools")}</span>
           <ToggleSwitch
             checked={showDevTools}
             onChange={handleDevToolsToggle}

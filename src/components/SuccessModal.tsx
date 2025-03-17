@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomButton from './CustomButton';
+import { useTranslation } from 'react-i18next';
 
 interface SuccessModalProps {
   visible: boolean;
@@ -12,6 +13,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
   message,
   onClose,
 }) => {
+  const { t } = useTranslation();
   if (!visible) return null;
 
   return (
@@ -19,7 +21,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
       <div className="max-w-[90%] min-w-[300px] rounded-md bg-[var(--color-bg)] p-6 text-[var(--color-text)] shadow-lg transition-all duration-300">
         <div>{message}</div>
         <div className="mt-4 text-right">
-          <CustomButton onClick={onClose}>OK</CustomButton>
+          <CustomButton onClick={onClose}>{t("ok")}</CustomButton>
         </div>
       </div>
     </div>
