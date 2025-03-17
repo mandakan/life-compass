@@ -162,12 +162,13 @@ const CreateLifeCompass: React.FC = () => {
     setEditSatisfaction(newArea.satisfaction);
   };
 
-  const handleAddPredefinedAreas = () => {
-    const predefined = getPredefinedLifeAreas();
+  const handleAddPredefinedAreas = async () => {
+    const predefined = await getPredefinedLifeAreas();
     const newAreas = predefined.filter(
       predef =>
         !lifeAreas.some(
-          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
+          existing =>
+            existing.name.toLowerCase() === predef.name.toLowerCase(),
         ),
     );
     if (newAreas.length > 0) {
@@ -293,8 +294,8 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
-  const handleResetConfirm = () => {
-    const predefined = getPredefinedLifeAreas();
+  const handleResetConfirm = async () => {
+    const predefined = await getPredefinedLifeAreas();
     setLifeAreas(predefined);
     setEditingAreaId(null);
     setEditName('');
