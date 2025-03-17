@@ -3,6 +3,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import ToggleSwitch from './ToggleSwitch';
 import { AppSettingsContext } from '../context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const SettingsMenu: React.FC = () => {
   const { t } = useTranslation();
@@ -30,6 +31,12 @@ const SettingsMenu: React.FC = () => {
   return (
     <div className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
       <h2 className="mb-4 text-lg font-bold">{t("settings")}</h2>
+      <div className="mb-4">
+        <label className="flex items-center justify-between text-[var(--color-text)]">
+          <span>{t("language") || "Language"}</span>
+          <LanguageSwitcher />
+        </label>
+      </div>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
           <span>{t("dark_mode")}</span>
