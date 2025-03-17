@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import LanguageDetector from 'i18next-browser-languageDetector';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -27,7 +27,8 @@ i18n
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage'],
-      cleanCode: true
+      cleanCode: true,
+      checkWhitelist: true
     },
     supportedLngs: ['en', 'sv', 'de', 'da', 'nl', 'nb'],
     nonExplicitSupportedLngs: true,
