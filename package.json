@@ -16,7 +16,11 @@
     "react-dom": "latest",
     "react-router-dom": "latest",
     "zustand": "latest",
-    "recharts": "latest"
+    "recharts": "latest",
+    "i18next": "latest",
+    "react-i18next": "latest",
+    "i18next-http-backend": "latest",
+    "i18next-browser-languagedetector": "latest"
   },
   "devDependencies": {
     "@tailwindcss/vite": "latest",
@@ -40,7 +44,8 @@
     "vite": "latest",
     "vite-tsconfig-paths": "latest",
     "vitest": "latest",
-    "@testing-library/user-event": "latest"
+    "@testing-library/user-event": "latest",
+    "i18next-parser": "latest"
   },
   "engines": {
     "node": ">=23"
