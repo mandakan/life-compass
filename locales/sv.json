@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "welcome": "Välkommen",
+  "goodbye": "Adjö",
+  "items": "{{count}} sak",
+  "items_plural": "{{count}} saker",
+  "gender_example": {
+    "male": "Han är här",
+    "female": "Hon är här",
+    "other": "De är här"
+  }
+}
