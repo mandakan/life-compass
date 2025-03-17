@@ -55,5 +55,7 @@
   "dark_mode": "Dark Mode",
   "follow_system_theme": "Follow system theme",
   "show_dev_tools": "Show developer tools",
-  "back": "Back"
+  "back": "Back",
+  "life_compass_title": "Life Compass",
+  "life_compass_subtitle": "Discover your life balance. Create your life compass."
 }
