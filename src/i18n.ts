@@ -28,11 +28,9 @@ i18n
       order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage'],
     },
-    fallbackLng: {
-      'en-GB': ['en'],
-      'en-US': ['en'],
-      default: ['en'],
-    },
+    supportedLngs: ['en'],
+    nonExplicitSupportedLngs: true,
+    fallbackLng: 'en',
     load: 'languageOnly',
     debug: isDevelopment,
     backend: {
