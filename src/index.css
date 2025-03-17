@@ -17,7 +17,7 @@
   --accent: #e53e3e; /* Adjusted accent color (red for contrast) */
   --on-accent: #ffffff; /* Text color on accent */
   --focus-ring: #ffed4a; /* Focus outline */
-  --details-bg: #f8f9fa; /* Background for details box */
+  --details-bg: #e6e6e6; /* Background for details box */
   --primary: var(--color-primary); /* Primary color */
   --on-primary: #ffffff; /* Text on primary */
   --secondary: var(--color-secondary); /* Secondary color */
@@ -119,7 +119,11 @@ a {
 }
 
 .bg-gradient {
-  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
+  background: linear-gradient(
+    to bottom,
+    var(--callout-bg),
+    var(--color-primary)
+  );
 }
 
 [data-theme='dark'] .bg-gradient {
@@ -128,4 +132,25 @@ a {
 
 [data-theme='high-contrast'] .bg-gradient {
   background: linear-gradient(to bottom, var(--color-bg), var(--accent));
+}
+
+.bg-glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes gradientFade {
+  0% {
+    background: var(--callout-bg);
+  }
+  50% {
+    background: var(--details-bg);
+  }
+  100% {
+    background: var(--callout-bg);
+  }
+}
+
+.bg-animated {
+  animation: gradientFade 10s infinite alternate;
 }

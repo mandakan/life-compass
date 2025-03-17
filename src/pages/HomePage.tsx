@@ -15,14 +15,19 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-bg text-text flex min-h-screen flex-col items-center justify-center p-8 font-sans">
+    <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
       <header className="mb-8 text-center">
-        <h1 className="mb-4 text-3xl font-bold">{t('life_compass_title', 'Livskompass')}</h1>
+        <h1 className="mb-4 text-3xl font-bold">
+          {t('life_compass_title', 'Livskompass')}
+        </h1>
         <h2 className="mb-2 text-xl">
-          {t('life_compass_subtitle', 'Discover your life balance. Reflect, set goals, and track progress for a fulfilling life.')}
+          {t(
+            'life_compass_subtitle',
+            'Discover your life balance. Create your life compass.',
+          )}
         </h2>
       </header>
-      <main className="mb-6 w-full max-w-md">
+      <main className="mb-6 w-full max-w-md text-center">
         <CustomButton onClick={() => navigate('/create-life-compass')}>
           {t('create_life_compass', 'Skapa Livskompass')}
         </CustomButton>
@@ -35,4 +40,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-```
