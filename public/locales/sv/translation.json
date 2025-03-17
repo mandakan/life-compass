@@ -1,4 +1,5 @@
 {
+  "version": "1.0.0",
   "close_symbol": "✖",
   "enter_life_area_name": "Ange livsområdesnamn",
   "reset": "Återställ",

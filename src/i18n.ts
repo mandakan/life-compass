@@ -26,7 +26,11 @@ i18n
       order: ["navigator", "htmlTag", "path", "subdomain"],
       caches: ["localStorage"],
     },
-    fallbackLng: "en",
+    fallbackLng: {
+      "en-GB": ["en"], // Redirect en-GB to en
+      "en-US": ["en"], // Redirect en-US to en
+      default: ["en"], // Default fallback
+    },
     debug: isDevelopment,
     backend: {
       loadPath: "/locales/{{lng}}/translation.json",
