@@ -29,7 +29,7 @@ i18n
     fallbackLng: "en",
     debug: isDevelopment,
     backend: {
-      loadPath: "/locales/{{lng}}.json",
+      loadPath: "/locales/{{lng}}/translation.json",
       parse: parseTranslation,
     },
     interpolation: {
