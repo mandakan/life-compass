@@ -36,3 +36,4 @@ Users should be able to switch between supported languages within the applicatio
 - How should the app behave in offline mode, particularly if connected language files are not available? Is it possible to always cache/load the user's browser language and english to have as fallback?
 - Are there any design guidelines or constraints we need to consider for the placement and style of the language switcher in the UI? Follow UX and design best-practices as well as design_principles.md. The app must stay distraction free.
 - What are the fallback options if selected language resources are incomplete or missing translations? Use english.
+- The user must be informed which languages are unverified. The only verified language at this point is sv, all others must have an icon such as ⚠ in the language selector with additional information on hover or in a footnote.
