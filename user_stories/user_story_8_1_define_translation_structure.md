@@ -1,7 +1,7 @@
 ---
 title: 'Define Translation Structure'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Must'
 ---
 

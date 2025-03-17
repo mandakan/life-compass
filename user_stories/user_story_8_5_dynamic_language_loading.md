@@ -1,7 +1,7 @@
 ---
 title: 'Optimize Language Loading for Performance'
 type: 'user_story'
-status: 'draft'
+status: 'done'
 priority: 'Should'
 ---
 
