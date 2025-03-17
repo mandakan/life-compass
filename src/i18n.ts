@@ -36,7 +36,7 @@ i18n
     load: 'languageOnly',
     debug: isDevelopment,
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/translation.json`,
       parse: parseTranslation,
     },
     interpolation: {
