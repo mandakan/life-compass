@@ -54,5 +54,6 @@
   "language": "Language",
   "dark_mode": "Dark Mode",
   "follow_system_theme": "Follow system theme",
-  "show_dev_tools": "Show developer tools"
+  "show_dev_tools": "Show developer tools",
+  "back": "Tillbaka"
 }
