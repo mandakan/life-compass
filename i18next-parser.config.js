@@ -2,7 +2,6 @@ module.exports = {
   contextSeparator: '_',
   createOldCatalogs: false,
   defaultNamespace: 'translation',
-  defaultValue: '',
   indentation: 2,
   keepRemoved: true,
   keySeparator: '.',
@@ -11,7 +10,7 @@ module.exports = {
     jsx: ["JsxLexer"],  // Add JSX support
     ts: ["JavascriptLexer"],
     tsx: ["JsxLexer"],  // Add TSX support
-    default: ["JavascriptLexer"],
+    default: ["JavascriptLexer"]
   },
   lineEnding: 'auto',
   locales: ['en', 'sv'],
@@ -24,12 +23,16 @@ module.exports = {
   debug: true,
   updateMissing: true,
   input: ["src/**/*.{js,jsx,ts,tsx}"],
-  defaultValue: (lng, ns, key) => key, // Keep Swedish as default
-  keyAsDefaultValue: false, // Prevent Swedish from becoming keys
+  defaultValue: (lng, ns, key) => key,
+  keyAsDefaultValue: false,
   transformKey: async (key, defaultValue) => {
-    if (!defaultValue) return key; // Skip if no default value
-    
+    if (!defaultValue) return key;
     const translatedKey = await translateToEnglish(defaultValue);
     return translatedKey.replace(/\s+/g, "_").toLowerCase();
   }
 };
+
+async function translateToEnglish(defaultValue) {
+  // Dummy translation function. In a real scenario, integrate with a translation API.
+  return defaultValue;
+}

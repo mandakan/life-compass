@@ -10,14 +10,3 @@ The i18next-parser is configured to scan the source code for translation keys an
 
 - Node.js and npm must be installed.
 - The i18next-parser package should be installed as a development dependency. If it is not installed, you can run:
-  ```
-  npm install --save-dev i18next-parser
-  ```
-- Make sure the configuration file `i18next-parser.config.js` is present in the project root.
-
-## Running the Parser
-
-There are two common ways to run the i18next parser:
-
-### 1. Using npx
-Use the following command in your terminal:
