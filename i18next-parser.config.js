@@ -4,7 +4,7 @@ module.exports = {
   defaultNamespace: 'translation',
   defaultValue: '',
   indentation: 2,
-  keepRemoved: false,
+  keepRemoved: true,
   keySeparator: '.',
   lexers: {
     js: [
@@ -20,7 +20,7 @@ module.exports = {
   lineEnding: 'auto',
   locales: ['en', 'sv'],
   namespaceSeparator: ':',
-  output: 'public/locales/$LOCALE.json',
+  output: 'public/locales/$LOCALE/translation.json',
   skipDefaultValues: false,
   sort: true,
   verbose: true,
