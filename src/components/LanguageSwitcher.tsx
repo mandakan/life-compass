@@ -17,17 +17,15 @@ const languages: Language[] = [
 ];
 
 const LanguageSwitcher: React.FC = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
+  const initialLang = localStorage.getItem('selectedLanguage') || i18next.language || 'en';
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(initialLang);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem('selectedLanguage');
-    const initialLanguage = storedLanguage ? storedLanguage : i18next.language;
-    setSelectedLanguage(initialLanguage);
-    i18next.changeLanguage(initialLanguage);
-  }, []);
+    i18next.changeLanguage(selectedLanguage);
+  }, [selectedLanguage]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -43,7 +41,6 @@ const LanguageSwitcher: React.FC = () => {
 
   const handleLanguageSelect = (code: string) => {
     setSelectedLanguage(code);
-    i18next.changeLanguage(code);
     localStorage.setItem('selectedLanguage', code);
     setDropdownOpen(false);
   };
