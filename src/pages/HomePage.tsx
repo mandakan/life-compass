@@ -28,7 +28,10 @@ const HomePage: React.FC = () => {
         </h2>
       </header>
       <main className="mb-6 w-full max-w-md text-center">
-        <CustomButton className="text-xl" onClick={() => navigate('/create-life-compass')}>
+        <CustomButton
+          className="text-xl"
+          onClick={() => navigate('/create-life-compass')}
+        >
           {t('create_life_compass', 'Skapa Livskompass')}
         </CustomButton>
       </main>
