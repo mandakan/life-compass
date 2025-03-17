@@ -119,25 +119,13 @@ a {
 }
 
 .bg-gradient {
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg),
-    var(--callout-bg)
-  );
+  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
 }
 
 [data-theme='dark'] .bg-gradient {
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg),
-    var(--callout-bg)
-  );
+  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
 }
 
 [data-theme='high-contrast'] .bg-gradient {
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg),
-    var(--accent)
-  );
+  background: linear-gradient(to bottom, var(--color-bg), var(--accent));
 }

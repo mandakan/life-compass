@@ -167,8 +167,7 @@ const CreateLifeCompass: React.FC = () => {
     const newAreas = predefined.filter(
       predef =>
         !lifeAreas.some(
-          existing =>
-            existing.name.toLowerCase() === predef.name.toLowerCase(),
+          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
         ),
     );
     if (newAreas.length > 0) {

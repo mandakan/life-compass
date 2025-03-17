@@ -7,7 +7,10 @@ export async function getPredefinedLifeAreas(): Promise<LifeArea[]> {
     const areas = await import(`../data/predefinedLifeAreas.${language}.json`);
     return areas.default;
   } catch (error) {
-    console.error(`Could not load predefined life areas for language ${language}. Falling back to English.`, error);
+    console.error(
+      `Could not load predefined life areas for language ${language}. Falling back to English.`,
+      error,
+    );
     const fallback = await import(`../data/predefinedLifeAreas.en.json`);
     return fallback.default;
   }
