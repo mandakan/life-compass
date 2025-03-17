@@ -54,5 +54,6 @@
   "language": "Språk",
   "dark_mode": "Mörkt läge",
   "follow_system_theme": "Följ systemtema",
-  "show_dev_tools": "Visa utvecklarverktyg"
+  "show_dev_tools": "Visa utvecklarverktyg",
+  "back": "Tillbaka"
 }
