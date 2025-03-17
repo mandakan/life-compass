@@ -20,7 +20,7 @@ module.exports = {
   lineEnding: 'auto',
   locales: ['en', 'sv'],
   namespaceSeparator: ':',
-  output: 'public/locales/$LOCALE/$NAMESPACE.json',
+  output: 'public/locales/$LOCALE.json',
   skipDefaultValues: false,
   sort: true,
   verbose: true,
