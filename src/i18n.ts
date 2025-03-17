@@ -27,10 +27,11 @@ i18n
       caches: ["localStorage"],
     },
     fallbackLng: {
-      "en-GB": ["en"], // Redirect en-GB to en
-      "en-US": ["en"], // Redirect en-US to en
-      default: ["en"], // Default fallback
+      "en-GB": ["en"],
+      "en-US": ["en"],
+      default: ["en"],
     },
+    load: "languageOnly",
     debug: isDevelopment,
     backend: {
       loadPath: "/locales/{{lng}}/translation.json",
