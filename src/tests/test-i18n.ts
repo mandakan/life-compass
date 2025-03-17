@@ -22,6 +22,15 @@ i18n.use(initReactI18next).init({
         delete_all: "Ta bort alla",
         card_view: "Kortvy",
         radar_view: "Radavy",
+        new_life_area: "Nytt livsområde",
+        name_is_required: "Namn är obligatoriskt.",
+        drag_to_reorder_life_area: "Dra och släpp för att ändra ordning på livsområden.",
+        reset_life_compass_warning: "Är du säker på att du vill återställa livsområden till standard?",
+        continue: "Fortsätt",
+        click_to_edit_details: "Klicka för att redigera detaljer",
+        delete: "Ta bort",
+        remove_life_area_warning: "Varning: Detta kommer att ta bort livsområdet och alla dess data. Vill du fortsätta?",
+        enter_life_area_name: "Ange livsområdesnamn",
       }
     }
   }

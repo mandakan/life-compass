@@ -1,5 +1,6 @@
-import englishTranslations from "../../public/locales/en.json";
-import swedishTranslations from "../../public/locales/sv.json";
+import { describe, test, expect } from 'vitest';
+import englishTranslations from "../../public/locales/en/translation.json";
+import swedishTranslations from "../../public/locales/sv/translation.json";
 
 describe("Translation Loader", () => {
   test("English translations have correct version", () => {

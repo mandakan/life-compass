@@ -46,5 +46,9 @@
   "import_error": "Fel vid import:",
   "local_storage_not_available": "Varning: Local Storage är inte tillgängligt. Dina data sparas inte.",
   "plus_add_new_life_area": "+ Lägg till nytt livsområde",
-  "unsaved_changes_warning": "Du har osparade ändringar. Vill du fortsätta?"
+  "unsaved_changes_warning": "Du har osparade ändringar. Vill du fortsätta?",
+  "remove_life_area_warning": "Varning: Detta kommer att ta bort livsområdet och alla dess data. Vill du fortsätta?",
+  "reset_life_compass_warning": "Är du säker på att du vill återställa livsområden till standard?",
+  "remove_all_life_areas_warning": "Varning: Detta kommer att ta bort alla livsområden och all data. Vill du fortsätta?",
+  "import_successful": "Import lyckades."
 }
