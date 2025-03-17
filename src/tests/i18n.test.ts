@@ -1,3 +1,4 @@
+import { describe, test, expect, beforeEach, afterEach } from 'vitest';
 import i18n, { parseTranslation } from "../i18n";
 
 describe("i18n translation parser", () => {
@@ -13,10 +14,10 @@ describe("i18n translation parser", () => {
     goodbye: "Goodbye"
   });
   
-  let consoleWarnSpy: jest.SpyInstance;
-  
+  let consoleWarnSpy;
+
   beforeEach(() => {
-    consoleWarnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
+    consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
   });
   
   afterEach(() => {
