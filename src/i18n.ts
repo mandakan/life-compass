@@ -22,8 +22,10 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    // If a language was previously selected, use it. Otherwise, let the detector decide.
+    lng: localStorage.getItem('selectedLanguage') || undefined,
     detection: {
-      order: ["navigator", "htmlTag", "path", "subdomain"],
+      order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
       caches: ["localStorage"],
     },
     fallbackLng: {
