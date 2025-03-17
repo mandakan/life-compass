@@ -48,5 +48,5 @@ describe("i18n fallback behavior", () => {
     // or the provided defaultValue if specified.
     const missingKeyResult = i18n.t("nonexistent_key", { defaultValue: "nonexistent_key" });
     expect(missingKeyResult).toBe("nonexistent_key");
-  }, { timeout: 10000 });
+  }, 10000);
 });
