@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CreateLifeCompass from '../pages/CreateLifeCompass';
 import { ThemeProvider } from '../context/ThemeContext';
@@ -127,7 +127,9 @@ describe('CreateLifeCompass Integration and Unit Tests', () => {
     fireEvent.click(confirmResetButton);
 
     // Ensure the custom unsaved life area is removed
-    expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
+    await waitFor(() => {
+      expect(screen.queryByDisplayValue(/Nytt livsområde/i)).toBeNull();
+    });
   });
 
   test('reorders life areas using drag and drop simulation', async () => {

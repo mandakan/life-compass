@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
-import predefinedAreas from '../data/predefinedLifeAreas.json';
-import { LifeArea } from '../components/LifeAreaCard';
+import predefinedAreas from '../data/predefinedLifeAreas.sv.json';
+import { LifeArea } from '../types/LifeArea';
 
 describe('lifeAreaService', () => {
   test('getPredefinedLifeAreas returns an array of life areas matching the predefined JSON', () => {
