@@ -23,5 +23,13 @@ module.exports = {
   failOnWarnings: false,
   debug: true,
   updateMissing: true,
-  input: ["src/**/*.{js,jsx,ts,tsx}"]
+  input: ["src/**/*.{js,jsx,ts,tsx}"],
+  defaultValue: (lng, ns, key) => key, // Keep Swedish as default
+  keyAsDefaultValue: false, // Prevent Swedish from becoming keys
+  transformKey: async (key, defaultValue) => {
+    if (!defaultValue) return key; // Skip if no default value
+    
+    const translatedKey = await translateToEnglish(defaultValue);
+    return translatedKey.replace(/\s+/g, "_").toLowerCase();
+  }
 };
