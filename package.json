@@ -10,7 +10,7 @@
     "test-verbose": "vitest --run --reporter verbose",
     "format": "prettier --write .",
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\"",
-    "extract": "i18next 'src/**/*.{js,ts,jsx,tsx}'"
+    "extract": "i18next"
   },
   "dependencies": {
     "react": "latest",

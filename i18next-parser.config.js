@@ -7,15 +7,11 @@ module.exports = {
   keepRemoved: true,
   keySeparator: '.',
   lexers: {
-    js: [
-      'JavascriptLexer'
-    ],
-    ts: [
-      'JavascriptLexer'
-    ],
-    default: [
-      'JavascriptLexer'
-    ]
+    js: ["JavascriptLexer"],
+    jsx: ["JsxLexer"],  // Add JSX support
+    ts: ["JavascriptLexer"],
+    tsx: ["JsxLexer"],  // Add TSX support
+    default: ["JavascriptLexer"],
   },
   lineEnding: 'auto',
   locales: ['en', 'sv'],
@@ -26,5 +22,6 @@ module.exports = {
   verbose: true,
   failOnWarnings: false,
   debug: true,
-  updateMissing: true
+  updateMissing: true,
+  input: ["src/**/*.{js,jsx,ts,tsx}"]
 };
