@@ -29,10 +29,10 @@ Users should be able to switch between supported languages within the applicatio
 
 ## ❓ Refinement Questions
 
-- Should we detect the user's browser language on the first visit and pre-select it?
-- How do we ensure that all UI components dynamically update on language change without a full page reload?
-- Should we allow users to set different languages for UI and content separately, or should there be a unified language setting?
-- What error handling should be implemented if the language resource file fails to load?
-- How should the app behave in offline mode, particularly if connected language files are not available?
-- Are there any design guidelines or constraints we need to consider for the placement and style of the language switcher in the UI?
-- What are the fallback options if selected language resources are incomplete or missing translations?
+- Should we detect the user's browser language on the first visit and pre-select it? Yes.
+- How do we ensure that all UI components dynamically update on language change without a full page reload? Follow best practices based on that we are using i18next.
+- Should we allow users to set different languages for UI and content separately, or should there be a unified language setting? Use a unified setting for now.
+- What error handling should be implemented if the language resource file fails to load? Default to english or the first available file.
+- How should the app behave in offline mode, particularly if connected language files are not available? Is it possible to always cache/load the user's browser language and english to have as fallback?
+- Are there any design guidelines or constraints we need to consider for the placement and style of the language switcher in the UI? Follow UX and design best-practices as well as design_principles.md. The app must stay distraction free.
+- What are the fallback options if selected language resources are incomplete or missing translations? Use english.
