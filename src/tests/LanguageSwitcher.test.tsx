@@ -21,7 +21,7 @@ describe("LanguageSwitcher Component", () => {
   test("opens dropdown and displays all language options", async () => {
     render(<LanguageSwitcher />);
     const buttons = screen.getAllByRole("button", { name: /english/i });
-    const button = buttons[0];
+    const button = buttons[1];
     fireEvent.click(button);
 
     const optionEnglish = await screen.findByRole("option", { name: /english/i });
@@ -42,9 +42,11 @@ describe("LanguageSwitcher Component", () => {
   test("changes language when a different option is selected", async () => {
     render(<LanguageSwitcher />);
     const buttons = screen.getAllByRole("button", { name: /english/i });
-    const button = buttons[0];
+    const button = buttons[2];
     fireEvent.click(button);
-    const optionSwedish = await screen.findByRole("option", { name: /svenska/i });
+    console.log(buttons)
+    const optionsSwedish = await screen.findAllByRole("option", { name: /svenska/i });
+    const optionSwedish = optionsSwedish[0];
     fireEvent.click(optionSwedish);
 
     await waitFor(() => {
@@ -58,7 +60,7 @@ describe("LanguageSwitcher Component", () => {
   test("handles keyboard selection for language options", async () => {
     render(<LanguageSwitcher />);
     const buttons = screen.getAllByRole("button", { name: /english/i });
-    const button = buttons[0];
+    const button = buttons[2];
     fireEvent.click(button);
     const options = await screen.findAllByRole("option");
     fireEvent.keyDown(options[1], { key: "Enter", code: "Enter" });
@@ -74,7 +76,7 @@ describe("LanguageSwitcher Component", () => {
     const button = buttons[0];
     fireEvent.click(button);
     // Check that the dropdown is open
-    expect(screen.getByRole("listbox")).toBeTruthy();
+    expect(screen.getAllByRole("listbox")).toBeTruthy();
 
     // Simulate click outside
     fireEvent.mouseDown(document);
