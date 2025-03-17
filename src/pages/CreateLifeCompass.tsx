@@ -123,6 +123,18 @@ const CreateLifeCompass: React.FC = () => {
   // Track newly created card ID so we know to remove it if editing is aborted.
   const [newAreaId, setNewAreaId] = useState<string | null>(null);
 
+  // New useEffect to clear editing state if the edited area is no longer in lifeAreas
+  useEffect(() => {
+    if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
+      setEditingAreaId(null);
+      setEditName('');
+      setEditDescription('');
+      setEditDetails('');
+      setEditImportance(5);
+      setEditSatisfaction(5);
+    }
+  }, [lifeAreas, editingAreaId]);
+
   const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
       const base = t('new_life_area');
