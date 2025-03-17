@@ -1,3 +1,5 @@
+import "tests/test-i18n"; // ✅ Load actual translations
+
 Object.defineProperty(window, 'scrollTo', {
   value: () => {},
   writable: true,

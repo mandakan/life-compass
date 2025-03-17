@@ -40,5 +40,11 @@
   "exported": "Exportad",
   "history_count": "Historik",
   "life_areas_count": "Antal livsområden",
-  "import_data_prompt": "Prompt för import av data"
+  "import_data_prompt": "Prompt för import av data",
+  "new_life_area": "Nytt livsområde",
+  "name_is_required": "Namn är obligatoriskt",
+  "import_error": "Fel vid import:",
+  "local_storage_not_available": "Varning: Local Storage är inte tillgängligt. Dina data sparas inte.",
+  "plus_add_new_life_area": "+ Lägg till nytt livsområde",
+  "unsaved_changes_warning": "Du har osparade ändringar. Vill du fortsätta?"
 }
