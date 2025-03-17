@@ -57,7 +57,7 @@ const LanguageSwitcher: React.FC = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         type="button"
-        className="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-sm font-medium focus:outline-none hover:bg-[var(--hover-bg)]"
+        className="inline-flex justify-center min-w-max w-full rounded-md shadow-sm px-4 py-2 text-sm font-medium focus:outline-none hover:bg-[var(--hover-bg)]"
         style={{
           backgroundColor: "var(--color-bg)",
           border: "1px solid var(--border)",
