@@ -29,15 +29,16 @@ The application should have a structured way to store and manage translations fo
 
 ## ❓ Refinement Questions
 
-- Should we adopt a library (e.g., i18next, react-intl) to handle translations, or implement a custom solution?
-- How will we structure our JSON files: as flat key/value pairs or with nested objects to group related strings (e.g., for different components or pages)?
-- What is the strategy for handling missing keys or incomplete translations in a user-friendly manner?
-- How could we support context-specific translations (different wording based on where the string is used)?
-- Do we require support for pluralization, gender, or other language-specific grammar rules?
-- Will the translation files support versioning to manage changes over time, and how will we handle deprecations?
-- Are there additional safety measures, such as schema validations, needed to ensure the integrity of translation files?
-- For RTL languages, what additional layout or style adjustments must be envisioned?
-- How will translations be updated or deployed, considering continuous integration and delivery environments?
+- Should we adopt a library (e.g., i18next, react-intl) to handle translations, or implement a custom solution? Yes. i18next is the choice.
+- How will we structure our JSON files: as flat key/value pairs or with nested objects to group related strings (e.g., for different components or pages)? Flat structure.
+- What is the strategy for handling missing keys or incomplete translations in a user-friendly manner? Fallback to english for end-users. Developers should get a log message and the missing translations shall be collected. The debugging is not enabled in production.
+- How could we support context-specific translations (different wording based on where the string is used)? Just add context variations in the json, do not use dynamic context switching.
+- Do we require support for pluralization, gender, or other language-specific grammar rules? Yes.
+- Will the translation files support versioning to manage changes over time, and how will we handle deprecations? As the translation files will be part of the same deployment as the app at all times no versioning should be necessary. Use version 1.0.0 in the json and check for this version when loading translations. No other versioning needed.
+- Are there additional safety measures, such as schema validations, needed to ensure the integrity of translation files? Validate this during testing.
+- For RTL languages, what additional layout or style adjustments must be envisioned? We will not support RTL at this point.
+- How will translations be updated or deployed, considering continuous integration and delivery environments? As part of the app deployment, no separate translation deployments.
+- How will strings be extracted for translation? Use i18next-parser and strings saved during debugging.
 
 ## 🔍 Additional Perspectives for Discussion
 
