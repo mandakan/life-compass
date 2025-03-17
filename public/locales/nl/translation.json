@@ -37,7 +37,7 @@
   "custom_slider": "Aangepaste schuifregelaar",
   "import": "Importeren",
   "export": "Exporteren",
-  "exported": "Geëxporteerd",
+  "exported": "Exporteerd",
   "history_count": "Geschiedenis",
   "life_areas_count": "Aantal levensgebieden",
   "import_data_prompt": "Data import prompt",
@@ -51,8 +51,8 @@
   "reset_life_compass_warning": "Weet u zeker dat u de levensgebieden wilt resetten naar de standaardwaarden?",
   "remove_all_life_areas_warning": "Waarschuwing: Dit verwijdert alle levensgebieden en alle gegevens. Wilt u doorgaan?",
   "import_successful": "Import succesvol.",
-  "language": "Språk",
-  "dark_mode": "Mörkt läge",
-  "follow_system_theme": "Följ systemtema",
-  "show_dev_tools": "Visa utvecklarverktyg"
+  "language": "Taal",
+  "dark_mode": "Donkere modus",
+  "follow_system_theme": "Volg systeemthema",
+  "show_dev_tools": "Toon ontwikkelaarstools"
 }

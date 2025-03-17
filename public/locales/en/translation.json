@@ -51,8 +51,8 @@
   "reset_life_compass_warning": "Are you sure you want to reset the life areas to default?",
   "remove_all_life_areas_warning": "Warning: This will remove all life areas and all data. Do you want to continue?",
   "import_successful": "Import successful.",
-  "language": "Språk",
-  "dark_mode": "Mörkt läge",
-  "follow_system_theme": "Följ systemtema",
-  "show_dev_tools": "Visa utvecklarverktyg"
+  "language": "Language",
+  "dark_mode": "Dark Mode",
+  "follow_system_theme": "Follow system theme",
+  "show_dev_tools": "Show developer tools"
 }
