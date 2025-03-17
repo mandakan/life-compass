@@ -27,16 +27,16 @@ i18n
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage'],
+      cleanCode: true,
+      checkWhitelist: true,
     },
-    fallbackLng: {
-      'en-GB': ['en'],
-      'en-US': ['en'],
-      default: ['en'],
-    },
+    supportedLngs: ['en', 'sv', 'de', 'da', 'nl', 'nb'],
+    nonExplicitSupportedLngs: true,
+    fallbackLng: 'en',
     load: 'languageOnly',
     debug: isDevelopment,
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/translation.json`,
       parse: parseTranslation,
     },
     interpolation: {

@@ -17,15 +17,30 @@ const languages: Language[] = [
 ];
 
 const LanguageSwitcher: React.FC = () => {
+  // Normalize the detected language to its language code (e.g., en-GB -> en)
+  const detectedLang = i18next.language ? i18next.language.split('-')[0] : 'en';
+  const storedLang = localStorage.getItem('selectedLanguage');
   const initialLang =
-    localStorage.getItem('selectedLanguage') || i18next.language || 'en';
+    storedLang && languages.some(lang => lang.code === storedLang)
+      ? storedLang
+      : languages.some(lang => lang.code === detectedLang)
+        ? detectedLang
+        : 'en';
+
   const [selectedLanguage, setSelectedLanguage] = useState<string>(initialLang);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    i18next.changeLanguage(selectedLanguage);
+    // Validate selectedLanguage; if it's not supported, default to 'en'
+    if (!languages.some(lang => lang.code === selectedLanguage)) {
+      setSelectedLanguage('en');
+      localStorage.setItem('selectedLanguage', 'en');
+      i18next.changeLanguage('en');
+    } else {
+      i18next.changeLanguage(selectedLanguage);
+    }
   }, [selectedLanguage]);
 
   useEffect(() => {
