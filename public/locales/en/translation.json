@@ -32,5 +32,13 @@
   "satisfaction": "Tillfredsställelse",
   "toggle_mobile_navigation": "Toggle mobile navigation",
   "recommend_max_ten_life_areas": "Vi rekommenderar att hålla antalet livsområden runt 10 för bästa överblick.",
-  "show_description": "Visa beskrivning"
+  "show_description": "Visa beskrivning",
+  "toggle_settings_menu": "Växla inställningsmeny",
+  "custom_slider": "Anpassat skjutreglage",
+  "import": "Importera",
+  "export": "Exportera",
+  "exported": "Exportad",
+  "history_count": "Historik",
+  "life_areas_count": "Antal livsområden",
+  "import_data_prompt": "Prompt för import av data"
 }
