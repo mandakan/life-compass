@@ -57,7 +57,12 @@ const LanguageSwitcher: React.FC = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         type="button"
-        className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
+        className="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-sm font-medium focus:outline-none hover:bg-[var(--hover-bg)]"
+        style={{
+          backgroundColor: "var(--color-bg)",
+          border: "1px solid var(--border)",
+          color: "var(--color-text)"
+        }}
         aria-haspopup="listbox"
         aria-expanded={dropdownOpen}
         onClick={toggleDropdown}
@@ -80,7 +85,11 @@ const LanguageSwitcher: React.FC = () => {
 
       {dropdownOpen && (
         <ul
-          className="absolute z-10 mt-2 w-full bg-white shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="absolute z-10 mt-2 w-full shadow-lg rounded-md py-1 text-base focus:outline-none"
+          style={{
+            backgroundColor: "var(--color-bg)",
+            border: "1px solid var(--border)"
+          }}
           role="listbox"
           tabIndex={-1}
           aria-activedescendant={selectedLanguage}
@@ -91,9 +100,7 @@ const LanguageSwitcher: React.FC = () => {
               id={lang.code}
               role="option"
               aria-selected={selectedLanguage === lang.code}
-              className={`cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm ${
-                selectedLanguage === lang.code ? 'text-blue-600' : 'text-gray-900'
-              } hover:bg-gray-100`}
+              className={`cursor-pointer select-none relative py-2 pl-3 pr-9 text-sm ${selectedLanguage === lang.code ? "text-[var(--accent)]" : "text-[var(--color-text)]"} hover:bg-[var(--hover-bg)]`}
               onClick={() => handleLanguageSelect(lang.code)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
