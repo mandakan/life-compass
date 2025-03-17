@@ -72,7 +72,8 @@ describe("LanguageSwitcher Component", () => {
 
   test("closes the dropdown when clicking outside", async () => {
     const { container } = render(<LanguageSwitcher />);
-    const button = screen.getByRole("button");
+    const buttons = screen.getAllByRole("button");
+    const button = buttons[0];
     fireEvent.click(button);
     expect(screen.getByRole("listbox")).toBeInTheDocument();
     
