@@ -121,8 +121,8 @@ a {
 .bg-gradient {
   background: linear-gradient(
     to bottom,
-    var(--callout-bg),
-    var(--color-primary)
+    var(--color-bg),
+    var(--callout-bg)
   );
 }
 
@@ -153,4 +153,18 @@ a {
 
 .bg-animated {
   animation: gradientFade 10s infinite alternate;
+}
+
+@layer utilities {
+  .bg-pattern {
+    background-image: url('/pattern.svg'); /* Update the path */
+    background-repeat: repeat;
+  }
+}
+
+@layer utilities {
+  .bg-escher {
+    background-image: url('/escher-pattern.svg');
+    background-repeat: repeat;
+  }
 }
