@@ -11,6 +11,7 @@ import FloatingToolbar from '../components/FloatingToolbar';
 import { parseAndValidateJSON } from '../utils/importService';
 import ImportPreviewModal from '../components/ImportPreviewModal';
 import SuccessModal from '../components/SuccessModal';
+import { useTranslation } from 'react-i18next';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -33,6 +34,7 @@ const isLocalStorageAvailable = (): boolean => {
 };
 
 const CreateLifeCompass: React.FC = () => {
+  const { t } = useTranslation();
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
 
@@ -123,7 +125,7 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
-      const base = 'Nytt livsområde';
+      const base = t('Nytt livsområde');
       let name = base;
       let counter = 2;
       while (
@@ -217,7 +219,7 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleSaveEditLifeArea = () => {
     if (editName.trim() === '') {
-      setError('Namn är obligatoriskt.');
+      setError(t('Namn är obligatoriskt.'));
       return;
     }
     if (
@@ -227,7 +229,7 @@ const CreateLifeCompass: React.FC = () => {
           area.id !== editingAreaId,
       )
     ) {
-      setError('Dubblett: Samma namn får inte användas.');
+      setError(t('Dubblett: Samma namn får inte användas.'));
       return;
     }
     setError('');
@@ -409,7 +411,7 @@ const CreateLifeCompass: React.FC = () => {
     const result = parseAndValidateJSON(fileContent);
     if (!result.valid) {
       if (result.errors) {
-        alert('Fel vid import: ' + result.errors.join(', '));
+        alert(t('Fel vid import: ') + result.errors.join(', '));
       }
       return;
     }
@@ -439,7 +441,7 @@ const CreateLifeCompass: React.FC = () => {
     >
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
-          Varning: Local Storage är inte tillgängligt. Dina data sparas inte.
+          {t('Varning: Local Storage är inte tillgängligt. Dina data sparas inte.')}
         </div>
       )}
       {lifeAreas.length > 10 && showRecommendationCallout && (
@@ -523,7 +525,7 @@ const CreateLifeCompass: React.FC = () => {
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
             <span className="text-[var(--color-primary)]">
-              + Lägg till nytt livsområde
+              {t('+ Lägg till nytt livsområde')}
             </span>
           </div>
         </div>
@@ -576,32 +578,32 @@ const CreateLifeCompass: React.FC = () => {
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
             <span className="text-[var(--color-primary)]">
-              + Lägg till nytt livsområde
+              {t('+ Lägg till nytt livsområde')}
             </span>
           </div>
         </div>
       )}
       <WarningModal
         visible={showWarningModal}
-        message="Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?"
+        message={t('Du har osparade ändringar. Om du byter kort förloras dina ändringar. Fortsätt?')}
         onConfirm={handleModalConfirm}
         onCancel={handleModalCancel}
       />
       <WarningModal
         visible={showDeleteModal}
-        message="Är du säker på att du vill ta bort detta livsområde?"
+        message={t('Är du säker på att du vill ta bort detta livsområde?')}
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
       />
       <WarningModal
         visible={showResetModal}
-        message="Är du säker på att du vill återställa livsområden till standard?"
+        message={t('Är du säker på att du vill återställa livsområden till standard?')}
         onConfirm={handleResetConfirm}
         onCancel={handleResetCancel}
       />
       <WarningModal
         visible={showRemoveAllModal}
-        message="Är du säker på att du vill ta bort alla livsområden?"
+        message={t('Är du säker på att du vill ta bort alla livsområden?')}
         onConfirm={handleRemoveAllConfirm}
         onCancel={handleRemoveAllCancel}
       />
@@ -618,7 +620,7 @@ const CreateLifeCompass: React.FC = () => {
       />
       <SuccessModal
         visible={showSuccessModal}
-        message="Import lyckades!"
+        message={t('Import lyckades!')}
         onClose={() => setShowSuccessModal(false)}
       />
     </div>
