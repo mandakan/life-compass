@@ -1,17 +1,23 @@
 import i18next from 'i18next';
 import { LifeArea } from '../types/LifeArea';
+import areasEn from '../data/predefinedLifeAreas.en.json';
+import areasDa from '../data/predefinedLifeAreas.da.json';
+import areasNb from '../data/predefinedLifeAreas.nb.json';
+import areasNl from '../data/predefinedLifeAreas.nl.json';
+import areasSv from '../data/predefinedLifeAreas.sv.json';
 
-export async function getPredefinedLifeAreas(): Promise<LifeArea[]> {
+const areasMap: { [key: string]: LifeArea[] } = {
+  en: areasEn,
+  da: areasDa,
+  nb: areasNb,
+  nl: areasNl,
+  sv: areasSv,
+};
+
+export function getPredefinedLifeAreas(): LifeArea[] {
   const language = i18next.language || 'en';
-  try {
-    const areas = await import(`../data/predefinedLifeAreas.${language}.json`);
-    return areas.default;
-  } catch (error) {
-    console.error(
-      `Could not load predefined life areas for language ${language}. Falling back to English.`,
-      error,
-    );
-    const fallback = await import(`../data/predefinedLifeAreas.en.json`);
-    return fallback.default;
+  if (areasMap[language]) {
+    return areasMap[language];
   }
+  return areasEn;
 }
