@@ -48,6 +48,6 @@
     "i18next-parser": "latest"
   },
   "engines": {
-    "node": ">=23"
+    "node": "22.x"
   }
 }
