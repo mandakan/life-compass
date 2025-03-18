@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "22.x"
+          node-version: '22.x'
 
       - name: Install dependencies
         run: npm install
@@ -26,7 +26,7 @@ jobs:
 
       - name: Serve app in background
         run: npx serve -s dist -l 5000 &
-      
+
       - name: Wait for server to start
         run: sleep 10
 

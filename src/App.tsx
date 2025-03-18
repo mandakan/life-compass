@@ -30,8 +30,14 @@ const Content = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
-            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
+            <Route
+              path="/design-principles"
+              element={<DesignPrinciplesDemo />}
+            />
+            <Route
+              path="/create-life-compass"
+              element={<CreateLifeCompass />}
+            />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
