@@ -45,6 +45,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run preview',
     port: 4173,
+    timeout: 120_000, // Wait up to 2 minutes for the server
     reuseExistingServer: !process.env.CI,
   },
   reporter: [['html', { outputFolder: 'playwright-report' }]],
