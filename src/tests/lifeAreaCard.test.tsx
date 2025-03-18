@@ -3,14 +3,14 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import LifeAreaCard, { LifeAreaCardProps } from '../components/LifeAreaCard';
 
 // Mock react-i18next to simply return the key as translation
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
   }),
 }));
 
 // Create a dummy CustomSlider component since it is used by LifeAreaCard
-jest.mock('../components/CustomSlider', () => (props: any) => {
+vi.mock('../components/CustomSlider', () => (props: any) => {
   const { value, onChange, min, max, step } = props;
   return (
     <input
@@ -26,7 +26,7 @@ jest.mock('../components/CustomSlider', () => (props: any) => {
 });
 
 // Create a dummy CustomButton component since it is used by LifeAreaCard
-jest.mock('../components/CustomButton', () => (props: any) => {
+vi.mock('../components/CustomButton', () => (props: any) => {
   return (
     <button data-testid="custom-button" onClick={props.onClick}>
       {props.children}
@@ -35,7 +35,7 @@ jest.mock('../components/CustomButton', () => (props: any) => {
 });
 
 // Create a dummy WarningMessage component for testing purposes
-jest.mock('../components/WarningMessage', () => (props: any) => {
+vi.mock('../components/WarningMessage', () => (props: any) => {
   return (
     <div data-testid="warning-message">
       {props.title}: {props.message}
@@ -60,19 +60,19 @@ const defaultProps: LifeAreaCardProps = {
   editDetails: sampleArea.details,
   editImportance: sampleArea.importance,
   editSatisfaction: sampleArea.satisfaction,
-  onChangeEditName: jest.fn(),
-  onChangeEditDescription: jest.fn(),
-  onChangeEditDetails: jest.fn(),
-  onChangeEditImportance: jest.fn(),
-  onChangeEditSatisfaction: jest.fn(),
-  onSaveEdit: jest.fn(),
-  onCancelEdit: jest.fn(),
-  onEdit: jest.fn(),
-  onRemove: jest.fn(),
+  onChangeEditName: vi.fn(),
+  onChangeEditDescription: vi.fn(),
+  onChangeEditDetails: vi.fn(),
+  onChangeEditImportance: vi.fn(),
+  onChangeEditSatisfaction: vi.fn(),
+  onSaveEdit: vi.fn(),
+  onCancelEdit: vi.fn(),
+  onEdit: vi.fn(),
+  onRemove: vi.fn(),
   existingNames: [sampleArea.name],
   dragHandle: {},
-  onAutoUpdateRating: jest.fn(),
-  onInlineDetailsChange: jest.fn(),
+  onAutoUpdateRating: vi.fn(),
+  onInlineDetailsChange: vi.fn(),
 };
 
 describe('LifeAreaCard Component', () => {
@@ -109,7 +109,7 @@ describe('LifeAreaCard Component', () => {
   });
 
   test('calls onEdit when edit button is clicked in non-edit mode', () => {
-    const onEditMock = jest.fn();
+    const onEditMock = vi.fn();
     render(<LifeAreaCard {...defaultProps} onEdit={onEditMock} />);
     
     const editButton = screen.getByLabelText('edit');
@@ -118,7 +118,7 @@ describe('LifeAreaCard Component', () => {
   });
 
   test('renders in edit mode and calls onChangeEditName when name input changes', () => {
-    const onChangeEditNameMock = jest.fn();
+    const onChangeEditNameMock = vi.fn();
     render(
       <LifeAreaCard
         {...defaultProps}
@@ -154,7 +154,7 @@ describe('LifeAreaCard Component', () => {
   });
 
   test('calls onRemove when delete button is clicked in non-edit mode', () => {
-    const onRemoveMock = jest.fn();
+    const onRemoveMock = vi.fn();
     render(<LifeAreaCard {...defaultProps} onRemove={onRemoveMock} />);
     
     const deleteButton = screen.getByLabelText(`delete ${sampleArea.name}`);
