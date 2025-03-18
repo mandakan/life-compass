@@ -30,3 +30,9 @@ yarn-error.log*
 .aider-cache/
 aider.log
 .aider*
+
+# Test Output
+coverage/
+playwright-report/
+screenshots/
+videos/
