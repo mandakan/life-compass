@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
@@ -10,6 +10,10 @@ import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
 
 const Content = () => {
+  useEffect(() => {
+    document.title = "Life Compass";
+  }, []);
+
   return (
     <div className="bg-bg text-text bg-gradient flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">
@@ -24,14 +28,8 @@ const Content = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route
-              path="/design-principles"
-              element={<DesignPrinciplesDemo />}
-            />
-            <Route
-              path="/create-life-compass"
-              element={<CreateLifeCompass />}
-            />
+            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
+            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
