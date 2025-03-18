@@ -23,7 +23,7 @@ vi.mock('../components/CustomSlider', () => {
           min={min}
           max={max}
           step={step}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={e => onChange(Number(e.target.value))}
         />
       );
     },
@@ -95,7 +95,7 @@ describe('LifeAreaCard Component', () => {
 
   test('renders in non-edit mode with provided area name and shows edit and delete buttons', () => {
     render(<LifeAreaCard {...defaultProps} />);
-    
+
     // Check if the area name is rendered
     expect(document.contains(screen.getByText(sampleArea.name))).toBe(true);
 
@@ -110,14 +110,16 @@ describe('LifeAreaCard Component', () => {
 
   test('displays description popup when show description button is clicked and closes on blur', () => {
     render(<LifeAreaCard {...defaultProps} />);
-    
+
     // Click the button that shows the description (aria-label: show_description)
     const showDescriptionButton = screen.getByLabelText('show_description');
     fireEvent.click(showDescriptionButton);
 
     // Check if description is rendered in popup
-    expect(document.contains(screen.getByText(sampleArea.description))).toBe(true);
-    
+    expect(document.contains(screen.getByText(sampleArea.description))).toBe(
+      true,
+    );
+
     // Simulate blur event on the popup to close it
     const popup = screen.getByText(sampleArea.description).parentElement;
     if (popup) {
@@ -128,7 +130,7 @@ describe('LifeAreaCard Component', () => {
   test('calls onEdit when edit button is clicked in non-edit mode', () => {
     const onEditMock = vi.fn();
     render(<LifeAreaCard {...defaultProps} onEdit={onEditMock} />);
-    
+
     const editButton = screen.getByLabelText('edit');
     fireEvent.click(editButton);
     expect(onEditMock).toHaveBeenCalledWith(sampleArea);
@@ -142,13 +144,13 @@ describe('LifeAreaCard Component', () => {
         isEditing
         editName="Finance"
         onChangeEditName={onChangeEditNameMock}
-      />
+      />,
     );
 
     // The input field for the name should be rendered as it is in edit mode
     const nameInput = screen.getByPlaceholderText('enter_life_area_name');
     expect(document.contains(nameInput)).toBe(true);
-    
+
     // Change the input value and verify onChangeEditName is called
     fireEvent.change(nameInput, { target: { value: 'New Finance' } });
     expect(onChangeEditNameMock).toHaveBeenCalledWith('New Finance');
@@ -162,18 +164,20 @@ describe('LifeAreaCard Component', () => {
         isEditing
         editName="DuplicateName"
         existingNames={['Finance', 'DuplicateName']}
-      />
+      />,
     );
-    
+
     // WarningMessage component should be rendered since duplicate is detected
     expect(document.contains(screen.getByTestId('warning-message'))).toBe(true);
-    expect(document.contains(screen.getByText(/duplicate_name_not_allowed/))).toBe(true);
+    expect(
+      document.contains(screen.getByText(/duplicate_name_not_allowed/)),
+    ).toBe(true);
   });
 
   test('calls onRemove when delete button is clicked in non-edit mode', () => {
     const onRemoveMock = vi.fn();
     render(<LifeAreaCard {...defaultProps} onRemove={onRemoveMock} />);
-    
+
     const deleteButton = screen.getByLabelText(`delete ${sampleArea.name}`);
     fireEvent.click(deleteButton);
     expect(onRemoveMock).toHaveBeenCalledWith(sampleArea.id);
