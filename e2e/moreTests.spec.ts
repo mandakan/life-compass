@@ -20,12 +20,12 @@ test.describe('Life Compass App End-to-End Tests', () => {
 
   test('language switcher works correctly', async ({ page }) => {
     await page.goto('/');
-    // Assume the language switcher button has the id 'language-switcher'
-    const languageSwitcher = await page.$('#language-switcher');
+    // Wait for the language switcher button to appear
+    const languageSwitcher = await page.waitForSelector('#language-switcher', { timeout: 5000 });
     expect(languageSwitcher).not.toBeNull();
 
     // Click the language switcher to open the language options
-    await languageSwitcher?.click();
+    await languageSwitcher.click();
 
     // Wait for a language option to appear (assume an option with data-lang="sv")
     const swedishOption = await page.waitForSelector('[data-lang="sv"]');
