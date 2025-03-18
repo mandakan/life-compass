@@ -17,7 +17,7 @@ const Content = () => {
   }, [t]);
 
   return (
-    <div className="bg-bg text-text bg-gradient flex min-h-screen transition-colors duration-300">
+    <div className="bg-bg text-text bg-escher flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">
         <header className="bg-primary text-[var(--on-primary)]">
           <div className="hidden md:block">
