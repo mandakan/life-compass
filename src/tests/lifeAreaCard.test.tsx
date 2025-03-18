@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, test, expect } from 'vitest';
+import { vi, describe, test, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LifeAreaCard, { LifeAreaCardProps } from '../components/LifeAreaCard';
 
