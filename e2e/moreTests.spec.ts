@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Life Compass App End-to-End Tests', () => {
   test('homepage loads and displays main navigation', async ({ page }) => {
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
     // Wait until document title is set
     await page.waitForFunction(() => document.title !== '');
     await expect(page).toHaveTitle(/(Life Compass|Livskompass)/);
@@ -14,12 +15,14 @@ test.describe('Life Compass App End-to-End Tests', () => {
 
   test('footer is visible on homepage', async ({ page }) => {
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
     const footer = await page.$('footer');
     expect(footer).not.toBeNull();
   });
 
   test('language switcher works correctly', async ({ page }) => {
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
     // Wait for the language switcher button to appear
     const languageSwitcher = await page.waitForSelector('#language-switcher', { state: 'visible', timeout: 10000 });
     expect(languageSwitcher).not.toBeNull();
