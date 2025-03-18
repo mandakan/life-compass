@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, describe, test, expect } from 'vitest';
+import { vi, describe, test, expect, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LifeAreaCard, { LifeAreaCardProps } from '../components/LifeAreaCard';
 
@@ -89,19 +89,23 @@ const defaultProps: LifeAreaCardProps = {
 };
 
 describe('LifeAreaCard Component', () => {
+  afterEach(() => {
+    document.body.innerHTML = '';
+  });
+
   test('renders in non-edit mode with provided area name and shows edit and delete buttons', () => {
     render(<LifeAreaCard {...defaultProps} />);
     
     // Check if the area name is rendered
-    expect(screen.getByText(sampleArea.name)).toBeInTheDocument();
+    expect(document.contains(screen.getByText(sampleArea.name))).toBe(true);
 
     // Check for edit button by its aria-label 'edit'
     const editButton = screen.getByLabelText('edit');
-    expect(editButton).toBeInTheDocument();
+    expect(document.contains(editButton)).toBe(true);
 
     // Check for delete button by aria-label containing 'delete'
     const deleteButton = screen.getByLabelText(`delete ${sampleArea.name}`);
-    expect(deleteButton).toBeInTheDocument();
+    expect(document.contains(deleteButton)).toBe(true);
   });
 
   test('displays description popup when show description button is clicked and closes on blur', () => {
@@ -112,7 +116,7 @@ describe('LifeAreaCard Component', () => {
     fireEvent.click(showDescriptionButton);
 
     // Check if description is rendered in popup
-    expect(screen.getByText(sampleArea.description)).toBeInTheDocument();
+    expect(document.contains(screen.getByText(sampleArea.description))).toBe(true);
     
     // Simulate blur event on the popup to close it
     const popup = screen.getByText(sampleArea.description).parentElement;
@@ -143,7 +147,7 @@ describe('LifeAreaCard Component', () => {
 
     // The input field for the name should be rendered as it is in edit mode
     const nameInput = screen.getByPlaceholderText('enter_life_area_name');
-    expect(nameInput).toBeInTheDocument();
+    expect(document.contains(nameInput)).toBe(true);
     
     // Change the input value and verify onChangeEditName is called
     fireEvent.change(nameInput, { target: { value: 'New Finance' } });
@@ -162,8 +166,8 @@ describe('LifeAreaCard Component', () => {
     );
     
     // WarningMessage component should be rendered since duplicate is detected
-    expect(screen.getByTestId('warning-message')).toBeInTheDocument();
-    expect(screen.getByText(/duplicate_name_not_allowed/)).toBeInTheDocument();
+    expect(document.contains(screen.getByTestId('warning-message'))).toBe(true);
+    expect(document.contains(screen.getByText(/duplicate_name_not_allowed/))).toBe(true);
   });
 
   test('calls onRemove when delete button is clicked in non-edit mode', () => {
