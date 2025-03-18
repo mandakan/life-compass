@@ -9,7 +9,7 @@ export default defineConfig({
   retries: 0,
   reporter: 'list',
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:5173',
+    baseURL: process.env.BASE_URL || 'http://localhost:5000',
     headless: true,
     viewport: { width: 1280, height: 720 },
   },
