@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { LifeArea } from '../types/LifeArea';
 import CustomSlider from '../components/CustomSlider';
 import WarningMessage from '../components/WarningMessage';
+import CustomButton from '../components/CustomButton';
 
 export interface LifeAreaCardProps {
   area: LifeArea;
@@ -202,11 +203,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
         </div>
         <div className="mt-auto flex gap-2">
-          <button
-            onClick={onSaveEdit}
-            className={actionButtonClasses}
-            disabled={isDuplicate}
-          >
+          <CustomButton onClick={onSaveEdit} disabled={isDuplicate}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -217,8 +214,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
             </svg>
             {t('save')}
-          </button>
-          <button onClick={onCancelEdit} className={actionButtonClasses}>
+          </CustomButton>
+          <CustomButton onClick={onCancelEdit}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -229,7 +226,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
             </svg>
             {t('cancel')}
-          </button>
+          </CustomButton>
         </div>
       </div>
     );
