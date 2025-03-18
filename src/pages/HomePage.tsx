@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { getUserData } from '../utils/storageService';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
-import LanguageSwitcher from 'components/LanguageSwitcher';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 
 const HomePage: React.FC = () => {
