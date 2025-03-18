@@ -13,7 +13,7 @@ export default defineConfig({
       use: {
         browserName: 'chromium',
         viewport: { width: 1280, height: 720 },
-        baseURL: 'http://localhost:4173',
+        baseURL: process.env.BASE_URL || 'http://localhost:4173',
         headless: true,
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
@@ -24,7 +24,7 @@ export default defineConfig({
       use: {
         browserName: 'firefox',
         viewport: { width: 1280, height: 720 },
-        baseURL: 'http://localhost:4173',
+        baseURL: process.env.BASE_URL || 'http://localhost:4173',
         headless: true,
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
@@ -35,7 +35,7 @@ export default defineConfig({
       use: {
         browserName: 'webkit',
         viewport: { width: 1280, height: 720 },
-        baseURL: 'http://localhost:4173',
+        baseURL: process.env.BASE_URL || 'http://localhost:4173',
         headless: true,
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
@@ -46,7 +46,7 @@ export default defineConfig({
       use: {
         browserName: 'chromium',
         ...devices['Pixel 5'],
-        baseURL: 'http://localhost:4173',
+        baseURL: process.env.BASE_URL || 'http://localhost:4173',
         headless: true,
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
