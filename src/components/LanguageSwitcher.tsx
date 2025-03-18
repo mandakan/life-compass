@@ -124,6 +124,7 @@ const LanguageSwitcher: React.FC = () => {
             <li
               key={lang.code}
               id={lang.code}
+              data-lang={lang.code}
               role="option"
               aria-selected={selectedLanguage === lang.code}
               className={`relative cursor-pointer py-2 pr-9 pl-3 text-sm select-none ${
