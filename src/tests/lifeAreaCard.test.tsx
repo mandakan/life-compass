@@ -10,37 +10,49 @@ vi.mock('react-i18next', () => ({
 }));
 
 // Create a dummy CustomSlider component since it is used by LifeAreaCard
-vi.mock('../components/CustomSlider', () => (props: any) => {
-  const { value, onChange, min, max, step } = props;
-  return (
-    <input
-      data-testid="custom-slider"
-      type="range"
-      value={value}
-      min={min}
-      max={max}
-      step={step}
-      onChange={(e) => onChange(Number(e.target.value))}
-    />
-  );
+vi.mock('../components/CustomSlider', () => {
+  return {
+    default: (props: any) => {
+      const { value, onChange, min, max, step } = props;
+      return (
+        <input
+          data-testid="custom-slider"
+          type="range"
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          onChange={(e) => onChange(Number(e.target.value))}
+        />
+      );
+    },
+  };
 });
 
 // Create a dummy CustomButton component since it is used by LifeAreaCard
-vi.mock('../components/CustomButton', () => (props: any) => {
-  return (
-    <button data-testid="custom-button" onClick={props.onClick}>
-      {props.children}
-    </button>
-  );
+vi.mock('../components/CustomButton', () => {
+  return {
+    default: (props: any) => {
+      return (
+        <button data-testid="custom-button" onClick={props.onClick}>
+          {props.children}
+        </button>
+      );
+    },
+  };
 });
 
 // Create a dummy WarningMessage component for testing purposes
-vi.mock('../components/WarningMessage', () => (props: any) => {
-  return (
-    <div data-testid="warning-message">
-      {props.title}: {props.message}
-    </div>
-  );
+vi.mock('../components/WarningMessage', () => {
+  return {
+    default: (props: any) => {
+      return (
+        <div data-testid="warning-message">
+          {props.title}: {props.message}
+        </div>
+      );
+    },
+  };
 });
 
 const sampleArea = {
