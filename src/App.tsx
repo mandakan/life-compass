@@ -13,7 +13,7 @@ import AppSettingsProvider from './context/AppSettingsContext';
 const Content = () => {
   const { t } = useTranslation();
   useEffect(() => {
-    document.title = t('document_title');
+    document.title = t('life_compass_title', 'Livskompass');
   }, [t]);
 
   return (
