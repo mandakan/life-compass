@@ -11,7 +11,7 @@ This project aims to develop a web-based application that helps users reflect on
 
 ## AI-Assisted Development
 
-This project is being developed in collaboration with AI-assisted tools. A key aspect of this project is to **explore the potential of AI in software development**, including decision-making, structuring, and implementation.
+This project is being developed in collaboration with AI-assisted tools. A key aspect of this project is to **explore the potential of AI in software development**, including decision-making, structuring, and implementation details.
 
 ### AI's Role in the Project
 
@@ -136,6 +136,20 @@ This roadmap outlines the different development phases of the Life Compass proje
 - [x] User Story 9.1: Export JSON
 - [x] User Story 9.4: Import JSON
 - [ ] User Story 9.5: Warn on Overwrite
+
+## 🌟 Phase 4: Internationalization & Localization
+
+> Goal: Ensure the Life Compass is accessible to a global audience by implementing robust internationalization (i18n) support and dynamic language features.
+
+### Key Features & User Stories
+
+- [x] User Story 8.1: Define Translation Structure
+- [x] User Story 8.2: Implement Language Switcher
+- [x] User Story 8.10: Crowdsourced Translation Review
+- [x] User Story 8.11: Export/Import Translations
+- [ ] User Story 8.5: Dynamic Language Loading
+- [ ] User Story 8.6: Automatic Translation
+- [ ] User Story 8.8: User Feedback on Translations
 
 ---
 
