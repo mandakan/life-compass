@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { devices, defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e',
@@ -7,15 +7,55 @@ export default defineConfig({
     timeout: 5000,
   },
   fullyParallel: true,
-  use: {
-    baseURL: 'http://localhost:4173', // This should point to your production-like server
-    headless: true, // Run tests in headless mode
-    screenshot: 'only-on-failure', // Capture screenshots when tests fail
-    video: 'retain-on-failure', // Record video for debugging
-  },
+  projects: [
+    {
+      name: 'chromium-desktop',
+      use: {
+        browserName: 'chromium',
+        viewport: { width: 1280, height: 720 },
+        baseURL: 'http://localhost:4173',
+        headless: true,
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+      },
+    },
+    {
+      name: 'firefox-desktop',
+      use: {
+        browserName: 'firefox',
+        viewport: { width: 1280, height: 720 },
+        baseURL: 'http://localhost:4173',
+        headless: true,
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+      },
+    },
+    {
+      name: 'webkit-desktop',
+      use: {
+        browserName: 'webkit',
+        viewport: { width: 1280, height: 720 },
+        baseURL: 'http://localhost:4173',
+        headless: true,
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+      },
+    },
+    {
+      name: 'chromium-mobile',
+      use: {
+        browserName: 'chromium',
+        ...devices['Pixel 5'],
+        baseURL: 'http://localhost:4173',
+        headless: true,
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+      },
+    },
+  ],
   webServer: {
-    command: 'npm run preview', // Runs the production-like server
-    port: 4173, // Default preview server port
-    reuseExistingServer: !process.env.CI, // Reuse server locally
+    command: 'npm run preview',
+    port: 4173,
+    reuseExistingServer: !process.env.CI,
   },
 });
