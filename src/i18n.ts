@@ -30,7 +30,7 @@ i18n
       cleanCode: true,
       checkWhitelist: true,
     },
-    supportedLngs: ['en', 'sv', 'de', 'da', 'nl', 'nb'],
+    supportedLngs: ['en', 'sv', 'de', 'da', 'nl', 'nb', 'tlh'],
     nonExplicitSupportedLngs: true,
     fallbackLng: 'en',
     load: 'languageOnly',

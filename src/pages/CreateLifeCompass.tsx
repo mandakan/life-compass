@@ -447,11 +447,7 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div
-      className={`bg-[var(--color-bg)] p-4 ${
-        isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'
-      } font-sans`}
-    >
+    <div className={`p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           {t('local_storage_not_available')}
@@ -460,31 +456,21 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-      {isDesktop ? (
-        <DesktopToolbar
-          onAddNewLifeArea={() => handleAddNewLifeArea()}
-          onAddPredefinedAreas={handleAddPredefinedAreas}
-          onReset={() => setShowResetModal(true)}
-          onToggleRadar={() => setShowRadar(prev => !prev)}
-          showRadar={showRadar}
-          onImportFile={handleImportFile}
-          onRemoveAll={handleRemoveAllLifeAreas}
-        />
-      ) : (
-        <FloatingToolbar
-          onAddNewLifeArea={() => handleAddNewLifeArea()}
-          onAddPredefinedAreas={handleAddPredefinedAreas}
-          onReset={() => setShowResetModal(true)}
-          onToggleRadar={() => setShowRadar(prev => !prev)}
-          showRadar={showRadar}
-          onImportFile={handleImportFile}
-          onRemoveAll={handleRemoveAllLifeAreas}
-        />
-      )}
+
+      <FloatingToolbar
+        onAddNewLifeArea={() => handleAddNewLifeArea()}
+        onAddPredefinedAreas={handleAddPredefinedAreas}
+        onReset={() => setShowResetModal(true)}
+        onToggleRadar={() => setShowRadar(prev => !prev)}
+        showRadar={showRadar}
+        onImportFile={handleImportFile}
+        onRemoveAll={handleRemoveAllLifeAreas}
+      />
+
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
-      {isDesktop && <hr className="my-4" />}
+
       {showRadar ? (
         <div className="mx-auto mt-4 w-full">
           <RadarChart data={radarData} width="100%" aspect={1} />
