@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test-verbose": "vitest --run --reporter verbose",
+    "test:e2e": "playwright test",
     "format": "prettier --write .",
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\"",
     "extract": "i18next"
@@ -42,6 +43,7 @@
     "postcss": "latest",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
+    "serve": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest",
