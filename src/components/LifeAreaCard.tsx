@@ -104,7 +104,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     'ml-0 px-2 py-1 rounded-sm border border-[var(--border)] w-full font-sans';
 
   const actionButtonClasses =
-    'flex items-center gap-2 bg-[var(--color-primary)] text-white border-none py-1 px-2 rounded-sm cursor-pointer transition-colors';
+    'cursor-pointer border-none bg-transparent';
 
   if (isEditing) {
     return (
@@ -272,30 +272,67 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         </div>
         <div className="flex flex-grow flex-col">
           <div>
-            <div className="mb-2 flex items-center">
-              <button
-                onClick={() => setShowDescription(true)}
-                className="mr-2 cursor-pointer border-none bg-transparent"
-                aria-label={t('show_description')}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="size-6"
+            <div className="mb-2 flex items-center justify-between">
+              <div className="flex items-center">
+                <button
+                  onClick={() => setShowDescription(true)}
+                  className="mr-2 cursor-pointer border-none bg-transparent"
+                  aria-label={t('show_description')}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                  />
-                </svg>
-              </button>
-              <h4 className="m-0 font-sans text-lg font-normal text-[var(--color-primary)]">
-                {area.name}
-              </h4>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                    />
+                  </svg>
+                </button>
+                <h4 className="m-0 font-sans text-lg font-normal text-[var(--color-primary)]">
+                  {area.name}
+                </h4>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => onEdit(area)}
+                  title={t('edit')}
+                  aria-label={t('edit')}
+                  className={actionButtonClasses}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => onRemove(area.id)}
+                  title={t('delete')}
+                  aria-label={`${t('delete')} ${area.name}`}
+                  className={actionButtonClasses}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z" />
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4h.5a.5.5 0 0 0 0-1h-10z" />
+                  </svg>
+                </button>
+              </div>
             </div>
             {showDescription && (
               <div
@@ -389,42 +426,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               </label>
             </div>
           </div>
-        </div>
-        <div className="mt-auto flex gap-2">
-          <button
-            className={actionButtonClasses}
-            title={t('edit')}
-            onClick={() => onEdit(area)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.707 0L10.854 1.646a.5.5 0 0 1 0-.707l1-1a.5.5 0 0 1 .707 0l2.94 2.94zM4.5 13.5v-2h2l7.5-7.5-2-2L4.5 9.5v2h-2v2h2z" />
-            </svg>
-            {t('edit')}
-          </button>
-          <button
-            className={actionButtonClasses}
-            title={t('delete')}
-            aria-label={`${t('delete')} ${area.name}`}
-            onClick={() => onRemove(area.id)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z" />
-              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 1 1 0-2h3.086a1 1 0 0 1 .707.293l.707.707h2.828l.707-.707A1 1 0 0 1 11.414 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4h.5a.5.5 0 0 0 0-1h-10z" />
-            </svg>
-            {t('delete')}
-          </button>
         </div>
       </div>
     );
