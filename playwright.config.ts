@@ -47,4 +47,5 @@ export default defineConfig({
     port: 4173,
     reuseExistingServer: !process.env.CI,
   },
+  reporter: [['html', { outputFolder: 'playwright-report' }]],
 });
