@@ -14,6 +14,7 @@ const languages: Language[] = [
   { code: 'de', name: 'Deutsch', verified: false },
   { code: 'da', name: 'Dansk', verified: false },
   { code: 'nb', name: 'Norsk Bokmål', verified: false },
+  { code: 'tlh', name: 'tlhIngan Hol', verified: false },
 ];
 
 const LanguageSwitcher: React.FC = () => {
