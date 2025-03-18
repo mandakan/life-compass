@@ -151,6 +151,14 @@ This roadmap outlines the different development phases of the Life Compass proje
 - [ ] User Story 8.6: Automatic Translation
 - [ ] User Story 8.8: User Feedback on Translations
 
+## 🌟 Phase 5: Automated Testing & Quality Assurance
+
+> Goal: Establish robust testing frameworks and processes to ensure continuous stability and regression prevention through comprehensive automated tests.
+
+✅ **Testing Automation**
+
+- [x] User Story 7.10: Implement Automated End-to-End Tests
+
 ---
 
 ## Currently Implemented Features
@@ -168,6 +176,7 @@ Based on the analysis of the code base, the following features have been impleme
 - Multi-language support facilitated by the LanguageSwitcher component and i18next integration.
 - Adaptive theming, including dark mode support, managed through the ThemeContext.
 - Responsive design with both desktop and mobile navigation components.
+- Automated end-to-end tests to validate navigation between pages and component integration.
 
 ---
 

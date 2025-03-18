@@ -8,9 +8,12 @@
     "preview": "vite preview",
     "test": "vitest",
     "test-verbose": "vitest --run --reporter verbose",
+    "test:e2e": "npm run build && playwright test",
+    "test:e2e-debug": "npm run build && playwright test --debug",
     "format": "prettier --write .",
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\"",
-    "extract": "i18next"
+    "extract": "i18next",
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
     "i18next": "latest",
@@ -39,9 +42,11 @@
     "i18next-parser": "latest",
     "jsdom": "latest",
     "playwright": "latest",
+    "@playwright/test": "latest",
     "postcss": "latest",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
+    "serve": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest",

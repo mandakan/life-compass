@@ -1,0 +1,38 @@
+name: Production Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  production-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production app
+        run: npm run build
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+
+      - name: Upload Playwright Test Artifacts (Screenshots, Videos, Traces)
+        uses: actions/upload-artifact@v4
+        if: always() # Ensures upload even if tests fail
+        with:
+          name: playwright-artifacts
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7

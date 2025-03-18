@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
@@ -10,6 +11,11 @@ import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
 
 const Content = () => {
+  const { t } = useTranslation();
+  useEffect(() => {
+    document.title = t('life_compass_title', 'Livskompass');
+  }, [t]);
+
   return (
     <div className="bg-bg text-text bg-gradient flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">

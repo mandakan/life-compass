@@ -77,11 +77,13 @@ const LanguageSwitcher: React.FC = () => {
       <button
         ref={buttonRef}
         type="button"
+        id="language-switcher"
         className="inline-flex w-full min-w-max justify-center rounded-md px-4 py-2 text-sm font-medium shadow-sm hover:bg-[var(--hover-bg)] focus:outline-none"
         style={{
           backgroundColor: 'var(--color-bg)',
           border: '1px solid var(--border)',
           color: 'var(--color-text)',
+          zIndex: 50,
         }}
         aria-haspopup="listbox"
         aria-expanded={dropdownOpen}
@@ -122,6 +124,7 @@ const LanguageSwitcher: React.FC = () => {
             <li
               key={lang.code}
               id={lang.code}
+              data-lang={lang.code}
               role="option"
               aria-selected={selectedLanguage === lang.code}
               className={`relative cursor-pointer py-2 pr-9 pl-3 text-sm select-none ${
