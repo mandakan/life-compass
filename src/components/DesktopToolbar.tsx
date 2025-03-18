@@ -30,7 +30,6 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
 
   return (
     <div>
-      <CustomButton onClick={onAddNewLifeArea}>{t('add')}</CustomButton>
       <CustomButton onClick={onAddPredefinedAreas}>
         {t('add_predefined')}
       </CustomButton>
