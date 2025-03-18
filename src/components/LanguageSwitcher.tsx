@@ -83,6 +83,7 @@ const LanguageSwitcher: React.FC = () => {
           backgroundColor: 'var(--color-bg)',
           border: '1px solid var(--border)',
           color: 'var(--color-text)',
+          zIndex: 50
         }}
         aria-haspopup="listbox"
         aria-expanded={dropdownOpen}
