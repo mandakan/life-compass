@@ -31,17 +31,6 @@ export default defineConfig({
       },
     },
     {
-      name: 'webkit-desktop',
-      use: {
-        browserName: 'webkit',
-        viewport: { width: 1280, height: 720 },
-        baseURL: process.env.BASE_URL || 'http://localhost:4173',
-        headless: true,
-        screenshot: 'only-on-failure',
-        video: 'retain-on-failure',
-      },
-    },
-    {
       name: 'chromium-mobile',
       use: {
         browserName: 'chromium',
