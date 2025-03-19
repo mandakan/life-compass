@@ -30,7 +30,7 @@ New users should be guided through an engaging, step-by-step onboarding tutorial
 
 ## ❓ Refinement Questions
 
-- Should the tutorial provide different pathways based on the user’s self-identified experience level? No.
+- Should the tutorial provide different pathways based on the user’s self-identified experience level? Yes. During the tutorial the user shall be presented with the option to begin with or without the predefined life areas.
 - Is it preferable to implement the guide using tooltips, modals, or a combination of both? A combination.
 - What metrics should be tracked to determine the tutorial’s effectiveness? None at this point.
 - Should there be an option to provide feedback on the tutorial directly within the onboarding sequence? No.
