@@ -38,11 +38,17 @@ const DesktopNavigation: React.FC = () => {
         <Link to="/" className="!text-[var(--menu-text)] no-underline">
           <h1 className="text-xl font-bold">{t('life_compass')}</h1>
         </Link>
-        <Link to="/create-life-compass" className="!text-[var(--menu-text)] no-underline">
+        <Link
+          to="/create-life-compass"
+          className="!text-[var(--menu-text)] no-underline"
+        >
           {t('create_life_compass')}
         </Link>
         {showDevTools && (
-          <Link to="/design-principles" className="!text-[var(--menu-text)] no-underline">
+          <Link
+            to="/design-principles"
+            className="!text-[var(--menu-text)] no-underline"
+          >
             {t('design_principles')}
           </Link>
         )}

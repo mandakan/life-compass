@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 
   const githubIcon = (
     <svg
-      className="inline mr-1 h-6 w-6 align-middle"
+      className="mr-1 inline h-6 w-6 align-middle"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -18,8 +18,8 @@ const Footer: React.FC = () => {
   );
 
   return (
-    <footer className="mt-auto bg-[var(--color-primary)] text-[var(--on-primary)] p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <footer className="mt-auto bg-[var(--color-primary)] p-4 text-[var(--on-primary)]">
+      <div className="container mx-auto flex items-center justify-between">
         <span>{t('footer_text', '© 2025 Life Compass')}</span>
         <nav className="flex items-center space-x-4">
           <Link to="/about" className="text-[var(--on-primary)]">

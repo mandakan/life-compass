@@ -146,11 +146,11 @@ const LanguageSwitcher: React.FC = () => {
                   ? 'text-[var(--accent)]'
                   : 'text-[var(--color-text)]'
               } hover:bg-[var(--hover-bg)]`}
-              onClick={(e) => { 
+              onClick={e => {
                 e.stopPropagation();
                 handleLanguageSelect(lang.code);
               }}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   e.stopPropagation();

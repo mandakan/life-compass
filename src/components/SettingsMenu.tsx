@@ -50,7 +50,10 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
   }, [onClose]);
 
   return (
-    <div className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]" ref={menuRef}>
+    <div
+      className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]"
+      ref={menuRef}
+    >
       <h2 className="mb-4 text-lg font-bold">{t('settings')}</h2>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">

@@ -24,13 +24,10 @@ const SettingsPage: React.FC = () => {
           </Link>
         </div>
       </header>
-      <main className="p-4 relative">
+      <main className="relative p-4">
         {menuVisible && (
           <>
-            <div 
-              className="fixed inset-0 z-40"
-              onClick={handleClose}
-            ></div>
+            <div className="fixed inset-0 z-40" onClick={handleClose}></div>
             <div className="fixed inset-0 z-50 flex items-center justify-center">
               <SettingsMenu onClose={handleClose} />
             </div>
