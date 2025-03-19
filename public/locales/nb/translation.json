@@ -74,5 +74,6 @@
   "onboarding.back": "Tilbake",
   "onboarding.skip": "Hopp over introduksjonen",
   "onboarding.next": "Neste",
-  "onboarding.finish": "Avslutt introduksjonen"
+  "onboarding.finish": "Avslutt introduksjonen",
+  "replay_onboarding": "Spill av onboarding-tutorialen på nytt"
 }

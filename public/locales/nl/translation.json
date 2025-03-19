@@ -74,5 +74,6 @@
   "onboarding.back": "Terug",
   "onboarding.skip": "Sla tutorial over",
   "onboarding.next": "Volgende",
-  "onboarding.finish": "Tutorial afronden"
+  "onboarding.finish": "Tutorial afronden",
+  "replay_onboarding": "Tutorial opnieuw afspelen"
 }

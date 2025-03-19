@@ -74,5 +74,6 @@
   "onboarding.back": "Zurück",
   "onboarding.skip": "Tutorial überspringen",
   "onboarding.next": "Weiter",
-  "onboarding.finish": "Tutorial beenden"
+  "onboarding.finish": "Tutorial beenden",
+  "replay_onboarding": "Onboarding-Tutorial erneut abspielen"
 }

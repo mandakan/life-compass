@@ -74,5 +74,6 @@
   "onboarding.back": "Tilbage",
   "onboarding.skip": "Spring guiden over",
   "onboarding.next": "Næste",
-  "onboarding.finish": "Afslut guiden"
+  "onboarding.finish": "Afslut guiden",
+  "replay_onboarding": "Afspil onboarding-vejledning igen"
 }
