@@ -22,6 +22,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-i18next": "latest",
+    "react-markdown": "latest",
     "react-router-dom": "latest",
     "recharts": "latest",
     "zustand": "latest"
