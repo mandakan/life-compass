@@ -34,13 +34,13 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
       id: 2,
       type: 'tooltip',
       content:
-        'This is your dashboard where you can add and manage your life areas.\nHere you can see a quick overview of your current status.',
+        'Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding predefined life areas, resetting, exporting/importing data, and toggling the radar view.',
     },
     {
       id: 3,
       type: 'tooltip',
       content:
-        'Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding a new life area, resetting, importing data, and toggling the radar view.',
+        'Take a look at the settings menu in the top right. You can access the tutorial, change the language, and more.',
     },
     {
       id: 4,
