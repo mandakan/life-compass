@@ -8,7 +8,7 @@ interface TooltipProps {
 const Tooltip: React.FC<TooltipProps> = ({ children, onClose }) => {
   return (
     <div
-      className="tooltip-container fixed p-3 bg-[var(--color-primary)] text-[var(--on-primary)] rounded shadow-lg z-50"
+      className="tooltip-container fixed z-50 rounded bg-[var(--color-primary)] p-3 text-[var(--on-primary)] shadow-lg"
       style={{ top: '20%', left: '50%', transform: 'translateX(-50%)' }}
     >
       <div className="tooltip-content">{children}</div>

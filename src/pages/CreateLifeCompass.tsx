@@ -57,7 +57,8 @@ const CreateLifeCompass: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
+  const [showRecommendationCallout, setShowRecommendationCallout] =
+    useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showRemoveAllModal, setShowRemoveAllModal] = useState(false);
 
@@ -117,13 +118,21 @@ const CreateLifeCompass: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const savedScrollPosition = localStorage.getItem('createlifecompassScrollPosition');
-    window.scrollTo(0, savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0);
+    const savedScrollPosition = localStorage.getItem(
+      'createlifecompassScrollPosition',
+    );
+    window.scrollTo(
+      0,
+      savedScrollPosition ? parseInt(savedScrollPosition, 10) : 0,
+    );
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      localStorage.setItem('createlifecompassScrollPosition', window.scrollY.toString());
+      localStorage.setItem(
+        'createlifecompassScrollPosition',
+        window.scrollY.toString(),
+      );
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -137,7 +146,7 @@ const CreateLifeCompass: React.FC = () => {
         ([entry]) => {
           setFooterVisible(entry.isIntersecting);
         },
-        { root: null, threshold: 0 }
+        { root: null, threshold: 0 },
       );
       observer.observe(footer);
       return () => observer.disconnect();
@@ -149,7 +158,9 @@ const CreateLifeCompass: React.FC = () => {
       const base = t('new_life_area');
       let name = base;
       let counter = 2;
-      while (lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())) {
+      while (
+        lifeAreas.find(area => area.name.toLowerCase() === name.toLowerCase())
+      ) {
         name = `${base} ${counter}`;
         counter++;
       }
@@ -185,7 +196,9 @@ const CreateLifeCompass: React.FC = () => {
     const predefined = await getPredefinedLifeAreas();
     const newAreas = predefined.filter(
       predef =>
-        !lifeAreas.some(existing => existing.name.toLowerCase() === predef.name.toLowerCase()),
+        !lifeAreas.some(
+          existing => existing.name.toLowerCase() === predef.name.toLowerCase(),
+        ),
     );
     if (newAreas.length > 0) {
       setLifeAreas([...lifeAreas, ...newAreas]);
@@ -242,7 +255,8 @@ const CreateLifeCompass: React.FC = () => {
     if (
       lifeAreas.find(
         area =>
-          area.name.toLowerCase() === editName.trim().toLowerCase() && area.id !== editingAreaId,
+          area.name.toLowerCase() === editName.trim().toLowerCase() &&
+          area.id !== editingAreaId,
       )
     ) {
       setError(t('duplicate_name_not_allowed'));
@@ -337,7 +351,10 @@ const CreateLifeCompass: React.FC = () => {
     );
   };
 
-  const handleInlineDetailsChange = (newDetails: string, areaToUpdate: LifeArea) => {
+  const handleInlineDetailsChange = (
+    newDetails: string,
+    areaToUpdate: LifeArea,
+  ) => {
     setLifeAreas(prevLifeAreas =>
       prevLifeAreas.map(area => {
         if (area.id === areaToUpdate.id) {
@@ -348,47 +365,54 @@ const CreateLifeCompass: React.FC = () => {
     );
   };
 
-  const handleDragStart = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    const cardEl = event.currentTarget;
-    if (cardEl && event.dataTransfer) {
-      event.dataTransfer.setDragImage(cardEl, cardEl.clientWidth / 2, cardEl.clientHeight / 2);
-      event.dataTransfer.setData('text/plain', index.toString());
-      event.dataTransfer.effectAllowed = 'move';
-    }
-    setDraggedIndex(index);
-  };
+  const handleDragStart =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      const cardEl = event.currentTarget;
+      if (cardEl && event.dataTransfer) {
+        event.dataTransfer.setDragImage(
+          cardEl,
+          cardEl.clientWidth / 2,
+          cardEl.clientHeight / 2,
+        );
+        event.dataTransfer.setData('text/plain', index.toString());
+        event.dataTransfer.effectAllowed = 'move';
+      }
+      setDraggedIndex(index);
+    };
 
-  const handleDragOver = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    if (event.dataTransfer) {
-      event.dataTransfer.dropEffect = 'move';
-    }
-    setDragOverIndex(index);
-  };
+  const handleDragOver =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+      }
+      setDragOverIndex(index);
+    };
 
-  const handleDrop = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    let draggedIdx: number | null = null;
-    if (event.dataTransfer) {
-      const data = event.dataTransfer.getData('text/plain');
-      const parsedIndex = parseInt(data, 10);
-      if (!isNaN(parsedIndex)) {
-        draggedIdx = parsedIndex;
+  const handleDrop =
+    (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      let draggedIdx: number | null = null;
+      if (event.dataTransfer) {
+        const data = event.dataTransfer.getData('text/plain');
+        const parsedIndex = parseInt(data, 10);
+        if (!isNaN(parsedIndex)) {
+          draggedIdx = parsedIndex;
+        } else {
+          draggedIdx = draggedIndex;
+        }
       } else {
         draggedIdx = draggedIndex;
       }
-    } else {
-      draggedIdx = draggedIndex;
-    }
-    if (draggedIdx !== null && draggedIdx !== index) {
-      const reordered = [...lifeAreas];
-      const draggedItem = reordered.splice(draggedIdx, 1)[0];
-      reordered.splice(index, 0, draggedItem);
-      setLifeAreas(reordered);
-    }
-    setDraggedIndex(null);
-    setDragOverIndex(null);
-  };
+      if (draggedIdx !== null && draggedIdx !== index) {
+        const reordered = [...lifeAreas];
+        const draggedItem = reordered.splice(draggedIdx, 1)[0];
+        reordered.splice(index, 0, draggedItem);
+        setLifeAreas(reordered);
+      }
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+    };
 
   const radarData = lifeAreas.map(area => ({
     area: area.name,
@@ -425,8 +449,10 @@ const CreateLifeCompass: React.FC = () => {
 
   return (
     <div className="create-life-compass-page bg-bg text-text p-4">
-      <OnboardingTutorialWrapper onPredefinedSelected={handleAddPredefinedAreas} />
-      <h1 className="text-2xl font-bold mb-4">Create Life Compass</h1>
+      <OnboardingTutorialWrapper
+        onPredefinedSelected={handleAddPredefinedAreas}
+      />
+      <h1 className="mb-4 text-2xl font-bold">Create Life Compass</h1>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           {t('local_storage_not_available')}
@@ -461,7 +487,9 @@ const CreateLifeCompass: React.FC = () => {
               onDragLeave={() => setDragOverIndex(null)}
               onDrop={handleDrop(index)}
               className={`flex h-full w-full ${
-                dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''
+                dragOverIndex === index
+                  ? 'border-2 border-dashed border-[var(--color-primary)]'
+                  : ''
               }`}
             >
               <LifeAreaCard
@@ -496,7 +524,9 @@ const CreateLifeCompass: React.FC = () => {
             onClick={() => handleAddNewLifeArea(lifeAreas.length)}
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
-            <span className="text-[var(--color-primary)]">{t('plus_add_new_life_area')}</span>
+            <span className="text-[var(--color-primary)]">
+              {t('plus_add_new_life_area')}
+            </span>
           </div>
         </div>
       ) : (
@@ -509,7 +539,9 @@ const CreateLifeCompass: React.FC = () => {
               onDragLeave={() => setDragOverIndex(null)}
               onDrop={handleDrop(index)}
               className={`flex h-full w-full ${
-                dragOverIndex === index ? 'border-2 border-dashed border-[var(--color-primary)]' : ''
+                dragOverIndex === index
+                  ? 'border-2 border-dashed border-[var(--color-primary)]'
+                  : ''
               }`}
             >
               <LifeAreaCard
@@ -544,7 +576,9 @@ const CreateLifeCompass: React.FC = () => {
             onClick={() => handleAddNewLifeArea(lifeAreas.length)}
             className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
           >
-            <span className="text-[var(--color-primary)]">{t('+ Lägg till nytt livsområde')}</span>
+            <span className="text-[var(--color-primary)]">
+              {t('+ Lägg till nytt livsområde')}
+            </span>
           </div>
         </div>
       )}
@@ -568,7 +602,11 @@ const CreateLifeCompass: React.FC = () => {
       />
       <ImportPreviewModal
         visible={previewVisible}
-        metadata={importedData ? importedData.metadata : { exportTimestamp: '', version: '' }}
+        metadata={
+          importedData
+            ? importedData.metadata
+            : { exportTimestamp: '', version: '' }
+        }
         data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
         onConfirm={handleConfirmImport}
         onCancel={handleCancelImport}

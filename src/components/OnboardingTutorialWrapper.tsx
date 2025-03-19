@@ -10,7 +10,9 @@ interface OnboardingTutorialWrapperProps {
  * It checks localStorage for a tutorialCompleted flag to determine if the tutorial should be
  * shown on first launch, and provides a mechanism for replaying the tutorial via settings or help.
  */
-const OnboardingTutorialWrapper: React.FC<OnboardingTutorialWrapperProps> = ({ onPredefinedSelected }) => {
+const OnboardingTutorialWrapper: React.FC<OnboardingTutorialWrapperProps> = ({
+  onPredefinedSelected,
+}) => {
   const [showTutorial, setShowTutorial] = useState(false);
 
   useEffect(() => {
@@ -38,7 +40,10 @@ const OnboardingTutorialWrapper: React.FC<OnboardingTutorialWrapperProps> = ({ o
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="absolute inset-0 bg-black opacity-50 backdrop-blur-sm"></div>
           <div className="relative z-10">
-            <OnboardingTutorial onComplete={handleTutorialComplete} onPredefinedSelected={onPredefinedSelected} />
+            <OnboardingTutorial
+              onComplete={handleTutorialComplete}
+              onPredefinedSelected={onPredefinedSelected}
+            />
           </div>
         </div>
       )}

@@ -94,7 +94,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
             localStorage.removeItem('tutorialCompleted');
             window.location.reload();
           }}
-          className="w-full bg-[var(--color-primary)] text-[var(--on-primary)] px-3 py-2 rounded focus:outline-none focus:ring"
+          className="w-full rounded bg-[var(--color-primary)] px-3 py-2 text-[var(--on-primary)] focus:ring focus:outline-none"
           aria-label="Replay onboarding tutorial"
         >
           {t('replay_onboarding', 'Replay Onboarding Tutorial')}

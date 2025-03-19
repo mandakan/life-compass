@@ -49,12 +49,16 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   const expandedBottomClass = props.footerVisible ? 'bottom-38' : 'bottom-20';
   const mainButtonBottomClass = props.footerVisible ? 'bottom-20' : 'bottom-4';
   // New button positioned above the main toggle button
-  const viewToggleButtonBottom = props.footerVisible ? 'bottom-40' : 'bottom-24';
+  const viewToggleButtonBottom = props.footerVisible
+    ? 'bottom-40'
+    : 'bottom-24';
 
   return (
     <>
       {expanded && (
-        <div className={`fixed right-4 ${expandedBottomClass} z-60 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg`}>
+        <div
+          className={`fixed right-4 ${expandedBottomClass} z-60 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg`}
+        >
           <DesktopToolbar
             onAddNewLifeArea={handleAddNewLifeArea}
             onAddPredefinedAreas={handleAddPredefinedAreas}
@@ -67,7 +71,9 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       <button
         onClick={handleToggleRadar}
         className={`fixed right-4 ${viewToggleButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
-        aria-label={props.showRadar ? t('show_card_view') : t('show_radar_view')}
+        aria-label={
+          props.showRadar ? t('show_card_view') : t('show_radar_view')
+        }
       >
         {props.showRadar ? (
           // Grid Icon (card view) when radar is active
@@ -77,12 +83,44 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="h-6 w-6"
           >
-            <rect x="3" y="3" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
-            <rect x="14" y="3" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
-            <rect x="3" y="14" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
-            <rect x="14" y="14" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
+            <rect
+              x="3"
+              y="3"
+              width="7"
+              height="7"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              fill="currentColor"
+            />
+            <rect
+              x="14"
+              y="3"
+              width="7"
+              height="7"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              fill="currentColor"
+            />
+            <rect
+              x="3"
+              y="14"
+              width="7"
+              height="7"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              fill="currentColor"
+            />
+            <rect
+              x="14"
+              y="14"
+              width="7"
+              height="7"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              fill="currentColor"
+            />
           </svg>
         ) : (
           // Radar Icon when card view is active
@@ -92,11 +130,31 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="h-6 w-6"
           >
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" strokeWidth="1.5" />
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <line
+              x1="12"
+              y1="3"
+              x2="12"
+              y2="21"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <line
+              x1="3"
+              y1="12"
+              x2="21"
+              y2="12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
           </svg>
         )}
       </button>
@@ -112,7 +170,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="h-6 w-6"
           >
             <path
               strokeLinecap="round"
@@ -127,7 +185,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="h-6 w-6"
           >
             <path
               strokeLinecap="round"
