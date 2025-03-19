@@ -44,7 +44,7 @@ const About: React.FC = () => {
               <strong>Heroicons:</strong> MIT License - <a className="underline" href="https://heroicons.com" target="_blank" rel="noopener noreferrer">https://heroicons.com</a>
             </li>
             <li>
-              <strong>KBT Primarvården:</strong> Idea source - <a className="underline" href="https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/" target="_blank" rel="noopener noreferrer">https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/</a>
+              <strong>KBT Primarvården:</strong> Idea source – Licensed under <a className="underline" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> - <a className="underline" href="https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/" target="_blank" rel="noopener noreferrer">https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/</a>
             </li>
           </ul>
         </section>
