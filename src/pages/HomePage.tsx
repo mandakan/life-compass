@@ -19,7 +19,10 @@ const HomePage: React.FC = () => {
     <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
       <header className="mb-16 text-center">
         <h1 className="mb-4 text-4xl font-bold">
-          {t('life_compass_title', 'Utforska dina livsvärden med Livskompassen')}
+          {t(
+            'life_compass_title',
+            'Utforska dina livsvärden med Livskompassen',
+          )}
         </h1>
         <h2 className="mb-2 text-xl">
           {t(
