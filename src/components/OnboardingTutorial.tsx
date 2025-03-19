@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 import Tooltip from './Tooltip';
 import Modal from './Modal';
 
@@ -80,7 +81,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete, onP
       {step.type === 'modal' && (
         <Modal onClose={handleSkip}>
           <div className="p-4">
-            <p className="mb-4 whitespace-pre-line">{step.content}</p>
+            <ReactMarkdown className="mb-4">{step.content}</ReactMarkdown>
             {currentStep === 0 && (
               <div className="mb-4 flex gap-2">
                 <button onClick={() => handleSelectPathway('with')} className={primaryButtonClasses}>
@@ -110,7 +111,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete, onP
       {step.type === 'tooltip' && (
         <Tooltip onClose={handleSkip}>
           <div className="p-4">
-            <p className="mb-4 whitespace-pre-line">{step.content}</p>
+            <ReactMarkdown className="mb-4">{step.content}</ReactMarkdown>
             <div className="flex justify-between">
               {currentStep > 0 && (
                 <button onClick={handleBack} className={primaryButtonClasses}>
