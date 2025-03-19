@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="mt-auto bg-[var(--color-primary)] text-[var(--on-primary)] p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <span>{t('footer_text', '© 2023 Life Compass')}</span>
+        <span>{t('footer_text', '© 2025 Life Compass')}</span>
         <nav>
           <Link to="/about" className="text-[var(--on-primary)] underline">
             {t('about', 'About')}
