@@ -179,7 +179,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-                {t('satisfaction')}
+                {t('lived_according_to_past_week')}
                 <CustomSlider
                   value={editSatisfaction}
                   onChange={newValue => {
@@ -363,7 +363,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                   className="block w-full flex-1 resize-none bg-[var(--details-bg)] px-0 py-0 font-sans outline-none"
                 />
               ) : (
-                <span className="font-sans">
+                <span className="font-sans whitespace-pre-wrap">
                   {area.details || t('click_to_edit_details')}
                 </span>
               )}
@@ -394,7 +394,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-                {t('satisfaction')}
+                {t('lived_according_to_past_week')}
                 <CustomSlider
                   value={area.satisfaction}
                   onChange={newValue => {

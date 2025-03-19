@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import OnboardingTutorialWrapper from '../components/OnboardingTutorialWrapper';
 import LifeAreaCard from '../components/LifeAreaCard';
 import { LifeArea } from '../types/LifeArea';
 import WarningModal from '../components/WarningModal';
@@ -58,15 +59,45 @@ const CreateLifeCompass: React.FC = () => {
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [showRecommendationCallout, setShowRecommendationCallout] =
     useState(true);
-  const [showResetModal, setShowResetModal] = useState(false);
-  const [showRadar, setShowRadar] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showRemoveAllModal, setShowRemoveAllModal] = useState(false);
 
   const [importedData, setImportedData] = useState<any | null>(null);
   const [previewVisible, setPreviewVisible] = useState(false);
 
-  const containerRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
+  const [editName, setEditName] = useState('');
+  const [editDescription, setEditDescription] = useState('');
+  const [editDetails, setEditDetails] = useState('');
+  const [editImportance, setEditImportance] = useState<number>(5);
+  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
+
+  const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
+  const [showWarningModal, setShowWarningModal] = useState(false);
+
+  const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  // Track newly created card ID so we know to remove it if editing is aborted.
+  const [newAreaId, setNewAreaId] = useState<string | null>(null);
+
+  // New state to track if a footer is visible on the page.
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  // New state to control whether radar view is active.
+  const [showRadar, setShowRadar] = useState<boolean>(false);
+
+  // Clear editing state if the edited area is no longer in lifeAreas
+  useEffect(() => {
+    if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
+      setEditingAreaId(null);
+      setEditName('');
+      setEditDescription('');
+      setEditDetails('');
+      setEditImportance(5);
+      setEditSatisfaction(5);
+    }
+  }, [lifeAreas, editingAreaId]);
 
   useEffect(() => {
     if (storageAvailable) {
@@ -107,33 +138,20 @@ const CreateLifeCompass: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
-  const [editName, setEditName] = useState('');
-  const [editDescription, setEditDescription] = useState('');
-  const [editDetails, setEditDetails] = useState('');
-  const [editImportance, setEditImportance] = useState<number>(5);
-  const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
-
-  const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
-  const [showWarningModal, setShowWarningModal] = useState(false);
-
-  const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  // Track newly created card ID so we know to remove it if editing is aborted.
-  const [newAreaId, setNewAreaId] = useState<string | null>(null);
-
-  // New useEffect to clear editing state if the edited area is no longer in lifeAreas
+  // Use IntersectionObserver to detect when a footer element becomes visible
   useEffect(() => {
-    if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
-      setEditingAreaId(null);
-      setEditName('');
-      setEditDescription('');
-      setEditDetails('');
-      setEditImportance(5);
-      setEditSatisfaction(5);
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setFooterVisible(entry.isIntersecting);
+        },
+        { root: null, threshold: 0 },
+      );
+      observer.observe(footer);
+      return () => observer.disconnect();
     }
-  }, [lifeAreas, editingAreaId]);
+  }, []);
 
   const handleAddNewLifeArea = (insertionIndex?: number) => {
     const defaultName = (() => {
@@ -305,23 +323,6 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
-  const handleResetConfirm = async () => {
-    const predefined = await getPredefinedLifeAreas();
-    setLifeAreas(predefined);
-    setEditingAreaId(null);
-    setEditName('');
-    setEditDescription('');
-    setEditDetails('');
-    setEditImportance(5);
-    setEditSatisfaction(5);
-    setNewAreaId(null);
-    setShowResetModal(false);
-  };
-
-  const handleResetCancel = () => {
-    setShowResetModal(false);
-  };
-
   const handleRemoveAllLifeAreas = () => {
     setShowRemoveAllModal(true);
   };
@@ -366,7 +367,7 @@ const CreateLifeCompass: React.FC = () => {
 
   const handleDragStart =
     (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
-      const cardEl = containerRefs.current[index];
+      const cardEl = event.currentTarget;
       if (cardEl && event.dataTransfer) {
         event.dataTransfer.setDragImage(
           cardEl,
@@ -447,7 +448,10 @@ const CreateLifeCompass: React.FC = () => {
   };
 
   return (
-    <div className={`p-4 ${isDesktop ? 'pt-[calc(1rem)]' : 'pt-4'} font-sans`}>
+    <div className="create-life-compass-page bg-bg text-text p-4">
+      <OnboardingTutorialWrapper
+        onPredefinedSelected={handleAddPredefinedAreas}
+      />
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           {t('local_storage_not_available')}
@@ -456,21 +460,18 @@ const CreateLifeCompass: React.FC = () => {
       {lifeAreas.length > 10 && showRecommendationCallout && (
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
-
       <FloatingToolbar
         onAddNewLifeArea={() => handleAddNewLifeArea()}
         onAddPredefinedAreas={handleAddPredefinedAreas}
-        onReset={() => setShowResetModal(true)}
         onToggleRadar={() => setShowRadar(prev => !prev)}
         showRadar={showRadar}
         onImportFile={handleImportFile}
         onRemoveAll={handleRemoveAllLifeAreas}
+        footerVisible={footerVisible}
       />
-
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
       )}
-
       {showRadar ? (
         <div className="mx-auto mt-4 w-full">
           <RadarChart data={radarData} width="100%" aspect={1} />
@@ -480,7 +481,6 @@ const CreateLifeCompass: React.FC = () => {
           {lifeAreas.map((area, index) => (
             <div
               key={area.id}
-              ref={el => (containerRefs.current[index] = el)}
               onDragOver={handleDragOver(index)}
               onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
@@ -533,7 +533,6 @@ const CreateLifeCompass: React.FC = () => {
           {lifeAreas.map((area, index) => (
             <div
               key={area.id}
-              ref={el => (containerRefs.current[index] = el)}
               onDragOver={handleDragOver(index)}
               onDragEnter={() => setDragOverIndex(index)}
               onDragLeave={() => setDragOverIndex(null)}
@@ -593,12 +592,6 @@ const CreateLifeCompass: React.FC = () => {
         message={t('remove_life_area_warning')}
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
-      />
-      <WarningModal
-        visible={showResetModal}
-        message={t('reset_life_compass_warning')}
-        onConfirm={handleResetConfirm}
-        onCancel={handleResetCancel}
       />
       <WarningModal
         visible={showRemoveAllModal}

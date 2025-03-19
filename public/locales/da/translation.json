@@ -63,5 +63,17 @@
   "method": "Metode",
   "tools": "Værktøjer",
   "frameworksLibraries": "Frameworks/Biblioteker",
-  "attribution_message": "Denne applikation er bygget med omhu ved hjælp af moderne frameworks og værktøjer. Vi er taknemmelige for open source-fællesskabet og alle bidragydere, der har leveret de ressourcer, der gjorde dette projekt muligt."
+  "attribution_message": "Denne applikation er bygget med omhu ved hjælp af moderne frameworks og værktøjer. Vi er taknemmelige for open source-fællesskabet og alle bidragydere, der har leveret de ressourcer, der gjorde dette projekt muligt.",
+  "lived_according_to_past_week": "Levede i forrige uge",
+  "brief_life_compass_intruction": "Livskompasset indeholder ti områder, der typisk er vigtige for de fleste mennesker. I hver boks skal du skrive nogle ord om, hvad du ville værdsætte eller mene var vigtigt inden for netop dette område. I hvert område er der også to små bokse. I den venstre boks angiver du, hvor vigtigt hvert område er i dit liv på en skala fra 1 til 10, hvor 1 er uvigtigt og 10 er meget vigtigt. Forestil dig, hvordan livet ville være, hvis alt så ud præcis, som du ønskede.\n\nI den højre boks angiver du, hvor \"meget\" du har levet i overensstemmelse med dine værdier i den forløbne uge, hvor 1 betyder, at du slet ikke har levet efter dine værdier, og 10 betyder, at du fuldt ud har levet efter dine værdier. Herefter skal du undersøge forskellen mellem de to tal. Kan du finde nogle områder, der er vigtige for dig, hvor du ikke lever, som du ønsker? Overvej i så fald, hvad der forhindrer dig?",
+  "onboarding.welcome_prompt": "Velkommen til Livskompas!\nLad os starte introduktionen. Vil du begynde med foruddefinerede livsområder?\n(Du kan altid køre guiden igen fra indstillingsmenuen.)",
+  "onboarding.toolbar_tooltip": "Tag et kig på den flydende værktøjslinje nederst til højre. Den giver hurtig adgang til funktioner som at tilføje foruddefinerede livsområder, nulstille, eksportere/importere data og skifte radarvisning.",
+  "onboarding.settings_tooltip": "Se på indstillingsmenuen øverst til højre. Her kan du få adgang til guiden, ændre sprog og mere.",
+  "onboarding.with_predefined": "Med foruddefinerede livsområder (anbefales)",
+  "onboarding.without_predefined": "Uden foruddefinerede livsområder",
+  "onboarding.back": "Tilbage",
+  "onboarding.skip": "Spring guiden over",
+  "onboarding.next": "Næste",
+  "onboarding.finish": "Afslut guiden",
+  "replay_onboarding": "Afspil onboarding-vejledning igen"
 }

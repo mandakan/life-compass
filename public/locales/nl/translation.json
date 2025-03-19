@@ -63,5 +63,17 @@
   "method": "Methode",
   "tools": "Tools",
   "frameworksLibraries": "Frameworks/Bibliotheken",
-  "attribution_message": "Deze applicatie is met zorg gebouwd met behulp van moderne frameworks en tools. We zijn dankbaar voor de open source gemeenschap en alle bijdragers die de middelen hebben geleverd die dit project mogelijk hebben gemaakt."
+  "attribution_message": "Deze applicatie is met zorg gebouwd met behulp van moderne frameworks en tools. We zijn dankbaar voor de open source gemeenschap en alle bijdragers die de middelen hebben geleverd die dit project mogelijk hebben gemaakt.",
+  "lived_according_to_past_week": "Leefde in de afgelopen week",
+  "brief_life_compass_intruction": "Het levenskompas bevat tien gebieden die voor de meeste mensen belangrijk zijn. In elk vakje moet je een paar woorden schrijven over wat je waardevol of belangrijk vindt binnen dat specifieke gebied. Elk gebied heeft ook twee kleine vakjes. In het linker vakje geef je aan hoe belangrijk elk gebied in je leven is op een schaal van 1 tot 10, waarbij 1 niet belangrijk is en 10 zeer belangrijk. Stel je voor hoe je leven eruit zou zien als alles precies zo was als je wilde.\n\nIn het rechter vakje geef je aan in hoeverre je de afgelopen week in overeenstemming met je waarden hebt geleefd, waarbij 1 betekent dat je helemaal niet naar je waarden hebt geleefd en 10 betekent dat je volledig naar je waarden hebt geleefd. Vergelijk vervolgens de twee cijfers. Kun je gebieden vinden die belangrijk voor je zijn, waarin je niet leeft zoals je zou willen? Overweeg in dat geval wat je tegenhoudt!",
+  "onboarding.welcome_prompt": "Welkom bij Life Compass!\nLaten we de introductie starten. Wil je beginnen met vooraf gedefinieerde levensgebieden?\n(Je kunt de tutorial altijd opnieuw starten vanuit het instellingenmenu.)",
+  "onboarding.toolbar_tooltip": "Bekijk de zwevende werkbalk rechtsonder. Deze geeft je snelle toegang tot acties zoals het toevoegen van vooraf gedefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
+  "onboarding.settings_tooltip": "Bekijk het instellingenmenu rechtsboven. Hier kun je de tutorial openen, de taal wijzigen en meer.",
+  "onboarding.with_predefined": "Met vooraf gedefinieerde levensgebieden (aanbevolen)",
+  "onboarding.without_predefined": "Zonder vooraf gedefinieerde levensgebieden",
+  "onboarding.back": "Terug",
+  "onboarding.skip": "Sla tutorial over",
+  "onboarding.next": "Volgende",
+  "onboarding.finish": "Tutorial afronden",
+  "replay_onboarding": "Tutorial opnieuw afspelen"
 }

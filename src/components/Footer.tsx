@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="mt-auto bg-[var(--color-primary)] p-4 text-[var(--on-primary)]">
       <div className="container mx-auto flex items-center justify-between">
-        <span>{t('footer_text', '© 2025 Life Compass')}</span>
+        <span>{t('footer_text', '© 2025 Life Compass. MIT Licensed.')}</span>
         <nav className="flex items-center space-x-4">
           <Link to="/about" className="text-[var(--on-primary)]">
             {t('about', 'About')}

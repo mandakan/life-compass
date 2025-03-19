@@ -79,7 +79,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
           />
         </label>
       </div>
-      <div>
+      <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
           <span>{t('show_dev_tools')}</span>
           <ToggleSwitch
@@ -87,6 +87,18 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
             onChange={handleDevToolsToggle}
           />
         </label>
+      </div>
+      <div className="mt-4">
+        <button
+          onClick={() => {
+            localStorage.removeItem('tutorialCompleted');
+            window.location.reload();
+          }}
+          className="w-full rounded bg-[var(--color-primary)] px-3 py-2 text-[var(--on-primary)] focus:ring focus:outline-none"
+          aria-label="Replay onboarding tutorial"
+        >
+          {t('replay_onboarding', 'Replay Onboarding Tutorial')}
+        </button>
       </div>
     </div>
   );
