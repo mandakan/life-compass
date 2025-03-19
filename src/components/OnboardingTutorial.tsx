@@ -112,11 +112,11 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                   Back
                 </button>
               )}
-              <button onClick={handleNext} className={primaryButtonClasses}>
-                Next
-              </button>
               <button onClick={handleSkip} className={accentButtonClasses}>
                 Skip Tutorial
+              </button>
+              <button onClick={handleNext} className={primaryButtonClasses}>
+                Next
               </button>
             </div>
           </div>
@@ -134,11 +134,11 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                   Back
                 </button>
               )}
-              <button onClick={handleNext} className={primaryButtonClasses}>
-                Next
-              </button>
               <button onClick={handleSkip} className={accentButtonClasses}>
                 Skip Tutorial
+              </button>
+              <button onClick={handleNext} className={primaryButtonClasses}>
+                Next
               </button>
             </div>
           </div>
