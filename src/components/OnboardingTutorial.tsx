@@ -43,7 +43,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
       id: 4,
       type: 'modal',
       content: t('brief_life_compass_intruction'),
-    }
+    },
   ];
 
   const handleNext = () => {
@@ -79,7 +79,9 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
   const detailsButtonClasses = `bg-[var(--details-bg)] text-[var(--color-text)] ${buttonBaseClasses}`;
 
   const nextButtonText =
-    currentStep === steps.length - 1 ? t('onboarding.finish') : t('onboarding.next');
+    currentStep === steps.length - 1
+      ? t('onboarding.finish')
+      : t('onboarding.next');
 
   return (
     <div className="onboarding-tutorial">
