@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
 import SettingsMenu from './SettingsMenu';
 import { AppSettingsContext } from '../context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
 
 const DesktopNavigation: React.FC = () => {
   const { t } = useTranslation();
-  const { theme } = useTheme();
   const { showDevTools } = useContext(AppSettingsContext);
   const [showSettings, setShowSettings] = useState(false);
 
