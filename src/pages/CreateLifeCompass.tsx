@@ -83,6 +83,9 @@ const CreateLifeCompass: React.FC = () => {
   // New state to track if a footer is visible on the page.
   const [footerVisible, setFooterVisible] = useState(false);
 
+  // New state to control whether radar view is active.
+  const [showRadar, setShowRadar] = useState<boolean>(false);
+
   // Clear editing state if the edited area is no longer in lifeAreas
   useEffect(() => {
     if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
