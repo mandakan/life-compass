@@ -10,6 +10,7 @@ interface FloatingToolbarProps {
   showRadar: boolean;
   onImportFile: (fileContent: string) => void;
   onRemoveAll: () => void;
+  footerVisible: boolean;
 }
 
 const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
@@ -50,10 +51,14 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
     setExpanded(false);
   };
 
+  // Adjust bottom offset when footer is visible
+  const expandedBottomClass = props.footerVisible ? 'bottom-28' : 'bottom-20';
+  const buttonBottomClass = props.footerVisible ? 'bottom-16' : 'bottom-4';
+
   return (
     <>
       {expanded && (
-        <div className="fixed right-4 bottom-20 z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg">
+        <div className={`fixed right-4 ${expandedBottomClass} z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg`}>
           <DesktopToolbar
             onAddNewLifeArea={handleAddNewLifeArea}
             onAddPredefinedAreas={handleAddPredefinedAreas}
@@ -67,7 +72,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       )}
       <button
         onClick={toggleExpanded}
-        className="fixed right-4 bottom-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none"
+        className={`fixed right-4 ${buttonBottomClass} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
         aria-label={t('quick_actions')}
       >
         {expanded ? (
