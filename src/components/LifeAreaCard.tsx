@@ -179,7 +179,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-                {t('satisfaction')}
+                {t('lived_according_to_past_week')}
                 <CustomSlider
                   value={editSatisfaction}
                   onChange={newValue => {
@@ -394,7 +394,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-                {t('satisfaction')}
+                {t('lived_according_to_past_week')}
                 <CustomSlider
                   value={area.satisfaction}
                   onChange={newValue => {
