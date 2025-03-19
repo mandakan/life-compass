@@ -63,5 +63,6 @@
   "method": "Metod",
   "tools": "Verktyg",
   "frameworksLibraries": "Frameworks/Bibliotek",
-  "attribution_message": "Denna applikation är skapad med omsorg med hjälp av moderna frameworks och verktyg. Vi är tacksamma till open source-communityn och alla bidragsgivare som har gjort detta projekt möjligt."
+  "attribution_message": "Denna applikation är skapad med omsorg med hjälp av moderna frameworks och verktyg. Vi är tacksamma till open source-communityn och alla bidragsgivare som har gjort detta projekt möjligt.",
+  "brief_life_compass_intruction": "Livskompassen innehåller tio områden som brukar vara viktiga för de flesta människor. I varje ruta ska du skrivaned några ord om vad du skulle värdesätta eller tycka var viktigt inom just detta området. I varje område finnsockså två små rutor. I den vänstra rutan fyller du i hur viktigt vart och ett av områdena är i ditt liv på en skala1-10 där 1 är oviktigt och 10 är väldigt viktigt. Utgå från hur livet skulle vara om allt såg ut precis som du ville.\n\nI den högra rutan fyller du i hur “mycket” du levt i enlighet med dina värderingar den senaste veckan, där 1 är attdu inte alls levt enligt dina värderingar och 10 är att du levt helt enligt dina värderingar. Undersök därefterskillnaden mellan de olika siffrorna. Kan du hitta några områden som är viktiga för dig där du inte lever som duvill leva? Fundera i så fall på vad som hindrar dig!"
 }
