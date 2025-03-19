@@ -31,7 +31,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
     },
     {
       id: 3,
-      type: 'tooltip',
+      type: 'modal',
       content: t('brief_life_compass_intruction'),
     },
   ];
@@ -77,7 +77,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
             {currentStep === 0 && (
               <div className="mb-4 flex gap-2">
                 <button onClick={() => handleSelectPathway('with')} className={primaryButtonClasses}>
-                  With Predefined Life Areas
+                  With Predefined Life Areas (recommended)
                 </button>
                 <button onClick={() => handleSelectPathway('without')} className={accentButtonClasses}>
                   Without Predefined Life Areas
@@ -86,7 +86,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
             )}
             <div className="flex justify-between">
               {currentStep > 0 && (
-                <button onClick={handleBack} className={secondaryButtonClasses}>
+                <button onClick={handleBack} className={primaryButtonClasses}>
                   Back
                 </button>
               )}
@@ -106,7 +106,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
             <p className="mb-4">{step.content}</p>
             <div className="flex justify-between">
               {currentStep > 0 && (
-                <button onClick={handleBack} className={secondaryButtonClasses}>
+                <button onClick={handleBack} className={primaryButtonClasses}>
                   Back
                 </button>
               )}
