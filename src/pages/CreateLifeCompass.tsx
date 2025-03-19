@@ -441,7 +441,7 @@ const CreateLifeCompass: React.FC = () => {
 
   return (
     <div className="create-life-compass-page bg-bg text-text p-4">
-      <OnboardingTutorialWrapper />
+      <OnboardingTutorialWrapper onPredefinedSelected={handleAddPredefinedAreas} />
       <h1 className="text-2xl font-bold mb-4">Create Life Compass</h1>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">

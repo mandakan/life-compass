@@ -11,9 +11,10 @@ interface OnboardingStep {
 
 interface OnboardingTutorialProps {
   onComplete: () => void;
+  onPredefinedSelected?: () => void;
 }
 
-const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) => {
+const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete, onPredefinedSelected }) => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedPathway, setSelectedPathway] = useState<string | null>(null);
@@ -40,7 +41,6 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Tutorial completed
       onComplete();
     }
   };
@@ -52,12 +52,14 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
   };
 
   const handleSkip = () => {
-    // Skipping the tutorial marks it as completed.
     onComplete();
   };
 
   const handleSelectPathway = (pathway: string) => {
     setSelectedPathway(pathway);
+    if (pathway === 'with' && onPredefinedSelected) {
+      onPredefinedSelected();
+    }
     handleNext();
   };
 
