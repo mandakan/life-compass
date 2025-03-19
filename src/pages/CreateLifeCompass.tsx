@@ -452,7 +452,6 @@ const CreateLifeCompass: React.FC = () => {
       <OnboardingTutorialWrapper
         onPredefinedSelected={handleAddPredefinedAreas}
       />
-      <h1 className="mb-4 text-2xl font-bold">Create Life Compass</h1>
       {!storageAvailable && (
         <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
           {t('local_storage_not_available')}

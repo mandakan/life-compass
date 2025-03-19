@@ -53,7 +53,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   // New view toggle button positioned above the main toggle button
   const viewToggleButtonBottom = props.footerVisible ? 'bottom-40' : 'bottom-24';
   // New modal button positioned above the view toggle button
-  const modalButtonBottom = props.footerVisible ? 'bottom-56' : 'bottom-40';
+  const modalButtonBottom = props.footerVisible ? 'bottom-60' : 'bottom-44';
 
   return (
     <>
@@ -75,24 +75,10 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
         className={`fixed right-4 ${modalButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
         aria-label={t('brief_life_compass_intruction')}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-          className="h-6 w-6"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <text
-            x="12"
-            y="16"
-            textAnchor="middle"
-            fontSize="12"
-            fill="white"
-            fontFamily="Arial, sans-serif"
-          >
-            i
-          </text>
-        </svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+</svg>
+
       </button>
       {/* New view toggle button placed above the main toolbar toggle button */}
       <button
@@ -151,38 +137,11 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
           </svg>
         ) : (
           // Radar Icon when card view is active
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="h-6 w-6"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="9"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <line
-              x1="12"
-              y1="3"
-              x2="12"
-              y2="21"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <line
-              x1="3"
-              y1="12"
-              x2="21"
-              y2="12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+</svg>
+
         )}
       </button>
       <button
