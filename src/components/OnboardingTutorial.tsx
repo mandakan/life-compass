@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Tooltip from './Tooltip';
 import Modal from './Modal';
 
@@ -12,24 +13,28 @@ interface OnboardingTutorialProps {
   onComplete: () => void;
 }
 
-const steps: OnboardingStep[] = [
-  {
-    id: 1,
-    type: 'modal',
-    content: "Welcome to Life Compass! Let's start the onboarding. Would you like to begin with predefined life areas?",
-  },
-  {
-    id: 2,
-    type: 'tooltip',
-    content:
-      'This is your dashboard where you can add and manage your life areas. Here you can see a quick overview of your current status.',
-  },
-  // Additional steps can be added here in the future.
-];
-
 const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) => {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedPathway, setSelectedPathway] = useState<string | null>(null);
+
+  const steps: OnboardingStep[] = [
+    {
+      id: 1,
+      type: 'modal',
+      content: "Welcome to Life Compass! Let's start the onboarding. Would you like to begin with predefined life areas?",
+    },
+    {
+      id: 2,
+      type: 'tooltip',
+      content: 'This is your dashboard where you can add and manage your life areas. Here you can see a quick overview of your current status.',
+    },
+    {
+      id: 3,
+      type: 'tooltip',
+      content: t('brief_life_compass_intruction'),
+    },
+  ];
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -71,16 +76,10 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
             <p className="mb-4">{step.content}</p>
             {currentStep === 0 && (
               <div className="mb-4 flex gap-2">
-                <button
-                  onClick={() => handleSelectPathway('with')}
-                  className={primaryButtonClasses}
-                >
+                <button onClick={() => handleSelectPathway('with')} className={primaryButtonClasses}>
                   With Predefined Life Areas
                 </button>
-                <button
-                  onClick={() => handleSelectPathway('without')}
-                  className={accentButtonClasses}
-                >
+                <button onClick={() => handleSelectPathway('without')} className={accentButtonClasses}>
                   Without Predefined Life Areas
                 </button>
               </div>
