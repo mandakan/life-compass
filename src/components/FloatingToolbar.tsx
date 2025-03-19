@@ -60,7 +60,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   return (
     <>
       {expanded && (
-        <div className={`fixed right-4 ${expandedBottomClass} z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg`}>
+        <div className={`fixed right-4 ${expandedBottomClass} z-60 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg`}>
           <DesktopToolbar
             onAddNewLifeArea={handleAddNewLifeArea}
             onAddPredefinedAreas={handleAddPredefinedAreas}
