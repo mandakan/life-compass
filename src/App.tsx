@@ -11,7 +11,6 @@ import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
 import Footer from './components/Footer';
-import OnboardingTutorialWrapper from './components/OnboardingTutorialWrapper';
 
 const Content = () => {
   const { t } = useTranslation();
@@ -33,20 +32,13 @@ const Content = () => {
         <main className="mb-16 flex-1 md:mb-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route
-              path="/design-principles"
-              element={<DesignPrinciplesDemo />}
-            />
-            <Route
-              path="/create-life-compass"
-              element={<CreateLifeCompass />}
-            />
+            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
+            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
             <Route path="/about" element={<About />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
         <Footer />
-        <OnboardingTutorialWrapper />
       </div>
     </div>
   );
