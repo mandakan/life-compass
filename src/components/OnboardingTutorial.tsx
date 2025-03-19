@@ -100,7 +100,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                 </button>
                 <button
                   onClick={() => handleSelectPathway('without')}
-                  className={accentButtonClasses}
+                  className={primaryButtonClasses}
                 >
                   Without Predefined Life Areas
                 </button>
