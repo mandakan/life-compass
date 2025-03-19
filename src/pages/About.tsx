@@ -35,7 +35,7 @@ const About: React.FC = () => {
               <strong>GitHub:</strong> Proprietary / Various - <a className="underline" href="https://github.com" target="_blank" rel="noopener noreferrer">https://github.com</a>
             </li>
             <li>
-              <strong>Aider:</strong> MIT License - <a className="underline" href="https://aider.chat" target="_blank" rel="noopener noreferrer">https://aider.chat</a>
+              <strong>Aider:</strong> Apache License 2.0 - <a className="underline" href="https://aider.chat" target="_blank" rel="noopener noreferrer">https://aider.chat</a>
             </li>
             <li>
               <strong>ChatGPT:</strong> Proprietary - <a className="underline" href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">https://chat.openai.com</a>
