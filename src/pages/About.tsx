@@ -13,7 +13,7 @@ const About: React.FC = () => {
         <section className="mb-6">
           <h2 className="text-2xl font-semibold mb-2">{t('attributions', 'Attributions')}</h2>
           <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-2">Method</h3>
+            <h3 className="text-xl font-semibold mb-2">{t('method', 'Method')}</h3>
             <ul className="list-disc list-inside">
               <li>
                 <strong>KBT Primarvården:</strong> <a className="underline" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> - <a className="underline" href="https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/" target="_blank" rel="noopener noreferrer">https://kbtiprimarvarden.se/</a>
@@ -21,7 +21,7 @@ const About: React.FC = () => {
             </ul>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-2">Tools</h3>
+            <h3 className="text-xl font-semibold mb-2">{t('tools', 'Tools')}</h3>
             <ul className="list-disc list-inside">
               <li>
                 <strong>GitHub:</strong> Proprietary / Various - <a className="underline" href="https://github.com" target="_blank" rel="noopener noreferrer">https://github.com</a>
@@ -38,7 +38,7 @@ const About: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-2">Frameworks/Libraries</h3>
+            <h3 className="text-xl font-semibold mb-2">{t('frameworksLibraries', 'Frameworks/Libraries')}</h3>
             <ul className="list-disc list-inside">
               <li>
                 <strong>React:</strong> MIT License - <a className="underline" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">https://reactjs.org</a>
