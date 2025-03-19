@@ -32,6 +32,11 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete, onP
     },
     {
       id: 3,
+      type: 'tooltip',
+      content: 'Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding a new life area, resetting, importing data, and toggling the radar view.',
+    },
+    {
+      id: 4,
       type: 'modal',
       content: t('brief_life_compass_intruction'),
     },
