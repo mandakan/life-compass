@@ -29,7 +29,7 @@ const Content = () => {
             <MobileNavigation />
           </div>
         </header>
-        <main className="flex-1">
+        <main className="flex-1 mb-16 md:mb-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
