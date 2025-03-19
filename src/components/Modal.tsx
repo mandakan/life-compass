@@ -8,7 +8,7 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
   return (
     <div className="modal-overlay fixed inset-0 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="modal-content bg-[var(--color-bg)] p-6 rounded shadow-lg relative">
+      <div className="modal-content bg-[var(--color-bg)] w-full max-w-xl p-6 rounded shadow-lg relative">
         <button
           onClick={onClose}
           className="modal-close absolute top-2 right-2 text-[var(--color-text)] focus:outline-none"
