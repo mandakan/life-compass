@@ -57,5 +57,11 @@
   "show_dev_tools": "Show developer tools",
   "back": "Back",
   "life_compass_title": "Life Compass",
-  "life_compass_subtitle": "Discover your life balance. Create your life compass."
+  "life_compass_subtitle": "Discover your life balance. Create your life compass.",
+  "about": "About This App",
+  "attributions": "Attributions",
+  "method": "Method",
+  "tools": "Tools",
+  "frameworksLibraries": "Frameworks/Libraries",
+  "attribution_message": "This application was built with care using modern frameworks and tools. We are grateful to the open source community and all contributors for providing the resources that made this project possible."
 }
