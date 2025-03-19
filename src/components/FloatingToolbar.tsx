@@ -72,7 +72,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       {/* Modal button */}
       <button
         onClick={() => setModalOpen(prev => !prev)}
-        className={`fixed right-4 ${modalButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        className={`fixed right-4 ${modalButtonBottom} z-110 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
         aria-label={t('brief_life_compass_intruction')}
       >
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
