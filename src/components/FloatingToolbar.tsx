@@ -51,9 +51,9 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
     setExpanded(false);
   };
 
-  // Adjust bottom offset when footer is visible
-  const expandedBottomClass = props.footerVisible ? 'bottom-28' : 'bottom-20';
-  const buttonBottomClass = props.footerVisible ? 'bottom-16' : 'bottom-4';
+  // Adjust bottom offset when footer is visible: increased offset values to move toolbar up further
+  const expandedBottomClass = props.footerVisible ? 'bottom-32' : 'bottom-20';
+  const buttonBottomClass = props.footerVisible ? 'bottom-24' : 'bottom-4';
 
   return (
     <>
