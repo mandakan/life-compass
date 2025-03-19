@@ -209,9 +209,11 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
         )}
       </button>
       {modalOpen && (
-        <Modal onClose={() => setModalOpen(false)}>
-          <ReactMarkdown>{t('brief_life_compass_intruction')}</ReactMarkdown>
-        </Modal>
+        <div className="fixed inset-0 z-120 flex items-center justify-center">
+          <Modal onClose={() => setModalOpen(false)}>
+            <ReactMarkdown>{t('brief_life_compass_intruction')}</ReactMarkdown>
+          </Modal>
+        </div>
       )}
     </>
   );
