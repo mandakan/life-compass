@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DesktopToolbar from './DesktopToolbar';
+import Modal from './Modal';
 import { useTranslation } from 'react-i18next';
 
 interface FloatingToolbarProps {
@@ -15,6 +16,7 @@ interface FloatingToolbarProps {
 const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const toggleExpanded = () => {
     setExpanded(prev => !prev);
@@ -48,10 +50,10 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   // Adjust bottom offset when footer is visible: increased offset values to move toolbar up further
   const expandedBottomClass = props.footerVisible ? 'bottom-38' : 'bottom-20';
   const mainButtonBottomClass = props.footerVisible ? 'bottom-20' : 'bottom-4';
-  // New button positioned above the main toggle button
-  const viewToggleButtonBottom = props.footerVisible
-    ? 'bottom-40'
-    : 'bottom-24';
+  // New view toggle button positioned above the main toggle button
+  const viewToggleButtonBottom = props.footerVisible ? 'bottom-40' : 'bottom-24';
+  // New modal button positioned above the view toggle button
+  const modalButtonBottom = props.footerVisible ? 'bottom-56' : 'bottom-40';
 
   return (
     <>
@@ -67,6 +69,31 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
           />
         </div>
       )}
+      {/* Modal button */}
+      <button
+        onClick={() => setModalOpen(true)}
+        className={`fixed right-4 ${modalButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        aria-label={t('brief_life_compass_intruction')}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <text
+            x="12"
+            y="16"
+            textAnchor="middle"
+            fontSize="12"
+            fill="white"
+            fontFamily="Arial, sans-serif"
+          >
+            i
+          </text>
+        </svg>
+      </button>
       {/* New view toggle button placed above the main toolbar toggle button */}
       <button
         onClick={handleToggleRadar}
@@ -195,6 +222,11 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
           </svg>
         )}
       </button>
+      {modalOpen && (
+        <Modal onClose={() => setModalOpen(false)}>
+          {t('brief_life_compass_intruction')}
+        </Modal>
+      )}
     </>
   );
 };
