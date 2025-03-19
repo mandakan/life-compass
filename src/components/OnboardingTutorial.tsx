@@ -22,12 +22,12 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
     {
       id: 1,
       type: 'modal',
-      content: "Welcome to Life Compass! Let's start the onboarding. Would you like to begin with predefined life areas?",
+      content: "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?",
     },
     {
       id: 2,
       type: 'tooltip',
-      content: 'This is your dashboard where you can add and manage your life areas. Here you can see a quick overview of your current status.',
+      content: 'This is your dashboard where you can add and manage your life areas.\nHere you can see a quick overview of your current status.',
     },
     {
       id: 3,
@@ -73,7 +73,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
       {step.type === 'modal' && (
         <Modal onClose={handleSkip}>
           <div className="p-4">
-            <p className="mb-4">{step.content}</p>
+            <p className="mb-4 whitespace-pre-line">{step.content}</p>
             {currentStep === 0 && (
               <div className="mb-4 flex gap-2">
                 <button onClick={() => handleSelectPathway('with')} className={primaryButtonClasses}>
@@ -103,7 +103,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
       {step.type === 'tooltip' && (
         <Tooltip onClose={handleSkip}>
           <div className="p-4">
-            <p className="mb-4">{step.content}</p>
+            <p className="mb-4 whitespace-pre-line">{step.content}</p>
             <div className="flex justify-between">
               {currentStep > 0 && (
                 <button onClick={handleBack} className={primaryButtonClasses}>
