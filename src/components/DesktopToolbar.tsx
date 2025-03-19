@@ -7,7 +7,6 @@ import ImportButton from './ImportButton';
 interface DesktopToolbarProps {
   onAddNewLifeArea: () => void;
   onAddPredefinedAreas: () => void;
-  onReset: () => void;
   onImportFile: (fileContent: string) => void;
   onRemoveAll: () => void;
 }
@@ -15,7 +14,6 @@ interface DesktopToolbarProps {
 const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
   onAddNewLifeArea,
   onAddPredefinedAreas,
-  onReset,
   onImportFile,
   onRemoveAll,
 }) => {
@@ -29,7 +27,6 @@ const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
       <CustomButton onClick={onAddPredefinedAreas}>
         {t('add_predefined')}
       </CustomButton>
-      <CustomButton onClick={onReset}>{t('reset')}</CustomButton>
       <CustomButton onClick={onRemoveAll}>{t('delete_all')}</CustomButton>
       <ExportButton />
       <ImportButton onFileSelected={onImportFile} onError={handleImportError} />

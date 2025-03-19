@@ -58,8 +58,6 @@ const CreateLifeCompass: React.FC = () => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [showRecommendationCallout, setShowRecommendationCallout] = useState(true);
-  const [showResetModal, setShowResetModal] = useState(false);
-  const [showRadar, setShowRadar] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showRemoveAllModal, setShowRemoveAllModal] = useState(false);
 
@@ -308,23 +306,6 @@ const CreateLifeCompass: React.FC = () => {
     setShowDeleteModal(false);
   };
 
-  const handleResetConfirm = async () => {
-    const predefined = await getPredefinedLifeAreas();
-    setLifeAreas(predefined);
-    setEditingAreaId(null);
-    setEditName('');
-    setEditDescription('');
-    setEditDetails('');
-    setEditImportance(5);
-    setEditSatisfaction(5);
-    setNewAreaId(null);
-    setShowResetModal(false);
-  };
-
-  const handleResetCancel = () => {
-    setShowResetModal(false);
-  };
-
   const handleRemoveAllLifeAreas = () => {
     setShowRemoveAllModal(true);
   };
@@ -454,7 +435,6 @@ const CreateLifeCompass: React.FC = () => {
       <FloatingToolbar
         onAddNewLifeArea={() => handleAddNewLifeArea()}
         onAddPredefinedAreas={handleAddPredefinedAreas}
-        onReset={() => setShowResetModal(true)}
         onToggleRadar={() => setShowRadar(prev => !prev)}
         showRadar={showRadar}
         onImportFile={handleImportFile}
@@ -576,12 +556,6 @@ const CreateLifeCompass: React.FC = () => {
         message={t('remove_life_area_warning')}
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
-      />
-      <WarningModal
-        visible={showResetModal}
-        message={t('reset_life_compass_warning')}
-        onConfirm={handleResetConfirm}
-        onCancel={handleResetCancel}
       />
       <WarningModal
         visible={showRemoveAllModal}

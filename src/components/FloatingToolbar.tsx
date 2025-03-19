@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 interface FloatingToolbarProps {
   onAddNewLifeArea: () => void;
   onAddPredefinedAreas: () => void;
-  onReset: () => void;
   onToggleRadar: () => void;
   showRadar: boolean;
   onImportFile: (fileContent: string) => void;
@@ -28,11 +27,6 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
 
   const handleAddPredefinedAreas = () => {
     props.onAddPredefinedAreas();
-    setExpanded(false);
-  };
-
-  const handleReset = () => {
-    props.onReset();
     setExpanded(false);
   };
 
@@ -64,9 +58,6 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
           <DesktopToolbar
             onAddNewLifeArea={handleAddNewLifeArea}
             onAddPredefinedAreas={handleAddPredefinedAreas}
-            onReset={handleReset}
-            onToggleRadar={handleToggleRadar}
-            showRadar={props.showRadar}
             onImportFile={handleImportFile}
             onRemoveAll={handleRemoveAll}
           />
