@@ -83,6 +83,9 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
   const detailsButtonClasses = `bg-[var(--details-bg)] text-[var(--color-text)] ${buttonBaseClasses}`;
   const secondaryButtonClasses = `bg-[var(--color-secondary)] text-[var(--color-text)] ${buttonBaseClasses}`;
 
+  const nextButtonText =
+    currentStep === steps.length - 1 ? 'Finish Tutorial' : 'Next';
+
   return (
     <div className="onboarding-tutorial">
       {step.type === 'modal' && (
@@ -117,7 +120,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                 Skip Tutorial
               </button>
               <button onClick={handleNext} className={primaryButtonClasses}>
-                Next
+                {nextButtonText}
               </button>
             </div>
           </div>
@@ -139,7 +142,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                 Skip Tutorial
               </button>
               <button onClick={handleNext} className={primaryButtonClasses}>
-                Next
+                {nextButtonText}
               </button>
             </div>
           </div>
