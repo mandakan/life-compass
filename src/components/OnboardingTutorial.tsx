@@ -27,26 +27,23 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     {
       id: 1,
       type: 'modal',
-      content:
-        "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?\n(You can always run the tutorial again from the settings menu.)",
+      content: t('onboarding.welcome_prompt'),
     },
     {
       id: 2,
       type: 'tooltip',
-      content:
-        'Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding predefined life areas, resetting, exporting/importing data, and toggling the radar view.',
+      content: t('onboarding.toolbar_tooltip'),
     },
     {
       id: 3,
       type: 'tooltip',
-      content:
-        'Take a look at the settings menu in the top right. You can access the tutorial, change the language, and more.',
+      content: t('onboarding.settings_tooltip'),
     },
     {
       id: 4,
       type: 'modal',
       content: t('brief_life_compass_intruction'),
-    },
+    }
   ];
 
   const handleNext = () => {
@@ -79,12 +76,10 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
 
   const buttonBaseClasses = 'px-3 py-1 rounded';
   const primaryButtonClasses = `bg-[var(--color-primary)] text-[var(--on-primary)] ${buttonBaseClasses}`;
-  const accentButtonClasses = `bg-[var(--color-accent)] text-[var(--on-accent)] ${buttonBaseClasses}`;
   const detailsButtonClasses = `bg-[var(--details-bg)] text-[var(--color-text)] ${buttonBaseClasses}`;
-  const secondaryButtonClasses = `bg-[var(--color-secondary)] text-[var(--color-text)] ${buttonBaseClasses}`;
 
   const nextButtonText =
-    currentStep === steps.length - 1 ? 'Finish Tutorial' : 'Next';
+    currentStep === steps.length - 1 ? t('onboarding.finish') : t('onboarding.next');
 
   return (
     <div className="onboarding-tutorial">
@@ -100,24 +95,24 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                   onClick={() => handleSelectPathway('with')}
                   className={primaryButtonClasses}
                 >
-                  With Predefined Life Areas (recommended)
+                  {t('onboarding.with_predefined')}
                 </button>
                 <button
                   onClick={() => handleSelectPathway('without')}
                   className={primaryButtonClasses}
                 >
-                  Without Predefined Life Areas
+                  {t('onboarding.without_predefined')}
                 </button>
               </div>
             )}
             <div className="flex justify-between">
               {currentStep > 0 && (
                 <button onClick={handleBack} className={primaryButtonClasses}>
-                  Back
+                  {t('onboarding.back')}
                 </button>
               )}
               <button onClick={handleSkip} className={detailsButtonClasses}>
-                Skip Tutorial
+                {t('onboarding.skip')}
               </button>
               <button onClick={handleNext} className={primaryButtonClasses}>
                 {nextButtonText}
@@ -135,11 +130,11 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
             <div className="flex justify-between">
               {currentStep > 0 && (
                 <button onClick={handleBack} className={primaryButtonClasses}>
-                  Back
+                  {t('onboarding.back')}
                 </button>
               )}
               <button onClick={handleSkip} className={detailsButtonClasses}>
-                Skip Tutorial
+                {t('onboarding.skip')}
               </button>
               <button onClick={handleNext} className={primaryButtonClasses}>
                 {nextButtonText}
