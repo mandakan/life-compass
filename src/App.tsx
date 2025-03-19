@@ -11,6 +11,7 @@ import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
 import Footer from './components/Footer';
+import OnboardingTutorialWrapper from './components/OnboardingTutorialWrapper';
 
 const Content = () => {
   const { t } = useTranslation();
@@ -45,6 +46,7 @@ const Content = () => {
           </Routes>
         </main>
         <Footer />
+        <OnboardingTutorialWrapper />
       </div>
     </div>
   );
