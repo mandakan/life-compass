@@ -44,6 +44,19 @@ const LanguageSwitcher: React.FC = () => {
     }
   }, [selectedLanguage]);
 
+  // Listen to i18next language changed events to synchronize multiple instances
+  useEffect(() => {
+    const handleLanguageChanged = (lng: string) => {
+      setSelectedLanguage(lng);
+      setDropdownOpen(false);
+    };
+
+    i18next.on('languageChanged', handleLanguageChanged);
+    return () => {
+      i18next.off('languageChanged', handleLanguageChanged);
+    };
+  }, []);
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -133,9 +146,14 @@ const LanguageSwitcher: React.FC = () => {
                   ? 'text-[var(--accent)]'
                   : 'text-[var(--color-text)]'
               } hover:bg-[var(--hover-bg)]`}
-              onClick={() => handleLanguageSelect(lang.code)}
+              onClick={e => {
+                e.stopPropagation();
+                handleLanguageSelect(lang.code);
+              }}
               onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  e.stopPropagation();
                   handleLanguageSelect(lang.code);
                 }
               }}

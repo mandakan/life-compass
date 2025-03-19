@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
+import About from './pages/About';
 import MobileNavigation from './components/MobileNavigation';
 import DesktopNavigation from './components/DesktopNavigation';
 import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
+import Footer from './components/Footer';
 
 const Content = () => {
   const { t } = useTranslation();
@@ -23,11 +25,11 @@ const Content = () => {
           <div className="hidden md:block">
             <DesktopNavigation />
           </div>
-          <div className="p-4 md:hidden">
+          <div className="block md:hidden">
             <MobileNavigation />
           </div>
         </header>
-        <main className="flex-1">
+        <main className="mb-16 flex-1 md:mb-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -38,9 +40,11 @@ const Content = () => {
               path="/create-life-compass"
               element={<CreateLifeCompass />}
             />
+            <Route path="/about" element={<About />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </div>
   );
