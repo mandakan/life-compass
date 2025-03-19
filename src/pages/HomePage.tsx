@@ -17,21 +17,21 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
-      <header className="mb-16 text-center">
+      <header className="mb-32 text-center">
         <h1 className="mb-4 text-4xl font-bold">
           {t(
             'life_compass_title',
             'Utforska dina livsvärden med Livskompassen',
           )}
         </h1>
-        <h2 className="mb-2 text-xl">
+        <h2 className="text-xl">
           {t(
             'life_compass_subtitle',
             'Discover your life balance. Create your life compass.',
           )}
         </h2>
       </header>
-      <main className="mb-8 w-full max-w-4xl text-center">
+      <main className="w-full max-w-4xl text-center">
         <CustomButton
           className="text-xl"
           onClick={() => navigate('/create-life-compass')}
@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
         <div className="mt-4">
           <LanguageSwitcher />
         </div>
-        <div className="mt-16">
+        <div className="mt-32">
           <Introduction />
         </div>
         <CustomButton

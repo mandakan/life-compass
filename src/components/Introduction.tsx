@@ -27,7 +27,7 @@ const Introduction = () => {
             {['how_family', 'how_work', 'how_health', 'how_leisure'].map(
               key => (
                 <li key={key} className="flex items-start space-x-3">
-                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-blue-500" />
+                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-[var(--color-primary)]" />
                   <span className="text-lg">{t(`introduction.${key}`)}</span>
                 </li>
               ),
@@ -43,7 +43,7 @@ const Introduction = () => {
             {['examples_family', 'examples_work', 'examples_health'].map(
               key => (
                 <li key={key} className="flex items-start space-x-3">
-                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-green-500" />
+                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-[var(--color-primary)]" />
                   <span className="text-lg">{t(`introduction.${key}`)}</span>
                 </li>
               ),
