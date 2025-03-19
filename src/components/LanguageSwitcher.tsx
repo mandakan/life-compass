@@ -44,6 +44,19 @@ const LanguageSwitcher: React.FC = () => {
     }
   }, [selectedLanguage]);
 
+  // Listen to i18next language changed events to synchronize multiple instances
+  useEffect(() => {
+    const handleLanguageChanged = (lng: string) => {
+      setSelectedLanguage(lng);
+      setDropdownOpen(false);
+    };
+
+    i18next.on('languageChanged', handleLanguageChanged);
+    return () => {
+      i18next.off('languageChanged', handleLanguageChanged);
+    };
+  }, []);
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
