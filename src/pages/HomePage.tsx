@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+import Introduction from 'components/Introduction';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
@@ -16,28 +17,40 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
-      <header className="mb-8 text-center">
+      <header className="mb-32 text-center">
         <h1 className="mb-4 text-4xl font-bold">
-          {t('life_compass_title', 'Livskompass')}
+          {t(
+            'life_compass_title',
+            'Utforska dina livsvärden med Livskompassen',
+          )}
         </h1>
-        <h2 className="mb-2 text-xl">
+        <h2 className="text-xl">
           {t(
             'life_compass_subtitle',
             'Discover your life balance. Create your life compass.',
           )}
         </h2>
       </header>
-      <main className="mb-6 w-full max-w-md text-center">
+      <main className="w-full max-w-4xl text-center">
         <CustomButton
           className="text-xl"
           onClick={() => navigate('/create-life-compass')}
         >
-          {t('create_life_compass', 'Skapa Livskompass')}
+          {t('start_your_journey', 'Börja din resa')}
+        </CustomButton>
+        <div className="mt-4">
+          <LanguageSwitcher />
+        </div>
+        <div className="mt-32">
+          <Introduction />
+        </div>
+        <CustomButton
+          className="text-xl"
+          onClick={() => navigate('/create-life-compass')}
+        >
+          {t('start_your_journey', 'Börja din resa')}
         </CustomButton>
       </main>
-      <footer className="mt-4">
-        <LanguageSwitcher />
-      </footer>
     </div>
   );
 };

@@ -75,5 +75,22 @@
   "onboarding.skip": "Sla tutorial over",
   "onboarding.next": "Volgende",
   "onboarding.finish": "Tutorial afronden",
-  "replay_onboarding": "Tutorial opnieuw afspelen"
+  "replay_onboarding": "Tutorial opnieuw afspelen",
+  "introduction.what_is_title": "Wat is Levenskompas?",
+  "introduction.what_is_description": "Levenskompas is een hulpmiddel om na te denken over wat echt belangrijk is in je leven. In plaats van je te laten leiden door kortetermijndoelen of externe verwachtingen, helpt het je je kernwaarden te identificeren – waar je voor staat en hoe je je leven wilt leiden.",
+  "introduction.why_title": "Waarom is het belangrijk?",
+  "introduction.why_description": "Duidelijke waarden bieden richting en motivatie in het leven. Zonder deze waarden kunnen we ons verloren of onzeker voelen over onze keuzes. Met een Levenskompas kun je uitdagingen overwinnen, beslissingen nemen en op een meer betekenisvolle manier leven.",
+  "introduction.how_title": "Hoe werkt het?",
+  "introduction.how_description": "Je reflecteert op verschillende levensgebieden, zoals:",
+  "introduction.how_family": "Familie & Relaties: Hoe wil je zijn als partner, ouder of vriend?",
+  "introduction.how_work": "Werk & Carrière: Wat is voor jou het belangrijkste in je werk?",
+  "introduction.how_health": "Gezondheid & Welzijn: Hoe zorg je voor jezelf, zowel fysiek als mentaal?",
+  "introduction.how_leisure": "Vrijetijd & Persoonlijke Ontwikkeling: Wat maakt je blij en betrokken?",
+  "introduction.examples_title": "Voorbeelden van Waarden",
+  "introduction.examples_description": "Een waarde is geen doel, maar een richting. Voorbeelden:",
+  "introduction.examples_family": "Relaties: \"Ik wil een aanwezige en zorgzame vriend zijn.\"",
+  "introduction.examples_work": "Werk: \"Ik wil bijdragen aan iets betekenisvols en groeien in mijn beroep.\"",
+  "introduction.examples_health": "Gezondheid: \"Ik wil mijn gezondheid prioriteren door regelmatige lichaamsbeweging en herstel.\"",
+  "introduction.next_steps_title": "Wat is de volgende stap?",
+  "introduction.next_steps_description": "Door je eigen Levenskompas te verkennen, kun je beginnen te handelen naar je waarden en een betekenisvoller leven creëren. Klik op \"Begin je reis\" om te starten!"
 }

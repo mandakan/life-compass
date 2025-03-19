@@ -16,6 +16,7 @@
     "postinstall": "npx playwright install"
   },
   "dependencies": {
+    "@heroicons/react": "latest",
     "i18next": "latest",
     "i18next-browser-languagedetector": "latest",
     "i18next-http-backend": "latest",
