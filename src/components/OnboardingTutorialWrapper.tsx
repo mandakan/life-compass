@@ -37,7 +37,7 @@ const OnboardingTutorialWrapper: React.FC = () => {
         <div className="fixed bottom-4 right-4 z-40">
           <button
             onClick={replayTutorial}
-            className="bg-gray-800 text-white px-3 py-2 rounded shadow focus:outline-none focus:ring"
+            className="bg-[var(--menu-bg)] text-[var(--menu-text)] px-3 py-2 rounded shadow focus:outline-none focus:ring"
             aria-label="Replay onboarding tutorial"
           >
             Replay Tutorial

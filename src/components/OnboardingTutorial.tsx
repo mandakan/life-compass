@@ -58,6 +58,11 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
 
   const step = steps[currentStep];
 
+  const buttonBaseClasses = "px-3 py-1 rounded";
+  const primaryButtonClasses = `bg-[var(--color-primary)] text-[var(--on-primary)] ${buttonBaseClasses}`;
+  const accentButtonClasses = `bg-[var(--color-accent)] text-[var(--on-accent)] ${buttonBaseClasses}`;
+  const secondaryButtonClasses = `bg-[var(--color-secondary)] text-[var(--color-text)] ${buttonBaseClasses}`;
+
   return (
     <div className="onboarding-tutorial">
       {step.type === 'modal' && (
@@ -68,13 +73,13 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
               <div className="mb-4 flex gap-2">
                 <button
                   onClick={() => handleSelectPathway('with')}
-                  className="bg-blue-500 text-white px-3 py-1 rounded"
+                  className={primaryButtonClasses}
                 >
                   With Predefined Life Areas
                 </button>
                 <button
                   onClick={() => handleSelectPathway('without')}
-                  className="bg-green-500 text-white px-3 py-1 rounded"
+                  className={accentButtonClasses}
                 >
                   Without Predefined Life Areas
                 </button>
@@ -82,14 +87,14 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
             )}
             <div className="flex justify-between">
               {currentStep > 0 && (
-                <button onClick={handleBack} className="bg-gray-300 text-black px-3 py-1 rounded">
+                <button onClick={handleBack} className={secondaryButtonClasses}>
                   Back
                 </button>
               )}
-              <button onClick={handleNext} className="bg-blue-500 text-white px-3 py-1 rounded">
+              <button onClick={handleNext} className={primaryButtonClasses}>
                 Next
               </button>
-              <button onClick={handleSkip} className="bg-red-500 text-white px-3 py-1 rounded">
+              <button onClick={handleSkip} className={accentButtonClasses}>
                 Skip Tutorial
               </button>
             </div>
@@ -102,14 +107,14 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
             <p className="mb-4">{step.content}</p>
             <div className="flex justify-between">
               {currentStep > 0 && (
-                <button onClick={handleBack} className="bg-gray-300 text-black px-3 py-1 rounded">
+                <button onClick={handleBack} className={secondaryButtonClasses}>
                   Back
                 </button>
               )}
-              <button onClick={handleNext} className="bg-blue-500 text-white px-3 py-1 rounded">
+              <button onClick={handleNext} className={primaryButtonClasses}>
                 Next
               </button>
-              <button onClick={handleSkip} className="bg-red-500 text-white px-3 py-1 rounded">
+              <button onClick={handleSkip} className={accentButtonClasses}>
                 Skip Tutorial
               </button>
             </div>
