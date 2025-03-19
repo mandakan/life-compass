@@ -53,7 +53,9 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
 
   // Adjust bottom offset when footer is visible: increased offset values to move toolbar up further
   const expandedBottomClass = props.footerVisible ? 'bottom-32' : 'bottom-20';
-  const buttonBottomClass = props.footerVisible ? 'bottom-24' : 'bottom-4';
+  const mainButtonBottomClass = props.footerVisible ? 'bottom-4' : 'bottom-4';
+  // New button positioned above the main toggle button
+  const viewToggleButtonBottom = props.footerVisible ? 'bottom-44' : 'bottom-24';
 
   return (
     <>
@@ -70,9 +72,46 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
           />
         </div>
       )}
+      {/* New view toggle button placed above the main toolbar toggle button */}
+      <button
+        onClick={handleToggleRadar}
+        className={`fixed right-4 ${viewToggleButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        aria-label={props.showRadar ? t('show_card_view') : t('show_radar_view')}
+      >
+        {props.showRadar ? (
+          // Grid Icon (card view) when radar is active
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <rect x="3" y="3" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
+            <rect x="14" y="3" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
+            <rect x="3" y="14" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
+            <rect x="14" y="14" width="7" height="7" strokeWidth="1.5" stroke="currentColor" fill="currentColor" />
+          </svg>
+        ) : (
+          // Radar Icon when card view is active
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+            <line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" strokeWidth="1.5" />
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+        )}
+      </button>
       <button
         onClick={toggleExpanded}
-        className={`fixed right-4 ${buttonBottomClass} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        className={`fixed right-4 ${mainButtonBottomClass} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
         aria-label={t('quick_actions')}
       >
         {expanded ? (
@@ -82,12 +121,12 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-6"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M6 18 18 6M6 6l12 12"
+              d="M6 18L18 6M6 6l12 12"
             />
           </svg>
         ) : (
@@ -97,7 +136,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-6"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
