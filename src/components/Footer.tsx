@@ -21,14 +21,14 @@ const Footer: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         <span>{t('footer_text', '© 2025 Life Compass')}</span>
         <nav className="flex items-center space-x-4">
-          <Link to="/about" className="text-[var(--on-primary)] underline">
+          <Link to="/about" className="text-[var(--on-primary)]">
             {t('about', 'About')}
           </Link>
           <a
             href="https://github.com/mandakan/life-compass"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-[var(--on-primary)] underline"
+            className="flex items-center text-[var(--on-primary)]"
           >
             {githubIcon}
             <span>{t('github', 'GitHub')}</span>
