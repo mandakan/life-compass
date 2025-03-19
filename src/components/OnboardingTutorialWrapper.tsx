@@ -30,8 +30,14 @@ const OnboardingTutorialWrapper: React.FC = () => {
 
   return (
     <>
-      {showTutorial && <OnboardingTutorial onComplete={handleTutorialComplete} />}
-      
+      {showTutorial && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black opacity-50 backdrop-blur-sm"></div>
+          <div className="relative z-10">
+            <OnboardingTutorial onComplete={handleTutorialComplete} />
+          </div>
+        </div>
+      )}
     </>
   );
 };
