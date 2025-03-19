@@ -34,6 +34,15 @@ const About: React.FC = () => {
             <li>
               <strong>GitHub:</strong> Proprietary / Various - <a className="underline" href="https://github.com" target="_blank" rel="noopener noreferrer">https://github.com</a>
             </li>
+            <li>
+              <strong>Aider:</strong> MIT License - <a className="underline" href="https://www.aider.ai" target="_blank" rel="noopener noreferrer">https://www.aider.ai</a>
+            </li>
+            <li>
+              <strong>ChatGPT:</strong> Proprietary - <a className="underline" href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">https://chat.openai.com</a>
+            </li>
+            <li>
+              <strong>Heroicons:</strong> MIT License - <a className="underline" href="https://heroicons.com" target="_blank" rel="noopener noreferrer">https://heroicons.com</a>
+            </li>
           </ul>
         </section>
         <section>
