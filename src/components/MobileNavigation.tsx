@@ -9,7 +9,7 @@ const MobileNavigation: React.FC = () => {
   const { showDevTools } = useContext(AppSettingsContext);
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full bg-[var(--menu-bg)] p-4 text-[var(--menu-text)]">
+    <nav className="w-full bg-[var(--menu-bg)] p-4 text-[var(--menu-text)]">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">
           <Link to="/" className="mobile-nav-link text-[var(--menu-text)] no-underline">

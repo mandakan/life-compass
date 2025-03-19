@@ -21,11 +21,11 @@ const Content = () => {
   return (
     <div className="bg-bg text-text bg-escher flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">
-        <header className="h-[60px] bg-primary text-[var(--on-primary)]">
+        <header className="bg-primary text-[var(--on-primary)] md:h-[32px]">
           <div className="hidden md:block">
             <DesktopNavigation />
           </div>
-          <div className="p-4 md:hidden">
+          <div className="block md:hidden">
             <MobileNavigation />
           </div>
         </header>
