@@ -80,6 +80,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
   const buttonBaseClasses = 'px-3 py-1 rounded';
   const primaryButtonClasses = `bg-[var(--color-primary)] text-[var(--on-primary)] ${buttonBaseClasses}`;
   const accentButtonClasses = `bg-[var(--color-accent)] text-[var(--on-accent)] ${buttonBaseClasses}`;
+  const detailsButtonClasses = `bg-[var(--details-bg)] text-[var(--color-text)] ${buttonBaseClasses}`;
   const secondaryButtonClasses = `bg-[var(--color-secondary)] text-[var(--color-text)] ${buttonBaseClasses}`;
 
   return (
@@ -112,7 +113,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                   Back
                 </button>
               )}
-              <button onClick={handleSkip} className={accentButtonClasses}>
+              <button onClick={handleSkip} className={detailsButtonClasses}>
                 Skip Tutorial
               </button>
               <button onClick={handleNext} className={primaryButtonClasses}>
@@ -134,7 +135,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                   Back
                 </button>
               )}
-              <button onClick={handleSkip} className={accentButtonClasses}>
+              <button onClick={handleSkip} className={detailsButtonClasses}>
                 Skip Tutorial
               </button>
               <button onClick={handleNext} className={primaryButtonClasses}>
