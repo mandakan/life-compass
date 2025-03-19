@@ -12,14 +12,14 @@ const Introduction = () => {
       </h2>
       <p className="mb-6">{t('introduction.what_is_description')}</p>
 
-      <h3 className="mb-3 text-2xl font-semibold text-[var(--color-secondary)]">
+      <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
         {t('introduction.why_title')}
       </h3>
       <p className="mb-6">{t('introduction.why_description')}</p>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
-          <h3 className="mb-3 text-2xl font-semibold text-[var(--color-secondary)]">
+          <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
             {t('introduction.how_title')}
           </h3>
           <p className="mb-6">{t('introduction.how_description')}</p>
@@ -35,7 +35,7 @@ const Introduction = () => {
           </ul>
         </div>
         <div>
-          <h3 className="mb-3 text-2xl font-semibold text-[var(--color-secondary)]">
+          <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
             {t('introduction.examples_title')}
           </h3>
           <p className="mb-6">{t('introduction.examples_description')}</p>
@@ -51,7 +51,7 @@ const Introduction = () => {
           </ul>
         </div>
       </div>
-      <h3 className="mb-3 text-2xl font-semibold text-[var(--color-secondary)]">
+      <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
         {t('introduction.next_steps_title')}
       </h3>
       <p>{t('introduction.next_steps_description')}</p>
