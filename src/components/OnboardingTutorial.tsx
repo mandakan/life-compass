@@ -81,7 +81,9 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete, onP
       {step.type === 'modal' && (
         <Modal onClose={handleSkip}>
           <div className="p-4">
-            <ReactMarkdown className="mb-4">{step.content}</ReactMarkdown>
+            <div className="mb-4">
+            <ReactMarkdown>{step.content}</ReactMarkdown>
+            </div>
             {currentStep === 0 && (
               <div className="mb-4 flex gap-2">
                 <button onClick={() => handleSelectPathway('with')} className={primaryButtonClasses}>
@@ -111,7 +113,9 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete, onP
       {step.type === 'tooltip' && (
         <Tooltip onClose={handleSkip}>
           <div className="p-4">
-            <ReactMarkdown className="mb-4">{step.content}</ReactMarkdown>
+            <div className="mb-4">
+            <ReactMarkdown>{step.content}</ReactMarkdown>
+            </div>
             <div className="flex justify-between">
               {currentStep > 0 && (
                 <button onClick={handleBack} className={primaryButtonClasses}>
