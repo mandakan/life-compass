@@ -49,7 +49,9 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     return newValue;
   };
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleMouseDown = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
     setDragging(true);
     const newValue = calculateValue(e.clientX);
     onChange(newValue);
@@ -68,17 +70,42 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setDragging(true);
+    const newValue = calculateValue(e.touches[0].clientX);
+    onChange(newValue);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    if (dragging) {
+      const newValue = calculateValue(e.touches[0].clientX);
+      onChange(newValue);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (dragging) {
+      setDragging(false);
+    }
+  };
+
   useEffect(() => {
     if (dragging) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('touchend', handleTouchEnd);
     } else {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     }
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [dragging]);
 
@@ -116,6 +143,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
       style={{ width: width, height: height }}
       className="relative mx-auto"
       onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
     >
       <div
         aria-hidden="true"

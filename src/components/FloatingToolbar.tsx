@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DesktopToolbar from './DesktopToolbar';
 import Modal from './Modal';
 import { useTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 
 interface FloatingToolbarProps {
   onAddNewLifeArea: () => void;
@@ -208,9 +209,11 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
         )}
       </button>
       {modalOpen && (
-        <Modal onClose={() => setModalOpen(false)}>
-          {t('brief_life_compass_intruction')}
-        </Modal>
+        <div className="fixed inset-0 z-120 flex items-center justify-center">
+          <Modal onClose={() => setModalOpen(false)}>
+            <ReactMarkdown>{t('brief_life_compass_intruction')}</ReactMarkdown>
+          </Modal>
+        </div>
       )}
     </>
   );

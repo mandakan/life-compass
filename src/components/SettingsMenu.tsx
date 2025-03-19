@@ -4,6 +4,7 @@ import ToggleSwitch from './ToggleSwitch';
 import { AppSettingsContext } from '../context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useNavigate } from 'react-router-dom';
 
 interface SettingsMenuProps {
   onClose: () => void;
@@ -11,6 +12,7 @@ interface SettingsMenuProps {
 
 const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } =
     useContext(ThemeContext);
   const { showDevTools, setShowDevTools } = useContext(AppSettingsContext);
@@ -48,6 +50,12 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
       document.removeEventListener('mousedown', handleClickOutside, true);
     };
   }, [onClose]);
+
+  const handleReplayTutorial = () => {
+    localStorage.removeItem('tutorialCompleted');
+    onClose();
+    navigate('/create-life-compass');
+  };
 
   return (
     <div
@@ -90,10 +98,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
       </div>
       <div className="mt-4">
         <button
-          onClick={() => {
-            localStorage.removeItem('tutorialCompleted');
-            window.location.reload();
-          }}
+          onClick={handleReplayTutorial}
           className="w-full rounded bg-[var(--color-primary)] px-3 py-2 text-[var(--on-primary)] focus:ring focus:outline-none"
           aria-label="Replay onboarding tutorial"
         >
