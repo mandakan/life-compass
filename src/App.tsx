@@ -10,6 +10,7 @@ import DesktopNavigation from './components/DesktopNavigation';
 import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
+import Footer from './components/Footer';
 
 const Content = () => {
   const { t } = useTranslation();
@@ -37,6 +38,7 @@ const Content = () => {
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </div>
   );
