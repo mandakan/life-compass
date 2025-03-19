@@ -82,6 +82,9 @@ const CreateLifeCompass: React.FC = () => {
   // Track newly created card ID so we know to remove it if editing is aborted.
   const [newAreaId, setNewAreaId] = useState<string | null>(null);
 
+  // New state to track if a footer is visible on the page.
+  const [footerVisible, setFooterVisible] = useState(false);
+
   // Clear editing state if the edited area is no longer in lifeAreas
   useEffect(() => {
     if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
@@ -123,6 +126,21 @@ const CreateLifeCompass: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Use IntersectionObserver to detect when a footer element becomes visible
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setFooterVisible(entry.isIntersecting);
+        },
+        { root: null, threshold: 0 }
+      );
+      observer.observe(footer);
+      return () => observer.disconnect();
+    }
   }, []);
 
   const handleAddNewLifeArea = (insertionIndex?: number) => {
@@ -441,6 +459,7 @@ const CreateLifeCompass: React.FC = () => {
         showRadar={showRadar}
         onImportFile={handleImportFile}
         onRemoveAll={handleRemoveAllLifeAreas}
+        footerVisible={footerVisible}
       />
       {error && (
         <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
