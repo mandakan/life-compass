@@ -1,10 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import SettingsMenu from '../components/SettingsMenu';
 import { useTranslation } from 'react-i18next';
 
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [menuVisible, setMenuVisible] = useState(true);
+
+  const handleClose = () => {
+    setMenuVisible(false);
+    // Optionally, navigate away (for example, back to the HomePage)
+    navigate('/');
+  };
 
   return (
     <div className="bg-bg text-text h-full font-sans">
@@ -17,7 +25,7 @@ const SettingsPage: React.FC = () => {
         </div>
       </header>
       <main className="p-4">
-        <SettingsMenu />
+        {menuVisible && <SettingsMenu onClose={handleClose} />}
       </main>
     </div>
   );
