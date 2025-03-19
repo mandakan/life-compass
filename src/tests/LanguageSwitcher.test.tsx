@@ -2,12 +2,17 @@ import { describe, test, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import i18next from 'i18next';
+import { afterEach } from 'node:test';
 
 describe('LanguageSwitcher Component', () => {
   beforeEach(() => {
     localStorage.clear();
     // Reset i18next language to default 'en' before each test.
     i18next.changeLanguage('en');
+  });
+
+  afterEach(() => {
+    document.body.innerHTML = '';
   });
 
   test('renders without errors and shows the initially selected language', () => {
@@ -64,7 +69,8 @@ describe('LanguageSwitcher Component', () => {
     await waitFor(() => {
       expect(i18next.language).toBe('sv');
     });
-    const newButton = screen.getByRole('button', { name: /svenska/i });
+    const newButtons = screen.getAllByRole('button', { name: /svenska/i });
+    const newButton = newButtons[0];
     expect(newButton.textContent).toMatch(/svenska/i);
     expect(localStorage.getItem('selectedLanguage')).toBe('sv');
   });
