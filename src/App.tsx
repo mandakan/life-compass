@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
+import About from './pages/About';
 import MobileNavigation from './components/MobileNavigation';
 import DesktopNavigation from './components/DesktopNavigation';
 import SettingsPage from './pages/SettingsPage';
@@ -30,14 +31,9 @@ const Content = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route
-              path="/design-principles"
-              element={<DesignPrinciplesDemo />}
-            />
-            <Route
-              path="/create-life-compass"
-              element={<CreateLifeCompass />}
-            />
+            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
+            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
+            <Route path="/about" element={<About />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>

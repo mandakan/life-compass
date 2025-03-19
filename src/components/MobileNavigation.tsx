@@ -12,10 +12,7 @@ const MobileNavigation: React.FC = () => {
     <nav className="fixed top-0 left-0 z-50 w-full bg-[var(--menu-bg)] p-4 text-[var(--menu-text)]">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">
-          <Link
-            to="/"
-            className="mobile-nav-link text-[var(--menu-text)] no-underline"
-          >
+          <Link to="/" className="mobile-nav-link text-[var(--menu-text)] no-underline">
             {t('life_compass')}
           </Link>
         </div>
@@ -53,19 +50,14 @@ const MobileNavigation: React.FC = () => {
       </div>
       {open && (
         <div className="mt-2 flex flex-col gap-2">
-          <Link
-            to="/"
-            onClick={() => setOpen(false)}
-            className="mobile-nav-link text-[var(--menu-text)] underline"
-          >
+          <Link to="/" onClick={() => setOpen(false)} className="mobile-nav-link text-[var(--menu-text)] underline">
             {t('home')}
           </Link>
-          <Link
-            to="/create-life-compass"
-            onClick={() => setOpen(false)}
-            className="mobile-nav-link text-[var(--menu-text)] underline"
-          >
+          <Link to="/create-life-compass" onClick={() => setOpen(false)} className="mobile-nav-link text-[var(--menu-text)] underline">
             {t('create_life_compass')}
+          </Link>
+          <Link to="/about" onClick={() => setOpen(false)} className="mobile-nav-link text-[var(--menu-text)] underline">
+            {t('about', 'About')}
           </Link>
           {showDevTools && (
             <Link
@@ -76,11 +68,7 @@ const MobileNavigation: React.FC = () => {
               {t('design_principles')}
             </Link>
           )}
-          <Link
-            to="/settings"
-            onClick={() => setOpen(false)}
-            className="mobile-nav-link text-[var(--menu-text)] underline"
-          >
+          <Link to="/settings" onClick={() => setOpen(false)} className="mobile-nav-link text-[var(--menu-text)] underline">
             {t('settings')}
           </Link>
           <a
