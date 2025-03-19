@@ -46,10 +46,10 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   };
 
   // Adjust bottom offset when footer is visible: increased offset values to move toolbar up further
-  const expandedBottomClass = props.footerVisible ? 'bottom-32' : 'bottom-20';
-  const mainButtonBottomClass = props.footerVisible ? 'bottom-4' : 'bottom-4';
+  const expandedBottomClass = props.footerVisible ? 'bottom-38' : 'bottom-20';
+  const mainButtonBottomClass = props.footerVisible ? 'bottom-20' : 'bottom-4';
   // New button positioned above the main toggle button
-  const viewToggleButtonBottom = props.footerVisible ? 'bottom-44' : 'bottom-24';
+  const viewToggleButtonBottom = props.footerVisible ? 'bottom-40' : 'bottom-24';
 
   return (
     <>
