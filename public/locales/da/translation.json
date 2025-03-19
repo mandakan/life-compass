@@ -63,5 +63,7 @@
   "method": "Metode",
   "tools": "Værktøjer",
   "frameworksLibraries": "Frameworks/Biblioteker",
-  "attribution_message": "Denne applikation er bygget med omhu ved hjælp af moderne frameworks og værktøjer. Vi er taknemmelige for open source-fællesskabet og alle bidragydere, der har leveret de ressourcer, der gjorde dette projekt muligt."
+  "attribution_message": "Denne applikation er bygget med omhu ved hjælp af moderne frameworks og værktøjer. Vi er taknemmelige for open source-fællesskabet og alle bidragydere, der har leveret de ressourcer, der gjorde dette projekt muligt.",
+  "lived_according_to_past_week": "Levede i forrige uge",
+  "brief_life_compass_intruction": "Kort instruktion til livskompas"
 }

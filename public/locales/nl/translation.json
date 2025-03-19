@@ -63,5 +63,7 @@
   "method": "Methode",
   "tools": "Tools",
   "frameworksLibraries": "Frameworks/Bibliotheken",
-  "attribution_message": "Deze applicatie is met zorg gebouwd met behulp van moderne frameworks en tools. We zijn dankbaar voor de open source gemeenschap en alle bijdragers die de middelen hebben geleverd die dit project mogelijk hebben gemaakt."
+  "attribution_message": "Deze applicatie is met zorg gebouwd met behulp van moderne frameworks en tools. We zijn dankbaar voor de open source gemeenschap en alle bijdragers die de middelen hebben geleverd die dit project mogelijk hebben gemaakt.",
+  "lived_according_to_past_week": "Leefde in de afgelopen week",
+  "brief_life_compass_intruction": "Korte instructie voor levenskompas"
 }

@@ -63,5 +63,7 @@
   "method": "Methode",
   "tools": "Werkzeuge",
   "frameworksLibraries": "Frameworks/Bibliotheken",
-  "attribution_message": "Diese Anwendung wurde mit Sorgfalt unter Verwendung moderner Frameworks und Werkzeuge erstellt. Wir sind der Open-Source-Community und allen Mitwirkenden dankbar, die die Ressourcen bereitgestellt haben, die dieses Projekt ermöglicht haben."
+  "attribution_message": "Diese Anwendung wurde mit Sorgfalt unter Verwendung moderner Frameworks und Werkzeuge erstellt. Wir sind der Open-Source-Community und allen Mitwirkenden dankbar, die die Ressourcen bereitgestellt haben, die dieses Projekt ermöglicht haben.",
+  "lived_according_to_past_week": "Lebte in der vergangenen Woche",
+  "brief_life_compass_intruction": "Kurze Anleitung für den Lebenskompass"
 }
