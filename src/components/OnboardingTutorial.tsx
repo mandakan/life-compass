@@ -22,7 +22,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) =
     {
       id: 1,
       type: 'modal',
-      content: "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?",
+      content: "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?\n(You can always run the tutorial again from the settings menu.)",
     },
     {
       id: 2,
