@@ -131,7 +131,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
             {t('importance')}: {dataPoint.importance}
           </p>
           <p>
-            {t('satisfaction')}: {dataPoint.satisfaction}
+            {t('lived_according_to_past_week')}: {dataPoint.satisfaction}
           </p>
           <p>
             {t('description')}: {dataPoint.description}
@@ -176,7 +176,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
             strokeLinejoin="round"
           />
           <Radar
-            name={t('satisfaction')}
+            name={t('lived_according_to_past_week')}
             dataKey="satisfaction"
             stroke="var(--chart-series-2)"
             fill="var(--chart-series-2)"
