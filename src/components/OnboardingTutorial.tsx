@@ -8,6 +8,10 @@ interface OnboardingStep {
   content: string;
 }
 
+interface OnboardingTutorialProps {
+  onComplete: () => void;
+}
+
 const steps: OnboardingStep[] = [
   {
     id: 1,
@@ -23,7 +27,7 @@ const steps: OnboardingStep[] = [
   // Additional steps can be added here in the future.
 ];
 
-const OnboardingTutorial: React.FC = () => {
+const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedPathway, setSelectedPathway] = useState<string | null>(null);
 
@@ -31,8 +35,8 @@ const OnboardingTutorial: React.FC = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Complete the tutorial if needed.
-      // This could involve hiding the tutorial or navigating the user away.
+      // Tutorial completed
+      onComplete();
     }
   };
 
@@ -43,8 +47,8 @@ const OnboardingTutorial: React.FC = () => {
   };
 
   const handleSkip = () => {
-    // Logic for skipping the tutorial.
-    // This could set a flag in user preferences or simply hide the component.
+    // Skipping the tutorial marks it as completed.
+    onComplete();
   };
 
   const handleSelectPathway = (pathway: string) => {
