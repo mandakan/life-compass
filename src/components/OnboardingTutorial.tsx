@@ -31,17 +31,17 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     },
     {
       id: 2,
-      type: 'tooltip',
+      type: 'modal',
       content: t('onboarding.privacy_notice'),
     },
     {
       id: 3,
-      type: 'tooltip',
+      type: 'modal',
       content: t('onboarding.toolbar_tooltip'),
     },
     {
       id: 4,
-      type: 'tooltip',
+      type: 'modal',
       content: t('onboarding.settings_tooltip'),
     },
     {
