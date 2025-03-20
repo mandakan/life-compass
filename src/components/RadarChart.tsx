@@ -87,7 +87,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
     const { payload, x, y, textAnchor } = props;
     const value = payload.value;
     let lines = [value];
-    if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 10) {
+    /*if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 10) {
       const mid = Math.floor(value.length / 2);
       let breakIndex = value.lastIndexOf(' ', mid);
       if (breakIndex === -1) {
@@ -96,7 +96,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
       const firstLine = value.substring(0, breakIndex).trim();
       const secondLine = value.substring(breakIndex).trim();
       lines = [firstLine, secondLine];
-    }
+    }*/
     return (
       <text
         x={x}
@@ -107,7 +107,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
       >
         {lines.map((line, index) => (
           <tspan key={index} x={x} dy={index === 0 ? 0 : '1.2em'}>
-            {line}
+            {isMobile ? '' : line}
           </tspan>
         ))}
       </text>
@@ -151,7 +151,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
         {...(aspect ? { aspect } : { height })}
       >
         <RechartsRadarChart
-          outerRadius="70%"
+          outerRadius={isMobile ? '95%' : '70%'}
           data={arrangedData}
           startAngle={90}
           endAngle={-270}

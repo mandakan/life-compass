@@ -33,8 +33,14 @@ const Content = () => {
         <main className="mb-16 flex-1 md:mb-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/design-principles" element={<DesignPrinciplesDemo />} />
-            <Route path="/create-life-compass" element={<CreateLifeCompass />} />
+            <Route
+              path="/design-principles"
+              element={<DesignPrinciplesDemo />}
+            />
+            <Route
+              path="/create-life-compass"
+              element={<CreateLifeCompass />}
+            />
             <Route path="/about" element={<About />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />

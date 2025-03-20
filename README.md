@@ -313,12 +313,13 @@ See the [LICENSE](LICENSE) file for details.
 For more information about the concepts, tools, and methodologies used in this project, refer to the following resources:
 
 ### Life Compass and values (in Swedish)
+
 - [KBT i Primärvården: Modul 4 – Värderingar](https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/)  
-_The “Life Compass” is a therapeutic tool used in cognitive behavioral therapy to help patients identify and articulate their core life values across various domains, facilitating alignment of their actions with these values to enhance behavioral activation._
+  _The “Life Compass” is a therapeutic tool used in cognitive behavioral therapy to help patients identify and articulate their core life values across various domains, facilitating alignment of their actions with these values to enhance behavioral activation._
 
 ### Life Compass and Self-Reflection
 
-- [Acceptance and Commitment Therapy for Stress Management](https://www.livskompass.se/wp-content/uploads/2012/11/Granberg_Westin_Psykologexamensuppsats_2012-1.pdf)   
+- [Acceptance and Commitment Therapy for Stress Management](https://www.livskompass.se/wp-content/uploads/2012/11/Granberg_Westin_Psykologexamensuppsats_2012-1.pdf)  
   _A study on how the Life Compass is used as a tool for managing stress and promoting mental well-being among young people._
 
 ### AI-Assisted Development and Aider

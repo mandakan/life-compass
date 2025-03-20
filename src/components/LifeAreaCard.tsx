@@ -4,7 +4,7 @@ import { LifeArea } from '../types/LifeArea';
 import CustomSlider from '../components/CustomSlider';
 import WarningMessage from '../components/WarningMessage';
 import CustomButton from '../components/CustomButton';
-import { QuestionMarkCircleIcon } from '@heroicons/react/16/solid'
+import { QuestionMarkCircleIcon } from '@heroicons/react/16/solid';
 
 export interface LifeAreaCardProps {
   area: LifeArea;
@@ -113,7 +113,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   if (isEditing) {
     return (
-      <div className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}>
+      <div
+        className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
+      >
         <div>
           <div>
             <label className="font-sans">
@@ -223,7 +225,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     );
   } else {
     return (
-      <div className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}>
+      <div
+        className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
+      >
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 cursor-grab opacity-90"
           role="img"
@@ -350,7 +354,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               tabIndex={0}
               onBlur={() => setShowImportanceHelp(false)}
             >
-              <p className="m-0 font-sans">{t('importance_help', 'Importance')}</p>
+              <p className="m-0 font-sans">
+                {t('importance_help', 'Importance')}
+              </p>
               <button
                 onClick={() => setShowImportanceHelp(false)}
                 className="mt-2 cursor-pointer border-none bg-transparent font-sans"
@@ -365,7 +371,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               tabIndex={0}
               onBlur={() => setShowSatisfactionHelp(false)}
             >
-              <p className="m-0 font-sans">{t('satisfaction_help', 'Satisfaction')}</p>
+              <p className="m-0 font-sans">
+                {t('satisfaction_help', 'Satisfaction')}
+              </p>
               <button
                 onClick={() => setShowSatisfactionHelp(false)}
                 className="mt-2 cursor-pointer border-none bg-transparent font-sans"
@@ -407,7 +415,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           <div className="mt-auto">
             <div className="mt-2 font-sans">
               <label>
-                <div className="flex gap-1">{t('importance')}<QuestionMarkCircleIcon onClick={() => setShowImportanceHelp(true)} className="w-5"/></div>
+                <div className="flex gap-1">
+                  {t('importance')}
+                  <QuestionMarkCircleIcon
+                    onClick={() => setShowImportanceHelp(true)}
+                    className="w-5"
+                  />
+                </div>
                 <CustomSlider
                   value={area.importance}
                   onChange={newValue => {
@@ -429,7 +443,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <div className="mt-2 font-sans">
               <label>
-              <div className="flex gap-1">{t('lived_according_to_past_week')}<QuestionMarkCircleIcon onClick={() => setShowSatisfactionHelp(true)} className="w-5"/></div>
+                <div className="flex gap-1">
+                  {t('lived_according_to_past_week')}
+                  <QuestionMarkCircleIcon
+                    onClick={() => setShowSatisfactionHelp(true)}
+                    className="w-5"
+                  />
+                </div>
                 <CustomSlider
                   value={area.satisfaction}
                   onChange={newValue => {
