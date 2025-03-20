@@ -11,6 +11,8 @@ import {
 } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
+/* eslint-disable react/prop-types */
+
 interface RadarChartData {
   area: string;
   importance: number;
