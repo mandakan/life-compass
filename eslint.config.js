@@ -22,6 +22,6 @@ module.exports = [
     },
     rules: {}
   },
-  require("eslint/conf/eslint-recommended"),
-  require("eslint-plugin-react/configs/recommended")
+  require("eslint-plugin-react").configs.recommended,
+  require("eslint-plugin-react-hooks").configs.recommended,
 ];
