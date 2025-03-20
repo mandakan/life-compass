@@ -21,7 +21,7 @@ const PrivacyPolicy: React.FC = () => {
       <p className="mb-4">
         {t(
           'privacyPolicy.dataStorage',
-          'All the information you provide is stored locally in your browser\'s local storage. This means that your data is only available on the device you use and is not transmitted over the internet.'
+          "All the information you provide is stored locally in your browser's local storage. This means that your data is only available on the device you use and is not transmitted over the internet."
         )}
       </p>
       <h2 className="mb-2 text-2xl font-semibold">
@@ -48,7 +48,16 @@ const PrivacyPolicy: React.FC = () => {
       <p className="mb-4">
         {t(
           'privacyPolicy.dataExport',
-          'You can export your data at any time using the export function available in the app. If you wish to clear all your data, you can simply clear your browser\'s local storage.'
+          'You can export your data at any time using the export function available in the app. If you wish to clear all your data, you can simply clear your browser’s local storage.'
+        )}
+      </p>
+      <h2 className="mb-2 text-2xl font-semibold">
+        {t('privacyPolicy.userControlTitle', 'User Control')}
+      </h2>
+      <p className="mb-4">
+        {t(
+          'privacyPolicy.userControl',
+          'You have complete control over your data. It remains securely on your device, and you can export or delete it at any time by clearing your browser’s local storage.'
         )}
       </p>
       <p>
