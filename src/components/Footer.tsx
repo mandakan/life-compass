@@ -26,6 +26,12 @@ const Footer: React.FC = () => {
           >
             {t('about', 'About')}
           </Link>
+          <Link
+            to="/privacy"
+            className="text-[var(--on-primary)] hover:underline"
+          >
+            {t('privacy', 'Privacy Policy')}
+          </Link>
           <a
             href="https://github.com/mandakan/life-compass"
             target="_blank"
