@@ -20,6 +20,12 @@ module.exports = [
         version: 'detect',
       },
     },
-    rules: {},
-  },
+    extends: [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "prettier"
+    ],
+    rules: {}
+  }
 ];
