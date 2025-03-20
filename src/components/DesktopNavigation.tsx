@@ -53,6 +53,7 @@ const DesktopNavigation: React.FC = () => {
       </div>
       <div className="relative flex items-center gap-4">
         <button
+          onMouseDown={(e) => e.stopPropagation()}
           onClick={toggleSettings}
           className="cursor-pointer border-0 bg-transparent p-0"
           aria-label={t('toggle_settings_menu')}
