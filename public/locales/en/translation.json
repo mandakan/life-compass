@@ -77,6 +77,7 @@
   "onboarding.skip": "Skip Tutorial",
   "onboarding.next": "Next",
   "onboarding.finish": "Finish Tutorial",
+  "replay_onboarding": "Replay onboarding tutorial",
   "introduction.what_is_title": "What is Life Compass?",
   "introduction.what_is_description": "Life Compass is a tool to reflect on what is truly important in your life. Instead of being driven by short-term goals or external expectations, it helps you identify your core values – what you stand for and how you want to live your life.",
   "introduction.why_title": "Why is it important?",
@@ -94,5 +95,34 @@
   "introduction.examples_health": "Health: \"I want to prioritize my health through regular exercise and recovery.\"",
   "introduction.next_steps_title": "What's next?",
   "introduction.next_steps_description": "By exploring your own Life Compass, you can begin acting in line with your values and create a more meaningful life. Click on \"Start your journey\" to get started!",
-  "introduction.source_text": "Based on material from"
+  "introduction.source_text": "Based on material from",
+  "introduction.privacy_title": "Privacy and Data Protection",
+  "introduction.privacy_description": "We respect your privacy. We do not track any of your actions or what you write. All your data remains local and is not shared with any external party.",
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "intro": "Your privacy is very important to us. We are committed to protecting your personal data. This application is designed to respect your privacy by processing all data locally in your browser.",
+    "dataStorageTitle": "Local Data Storage",
+    "dataStorage": "All the information you provide is stored locally in your browser's local storage. This means that your data is only available on the device you use and is not transmitted over the internet.",
+    "noTrackingTitle": "No User Tracking",
+    "noTracking": "We do not track any of your actions or behaviors within the application. There are no tracking cookies or analytics services embedded in this app.",
+    "noCookiesTitle": "No Cookies",
+    "noCookies": "This application does not use cookies for tracking or storing personal data.",
+    "dataExportTitle": "Data Export & Clear",
+    "dataExport": "You can export your data at any time using the export function available in the app. If you wish to clear all your data, you can simply clear your browser’s local storage.",
+    "userControlTitle": "User Control",
+    "userControl": "You have complete control over your data. It remains securely on your device, and you can export or delete it at any time by clearing your browser’s local storage.",
+    "closing": "If you have any questions or concerns about your privacy, please feel free to contact us."
+  },
+  "onboarding": {
+    "privacy_notice": "We value your privacy. None of your actions or inputs are tracked; all data remains on your device.",
+    "welcome_prompt": "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?\n(You can always run the tutorial again from the settings menu.)",
+    "toolbar_tooltip": "Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding predefined life areas, resetting, exporting/importing data, and toggling the radar view.",
+    "settings_tooltip": "Take a look at the settings menu in the top right. You can access the tutorial, change the language, and more.",
+    "with_predefined": "With Predefined Life Areas (recommended)",
+    "without_predefined": "Without Predefined Life Areas",
+    "back": "Back",
+    "skip": "Skip Tutorial",
+    "next": "Next",
+    "finish": "Finish Tutorial"
+  }
 }
