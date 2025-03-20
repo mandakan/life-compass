@@ -156,7 +156,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         aria-valuenow={value}
         aria-label={t('custom_slider')}
         onKeyDown={handleKeyDown}
-        className="absolute flex cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-white transition-colors select-none"
+        className="absolute flex cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-[var(--on-primary)] transition-colors select-none"
         style={{
           width: handleSize,
           height: handleSize,

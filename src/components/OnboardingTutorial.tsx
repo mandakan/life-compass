@@ -92,7 +92,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     <div className="onboarding-tutorial">
       {step.type === 'modal' && (
         <Modal onClose={handleSkip}>
-          <div className="p-4">
+          <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
@@ -123,7 +123,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                   {nextButtonText}
                 </button>
               </div>
-              {currentStep != steps.length - 1 && (
+              {currentStep !== steps.length - 1 && (
                 <button onClick={handleSkip} className={detailsButtonClasses}>
                   {t('onboarding.skip')}
                 </button>
@@ -134,7 +134,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
       )}
       {step.type === 'tooltip' && (
         <Tooltip onClose={handleSkip}>
-          <div className="p-4">
+          <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
@@ -145,12 +145,11 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                     {t('onboarding.back')}
                   </button>
                 )}
-
                 <button onClick={handleNext} className={primaryButtonClasses}>
                   {nextButtonText}
                 </button>
               </div>
-              {currentStep != steps.length - 1 && (
+              {currentStep !== steps.length - 1 && (
                 <button onClick={handleSkip} className={detailsButtonClasses}>
                   {t('onboarding.skip')}
                 </button>

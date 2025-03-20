@@ -75,7 +75,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       {/* Modal button */}
       <button
         onClick={() => setModalOpen(prev => !prev)}
-        className={`fixed right-4 ${modalButtonBottom} z-110 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        className={`fixed right-4 ${modalButtonBottom} z-110 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg focus:outline-none`}
         aria-label={t('brief_life_compass_intruction')}
       >
         <svg
@@ -96,7 +96,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       {/* New view toggle button placed above the main toolbar toggle button */}
       <button
         onClick={handleToggleRadar}
-        className={`fixed right-4 ${viewToggleButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        className={`fixed right-4 ${viewToggleButtonBottom} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg focus:outline-none`}
         aria-label={
           props.showRadar ? t('show_card_view') : t('show_radar_view')
         }
@@ -173,7 +173,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
       </button>
       <button
         onClick={toggleExpanded}
-        className={`fixed right-4 ${mainButtonBottomClass} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-lg focus:outline-none`}
+        className={`fixed right-4 ${mainButtonBottomClass} z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg focus:outline-none`}
         aria-label={t('quick_actions')}
       >
         {expanded ? (

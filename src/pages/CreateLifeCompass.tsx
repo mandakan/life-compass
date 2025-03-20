@@ -453,7 +453,7 @@ const CreateLifeCompass: React.FC = () => {
         onPredefinedSelected={handleAddPredefinedAreas}
       />
       {!storageAvailable && (
-        <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-white">
+        <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-[var(--on-accent)]">
           {t('local_storage_not_available')}
         </div>
       )}
