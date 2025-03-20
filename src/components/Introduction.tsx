@@ -6,7 +6,7 @@ const Introduction = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-4 text-[var(--color-text)]">
+    <div className="mx-auto max-w-4xl px-4 py-4 text-[var(--color-text)] bg-[var(--color-bg)] rounded-lg shadow">
       <h2 className="mb-4 text-3xl font-bold text-[var(--color-primary)]">
         {t('introduction.what_is_title')}
       </h2>
@@ -59,6 +59,7 @@ const Introduction = () => {
             href="https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-[var(--accent)] underline"
           >
             KBT i primärvården
           </a>
@@ -69,7 +70,7 @@ const Introduction = () => {
         <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
           {t('introduction.next_steps_title')}
         </h3>
-        <p>{t('introduction.next_steps_description')}</p>
+        <p className="mb-6">{t('introduction.next_steps_description')}</p>
       </div>
     </div>
   );
