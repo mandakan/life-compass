@@ -96,6 +96,14 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
+            <div className="mt-4">
+              <p className="text-sm text-gray-600">
+                {t(
+                  'onboarding.privacy_notice',
+                  'We value your privacy. None of your actions or inputs are tracked; all data remains on your device.'
+                )}
+              </p>
+            </div>
             {currentStep === 0 && (
               <div className="mb-8 flex gap-2">
                 <button
@@ -138,6 +146,14 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
+            <div className="mt-4">
+              <p className="text-sm text-gray-600">
+                {t(
+                  'onboarding.privacy_notice',
+                  'We value your privacy. None of your actions or inputs are tracked; all data remains on your device.'
+                )}
+              </p>
+            </div>
             <div className="grid grid-cols-1 gap-4">
               <div className="flex justify-between">
                 {currentStep > 0 && (
@@ -163,3 +179,4 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
 };
 
 export default OnboardingTutorial;
+```

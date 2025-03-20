@@ -72,6 +72,18 @@ const Introduction = () => {
         </h3>
         <p className="">{t('introduction.next_steps_description')}</p>
       </div>
+
+      <div className="mt-8">
+        <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+          {t('introduction.privacy_title', 'Privacy and Data Protection')}
+        </h3>
+        <p className="mb-6">
+          {t(
+            'introduction.privacy_description',
+            'We respect your privacy. We do not track any of your actions or what you write. All your data remains local and is not shared with any external party.'
+          )}
+        </p>
+      </div>
     </div>
   );
 };
