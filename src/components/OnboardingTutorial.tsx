@@ -113,20 +113,20 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
               </div>
             )}
             <div className="grid grid-cols-1 gap-4">
-            <div className="flex justify-between">
-              {currentStep > 0 && (
-                <button onClick={handleBack} className={primaryButtonClasses}>
-                  {t('onboarding.back')}
+              <div className="flex justify-between">
+                {currentStep > 0 && (
+                  <button onClick={handleBack} className={primaryButtonClasses}>
+                    {t('onboarding.back')}
+                  </button>
+                )}
+                <button onClick={handleNext} className={primaryButtonClasses}>
+                  {nextButtonText}
                 </button>
-              )}
-              <button onClick={handleNext} className={primaryButtonClasses}>
-                {nextButtonText}
-              </button>
-            </div>
-            {currentStep != steps.length - 1 && (
-              <button onClick={handleSkip} className={detailsButtonClasses}>
-                {t('onboarding.skip')}
-              </button>
+              </div>
+              {currentStep != steps.length - 1 && (
+                <button onClick={handleSkip} className={detailsButtonClasses}>
+                  {t('onboarding.skip')}
+                </button>
               )}
             </div>
           </div>
@@ -139,21 +139,21 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
             <div className="grid grid-cols-1 gap-4">
-            <div className="flex justify-between">
-              {currentStep > 0 && (
-                <button onClick={handleBack} className={primaryButtonClasses}>
-                  {t('onboarding.back')}
-                </button>
-              )}
+              <div className="flex justify-between">
+                {currentStep > 0 && (
+                  <button onClick={handleBack} className={primaryButtonClasses}>
+                    {t('onboarding.back')}
+                  </button>
+                )}
 
-              <button onClick={handleNext} className={primaryButtonClasses}>
-                {nextButtonText}
-              </button>
-            </div>
-            {currentStep != steps.length - 1 && (
-              <button onClick={handleSkip} className={detailsButtonClasses}>
-                {t('onboarding.skip')}
-              </button>
+                <button onClick={handleNext} className={primaryButtonClasses}>
+                  {nextButtonText}
+                </button>
+              </div>
+              {currentStep != steps.length - 1 && (
+                <button onClick={handleSkip} className={detailsButtonClasses}>
+                  {t('onboarding.skip')}
+                </button>
               )}
             </div>
           </div>

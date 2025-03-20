@@ -49,9 +49,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     return newValue;
   };
 
-  const handleMouseDown = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setDragging(true);
     const newValue = calculateValue(e.clientX);
     onChange(newValue);

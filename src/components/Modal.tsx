@@ -12,8 +12,8 @@ const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
       className="modal-overlay bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center"
     >
       <div
-        onClick={(e) => e.stopPropagation()}
-        className="modal-content relative w-full max-w-xl rounded bg-[var(--color-bg)] p-6 shadow-lg max-h-[90vh] overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+        className="modal-content relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded bg-[var(--color-bg)] p-6 shadow-lg"
       >
         <button
           onClick={onClose}
