@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
           <Introduction />
         </div>
         <CustomButton
-          className="text-xl"
+          className="mt-8 text-xl"
           onClick={() => navigate('/create-life-compass')}
         >
           {t('start_your_journey', 'Börja din resa')}

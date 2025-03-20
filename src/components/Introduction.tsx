@@ -6,7 +6,7 @@ const Introduction = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-4 text-[var(--color-text)] bg-[var(--color-bg)] rounded-lg shadow">
+    <div className="mx-auto max-w-4xl rounded-lg bg-[var(--color-bg)] px-4 py-4 text-[var(--color-text)] shadow">
       <h2 className="mb-4 text-3xl font-bold text-[var(--color-primary)]">
         {t('introduction.what_is_title')}
       </h2>
@@ -52,7 +52,7 @@ const Introduction = () => {
         </div>
       </div>
 
-      <div className="mt-4 mb-8 text-center text-sm text-gray-600">
+      <div className="mt-4 mb-8 text-center text-sm text-[var(--color-primary)]">
         <p>
           {t('introduction.source_text')}{' '}
           <a
@@ -66,11 +66,11 @@ const Introduction = () => {
         </p>
       </div>
 
-      <div>
+      <div className="mx-auto max-w-xl text-center">
         <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
           {t('introduction.next_steps_title')}
         </h3>
-        <p className="mb-6">{t('introduction.next_steps_description')}</p>
+        <p className="">{t('introduction.next_steps_description')}</p>
       </div>
     </div>
   );

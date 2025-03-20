@@ -92,7 +92,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     <div className="onboarding-tutorial">
       {step.type === 'modal' && (
         <Modal onClose={handleSkip}>
-          <div className="p-4 bg-[var(--color-bg)] rounded-lg shadow-lg">
+          <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
@@ -134,7 +134,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
       )}
       {step.type === 'tooltip' && (
         <Tooltip onClose={handleSkip}>
-          <div className="p-4 bg-[var(--color-bg)] rounded-lg shadow-lg">
+          <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
