@@ -32,20 +32,25 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     {
       id: 2,
       type: 'tooltip',
-      content: t('onboarding.toolbar_tooltip'),
+      content: t('onboarding.privacy_notice'),
     },
     {
       id: 3,
       type: 'tooltip',
-      content: t('onboarding.settings_tooltip'),
+      content: t('onboarding.toolbar_tooltip'),
     },
     {
       id: 4,
+      type: 'tooltip',
+      content: t('onboarding.settings_tooltip'),
+    },
+    {
+      id: 5,
       type: 'modal',
       content: t('brief_life_compass_instruction_1'),
     },
     {
-      id: 5,
+      id: 6,
       type: 'modal',
       content: t('brief_life_compass_instruction_2'),
     },
@@ -96,14 +101,6 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
-            <div className="mt-4">
-              <p className="text-sm text-gray-600">
-                {t(
-                  'onboarding.privacy_notice',
-                  'We value your privacy. None of your actions or inputs are tracked; all data remains on your device.'
-                )}
-              </p>
-            </div>
             {currentStep === 0 && (
               <div className="mb-8 flex gap-2">
                 <button
@@ -145,14 +142,6 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
           <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
-            </div>
-            <div className="mt-4">
-              <p className="text-sm text-gray-600">
-                {t(
-                  'onboarding.privacy_notice',
-                  'We value your privacy. None of your actions or inputs are tracked; all data remains on your device.'
-                )}
-              </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
               <div className="flex justify-between">
