@@ -1,3 +1,6 @@
+const { flatCompat } = require('@eslint/eslintrc');
+const withCompat = flatCompat();
+
 module.exports = [
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
@@ -22,6 +25,6 @@ module.exports = [
     },
     rules: {}
   },
-  require("eslint-plugin-react").configs.recommended,
-  require("eslint-plugin-react-hooks").configs.recommended,
+  withCompat(require("eslint-plugin-react").configs.recommended),
+  withCompat(require("eslint-plugin-react-hooks").configs.recommended)
 ];
