@@ -19,9 +19,9 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="mt-auto bg-[var(--color-primary)] p-4 text-[var(--on-primary)]">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex flex-col md:flex-row items-center md:justify-between">
         <span>{t('footer_text', '© 2025 Life Compass. MIT Licensed.')}</span>
-        <nav className="flex items-center space-x-4">
+        <nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 mt-2 md:mt-0">
           <Link to="/about" className="text-[var(--on-primary)]">
             {t('about', 'About')}
           </Link>
