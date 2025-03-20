@@ -1,3 +1,0 @@
-/* This file is deprecated.
-   Please remove it from your repository and use eslint.config.js exclusively.
-*/
