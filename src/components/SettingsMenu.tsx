@@ -55,6 +55,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
     localStorage.removeItem('tutorialCompleted');
     onClose();
     navigate('/create-life-compass');
+    window.location.reload();
   };
 
   return (
