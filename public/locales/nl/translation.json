@@ -67,8 +67,8 @@
   "attribution_message": "Deze applicatie is met zorg gebouwd met behulp van moderne frameworks en tools. We zijn dankbaar voor de open source gemeenschap en alle bijdragers die de middelen hebben geleverd die dit project mogelijk hebben gemaakt.",
   "brief_life_compass_instruction_1": "Het Levenskompas bevat doorgaans tien gebieden die voor de meeste mensen belangrijk zijn. Schrijf in elk vak een paar woorden op over wat je waardevol vindt of belangrijk acht in dat specifieke gebied. Elk gebied bevat ook twee waarderingen. In het bovenste vak geef je aan hoe belangrijk elk gebied voor je is op een schaal van 1 tot 10, waarbij 1 niet belangrijk is en 10 zeer belangrijk is. Stel je voor hoe je leven zou zijn als alles er precies zo uitzag als je wenst.",
   "brief_life_compass_instruction_2": "In het onderste vak geef je aan in hoeverre je de afgelopen week hebt geleefd in overeenstemming met je waarden, waarbij 1 betekent dat je helemaal niet volgens je waarden hebt geleefd en 10 betekent dat je volledig volgens je waarden hebt geleefd. Bekijk vervolgens het verschil tussen de cijfers. Kun je gebieden identificeren die belangrijk voor je zijn, maar waarin je niet leeft zoals je zou willen? Overweeg wat je mogelijk tegenhoudt!",
-  "importance_help": "Ange hur viktigt området är i ditt liv på en skala 1-10 där 1 är oviktigt och 10 är väldigt viktigt. Utgå från hur livet skulle vara om allt såg ut precis som du ville.",
-  "satisfaction_help": "Ange hur “mycket” du levt i enlighet med dina värderingar den senaste veckan, där 1 är att du inte alls levt enligt dina värderingar och 10 är att du levt helt enligt dina värderingar.",
+  "importance_help": "Geef aan hoe belangrijk dit gebied voor je is op een schaal van 1 tot 10, waarbij 1 niet belangrijk is en 10 erg belangrijk is. Stel je voor hoe je leven zou zijn als alles er precies zo uitzag als je wenst.",
+  "satisfaction_help": "Geef aan in welke mate je de afgelopen week in overeenstemming met je waarden hebt geleefd, waarbij 1 betekent dat je helemaal niet volgens je waarden hebt geleefd en 10 betekent dat je volledig volgens je waarden hebt geleefd.",
   "onboarding": {
     "welcome_prompt": "Welkom bij Life Compass!\nLaten we de introductie starten. Wilt u beginnen met vooraf gedefinieerde levensgebieden?\n(U kunt de tutorial altijd opnieuw starten vanuit het instellingenmenu.)",
     "toolbar_tooltip": "Bekijk de zwevende werkbalk rechtsonder. Deze geeft u snelle toegang tot acties zoals het toevoegen van vooraf gedefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
@@ -80,42 +80,5 @@
     "next": "Volgende",
     "finish": "Tutorial afronden",
     "privacy_notice": "Wij waarderen uw privacy. Geen van uw acties of invoer wordt gevolgd; alle gegevens blijven op uw apparaat."
-  },
-  "introduction": {
-    "what_is_title": "Wat is Life Compass?",
-    "what_is_description": "Life Compass is een hulpmiddel om na te denken over wat écht belangrijk is in uw leven. In plaats van gedreven te worden door kortetermijndoelen of externe verwachtingen, helpt het u om uw kernwaarden te identificeren – waar u voor staat en hoe u uw leven wilt leiden.",
-    "why_title": "Waarom is het belangrijk?",
-    "why_description": "Het hebben van duidelijke waarden geeft richting en motivatie in het leven. Zonder deze waarden kunnen we ons verloren of onzeker voelen over onze keuzes. Met een Life Compass kunt u uitdagingen navigeren, beslissingen nemen en meer leven in lijn met wat voor u betekenisvol is.",
-    "how_title": "Hoe werkt het?",
-    "how_description": "U reflecteert op verschillende levensgebieden, zoals:",
-    "how_family": "Familie & Relaties: Hoe wilt u zijn als partner, ouder of vriend?",
-    "how_work": "Werk & Carrière: Wat is het belangrijkste voor u in uw werk?",
-    "how_health": "Gezondheid & Welzijn: Hoe zorgt u voor uzelf, zowel fysiek als mentaal?",
-    "how_leisure": "Vrijetijd & Persoonlijke Ontwikkeling: Wat maakt u gelukkig en betrokken?",
-    "examples_title": "Voorbeelden van Waarden",
-    "examples_description": "Een waarde is geen doel, maar een richting. Voorbeelden:",
-    "examples_family": "Relaties: \"Ik wil een aanwezige en zorgzame vriend zijn.\"",
-    "examples_work": "Werk: \"Ik wil bijdragen aan iets betekenisvols en groeien in mijn beroep.\"",
-    "examples_health": "Gezondheid: \"Ik wil mijn gezondheid prioriteren door regelmatig te bewegen en te herstellen.\"",
-    "next_steps_title": "Wat is de volgende stap?",
-    "next_steps_description": "Door uw eigen Life Compass te verkennen, kunt u beginnen te handelen naar uw waarden en een betekenisvoller leven leiden. Klik op \"Start uw reis\" om te beginnen.",
-    "source_text": "Gebaseerd op materiaal van",
-    "privacy_title": "Privacy en gegevensbescherming",
-    "privacy_description": "Wij respecteren uw privacy. Wij volgen geen van uw handelingen of wat u typt. Al uw gegevens blijven lokaal en worden niet gedeeld met derden."
-  },
-  "privacyPolicy": {
-    "title": "Privacybeleid",
-    "intro": "Uw privacy is zeer belangrijk voor ons. Wij zetten ons in voor het beschermen van uw persoonlijke gegevens. Deze applicatie is ontworpen om uw privacy te respecteren door alle gegevens lokaal in uw browser te verwerken.",
-    "dataStorageTitle": "Lokale gegevensopslag",
-    "dataStorage": "Alle informatie die u verstrekt, wordt lokaal opgeslagen in de lokale opslag van uw browser. Dit betekent dat uw gegevens alleen beschikbaar zijn op het apparaat dat u gebruikt en niet over het internet worden verzonden.",
-    "noTrackingTitle": "Geen gebruikerstracking",
-    "noTracking": "Wij volgen geen van uw acties of gedragingen binnen de applicatie. Er worden geen tracking cookies of analytics-diensten in deze app geïntegreerd.",
-    "noCookiesTitle": "Geen cookies",
-    "noCookies": "Deze applicatie maakt geen gebruik van cookies voor het volgen of opslaan van persoonlijke gegevens.",
-    "dataExportTitle": "Gegevens exporteren & wissen",
-    "dataExport": "U kunt uw gegevens op elk moment exporteren via de exportfunctie in de app. Als u al uw gegevens wilt wissen, kunt u eenvoudig de lokale opslag van uw browser leegmaken.",
-    "userControlTitle": "Gebruikerscontrole",
-    "userControl": "U heeft volledige controle over uw gegevens. Deze blijven veilig op uw apparaat en u kunt ze op elk moment exporteren of verwijderen door de lokale opslag van uw browser te wissen.",
-    "closing": "Als u vragen of zorgen heeft over uw privacy, neem dan gerust contact met ons op."
   }
 }
