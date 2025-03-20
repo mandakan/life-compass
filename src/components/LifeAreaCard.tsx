@@ -31,6 +31,7 @@ export interface LifeAreaCardProps {
   ) => void;
   dragHandle?: React.HTMLAttributes<HTMLDivElement>;
   onInlineDetailsChange?: (val: string, area: LifeArea) => void;
+  className?: string;
 }
 
 const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
@@ -54,6 +55,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   onAutoUpdateRating,
   dragHandle,
   onInlineDetailsChange,
+  className,
 }) => {
   const { t } = useTranslation();
   const [showDescription, setShowDescription] = useState(false);
@@ -108,7 +110,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   if (isEditing) {
     return (
-      <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
+      <div className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}>
         <div>
           <div>
             <label className="font-sans">
@@ -218,7 +220,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     );
   } else {
     return (
-      <div className="relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all">
+      <div className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}>
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 cursor-grab opacity-90"
           role="img"
