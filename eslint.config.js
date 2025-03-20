@@ -1,5 +1,5 @@
-const { flatCompat } = require('@eslint/eslintrc');
-const withCompat = flatCompat();
+const { FlatCompat } = require('@eslint/eslintrc');
+const withCompat = new FlatCompat();
 
 module.exports = [
   {
