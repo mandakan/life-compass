@@ -25,6 +25,6 @@ module.exports = [
     },
     rules: {}
   },
-  withCompat(require("eslint-plugin-react").configs.recommended),
-  withCompat(require("eslint-plugin-react-hooks").configs.recommended)
+  withCompat.config(require("eslint-plugin-react").configs.recommended),
+  withCompat.config(require("eslint-plugin-react-hooks").configs.recommended)
 ];
