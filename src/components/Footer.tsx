@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import './Footer.css';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -33,18 +32,18 @@ const Footer: React.FC = () => {
             {githubIcon}
             <span>{t('github', 'GitHub')}</span>
           </a>
-          <div className="text-center text-[var(--on-primary)]">
+          <div className="text-center">
             <a
               href="https://www.buymeacoffee.com/thias"
               target="_blank"
               rel="noopener noreferrer"
-              className=""
+              className="text-[var(--on-primary)] underline"
             >
-              ☕ Buy Me a Coffee
+              ☕ {t('buy_me_coffee', 'Buy Me a Coffee')}
             </a>
           </div>
         </nav>
-        <span className="mt-2 md:mt-0">
+        <span className="mt-2 md:mt-0 text-sm">
           {t('footer_text', '© 2025 Life Compass. MIT Licensed.')}
         </span>
       </div>
