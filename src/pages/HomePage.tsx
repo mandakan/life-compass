@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
-      <header className="mb-32 text-center">
+      <header className="mb-24 text-center">
         <h1 className="mb-4 text-4xl font-bold">
           {t(
             'life_compass_title',
@@ -41,15 +41,9 @@ const HomePage: React.FC = () => {
         <div className="mt-4">
           <LanguageSwitcher />
         </div>
-        <div className="mt-32">
+        <div className="mt-24">
           <Introduction />
         </div>
-        <CustomButton
-          className="mt-8 text-xl"
-          onClick={() => navigate('/create-life-compass')}
-        >
-          {t('start_your_journey', 'Börja din resa')}
-        </CustomButton>
       </main>
     </div>
   );

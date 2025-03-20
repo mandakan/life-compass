@@ -5,7 +5,7 @@ const About: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-bg text-text min-h-screen p-8 font-sans">
+    <div className="bg-bg text-text h-full p-8 font-sans">
       <header className="mb-8 text-center">
         <h1 className="text-4xl font-bold">{t('about', 'About This App')}</h1>
       </header>

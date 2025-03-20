@@ -1,12 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import CustomButton from './CustomButton';
 
 const Introduction = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="mx-auto max-w-4xl rounded-lg bg-[var(--color-bg)] px-4 py-4 text-[var(--color-text)] shadow">
+    <div className="mx-auto max-w-4xl rounded-lg bg-[var(--callout-bg)] px-4 py-4 text-[var(--color-text)] shadow">
       <h2 className="mb-4 text-3xl font-bold text-[var(--color-primary)]">
         {t('introduction.what_is_title')}
       </h2>
@@ -72,7 +73,12 @@ const Introduction = () => {
         </h3>
         <p className="">{t('introduction.next_steps_description')}</p>
       </div>
-
+      <CustomButton
+          className="mt-8 text-xl"
+          onClick={() => navigate('/create-life-compass')}
+        >
+          {t('start_your_journey', 'Börja din resa')}
+        </CustomButton>
       <div className="mt-8">
         <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
           {t('introduction.privacy_title', 'Privacy and Data Protection')}
