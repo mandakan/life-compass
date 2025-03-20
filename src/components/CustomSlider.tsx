@@ -24,23 +24,30 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
   const trackRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
 
-  const calculateValue = useCallback((clientX: number) => {
-    if (!trackRef.current) return value;
-    const { left, width: trackWidth } = trackRef.current.getBoundingClientRect();
-    let percent = (clientX - left) / trackWidth;
-    percent = Math.max(0, Math.min(1, percent));
-    const range = max - min;
-    let newValue = min + percent * range;
-    newValue = Math.round(newValue / step) * step;
-    return newValue;
-  }, [min, max, step, value]);
+  const calculateValue = useCallback(
+    (clientX: number) => {
+      if (!trackRef.current) return value;
+      const { left, width: trackWidth } =
+        trackRef.current.getBoundingClientRect();
+      let percent = (clientX - left) / trackWidth;
+      percent = Math.max(0, Math.min(1, percent));
+      const range = max - min;
+      let newValue = min + percent * range;
+      newValue = Math.round(newValue / step) * step;
+      return newValue;
+    },
+    [min, max, step, value],
+  );
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (dragging) {
-      const newValue = calculateValue(e.clientX);
-      onChange(newValue);
-    }
-  }, [dragging, calculateValue, onChange]);
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (dragging) {
+        const newValue = calculateValue(e.clientX);
+        onChange(newValue);
+      }
+    },
+    [dragging, calculateValue, onChange],
+  );
 
   const handleMouseUp = useCallback(() => {
     if (dragging) {
@@ -48,12 +55,15 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
     }
   }, [dragging]);
 
-  const handleTouchMove = useCallback((e: TouchEvent) => {
-    if (dragging) {
-      const newValue = calculateValue(e.touches[0].clientX);
-      onChange(newValue);
-    }
-  }, [dragging, calculateValue, onChange]);
+  const handleTouchMove = useCallback(
+    (e: TouchEvent) => {
+      if (dragging) {
+        const newValue = calculateValue(e.touches[0].clientX);
+        onChange(newValue);
+      }
+    },
+    [dragging, calculateValue, onChange],
+  );
 
   const handleTouchEnd = useCallback(() => {
     if (dragging) {
@@ -79,11 +89,19 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [dragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
+  }, [
+    dragging,
+    handleMouseMove,
+    handleMouseUp,
+    handleTouchMove,
+    handleTouchEnd,
+  ]);
 
   useEffect(() => {
     if (trackRef.current) {
-      const handle = trackRef.current.querySelector('[role="slider"]') as HTMLElement;
+      const handle = trackRef.current.querySelector(
+        '[role="slider"]',
+      ) as HTMLElement;
       handle?.focus();
     }
   }, []);
@@ -127,7 +145,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({
         aria-valuemax={max}
         aria-valuenow={value}
         aria-label={t('custom_slider')}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           switch (e.key) {
             case 'ArrowLeft':
             case 'ArrowDown':

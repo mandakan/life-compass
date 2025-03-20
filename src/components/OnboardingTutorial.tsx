@@ -31,21 +31,26 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     },
     {
       id: 2,
-      type: 'tooltip',
-      content: t('onboarding.toolbar_tooltip'),
+      type: 'modal',
+      content: t('onboarding.privacy_notice'),
     },
     {
       id: 3,
-      type: 'tooltip',
-      content: t('onboarding.settings_tooltip'),
+      type: 'modal',
+      content: t('onboarding.toolbar_tooltip'),
     },
     {
       id: 4,
       type: 'modal',
-      content: t('brief_life_compass_instruction_1'),
+      content: t('onboarding.settings_tooltip'),
     },
     {
       id: 5,
+      type: 'modal',
+      content: t('brief_life_compass_instruction_1'),
+    },
+    {
+      id: 6,
       type: 'modal',
       content: t('brief_life_compass_instruction_2'),
     },
@@ -91,7 +96,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
   return (
     <div className="onboarding-tutorial">
       {step.type === 'modal' && (
-        <Modal onClose={handleSkip}>
+        <Modal>
           <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
@@ -133,7 +138,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
         </Modal>
       )}
       {step.type === 'tooltip' && (
-        <Tooltip onClose={handleSkip}>
+        <Tooltip>
           <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>

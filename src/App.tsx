@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
 import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import MobileNavigation from './components/MobileNavigation';
 import DesktopNavigation from './components/DesktopNavigation';
 import SettingsPage from './pages/SettingsPage';
@@ -42,6 +43,7 @@ const Content = () => {
             />
             <Route path="/about" element={<About />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
         <Footer />
