@@ -3,6 +3,5 @@ build
 dist
 public
 .cache
-``` 
 
 .eslintignore

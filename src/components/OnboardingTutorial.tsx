@@ -179,4 +179,3 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
 };
 
 export default OnboardingTutorial;
-```
