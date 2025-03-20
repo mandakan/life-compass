@@ -66,7 +66,8 @@
   "tools": "Tools",
   "frameworksLibraries": "Frameworks/Libraries",
   "attribution_message": "This application was built with care using modern frameworks and tools. We are grateful to the open source community and all contributors for providing the resources that made this project possible.",
-  "brief_life_compass_intruction": "The Life Compass consists of ten areas that are typically important to most people. In each box, write down a few words about what you would value or consider important in that particular area. Each area also includes two small boxes. In the left box, rate how important each area is in your life on a scale from 1 to 10, where 1 means unimportant and 10 means very important. Base your rating on how life would be if everything were exactly as you wanted it to be.  \n\n In the right box, rate how much you have lived in accordance with your values in the past week, where 1 means not at all and 10 means completely in line with your values. Then, examine the differences between these numbers. Can you identify any areas that are important to you but where you are not living as you would like? If so, reflect on what is preventing you!",
+  "brief_life_compass_instruction_1": "The Life Compass typically contains ten areas that are important for most people. In each box, write a few words about what you value or consider important in that specific area. Each area also includes two ratings. In the upper box, indicate how important each area is in your life on a scale of 1 to 10, where 1 is not important and 10 is very important. Imagine how your life would be if everything looked exactly as you wished.",
+  "brief_life_compass_instruction_2": "In the lower box, indicate how much you have lived in accordance with your values during the past week, where 1 means you haven't lived by your values at all and 10 means you have fully lived by your values. Then examine the differences between the numbers. Can you identify areas that are important to you but where you do not live as you would like? Consider what might be holding you back!",
   "onboarding.welcome_prompt": "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?\n(You can always run the tutorial again from the settings menu.)",
   "onboarding.toolbar_tooltip": "Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding predefined life areas, resetting, exporting/importing data, and toggling the radar view.",
   "onboarding.settings_tooltip": "Take a look at the settings menu in the top right. You can access the tutorial, change the language, and more.",
@@ -92,5 +93,6 @@
   "introduction.examples_work": "Work: \"I want to contribute to something meaningful and grow in my profession.\"",
   "introduction.examples_health": "Health: \"I want to prioritize my health through regular exercise and recovery.\"",
   "introduction.next_steps_title": "What's next?",
-  "introduction.next_steps_description": "By exploring your own Life Compass, you can begin acting in line with your values and create a more meaningful life. Click on \"Start your journey\" to get started!"
+  "introduction.next_steps_description": "By exploring your own Life Compass, you can begin acting in line with your values and create a more meaningful life. Click on \"Start your journey\" to get started!",
+  "introduction.source_text": "Based on material from"
 }
