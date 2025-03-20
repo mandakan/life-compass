@@ -42,7 +42,12 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     {
       id: 4,
       type: 'modal',
-      content: t('brief_life_compass_intruction'),
+      content: t('brief_life_compass_instruction_1'),
+    },
+    {
+      id: 5,
+      type: 'modal',
+      content: t('brief_life_compass_instruction_2'),
     },
   ];
 
@@ -92,7 +97,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
             {currentStep === 0 && (
-              <div className="mb-4 flex gap-2">
+              <div className="mb-8 flex gap-2">
                 <button
                   onClick={() => handleSelectPathway('with')}
                   className={primaryButtonClasses}
@@ -107,18 +112,22 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
                 </button>
               </div>
             )}
-            <div className="flex justify-between">
-              {currentStep > 0 && (
-                <button onClick={handleBack} className={primaryButtonClasses}>
-                  {t('onboarding.back')}
+            <div className="grid grid-cols-1 gap-4">
+              <div className="flex justify-between">
+                {currentStep > 0 && (
+                  <button onClick={handleBack} className={primaryButtonClasses}>
+                    {t('onboarding.back')}
+                  </button>
+                )}
+                <button onClick={handleNext} className={primaryButtonClasses}>
+                  {nextButtonText}
+                </button>
+              </div>
+              {currentStep != steps.length - 1 && (
+                <button onClick={handleSkip} className={detailsButtonClasses}>
+                  {t('onboarding.skip')}
                 </button>
               )}
-              <button onClick={handleSkip} className={detailsButtonClasses}>
-                {t('onboarding.skip')}
-              </button>
-              <button onClick={handleNext} className={primaryButtonClasses}>
-                {nextButtonText}
-              </button>
             </div>
           </div>
         </Modal>
@@ -129,18 +138,23 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>
-            <div className="flex justify-between">
-              {currentStep > 0 && (
-                <button onClick={handleBack} className={primaryButtonClasses}>
-                  {t('onboarding.back')}
+            <div className="grid grid-cols-1 gap-4">
+              <div className="flex justify-between">
+                {currentStep > 0 && (
+                  <button onClick={handleBack} className={primaryButtonClasses}>
+                    {t('onboarding.back')}
+                  </button>
+                )}
+
+                <button onClick={handleNext} className={primaryButtonClasses}>
+                  {nextButtonText}
+                </button>
+              </div>
+              {currentStep != steps.length - 1 && (
+                <button onClick={handleSkip} className={detailsButtonClasses}>
+                  {t('onboarding.skip')}
                 </button>
               )}
-              <button onClick={handleSkip} className={detailsButtonClasses}>
-                {t('onboarding.skip')}
-              </button>
-              <button onClick={handleNext} className={primaryButtonClasses}>
-                {nextButtonText}
-              </button>
             </div>
           </div>
         </Tooltip>

@@ -51,10 +51,26 @@ const Introduction = () => {
           </ul>
         </div>
       </div>
-      <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
-        {t('introduction.next_steps_title')}
-      </h3>
-      <p>{t('introduction.next_steps_description')}</p>
+
+      <div className="mt-4 mb-8 text-center text-sm text-gray-600">
+        <p>
+          {t('introduction.source_text')}{' '}
+          <a
+            href="https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            KBT i primärvården
+          </a>
+        </p>
+      </div>
+
+      <div>
+        <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+          {t('introduction.next_steps_title')}
+        </h3>
+        <p>{t('introduction.next_steps_description')}</p>
+      </div>
     </div>
   );
 };

@@ -19,9 +19,8 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="mt-auto bg-[var(--color-primary)] p-4 text-[var(--on-primary)]">
-      <div className="container mx-auto flex items-center justify-between">
-        <span>{t('footer_text', '© 2025 Life Compass. MIT Licensed.')}</span>
-        <nav className="flex items-center space-x-4">
+      <div className="container mx-auto flex flex-col items-center md:flex-row md:justify-between">
+        <nav className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-8">
           <Link to="/about" className="text-[var(--on-primary)]">
             {t('about', 'About')}
           </Link>
@@ -34,7 +33,20 @@ const Footer: React.FC = () => {
             {githubIcon}
             <span>{t('github', 'GitHub')}</span>
           </a>
+          <div className="text-center text-[var(--on-primary)]">
+            <a
+              href="https://www.buymeacoffee.com/thias"
+              target="_blank"
+              rel="noopener noreferrer"
+              className=""
+            >
+              ☕ Buy Me a Coffee
+            </a>
+          </div>
         </nav>
+        <span className="mt-2 md:mt-0">
+          {t('footer_text', '© 2025 Life Compass. MIT Licensed.')}
+        </span>
       </div>
     </footer>
   );
