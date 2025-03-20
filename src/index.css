@@ -114,6 +114,14 @@ a {
   color: var(--accent, #3490dc);
 }
 
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary a {
+  color: var(--on-primary);
+}
+
 .mobile-nav-link {
   color: var(--menu-text) !important;
 }

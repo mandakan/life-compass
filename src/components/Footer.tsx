@@ -17,17 +17,20 @@ const Footer: React.FC = () => {
   );
 
   return (
-    <footer className="mt-auto bg-[var(--color-primary)] p-4 text-[var(--on-primary)]">
+    <footer className="bg-primary mt-auto p-4 text-[var(--on-primary)]">
       <div className="container mx-auto flex flex-col items-center md:flex-row md:justify-between">
         <nav className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-8">
-          <Link to="/about" className="text-[var(--on-primary)]">
+          <Link
+            to="/about"
+            className="text-[var(--on-primary)] hover:underline"
+          >
             {t('about', 'About')}
           </Link>
           <a
             href="https://github.com/mandakan/life-compass"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-[var(--on-primary)]"
+            className="flex items-center text-[var(--on-primary)] hover:underline"
           >
             {githubIcon}
             <span>{t('github', 'GitHub')}</span>
@@ -37,13 +40,13 @@ const Footer: React.FC = () => {
               href="https://www.buymeacoffee.com/thias"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--on-primary)] underline"
+              className="text-[var(--on-primary)] hover:underline"
             >
               ☕ {t('buy_me_coffee', 'Buy Me a Coffee')}
             </a>
           </div>
         </nav>
-        <span className="mt-2 md:mt-0 text-sm">
+        <span className="mt-2 text-sm md:mt-0">
           {t('footer_text', '© 2025 Life Compass. MIT Licensed.')}
         </span>
       </div>
