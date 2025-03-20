@@ -4,6 +4,7 @@
 [![Deploy](https://github.com/mandakan/life-compass/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/deploy.yml)
 [![Lint](https://github.com/mandakan/life-compass/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/lint.yml)
 [![Vulnerability Scan](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml/badge.svg?branch=main)](https://github.com/mandakan/life-compass/actions/workflows/vuln-scan.yml)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20the%20Project-orange)](https://www.buymeacoffee.com/thias)
 
 Live App: [https://mandakan.github.io/life-compass/](https://mandakan.github.io/life-compass/)
 
@@ -24,6 +25,8 @@ This means that the code and structure **may not always follow traditional best 
 ---
 
 ## Life Compass - Concept and Methodology
+
+The source and inspiration for this app is: https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/
 
 The Life Compass is a tool for **self-reflection and personal sustainability**. It helps users evaluate different aspects of their lives, identify imbalances, and create action plans for improvement.
 
@@ -309,9 +312,13 @@ See the [LICENSE](LICENSE) file for details.
 
 For more information about the concepts, tools, and methodologies used in this project, refer to the following resources:
 
+### Life Compass and values (in Swedish)
+- [KBT i Primärvården: Modul 4 – Värderingar](https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/)  
+_The “Life Compass” is a therapeutic tool used in cognitive behavioral therapy to help patients identify and articulate their core life values across various domains, facilitating alignment of their actions with these values to enhance behavioral activation._
+
 ### Life Compass and Self-Reflection
 
-- [Acceptance and Commitment Therapy for Stress Management](https://www.livskompass.se/wp-content/uploads/2012/11/Granberg_Westin_Psykologexamensuppsats_2012-1.pdf)  
+- [Acceptance and Commitment Therapy for Stress Management](https://www.livskompass.se/wp-content/uploads/2012/11/Granberg_Westin_Psykologexamensuppsats_2012-1.pdf)   
   _A study on how the Life Compass is used as a tool for managing stress and promoting mental well-being among young people._
 
 ### AI-Assisted Development and Aider
@@ -328,3 +335,11 @@ For more information about the concepts, tools, and methodologies used in this p
   _A guide to understanding how to contribute to open source projects._
 
 These resources provide additional context and insights into the methodologies and technologies influencing this project.
+
+---
+
+## Support the Project
+
+If you find this project useful, you can support it here:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20the%20Project-orange)](https://www.buymeacoffee.com/thias)
