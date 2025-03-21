@@ -17,16 +17,26 @@ module.exports = [
     plugins: {
       react: require('eslint-plugin-react'),
       'react-hooks': require('eslint-plugin-react-hooks'),
+      'unused-imports': require('eslint-plugin-unused-imports'),
     },
     settings: {
       react: {
         version: 'detect',
       },
     },
-    rules: {},
+    rules: {
+      'unused-imports/no-unused-imports': 'warn',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+        },
+      ],
+    },
   },
   ...withCompat.config(require('eslint-plugin-react').configs.recommended),
-  ...withCompat.config(
-    require('eslint-plugin-react-hooks').configs.recommended,
-  ),
+  ...withCompat.config(require('eslint-plugin-react-hooks').configs.recommended),
 ];

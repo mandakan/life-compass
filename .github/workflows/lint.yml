@@ -23,3 +23,9 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+
+      - name: Run ts-prune
+        run: npm run check:ts-prune
+
+      - name: Run depcheck
+        run: npm run check:depcheck
