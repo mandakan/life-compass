@@ -9,7 +9,10 @@ type TranslationObject = {
   [key: string]: string | number | boolean | TranslationObject;
 };
 
-export const parseTranslation = (data: string, url: string): TranslationObject | object => {
+export const parseTranslation = (
+  data: string,
+  url: string,
+): TranslationObject | object => {
   const parsed = JSON.parse(data);
   if (parsed.version !== '1.0.0') {
     console.warn(

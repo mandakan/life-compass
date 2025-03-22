@@ -74,7 +74,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
   const axisStrokeWidth = !isMobile ? 2 : 1;
 
   const arrangedData = React.useMemo(() => {
-      return data;
+    return data;
   }, [data]);
 
   const renderTick = (props: CustomTickProps) => {
