@@ -1,6 +1,7 @@
 import React from 'react';
 import WarningModal from './WarningModal';
 import { useTranslation } from 'react-i18next';
+import { LifeArea } from 'types/LifeArea';
 
 interface ImportPreviewModalProps {
   visible: boolean;
@@ -9,8 +10,8 @@ interface ImportPreviewModalProps {
     version: string;
   };
   data: {
-    lifeAreas: any[];
-    history: any[];
+    lifeAreas: LifeArea[];
+    history: unknown[];
   };
   onConfirm: () => void;
   onCancel: () => void;

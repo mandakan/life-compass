@@ -13,6 +13,7 @@ import { parseAndValidateJSON } from '../utils/importService';
 import ImportPreviewModal from '../components/ImportPreviewModal';
 import SuccessModal from '../components/SuccessModal';
 import { useTranslation } from 'react-i18next';
+import { ImportedData } from 'types/importExport';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -62,7 +63,7 @@ const CreateLifeCompass: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showRemoveAllModal, setShowRemoveAllModal] = useState(false);
 
-  const [importedData, setImportedData] = useState<any | null>(null);
+  const [importedData, setImportedData] = useState<ImportedData | null>(null);
   const [previewVisible, setPreviewVisible] = useState(false);
 
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);

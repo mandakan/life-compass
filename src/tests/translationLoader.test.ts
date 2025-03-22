@@ -40,7 +40,7 @@ describe('Translation Loader', () => {
     const getTranslation = (
       lang: string,
       key: string,
-      translations: any,
+      translations: Record<string, string>,
     ): string => {
       return translations[key] || englishTranslations[key] || key;
     };
