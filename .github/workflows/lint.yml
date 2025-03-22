@@ -28,4 +28,4 @@ jobs:
         run: npm run check:ts-prune
 
       - name: Run depcheck
-        run: npm run check:depcheck
+        run: npm run check:knip
