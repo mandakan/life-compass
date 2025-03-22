@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SettingsMenu from './SettingsMenu';
-import { AppSettingsContext } from '../context/AppSettingsContext';
+import { AppSettingsContext } from '@context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
 
 const DesktopNavigation: React.FC = () => {

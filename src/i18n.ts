@@ -5,7 +5,14 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-export const parseTranslation = (data: string, url: string): any => {
+type TranslationObject = {
+  [key: string]: string | number | boolean | TranslationObject;
+};
+
+export const parseTranslation = (
+  data: string,
+  url: string,
+): TranslationObject | object => {
   const parsed = JSON.parse(data);
   if (parsed.version !== '1.0.0') {
     console.warn(

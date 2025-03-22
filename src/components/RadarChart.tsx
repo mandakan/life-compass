@@ -11,7 +11,28 @@ import {
 } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
-/* eslint-disable react/prop-types */
+type CustomTickProps = {
+  x?: number;
+  y?: number;
+  payload: {
+    value: string;
+  };
+  textAnchor?: 'start' | 'middle' | 'end';
+};
+
+type TooltipPayloadItem = {
+  payload: {
+    importance: number;
+    satisfaction: number;
+    description: string;
+  };
+};
+
+type CustomTooltipProps = {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string;
+};
 
 interface RadarChartData {
   area: string;
@@ -53,40 +74,13 @@ const RadarChart: React.FC<RadarChartProps> = ({
   const axisStrokeWidth = !isMobile ? 2 : 1;
 
   const arrangedData = React.useMemo(() => {
-    const n = data.length;
-    if (n < 4) {
-      return data;
-    }
-    const sorted = [...data].sort((a, b) => b.area.length - a.area.length);
-    const longestFour = sorted.slice(0, 4);
-    const others = sorted.slice(4);
-    const pos0 = 0;
-    const pos1 = Math.floor(n / 4);
-    const pos2 = Math.floor(n / 2);
-    const pos3 = Math.floor((3 * n) / 4);
-    const result = new Array(n);
-    result[pos0] = longestFour[0];
-    result[pos1] = longestFour[1];
-    result[pos2] = longestFour[2];
-    result[pos3] = longestFour[3];
-    let otherIndex = 0;
-    for (let i = 0; i < n; i++) {
-      if (result[i] === undefined) {
-        if (otherIndex < others.length) {
-          result[i] = others[otherIndex];
-          otherIndex++;
-        } else {
-          result[i] = longestFour[0];
-        }
-      }
-    }
-    return result;
+    return data;
   }, [data]);
 
-  const renderTick = (props: any) => {
+  const renderTick = (props: CustomTickProps) => {
     const { payload, x, y, textAnchor } = props;
     const value = payload.value;
-    let lines = [value];
+    const lines = [value];
     /*if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 10) {
       const mid = Math.floor(value.length / 2);
       let breakIndex = value.lastIndexOf(' ', mid);
@@ -114,7 +108,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
     );
   };
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
       const dataPoint = payload[0].payload;
       return (

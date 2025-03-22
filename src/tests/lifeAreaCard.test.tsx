@@ -2,6 +2,9 @@ import React from 'react';
 import { vi, describe, test, expect, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LifeAreaCard, { LifeAreaCardProps } from '../components/LifeAreaCard';
+import type { CustomSliderProps } from '../components/CustomSlider';
+import type { CustomButtonProps } from 'components/CustomButton';
+import type { WarningMessageProps } from 'components/WarningMessage';
 
 // Mock react-i18next to simply return the key as translation
 vi.mock('react-i18next', () => ({
@@ -13,7 +16,7 @@ vi.mock('react-i18next', () => ({
 // Create a dummy CustomSlider component since it is used by LifeAreaCard
 vi.mock('../components/CustomSlider', () => {
   return {
-    default: (props: any) => {
+    default: (props: CustomSliderProps) => {
       const { value, onChange, min, max, step } = props;
       return (
         <input
@@ -33,7 +36,7 @@ vi.mock('../components/CustomSlider', () => {
 // Create a dummy CustomButton component since it is used by LifeAreaCard
 vi.mock('../components/CustomButton', () => {
   return {
-    default: (props: any) => {
+    default: (props: CustomButtonProps) => {
       return (
         <button data-testid="custom-button" onClick={props.onClick}>
           {props.children}
@@ -46,7 +49,7 @@ vi.mock('../components/CustomButton', () => {
 // Create a dummy WarningMessage component for testing purposes
 vi.mock('../components/WarningMessage', () => {
   return {
-    default: (props: any) => {
+    default: (props: WarningMessageProps) => {
       return (
         <div data-testid="warning-message">
           {props.title}: {props.message}

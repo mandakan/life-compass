@@ -11,15 +11,18 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "components/*": ["components/*"],
-      "context/*": ["context/*"],
-      "utils/*": ["utils/*"],
-      "pages/*": ["pages/*"],
-      "designTokens": ["designTokens.ts"],
-      "src/*": ["./src/*"]
+      "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
+      "@utils/*": ["utils/*"],
+      "@pages/*": ["pages/*"],
+      "@designTokens": ["designTokens.ts"],
+      "@/*": ["*"],
+      "@tests/*": ["tests/*"],
+      "@models/*": ["types/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "resolveJsonModule": true
 }

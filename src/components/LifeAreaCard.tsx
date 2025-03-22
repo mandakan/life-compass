@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LifeArea } from '../types/LifeArea';
-import CustomSlider from '../components/CustomSlider';
-import WarningMessage from '../components/WarningMessage';
-import CustomButton from '../components/CustomButton';
+import type { LifeArea } from '@models/LifeArea';
+import CustomSlider from '@components/CustomSlider';
+import WarningMessage from '@components/WarningMessage';
+import CustomButton from '@components/CustomButton';
 import { QuestionMarkCircleIcon } from '@heroicons/react/16/solid';
 
 export interface LifeAreaCardProps {

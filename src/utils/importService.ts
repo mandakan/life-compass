@@ -1,5 +1,6 @@
 import Ajv from 'ajv';
 import exportImportSchema from '../schemas/exportImportSchema.json';
+import { ImportedData } from 'types/importExport';
 
 const ajv = new Ajv({ allErrors: true, strict: false });
 const validate = ajv.compile(exportImportSchema);
@@ -7,11 +8,11 @@ const validate = ajv.compile(exportImportSchema);
 export interface ValidationResult {
   valid: boolean;
   errors?: string[];
-  data?: any;
+  data?: unknown;
 }
 
 export function parseAndValidateJSON(content: string): ValidationResult {
-  let jsonData: any;
+  let jsonData: ImportedData;
   try {
     jsonData = JSON.parse(content);
   } catch (e) {

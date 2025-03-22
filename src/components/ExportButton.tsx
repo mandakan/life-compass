@@ -21,8 +21,12 @@ const ExportButton: React.FC = () => {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-    } catch (error: any) {
-      setError(t('error_exporting_data') + ': ' + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(t('error_exporting_data') + ': ' + error.message);
+      } else {
+        setError(t('error_exporting_data'));
+      }
     }
   };
 

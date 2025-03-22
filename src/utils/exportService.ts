@@ -1,4 +1,5 @@
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import schema from '../schemas/exportImportSchema.json';
 
 export function exportData(): string {
@@ -31,6 +32,7 @@ export function exportData(): string {
 
   // Validate against the predetermined JSON schema
   const ajv = new Ajv();
+  addFormats(ajv); // ✅ Adds support for "date-time", "email", etc.
   const validate = ajv.compile(schema);
   const valid = validate(exportJsonObj);
   if (!valid) {
