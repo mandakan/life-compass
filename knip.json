@@ -1,0 +1,10 @@
+{
+    "entry": ["src/index.tsx"],
+    "project": ["src"],
+    "ignoreDependencies": ["tailwindcss", "postcss", "autoprefixer", "@heroicons/react",
+    "i18next-browser-languagedetector", "ajv", "i18next-http-backend",
+    "react-markdown",
+    "react-router-dom",
+    "recharts",
+    "@typescript-eslint/parser"]
+}

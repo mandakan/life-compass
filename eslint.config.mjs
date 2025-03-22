@@ -3,8 +3,8 @@ import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import unusedImports from 'eslint-plugin-unused-imports';
 import chaiFriendly from 'eslint-plugin-chai-friendly';
+import prettierConfig from 'eslint-config-prettier';
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   // TypeScript recommended rules (flat config)
   ...ts.configs.recommended,
@@ -72,5 +72,9 @@ export default [
       // Enable chai-friendly version
       'chai-friendly/no-unused-expressions': 'error',
     },
+  },
+
+  {
+    ...prettierConfig,
   },
 ];
