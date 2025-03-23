@@ -109,6 +109,7 @@
     "welcome_prompt": "Willkommen bei Lebenskompass!\nLassen Sie uns mit der Einführung beginnen. Möchten Sie mit vordefinierten Lebensbereichen starten?\n(Sie können die Anleitung jederzeit über das Einstellungsmenü erneut starten.)",
     "toolbar_tooltip": "Schauen Sie sich die schwebende Symbolleiste unten rechts an. Sie bietet Ihnen schnellen Zugriff auf Aktionen wie das Hinzufügen vordefinierter Lebensbereiche, das Zurücksetzen, Exportieren/Importieren von Daten und das Umschalten der Radaranzeige.",
     "settings_tooltip": "Sehen Sie sich das Einstellungsmenü oben rechts an. Hier können Sie auf die Anleitung zugreifen, die Sprache ändern und mehr.",
+    "radar": "Radar-grafen visar dina livsområden i en graf som gör det lätt att identifera vilka områden som är viktigast men som du inte lever enligt.",
     "with_predefined": "Mit vordefinierten Lebensbereichen (empfohlen)",
     "without_predefined": "Ohne vordefinierte Lebensbereiche",
     "back": "Zurück",

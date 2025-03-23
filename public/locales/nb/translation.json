@@ -111,6 +111,7 @@
     "welcome_prompt": "Velkommen til Livskompass!\nLa oss starte introduksjonen. Vil du begynne med forhåndsdefinerte livsområder?\n(Du kan alltid starte om introduksjonen fra innstillingsmenyen.)",
     "toolbar_tooltip": "Ta en titt på den flytende verktøylinjen nede til høyre. Den gir deg rask tilgang til handlinger som å legge til forhåndsdefinerte livsområder, tilbakestille, eksportere/importere data og bytte radarskjerm.",
     "settings_tooltip": "Se på innstillingsmenyen øverst til høyre. Der kan du få tilgang til introduksjonen, endre språk og mer.",
+    "radar": "Radar-grafen visar dina livsområden i en graf som gör det lätt att identifera vilka områden som är viktigast men som du inte lever enligt.",
     "with_predefined": "Med forhåndsdefinerte livsområder (anbefales)",
     "without_predefined": "Uten forhåndsdefinerte livsområder",
     "back": "Tilbake",

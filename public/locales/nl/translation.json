@@ -73,6 +73,7 @@
     "welcome_prompt": "Welkom bij Life Compass!\nLaten we de introductie starten. Wilt u beginnen met vooraf gedefinieerde levensgebieden?\n(U kunt de tutorial altijd opnieuw starten vanuit het instellingenmenu.)",
     "toolbar_tooltip": "Bekijk de zwevende werkbalk rechtsonder. Deze geeft u snelle toegang tot acties zoals het toevoegen van vooraf gedefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
     "settings_tooltip": "Bekijk het instellingenmenu rechtsboven. Hier kunt u de tutorial openen, de taal wijzigen en meer.",
+    "radar": "Radar-grafen visar dina livsområden i en graf som gör det lätt att identifera vilka områden som är viktigast men som du inte lever enligt.",
     "with_predefined": "Met vooraf gedefinieerde levensgebieden (aanbevolen)",
     "without_predefined": "Zonder vooraf gedefinieerde levensgebieden",
     "back": "Terug",
