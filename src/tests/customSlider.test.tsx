@@ -1,18 +1,32 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, test, expect, vi } from 'vitest';
-import CustomSlider from '../components/CustomSlider';
+import { describe, test, expect, vi, afterEach } from 'vitest';
+import Slider, { SliderProps } from '@/components/ui/Slider';
 
-describe('CustomSlider', () => {
+// 🔁 Controlled wrapper for Slider
+const ControlledSlider = ({
+  value: initialValue,
+  onChange: externalOnChange,
+  ...props
+}: Partial<SliderProps> & { value: number }) => {
+  const [val, setVal] = React.useState(initialValue ?? 0);
+
+  const handleChange = (newValue: number) => {
+    setVal(newValue);
+    externalOnChange?.(newValue); // spion-funktionen
+  };
+
+  return <Slider {...props} value={val} onChange={handleChange} />;
+};
+
+describe('Slider', () => {
   test('renders with initial value and proper aria attributes', () => {
-    const { getAllByRole } = render(
-      <CustomSlider value={5} onChange={() => {}} />,
+    const { getByRole } = render(
+      <ControlledSlider value={5} onChange={() => {}} />,
     );
-    const sliders = getAllByRole('slider');
+    const slider = getByRole('slider');
 
-    // Use the first slider element (ignoring the duplication from StrictMode)
-    const slider = sliders[0];
     expect(slider).to.exist;
     expect(slider.getAttribute('aria-valuemin')).to.equal('1');
     expect(slider.getAttribute('aria-valuemax')).to.equal('10');
@@ -21,17 +35,13 @@ describe('CustomSlider', () => {
   });
 
   test('updates value correctly using arrow keys and home/end keys', async () => {
-    let sliderValue = 5;
-    const handleChange = vi.fn(newValue => {
-      sliderValue = newValue;
-    });
-    const { getAllByRole } = render(
-      <CustomSlider value={sliderValue} onChange={handleChange} />,
+    const handleChange = vi.fn();
+    const { getByRole } = render(
+      <ControlledSlider value={5} onChange={handleChange} />,
     );
-    const sliders = getAllByRole('slider');
-    // Since this component is wrapped in StrictMode, there are now two sliders
-    const slider = sliders[1];
+    const sliders = screen.getAllByRole('slider');
 
+    const slider = sliders[1];
     // Explicitly focus the slider handle before sending key events.
     slider.focus();
     expect(document.activeElement).toBe(slider);
@@ -42,7 +52,7 @@ describe('CustomSlider', () => {
 
     // Press ArrowLeft: should decrease by step
     await userEvent.keyboard('{ArrowLeft}');
-    expect(handleChange).toHaveBeenCalledWith(4);
+    expect(handleChange).toHaveBeenCalledWith(5);
 
     // Press End: should set value to max (10)
     await userEvent.keyboard('{End}');
@@ -54,32 +64,28 @@ describe('CustomSlider', () => {
   });
 
   test('respects custom min, max, and step values', async () => {
-    let sliderValue = 3;
-    const handleChange = vi.fn(newValue => {
-      sliderValue = newValue;
-    });
-    const { getAllByRole } = render(
-      <CustomSlider
-        value={sliderValue}
+    const handleChange = vi.fn();
+    const { getByRole } = render(
+      <ControlledSlider
+        value={4}
         onChange={handleChange}
         min={0}
         max={20}
         step={2}
       />,
     );
-    const sliders = getAllByRole('slider');
-    // Since this component is wrapped in StrictMode, there are now three sliders.
+    const sliders = screen.getAllByRole('slider');
     const slider = sliders[2];
 
     // Explicitly focus the slider handle before sending key events.
     slider.focus();
 
     // ArrowUp should increase the value by step (2)
-    await userEvent.keyboard('{ArrowUp}');
-    expect(handleChange).toHaveBeenCalledWith(5);
+    await userEvent.keyboard('{ArrowRight}');
+    expect(handleChange).toHaveBeenCalledWith(6);
 
     // ArrowDown should decrease the value by step (2)
-    await userEvent.keyboard('{ArrowDown}');
-    expect(handleChange).toHaveBeenCalledWith(1);
+    await userEvent.keyboard('{ArrowLeft}');
+    expect(handleChange).toHaveBeenCalledWith(4);
   });
 });

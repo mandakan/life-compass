@@ -2,7 +2,7 @@ import React from 'react';
 import { vi, describe, test, expect, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LifeAreaCard, { LifeAreaCardProps } from '../components/LifeAreaCard';
-import type { CustomSliderProps } from '../components/CustomSlider';
+import type { SliderProps } from '@components/ui/Slider';
 import type { CustomButtonProps } from 'components/CustomButton';
 import type { WarningMessageProps } from 'components/WarningMessage';
 
@@ -13,10 +13,10 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-// Create a dummy CustomSlider component since it is used by LifeAreaCard
-vi.mock('../components/CustomSlider', () => {
+// Create a dummy Slider component since it is used by LifeAreaCard
+vi.mock('../components/ui/Slider', () => {
   return {
-    default: (props: CustomSliderProps) => {
+    default: (props: SliderProps) => {
       const { value, onChange, min, max, step } = props;
       return (
         <input
