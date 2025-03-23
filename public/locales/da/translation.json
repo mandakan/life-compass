@@ -29,6 +29,8 @@
   "close": "Luk",
   "delete": "Slet",
   "delete_all": "Slet alle",
+  "delete_local_data": "Ta bort all data",
+  "delete_local_data_warning": "Varning: Det här kommer att ta bort all data. Alla livsområden kommer att försvinna.",
   "satisfaction": "Tilfredshed",
   "toggle_mobile_navigation": "Skift mobil navigation",
   "recommend_max_ten_life_areas": "Vi anbefaler at holde antallet af livsområder omkring 10 for det bedste overblik.",

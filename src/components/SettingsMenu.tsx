@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ThemeContext } from '@context/ThemeContext';
 import ToggleSwitch from '@components/ToggleSwitch';
 import { AppSettingsContext } from '@context/AppSettingsContext';
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useNavigate } from 'react-router-dom';
 import { removeUserData, clearAllUserData } from '@utils/storageService';
+import WarningModal from '@components/WarningModal';
 
 interface SettingsMenuProps {
   onClose: () => void;
@@ -60,14 +61,31 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
   };
 
   const handleDeleteLocalData = () => {
-    clearAllUserData()
-  }
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    clearAllUserData();
+    setShowDeleteModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteModal(false);
+  };
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
     <div
       className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]"
       ref={menuRef}
     >
+      <WarningModal
+        visible={showDeleteModal}
+        message={t('delete_local_data_warning')}
+        onConfirm={handleDeleteConfirm}
+        onCancel={handleDeleteCancel}
+      />
       <h2 className="mb-4 text-lg font-bold">{t('settings')}</h2>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">

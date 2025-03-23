@@ -11,13 +11,12 @@ export function getUserData(key?: string): unknown {
 export function saveUserData(data: unknown, key?: string): void {
   const storageKey = key ?? STORAGE_KEY;
   localStorage.setItem(storageKey, JSON.stringify(data));
-};
-
+}
 
 export function removeUserData(key: string): void {
   localStorage.removeItem(key);
-};
+}
 
 export function clearAllUserData(): void {
   localStorage.removeclearItem();
-};
+}

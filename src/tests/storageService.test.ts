@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import {
   getUserData,
   saveUserData,
-  clearAllUserData
+  clearAllUserData,
 } from '@utils/storageService';
 
 describe('storageService', () => {

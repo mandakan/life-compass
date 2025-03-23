@@ -29,6 +29,8 @@
   "close": "Close",
   "delete": "Delete",
   "delete_all": "Delete all",
+  "delete_local_data": "Ta bort all data",
+  "delete_local_data_warning": "Varning: Det här kommer att ta bort all data. Alla livsområden kommer att försvinna.",
   "satisfaction": "Satisfaction",
   "lived_according_to_past_week": "Lived according to past week",
   "toggle_mobile_navigation": "Toggle mobile navigation",
