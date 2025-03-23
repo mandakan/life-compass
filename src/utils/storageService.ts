@@ -18,5 +18,5 @@ export function removeUserData(key: string): void {
 }
 
 export function clearAllUserData(): void {
-  localStorage.removeclearItem();
+  localStorage.clear();
 }
