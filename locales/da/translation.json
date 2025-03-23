@@ -29,6 +29,8 @@
   "close": "Luk",
   "delete": "Slet",
   "delete_all": "Slet alle",
+  "delete_local_data": "Fjern alle data",
+  "delete_local_data_warning": "Advarsel: Dette vil fjerne alle data. Alle livsområder vil forsvinde.",
   "satisfaction": "Tilfredshed",
   "toggle_mobile_navigation": "Skift mobil navigation",
   "recommend_max_ten_life_areas": "Vi anbefaler at holde antallet af livsområder omkring 10 for det bedste overblik.",
@@ -108,7 +110,7 @@
   },
   "onboarding": {
     "welcome_prompt": "Velkommen til Livskompas!\nLad os starte introduktionen. Vil du begynde med foruddefinerede livsområder?\n(Du kan altid starte guiden igen fra indstillingsmenuen.)",
-    "toolbar_tooltip": "Tag et kig på den flydende værktøjslinje nederst til højre. Den giver dig hurtig adgang til funktioner som at tilføje foruddefinerede livsområder, nulstille, eksportere/importere data og skifte radarvisning.",
+    "toolbar_tooltip": "Tag et kig på den flydende verktøjslinje nederst til højre. Den giver dig hurtig adgang til funktioner som at tilføje foruddefinerede livsområder, nulstille, eksportere/importere data og skifte radarvisning.",
     "settings_tooltip": "Se på indstillingsmenuen øverst til højre. Her kan du få adgang til guiden, ændre sprog og mere.",
     "radar": "Radarvisning viser dine livsområder i et diagram, der gør det nemt at se, hvilke områder der er vigtigst, men hvor du ikke lever efter.",
     "with_predefined": "Med foruddefinerede livsområder (anbefales)",
