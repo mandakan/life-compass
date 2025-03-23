@@ -1,7 +1,7 @@
 import React from 'react';
-import WarningModal from './WarningModal';
+import WarningDialog from '@components/ui/WarningDialog';
 import { useTranslation } from 'react-i18next';
-import { LifeArea } from 'types/LifeArea';
+import { LifeArea } from '@models/LifeArea';
 
 interface ImportPreviewModalProps {
   visible: boolean;
@@ -26,7 +26,7 @@ const ImportPreviewModal: React.FC<ImportPreviewModalProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <WarningModal
+    <WarningDialog
       visible={visible}
       message={
         <div>

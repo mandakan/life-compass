@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { exportData } from '../utils/exportService';
+import { exportData } from '@utils/exportService';
 import CustomButton from './CustomButton';
-import WarningModal from './WarningModal';
+import WarningDialog from '@components/ui/WarningDialog';
 import { useTranslation } from 'react-i18next';
 
 const ExportButton: React.FC = () => {
@@ -38,7 +38,7 @@ const ExportButton: React.FC = () => {
     <>
       <CustomButton onClick={handleExport}>{t('export')}</CustomButton>
       {error && (
-        <WarningModal
+        <WarningDialog
           visible={true}
           message={error}
           onConfirm={handleModalClose}

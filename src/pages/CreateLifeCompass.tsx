@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import OnboardingTutorialWrapper from '../components/OnboardingTutorialWrapper';
-import LifeAreaCard from '../components/LifeAreaCard';
-import { LifeArea } from '../types/LifeArea';
-import WarningModal from '../components/WarningModal';
+import OnboardingTutorialWrapper from '@components/OnboardingTutorialWrapper';
+import LifeAreaCard from '@components/LifeAreaCard';
+import { LifeArea } from '@models/LifeArea';
+import WarningDialog from '@components/ui/WarningDialog';
 import Callout from '../components/Callout';
-import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
-import { useTheme } from '../context/ThemeContext';
-import RadarChart from '../components/RadarChart';
-import FloatingToolbar from '../components/FloatingToolbar';
-import { parseAndValidateJSON } from '../utils/importService';
-import ImportPreviewModal from '../components/ImportPreviewModal';
-import SuccessModal from '../components/SuccessModal';
+import { getPredefinedLifeAreas } from '@utils/lifeAreaService';
+import { useTheme } from '@context/ThemeContext';
+import RadarChart from '@components/RadarChart';
+import FloatingToolbar from '@components/FloatingToolbar';
+import { parseAndValidateJSON } from '@utils/importService';
+import ImportPreviewModal from '@components/ImportPreviewModal';
+import SuccessModal from '@components/SuccessModal';
 import { useTranslation } from 'react-i18next';
 import { ImportedData } from 'types/importExport';
 
@@ -580,19 +580,19 @@ const CreateLifeCompass: React.FC = () => {
           </div>
         </div>
       )}
-      <WarningModal
+      <WarningDialog
         visible={showWarningModal}
         message={t('unsaved_changes_warning')}
         onConfirm={handleModalConfirm}
         onCancel={handleModalCancel}
       />
-      <WarningModal
+      <WarningDialog
         visible={showDeleteModal}
         message={t('remove_life_area_warning')}
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}
       />
-      <WarningModal
+      <WarningDialog
         visible={showRemoveAllModal}
         message={t('remove_all_life_areas_warning')}
         onConfirm={handleRemoveAllConfirm}
