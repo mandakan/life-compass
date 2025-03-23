@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import Tooltip from './Tooltip';
-import Modal from './Modal';
+import Dialog from '@components/ui/Dialog'
 
 interface OnboardingStep {
   id: number;
   type: 'tooltip' | 'modal';
   content: string;
+  title?: string;
 }
 
 interface OnboardingTutorialProps {
@@ -101,47 +102,49 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
   return (
     <div className="onboarding-tutorial">
       {step.type === 'modal' && (
-        <Modal>
-          <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
-            <div className="mb-4">
-              <ReactMarkdown>{step.content}</ReactMarkdown>
-            </div>
-            {currentStep === 0 && (
-              <div className="mb-8 flex gap-2">
-                <button
-                  onClick={() => handleSelectPathway('with')}
-                  className={primaryButtonClasses}
-                >
-                  {t('onboarding.with_predefined')}
-                </button>
-                <button
-                  onClick={() => handleSelectPathway('without')}
-                  className={primaryButtonClasses}
-                >
-                  {t('onboarding.without_predefined')}
-                </button>
-              </div>
-            )}
-            <div className="grid grid-cols-1 gap-4">
-              <div className="flex justify-between">
-                {currentStep > 0 && (
-                  <button onClick={handleBack} className={primaryButtonClasses}>
-                    {t('onboarding.back')}
-                  </button>
-                )}
-                <button onClick={handleNext} className={primaryButtonClasses}>
-                  {nextButtonText}
-                </button>
-              </div>
-              {currentStep !== steps.length - 1 && (
-                <button onClick={handleSkip} className={detailsButtonClasses}>
-                  {t('onboarding.skip')}
-                </button>
-              )}
-            </div>
-          </div>
-        </Modal>
+  <Dialog open title={step.title ?? t('onboarding.title', 'Onboarding')} onOpenChange={() => {}}>
+    
+      <div className="mb-4">
+        <ReactMarkdown>{step.content}</ReactMarkdown>
+      </div>
+
+      {currentStep === 0 && (
+        <div className="mb-8 flex gap-2">
+          <button
+            onClick={() => handleSelectPathway('with')}
+            className={primaryButtonClasses}
+          >
+            {t('onboarding.with_predefined')}
+          </button>
+          <button
+            onClick={() => handleSelectPathway('without')}
+            className={primaryButtonClasses}
+          >
+            {t('onboarding.without_predefined')}
+          </button>
+        </div>
       )}
+
+      <div className="grid grid-cols-1 gap-4">
+        <div className="flex justify-between">
+          {currentStep > 0 && (
+            <button onClick={handleBack} className={primaryButtonClasses}>
+              {t('onboarding.back')}
+            </button>
+          )}
+          <button onClick={handleNext} className={primaryButtonClasses}>
+            {nextButtonText}
+          </button>
+        </div>
+        {currentStep !== steps.length - 1 && (
+          <button onClick={handleSkip} className={detailsButtonClasses}>
+            {t('onboarding.skip')}
+          </button>
+        )}
+      </div>
+    
+  </Dialog>
+)}
       {step.type === 'tooltip' && (
         <Tooltip>
           <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
