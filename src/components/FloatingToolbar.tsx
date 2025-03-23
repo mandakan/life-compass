@@ -49,8 +49,6 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   const viewToggleButtonBottom = props.footerVisible
     ? 'bottom-40'
     : 'bottom-24';
-  // New modal button positioned above the view toggle button
-  const modalButtonBottom = props.footerVisible ? 'bottom-60' : 'bottom-44';
 
   return (
     <>
