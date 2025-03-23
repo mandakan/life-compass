@@ -461,7 +461,6 @@ const CreateLifeCompass: React.FC = () => {
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
       <FloatingToolbar
-        onAddNewLifeArea={() => handleAddNewLifeArea()}
         onAddPredefinedAreas={handleAddPredefinedAreas}
         onToggleRadar={() => setShowRadar(prev => !prev)}
         showRadar={showRadar}
