@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import CustomSlider from '../components/CustomSlider';
+import Slider from '@/components/ui/Slider';
 import RadarChart from '../components/RadarChart';
 import ToggleSwitch from '../components/ToggleSwitch';
 import Callout from '../components/Callout';
@@ -126,7 +126,7 @@ function DesignPrinciplesDemo() {
       {/* Custom Slider Example */}
       <div className="mt-8 text-center">
         <h3 className="mb-2 text-lg font-semibold">Anpassat reglage-exempel</h3>
-        <CustomSlider
+        <Slider
           value={sliderValue}
           onChange={newValue => setSliderValue(newValue)}
           min={1}

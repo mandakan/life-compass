@@ -21,3 +21,10 @@ if (!window.matchMedia) {
     };
   };
 }
+
+// vitest.setup.ts
+global.ResizeObserver = class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};

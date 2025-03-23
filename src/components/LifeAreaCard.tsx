@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
-import CustomSlider from '@components/CustomSlider';
+import Slider from '@/components/ui/Slider';
 import WarningMessage from '@components/WarningMessage';
 import CustomButton from '@components/CustomButton';
 import { QuestionMarkCircleIcon } from '@heroicons/react/16/solid';
@@ -164,7 +164,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div className="mt-2 font-sans">
               <label>
                 {t('importance')}
-                <CustomSlider
+                <Slider
                   value={editImportance}
                   onChange={newValue => {
                     onChangeEditImportance(newValue);
@@ -187,7 +187,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div className="mt-2 font-sans">
               <label>
                 {t('lived_according_to_past_week')}
-                <CustomSlider
+                <Slider
                   value={editSatisfaction}
                   onChange={newValue => {
                     onChangeEditSatisfaction(newValue);
@@ -422,7 +422,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     className="w-5"
                   />
                 </div>
-                <CustomSlider
+                <Slider
                   value={area.importance}
                   onChange={newValue => {
                     if (onAutoUpdateRating) {
@@ -450,7 +450,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                     className="w-5"
                   />
                 </div>
-                <CustomSlider
+                <Slider
                   value={area.satisfaction}
                   onChange={newValue => {
                     if (onAutoUpdateRating) {
