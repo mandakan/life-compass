@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import OnboardingTutorialWrapper from '@components/OnboardingTutorialWrapper';
 import LifeAreaCard from '@components/LifeAreaCard';
 import { LifeArea } from '@models/LifeArea';
-import WarningDialog from '@components/ui/WarningDialog';
 import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '@utils/lifeAreaService';
 import { useTheme } from '@context/ThemeContext';
@@ -10,10 +9,10 @@ import RadarChart from '@components/RadarChart';
 import FloatingToolbar from '@components/FloatingToolbar';
 import { parseAndValidateJSON } from '@utils/importService';
 import ImportPreviewModal from '@components/ImportPreviewModal';
-import SuccessModal from '@components/SuccessModal';
 import { useTranslation } from 'react-i18next';
 import { ImportedData } from 'types/importExport';
 import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
+import { useSuccessDialog } from '@components/ui/hooks/useSuccessDialog';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -41,6 +40,7 @@ const CreateLifeCompass: React.FC = () => {
     confirm: confirmDialog,
     ConfirmationDialog,
   } = useConfirmDialog();
+  const { show: showSuccess, SuccessDialog } = useSuccessDialog();
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
 
@@ -64,7 +64,6 @@ const CreateLifeCompass: React.FC = () => {
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [showRecommendationCallout, setShowRecommendationCallout] =
     useState(true);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [importedData, setImportedData] = useState<ImportedData | null>(null);
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -418,7 +417,7 @@ const CreateLifeCompass: React.FC = () => {
       setLifeAreas(importedData.data.lifeAreas);
       setPreviewVisible(false);
       setImportedData(null);
-      setShowSuccessModal(true);
+      showSuccess(t('import_successful'));
     }
   };
 
@@ -571,12 +570,8 @@ const CreateLifeCompass: React.FC = () => {
         onConfirm={handleConfirmImport}
         onCancel={handleCancelImport}
       />
-      <SuccessModal
-        visible={showSuccessModal}
-        message={t('import_successful')}
-        onClose={() => setShowSuccessModal(false)}
-      />
       {ConfirmationDialog}
+      {SuccessDialog}
     </div>
   );
 };
