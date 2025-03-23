@@ -26,7 +26,7 @@ const typeStyles: Record<DialogType, { iconColor: string }> = {
 const Dialog = ({
   open,
   onOpenChange,
-  title,
+  title ,
   description,
   type = 'default',
   icon,
