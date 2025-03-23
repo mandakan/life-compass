@@ -73,7 +73,7 @@
   "onboarding.welcome_prompt": "Welcome to Life Compass!\nLet's start the onboarding. Would you like to begin with predefined life areas?\n(You can always run the tutorial again from the settings menu.)",
   "onboarding.toolbar_tooltip": "Take a look at the floating toolbar in the bottom right. It gives you quick access to actions like adding predefined life areas, resetting, exporting/importing data, and toggling the radar view.",
   "onboarding.settings_tooltip": "Take a look at the settings menu in the top right. You can access the tutorial, change the language, and more.",
-  "onboarding.radar": "Radar-grafen visar dina livsområden i en graf som gör det lätt att identifera vilka områden som är viktigast men som du inte lever enligt.",
+  "onboarding.radar": "The radar chart displays your life areas in a graph that makes it easy to identify which areas are most important, yet where you are not living as you wish.",
   "onboarding.with_predefined": "With Predefined Life Areas (recommended)",
   "onboarding.without_predefined": "Without Predefined Life Areas",
   "onboarding.back": "Back",
