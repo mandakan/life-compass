@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
 interface FloatingToolbarProps {
-  onAddNewLifeArea: () => void;
   onAddPredefinedAreas: () => void;
   onToggleRadar: () => void;
   showRadar: boolean;
@@ -21,11 +20,6 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
 
   const toggleExpanded = () => {
     setExpanded(prev => !prev);
-  };
-
-  const handleAddNewLifeArea = () => {
-    props.onAddNewLifeArea();
-    setExpanded(false);
   };
 
   const handleAddPredefinedAreas = () => {
@@ -55,8 +49,6 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
   const viewToggleButtonBottom = props.footerVisible
     ? 'bottom-40'
     : 'bottom-24';
-  // New modal button positioned above the view toggle button
-  const modalButtonBottom = props.footerVisible ? 'bottom-60' : 'bottom-44';
 
   return (
     <>
@@ -65,7 +57,6 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = props => {
           className={`fixed right-4 ${expandedBottomClass} z-60 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg`}
         >
           <DesktopToolbar
-            onAddNewLifeArea={handleAddNewLifeArea}
             onAddPredefinedAreas={handleAddPredefinedAreas}
             onImportFile={handleImportFile}
             onRemoveAll={handleRemoveAll}

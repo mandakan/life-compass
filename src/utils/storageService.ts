@@ -1,10 +1,22 @@
-export const STORAGE_KEY = 'userData';
+const STORAGE_KEY = 'userData';
 
-export const getUserData = (): unknown => {
-  const data = localStorage.getItem(STORAGE_KEY);
+export function getUserData(): unknown;
+export function getUserData(key: string): unknown;
+export function getUserData(key?: string): unknown {
+  const storageKey = key ?? STORAGE_KEY;
+  const data = localStorage.getItem(storageKey);
   return data ? JSON.parse(data) : {};
-};
+}
 
-export const saveUserData = (data: unknown): void => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-};
+export function saveUserData(data: unknown, key?: string): void {
+  const storageKey = key ?? STORAGE_KEY;
+  localStorage.setItem(storageKey, JSON.stringify(data));
+}
+
+export function removeUserData(key: string): void {
+  localStorage.removeItem(key);
+}
+
+export function clearAllUserData(): void {
+  localStorage.clear();
+}

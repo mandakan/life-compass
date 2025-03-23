@@ -67,8 +67,8 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
     setLocalEditName(editName);
   }, [editName]);
 
-  const [highlightImportance, setHighlightImportance] = useState(false);
-  const [highlightSatisfaction, setHighlightSatisfaction] = useState(false);
+  const [_highlightImportance, setHighlightImportance] = useState(false);
+  const [_highlightSatisfaction, setHighlightSatisfaction] = useState(false);
 
   const [editingDetailsInline, setEditingDetailsInline] = useState(false);
   const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);

@@ -7,7 +7,6 @@ import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
 import { useTheme } from '../context/ThemeContext';
 import RadarChart from '../components/RadarChart';
-import DesktopToolbar from '../components/DesktopToolbar';
 import FloatingToolbar from '../components/FloatingToolbar';
 import { parseAndValidateJSON } from '../utils/importService';
 import ImportPreviewModal from '../components/ImportPreviewModal';
@@ -462,7 +461,6 @@ const CreateLifeCompass: React.FC = () => {
         <Callout onDismiss={() => setShowRecommendationCallout(false)} />
       )}
       <FloatingToolbar
-        onAddNewLifeArea={() => handleAddNewLifeArea()}
         onAddPredefinedAreas={handleAddPredefinedAreas}
         onToggleRadar={() => setShowRadar(prev => !prev)}
         showRadar={showRadar}

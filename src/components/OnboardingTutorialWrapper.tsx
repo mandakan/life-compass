@@ -28,12 +28,6 @@ const OnboardingTutorialWrapper: React.FC<OnboardingTutorialWrapperProps> = ({
     setShowTutorial(false);
   };
 
-  // This function can be exposed to the app's settings or help menu to allow replaying the tutorial.
-  const replayTutorial = () => {
-    localStorage.removeItem('tutorialCompleted');
-    setShowTutorial(true);
-  };
-
   return (
     <>
       {showTutorial && (

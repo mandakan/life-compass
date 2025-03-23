@@ -21,7 +21,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
 }) => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedPathway, setSelectedPathway] = useState<string | null>(null);
+  const [_selectedPathway, setSelectedPathway] = useState<string | null>(null);
 
   const steps: OnboardingStep[] = [
     {

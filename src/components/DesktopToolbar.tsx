@@ -5,14 +5,12 @@ import ExportButton from './ExportButton';
 import ImportButton from './ImportButton';
 
 interface DesktopToolbarProps {
-  onAddNewLifeArea: () => void;
   onAddPredefinedAreas: () => void;
   onImportFile: (fileContent: string) => void;
   onRemoveAll: () => void;
 }
 
 const DesktopToolbar: React.FC<DesktopToolbarProps> = ({
-  onAddNewLifeArea,
   onAddPredefinedAreas,
   onImportFile,
   onRemoveAll,
