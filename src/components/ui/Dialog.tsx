@@ -9,7 +9,7 @@ interface DialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title?: string;
-  description?: string;
+  description?: ReactNode;
   type?: DialogType;
   icon?: ReactNode;
   children: ReactNode;
@@ -26,7 +26,7 @@ const typeStyles: Record<DialogType, { iconColor: string }> = {
 const Dialog = ({
   open,
   onOpenChange,
-  title = 'test',
+  title,
   description,
   type = 'default',
   icon,
