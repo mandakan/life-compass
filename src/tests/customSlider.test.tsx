@@ -41,7 +41,7 @@ describe('Slider', () => {
     );
     const sliders = screen.getAllByRole('slider');
 
-    const slider = sliders[1];
+    const slider = sliders[0];
     // Explicitly focus the slider handle before sending key events.
     slider.focus();
     expect(document.activeElement).toBe(slider);
@@ -75,7 +75,7 @@ describe('Slider', () => {
       />,
     );
     const sliders = screen.getAllByRole('slider');
-    const slider = sliders[2];
+    const slider = sliders[0];
 
     // Explicitly focus the slider handle before sending key events.
     slider.focus();

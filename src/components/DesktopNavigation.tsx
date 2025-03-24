@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SettingsMenu from './SettingsMenu';
 import { AppSettingsContext } from '@context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const DesktopNavigation: React.FC = () => {
   const { t } = useTranslation();
@@ -52,6 +53,7 @@ const DesktopNavigation: React.FC = () => {
         )}
       </div>
       <div className="relative flex items-center gap-4">
+        <LanguageSwitcher compact />
         <button
           onMouseDown={e => e.stopPropagation()}
           onClick={toggleSettings}

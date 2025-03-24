@@ -1,4 +1,5 @@
 import 'tests/test-i18n'; // ✅ Load actual translations
+import '@testing-library/jest-dom';
 
 Object.defineProperty(window, 'scrollTo', {
   value: () => {},
