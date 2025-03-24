@@ -16,6 +16,7 @@ interface Language {
 
 interface LanguageSwitcherProps {
   compact?: boolean;
+  testId?: string;
 }
 
 const languages: Language[] = [
@@ -38,7 +39,7 @@ const flagMap: Record<string, string> = {
   tlh: '🖖',
 };
 
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ compact }) => {
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ compact, testId }) => {
   const detectedLang = i18next.language?.split('-')[0] ?? 'en';
   const storedLang = localStorage.getItem('selectedLanguage');
   const initialLang =
@@ -77,6 +78,8 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ compact }) => {
     <Popover>
       <PopoverTrigger asChild>
         <Button
+          data-testid={testId || 'language-switcher'}
+          id="language-switcher"
           variant="ghost"
           className="flex items-center gap-2 border border-[var(--border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--hover-bg)]"
         >

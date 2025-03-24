@@ -24,20 +24,15 @@ test.describe('Life Compass App End-to-End Tests', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     // Wait for the language switcher button to appear
-    const languageSwitcher = await page.waitForSelector('#language-switcher', {
-      state: 'visible',
-      timeout: 10000,
-    });
+    const languageSwitcher = await page.getByTestId('language-switcher-home');
+
     expect(languageSwitcher).not.toBeNull();
 
     // Click the language switcher to open the language options
     await languageSwitcher.click();
 
-    // Wait for a language option to appear (assume an option with data-lang="sv")
-    const swedishOption = await page.waitForSelector('[data-lang="sv"]', {
-      state: 'visible',
-      timeout: 5000,
-    });
+    // Wait for a language option to appear
+    const swedishOption = await page.getByRole('option', { name: /svenska/i });
     expect(swedishOption).not.toBeNull();
 
     // Click the Swedish language option
