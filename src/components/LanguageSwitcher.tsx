@@ -71,7 +71,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ compact }) => {
   const selectedLang = languages.find(l => l.code === selectedLanguage);
   const displayLabel = compact
     ? flagMap[selectedLanguage] || selectedLanguage.toUpperCase()
-    : selectedLang?.name ?? selectedLanguage;
+    : (selectedLang?.name ?? selectedLanguage);
 
   return (
     <Popover>
