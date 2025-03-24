@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import CustomButton from './CustomButton';
+import Button from './ui/Button';
 import { useTranslation } from 'react-i18next';
 
 interface ImportButtonProps {
@@ -62,7 +62,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({
 
   return (
     <>
-      <CustomButton onClick={handleButtonClick}>{t('import')}</CustomButton>
+      <Button onClick={handleButtonClick}>{t('import')}</Button>
       <input
         type="file"
         accept="application/json"

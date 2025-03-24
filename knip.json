@@ -15,6 +15,7 @@
     "recharts",
     "@typescript-eslint/parser",
     "@radix-ui/react-slider",
-    "@radix-ui/react-dialog"
+    "@radix-ui/react-dialog",
+    "@radix-ui/react-popover"
   ]
 }
