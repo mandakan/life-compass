@@ -163,6 +163,17 @@ const About: React.FC = () => {
                   https://heroicons.com
                 </a>
               </li>
+              <li>
+                <strong>Radix UI:</strong> MIT License –{' '}
+                <a
+                  className="underline"
+                  href="https://www.radix-ui.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.radix-ui.com
+                </a>
+              </li>
             </ul>
           </div>
         </section>
