@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppSettingsContext } from '@context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../LanguageSwitcher';
@@ -11,12 +11,12 @@ import { Cog6ToothIcon } from '@heroicons/react/24/outline';
 
 const HeaderNavigation: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { showDevTools } = useContext(AppSettingsContext);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
 
   const toggleMobile = () => setMobileOpen(prev => !prev);
-  const toggleSettings = () => setShowSettings(prev => !prev);
+
 
   return (
     <header className="bg-primary text-[var(--on-primary)] border-b border-[var(--border)]">
@@ -38,8 +38,8 @@ const HeaderNavigation: React.FC = () => {
         <div className="flex items-center gap-4">
           <LanguageSwitcher compact />
           <button
-            aria-label={t('toggle_settings_menu')}
-            onClick={toggleSettings}
+            onClick={() => navigate('/settings')}
+            aria-label={t('go_to_settings_menu')}
             className="border-0 bg-transparent p-0"
           >
             <Cog6ToothIcon className="h-6 w-6" />
@@ -57,13 +57,6 @@ const HeaderNavigation: React.FC = () => {
           </button>
         </div>
       </nav>
-
-      {/* Settings Panel */}
-      {showSettings && (
-        <div className="absolute right-4 top-[70px] z-50 w-72 rounded-lg border border-[var(--border)] bg-[var(--menu-bg)] p-2 shadow-lg">
-          <SettingsMenu onClose={() => setShowSettings(false)} />
-        </div>
-      )}
 
       {/* Mobile menu */}
       {mobileOpen && (
