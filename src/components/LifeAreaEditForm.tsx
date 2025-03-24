@@ -66,8 +66,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
     trimmedLocalEditName !== '' &&
     trimmedLocalEditName !== trimmedOriginalName &&
     otherNames.some(
-      name =>
-        name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
+      name => name.trim().toLowerCase() === trimmedLocalEditName.toLowerCase(),
     );
 
   return (
@@ -90,9 +89,9 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
             isDuplicate
               ? 'border-red-500'
               : trimmedLocalEditName !== '' &&
-                trimmedLocalEditName !== trimmedOriginalName
-              ? 'border-green-500'
-              : 'border-[var(--border)]'
+                  trimmedLocalEditName !== trimmedOriginalName
+                ? 'border-green-500'
+                : 'border-[var(--border)]'
           }`}
         />
       </label>

@@ -38,7 +38,7 @@ const Popover: React.FC<PopoverProps> = ({
           {closeButton && (
             <RadixPopover.Close asChild>
               <button
-                className="absolute right-2 top-2 rounded-sm text-[var(--color-text)] hover:text-[var(--color-primary)] focus:outline-none"
+                className="absolute top-2 right-2 rounded-sm text-[var(--color-text)] hover:text-[var(--color-primary)] focus:outline-none"
                 aria-label="Close"
               >
                 <XMarkIcon className="h-4 w-4" />
