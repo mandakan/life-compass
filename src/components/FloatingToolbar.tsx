@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Popover,
   PopoverTrigger,
@@ -9,9 +9,12 @@ import Button from '@components/ui/Button';
 import ExportButton from './ExportButton';
 import ImportButton from './ImportButton';
 import { useConfirmDialog } from './ui/hooks/useConfirmDialog';
-import { ChartPieIcon } from '@heroicons/react/24/outline';
-import { Squares2X2Icon } from '@heroicons/react/24/outline';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  Squares2X2Icon,
+  ChartPieIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 
 interface FloatingToolbarProps {
   onAddPredefinedAreas: () => void;
@@ -31,6 +34,8 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
   footerVisible,
 }) => {
   const { t } = useTranslation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const { confirm, ConfirmationDialog } = useConfirmDialog();
   const handleImportError = async (error: string) => {
     await confirm({
@@ -41,7 +46,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
   };
 
   return (
-    <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 md:bottom-20">
+    <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 md:bottom-40">
       {/* Toggle view button */}
       <button
         onClick={onToggleRadar}
@@ -56,13 +61,17 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
       </button>
 
       {/* Quick actions popover */}
-      <Popover>
+      <Popover open={menuOpen} onOpenChange={setMenuOpen}>
         <PopoverTrigger asChild>
           <button
             className="h-14 w-14 rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg transition-colors hover:opacity-90 focus:outline-none"
             aria-label={t('quick_actions')}
           >
-            <Bars3Icon className="mx-auto h-6 w-6" />
+            {menuOpen ? (
+              <XMarkIcon className="mx-auto h-6 w-6" />
+            ) : (
+              <Bars3Icon className="mx-auto h-6 w-6" />
+            )}
           </button>
         </PopoverTrigger>
         <PopoverContent className="z-50 w-64 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg">
