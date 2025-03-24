@@ -20,5 +20,6 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
     // Exclude end-to-end tests from running with "npm test"
     exclude: ['e2e/**'],
+    globals: true
   },
 });

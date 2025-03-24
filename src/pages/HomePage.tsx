@@ -38,10 +38,10 @@ const HomePage: React.FC = () => {
         >
           {t('start_your_journey', 'Börja din resa')}
         </CustomButton>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center">
           <LanguageSwitcher />
         </div>
-        <div className="mt-24">
+        <div className="mt-24 justify-center">
           <Introduction />
         </div>
       </main>
