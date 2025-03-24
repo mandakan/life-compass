@@ -8,7 +8,6 @@ import { useTheme } from '@context/ThemeContext';
 import RadarChart from '@components/RadarChart';
 import FloatingToolbar from '@components/FloatingToolbar';
 import { parseAndValidateJSON } from '@utils/importService';
-import ImportPreviewModal from '@components/ImportPreviewModal';
 import { useTranslation } from 'react-i18next';
 import { ImportedData } from 'types/importExport';
 import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
@@ -66,7 +65,6 @@ const CreateLifeCompass: React.FC = () => {
     useState(true);
 
   const [importedData, setImportedData] = useState<ImportedData | null>(null);
-  const [previewVisible, setPreviewVisible] = useState(false);
 
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
@@ -400,7 +398,7 @@ const CreateLifeCompass: React.FC = () => {
     description: area.details,
   }));
 
-  const handleImportFile = (fileContent: string) => {
+  const handleImportFile = async (fileContent: string) => {
     const result = parseAndValidateJSON(fileContent);
     if (!result.valid) {
       if (result.errors) {
@@ -409,21 +407,34 @@ const CreateLifeCompass: React.FC = () => {
       return;
     }
     setImportedData(result.data);
-    setPreviewVisible(true);
-  };
 
-  const handleConfirmImport = () => {
-    if (importedData && importedData.data) {
-      setLifeAreas(importedData.data.lifeAreas);
-      setPreviewVisible(false);
-      setImportedData(null);
+    const confirmed = await confirmDialog({
+      title: t('import_preview'),
+      message: (
+        <div>
+          <p>
+            <strong>{t('exported')}:</strong> {result.data.metadata.exportTimestamp}
+          </p>
+          <p>
+            <strong>{t('version')}:</strong> {result.data.metadata.version}
+          </p>
+          <p>
+            <strong>{t('life_areas_count')}:</strong> {result.data.data.lifeAreas.length}
+          </p>
+          <p>
+            <strong>{t('history_count')}:</strong> {result.data.data.history.length}
+          </p>
+          <p>{t('import_data_prompt')}</p>
+        </div>
+      ),
+      confirmLabel: t('import'),
+      cancelLabel: t('cancel'),
+    });
+
+    if (confirmed) {
+      setLifeAreas(result.data.data.lifeAreas);
       showSuccess(t('import_successful'));
     }
-  };
-
-  const handleCancelImport = () => {
-    setPreviewVisible(false);
-    setImportedData(null);
   };
 
   return (
@@ -559,17 +570,6 @@ const CreateLifeCompass: React.FC = () => {
           </div>
         </div>
       )}
-      <ImportPreviewModal
-        visible={previewVisible}
-        metadata={
-          importedData
-            ? importedData.metadata
-            : { exportTimestamp: '', version: '' }
-        }
-        data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
-        onConfirm={handleConfirmImport}
-        onCancel={handleCancelImport}
-      />
       {ConfirmationDialog}
       {SuccessDialog}
     </div>
