@@ -5,6 +5,9 @@ import Button from '@components/ui/Button';
 import ExportButton from './ExportButton';
 import ImportButton from './ImportButton';
 import { useConfirmDialog } from './ui/hooks/useConfirmDialog';
+import { ChartPieIcon } from '@heroicons/react/24/outline';
+import { Squares2X2Icon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 interface FloatingToolbarProps {
   onAddPredefinedAreas: () => void;
@@ -42,17 +45,9 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
         aria-label={showRadar ? t('show_card_view') : t('show_radar_view')}
       >
         {showRadar ? (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="h-6 w-6">
-            <rect x="3" y="3" width="7" height="7" />
-            <rect x="14" y="3" width="7" height="7" />
-            <rect x="3" y="14" width="7" height="7" />
-            <rect x="14" y="14" width="7" height="7" />
-          </svg>
+          <Squares2X2Icon className="h-6 w-6" />
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-          </svg>
+          <ChartPieIcon className="h-6 w-6" />
         )}
       </button>
 
@@ -63,9 +58,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
             className="h-14 w-14 rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg hover:opacity-90 transition-colors focus:outline-none"
             aria-label={t('quick_actions')}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6 mx-auto">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+            <Bars3Icon className="h-6 w-6 mx-auto" />
           </button>
         </PopoverTrigger>
         <PopoverContent className="z-50 w-64 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg">
