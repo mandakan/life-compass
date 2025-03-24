@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import OnboardingTutorialWrapper from '../components/OnboardingTutorialWrapper';
-import LifeAreaCard from '../components/LifeAreaCard';
-import { LifeArea } from '../types/LifeArea';
-import WarningModal from '../components/WarningModal';
+import OnboardingTutorialWrapper from '@components/OnboardingTutorialWrapper';
+import LifeAreaCard from '@components/LifeAreaCard';
+import { LifeArea } from '@models/LifeArea';
 import Callout from '../components/Callout';
-import { getPredefinedLifeAreas } from '../utils/lifeAreaService';
-import { useTheme } from '../context/ThemeContext';
-import RadarChart from '../components/RadarChart';
-import FloatingToolbar from '../components/FloatingToolbar';
-import { parseAndValidateJSON } from '../utils/importService';
-import ImportPreviewModal from '../components/ImportPreviewModal';
-import SuccessModal from '../components/SuccessModal';
+import { getPredefinedLifeAreas } from '@utils/lifeAreaService';
+import { useTheme } from '@context/ThemeContext';
+import RadarChart from '@components/RadarChart';
+import FloatingToolbar from '@components/FloatingToolbar';
+import { parseAndValidateJSON } from '@utils/importService';
 import { useTranslation } from 'react-i18next';
 import { ImportedData } from 'types/importExport';
+import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
+import { useSuccessDialog } from '@components/ui/hooks/useSuccessDialog';
 
 const LOCAL_STORAGE_KEY = 'lifeCompass';
 
@@ -36,6 +35,8 @@ const isLocalStorageAvailable = (): boolean => {
 
 const CreateLifeCompass: React.FC = () => {
   const { t } = useTranslation();
+  const { confirm: confirmDialog, ConfirmationDialog } = useConfirmDialog();
+  const { show: showSuccess, SuccessDialog } = useSuccessDialog();
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
 
@@ -59,11 +60,8 @@ const CreateLifeCompass: React.FC = () => {
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [showRecommendationCallout, setShowRecommendationCallout] =
     useState(true);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showRemoveAllModal, setShowRemoveAllModal] = useState(false);
 
   const [importedData, setImportedData] = useState<ImportedData | null>(null);
-  const [previewVisible, setPreviewVisible] = useState(false);
 
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
@@ -73,10 +71,8 @@ const CreateLifeCompass: React.FC = () => {
   const [editSatisfaction, setEditSatisfaction] = useState<number>(5);
 
   const [pendingEdit, setPendingEdit] = useState<LifeArea | null>(null);
-  const [showWarningModal, setShowWarningModal] = useState(false);
 
   const [deleteCandidate, setDeleteCandidate] = useState<LifeArea | null>(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // Track newly created card ID so we know to remove it if editing is aborted.
   const [newAreaId, setNewAreaId] = useState<string | null>(null);
@@ -205,19 +201,35 @@ const CreateLifeCompass: React.FC = () => {
     }
   };
 
-  const handleRequestDeleteLifeArea = (id: string) => {
+  const handleRequestDeleteLifeArea = async (id: string) => {
     const candidate = lifeAreas.find(area => area.id === id);
-    if (candidate) {
-      setDeleteCandidate(candidate);
-      setShowDeleteModal(true);
+    if (!candidate) return;
+
+    const confirmed = await confirmDialog({
+      message: t('remove_life_area_warning'),
+      type: 'warning',
+      title: t('warning'),
+    });
+
+    if (!confirmed) return;
+
+    setLifeAreas(prev => prev.filter(area => area.id !== candidate.id));
+
+    if (editingAreaId === candidate.id) {
+      handleCancelEdit();
     }
   };
 
-  const handleEditLifeArea = (area: LifeArea) => {
+  const handleEditLifeArea = async (area: LifeArea) => {
     if (editingAreaId && editingAreaId !== area.id) {
       setPendingEdit(area);
-      setShowWarningModal(true);
-      return;
+      const confirmed = await confirmDialog({
+        message: t('unsaved_changes_warning'),
+        type: 'warning',
+        title: t('warning'),
+      });
+
+      if (!confirmed) return;
     }
     setEditingAreaId(area.id);
     setEditName(area.name);
@@ -226,25 +238,6 @@ const CreateLifeCompass: React.FC = () => {
     setEditImportance(area.importance);
     setEditSatisfaction(area.satisfaction);
     setError('');
-  };
-
-  const handleModalConfirm = () => {
-    if (pendingEdit) {
-      setEditingAreaId(pendingEdit.id);
-      setEditName(pendingEdit.name);
-      setEditDescription(pendingEdit.description);
-      setEditDetails(pendingEdit.details);
-      setEditImportance(pendingEdit.importance);
-      setEditSatisfaction(pendingEdit.satisfaction);
-    }
-    setPendingEdit(null);
-    setShowWarningModal(false);
-    setError('');
-  };
-
-  const handleModalCancel = () => {
-    setPendingEdit(null);
-    setShowWarningModal(false);
   };
 
   const handleSaveEditLifeArea = () => {
@@ -305,35 +298,16 @@ const CreateLifeCompass: React.FC = () => {
     setError('');
   };
 
-  const handleDeleteConfirm = () => {
-    if (deleteCandidate) {
-      setLifeAreas(prevLifeAreas =>
-        prevLifeAreas.filter(area => area.id !== deleteCandidate.id),
-      );
-      if (editingAreaId === deleteCandidate.id) {
-        handleCancelEdit();
-      }
+  const handleRemoveAllLifeAreas = async () => {
+    const confirmed = await confirmDialog({
+      message: t('remove_all_life_areas_warning'),
+      type: 'warning',
+      title: t('warning'),
+    });
+
+    if (confirmed) {
+      setLifeAreas([]);
     }
-    setDeleteCandidate(null);
-    setShowDeleteModal(false);
-  };
-
-  const handleDeleteCancel = () => {
-    setDeleteCandidate(null);
-    setShowDeleteModal(false);
-  };
-
-  const handleRemoveAllLifeAreas = () => {
-    setShowRemoveAllModal(true);
-  };
-
-  const handleRemoveAllConfirm = () => {
-    setLifeAreas([]);
-    setShowRemoveAllModal(false);
-  };
-
-  const handleRemoveAllCancel = () => {
-    setShowRemoveAllModal(false);
   };
 
   const handleAutoUpdateRating = (
@@ -421,7 +395,7 @@ const CreateLifeCompass: React.FC = () => {
     description: area.details,
   }));
 
-  const handleImportFile = (fileContent: string) => {
+  const handleImportFile = async (fileContent: string) => {
     const result = parseAndValidateJSON(fileContent);
     if (!result.valid) {
       if (result.errors) {
@@ -430,21 +404,37 @@ const CreateLifeCompass: React.FC = () => {
       return;
     }
     setImportedData(result.data);
-    setPreviewVisible(true);
-  };
 
-  const handleConfirmImport = () => {
-    if (importedData && importedData.data) {
-      setLifeAreas(importedData.data.lifeAreas);
-      setPreviewVisible(false);
-      setImportedData(null);
-      setShowSuccessModal(true);
+    const confirmed = await confirmDialog({
+      title: t('import_preview'),
+      message: (
+        <div>
+          <p>
+            <strong>{t('exported')}:</strong>{' '}
+            {result.data.metadata.exportTimestamp}
+          </p>
+          <p>
+            <strong>{t('version')}:</strong> {result.data.metadata.version}
+          </p>
+          <p>
+            <strong>{t('life_areas_count')}:</strong>{' '}
+            {result.data.data.lifeAreas.length}
+          </p>
+          <p>
+            <strong>{t('history_count')}:</strong>{' '}
+            {result.data.data.history.length}
+          </p>
+          <p>{t('import_data_prompt')}</p>
+        </div>
+      ),
+      confirmLabel: t('import'),
+      cancelLabel: t('cancel'),
+    });
+
+    if (confirmed) {
+      setLifeAreas(result.data.data.lifeAreas);
+      showSuccess(t('import_successful'));
     }
-  };
-
-  const handleCancelImport = () => {
-    setPreviewVisible(false);
-    setImportedData(null);
   };
 
   return (
@@ -580,40 +570,8 @@ const CreateLifeCompass: React.FC = () => {
           </div>
         </div>
       )}
-      <WarningModal
-        visible={showWarningModal}
-        message={t('unsaved_changes_warning')}
-        onConfirm={handleModalConfirm}
-        onCancel={handleModalCancel}
-      />
-      <WarningModal
-        visible={showDeleteModal}
-        message={t('remove_life_area_warning')}
-        onConfirm={handleDeleteConfirm}
-        onCancel={handleDeleteCancel}
-      />
-      <WarningModal
-        visible={showRemoveAllModal}
-        message={t('remove_all_life_areas_warning')}
-        onConfirm={handleRemoveAllConfirm}
-        onCancel={handleRemoveAllCancel}
-      />
-      <ImportPreviewModal
-        visible={previewVisible}
-        metadata={
-          importedData
-            ? importedData.metadata
-            : { exportTimestamp: '', version: '' }
-        }
-        data={importedData ? importedData.data : { lifeAreas: [], history: [] }}
-        onConfirm={handleConfirmImport}
-        onCancel={handleCancelImport}
-      />
-      <SuccessModal
-        visible={showSuccessModal}
-        message={t('import_successful')}
-        onClose={() => setShowSuccessModal(false)}
-      />
+      {ConfirmationDialog}
+      {SuccessDialog}
     </div>
   );
 };

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { exportData } from '../utils/exportService';
-import CustomButton from './CustomButton';
-import WarningModal from './WarningModal';
+import React from 'react';
+import { exportData } from '@utils/exportService';
 import { useTranslation } from 'react-i18next';
+import Button from '@components/ui/Button';
+import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
 
 const ExportButton: React.FC = () => {
   const { t } = useTranslation();
-  const [error, setError] = useState('');
+  const { confirm, ConfirmationDialog } = useConfirmDialog();
 
-  const handleExport = () => {
+  const handleExport = async () => {
     try {
       const jsonData = exportData();
       const blob = new Blob([jsonData], { type: 'application/json' });
@@ -22,29 +22,22 @@ const ExportButton: React.FC = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(t('error_exporting_data') + ': ' + error.message);
-      } else {
-        setError(t('error_exporting_data'));
-      }
+      await confirm({
+        type: 'error',
+        title: t('export_failed'),
+        message:
+          error instanceof Error
+            ? `${t('error_exporting_data')}: ${error.message}`
+            : t('error_exporting_data'),
+        confirmLabel: t('ok'),
+      });
     }
-  };
-
-  const handleModalClose = () => {
-    setError('');
   };
 
   return (
     <>
-      <CustomButton onClick={handleExport}>{t('export')}</CustomButton>
-      {error && (
-        <WarningModal
-          visible={true}
-          message={error}
-          onConfirm={handleModalClose}
-          onCancel={handleModalClose}
-        />
-      )}
+      <Button onClick={handleExport}>{t('export')}</Button>
+      {ConfirmationDialog}
     </>
   );
 };

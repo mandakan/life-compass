@@ -55,6 +55,7 @@ export default [
 
       // TS + React cleanup
       'react/prop-types': 'off',
+      'react/react-in-jsx-scope': 'off',
     },
   },
 

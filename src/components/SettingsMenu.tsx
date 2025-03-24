@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useNavigate } from 'react-router-dom';
 import { removeUserData, clearAllUserData } from '@utils/storageService';
-import WarningModal from '@components/WarningModal';
+import WarningDialog from '@components/ui/WarningDialog';
 
 interface SettingsMenuProps {
   onClose: () => void;
@@ -80,7 +80,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
       className="bg-[var(--color-bg)] p-4 text-[var(--color-text)]"
       ref={menuRef}
     >
-      <WarningModal
+      <WarningDialog
         visible={showDeleteModal}
         message={t('delete_local_data_warning')}
         onConfirm={handleDeleteConfirm}

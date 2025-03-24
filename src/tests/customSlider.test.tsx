@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, test, expect, vi, afterEach } from 'vitest';
-import Slider, { SliderProps } from '@/components/ui/Slider';
+import Slider, { SliderProps } from '@components/ui/Slider';
 
 // 🔁 Controlled wrapper for Slider
 const ControlledSlider = ({
