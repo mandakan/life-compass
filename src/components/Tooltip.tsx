@@ -2,7 +2,7 @@ import React from 'react';
 
 interface TooltipProps {
   children: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({ children, onClose }) => {
