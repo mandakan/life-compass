@@ -123,7 +123,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
 
       <div
         onClick={() => setEditingDetailsInline(true)}
-        className={`min-h-[120px] cursor-text rounded-sm bg-[var(--details-bg)] px-2 py-1`}
+        className={`h-[120px] cursor-text rounded-sm bg-[var(--details-bg)]`}
       >
         {editingDetailsInline ? (
           <Textarea
@@ -136,9 +136,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             }}
           />
         ) : (
+          <div className="m-0 px-2 py-1">
           <span className="whitespace-pre-wrap">
             {props.area.details || t('click_to_edit_details')}
           </span>
+          </div>
         )}
       </div>
 
