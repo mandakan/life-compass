@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ThemeContext } from '@context/ThemeContext';
-import ToggleSwitch from '@components/ToggleSwitch';
+import ToggleSwitch from '@components/ui/ToggleSwitch';
 import { AppSettingsContext } from '@context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';

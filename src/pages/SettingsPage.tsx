@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '@context/ThemeContext';
 import { AppSettingsContext } from '@context/AppSettingsContext';
-import ToggleSwitch from '@components/ToggleSwitch';
+import ToggleSwitch from '@components/ui/ToggleSwitch';
 import LanguageSwitcher from '@components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,8 @@ import WarningDialog from '@components/ui/WarningDialog';
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } = useContext(ThemeContext);
+  const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } =
+    useContext(ThemeContext);
   const { showDevTools, setShowDevTools } = useContext(AppSettingsContext);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -21,7 +22,8 @@ const SettingsPage: React.FC = () => {
     if (!checked && theme !== 'light') toggleTheme();
   };
 
-  const handleFollowSystemToggle = (checked: boolean) => setFollowSystem(checked);
+  const handleFollowSystemToggle = (checked: boolean) =>
+    setFollowSystem(checked);
 
   const handleDevToolsToggle = (checked: boolean) => setShowDevTools(checked);
 
@@ -41,7 +43,7 @@ const SettingsPage: React.FC = () => {
   const handleDeleteCancel = () => setShowDeleteModal(false);
 
   return (
-    <div className="max-w-xl mx-auto p-6 font-sans text-[var(--color-text)]">
+    <div className="mx-auto max-w-xl p-6 font-sans text-[var(--color-text)]">
       <WarningDialog
         visible={showDeleteModal}
         message={t('delete_local_data_warning')}
@@ -61,21 +63,30 @@ const SettingsPage: React.FC = () => {
       <section className="mb-6">
         <label className="flex items-center justify-between">
           <span>{t('dark_mode')}</span>
-          <ToggleSwitch checked={theme === 'dark'} onChange={handleThemeToggle} />
+          <ToggleSwitch
+            checked={theme === 'dark'}
+            onChange={handleThemeToggle}
+          />
         </label>
       </section>
 
       <section className="mb-6">
         <label className="flex items-center justify-between">
           <span>{t('follow_system_theme', { system: systemTheme })}</span>
-          <ToggleSwitch checked={followSystem} onChange={handleFollowSystemToggle} />
+          <ToggleSwitch
+            checked={followSystem}
+            onChange={handleFollowSystemToggle}
+          />
         </label>
       </section>
 
       <section className="mb-6">
         <label className="flex items-center justify-between">
           <span>{t('show_dev_tools')}</span>
-          <ToggleSwitch checked={showDevTools} onChange={handleDevToolsToggle} />
+          <ToggleSwitch
+            checked={showDevTools}
+            onChange={handleDevToolsToggle}
+          />
         </label>
       </section>
 
