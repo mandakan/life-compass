@@ -39,7 +39,10 @@ const flagMap: Record<string, string> = {
   tlh: '🖖',
 };
 
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ compact, testId }) => {
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
+  compact,
+  testId,
+}) => {
   const detectedLang = i18next.language?.split('-')[0] ?? 'en';
   const storedLang = localStorage.getItem('selectedLanguage');
   const initialLang =
