@@ -1,5 +1,6 @@
 {
   "version": "1.0.0",
+  "are_you_sure": "Är du säker?",
   "close_symbol": "✖",
   "enter_life_area_name": "Indtast livsområdenavn",
   "reset": "Nulstil",
