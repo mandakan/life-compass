@@ -6,8 +6,7 @@ import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import CreateLifeCompass from './pages/CreateLifeCompass';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import MobileNavigation from './components/MobileNavigation';
-import DesktopNavigation from './components/DesktopNavigation';
+import Navigation from '@components/ui/Navigation';
 import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
 import AppSettingsProvider from './context/AppSettingsContext';
@@ -22,14 +21,7 @@ const Content = () => {
   return (
     <div className="bg-bg text-text bg-escher flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">
-        <header className="bg-primary text-[var(--on-primary)]">
-          <div className="hidden md:block">
-            <DesktopNavigation />
-          </div>
-          <div className="block md:hidden">
-            <MobileNavigation />
-          </div>
-        </header>
+          <Navigation />
         <main className="mb-16 flex-1 md:mb-0">
           <Routes>
             <Route path="/" element={<HomePage />} />

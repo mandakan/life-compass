@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
-      <header className="mb-24 text-center">
+      <div className="mb-24 text-center">
         <h1 className="mb-4 text-4xl font-bold">
           {t(
             'life_compass_title',
@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
             'Discover your life balance. Create your life compass.',
           )}
         </h2>
-      </header>
+      </div>
       <main className="w-full max-w-4xl text-center">
         <CustomButton
           className="text-xl"
