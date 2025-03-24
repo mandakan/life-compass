@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import Slider from '@/components/ui/Slider';
 import RadarChart from '../components/RadarChart';
-import ToggleSwitch from '../components/ToggleSwitch';
+import ToggleSwitch from '../components/ui/ToggleSwitch';
 import Callout from '../components/Callout';
 import WarningMessage from '../components/WarningMessage';
 import LanguageSwitcher from '../components/LanguageSwitcher';

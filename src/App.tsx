@@ -21,7 +21,7 @@ const Content = () => {
   return (
     <div className="bg-bg text-text bg-escher flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">
-          <Navigation />
+        <Navigation />
         <main className="mb-16 flex-1 md:mb-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
