@@ -22,28 +22,33 @@ export const useConfirmDialog = () => {
   const [confirmLabel, setConfirmLabel] = useState<string>(t('continue'));
   const [cancelLabel, setCancelLabel] = useState<string>(t('cancel'));
   const [type, setType] = useState<ConfirmDialogType>('warning');
-  const [resolver, setResolver] = useState<(result: boolean) => void>(() => () => {});
+  const [resolver, setResolver] = useState<(result: boolean) => void>(
+    () => () => {},
+  );
 
-  const confirm = useCallback((options: string | ConfirmOptions) => {
-    if (typeof options === 'string') {
-      setMessage(options);
-      setTitle(undefined);
-      setConfirmLabel(t('continue'));
-      setCancelLabel(t('cancel'));
-      setType('warning');
-    } else {
-      setMessage(options.message);
-      setTitle(options.title);
-      setConfirmLabel(options.confirmLabel ?? t('continue'));
-      setCancelLabel(options.cancelLabel ?? t('cancel'));
-      setType(options.type ?? 'warning');
-    }
+  const confirm = useCallback(
+    (options: string | ConfirmOptions) => {
+      if (typeof options === 'string') {
+        setMessage(options);
+        setTitle(undefined);
+        setConfirmLabel(t('continue'));
+        setCancelLabel(t('cancel'));
+        setType('warning');
+      } else {
+        setMessage(options.message);
+        setTitle(options.title);
+        setConfirmLabel(options.confirmLabel ?? t('continue'));
+        setCancelLabel(options.cancelLabel ?? t('cancel'));
+        setType(options.type ?? 'warning');
+      }
 
-    setVisible(true);
-    return new Promise<boolean>((resolve) => {
-      setResolver(() => resolve);
-    });
-  }, [t]);
+      setVisible(true);
+      return new Promise<boolean>(resolve => {
+        setResolver(() => resolve);
+      });
+    },
+    [t],
+  );
 
   const handleConfirm = () => {
     setVisible(false);
@@ -58,14 +63,14 @@ export const useConfirmDialog = () => {
   const ConfirmationDialog = visible ? (
     <Dialog
       open={visible}
-      onOpenChange={(open) => {
+      onOpenChange={open => {
         if (!open) handleCancel();
       }}
       title={title}
       type={type}
       description={message}
     >
-      <div className="mt-4 text-right space-x-2">
+      <div className="mt-4 space-x-2 text-right">
         <button
           onClick={handleCancel}
           className="rounded-sm bg-[var(--color-primary)] px-3 py-1 text-[var(--on-primary)]"

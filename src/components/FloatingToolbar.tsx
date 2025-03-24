@@ -1,5 +1,9 @@
 import React from 'react';
-import { Popover, PopoverTrigger, PopoverContent } from '@radix-ui/react-popover';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@radix-ui/react-popover';
 import { useTranslation } from 'react-i18next';
 import Button from '@components/ui/Button';
 import ExportButton from './ExportButton';
@@ -32,12 +36,12 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
     await confirm({
       type: 'error',
       message: error,
-      confirmLabel: t('ok')
+      confirmLabel: t('ok'),
     });
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 md:bottom-20">
+    <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 md:bottom-20">
       {/* Toggle view button */}
       <button
         onClick={onToggleRadar}
@@ -55,10 +59,10 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
       <Popover>
         <PopoverTrigger asChild>
           <button
-            className="h-14 w-14 rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg hover:opacity-90 transition-colors focus:outline-none"
+            className="h-14 w-14 rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg transition-colors hover:opacity-90 focus:outline-none"
             aria-label={t('quick_actions')}
           >
-            <Bars3Icon className="h-6 w-6 mx-auto" />
+            <Bars3Icon className="mx-auto h-6 w-6" />
           </button>
         </PopoverTrigger>
         <PopoverContent className="z-50 w-64 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg">
@@ -67,7 +71,10 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
               {t('add_predefined')}
             </Button>
             <ExportButton />
-            <ImportButton onFileSelected={onImportFile} onError={handleImportError} />
+            <ImportButton
+              onFileSelected={onImportFile}
+              onError={handleImportError}
+            />
             <Button variant="accent" onClick={onRemoveAll}>
               {t('delete_all')}
             </Button>

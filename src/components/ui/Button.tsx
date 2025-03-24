@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       className={clsx(
         'rounded-sm px-3 py-1 transition-colors duration-150',
         variantClasses[variant],
-        className
+        className,
       )}
       {...props}
     >

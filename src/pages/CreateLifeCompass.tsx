@@ -35,10 +35,7 @@ const isLocalStorageAvailable = (): boolean => {
 
 const CreateLifeCompass: React.FC = () => {
   const { t } = useTranslation();
-  const {
-    confirm: confirmDialog,
-    ConfirmationDialog,
-  } = useConfirmDialog();
+  const { confirm: confirmDialog, ConfirmationDialog } = useConfirmDialog();
   const { show: showSuccess, SuccessDialog } = useSuccessDialog();
   const { theme } = useTheme();
   const [storageAvailable] = useState<boolean>(() => isLocalStorageAvailable());
@@ -207,17 +204,17 @@ const CreateLifeCompass: React.FC = () => {
   const handleRequestDeleteLifeArea = async (id: string) => {
     const candidate = lifeAreas.find(area => area.id === id);
     if (!candidate) return;
-  
+
     const confirmed = await confirmDialog({
       message: t('remove_life_area_warning'),
       type: 'warning',
-      title: t('warning')
+      title: t('warning'),
     });
-  
+
     if (!confirmed) return;
-  
+
     setLifeAreas(prev => prev.filter(area => area.id !== candidate.id));
-  
+
     if (editingAreaId === candidate.id) {
       handleCancelEdit();
     }
@@ -229,9 +226,9 @@ const CreateLifeCompass: React.FC = () => {
       const confirmed = await confirmDialog({
         message: t('unsaved_changes_warning'),
         type: 'warning',
-      title: t('warning')
+        title: t('warning'),
       });
-  
+
       if (!confirmed) return;
     }
     setEditingAreaId(area.id);
@@ -305,9 +302,9 @@ const CreateLifeCompass: React.FC = () => {
     const confirmed = await confirmDialog({
       message: t('remove_all_life_areas_warning'),
       type: 'warning',
-      title: t('warning')
+      title: t('warning'),
     });
-  
+
     if (confirmed) {
       setLifeAreas([]);
     }
@@ -413,16 +410,19 @@ const CreateLifeCompass: React.FC = () => {
       message: (
         <div>
           <p>
-            <strong>{t('exported')}:</strong> {result.data.metadata.exportTimestamp}
+            <strong>{t('exported')}:</strong>{' '}
+            {result.data.metadata.exportTimestamp}
           </p>
           <p>
             <strong>{t('version')}:</strong> {result.data.metadata.version}
           </p>
           <p>
-            <strong>{t('life_areas_count')}:</strong> {result.data.data.lifeAreas.length}
+            <strong>{t('life_areas_count')}:</strong>{' '}
+            {result.data.data.lifeAreas.length}
           </p>
           <p>
-            <strong>{t('history_count')}:</strong> {result.data.data.history.length}
+            <strong>{t('history_count')}:</strong>{' '}
+            {result.data.data.history.length}
           </p>
           <p>{t('import_data_prompt')}</p>
         </div>

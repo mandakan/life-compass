@@ -2,7 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import type { ButtonVariant } from './Button';
 
-interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface LinkButtonProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonVariant;
 }
 
@@ -22,9 +23,9 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   return (
     <a
       className={clsx(
-        'inline-block rounded-sm px-3 py-1 transition-colors duration-150 cursor-pointer',
+        'inline-block cursor-pointer rounded-sm px-3 py-1 transition-colors duration-150',
         variantClasses[variant],
-        className
+        className,
       )}
       {...props}
     >

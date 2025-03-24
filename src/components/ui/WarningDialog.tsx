@@ -28,7 +28,7 @@ const WarningDialog: React.FC<WarningDialogProps> = ({
       type="warning"
     >
       <div className="text-sm">{message}</div>
-      <div className="mt-4 text-right space-x-2">
+      <div className="mt-4 space-x-2 text-right">
         <button
           onClick={onCancel}
           className="rounded-sm bg-[var(--color-primary)] px-3 py-1 text-[var(--on-primary)] transition-colors duration-150"

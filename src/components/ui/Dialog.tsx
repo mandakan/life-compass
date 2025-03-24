@@ -26,7 +26,7 @@ const typeStyles: Record<DialogType, { iconColor: string }> = {
 const Dialog = ({
   open,
   onOpenChange,
-  title ,
+  title,
   description,
   type = 'default',
   icon,
@@ -35,23 +35,23 @@ const Dialog = ({
   const { iconColor } = typeStyles[type];
 
   const defaultIcons: Partial<Record<DialogType, ReactNode>> = {
-    success: <Icon name="success" className={clsx('w-5 h-5', iconColor)} />,
-    warning: <Icon name="warning" className={clsx('w-5 h-5', iconColor)} />,
-    error: <Icon name="warning" className={clsx('w-5 h-5', iconColor)} />,
-    info: <Icon name="success" className={clsx('w-5 h-5', iconColor)} />,
+    success: <Icon name="success" className={clsx('h-5 w-5', iconColor)} />,
+    warning: <Icon name="warning" className={clsx('h-5 w-5', iconColor)} />,
+    error: <Icon name="warning" className={clsx('h-5 w-5', iconColor)} />,
+    info: <Icon name="success" className={clsx('h-5 w-5', iconColor)} />,
   };
 
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Portal>
-        <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-40" />
+        <RadixDialog.Overlay className="fixed inset-0 z-40 bg-black/50" />
         <RadixDialog.Content
           className={clsx(
-            'fixed left-1/2 top-1/2 z-50 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl p-6 shadow-lg',
+            'fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl p-6 shadow-lg',
             'bg-[var(--color-bg)] text-[var(--color-text)]',
           )}
         >
-          <div className="flex items-start justify-between mb-4">
+          <div className="mb-4 flex items-start justify-between">
             <div className="flex items-center gap-2">
               {icon ?? defaultIcons[type]}
               {title && (
@@ -60,8 +60,8 @@ const Dialog = ({
                 </RadixDialog.Title>
               )}
             </div>
-            <RadixDialog.Close className="text-sm p-1 hover:opacity-70">
-              <Icon name="close" className="w-5 h-5" />
+            <RadixDialog.Close className="p-1 text-sm hover:opacity-70">
+              <Icon name="close" className="h-5 w-5" />
             </RadixDialog.Close>
           </div>
 

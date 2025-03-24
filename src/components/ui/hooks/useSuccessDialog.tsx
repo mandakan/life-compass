@@ -12,24 +12,27 @@ export const useSuccessDialog = () => {
   const [message, setMessage] = useState<ReactNode>('');
   const [title, setTitle] = useState<string | undefined>();
 
-  const show = useCallback((options: string | { message: ReactNode; title?: string }) => {
-    if (typeof options === 'string') {
-      setMessage(options);
-      setTitle(undefined);
-    } else {
-      setMessage(options.message);
-      setTitle(options.title);
-    }
+  const show = useCallback(
+    (options: string | { message: ReactNode; title?: string }) => {
+      if (typeof options === 'string') {
+        setMessage(options);
+        setTitle(undefined);
+      } else {
+        setMessage(options.message);
+        setTitle(options.title);
+      }
 
-    setVisible(true);
-  }, []);
+      setVisible(true);
+    },
+    [],
+  );
 
   const close = () => setVisible(false);
 
   const SuccessDialog = visible ? (
     <Dialog
       open={visible}
-      onOpenChange={(open) => {
+      onOpenChange={open => {
         if (!open) close();
       }}
       title={title ?? t('success')}
