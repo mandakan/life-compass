@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -72,11 +72,26 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
   const [editing, setEditing] = useState(false);
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
 
-  useEffect(() => {
-    if (isEditing && isDesktop) {
+  const handleEditClick = () => {
+    onEdit(area);
+    if (isDesktop) {
       setEditing(true);
     }
-  }, [isEditing, isDesktop]);
+  };
+
+  if (!isDesktop && isEditing) {
+    return (
+      <div
+        className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
+      >
+        <LifeAreaEditForm
+          {...props}
+          onCancelEdit={onCancelEdit}
+          onSaveEdit={onSaveEdit}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -128,10 +143,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => {
-              onEdit(area); // <- Lägg till detta!
-              setEditing(true);
-            }}
+            onClick={handleEditClick}
             title={t('edit')}
             aria-label={t('edit')}
             className="cursor-pointer border-none bg-transparent"
@@ -195,7 +207,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           </label>
         </div>
       </div>
-      {isDesktop && editing && (
+      {isDesktop && isEditing && (
         <Dialog
           open={editing}
           onOpenChange={setEditing}
