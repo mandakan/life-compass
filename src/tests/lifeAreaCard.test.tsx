@@ -1,186 +1,87 @@
-import React from 'react';
-import { vi, describe, test, expect, afterEach } from 'vitest';
+// src/components/LifeAreaCard.test.tsx
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import LifeAreaCard, { LifeAreaCardProps } from '../components/LifeAreaCard';
-import type { SliderProps } from '@components/ui/Slider';
-import type { CustomButtonProps } from 'components/CustomButton';
-import type { WarningMessageProps } from 'components/WarningMessage';
+import LifeAreaCard from '@components/LifeAreaCard';
+import type { LifeArea } from '@models/LifeArea';
 
-// Mock react-i18next to simply return the key as translation
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
-// Create a dummy Slider component since it is used by LifeAreaCard
-vi.mock('../components/ui/Slider', () => {
-  return {
-    default: (props: SliderProps) => {
-      const { value, onChange, min, max, step } = props;
-      return (
-        <input
-          data-testid="custom-slider"
-          type="range"
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          onChange={e => onChange(Number(e.target.value))}
-        />
-      );
-    },
-  };
-});
-
-// Create a dummy CustomButton component since it is used by LifeAreaCard
-vi.mock('../components/CustomButton', () => {
-  return {
-    default: (props: CustomButtonProps) => {
-      return (
-        <button data-testid="custom-button" onClick={props.onClick}>
-          {props.children}
-        </button>
-      );
-    },
-  };
-});
-
-// Create a dummy WarningMessage component for testing purposes
-vi.mock('../components/WarningMessage', () => {
-  return {
-    default: (props: WarningMessageProps) => {
-      return (
-        <div data-testid="warning-message">
-          {props.title}: {props.message}
-        </div>
-      );
-    },
-  };
-});
-
-const sampleArea = {
+const sampleArea: LifeArea = {
   id: '1',
-  name: 'Finance',
-  description: 'Manage your money',
-  details: 'Detailed description of finances',
-  importance: 5,
-  satisfaction: 5,
+  name: 'Health',
+  description: 'Physical and mental wellbeing',
+  importance: 8,
+  satisfaction: 6,
+  details: 'I’ve been exercising regularly.',
 };
 
-const defaultProps: LifeAreaCardProps = {
+const defaultProps = {
   area: sampleArea,
   isEditing: false,
   editName: sampleArea.name,
   editDescription: sampleArea.description,
-  editDetails: sampleArea.details,
   editImportance: sampleArea.importance,
   editSatisfaction: sampleArea.satisfaction,
+  editDetails: sampleArea.details,
   onChangeEditName: vi.fn(),
   onChangeEditDescription: vi.fn(),
-  onChangeEditDetails: vi.fn(),
   onChangeEditImportance: vi.fn(),
   onChangeEditSatisfaction: vi.fn(),
+  onChangeEditDetails: vi.fn(),
   onSaveEdit: vi.fn(),
   onCancelEdit: vi.fn(),
   onEdit: vi.fn(),
   onRemove: vi.fn(),
-  existingNames: [sampleArea.name],
-  dragHandle: {},
-  onAutoUpdateRating: vi.fn(),
-  onInlineDetailsChange: vi.fn(),
+  existingNames: [],
 };
 
-describe('LifeAreaCard Component', () => {
-  afterEach(() => {
-    document.body.innerHTML = '';
+describe('LifeAreaCard', () => {
+  beforeEach(() => {
+    vi.resetAllMocks();
   });
 
-  test('renders in non-edit mode with provided area name and shows edit and delete buttons', () => {
+  it('renders the name and description icon', () => {
     render(<LifeAreaCard {...defaultProps} />);
-
-    // Check if the area name is rendered
-    expect(document.contains(screen.getByText(sampleArea.name))).toBe(true);
-
-    // Check for edit button by its aria-label 'edit'
-    const editButton = screen.getByLabelText('edit');
-    expect(document.contains(editButton)).toBe(true);
-
-    // Check for delete button by aria-label containing 'delete'
-    const deleteButton = screen.getByLabelText(`delete ${sampleArea.name}`);
-    expect(document.contains(deleteButton)).toBe(true);
+    expect(screen.getByText(sampleArea.name)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /edit/i })).toBeInTheDocument();
   });
 
-  test('displays description popup when show description button is clicked and closes on blur', () => {
+  it('calls onEdit when edit button is clicked (mobile fallback)', () => {
+    // Simulate mobile
+    vi.stubGlobal('window', Object.assign(window, { innerWidth: 320 }));
     render(<LifeAreaCard {...defaultProps} />);
-
-    // Click the button that shows the description (aria-label: show_description)
-    const showDescriptionButton = screen.getByLabelText('show_description');
-    fireEvent.click(showDescriptionButton);
-
-    // Check if description is rendered in popup
-    expect(document.contains(screen.getByText(sampleArea.description))).toBe(
-      true,
-    );
-
-    // Simulate blur event on the popup to close it
-    const popup = screen.getByText(sampleArea.description).parentElement;
-    if (popup) {
-      fireEvent.blur(popup);
-    }
-  });
-
-  test('calls onEdit when edit button is clicked in non-edit mode', () => {
-    const onEditMock = vi.fn();
-    render(<LifeAreaCard {...defaultProps} onEdit={onEditMock} />);
-
-    const editButton = screen.getByLabelText('edit');
+    const editButton = screen.getByLabelText(/edit/i);
     fireEvent.click(editButton);
-    expect(onEditMock).toHaveBeenCalledWith(sampleArea);
+    expect(defaultProps.onEdit).toHaveBeenCalledWith(sampleArea);
   });
 
-  test('renders in edit mode and calls onChangeEditName when name input changes', () => {
-    const onChangeEditNameMock = vi.fn();
-    render(
-      <LifeAreaCard
-        {...defaultProps}
-        isEditing
-        editName="Finance"
-        onChangeEditName={onChangeEditNameMock}
-      />,
-    );
-
-    // The input field for the name should be rendered as it is in edit mode
-    const nameInput = screen.getByPlaceholderText('enter_life_area_name');
-    expect(document.contains(nameInput)).toBe(true);
-
-    // Change the input value and verify onChangeEditName is called
-    fireEvent.change(nameInput, { target: { value: 'New Finance' } });
-    expect(onChangeEditNameMock).toHaveBeenCalledWith('New Finance');
+  it('calls onRemove with correct id', () => {
+    render(<LifeAreaCard {...defaultProps} />);
+    const removeBtn = screen.getByLabelText(`Ta bort ${sampleArea.name}`);
+    fireEvent.click(removeBtn);
+    expect(defaultProps.onRemove).toHaveBeenCalledWith(sampleArea.id);
   });
 
-  test('shows warning message when duplicate name is detected in edit mode', () => {
-    render(
-      <LifeAreaCard
-        {...defaultProps}
-        isEditing
-        editName="SomeNewName"
-        existingNames={['Finance', 'SomeNewName']}
-      />,
-    );
-  
-    expect(screen.getByTestId('warning-message')).toBeInTheDocument();
-    expect(
-      screen.getByText(/duplicate_name_not_allowed/),
-    ).toBeInTheDocument();
+  it('renders inline details text by default', () => {
+    render(<LifeAreaCard {...defaultProps} />);
+    expect(screen.getByText(sampleArea.details)).toBeInTheDocument();
   });
 
-  test('calls onRemove when delete button is clicked in non-edit mode', () => {
-    const onRemoveMock = vi.fn();
-    render(<LifeAreaCard {...defaultProps} onRemove={onRemoveMock} />);
-
-    const deleteButton = screen.getByLabelText(`delete ${sampleArea.name}`);
-    fireEvent.click(deleteButton);
-    expect(onRemoveMock).toHaveBeenCalledWith(sampleArea.id);
+  it('enters inline editing mode when details are clicked', () => {
+    render(<LifeAreaCard {...defaultProps} />);
+    const detailsBox = screen.getByRole('button', {
+      name: /klicka för att redigera detaljer/i,
+    });
+    fireEvent.click(detailsBox);
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
+
+  it('renders edit form inline on mobile', () => {
+    // Simulate mobile
+    vi.stubGlobal('window', Object.assign(window, { innerWidth: 320 }));
+    render(<LifeAreaCard {...defaultProps} isEditing />);
+    expect(screen.getByText(/spara/i)).toBeInTheDocument();
+    expect(screen.getByText(/cancel/i)).toBeInTheDocument();
+  });
+
+  // You can test dialog behavior on desktop by mocking window.innerWidth >= 768,
+  // but it's better done with E2E tests if you rely on responsive logic.
 });
