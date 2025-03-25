@@ -49,14 +49,12 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
   const { t } = useTranslation();
 
   const trimmedEditName = editName.trim().toLowerCase();
-const trimmedOriginalName = area.name.trim().toLowerCase();
+  const trimmedOriginalName = area.name.trim().toLowerCase();
 
-const isDuplicate =
-  trimmedEditName !== '' &&
-  trimmedEditName !== trimmedOriginalName &&
-  existingNames
-    .map(n => n.trim().toLowerCase())
-    .includes(trimmedEditName);
+  const isDuplicate =
+    trimmedEditName !== '' &&
+    trimmedEditName !== trimmedOriginalName &&
+    existingNames.map(n => n.trim().toLowerCase()).includes(trimmedEditName);
 
   return (
     <div className="flex w-full flex-col gap-4">
