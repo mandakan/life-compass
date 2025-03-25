@@ -160,21 +160,19 @@ describe('LifeAreaCard Component', () => {
   });
 
   test('shows warning message when duplicate name is detected in edit mode', () => {
-    // Pass an existing duplicate name via the editName prop that is different from area.name
     render(
       <LifeAreaCard
         {...defaultProps}
         isEditing
-        editName="DuplicateName"
-        existingNames={['Finance', 'DuplicateName']}
+        editName="SomeNewName"
+        existingNames={['Finance', 'SomeNewName']}
       />,
     );
-
-    // WarningMessage component should be rendered since duplicate is detected
-    expect(document.contains(screen.getByTestId('warning-message'))).toBe(true);
+  
+    expect(screen.getByTestId('warning-message')).toBeInTheDocument();
     expect(
-      document.contains(screen.getByText(/duplicate_name_not_allowed/)),
-    ).toBe(true);
+      screen.getByText(/duplicate_name_not_allowed/),
+    ).toBeInTheDocument();
   });
 
   test('calls onRemove when delete button is clicked in non-edit mode', () => {

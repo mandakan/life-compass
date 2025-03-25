@@ -91,6 +91,27 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
     }
   }, [isEditing, isDesktop]);
 
+  const handleEditClick = () => {
+    onEdit(area);
+    if (isDesktop) {
+      setEditing(true);
+    }
+  };
+
+  if (!isDesktop && isEditing) {
+    return (
+      <div
+        className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
+      >
+        <LifeAreaEditForm
+          {...props}
+          onCancelEdit={onCancelEdit}
+          onSaveEdit={onSaveEdit}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
@@ -141,7 +162,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => (isDesktop ? setEditing(true) : onEdit(area))}
+            onClick={handleEditClick}
             title={t('edit') || 'Edit'}
             aria-label={t('edit') || 'Edit'}
             className="cursor-pointer border-none bg-transparent"

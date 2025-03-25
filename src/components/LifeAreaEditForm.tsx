@@ -21,7 +21,7 @@ interface LifeAreaEditFormProps {
   onChangeEditSatisfaction: (val: number) => void;
   onSaveEdit: () => void;
   onCancelEdit: () => void;
-  isDuplicate: boolean;
+  existingNames: string[];
   onAutoUpdateRating?: (
     field: 'importance' | 'satisfaction',
     newValue: number,
@@ -43,10 +43,20 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
   onChangeEditSatisfaction,
   onSaveEdit,
   onCancelEdit,
-  isDuplicate,
+  existingNames,
   onAutoUpdateRating,
 }) => {
   const { t } = useTranslation();
+
+  const trimmedEditName = editName.trim().toLowerCase();
+const trimmedOriginalName = area.name.trim().toLowerCase();
+
+const isDuplicate =
+  trimmedEditName !== '' &&
+  trimmedEditName !== trimmedOriginalName &&
+  existingNames
+    .map(n => n.trim().toLowerCase())
+    .includes(trimmedEditName);
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -63,6 +73,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           <WarningMessage
             title={t('duplicate')}
             message={t('duplicate_name_not_allowed')}
+            data-testid="warning-message"
           />
         )}
       </div>
