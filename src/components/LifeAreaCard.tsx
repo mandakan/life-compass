@@ -246,6 +246,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
         >
           <LifeAreaEditForm
             {...props}
+            existingNames={existingNames}
             onCancelEdit={() => {
               setEditing(false);
               onCancelEdit();
