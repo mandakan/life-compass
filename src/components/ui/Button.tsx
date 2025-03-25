@@ -1,7 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export type ButtonVariant = 'primary' | 'accent' | 'secondary' | 'ghost';
+export type ButtonVariant =
+  | 'primary'
+  | 'accent'
+  | 'secondary'
+  | 'ghost'
+  | 'outline';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -12,6 +17,8 @@ const variantClasses: Record<ButtonVariant, string> = {
   accent: 'bg-[var(--color-accent)] text-[var(--on-accent)]',
   secondary: 'bg-[var(--details-bg)] text-[var(--color-text)]',
   ghost: 'bg-transparent text-[var(--color-text)] hover:bg-[var(--hover-bg)]',
+  outline:
+    'border border-[var(--border)] bg-transparent text-[var(--color-text)] hover:bg-[var(--hover-bg)]',
 };
 
 const Button: React.FC<ButtonProps> = ({

@@ -82,5 +82,7 @@
   "onboarding.back": "Back",
   "onboarding.skip": "Skip Tutorial",
   "onboarding.next": "Next",
-  "onboarding.finish": "Finish Tutorial"
+  "onboarding.finish": "Finish Tutorial",
+  "edit_life_area_title": "Redigera livsområde",
+  "edit_life_area_description": "Namnet måste vara unikt."
 }
