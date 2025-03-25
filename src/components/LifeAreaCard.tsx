@@ -56,7 +56,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
   }, [editingDetailsInline, inlineDetailsValue]);
 
   if (props.isEditing) {
-    return <LifeAreaEditForm {...props} />;
+    return (
+      <div
+        className={`relative flex flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${props.className || ''}`}
+      >
+        <LifeAreaEditForm {...props} />
+      </div>
+    );
   }
 
   return (
@@ -137,9 +143,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           />
         ) : (
           <div className="m-0 px-2 py-1">
-          <span className="whitespace-pre-wrap">
-            {props.area.details || t('click_to_edit_details')}
-          </span>
+            <span className="whitespace-pre-wrap">
+              {props.area.details || t('click_to_edit_details')}
+            </span>
           </div>
         )}
       </div>
