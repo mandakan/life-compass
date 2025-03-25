@@ -78,7 +78,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           id="description"
           value={editDescription}
           onChange={e => onChangeEditDescription(e.target.value)}
-          className="min-h-[60px]"
+          className="min-h-[60px] text-sm"
         />
       </div>
 
@@ -90,7 +90,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           id="details"
           value={editDetails}
           onChange={e => onChangeEditDetails(e.target.value)}
-          className="min-h-[120px]"
+          className="min-h-[120px] text-sm"
         />
       </div>
 
