@@ -138,9 +138,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
         <div className="flex items-center gap-2">
           <Popover
             trigger={<InformationCircleIcon className="h-5 w-5" />}
-            children={<p>{area.description}</p>}
             className="max-w-2xl"
-          />
+          >
+            {<p>{area.description}</p>}
+          </Popover>
           <h4 className="text-lg font-semibold text-[var(--color-primary)]">
             {area.name}
           </h4>
