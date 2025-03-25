@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { QuestionMarkCircleIcon, InformationCircleIcon } from '@heroicons/react/24/solid';
+import {
+  QuestionMarkCircleIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/solid';
 import Slider from '@components/ui/Slider';
 import Textarea from '@components/ui/Textarea';
 import Popover from '@components/ui/Popover';
@@ -98,9 +101,31 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
         aria-label={t('drag_to_reorder_life_area')}
         {...(dragHandle || {})}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-          <line x1="4" y1="8" x2="20" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <line x1="4" y1="14" x2="20" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <line
+            x1="4"
+            y1="8"
+            x2="20"
+            y2="8"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <line
+            x1="4"
+            y1="14"
+            x2="20"
+            y2="14"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
       </div>
       <div className="mb-2 flex items-center justify-between">
@@ -110,7 +135,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             content={<p>{area.description}</p>}
             className="max-w-2xl"
           />
-          <h4 className="text-lg font-semibold text-[var(--color-primary)]">{area.name}</h4>
+          <h4 className="text-lg font-semibold text-[var(--color-primary)]">
+            {area.name}
+          </h4>
         </div>
         <div className="flex gap-2">
           <button
@@ -133,10 +160,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       </div>
       <div
         onClick={() => setEditingDetailsInline(true)}
-        className="h-[120px] cursor-text rounded-sm bg-[var(--details-bg)] px-0 py-0 font-sans hover:bg-[var(--hover-bg)] transition-colors"
+        className="h-[120px] cursor-text rounded-sm bg-[var(--details-bg)] px-0 py-0 font-sans transition-colors hover:bg-[var(--hover-bg)]"
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             setEditingDetailsInline(true);
@@ -148,7 +175,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           <Textarea
             ref={inlineDetailsRef}
             value={inlineDetailsValue}
-            onChange={(val) => setInlineDetailsValue(val)}
+            onChange={val => setInlineDetailsValue(val)}
             onBlur={() => {
               if (onInlineDetailsChange) {
                 onInlineDetailsChange(inlineDetailsValue, area);
@@ -158,13 +185,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
               setEditingDetailsInline(false);
             }}
             autoFocus
-          className="block w-full h-[120px] flex-1 resize-none bg-[var(--details-bg)] px-2 py-1 font-sans outline-none text-base"
+            className="block h-[120px] w-full flex-1 resize-none bg-[var(--details-bg)] px-2 py-1 font-sans text-base outline-none"
           />
         ) : (
           <div className="h-[120px] w-full px-2 py-1">
-          <span className="whitespace-pre-wrap text-[var(--color-text)]">
-            {area.details || t('click_to_edit_details')}
-          </span>
+            <span className="whitespace-pre-wrap text-[var(--color-text)]">
+              {area.details || t('click_to_edit_details')}
+            </span>
           </div>
         )}
       </div>
