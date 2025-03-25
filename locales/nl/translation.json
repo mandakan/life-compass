@@ -84,5 +84,7 @@
     "next": "Volgende",
     "finish": "Tutorial afronden",
     "privacy_notice": "Wij waarderen uw privacy. Geen van uw acties of invoer wordt gevolgd; alle gegevens blijven op uw apparaat."
-  }
+  },
+  "edit_life_area_title": "Redigera livsområde",
+  "edit_life_area_description": "Namnet måste vara unikt."
 }
