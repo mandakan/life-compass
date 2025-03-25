@@ -130,5 +130,7 @@
     "skip": "Skippa intro",
     "next": "Nästa",
     "finish": "Avsluta introduktionen"
-  }
+  },
+  "edit_life_area_title": "Redigera livsområde",
+  "edit_life_area_description": "Namnet måste vara unikt."
 }

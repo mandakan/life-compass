@@ -121,5 +121,7 @@
     "next": "Næste",
     "finish": "Afslut introduktionen",
     "privacy_notice": "Vi værdsætter dit privatliv. Ingen af dine handlinger eller indtastninger spores; alle data forbliver på din enhed."
-  }
+  },
+  "edit_life_area_title": "Redigera livsområde",
+  "edit_life_area_description": "Namnet måste vara unikt."
 }

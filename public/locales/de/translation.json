@@ -120,5 +120,7 @@
     "next": "Weiter",
     "finish": "Tutorial beenden",
     "privacy_notice": "Wir schätzen Ihre Privatsphäre. Keine Ihrer Aktionen oder Eingaben werden verfolgt; alle Daten bleiben auf Ihrem Gerät."
-  }
+  },
+  "edit_life_area_title": "Redigera livsområde",
+  "edit_life_area_description": "Namnet måste vara unikt."
 }
