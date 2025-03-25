@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -6,11 +6,9 @@ import {
   QuestionMarkCircleIcon,
   InformationCircleIcon,
 } from '@heroicons/react/24/solid';
-import Slider from '@/components/ui/Slider';
-import Textarea from '@/components/ui/Textarea';
-import Popover from '@/components/ui/Popover';
-import Button from '@/components/ui/Button';
-import Dialog from '@/components/ui/Dialog';
+import Slider from '@components/ui/Slider';
+import Popover from '@components/ui/Popover';
+import Dialog from '@components/ui/Dialog';
 import LifeAreaEditForm from './LifeAreaEditForm';
 
 export interface LifeAreaCardProps {
@@ -78,6 +76,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       setEditing(true);
     }
   };
+
+  useEffect(() => {
+    if (isEditing && isDesktop) {
+      setEditing(true);
+    }
+  }, [isEditing, isDesktop]);
 
   if (!isDesktop && isEditing) {
     return (
