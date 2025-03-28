@@ -139,5 +139,13 @@
   "name_help": "Elämänalueen nimi. Nimen tulee olla ainutlaatuinen.",
   "show_radar_view": "Näytä tutkakaavio",
   "go_to_settings_menu": "Mene asetusvalikkoon",
-  "quick_actions": "Pikatoiminnot"
+  "quick_actions": "Pikatoiminnot",
+  "theme": "Teema",
+  "select_theme": "Valitse teema",
+  "light_theme": "Vaalea teema",
+  "dark_theme": "Tumma teema",
+  "high_contrast_theme": "Korkean kontrastin teema",
+  "sweet_theme": "Sokerinen teema",
+  "accessibility": "Saavutettavuus",
+  "enable_high_contrast": "Ota käyttöön korkean kontrastin teema"
 }

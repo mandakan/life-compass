@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du säker?",
+  "are_you_sure": "Är du sicher?",
   "close_symbol": "✖",
   "enter_life_area_name": "Lebensbereich eingeben",
   "reset": "Zurücksetzen",
@@ -129,5 +129,13 @@
   "name_help": "Name des Lebensbereichs. Der Name muss eindeutig sein.",
   "show_radar_view": "Radaransicht anzeigen",
   "go_to_settings_menu": "Zum Einstellungsmenü navigieren",
-  "quick_actions": "Schnellaktionen"
+  "quick_actions": "Schnellaktionen",
+  "theme": "Thema",
+  "light_theme": "Helles Thema",
+  "dark_theme": "Dunkles Thema",
+  "high_contrast_theme": "Hoher Kontrast",
+  "candy_theme": "Zuckersüß",
+  "accessibility": "Barrierefreiheit",
+  "toggle_high_contrast": "Hohen Kontrast ein-/ausschalten",
+  "theme_switcher_label": "Wählen Sie ein Thema"
 }

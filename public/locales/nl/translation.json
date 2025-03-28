@@ -127,5 +127,15 @@
   "name_help": "Naam van het levensgebied. De naam moet uniek zijn.",
   "show_radar_view": "Toon radargrafiek",
   "go_to_settings_menu": "Navigeer naar instellingenmenu",
-  "quick_actions": "Snelle acties"
+  "quick_actions": "Snelle acties",
+  "theme": "Thema",
+  "light_theme": "Licht thema",
+  "dark_theme": "Donker thema",
+  "high_contrast_theme": "Hoog contrast thema",
+  "sweet_theme": "Zoet thema",
+  "theme_settings": "Thema-instellingen",
+  "accessibility_settings": "Toegankelijkheidsinstellingen",
+  "contrast_theme_toggle_label": "Schakel hoog contrastthema in",
+  "theme_toggle_label": "Wissel van thema",
+  "use_system_theme": "Systeemthema gebruiken"
 }

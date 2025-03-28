@@ -128,5 +128,13 @@
   "name_help": "Life area's name. The name must be unique.",
   "show_radar_view": "Show radar graph",
   "go_to_settings_menu": "Navigate to settings menu",
-  "quick_actions": "Quick actions"
+  "quick_actions": "Quick actions",
+  "theme": "Theme",
+  "theme_light": "Light",
+  "theme_dark": "Dark",
+  "theme_high_contrast": "High Contrast",
+  "theme_sweet": "Sweet Pink",
+  "theme_system": "System",
+  "accessibility_settings": "Accessibility settings",
+  "contrast_theme_toggle": "Enable high contrast theme"
 }

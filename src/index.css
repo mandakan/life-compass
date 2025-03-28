@@ -102,6 +102,39 @@
   --warning-bg: #000000;
 }
 
+/* Sugar Sweet Theme */
+[data-theme='sugar-sweet'] {
+  --color-primary: #ff69b4; /* Hot pink */
+  --color-secondary: #ffe4e1; /* Misty Rose */
+  --color-accent: #ff1493; /* Deep pink */
+  --color-bg: #fff0f5; /* Lavender blush */
+  --callout-bg: #ffe4e1; /* Light pink background for callouts */
+  --border: #ffb6c1; /* Light pink border */
+  --color-text: #800080; /* Purple text */
+  --slider-track: #ffb6c1; /* Light pink track */
+  --slider-handle: #ff1493; /* Deep pink handle */
+  --accent: #ff69b4; /* Reuse hot pink for accents */
+  --on-accent: #ffffff; /* White text on accent */
+  --focus-ring: #ffb6c1; /* Light pink focus ring */
+  --details-bg: #ffe4e1; /* Consistent details box bg */
+  --primary: var(--color-primary);
+  --on-primary: #ffffff;
+  --secondary: var(--color-secondary);
+  --hover-bg: #ffc0cb; /* Soft pink hover */
+  /* Menu */
+  --menu-bg: #ff69b4;
+  --menu-text: #ffffff;
+  /* Chart colors */
+  --chart-series-1: #ff69b4;
+  --chart-series-2: #ffc0cb;
+  --chart-series-3: #ff1493;
+  --chart-series-4: #db7093;
+  --chart-series-5: #ffb6c1;
+  /* Warning Callout */
+  --warning-border: #ff1493;
+  --warning-bg: #ffe4e1;
+}
+
 /* Global styles leveraging the defined CSS variables */
 body {
   margin: 0;

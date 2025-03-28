@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'high-contrast';
+type Theme = 'light' | 'dark' | 'high-contrast' | 'sugar-sweet';
 
 interface ThemeContextType {
   theme: Theme;
@@ -38,7 +38,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const toggleTheme = () => {
     const nextTheme =
-      theme === 'light' ? 'dark' : theme === 'dark' ? 'high-contrast' : 'light';
+      theme === 'light'
+        ? 'dark'
+        : theme === 'dark'
+          ? 'high-contrast'
+          : theme === 'high-contrast'
+            ? 'sugar-sweet'
+            : 'light';
     setTheme(nextTheme);
   };
 
