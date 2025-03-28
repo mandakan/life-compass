@@ -80,7 +80,7 @@ const Introduction = () => {
       >
         {t('start_your_journey', 'Börja din resa')}
       </CustomButton>
-      
+
       <div className="mt-8">
         <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
           {t('introduction.disclaimer_title', 'Viktigt att veta')}

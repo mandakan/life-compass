@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { ThemeContext } from '@context/ThemeContext';
+import { useTheme } from '@context/ThemeContext';
 import { AppSettingsContext } from '@context/AppSettingsContext';
 import ToggleSwitch from '@components/ui/ToggleSwitch';
 import LanguageSwitcher from '@components/LanguageSwitcher';
+import { ThemeSwitcher } from '@components/ui/ThemeSwitcher';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { clearAllUserData, removeUserData } from '@utils/storageService';
@@ -12,7 +13,7 @@ const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } =
-    useContext(ThemeContext);
+    useTheme();
   const { showDevTools, setShowDevTools } = useContext(AppSettingsContext);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -67,6 +68,13 @@ const SettingsPage: React.FC = () => {
             checked={theme === 'dark'}
             onChange={handleThemeToggle}
           />
+        </label>
+      </section>
+
+      <section className="mb-6">
+        <label className="flex min-w-[160px] items-center justify-between">
+          <span>{t('theme')}</span>
+          <ThemeSwitcher />
         </label>
       </section>
 
