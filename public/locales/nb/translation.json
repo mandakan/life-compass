@@ -93,7 +93,8 @@
     "next_steps_description": "Ved å utforske ditt eget Livskompass kan du begynne å handle i tråd med dine verdier og skape et mer meningsfullt liv. Klikk på \"Start din reise\" for å komme i gang.",
     "source_text": "Basert på materiale fra",
     "privacy_title": "Privatliv og Databeskyttelse",
-    "privacy_description": "Vi respekterer ditt privatliv. Vi sporer ikke dine handlinger eller det du skriver. Alle dine data forblir lokale og deles ikke med noen eksterne parter."
+    "privacy_description": "Vi respekterer ditt privatliv. Vi sporer ikke dine handlinger eller det du skriver. Alle dine data forblir lokale og deles ikke med noen eksterne parter.",
+    "disclaimer_description": "Den här appen är tänkt som ett självreflekterande verktyg för att hjälpa dig utforska vad som är viktigt i ditt liv. Den är inte avsedd att ersätta professionell hjälp, terapi eller kontakt med hälso- och sjukvård. Om du mår dåligt eller har behov av stöd, uppmuntrar vi dig att kontakta vården eller en legitimerad terapeut."
   },
   "privacyPolicy": {
     "title": "Privatlivspolitikk",

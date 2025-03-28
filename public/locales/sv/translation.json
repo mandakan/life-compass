@@ -104,6 +104,7 @@
   "introduction.source_text": "Baserad på material från",
   "introduction.privacy_title": "Integritet och Dataskydd",
   "introduction.privacy_description": "Vi respekterar din integritet. Vi spårar inte några av dina handlingar eller vad du skriver. Alla dina data förblir lokala och delas inte med någon extern part.",
+  "introduction.disclaimer_description": "Den här appen är tänkt som ett självreflekterande verktyg för att hjälpa dig utforska vad som är viktigt i ditt liv. Den är inte avsedd att ersätta professionell hjälp, terapi eller kontakt med hälso- och sjukvård. Om du mår dåligt eller har behov av stöd, uppmuntrar vi dig att kontakta vården eller en legitimerad terapeut.",
   "privacyPolicy": {
     "title": "Integritetspolicy",
     "intro": "Din integritet är mycket viktig för oss. Vi är engagerade i att skydda dina personuppgifter. Denna applikation är utformad för att respektera din integritet genom att behandla all data lokalt i din webbläsare.",

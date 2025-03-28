@@ -104,6 +104,7 @@
   "introduction.source_text": "Perustuu materiaalin pohjalta:",
   "introduction.privacy_title": "Tietosuoja ja tietoturva",
   "introduction.privacy_description": "Kunnioitamme yksityisyyttäsi. Emme seuraa toimiasi tai kirjoituksiasi. Kaikki tietosi pysyvät paikallisina, eikä niitä jaeta ulkopuolisille.",
+  "introduction.disclaimer_description": "Den här appen är tänkt som ett självreflekterande verktyg för att hjälpa dig utforska vad som är viktigt i ditt liv. Den är inte avsedd att ersätta professionell hjälp, terapi eller kontakt med hälso- och sjukvård. Om du mår dåligt eller har behov av stöd, uppmuntrar vi dig att kontakta vården eller en legitimerad terapeut.",
   "privacyPolicy": {
     "title": "Tietosuojakäytäntö",
     "intro": "Yksityisyytesi on meille erittäin tärkeää. Olemme sitoutuneet suojaamaan henkilötietojasi. Tämä sovellus on suunniteltu kunnioittamaan yksityisyyttäsi käsittelemällä kaikki tiedot lokaalisti selaimessasi.",
