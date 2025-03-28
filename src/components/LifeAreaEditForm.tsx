@@ -5,6 +5,8 @@ import Textarea from '@components/ui/Textarea';
 import Button from '@components/ui/Button';
 import Slider from '@components/ui/Slider';
 import WarningMessage from '@components/WarningMessage';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
+import Popover from '@components/ui/Popover';
 import type { LifeArea } from '@models/LifeArea';
 
 interface LifeAreaEditFormProps {
@@ -59,9 +61,14 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
   return (
     <div className="flex w-full flex-col gap-4">
       <div>
-        <label htmlFor="name" className="mb-1 block text-sm font-semibold">
-          {t('name')}
-        </label>
+        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+          <label htmlFor="name" className="cursor-pointer">
+            {t('name')}
+          </label>
+          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+            <p>{t('name_help')}</p>
+          </Popover>
+        </div>
         <Input
           id="name"
           value={editName}
@@ -77,12 +84,14 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <label
-          htmlFor="description"
-          className="mb-1 block text-sm font-semibold"
-        >
-          {t('description')}
-        </label>
+        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+          <label htmlFor="description" className="cursor-pointer">
+            {t('description')}
+          </label>
+          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+            <p>{t('description_help')}</p>
+          </Popover>
+        </div>
         <Textarea
           id="description"
           value={editDescription}
@@ -92,9 +101,14 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <label htmlFor="details" className="mb-1 block text-sm font-semibold">
-          {t('details')}
-        </label>
+        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+          <label htmlFor="details" className="cursor-pointer">
+            {t('details')}
+          </label>
+          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+            <p>{t('details_help')}</p>
+          </Popover>
+        </div>
         <Textarea
           id="details"
           value={editDetails}
@@ -104,12 +118,17 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div>
-        <label
-          htmlFor="importance"
-          className="mb-1 block text-sm font-semibold"
-        >
-          {t('importance')}
-        </label>
+        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+          <label
+            htmlFor="importance"
+            className="cursor-pointer"
+          >
+            {t('importance')}
+          </label>
+          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+            <p>{t('importance_help')}</p>
+          </Popover>
+        </div>
         <Slider
           id="importance"
           value={editImportance}
@@ -124,12 +143,17 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div>
-        <label
-          htmlFor="satisfaction"
-          className="mb-1 block text-sm font-semibold"
-        >
-          {t('lived_according_to_past_week')}
-        </label>
+        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+          <label
+            htmlFor="satisfaction"
+            className="cursor-pointer"
+          >
+            {t('lived_according_to_past_week')}
+          </label>
+          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+            <p>{t('satisfaction_help')}</p>
+          </Popover>
+        </div>
         <Slider
           id="satisfaction"
           value={editSatisfaction}
