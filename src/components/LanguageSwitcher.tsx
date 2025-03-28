@@ -27,6 +27,7 @@ const languages: Language[] = [
   { code: 'da', name: 'Dansk', verified: false },
   { code: 'nb', name: 'Norsk Bokmål', verified: false },
   { code: 'tlh', name: 'tlhIngan Hol', verified: false },
+  { code: 'fi', name: 'Suomi', verified: false },
 ];
 
 const flagMap: Record<string, string> = {
@@ -37,6 +38,7 @@ const flagMap: Record<string, string> = {
   da: '🇩🇰',
   nb: '🇳🇴',
   tlh: '🖖',
+  fi: '🇫🇮',
 };
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
