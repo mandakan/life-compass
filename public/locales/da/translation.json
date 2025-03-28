@@ -122,12 +122,12 @@
     "finish": "Afslut introduktionen",
     "privacy_notice": "Vi værdsætter dit privatliv. Ingen af dine handlinger eller indtastninger spores; alle data forbliver på din enhed."
   },
-  "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt.",
-  "details_help": "Här skriver du några ord om vad du skulle värdesätta eller tycker är viktigt inom livsområdet.",
-  "description_help": "Beskrivning av livsområdet. Kan användas som stöd för att fylla i detaljerna.",
-  "name_help": "Livsområdets namn. Namnet måste vara unikt.",
-  "show_radar_view": "Visa radargraf",
-  "go_to_settings_menu": "Navigera till inställningsmeny",
-  "quick_actions": "Snabbmeny"
+  "edit_life_area_title": "Rediger livsområde",
+  "edit_life_area_description": "Navnet skal være unikt.",
+  "details_help": "Her skriver du nogle ord om, hvad du ville værdsætte eller synes er vigtigt i livsområdet.",
+  "description_help": "Beskrivelse af livsområdet. Kan bruges som støtte til at udfylde detaljerne.",
+  "name_help": "Livsområdets navn. Navnet skal være unikt.",
+  "show_radar_view": "Vis radardiagram",
+  "go_to_settings_menu": "Naviger til indstillingsmenuen",
+  "quick_actions": "Hurtigmenu"
 }

@@ -121,12 +121,12 @@
     "finish": "Tutorial beenden",
     "privacy_notice": "Wir schätzen Ihre Privatsphäre. Keine Ihrer Aktionen oder Eingaben werden verfolgt; alle Daten bleiben auf Ihrem Gerät."
   },
-  "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt.",
-  "details_help": "Här skriver du några ord om vad du skulle värdesätta eller tycker är viktigt inom livsområdet.",
-  "description_help": "Beskrivning av livsområdet. Kan användas som stöd för att fylla i detaljerna.",
-  "name_help": "Livsområdets namn. Namnet måste vara unikt.",
-  "show_radar_view": "Visa radargraf",
-  "go_to_settings_menu": "Navigera till inställningsmeny",
-  "quick_actions": "Snabbmeny"
+  "edit_life_area_title": "Lebensbereich bearbeiten",
+  "edit_life_area_description": "Der Name muss eindeutig sein.",
+  "details_help": "Schreiben Sie hier ein paar Worte darüber, was in diesem Lebensbereich für Sie wichtig ist.",
+  "description_help": "Beschreibung des Lebensbereichs. Kann als Unterstützung dienen, um Details auszufüllen.",
+  "name_help": "Name des Lebensbereichs. Der Name muss eindeutig sein.",
+  "show_radar_view": "Radaransicht anzeigen",
+  "go_to_settings_menu": "Zum Einstellungsmenü navigieren",
+  "quick_actions": "Schnellaktionen"
 }
