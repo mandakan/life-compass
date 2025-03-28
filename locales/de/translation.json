@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du säker?",
+  "are_you_sure": "Är du sicher?",
   "close_symbol": "✖",
   "enter_life_area_name": "Lebensbereich eingeben",
   "reset": "Zurücksetzen",
@@ -91,7 +91,8 @@
     "next_steps_description": "Indem Sie Ihren eigenen Lebenskompass erkunden, können Sie beginnen, entsprechend Ihrer Werte zu handeln und ein bedeutungsvolleres Leben zu führen. Klicken Sie auf \"Start your journey\", um zu beginnen.",
     "source_text": "Basierend auf Material von",
     "privacy_title": "Datenschutz und Datensicherheit",
-    "privacy_description": "Wir respektieren Ihre Privatsphäre. Wir verfolgen keine Ihrer Handlungen oder das, was Sie schreiben. Alle Ihre Daten bleiben lokal und werden nicht mit Dritten geteilt."
+    "privacy_description": "Wir respektieren Ihre Privatsphäre. Wir verfolgen keine Ihrer Handlungen oder das, was Sie schreiben. Alle Ihre Daten bleiben lokal und werden nicht mit Dritten geteilt.",
+    "disclaimer_description": "Diese App ist als ein selbstreflektierendes Werkzeug gedacht, um Ihnen zu helfen, zu erkunden, was in Ihrem Leben wichtig ist. Sie soll nicht als Ersatz für professionelle Hilfe, Therapie oder den Kontakt zum Gesundheitswesen dienen. Sollten Sie sich schlecht fühlen oder Unterstützung benötigen, empfehlen wir Ihnen, sich an einen Facharzt oder Therapeuten zu wenden."
   },
   "privacyPolicy": {
     "title": "Datenschutzerklärung",
@@ -121,6 +122,20 @@
     "finish": "Tutorial beenden",
     "privacy_notice": "Wir schätzen Ihre Privatsphäre. Keine Ihrer Aktionen oder Eingaben werden verfolgt; alle Daten bleiben auf Ihrem Gerät."
   },
-  "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt."
+  "edit_life_area_title": "Lebensbereich bearbeiten",
+  "edit_life_area_description": "Der Name muss eindeutig sein.",
+  "details_help": "Schreiben Sie hier ein paar Worte darüber, was in diesem Lebensbereich für Sie wichtig ist.",
+  "description_help": "Beschreibung des Lebensbereichs. Kann als Unterstützung dienen, um Details auszufüllen.",
+  "name_help": "Name des Lebensbereichs. Der Name muss eindeutig sein.",
+  "show_radar_view": "Radaransicht anzeigen",
+  "go_to_settings_menu": "Zum Einstellungsmenü navigieren",
+  "quick_actions": "Schnellaktionen",
+  "theme": "Thema",
+  "theme.light": "Ljust tema",
+  "theme.dark": "Mörkt tema",
+  "theme.high-contrast": "Högkontrasttema",
+  "theme.sugar-sweet": "Sockersött tema",
+  "accessibility": "Barrierefreiheit",
+  "toggle_high_contrast": "Hohen Kontrast ein-/ausschalten",
+  "theme_switcher_label": "Wählen Sie ein Thema"
 }

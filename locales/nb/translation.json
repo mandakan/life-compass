@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du säker?",
+  "are_you_sure": "Er du sikker?",
   "close_symbol": "✖",
   "enter_life_area_name": "Skriv inn livsområdenavn",
   "reset": "Tilbakestill",
@@ -56,7 +56,20 @@
   "import_successful": "Importen var vellykket.",
   "language": "Språk",
   "dark_mode": "Mørk modus",
+  "theme": "Tema",
+  "theme.light": "Ljust tema",
+  "theme.dark": "Mörkt tema",
+  "theme.high-contrast": "Högkontrasttema",
+  "theme.sugar-sweet": "Sockersött tema",
+  "theme_system": "Systemstandard",
+  "theme_settings": "Temainnstillinger",
   "follow_system_theme": "Følg systemtema",
+  "accessibility": "Tilgjengelighet",
+  "accessibility_settings": "Tilgjengelighetsinnstillinger",
+  "switch_to_high_contrast": "Bytt til høykontrasttema",
+  "switch_to_dark_mode": "Bytt til mørk modus",
+  "switch_to_light_mode": "Bytt til lyst modus",
+  "switch_to_cotton_candy_mode": "Bytt til sukkerspinn-tema",
   "show_dev_tools": "Vis utviklerverktøy",
   "back": "Tilbake",
   "life_compass_title": "Livskompass",
@@ -93,7 +106,8 @@
     "next_steps_description": "Ved å utforske ditt eget Livskompass kan du begynne å handle i tråd med dine verdier og skape et mer meningsfullt liv. Klikk på \"Start din reise\" for å komme i gang.",
     "source_text": "Basert på materiale fra",
     "privacy_title": "Privatliv og Databeskyttelse",
-    "privacy_description": "Vi respekterer ditt privatliv. Vi sporer ikke dine handlinger eller det du skriver. Alle dine data forblir lokale og deles ikke med noen eksterne parter."
+    "privacy_description": "Vi respekterer ditt privatliv. Vi sporer ikke dine handlinger eller det du skriver. Alle dine data forblir lokale og deles ikke med noen eksterne parter.",
+    "disclaimer_description": "Denne appen er ment som et selvreflekterende verktøy for å hjelpe deg med å utforske hva som er viktig i livet ditt. Den er ikke ment å erstatte profesjonell hjelp, terapi eller kontakt med helsevesenet. Hvis du har det vondt eller trenger støtte, oppfordrer vi deg til å kontakte helsevesenet eller en autorisert terapeut."
   },
   "privacyPolicy": {
     "title": "Privatlivspolitikk",
@@ -123,6 +137,12 @@
     "finish": "Avslutt introduksjonen",
     "privacy_notice": "Vi verdsetter ditt personvern. Ingen av dine handlinger eller inndata spores; all data forblir på enheten din."
   },
-  "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt."
+  "edit_life_area_title": "Rediger livsområde",
+  "edit_life_area_description": "Navnet må være unikt.",
+  "details_help": "Her skriver du noen ord om hva du ville verdsette eller synes er viktig innenfor livsområdet.",
+  "description_help": "Beskrivelse av livsområdet. Kan brukes som støtte for å fylle ut detaljene.",
+  "name_help": "Livsområdets navn. Navnet må være unikt.",
+  "show_radar_view": "Vis radargraf",
+  "go_to_settings_menu": "Gå til innstillingsmenyen",
+  "quick_actions": "Hurtigmeny"
 }

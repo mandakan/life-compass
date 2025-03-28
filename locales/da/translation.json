@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du säker?",
+  "are_you_sure": "Er du sikker?",
   "close_symbol": "✖",
   "enter_life_area_name": "Indtast livsområdenavn",
   "reset": "Nulstil",
@@ -47,7 +47,7 @@
   "new_life_area": "Nyt livsområde",
   "name_is_required": "Navn er påkrævet",
   "import_error": "Fejl under import:",
-  "local_storage_not_available": "Advarsel: Lokal lagring er ikke tilgængelig. Dine data bliver ikke lagret.",
+  "local_storage_not_available": "Advarsel: Lokal lagring er ikke tilgængelig. Dine data bliver ikke gemt.",
   "plus_add_new_life_area": "+ Tilføj nyt livsområde",
   "unsaved_changes_warning": "Du har ikke-gemte ændringer. Vil du fortsætte?",
   "remove_life_area_warning": "Advarsel: Dette vil fjerne livsområdet og alle tilknyttede data. Vil du fortsætte?",
@@ -92,7 +92,8 @@
     "next_steps_description": "Ved at udforske dit eget Livskompas kan du begynde at handle i overensstemmelse med dine værdier og skabe et mere meningsfuldt liv. Klik på \"Start din rejse\" for at komme i gang.",
     "source_text": "Baseret på materialet fra",
     "privacy_title": "Privatliv og Databeskyttelse",
-    "privacy_description": "Vi respekterer dit privatliv. Vi sporer ikke dine handlinger eller det, du skriver. Alle dine data forbliver lokale og deles ikke med nogen ekstern part."
+    "privacy_description": "Vi respekterer dit privatliv. Vi sporer ikke dine handlinger eller det, du skriver. Alle dine data forbliver lokale og deles ikke med nogen ekstern part.",
+    "disclaimer_description": "Denne app er beregnet som et selvreflekterende værktøj for at hjælpe dig med at udforske, hvad der er vigtigt i dit liv. Den er ikke beregnet til at erstatte professionel hjælp, terapi eller kontakt med sundhedsvæsenet. Hvis du har det skidt eller har brug for støtte, opfordrer vi dig til at kontakte sundhedsvæsenet eller en autoriseret terapeut."
   },
   "privacyPolicy": {
     "title": "Privatlivspolitik",
@@ -122,6 +123,19 @@
     "finish": "Afslut introduktionen",
     "privacy_notice": "Vi værdsætter dit privatliv. Ingen af dine handlinger eller indtastninger spores; alle data forbliver på din enhed."
   },
-  "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt."
+  "edit_life_area_title": "Rediger livsområde",
+  "edit_life_area_description": "Navnet skal være unikt.",
+  "details_help": "Her skriver du nogle ord om, hvad du ville værdsætte eller synes er vigtigt i livsområdet.",
+  "description_help": "Beskrivelse af livsområdet. Kan bruges som støtte til at udfylde detaljerne.",
+  "name_help": "Livsområdets navn. Navnet skal være unikt.",
+  "show_radar_view": "Vis radardiagram",
+  "go_to_settings_menu": "Naviger til indstillingsmenuen",
+  "quick_actions": "Hurtigmenu",
+  "theme": "Tema",
+  "theme.light": "Ljust tema",
+  "theme.dark": "Mörkt tema",
+  "theme.high-contrast": "Högkontrasttema",
+  "theme.sugar-sweet": "Sockersött tema",
+  "theme_system": "Systemtema",
+  "accessibility_settings": "Tilgængelighedsindstillinger"
 }
