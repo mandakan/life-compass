@@ -84,5 +84,8 @@
   "onboarding.next": "Next",
   "onboarding.finish": "Finish Tutorial",
   "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt."
+  "edit_life_area_description": "Namnet måste vara unikt.",
+  "details_help": "Här skriver du några ord om vad du skulle värdesätta eller tycker är viktigt inom livsområdet.",
+  "description_help": "Beskrivning av livsområdet. Kan användas som stöd för att fylla i detaljerna.",
+  "name_help": "Livsområdets namn. Namnet måste vara unikt."
 }
