@@ -152,7 +152,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Popover
-            trigger={<InformationCircleIcon className="h-6 w-6 shrink-0 flex-none" />}
+            trigger={<InformationCircleIcon className="w-6 h-6 flex-none shrink-0 text-[var(--color-primary)]" />}
             content={<p>{area.description}</p>}
             className="max-w-2xl"
           />
@@ -222,7 +222,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             <div className="flex items-center gap-1">
               {t('importance')}
               <Popover
-                trigger={<QuestionMarkCircleIcon className="w-4" />}
+                trigger={<QuestionMarkCircleIcon className="w-5 h-5 text-[var(--color-primary)]" />}
                 content={<p>{t('importance_help')}</p>}
               />
             </div>
@@ -240,7 +240,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             <div className="flex items-center gap-1">
               {t('lived_according_to_past_week')}
               <Popover
-                trigger={<QuestionMarkCircleIcon className="w-4" />}
+                trigger={<QuestionMarkCircleIcon className="w-5 h-5 text-[var(--color-primary)]" />}
                 content={<p>{t('satisfaction_help')}</p>}
               />
             </div>
