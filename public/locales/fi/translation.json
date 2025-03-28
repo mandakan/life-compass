@@ -142,10 +142,10 @@
   "quick_actions": "Pikatoiminnot",
   "theme": "Teema",
   "select_theme": "Valitse teema",
-  "light_theme": "Vaalea teema",
-  "dark_theme": "Tumma teema",
-  "high_contrast_theme": "Korkean kontrastin teema",
-  "sweet_theme": "Sokerinen teema",
+  "theme.light": "Ljust tema",
+  "theme.dark": "Mörkt tema",
+  "theme.high-contrast": "Högkontrasttema",
+  "theme.sugar-sweet": "Sockersött tema",
   "accessibility": "Saavutettavuus",
   "enable_high_contrast": "Ota käyttöön korkean kontrastin teema"
 }

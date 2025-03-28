@@ -132,10 +132,10 @@
   "go_to_settings_menu": "Naviger til indstillingsmenuen",
   "quick_actions": "Hurtigmenu",
   "theme": "Tema",
-  "theme_light": "Lyst tema",
-  "theme_dark": "Mørkt tema",
-  "theme_high_contrast": "Højkontrasttema",
-  "theme_cotton_candy": "Candyfloss-tema",
+  "theme.light": "Ljust tema",
+  "theme.dark": "Mörkt tema",
+  "theme.high-contrast": "Högkontrasttema",
+  "theme.sugar-sweet": "Sockersött tema",
   "theme_system": "Systemtema",
   "accessibility_settings": "Tilgængelighedsindstillinger"
 }
