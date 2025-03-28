@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du säker?",
+  "are_you_sure": "Er du sikker?",
   "close_symbol": "✖",
   "enter_life_area_name": "Skriv inn livsområdenavn",
   "reset": "Tilbakestill",
@@ -123,12 +123,12 @@
     "finish": "Avslutt introduksjonen",
     "privacy_notice": "Vi verdsetter ditt personvern. Ingen av dine handlinger eller inndata spores; all data forblir på enheten din."
   },
-  "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt.",
-  "details_help": "Här skriver du några ord om vad du skulle värdesätta eller tycker är viktigt inom livsområdet.",
-  "description_help": "Beskrivning av livsområdet. Kan användas som stöd för att fylla i detaljerna.",
-  "name_help": "Livsområdets namn. Namnet måste vara unikt.",
-  "show_radar_view": "Visa radargraf",
-  "go_to_settings_menu": "Navigera till inställningsmeny",
-  "quick_actions": "Snabbmeny"
+  "edit_life_area_title": "Rediger livsområde",
+  "edit_life_area_description": "Navnet må være unikt.",
+  "details_help": "Her skriver du noen ord om hva du ville verdsette eller synes er viktig innenfor livsområdet.",
+  "description_help": "Beskrivelse av livsområdet. Kan brukes som støtte for å fylle ut detaljene.",
+  "name_help": "Livsområdets navn. Navnet må være unikt.",
+  "show_radar_view": "Vis radargraf",
+  "go_to_settings_menu": "Gå til innstillingsmenyen",
+  "quick_actions": "Hurtigmeny"
 }
