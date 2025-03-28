@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Introduction = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  
+
   return (
     <div className="mx-auto max-w-4xl rounded-lg bg-[var(--callout-bg)] px-4 py-4 text-[var(--color-text)] shadow">
       <h2 className="mb-4 text-3xl font-bold text-[var(--color-primary)]">
