@@ -58,6 +58,14 @@
   "language": "Språk",
   "dark_mode": "Mörkt läge",
   "follow_system_theme": "Följ systemets tema",
+  "theme": "Tema",
+  "theme.light": "Ljust tema",
+  "theme.dark": "Mörkt tema",
+  "theme.high-contrast": "Högkontrasttema",
+  "theme.sugar-sweet": "Sockersött tema",
+  "select_theme": "Välj tema",
+  "theme_updated": "Temat har uppdaterats",
+  "accessibility_settings": "Tillgänglighetsinställningar",
   "show_dev_tools": "Visa utvecklarverktyg",
   "back": "Tillbaka",
   "life_compass_title": "Livskompass",
@@ -104,6 +112,7 @@
   "introduction.source_text": "Baserad på material från",
   "introduction.privacy_title": "Integritet och Dataskydd",
   "introduction.privacy_description": "Vi respekterar din integritet. Vi spårar inte några av dina handlingar eller vad du skriver. Alla dina data förblir lokala och delas inte med någon extern part.",
+  "introduction.disclaimer_description": "Den här appen är tänkt som ett självreflekterande verktyg för att hjälpa dig utforska vad som är viktigt i ditt liv. Den är inte avsedd att ersätta professionell hjälp, terapi eller kontakt med hälso- och sjukvård. Om du mår dåligt eller har behov av stöd, uppmuntrar vi dig att kontakta vården eller en legitimerad terapeut.",
   "privacyPolicy": {
     "title": "Integritetspolicy",
     "intro": "Din integritet är mycket viktig för oss. Vi är engagerade i att skydda dina personuppgifter. Denna applikation är utformad för att respektera din integritet genom att behandla all data lokalt i din webbläsare.",
@@ -132,5 +141,11 @@
     "finish": "Avsluta introduktionen"
   },
   "edit_life_area_title": "Redigera livsområde",
-  "edit_life_area_description": "Namnet måste vara unikt."
+  "edit_life_area_description": "Namnet måste vara unikt.",
+  "details_help": "Här skriver du några ord om vad du skulle värdesätta eller tycker är viktigt inom livsområdet.",
+  "description_help": "Beskrivning av livsområdet. Kan användas som stöd för att fylla i detaljerna.",
+  "name_help": "Livsområdets namn. Namnet måste vara unikt.",
+  "show_radar_view": "Visa radargraf",
+  "go_to_settings_menu": "Navigera till inställningsmeny",
+  "quick_actions": "Snabbmeny"
 }

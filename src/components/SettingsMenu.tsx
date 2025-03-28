@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { ThemeContext } from '@context/ThemeContext';
 import ToggleSwitch from '@components/ui/ToggleSwitch';
 import { AppSettingsContext } from '@context/AppSettingsContext';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +6,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useNavigate } from 'react-router-dom';
 import { removeUserData, clearAllUserData } from '@utils/storageService';
 import WarningDialog from '@components/ui/WarningDialog';
+import { ThemeSwitcher } from '@components/ui/ThemeSwitcher';
 
 interface SettingsMenuProps {
   onClose: () => void;
@@ -15,23 +15,8 @@ interface SettingsMenuProps {
 const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } =
-    useContext(ThemeContext);
   const { showDevTools, setShowDevTools } = useContext(AppSettingsContext);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  const handleThemeToggle = (checked: boolean) => {
-    if (checked && theme !== 'dark') {
-      toggleTheme();
-    }
-    if (!checked && theme !== 'light') {
-      toggleTheme();
-    }
-  };
-
-  const handleFollowSystemToggle = (checked: boolean) => {
-    setFollowSystem(checked);
-  };
 
   const handleDevToolsToggle = (checked: boolean) => {
     setShowDevTools(checked);
@@ -95,20 +80,10 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
       </div>
       <div className="mb-4">
         <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>{t('dark_mode')}</span>
-          <ToggleSwitch
-            checked={theme === 'dark'}
-            onChange={handleThemeToggle}
-          />
-        </label>
-      </div>
-      <div className="mb-4">
-        <label className="flex items-center justify-between text-[var(--color-text)]">
-          <span>{t('follow_system_theme', { system: systemTheme })}</span>
-          <ToggleSwitch
-            checked={followSystem}
-            onChange={handleFollowSystemToggle}
-          />
+          <span>{t('theme')}</span>
+          <div className="min-w-[120px]">
+            <ThemeSwitcher />
+          </div>
         </label>
       </div>
       <div className="mb-4">

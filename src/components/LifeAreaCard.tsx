@@ -152,10 +152,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Popover
-            trigger={<InformationCircleIcon className="h-5 w-5" />}
-            content={<p>{area.description}</p>}
+            trigger={
+              <InformationCircleIcon className="h-6 w-6 flex-none shrink-0 text-[var(--color-primary)]" />
+            }
             className="max-w-2xl"
-          />
+          >
+            {<p>{area.description}</p>}
+          </Popover>
           <h4 className="text-lg font-semibold text-[var(--color-primary)]">
             {area.name}
           </h4>
@@ -218,50 +221,58 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       </div>
       <div className="mt-auto">
         <div className="mt-2 font-sans">
-          <label>
-            <div className="flex gap-1">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1">
               {t('importance')}
               <Popover
-                trigger={<QuestionMarkCircleIcon className="w-4" />}
-                content={<p>{t('importance_help')}</p>}
-              />
+                trigger={
+                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
+                }
+                className="max-w-2xl"
+              >
+                {<p>{t('importance_help')}</p>}
+              </Popover>
             </div>
-            <Slider
-              value={area.importance}
-              onChange={val => onAutoUpdateRating?.('importance', val, area)}
-              min={1}
-              max={10}
-              step={1}
-              width="100%"
-              height={40}
-            />
-          </label>
+            <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
+              <span role="img" aria-label="Importance">
+                ⭐
+              </span>
+              {area.importance}/10
+            </div>
+          </div>
         </div>
+
         <div className="mt-2 font-sans">
-          <label>
-            <div className="flex gap-1">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1">
               {t('lived_according_to_past_week')}
               <Popover
-                trigger={<QuestionMarkCircleIcon className="w-4" />}
-                content={<p>{t('satisfaction_help')}</p>}
-              />
+                trigger={
+                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
+                }
+                className="max-w-2xl"
+              >
+                {<p>{t('satisfaction_help')}</p>}
+              </Popover>
             </div>
-            <Slider
-              value={area.satisfaction}
-              onChange={val => onAutoUpdateRating?.('satisfaction', val, area)}
-              min={1}
-              max={10}
-              step={1}
-              width="100%"
-              height={40}
-            />
-          </label>
+            <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
+              <span role="img" aria-label="Satisfaction">
+                ❤️
+              </span>
+              {area.satisfaction}/10
+            </div>
+          </div>
         </div>
       </div>
       {isDesktop && isEditing && (
         <Dialog
           open={editing}
-          onOpenChange={setEditing}
+          onOpenChange={isOpen => {
+            setEditing(isOpen);
+            if (!isOpen) {
+              onCancelEdit();
+            }
+          }}
           title={t('edit_life_area_title')}
           description={t('edit_life_area_description')}
         >

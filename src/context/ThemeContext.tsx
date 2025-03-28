@@ -1,15 +1,8 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  ReactNode,
-  useContext,
-} from 'react';
-import { setTheme as applyTheme } from '../utils/themeUtils';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark' | 'high-contrast' | 'sugar-sweet';
 
-interface ThemeContextProps {
+interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
@@ -18,103 +11,86 @@ interface ThemeContextProps {
   setFollowSystem: (follow: boolean) => void;
 }
 
-export const ThemeContext = createContext<ThemeContextProps>({
-  theme: 'light',
-  setTheme: () => {},
-  toggleTheme: () => {},
-  systemTheme: 'light',
-  followSystem: true,
-  setFollowSystem: () => {},
-});
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined,
+);
 
-export const useTheme = () => useContext(ThemeContext);
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [theme, setThemeState] = useState<Theme>('light');
+  const [systemTheme, setSystemTheme] = useState<Theme>('light');
+  const [followSystem, setFollowSystemState] = useState<boolean>(false);
 
-interface ThemeProviderProps {
-  children: ReactNode;
-}
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const DEFAULT_FOLLOW_SYSTEM = true;
-  const localFollowSystemRaw = localStorage.getItem('followSystem');
-  const initialFollowSystem =
-    localFollowSystemRaw === null
-      ? DEFAULT_FOLLOW_SYSTEM
-      : localFollowSystemRaw === 'true';
-  const localTheme = localStorage.getItem('theme') as Theme | null;
-
-  const getSystemTheme = (): Theme => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      return 'dark';
-    }
-    return 'light';
+  const setTheme = (theme: Theme) => {
+    setThemeState(theme);
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('followSystem', 'false');
   };
 
-  const [systemTheme, setSystemTheme] = useState<Theme>(getSystemTheme());
-  const [followSystem, setFollowSystemState] =
-    useState<boolean>(initialFollowSystem);
-  const [theme, setThemeState] = useState<Theme>(
-    localTheme && !initialFollowSystem ? localTheme : systemTheme,
-  );
-
-  useEffect(() => {
-    if (followSystem) {
+  const setFollowSystem = (follow: boolean) => {
+    setFollowSystemState(follow);
+    localStorage.setItem('followSystem', String(follow));
+    if (follow) {
       setThemeState(systemTheme);
-      localStorage.removeItem('theme');
-    } else {
-      localStorage.setItem('theme', theme);
     }
-    localStorage.setItem('followSystem', followSystem.toString());
-    applyTheme(theme);
-  }, [theme, followSystem, systemTheme]);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (event: MediaQueryListEvent) => {
-      setSystemTheme(event.matches ? 'dark' : 'light');
-    };
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleChange);
-    } else {
-      mediaQuery.addListener(handleChange);
-    }
-    return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', handleChange);
-      } else {
-        mediaQuery.removeListener(handleChange);
-      }
-    };
-  }, []);
+  };
 
   const toggleTheme = () => {
-    setFollowSystemState(false);
-    setThemeState(prev => (prev === 'light' ? 'dark' : 'light'));
+    const nextTheme =
+      theme === 'light'
+        ? 'dark'
+        : theme === 'dark'
+          ? 'high-contrast'
+          : theme === 'high-contrast'
+            ? 'sugar-sweet'
+            : 'light';
+    setTheme(nextTheme);
   };
 
-  const contextValue: ThemeContextProps = {
-    theme,
-    setTheme: (newTheme: Theme) => {
-      setFollowSystemState(false);
-      setThemeState(newTheme);
-    },
-    toggleTheme,
-    systemTheme,
-    followSystem,
-    setFollowSystem: (value: boolean) => {
-      setFollowSystemState(value);
-      if (value) {
-        setThemeState(systemTheme);
-      }
-    },
-  };
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const updateSystemTheme = () => {
+      setSystemTheme(media.matches ? 'dark' : 'light');
+    };
+    updateSystemTheme();
+    media.addEventListener('change', updateSystemTheme);
+    return () => media.removeEventListener('change', updateSystemTheme);
+  }, []);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme') as Theme;
+    const storedFollow = localStorage.getItem('followSystem') === 'true';
+    setFollowSystemState(storedFollow);
+    if (storedFollow) {
+      setThemeState(systemTheme);
+    } else if (storedTheme) {
+      setThemeState(storedTheme);
+    }
+  }, [systemTheme]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   return (
-    <ThemeContext.Provider value={contextValue}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        setTheme,
+        toggleTheme,
+        systemTheme,
+        followSystem,
+        setFollowSystem,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );
+};
+
+export const useTheme = () => {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error('useTheme must be used within a ThemeProvider');
+  return ctx;
 };

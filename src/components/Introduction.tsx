@@ -1,10 +1,11 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import CustomButton from './CustomButton';
+import { useNavigate } from 'react-router-dom';
 
 const Introduction = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="mx-auto max-w-4xl rounded-lg bg-[var(--callout-bg)] px-4 py-4 text-[var(--color-text)] shadow">
@@ -79,6 +80,19 @@ const Introduction = () => {
       >
         {t('start_your_journey', 'Börja din resa')}
       </CustomButton>
+
+      <div className="mt-8">
+        <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+          {t('introduction.disclaimer_title', 'Viktigt att veta')}
+        </h3>
+        <p className="mb-6">
+          {t(
+            'introduction.disclaimer_description',
+            'Den här appen är tänkt som ett självreflekterande verktyg för att hjälpa dig utforska vad som är viktigt i ditt liv. Den är inte avsedd att ersätta professionell hjälp, terapi eller kontakt med hälso- och sjukvård. Om du mår dåligt eller har behov av stöd, uppmuntrar vi dig att kontakta vården eller en legitimerad terapeut.',
+          )}
+        </p>
+      </div>
+
       <div className="mt-8">
         <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
           {t('introduction.privacy_title', 'Privacy and Data Protection')}
