@@ -267,7 +267,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       {isDesktop && isEditing && (
         <Dialog
           open={editing}
-          onOpenChange={setEditing}
+          onOpenChange={(isOpen) => {
+            setEditing(isOpen);
+            if (!isOpen) {
+              onCancelEdit();
+            }
+          }}
           title={t('edit_life_area_title')}
           description={t('edit_life_area_description')}
         >
