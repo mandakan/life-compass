@@ -61,11 +61,15 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
   return (
     <div className="flex w-full flex-col gap-4">
       <div>
-        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+        <div className="mb-1 flex items-center gap-1 text-sm font-semibold">
           <label htmlFor="name" className="cursor-pointer">
             {t('name')}
           </label>
-          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+          <Popover
+            trigger={
+              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+            }
+          >
             <p>{t('name_help')}</p>
           </Popover>
         </div>
@@ -84,11 +88,15 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+        <div className="mb-1 flex items-center gap-1 text-sm font-semibold">
           <label htmlFor="description" className="cursor-pointer">
             {t('description')}
           </label>
-          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+          <Popover
+            trigger={
+              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+            }
+          >
             <p>{t('description_help')}</p>
           </Popover>
         </div>
@@ -101,11 +109,15 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
+        <div className="mb-1 flex items-center gap-1 text-sm font-semibold">
           <label htmlFor="details" className="cursor-pointer">
             {t('details')}
           </label>
-          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+          <Popover
+            trigger={
+              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+            }
+          >
             <p>{t('details_help')}</p>
           </Popover>
         </div>
@@ -118,14 +130,15 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div>
-        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
-          <label
-            htmlFor="importance"
-            className="cursor-pointer"
-          >
+        <div className="mb-1 flex items-center gap-1 text-sm font-semibold">
+          <label htmlFor="importance" className="cursor-pointer">
             {t('importance')}
           </label>
-          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+          <Popover
+            trigger={
+              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+            }
+          >
             <p>{t('importance_help')}</p>
           </Popover>
         </div>
@@ -143,14 +156,15 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
       </div>
 
       <div>
-        <div className="flex items-center gap-1 mb-1 text-sm font-semibold">
-          <label
-            htmlFor="satisfaction"
-            className="cursor-pointer"
-          >
+        <div className="mb-1 flex items-center gap-1 text-sm font-semibold">
+          <label htmlFor="satisfaction" className="cursor-pointer">
             {t('lived_according_to_past_week')}
           </label>
-          <Popover trigger={<QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />}>
+          <Popover
+            trigger={
+              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+            }
+          >
             <p>{t('satisfaction_help')}</p>
           </Popover>
         </div>

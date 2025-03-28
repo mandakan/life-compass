@@ -152,9 +152,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Popover
-            trigger={<InformationCircleIcon className="w-6 h-6 flex-none shrink-0 text-[var(--color-primary)]" />}
+            trigger={
+              <InformationCircleIcon className="h-6 w-6 flex-none shrink-0 text-[var(--color-primary)]" />
+            }
             className="max-w-2xl"
-          >{<p>{area.description}</p>}</Popover>
+          >
+            {<p>{area.description}</p>}
+          </Popover>
           <h4 className="text-lg font-semibold text-[var(--color-primary)]">
             {area.name}
           </h4>
@@ -221,9 +225,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             <div className="flex items-center gap-1">
               {t('importance')}
               <Popover
-                trigger={<QuestionMarkCircleIcon className="w-5 h-5 text-[var(--color-primary)]" />}
+                trigger={
+                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
+                }
                 className="max-w-2xl"
-              >{<p>{t('importance_help')}</p>}</Popover>
+              >
+                {<p>{t('importance_help')}</p>}
+              </Popover>
             </div>
             <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
               <span role="img" aria-label="Importance">
@@ -239,9 +247,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             <div className="flex items-center gap-1">
               {t('lived_according_to_past_week')}
               <Popover
-                trigger={<QuestionMarkCircleIcon className="w-5 h-5 text-[var(--color-primary)]" />}
+                trigger={
+                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
+                }
                 className="max-w-2xl"
-              >{<p>{t('satisfaction_help')}</p>}</Popover>
+              >
+                {<p>{t('satisfaction_help')}</p>}
+              </Popover>
             </div>
             <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
               <span role="img" aria-label="Satisfaction">
