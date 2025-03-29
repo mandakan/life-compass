@@ -30,6 +30,12 @@ const Popover: React.FC<PopoverProps> = ({
           align={align}
           side={side}
           sideOffset={8}
+          sticky="always"
+          style={{
+            position: 'fixed',
+            minWidth: '250px', // eller valfri storlek
+            maxWidth: 'calc(100% - 32px)', // så att den inte går utanför skärmen
+          }}
           className={cn(
             'z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none',
             className,
