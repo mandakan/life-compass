@@ -79,7 +79,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       const len = inlineDetailsValue.length;
       inlineDetailsRef.current.setSelectionRange(len, len);
     }
-  }, [editingDetailsInline, inlineDetailsValue]);
+  }, [editingDetailsInline]);
 
   useEffect(() => {
     if (isEditing) {
@@ -199,14 +199,28 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           <Textarea
             ref={inlineDetailsRef}
             value={inlineDetailsValue}
-            onChange={val => setInlineDetailsValue(val)}
-            onBlur={() => {
+            onChange={e => {
+              const target = e.target as HTMLTextAreaElement;
+              setInlineDetailsValue(target.value);
+            }}
+            onBlur={e => {
+              const newValue = (e.target as HTMLTextAreaElement).value;
               if (onInlineDetailsChange) {
-                onInlineDetailsChange(inlineDetailsValue, area);
+                onInlineDetailsChange(newValue, area);
               } else {
-                onChangeEditDetails(inlineDetailsValue);
+                onChangeEditDetails(newValue);
               }
               setEditingDetailsInline(false);
+            }}
+            onKeyDown={e => {
+              // Prevent propagation only for Enter and Space keydown events that trigger inline editing
+              if (
+                editingDetailsInline &&
+                (e.key === 'Enter' || e.key === ' ')
+              ) {
+                // Allow default behavior for typing but stop bubbling to parent
+                e.stopPropagation();
+              }
             }}
             autoFocus
             className="block h-[120px] w-full flex-1 resize-none bg-[var(--details-bg)] px-2 py-1 font-sans text-base outline-none"
