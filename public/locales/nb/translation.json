@@ -60,7 +60,8 @@
   "theme.light": "Ljust tema",
   "theme.dark": "Mörkt tema",
   "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.sugar-sweet-light": "Sockersött tema",
+  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
   "theme_system": "Systemstandard",
   "theme_settings": "Temainnstillinger",
   "follow_system_theme": "Følg systemtema",
@@ -144,5 +145,7 @@
   "name_help": "Livsområdets navn. Navnet må være unikt.",
   "show_radar_view": "Vis radargraf",
   "go_to_settings_menu": "Gå til innstillingsmenyen",
-  "quick_actions": "Hurtigmeny"
+  "quick_actions": "Hurtigmeny",
+  "introduction.disclaimer_title": "Viktigt att veta",
+  "choose_theme": "Välj tema"
 }
