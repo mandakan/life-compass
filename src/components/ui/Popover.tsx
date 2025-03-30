@@ -11,6 +11,7 @@ interface PopoverProps {
   className?: string;
   closeButton?: boolean;
   onOpenChange?: (open: boolean) => void;
+  contentStyle?: React.CSSProperties;
 }
 
 const Popover: React.FC<PopoverProps> = ({
@@ -21,7 +22,16 @@ const Popover: React.FC<PopoverProps> = ({
   className,
   closeButton = false,
   onOpenChange,
+  contentStyle,
 }) => {
+  const defaultStyle: React.CSSProperties = {
+    minWidth: '250px', // eller valfri storlek
+    maxWidth: 'calc(100% - 32px)', // så att den inte går utanför skärmen
+    minHeight: '200px',
+    maxHeight: '80vh',
+    overflowY: 'auto'
+  };
+
   return (
     <RadixPopover.Root onOpenChange={onOpenChange}>
       <RadixPopover.Trigger asChild>{trigger}</RadixPopover.Trigger>
@@ -31,14 +41,10 @@ const Popover: React.FC<PopoverProps> = ({
           side={side}
           sideOffset={8}
           sticky="always"
-          style={{
-            position: 'fixed',
-            minWidth: '250px', // eller valfri storlek
-            maxWidth: 'calc(100% - 32px)', // så att den inte går utanför skärmen
-          }}
+          style={{ ...defaultStyle, ...contentStyle }}
           className={cn(
             'z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none',
-            className,
+            className
           )}
         >
           {closeButton && (

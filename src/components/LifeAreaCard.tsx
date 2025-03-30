@@ -238,21 +238,38 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               {t('importance')}
-              <Popover
-                trigger={
-                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
-                }
-                className="max-w-2xl"
-              >
-                {<p>{t('importance_help')}</p>}
-              </Popover>
             </div>
-            <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
-              <span role="img" aria-label="Importance">
-                ⭐
-              </span>
-              {area.importance}/10
-            </div>
+            <Popover
+              trigger={
+                <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)] cursor-pointer">
+                  <span role="img" aria-label="Importance">
+                    ⭐
+                  </span>
+                  {area.importance}/10
+                </div>
+              }
+              side="right"
+              align="center"
+              className="max-w-2xl"
+              contentStyle={{ minWidth: '60px', minHeight: '240px' }}
+            >
+              <Slider
+                value={area.importance}
+                onChange={(val: number) => {
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('importance', val, area);
+                  } else {
+                    onChangeEditImportance(val);
+                  }
+                }}
+                orientation="vertical"
+                min={0}
+                max={10}
+                step={1}
+                height={200}
+                width={40}
+              />
+            </Popover>
           </div>
         </div>
 
@@ -260,21 +277,37 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               {t('lived_according_to_past_week')}
-              <Popover
-                trigger={
-                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
-                }
-                className="max-w-2xl"
-              >
-                {<p>{t('satisfaction_help')}</p>}
-              </Popover>
             </div>
-            <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
-              <span role="img" aria-label="Satisfaction">
-                ❤️
-              </span>
-              {area.satisfaction}/10
-            </div>
+            <Popover
+              trigger={
+                <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)] cursor-pointer">
+                  <span role="img" aria-label="Satisfaction">
+                    ❤️
+                  </span>
+                  {area.satisfaction}/10
+                </div>
+              }
+              side="right"
+              align="center"
+              className="max-w-2xl"
+              contentStyle={{ minWidth: '60px', minHeight: '240px' }}
+            >
+              <Slider
+                value={area.satisfaction}
+                onChange={(val: number) => {
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('satisfaction', val, area);
+                  } else {
+                    onChangeEditSatisfaction(val);
+                  }
+                }}
+                orientation="vertical"
+                min={0}
+                max={10}
+                step={1}
+                height={200}
+              />
+            </Popover>
           </div>
         </div>
       </div>

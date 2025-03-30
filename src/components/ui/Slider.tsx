@@ -11,6 +11,7 @@ export interface SliderProps {
   width?: number | string;
   height?: number;
   showValueInThumb?: boolean;
+  orientation?: 'horizontal' | 'vertical';
 }
 
 const Slider: React.FC<SliderProps> = ({
@@ -22,22 +23,25 @@ const Slider: React.FC<SliderProps> = ({
   width = '100%',
   height = 50,
   showValueInThumb = true,
+  orientation = 'horizontal',
 }) => {
   const { t } = useTranslation();
+  const isVertical = orientation === 'vertical';
 
   return (
     <RadixSlider.Root
-      className="relative flex w-full touch-none items-center select-none"
+      className={`relative touch-none select-none ${isVertical ? 'flex h-full flex-col' : 'flex w-full items-center'}`}
       value={[value]}
       onValueChange={([val]) => onChange(val)}
       min={min}
       max={max}
       step={step}
       aria-label={t('custom_slider')}
+      orientation={orientation}
       style={{ width, height }}
     >
-      <RadixSlider.Track className="relative h-1 grow rounded-full bg-[var(--slider-track)]">
-        <RadixSlider.Range className="absolute h-full rounded-full bg-[var(--slider-range)]" />
+      <RadixSlider.Track className={`relative rounded-full bg-[var(--slider-track)] ${isVertical ? 'w-1 h-full' : 'h-1 w-full'}`}>
+        <RadixSlider.Range className={`absolute rounded-full bg-[var(--slider-range)] ${isVertical ? 'w-full' : 'h-full'}`} />
       </RadixSlider.Track>
       <RadixSlider.Thumb className="block flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-[var(--on-primary)] shadow transition-colors">
         {showValueInThumb && value}
