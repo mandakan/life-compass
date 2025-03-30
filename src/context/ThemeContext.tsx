@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'high-contrast' | 'sugar-sweet';
+type Theme =
+  | 'light'
+  | 'dark'
+  | 'high-contrast'
+  | 'sugar-sweet-light'
+  | 'sugar-sweet-dark';
 
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
-  toggleTheme: () => void;
   systemTheme: Theme;
   followSystem: boolean;
   setFollowSystem: (follow: boolean) => void;
@@ -34,18 +38,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     if (follow) {
       setThemeState(systemTheme);
     }
-  };
-
-  const toggleTheme = () => {
-    const nextTheme =
-      theme === 'light'
-        ? 'dark'
-        : theme === 'dark'
-          ? 'high-contrast'
-          : theme === 'high-contrast'
-            ? 'sugar-sweet'
-            : 'light';
-    setTheme(nextTheme);
   };
 
   useEffect(() => {
@@ -78,7 +70,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         theme,
         setTheme,
-        toggleTheme,
         systemTheme,
         followSystem,
         setFollowSystem,
