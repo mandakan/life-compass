@@ -144,7 +144,7 @@
   "start_your_journey": "Börja din resa",
   "theme": {
     "dark": "Mörkt tema",
-    "default": "Tema",
+    "title": "Tema",
     "high-contrast": "Högkontrasttema",
     "light": "Ljust tema",
     "sugar-sweet-dark": "Sockersött tema (mörkt)",

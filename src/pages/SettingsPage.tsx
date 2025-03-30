@@ -73,7 +73,7 @@ const SettingsPage: React.FC = () => {
 
       <section className="mb-6">
         <label className="flex min-w-[160px] items-center justify-between">
-          <span>{t('theme')}</span>
+          <span>{t('theme.title')}</span>
           <ThemeSwitcher />
         </label>
       </section>

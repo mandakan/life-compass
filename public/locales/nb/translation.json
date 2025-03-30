@@ -138,7 +138,7 @@
   "switch_to_light_mode": "Bytt til lyst modus",
   "theme": {
     "dark": "Mørkt tema",
-    "default": "Tema",
+    "title": "Tema",
     "high-contrast": "Høykontrasttema",
     "light": "Lyst tema",
     "sugar-sweet-dark": "Sukkersøtt tema (mørkt)",

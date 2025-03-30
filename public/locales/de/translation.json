@@ -133,7 +133,7 @@
   "show_radar_view": "Radaransicht anzeigen",
   "theme": {
     "dark": "Dunkles Thema",
-    "default": "Thema",
+    "title": "Thema",
     "high-contrast": "Hochkontrastthema",
     "light": "Helles Thema",
     "sugar-sweet-dark": "Zuckersüßes Thema (dunkel)",

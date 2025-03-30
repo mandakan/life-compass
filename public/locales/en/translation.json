@@ -132,7 +132,7 @@
   "start_your_journey": "Start your journey",
   "theme": {
     "dark": "Dark theme",
-    "default": "Theme",
+    "title": "Theme",
     "high-contrast": "High contrast theme",
     "light": "Light theme",
     "sugar-sweet-dark": "Sugar sweet theme (dark)",

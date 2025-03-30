@@ -145,7 +145,7 @@
   "start_your_journey": "Aloita matkasi",
   "theme": {
     "dark": "Tumma teema",
-    "default": "Teema",
+    "title": "Teema",
     "high-contrast": "Korkean kontrastin teema",
     "light": "Vaalea teema",
     "sugar-sweet-dark": "Sokerimainen tumma teema",
