@@ -10,7 +10,7 @@ function processTranslationFile(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(content);
-    
+
     // Preprocessa de platta nycklarna:
     // Om en nyckel inte innehåller en punkt men det finns andra nycklar med samma prefix
     // flytta värdet under en undernyckel "default".
@@ -28,13 +28,13 @@ function processTranslationFile(filePath) {
         newData[key] = data[key];
       }
     }
-    
+
     // Omvandla platta nycklar till en hierarkisk struktur
     const unflattened = flat.unflatten(newData, { delimiter: '.' });
-    
+
     // Sortera nycklarna rekursivt
     const sorted = sortKeysRecursive(unflattened);
-    
+
     // Skriv tillbaka filen med 2 spaces indentation
     fs.writeFileSync(filePath, JSON.stringify(sorted, null, 2));
     console.log(`Processed ${filePath}`);
@@ -45,9 +45,15 @@ function processTranslationFile(filePath) {
 
 function processAllLocales() {
   try {
-    const localeDirs = fs.readdirSync(localesDir, { withFileTypes: true }).filter(dirent => dirent.isDirectory());
+    const localeDirs = fs
+      .readdirSync(localesDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory());
     localeDirs.forEach(localeDir => {
-      const translationPath = path.join(localesDir, localeDir.name, 'translation.json');
+      const translationPath = path.join(
+        localesDir,
+        localeDir.name,
+        'translation.json',
+      );
       if (fs.existsSync(translationPath)) {
         processTranslationFile(translationPath);
       } else {
