@@ -64,7 +64,7 @@
   "theme.high-contrast": "Högkontrasttema",
   "theme.sugar-sweet-light": "Sockersött tema",
   "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
-  "select_theme": "Välj tema",
+  "choose_theme": "Välj tema",
   "theme_updated": "Temat har uppdaterats",
   "accessibility_settings": "Tillgänglighetsinställningar",
   "show_dev_tools": "Visa utvecklarverktyg",
@@ -113,6 +113,7 @@
   "introduction.source_text": "Baserad på material från",
   "introduction.privacy_title": "Integritet och Dataskydd",
   "introduction.privacy_description": "Vi respekterar din integritet. Vi spårar inte några av dina handlingar eller vad du skriver. Alla dina data förblir lokala och delas inte med någon extern part.",
+  "introduction.disclaimer_title": "Viktigt att veta",
   "introduction.disclaimer_description": "Den här appen är tänkt som ett självreflekterande verktyg för att hjälpa dig utforska vad som är viktigt i ditt liv. Den är inte avsedd att ersätta professionell hjälp, terapi eller kontakt med hälso- och sjukvård. Om du mår dåligt eller har behov av stöd, uppmuntrar vi dig att kontakta vården eller en legitimerad terapeut.",
   "privacyPolicy": {
     "title": "Integritetspolicy",
