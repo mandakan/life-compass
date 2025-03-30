@@ -11,8 +11,26 @@ function processTranslationFile(filePath) {
     const content = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(content);
     
+    // Preprocessa de platta nycklarna:
+    // Om en nyckel inte innehåller en punkt men det finns andra nycklar med samma prefix
+    // flytta värdet under en undernyckel "default".
+    const newData = {};
+    const keys = Object.keys(data);
+    for (const key of keys) {
+      if (!key.includes('.')) {
+        const hasNested = keys.some(otherKey => otherKey.startsWith(key + '.'));
+        if (hasNested) {
+          newData[`${key}.default`] = data[key];
+        } else {
+          newData[key] = data[key];
+        }
+      } else {
+        newData[key] = data[key];
+      }
+    }
+    
     // Omvandla platta nycklar till en hierarkisk struktur
-    const unflattened = flat.unflatten(data, { delimiter: '.' });
+    const unflattened = flat.unflatten(newData, { delimiter: '.' });
     
     // Sortera nycklarna rekursivt
     const sorted = sortKeysRecursive(unflattened);
