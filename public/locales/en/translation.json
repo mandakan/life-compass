@@ -133,8 +133,11 @@
   "theme.light": "Ljust tema",
   "theme.dark": "Mörkt tema",
   "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.sugar-sweet-light": "Sockersött tema",
+  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
   "theme_system": "System",
   "accessibility_settings": "Accessibility settings",
-  "contrast_theme_toggle": "Enable high contrast theme"
+  "contrast_theme_toggle": "Enable high contrast theme",
+  "introduction.disclaimer_title": "Viktigt att veta",
+  "choose_theme": "Välj tema"
 }
