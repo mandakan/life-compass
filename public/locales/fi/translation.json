@@ -75,7 +75,7 @@
   "satisfaction_help": "Määritä, kuinka paljon olet elänyt arvojesi mukaisesti viime viikon aikana, missä 1 tarkoittaa, ettet ole lainkaan elänyt niiden mukaisesti ja 10 tarkoittaa, että olet täysin elänyt niiden mukaisesti.",
   "onboarding.welcome_prompt": "Tervetuloa Elämänkompassiin!\nAloitetaan opastus. Haluatko aloittaa esiasetetuilla elämänalueilla?\n(Voit suorittaa oppaan uudelleen asetuksista.)",
   "onboarding.toolbar_tooltip": "Katso kelluva työkalupalkki oikeassa alakulmassa. Sieltä saat pikalinkin toimintoihin, kuten esiasetettujen elämänalueiden lisäämiseen, palauttamiseen, tietojen vientiin/tuontiin ja tutkanäkymän vaihtamiseen.",
-  "onboarding.settings_tooltip": "Katso yläkulman asetusvalikkoa. Sieltä pääset käsiksi opastukseen, voit vaihtaa kieltä ja paljon muuta.",
+  "onboarding.settings_tooltip": "Katso yläkulman asetusvalikkoa. Sieltä pääset käsiksi oppaaseen, voit vaihtaa kieltä ja paljon muuta.",
   "onboarding.radar": "Tutkakaavio näyttää elämänalueesi graafisesti, jolloin on helppo nähdä, mitkä alueet ovat tärkeimpiä, mutta joissa et elä toivomallasi tavalla.",
   "onboarding.with_predefined": "Esiasetettujen elämänalueiden kanssa (suositellaan)",
   "onboarding.without_predefined": "Ilman esiasetettuja elämänalueita",
@@ -104,6 +104,7 @@
   "introduction.source_text": "Perustuu materiaalin pohjalta:",
   "introduction.privacy_title": "Tietosuoja ja tietoturva",
   "introduction.privacy_description": "Kunnioitamme yksityisyyttäsi. Emme seuraa toimiasi tai kirjoituksiasi. Kaikki tietosi pysyvät paikallisina, eikä niitä jaeta ulkopuolisille.",
+  "introduction.disclaimer_title": "Tärkeää tietää",
   "introduction.disclaimer_description": "Tämä sovellus on suunniteltu auttamaan itsearvioinnissa, jotta voit tutkia, mikä elämässäsi on tärkeää. Se ei ole tarkoitettu korvaamaan ammattimaista apua, terapiaa tai yhteydenottoa terveydenhuoltoon. Jos joudut vaikeuksiin tai tarvitset tukea, suosittelemme ottamaan yhteyttä terveydenhuollon ammattilaiseen.",
   "privacyPolicy": {
     "title": "Tietosuojakäytäntö",
@@ -142,13 +143,11 @@
   "quick_actions": "Pikatoiminnot",
   "theme": "Teema",
   "select_theme": "Valitse teema",
-  "theme.light": "Ljust tema",
-  "theme.dark": "Mörkt tema",
-  "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet-light": "Sockersött tema",
-  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
+  "theme.light": "Vaalea teema",
+  "theme.dark": "Tumma teema",
+  "theme.high-contrast": "Korkean kontrastin teema",
+  "theme.sugar-sweet-light": "Sokerimainen vaalea teema",
+  "theme.sugar-sweet-dark": "Sokerimainen tumma teema",
   "accessibility": "Saavutettavuus",
-  "enable_high_contrast": "Ota käyttöön korkean kontrastin teema",
-  "introduction.disclaimer_title": "Viktigt att veta",
-  "choose_theme": "Välj tema"
+  "choose_theme": "Valitse teema"
 }
