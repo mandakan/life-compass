@@ -79,7 +79,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       const len = inlineDetailsValue.length;
       inlineDetailsRef.current.setSelectionRange(len, len);
     }
-  }, [editingDetailsInline, inlineDetailsValue]);
+  }, [editingDetailsInline]);
 
   useEffect(() => {
     if (isEditing) {
@@ -199,14 +199,28 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           <Textarea
             ref={inlineDetailsRef}
             value={inlineDetailsValue}
-            onChange={val => setInlineDetailsValue(val)}
-            onBlur={() => {
+            onChange={e => {
+              const target = e.target as HTMLTextAreaElement;
+              setInlineDetailsValue(target.value);
+            }}
+            onBlur={e => {
+              const newValue = (e.target as HTMLTextAreaElement).value;
               if (onInlineDetailsChange) {
-                onInlineDetailsChange(inlineDetailsValue, area);
+                onInlineDetailsChange(newValue, area);
               } else {
-                onChangeEditDetails(inlineDetailsValue);
+                onChangeEditDetails(newValue);
               }
               setEditingDetailsInline(false);
+            }}
+            onKeyDown={e => {
+              // Prevent propagation only for Enter and Space keydown events that trigger inline editing
+              if (
+                editingDetailsInline &&
+                (e.key === 'Enter' || e.key === ' ')
+              ) {
+                // Allow default behavior for typing but stop bubbling to parent
+                e.stopPropagation();
+              }
             }}
             autoFocus
             className="block h-[120px] w-full flex-1 resize-none bg-[var(--details-bg)] px-2 py-1 font-sans text-base outline-none"
@@ -222,23 +236,37 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       <div className="mt-auto">
         <div className="mt-2 font-sans">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">
-              {t('importance')}
-              <Popover
-                trigger={
-                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
-                }
-                className="max-w-2xl"
-              >
-                {<p>{t('importance_help')}</p>}
-              </Popover>
-            </div>
-            <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
-              <span role="img" aria-label="Importance">
-                ⭐
-              </span>
-              {area.importance}/10
-            </div>
+            <div className="flex items-center gap-1">{t('importance')}</div>
+            <Popover
+              trigger={
+                <div className="flex cursor-pointer items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
+                  <span role="img" aria-label="Importance">
+                    ⭐
+                  </span>
+                  {area.importance}/10
+                </div>
+              }
+              side="right"
+              align="center"
+              className="max-w-2xl"
+              contentStyle={{ minWidth: '60px', minHeight: '240px' }}
+            >
+              <Slider
+                value={area.importance}
+                onChange={(val: number) => {
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('importance', val, area);
+                  } else {
+                    onChangeEditImportance(val);
+                  }
+                }}
+                orientation="vertical"
+                min={0}
+                max={10}
+                step={1}
+                height={200}
+              />
+            </Popover>
           </div>
         </div>
 
@@ -246,21 +274,37 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               {t('lived_according_to_past_week')}
-              <Popover
-                trigger={
-                  <QuestionMarkCircleIcon className="h-5 w-5 text-[var(--color-primary)]" />
-                }
-                className="max-w-2xl"
-              >
-                {<p>{t('satisfaction_help')}</p>}
-              </Popover>
             </div>
-            <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
-              <span role="img" aria-label="Satisfaction">
-                ❤️
-              </span>
-              {area.satisfaction}/10
-            </div>
+            <Popover
+              trigger={
+                <div className="flex cursor-pointer items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
+                  <span role="img" aria-label="Satisfaction">
+                    ❤️
+                  </span>
+                  {area.satisfaction}/10
+                </div>
+              }
+              side="right"
+              align="center"
+              className="max-w-2xl"
+              contentStyle={{ minWidth: '60px', minHeight: '240px' }}
+            >
+              <Slider
+                value={area.satisfaction}
+                onChange={(val: number) => {
+                  if (onAutoUpdateRating) {
+                    onAutoUpdateRating('satisfaction', val, area);
+                  } else {
+                    onChangeEditSatisfaction(val);
+                  }
+                }}
+                orientation="vertical"
+                min={0}
+                max={10}
+                step={1}
+                height={200}
+              />
+            </Popover>
           </div>
         </div>
       </div>

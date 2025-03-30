@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+// This Textarea allows line breaks on Enter, suitable for inline editing scenarios.
 interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
