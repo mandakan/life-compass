@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du säker?",
+  "are_you_sure": "Weet je zeker?",
   "close_symbol": "✖",
   "enter_life_area_name": "Voer levensgebied in",
   "reset": "Reset",
@@ -110,8 +110,8 @@
   },
   "onboarding": {
     "privacy_notice": "Wij waarderen uw privacy. Geen van uw acties of invoeren worden gevolgd; alle gegevens blijven op uw apparaat.",
-    "welcome_prompt": "Välkommen till Livskompass!\nLåt oss börja introduktionen. Vill je beginnen met voordefinieerde levensgebieden?\n(U kunt de introductie altijd opnieuw starten via het instellingenmenu.)",
-    "toolbar_tooltip": "Titta på de zwevende werkbalk rechtsonder. Daar krijgt u snelle toegang tot functies zoals het toevoegen van voordefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
+    "welcome_prompt": "Welkom bij Levenskompas!\nLaten we de introductie beginnen. Wil je starten met vooraf gedefinieerde levensgebieden?\n(U kunt de introductie altijd opnieuw starten via het instellingenmenu.)",
+    "toolbar_tooltip": "Bekijk de zwevende werkbalk rechtsonder. Hiermee krijgt u snelle toegang tot functies zoals het toevoegen van vooraf gedefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
     "settings_tooltip": "Bekijk het instellingenmenu rechtsboven. Daar kunt u toegang krijgen tot de introductie, de taal wijzigen en meer.",
     "with_predefined": "Met voordefinieerde levensgebieden (aanbevolen)",
     "without_predefined": "Zonder voordefinieerde levensgebieden",
@@ -129,16 +129,16 @@
   "go_to_settings_menu": "Navigeer naar instellingenmenu",
   "quick_actions": "Snelle acties",
   "theme": "Thema",
-  "theme.light": "Ljust tema",
-  "theme.dark": "Mörkt tema",
-  "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet-light": "Sockersött tema",
-  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
+  "theme.light": "Licht thema",
+  "theme.dark": "Donker thema",
+  "theme.high-contrast": "Hoog contrast",
+  "theme.sugar-sweet-light": "Suikerzoet licht",
+  "theme.sugar-sweet-dark": "Suikerzoet donker",
   "theme_settings": "Thema-instellingen",
   "accessibility_settings": "Toegankelijkheidsinstellingen",
   "contrast_theme_toggle_label": "Schakel hoog contrastthema in",
   "theme_toggle_label": "Wissel van thema",
   "use_system_theme": "Systeemthema gebruiken",
-  "introduction.disclaimer_title": "Viktigt att veta",
-  "choose_theme": "Välj tema"
+  "introduction.disclaimer_title": "Belangrijk om te weten",
+  "choose_theme": "Kies thema"
 }
