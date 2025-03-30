@@ -133,10 +133,10 @@
   "quick_actions": "Hurtigmenu",
   "theme": "Tema",
   "theme.light": "Ljust tema",
-  "theme.dark": "Mörkt tema",
-  "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet-light": "Sockersött tema",
-  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
+  "theme.dark": "Mørkt tema",
+  "theme.high-contrast": "Højkontrasttema",
+  "theme.sugar-sweet-light": "Sukkersødt tema",
+  "theme.sugar-sweet-dark": "Sukkersødt tema (mørkt)",
   "theme_system": "Systemtema",
   "accessibility_settings": "Tilgængelighedsindstillinger"
 }
