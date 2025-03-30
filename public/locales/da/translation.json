@@ -135,7 +135,8 @@
   "theme.light": "Ljust tema",
   "theme.dark": "Mörkt tema",
   "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.sugar-sweet-light": "Sockersött tema",
+  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
   "theme_system": "Systemtema",
   "accessibility_settings": "Tilgængelighedsindstillinger"
 }
