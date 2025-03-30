@@ -25,8 +25,8 @@ const Popover: React.FC<PopoverProps> = ({
   contentStyle,
 }) => {
   const defaultStyle: React.CSSProperties = {
-    minWidth: '250px', // eller valfri storlek
-    maxWidth: 'calc(100% - 32px)', // så att den inte går utanför skärmen
+    minWidth: '200px', // eller valfri storlek
+    maxWidth: '320px', // så att den inte går utanför skärmen
     minHeight: '200px',
     maxHeight: '80vh',
     overflowY: 'auto',
