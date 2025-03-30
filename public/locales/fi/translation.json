@@ -45,7 +45,7 @@
   "history_count": "Historia",
   "home": "Koti",
   "import": "Tuo",
-  "import_data_prompt": "Tuo tiedot -kehotus",
+  "import_data_prompt": "Tuo tiedot",
   "import_error": "Virhe tuonnissa:",
   "import_successful": "Tuonti onnistui.",
   "importance": "Tärkeys",
@@ -95,7 +95,7 @@
       "privacy_notice": "Arvostamme yksityisyyttäsi. Yhtään toimintaasi tai syötettäsi ei seurata; kaikki tiedot pysyvät laitteellasi.",
       "settings_tooltip": "Katso yläkulman asetusvalikkoa. Sieltä pääset käsiksi oppaaseen, voit vaihtaa kieltä ja muihin toimintoihin.",
       "skip": "Ohita opastus",
-      "toolbar_tooltip": "Katso kelluvaa työkalupalkkia oikeassa alakulmassa. Sieltä saat pikalinkin toimintoihin, kuten esiasetettujen elämänalueiden lisäämiseen, palauttamiseen, tietojen vientiin/tuontiin ja tutkanäkymän vaihtamiseen.",
+      "toolbar_tooltip": "Katso kelluva työkalupalkki oikeassa alakulmassa. Sieltä saat pikalinkin toimintoihin, kuten esiasetettujen elämänalueiden lisäämiseen, palauttamiseen, tietojen vientiin/tuontiin ja tutkanäkymän vaihtamiseen.",
       "welcome_prompt": "Tervetuloa Elämänkompassiin!\nAloitetaan opastus. Haluatko aloittaa esiasetetuilla elämänalueilla?\n(Voit suorittaa oppaan uudelleen asetuksista.)",
       "with_predefined": "Esiasetettujen elämänalueiden kanssa (suositellaan)",
       "without_predefined": "Ilman esiasetettuja elämänalueita"
