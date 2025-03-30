@@ -93,6 +93,7 @@
   "introduction.source_text": "Based on material from",
   "introduction.privacy_title": "Privacy and Data Protection",
   "introduction.privacy_description": "We respect your privacy. We do not track any of your actions or what you write. All your data remains local and is not shared with any external party.",
+  "introduction.disclaimer_title": "Important Notice",
   "introduction.disclaimer_description": "This app is intended as a self-reflective tool to help you explore what is important in your life. It is not meant to replace professional help, therapy, or contact with healthcare. If you are feeling unwell or need support, we encourage you to seek professional help.",
   "privacyPolicy": {
     "title": "Privacy Policy",
@@ -130,11 +131,13 @@
   "go_to_settings_menu": "Navigate to settings menu",
   "quick_actions": "Quick actions",
   "theme": "Theme",
-  "theme.light": "Ljust tema",
-  "theme.dark": "Mörkt tema",
-  "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.light": "Light theme",
+  "theme.dark": "Dark theme",
+  "theme.high-contrast": "High contrast theme",
+  "theme.sugar-sweet-light": "Sugar sweet theme",
+  "theme.sugar-sweet-dark": "Sugar sweet theme (dark)",
   "theme_system": "System",
   "accessibility_settings": "Accessibility settings",
-  "contrast_theme_toggle": "Enable high contrast theme"
+  "contrast_theme_toggle": "Enable high contrast theme",
+  "choose_theme": "Choose theme"
 }

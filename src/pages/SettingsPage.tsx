@@ -12,15 +12,15 @@ import WarningDialog from '@components/ui/WarningDialog';
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { theme, toggleTheme, systemTheme, followSystem, setFollowSystem } =
+  const { theme, setTheme, systemTheme, followSystem, setFollowSystem } =
     useTheme();
   const { showDevTools, setShowDevTools } = useContext(AppSettingsContext);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleThemeToggle = (checked: boolean) => {
-    if (checked && theme !== 'dark') toggleTheme();
-    if (!checked && theme !== 'light') toggleTheme();
+    if (checked && theme !== 'dark') setTheme('dark');
+    if (!checked && theme !== 'light') setTheme('light');
   };
 
   const handleFollowSystemToggle = (checked: boolean) =>

@@ -12,7 +12,12 @@ export const ThemeSwitcher = () => {
     <Select.Root
       value={theme}
       onValueChange={(
-        value: 'light' | 'dark' | 'high-contrast' | 'sugar-sweet',
+        value:
+          | 'light'
+          | 'dark'
+          | 'high-contrast'
+          | 'sugar-sweet-light'
+          | 'sugar-sweet-dark',
       ) => setTheme(value)}
     >
       <Select.Trigger className="inline-flex items-center justify-between rounded border px-3 py-1 text-sm shadow-sm focus:outline-none">
@@ -24,17 +29,23 @@ export const ThemeSwitcher = () => {
       <Select.Portal>
         <Select.Content className="z-50 rounded border bg-[var(--color-bg)] p-1 shadow-md">
           <Select.Viewport>
-            {(['light', 'dark', 'high-contrast', 'sugar-sweet'] as const).map(
-              value => (
-                <Select.Item
-                  key={value}
-                  value={value}
-                  className="cursor-pointer rounded px-2 py-1 text-sm select-none hover:bg-[var(--hover-bg)] focus:bg-[var(--focus-bg)]"
-                >
-                  <Select.ItemText>{t(`theme.${value}`)}</Select.ItemText>
-                </Select.Item>
-              ),
-            )}
+            {(
+              [
+                'light',
+                'dark',
+                'high-contrast',
+                'sugar-sweet-light',
+                'sugar-sweet-dark',
+              ] as const
+            ).map(value => (
+              <Select.Item
+                key={value}
+                value={value}
+                className="cursor-pointer rounded px-2 py-1 text-sm select-none hover:bg-[var(--hover-bg)] focus:bg-[var(--focus-bg)]"
+              >
+                <Select.ItemText>{t(`theme.${value}`)}</Select.ItemText>
+              </Select.Item>
+            ))}
           </Select.Viewport>
         </Select.Content>
       </Select.Portal>

@@ -103,7 +103,7 @@
 }
 
 /* Sugar Sweet Theme */
-[data-theme='sugar-sweet'] {
+[data-theme='sugar-sweet-light'] {
   --color-primary: #ff69b4; /* Hot pink */
   --color-secondary: #ffe4e1; /* Misty Rose */
   --color-accent: #ff1493; /* Deep pink */
@@ -133,6 +133,39 @@
   /* Warning Callout */
   --warning-border: #ff1493;
   --warning-bg: #ffe4e1;
+}
+
+/* Dark Sugar Sweet Theme */
+[data-theme='sugar-sweet-dark'] {
+  --color-primary: #ff69b4; /* Hot pink */
+  --color-secondary: #ffe4e1; /* Misty Rose */
+  --color-accent: #ff1493; /* Deep pink */
+  --color-bg: #2b001a; /* Dark background */
+  --callout-bg: #3c0023; /* Slightly lighter dark background for callouts */
+  --border: #a64d79; /* Dark rose border */
+  --color-text: #f8f8f8; /* Light text color */
+  --slider-track: #a64d79; /* Dark rose track */
+  --slider-handle: #ff1493; /* Deep pink handle */
+  --accent: #ff69b4; /* Hot pink accent */
+  --on-accent: #ffffff; /* White text on accent */
+  --focus-ring: #a64d79; /* Dark rose focus ring */
+  --details-bg: #3c0023; /* Dark details background */
+  --primary: var(--color-primary);
+  --on-primary: #ffffff;
+  --secondary: var(--color-secondary);
+  --hover-bg: #3c0023; /* Dark hover background */
+  /* Menu */
+  --menu-bg: #a64d79;
+  --menu-text: #ffffff;
+  /* Chart colors */
+  --chart-series-1: #ff69b4;
+  --chart-series-2: #ffc0cb;
+  --chart-series-3: #ff1493;
+  --chart-series-4: #db7093;
+  --chart-series-5: #ffb6c1;
+  /* Warning Callout */
+  --warning-border: #ff1493;
+  --warning-bg: #3c0023;
 }
 
 /* Global styles leveraging the defined CSS variables */

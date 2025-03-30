@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "are_you_sure": "Är du sicher?",
+  "are_you_sure": "Bist du sicher?",
   "close_symbol": "✖",
   "enter_life_area_name": "Lebensbereich eingeben",
   "reset": "Zurücksetzen",
@@ -92,7 +92,8 @@
     "source_text": "Basierend auf Material von",
     "privacy_title": "Datenschutz und Datensicherheit",
     "privacy_description": "Wir respektieren Ihre Privatsphäre. Wir verfolgen keine Ihrer Handlungen oder das, was Sie schreiben. Alle Ihre Daten bleiben lokal und werden nicht mit Dritten geteilt.",
-    "disclaimer_description": "Diese App ist als ein selbstreflektierendes Werkzeug gedacht, um Ihnen zu helfen, zu erkunden, was in Ihrem Leben wichtig ist. Sie soll nicht als Ersatz für professionelle Hilfe, Therapie oder den Kontakt zum Gesundheitswesen dienen. Sollten Sie sich schlecht fühlen oder Unterstützung benötigen, empfehlen wir Ihnen, sich an einen Facharzt oder Therapeuten zu wenden."
+    "disclaimer_description": "Diese App ist als ein selbstreflektierendes Werkzeug gedacht, um Ihnen zu helfen, zu erkunden, was in Ihrem Leben wichtig ist. Sie soll nicht als Ersatz für professionelle Hilfe, Therapie oder den Kontakt zum Gesundheitswesen dienen. Sollten Sie sich schlecht fühlen oder Unterstützung benötigen, empfehlen wir Ihnen, sich an einen Facharzt oder Therapeuten zu wenden.",
+    "disclaimer_title": "Wichtig zu wissen"
   },
   "privacyPolicy": {
     "title": "Datenschutzerklärung",
@@ -131,11 +132,14 @@
   "go_to_settings_menu": "Zum Einstellungsmenü navigieren",
   "quick_actions": "Schnellaktionen",
   "theme": "Thema",
-  "theme.light": "Ljust tema",
-  "theme.dark": "Mörkt tema",
-  "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.light": "Helles Thema",
+  "theme.dark": "Dunkles Thema",
+  "theme.high-contrast": "Hochkontrastthema",
+  "theme.sugar-sweet-light": "Zuckersüßes Thema",
+  "theme.sugar-sweet-dark": "Zuckersüßes Thema (dunkel)",
   "accessibility": "Barrierefreiheit",
   "toggle_high_contrast": "Hohen Kontrast ein-/ausschalten",
-  "theme_switcher_label": "Wählen Sie ein Thema"
+  "theme_switcher_label": "Wählen Sie ein Thema",
+  "introduction.disclaimer_title": "Wichtig zu wissen",
+  "choose_theme": "Thema wählen"
 }

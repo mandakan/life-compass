@@ -93,7 +93,8 @@
     "source_text": "Baseret på materialet fra",
     "privacy_title": "Privatliv og Databeskyttelse",
     "privacy_description": "Vi respekterer dit privatliv. Vi sporer ikke dine handlinger eller det, du skriver. Alle dine data forbliver lokale og deles ikke med nogen ekstern part.",
-    "disclaimer_description": "Denne app er beregnet som et selvreflekterende værktøj for at hjælpe dig med at udforske, hvad der er vigtigt i dit liv. Den er ikke beregnet til at erstatte professionel hjælp, terapi eller kontakt med sundhedsvæsenet. Hvis du har det skidt eller har brug for støtte, opfordrer vi dig til at kontakte sundhedsvæsenet eller en autoriseret terapeut."
+    "disclaimer_description": "Denne app er beregnet som et selvreflekterende værktøj for at hjælpe dig med at udforske, hvad der er vigtigt i dit liv. Den er ikke beregnet til at erstatte professionel hjælp, terapi eller kontakt med sundhedsvæsenet. Hvis du har det skidt eller har brug for støtte, opfordrer vi dig til at kontakte sundhedsvæsenet eller en autoriseret terapeut.",
+    "disclaimer_title": "Vigtigt at vide"
   },
   "privacyPolicy": {
     "title": "Privatlivspolitik",
@@ -133,9 +134,12 @@
   "quick_actions": "Hurtigmenu",
   "theme": "Tema",
   "theme.light": "Ljust tema",
-  "theme.dark": "Mörkt tema",
-  "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.dark": "Mørkt tema",
+  "theme.high-contrast": "Højkontrasttema",
+  "theme.sugar-sweet-light": "Sukkersødt tema",
+  "theme.sugar-sweet-dark": "Sukkersødt tema (mørkt)",
   "theme_system": "Systemtema",
-  "accessibility_settings": "Tilgængelighedsindstillinger"
+  "accessibility_settings": "Tilgængelighedsindstillinger",
+  "introduction.disclaimer_title": "Vigtigt at vide",
+  "choose_theme": "Vælg tema"
 }
