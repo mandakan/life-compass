@@ -29,7 +29,7 @@ const Popover: React.FC<PopoverProps> = ({
     maxWidth: 'calc(100% - 32px)', // så att den inte går utanför skärmen
     minHeight: '200px',
     maxHeight: '80vh',
-    overflowY: 'auto'
+    overflowY: 'auto',
   };
 
   return (
@@ -44,7 +44,7 @@ const Popover: React.FC<PopoverProps> = ({
           style={{ ...defaultStyle, ...contentStyle }}
           className={cn(
             'z-50 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none',
-            className
+            className,
           )}
         >
           {closeButton && (

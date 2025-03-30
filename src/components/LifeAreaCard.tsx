@@ -236,12 +236,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
       <div className="mt-auto">
         <div className="mt-2 font-sans">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">
-              {t('importance')}
-            </div>
+            <div className="flex items-center gap-1">{t('importance')}</div>
             <Popover
               trigger={
-                <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)] cursor-pointer">
+                <div className="flex cursor-pointer items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
                   <span role="img" aria-label="Importance">
                     ⭐
                   </span>
@@ -267,7 +265,6 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
                 max={10}
                 step={1}
                 height={200}
-                width={40}
               />
             </Popover>
           </div>
@@ -280,7 +277,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
             </div>
             <Popover
               trigger={
-                <div className="flex items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)] cursor-pointer">
+                <div className="flex cursor-pointer items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
                   <span role="img" aria-label="Satisfaction">
                     ❤️
                   </span>

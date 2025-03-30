@@ -30,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({
 
   return (
     <RadixSlider.Root
-      className={`relative touch-none select-none ${isVertical ? 'flex h-full flex-col' : 'flex w-full items-center'}`}
+      className={`relative flex touch-none select-none ${isVertical ? 'h-full flex-col items-center' : 'w-full items-center'}`}
       value={[value]}
       onValueChange={([val]) => onChange(val)}
       min={min}
@@ -40,8 +40,12 @@ const Slider: React.FC<SliderProps> = ({
       orientation={orientation}
       style={{ width, height }}
     >
-      <RadixSlider.Track className={`relative rounded-full bg-[var(--slider-track)] ${isVertical ? 'w-1 h-full' : 'h-1 w-full'}`}>
-        <RadixSlider.Range className={`absolute rounded-full bg-[var(--slider-range)] ${isVertical ? 'w-full' : 'h-full'}`} />
+      <RadixSlider.Track
+        className={`relative mx-auto rounded-full bg-[var(--slider-track)] ${isVertical ? 'h-full w-1' : 'h-1 w-full'}`}
+      >
+        <RadixSlider.Range
+          className={`absolute rounded-full bg-[var(--slider-range)] ${isVertical ? 'w-full' : 'h-full'}`}
+        />
       </RadixSlider.Track>
       <RadixSlider.Thumb className="block flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-[var(--on-primary)] shadow transition-colors">
         {showValueInThumb && value}
