@@ -132,10 +132,13 @@
   "theme.light": "Ljust tema",
   "theme.dark": "Mörkt tema",
   "theme.high-contrast": "Högkontrasttema",
-  "theme.sugar-sweet": "Sockersött tema",
+  "theme.sugar-sweet-light": "Sockersött tema",
+  "theme.sugar-sweet-dark": "Sockersött tema (mörkt)",
   "theme_settings": "Thema-instellingen",
   "accessibility_settings": "Toegankelijkheidsinstellingen",
   "contrast_theme_toggle_label": "Schakel hoog contrastthema in",
   "theme_toggle_label": "Wissel van thema",
-  "use_system_theme": "Systeemthema gebruiken"
+  "use_system_theme": "Systeemthema gebruiken",
+  "introduction.disclaimer_title": "Viktigt att veta",
+  "choose_theme": "Välj tema"
 }
