@@ -6,6 +6,7 @@ import ToggleSwitch from '../components/ui/ToggleSwitch';
 import Callout from '../components/Callout';
 import WarningMessage from '../components/WarningMessage';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import Tooltip from '@components/Tooltip';
 
 function DesignPrinciplesDemo() {
   const [sliderValue, setSliderValue] = useState(5);
@@ -69,6 +70,15 @@ function DesignPrinciplesDemo() {
       </Callout>
       {/* Warning Example (Extracted to WarningMessage component) */}
       <WarningMessage />
+      {/* Tooltip Demo */}
+      <div className="mt-8 text-center">
+        <h3 className="mb-2 text-lg font-semibold">Tooltip Example</h3>
+        <Tooltip content="Detta är en tooltip!">
+          <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
+            Hover me for Tooltip
+          </button>
+        </Tooltip>
+      </div>
       {/* Hover Information Example */}
       <div className="mt-8 text-center">
         <p>
