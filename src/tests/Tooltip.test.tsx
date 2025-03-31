@@ -17,7 +17,7 @@ describe('Tooltip component', () => {
 
   it('should display the tooltip content on mouse enter and hide on mouse leave', async () => {
     const { getByText, queryByText } = render(
-      <Tooltip content="Tooltip content">
+      <Tooltip content="Tooltip content" delayDuration={0}>
         <button>Hover me</button>
       </Tooltip>
     );
@@ -25,9 +25,7 @@ describe('Tooltip component', () => {
 
     // Trigger mouse enter to show the tooltip.
     fireEvent.mouseEnter(triggerElement);
-    // Wait at least 1000 ms before checking for tooltip content.
-    await new Promise((res) => setTimeout(res, 1000));
-
+    
     // Wait for the tooltip content to appear.
     await waitFor(() => {
       expect(getByText('Tooltip content')).toBeInTheDocument();
@@ -35,9 +33,7 @@ describe('Tooltip component', () => {
 
     // Trigger mouse leave to hide the tooltip.
     fireEvent.mouseLeave(triggerElement);
-    // Wait at least 1000 ms before checking that the tooltip is hidden.
-    await new Promise((res) => setTimeout(res, 1000));
-
+    
     // Wait for the tooltip content to disappear.
     await waitFor(() => {
       expect(queryByText('Tooltip content')).not.toBeInTheDocument();
@@ -46,7 +42,7 @@ describe('Tooltip component', () => {
 
   it('should render the tooltip arrow element', async () => {
     const { container, getByText } = render(
-      <Tooltip content="Tooltip content">
+      <Tooltip content="Tooltip content" delayDuration={0}>
         <button>Hover me</button>
       </Tooltip>
     );
@@ -54,9 +50,7 @@ describe('Tooltip component', () => {
 
     // Hover to display the tooltip including the arrow.
     fireEvent.mouseEnter(triggerElement);
-    // Wait at least 1000 ms before checking for tooltip content.
-    await new Promise((res) => setTimeout(res, 1000));
-
+    
     // Wait for the tooltip content to appear.
     await waitFor(() => {
       expect(getByText('Tooltip content')).toBeInTheDocument();
@@ -65,5 +59,25 @@ describe('Tooltip component', () => {
     // Check for the arrow element rendered inside the tooltip.
     const arrowElement = container.querySelector('[class*="fill-"]');
     expect(arrowElement).toBeInTheDocument();
+  });
+  
+  it('should accept custom side and alignment props', async () => {
+    const { getByText } = render(
+      <Tooltip 
+        content="Tooltip content" 
+        side="bottom" 
+        align="start"
+        delayDuration={0}
+      >
+        <button>Hover me</button>
+      </Tooltip>
+    );
+    
+    const triggerElement = getByText('Hover me');
+    fireEvent.mouseEnter(triggerElement);
+    
+    await waitFor(() => {
+      expect(getByText('Tooltip content')).toBeInTheDocument();
+    });
   });
 });
