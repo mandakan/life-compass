@@ -1,8 +1,10 @@
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import exportImportSchema from '../schemas/exportImportSchema.json';
 import { ImportedData } from 'types/importExport';
 
 const ajv = new Ajv({ allErrors: true, strict: false });
+addFormats(ajv);
 const validate = ajv.compile(exportImportSchema);
 
 export interface ValidationResult {
@@ -16,7 +18,7 @@ export function parseAndValidateJSON(content: string): ValidationResult {
   try {
     jsonData = JSON.parse(content);
   } catch (e) {
-    return { valid: false, errors: ['Ogiltigt JSON-format.'] };
+    return { valid: false, errors: ['Invalid JSON format.'] };
   }
 
   const isValid = validate(jsonData);

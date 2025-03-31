@@ -6,12 +6,17 @@ import ToggleSwitch from '../components/ui/ToggleSwitch';
 import Callout from '../components/Callout';
 import WarningMessage from '../components/WarningMessage';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import ThemeSwitcher from '../components/ui/ThemeSwitcher';
+import Tooltip from '@components/Tooltip';
+import Popover from '@components/ui/Popover';
+import { useTranslation } from 'react-i18next';
 
 function DesignPrinciplesDemo() {
   const [sliderValue, setSliderValue] = useState(5);
   const [dropdownValue, setDropdownValue] = useState('option1');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
-  const { theme: themeMode, toggleTheme } = useTheme();
+  const { t } = useTranslation();
+  const { theme: themeMode } = useTheme();
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] p-8 font-sans text-[var(--color-text)] transition-colors duration-300">
@@ -21,22 +26,25 @@ function DesignPrinciplesDemo() {
           100% { transform: rotate(360deg); }
         }
       `}</style>
-      <h1 className="mb-8 text-center">Designprinciper Demo</h1>
-      <div className="mb-8 text-center">
-        <LanguageSwitcher />
-      </div>
-      <div className="mb-8 text-center">
-        <button
-          className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none"
-          onClick={toggleTheme}
-        >
-          Växla till {themeMode === 'light' ? 'mörkt' : 'ljust'} läge
-        </button>
-      </div>
-      {/* Toggle Switch Example */}
-      <div className="mb-8 text-center">
-        <h2 className="mb-2 text-xl">Dark Mode Toggle Switch</h2>
-        <ToggleSwitch checked={themeMode === 'dark'} onChange={toggleTheme} />
+      <h1 className="mb-8 text-center">
+        {t('design_principles_demo', 'Designprinciper Demo')}
+      </h1>
+
+      {/* Language and Theme Switchers */}
+      <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="rounded-md border border-[var(--border)] p-4">
+          <h2 className="mb-4 text-xl font-semibold">
+            {t('language_settings', 'Språkinställningar')}
+          </h2>
+          <LanguageSwitcher />
+        </div>
+
+        <div className="rounded-md border border-[var(--border)] p-4">
+          <h2 className="mb-4 text-xl font-semibold">
+            {t('theme_settings', 'Temainställningar')}
+          </h2>
+          <ThemeSwitcher />
+        </div>
       </div>
       {/* Card Example */}
       <div className="m-4 cursor-pointer rounded-md border bg-[var(--color-bg)] p-4 text-center text-[var(--color-text)] shadow transition-all duration-300 hover:shadow-lg hover:brightness-95 hover:filter">
@@ -69,6 +77,36 @@ function DesignPrinciplesDemo() {
       </Callout>
       {/* Warning Example (Extracted to WarningMessage component) */}
       <WarningMessage />
+      {/* Tooltip Demo */}
+      <div className="mt-8 text-center">
+        <h3 className="mb-2 text-lg font-semibold">Tooltip Example</h3>
+        <Tooltip content="Detta är en tooltip!">
+          <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
+            Hover me for Tooltip
+          </button>
+        </Tooltip>
+      </div>
+
+      {/* Popover Demo */}
+      <div className="mt-8 text-center">
+        <h3 className="mb-2 text-lg font-semibold">Popover Example</h3>
+        <Popover
+          trigger={
+            <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-secondary)] px-4 py-2 text-[var(--color-text)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
+              Click for Popover
+            </button>
+          }
+          closeButton={true}
+        >
+          <div className="p-2">
+            <h4 className="mb-2 font-semibold">Popover Content</h4>
+            <p className="mb-2">Detta är innehåll i en popover-komponent.</p>
+            <p>
+              Popover använder CSS-variabler för att matcha det aktiva temat.
+            </p>
+          </div>
+        </Popover>
+      </div>
       {/* Hover Information Example */}
       <div className="mt-8 text-center">
         <p>
