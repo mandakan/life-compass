@@ -15,13 +15,13 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content }) => {
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
-            className="rounded bg-[var(--callout-bg)] p-3 text-[var(--color-text)] shadow-lg border border-[var(--border)]"
+            className="rounded bg-[var(--callout-bg)] p-3 text-[var(--color-text)] shadow-lg border-2 border-[var(--border)]"
             side="top"
             align="center"
             sideOffset={5}
           >
             {content}
-            <TooltipPrimitive.Arrow className="fill-[var(--callout-bg)]" />
+            <TooltipPrimitive.Arrow className="fill-[var(--callout-bg)] stroke-[var(--border)]" />
           </TooltipPrimitive.Content>
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>
