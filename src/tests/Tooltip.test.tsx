@@ -3,6 +3,15 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import Tooltip from '@components/Tooltip';
 import { describe, it, expect, beforeEach } from 'vitest';
 
+// Mock the Portal implementation for testing
+vi.mock('@radix-ui/react-tooltip', async () => {
+  const actual = await vi.importActual('@radix-ui/react-tooltip');
+  return {
+    ...actual,
+    Portal: ({ children }) => <div data-testid="tooltip-portal">{children}</div>,
+  };
+});
+
 describe('Tooltip component', () => {
   it('should render the child element and not display tooltip content by default', () => {
     const { queryByText, getByText } = render(
@@ -16,7 +25,7 @@ describe('Tooltip component', () => {
   });
 
   it('should display the tooltip content on mouse enter and hide on mouse leave', async () => {
-    const { getByText, queryByText } = render(
+    const { getByText, queryByText, getByTestId, queryByTestId } = render(
       <Tooltip content="Tooltip content" delayDuration={0}>
         <button>Hover me</button>
       </Tooltip>,
@@ -25,23 +34,27 @@ describe('Tooltip component', () => {
 
     // Trigger mouse enter to show the tooltip.
     fireEvent.mouseEnter(triggerElement);
+    fireEvent.focus(triggerElement);
 
     // Wait for the tooltip content to appear.
     await waitFor(() => {
-      expect(getByText('Tooltip content')).toBeInTheDocument();
+      const tooltipContent = getByTestId('tooltip-portal');
+      expect(tooltipContent).toBeInTheDocument();
+      expect(tooltipContent.textContent).toContain('Tooltip content');
     });
 
     // Trigger mouse leave to hide the tooltip.
     fireEvent.mouseLeave(triggerElement);
+    fireEvent.blur(triggerElement);
 
     // Wait for the tooltip content to disappear.
     await waitFor(() => {
-      expect(queryByText('Tooltip content')).not.toBeInTheDocument();
+      expect(queryByTestId('tooltip-portal')).not.toBeInTheDocument();
     });
   });
 
   it('should render the tooltip arrow element', async () => {
-    const { container, getByText } = render(
+    const { container, getByText, getByTestId } = render(
       <Tooltip content="Tooltip content" delayDuration={0}>
         <button>Hover me</button>
       </Tooltip>,
@@ -50,10 +63,12 @@ describe('Tooltip component', () => {
 
     // Hover to display the tooltip including the arrow.
     fireEvent.mouseEnter(triggerElement);
+    fireEvent.focus(triggerElement);
 
     // Wait for the tooltip content to appear.
     await waitFor(() => {
-      expect(getByText('Tooltip content')).toBeInTheDocument();
+      const tooltipContent = getByTestId('tooltip-portal');
+      expect(tooltipContent).toBeInTheDocument();
     });
 
     // Check for the arrow element rendered inside the tooltip.
@@ -62,7 +77,7 @@ describe('Tooltip component', () => {
   });
 
   it('should accept custom side and alignment props', async () => {
-    const { getByText } = render(
+    const { getByText, getByTestId } = render(
       <Tooltip
         content="Tooltip content"
         side="bottom"
@@ -75,9 +90,12 @@ describe('Tooltip component', () => {
 
     const triggerElement = getByText('Hover me');
     fireEvent.mouseEnter(triggerElement);
+    fireEvent.focus(triggerElement);
 
     await waitFor(() => {
-      expect(getByText('Tooltip content')).toBeInTheDocument();
+      const tooltipContent = getByTestId('tooltip-portal');
+      expect(tooltipContent).toBeInTheDocument();
+      expect(tooltipContent.textContent).toContain('Tooltip content');
     });
   });
 });

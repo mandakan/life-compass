@@ -25,6 +25,9 @@
   /* Tooltip */
   --tooltip-bg: #212529;
   --tooltip-text: #ffffff;
+  --tooltip-width: 200px;
+  --tooltip-border-radius: 6px;
+  --tooltip-padding: 0.5rem;
   /* Menu */
   --menu-bg: #3490dc;
   --menu-text: #ffffff;
@@ -61,6 +64,9 @@
   /* Tooltip */
   --tooltip-bg: #1a202c;
   --tooltip-text: #ffffff;
+  --tooltip-width: 200px;
+  --tooltip-border-radius: 6px;
+  --tooltip-padding: 0.5rem;
   /* Menu */
   --menu-bg: #1a202c; /* Darker menu background for contrast */
   --menu-text: #e2e8f0; /* Slightly lighter text */
@@ -97,6 +103,9 @@
   /* Tooltip */
   --tooltip-bg: #000000;
   --tooltip-text: #ffff00;
+  --tooltip-width: 200px;
+  --tooltip-border-radius: 6px;
+  --tooltip-padding: 0.5rem;
   /* Menu */
   --menu-bg: #000000;
   --menu-text: #ffffff;
@@ -133,6 +142,9 @@
   /* Tooltip */
   --tooltip-bg: #ff1493;
   --tooltip-text: #ffffff;
+  --tooltip-width: 200px;
+  --tooltip-border-radius: 6px;
+  --tooltip-padding: 0.5rem;
   /* Menu */
   --menu-bg: #ff69b4;
   --menu-text: #ffffff;
@@ -169,6 +181,9 @@
   /* Tooltip */
   --tooltip-bg: #3c0023;
   --tooltip-text: #ff69b4;
+  --tooltip-width: 200px;
+  --tooltip-border-radius: 6px;
+  --tooltip-padding: 0.5rem;
   /* Menu */
   --menu-bg: #a64d79;
   --menu-text: #ffffff;

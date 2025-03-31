@@ -1,5 +1,6 @@
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import React from 'react';
+import { tooltip } from '../designTokens';
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -28,6 +29,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             side={side}
             align={align}
             sideOffset={sideOffset}
+            data-testid="tooltip-content"
           >
             {content}
             <TooltipPrimitive.Arrow
