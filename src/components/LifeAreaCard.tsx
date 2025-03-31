@@ -248,8 +248,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
               }
               side="right"
               align="center"
-              className="max-w-2xl"
-              contentStyle={{ minWidth: '60px', minHeight: '240px' }}
+              contentClassName="!w-[80px] !p-2"
             >
               <Slider
                 value={area.importance}
@@ -286,8 +285,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
               }
               side="right"
               align="center"
-              className="max-w-2xl"
-              contentStyle={{ minWidth: '60px', minHeight: '240px' }}
+              contentClassName="!w-[80px] !p-2"
             >
               <Slider
                 value={area.satisfaction}
