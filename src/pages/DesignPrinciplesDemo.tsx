@@ -8,6 +8,7 @@ import WarningMessage from '../components/WarningMessage';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import ThemeSwitcher from '../components/ui/ThemeSwitcher';
 import Tooltip from '@components/Tooltip';
+import Popover from '@components/ui/Popover';
 import { useTranslation } from 'react-i18next';
 
 function DesignPrinciplesDemo() {
