@@ -6,13 +6,16 @@ import ToggleSwitch from '../components/ui/ToggleSwitch';
 import Callout from '../components/Callout';
 import WarningMessage from '../components/WarningMessage';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import ThemeSwitcher from '../components/ui/ThemeSwitcher';
 import Tooltip from '@components/Tooltip';
+import { useTranslation } from 'react-i18next';
 
 function DesignPrinciplesDemo() {
   const [sliderValue, setSliderValue] = useState(5);
   const [dropdownValue, setDropdownValue] = useState('option1');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
-  const { theme: themeMode, toggleTheme } = useTheme();
+  const { t } = useTranslation();
+  const { theme: themeMode } = useTheme();
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] p-8 font-sans text-[var(--color-text)] transition-colors duration-300">
@@ -22,22 +25,19 @@ function DesignPrinciplesDemo() {
           100% { transform: rotate(360deg); }
         }
       `}</style>
-      <h1 className="mb-8 text-center">Designprinciper Demo</h1>
-      <div className="mb-8 text-center">
-        <LanguageSwitcher />
-      </div>
-      <div className="mb-8 text-center">
-        <button
-          className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none"
-          onClick={toggleTheme}
-        >
-          Växla till {themeMode === 'light' ? 'mörkt' : 'ljust'} läge
-        </button>
-      </div>
-      {/* Toggle Switch Example */}
-      <div className="mb-8 text-center">
-        <h2 className="mb-2 text-xl">Dark Mode Toggle Switch</h2>
-        <ToggleSwitch checked={themeMode === 'dark'} onChange={toggleTheme} />
+      <h1 className="mb-8 text-center">{t('design_principles_demo', 'Designprinciper Demo')}</h1>
+      
+      {/* Language and Theme Switchers */}
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 border border-[var(--border)] rounded-md">
+          <h2 className="mb-4 text-xl font-semibold">{t('language_settings', 'Språkinställningar')}</h2>
+          <LanguageSwitcher />
+        </div>
+        
+        <div className="p-4 border border-[var(--border)] rounded-md">
+          <h2 className="mb-4 text-xl font-semibold">{t('theme_settings', 'Temainställningar')}</h2>
+          <ThemeSwitcher />
+        </div>
       </div>
       {/* Card Example */}
       <div className="m-4 cursor-pointer rounded-md border bg-[var(--color-bg)] p-4 text-center text-[var(--color-text)] shadow transition-all duration-300 hover:shadow-lg hover:brightness-95 hover:filter">
