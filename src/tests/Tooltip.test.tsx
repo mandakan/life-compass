@@ -8,7 +8,9 @@ vi.mock('@radix-ui/react-tooltip', async () => {
   const actual = await vi.importActual('@radix-ui/react-tooltip');
   return {
     ...actual,
-    Portal: ({ children }) => <div data-testid="tooltip-portal">{children}</div>,
+    Portal: ({ children }) => (
+      <div data-testid="tooltip-portal">{children}</div>
+    ),
   };
 });
 
@@ -52,7 +54,9 @@ describe('Tooltip component', () => {
     await waitFor(() => {
       const portal = queryByTestId('tooltip-portal');
       // Either the portal is gone or it doesn't contain the tooltip content anymore
-      expect(portal?.textContent?.includes('Tooltip content') || false).toBe(false);
+      expect(portal?.textContent?.includes('Tooltip content') || false).toBe(
+        false,
+      );
     });
   });
 

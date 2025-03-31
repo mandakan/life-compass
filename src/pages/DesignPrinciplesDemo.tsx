@@ -86,11 +86,11 @@ function DesignPrinciplesDemo() {
           </button>
         </Tooltip>
       </div>
-      
+
       {/* Popover Demo */}
       <div className="mt-8 text-center">
         <h3 className="mb-2 text-lg font-semibold">Popover Example</h3>
-        <Popover 
+        <Popover
           trigger={
             <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-secondary)] px-4 py-2 text-[var(--color-text)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
               Click for Popover
@@ -101,7 +101,9 @@ function DesignPrinciplesDemo() {
           <div className="p-2">
             <h4 className="mb-2 font-semibold">Popover Content</h4>
             <p className="mb-2">Detta är innehåll i en popover-komponent.</p>
-            <p>Popover använder CSS-variabler för att matcha det aktiva temat.</p>
+            <p>
+              Popover använder CSS-variabler för att matcha det aktiva temat.
+            </p>
           </div>
         </Popover>
       </div>

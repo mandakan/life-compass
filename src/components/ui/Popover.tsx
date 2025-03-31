@@ -10,7 +10,7 @@ interface PopoverProps {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   modal?: boolean;
-  
+
   // Content positioning
   align?: 'start' | 'center' | 'end';
   side?: 'top' | 'right' | 'bottom' | 'left';
@@ -18,17 +18,19 @@ interface PopoverProps {
   alignOffset?: number;
   avoidCollisions?: boolean;
   collisionBoundary?: Element | null | Array<Element | null>;
-  collisionPadding?: number | Partial<Record<'top' | 'right' | 'bottom' | 'left', number>>;
+  collisionPadding?:
+    | number
+    | Partial<Record<'top' | 'right' | 'bottom' | 'left', number>>;
   arrowPadding?: number;
   sticky?: 'partial' | 'always';
   hideWhenDetached?: boolean;
-  
+
   // Styling
   className?: string;
   contentClassName?: string;
   arrowClassName?: string;
   closeButton?: boolean;
-  
+
   // Animation
   forceMount?: boolean;
 }
@@ -40,7 +42,7 @@ const Popover: React.FC<PopoverProps> = ({
   defaultOpen,
   onOpenChange,
   modal,
-  
+
   // Content positioning
   align = 'center',
   side = 'top',
@@ -52,18 +54,18 @@ const Popover: React.FC<PopoverProps> = ({
   arrowPadding,
   sticky = 'partial',
   hideWhenDetached,
-  
+
   // Styling
   className,
   contentClassName,
   arrowClassName,
   closeButton = false,
-  
+
   // Animation
   forceMount,
 }) => {
   return (
-    <RadixPopover.Root 
+    <RadixPopover.Root
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
@@ -85,14 +87,14 @@ const Popover: React.FC<PopoverProps> = ({
           sticky={sticky}
           hideWhenDetached={hideWhenDetached}
           className={cn(
-            'z-[9999] w-[200px] sm:w-[280px] md:w-[350px] max-w-[90vw] max-h-[80vh] overflow-y-auto rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none',
+            'z-[9999] max-h-[80vh] w-[200px] max-w-[90vw] overflow-y-auto rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none sm:w-[280px] md:w-[350px]',
             contentClassName,
           )}
         >
           {closeButton && (
             <RadixPopover.Close asChild>
               <button
-                className="absolute top-2 right-2 rounded-sm text-[var(--color-text)] hover:text-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+                className="absolute top-2 right-2 rounded-sm text-[var(--color-text)] hover:text-[var(--color-primary)] focus:ring-2 focus:ring-[var(--focus-ring)] focus:outline-none"
                 aria-label="Close"
               >
                 <XMarkIcon className="h-4 w-4" />
@@ -100,7 +102,9 @@ const Popover: React.FC<PopoverProps> = ({
             </RadixPopover.Close>
           )}
           {children}
-          <RadixPopover.Arrow className={cn("fill-[var(--border)]", arrowClassName)} />
+          <RadixPopover.Arrow
+            className={cn('fill-[var(--border)]', arrowClassName)}
+          />
         </RadixPopover.Content>
       </RadixPopover.Portal>
     </RadixPopover.Root>
