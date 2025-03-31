@@ -85,7 +85,7 @@ const Popover: React.FC<PopoverProps> = ({
           sticky={sticky}
           hideWhenDetached={hideWhenDetached}
           className={cn(
-            'z-[9999] w-[200px] max-w-[320px] max-h-[80vh] overflow-y-auto rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none',
+            'z-[9999] w-[200px] sm:w-[280px] md:w-[350px] max-w-[90vw] max-h-[80vh] overflow-y-auto rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none',
             contentClassName,
           )}
         >
