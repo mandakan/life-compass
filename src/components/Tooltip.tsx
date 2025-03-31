@@ -15,7 +15,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content }) => {
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
-            className="rounded bg-[var(--callout-bg)] p-3 text-[var(--color-text)] shadow-lg"
+            className="rounded bg-[var(--callout-bg)] p-3 text-[var(--color-text)] shadow-lg border border-[var(--border)]"
             side="top"
             align="center"
             sideOffset={5}
