@@ -27,24 +27,13 @@ const Tooltip: React.FC<TooltipProps> = ({
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
-            className={`
-              max-w-[${tooltip.width}] 
-              rounded-[${borderRadius.small}] 
-              bg-[${tooltip.background}] 
-              p-[${spacing.small}] 
-              text-[${tooltip.color}] 
-              shadow-lg 
-              border border-[var(--color-primary)] 
-              text-sm
-              font-medium
-              z-50
-              animate-fadeIn
-              transition-opacity
-              duration-[${transitions.medium}]
-            `}
+            className="max-w-[200px] rounded-[4px] bg-[#212529] p-[0.5rem] text-white shadow-lg border border-[var(--color-primary)] text-sm font-medium z-[100] animate-fadeIn transition-opacity duration-300"
             side={side}
             align={align}
             sideOffset={sideOffset}
+            style={{
+              zIndex: 9999
+            }}
           >
             {content}
             <TooltipPrimitive.Arrow 
