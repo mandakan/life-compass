@@ -36,7 +36,7 @@ describe('parseAndValidateJSON', () => {
     const invalidJson = '{invalid json';
     const result = parseAndValidateJSON(invalidJson);
     expect(result.valid).toBe(false);
-    expect(result.errors).toContain('Ogiltigt JSON-format.');
+    expect(result.errors).toContain('Invalid JSON format.');
   });
 
   it('should return an error when JSON does not conform to the schema', () => {
