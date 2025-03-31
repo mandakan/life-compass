@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import Tooltip from '../Tooltip';
+import Tooltip from '@components/Tooltip';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('Tooltip component', () => {
   it('should render the child element and not display tooltip content by default', () => {
