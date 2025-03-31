@@ -52,3 +52,5 @@ export const ThemeSwitcher = () => {
     </Select.Root>
   );
 };
+
+export default ThemeSwitcher;
