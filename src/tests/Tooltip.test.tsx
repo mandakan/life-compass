@@ -25,6 +25,8 @@ describe('Tooltip component', () => {
 
     // Trigger mouse enter to show the tooltip.
     fireEvent.mouseEnter(triggerElement);
+    // Wait at least 1000 ms before checking for tooltip content.
+    await new Promise((res) => setTimeout(res, 1000));
 
     // Wait for the tooltip content to appear.
     await waitFor(() => {
@@ -33,6 +35,8 @@ describe('Tooltip component', () => {
 
     // Trigger mouse leave to hide the tooltip.
     fireEvent.mouseLeave(triggerElement);
+    // Wait at least 1000 ms before checking that the tooltip is hidden.
+    await new Promise((res) => setTimeout(res, 1000));
 
     // Wait for the tooltip content to disappear.
     await waitFor(() => {
@@ -50,6 +54,8 @@ describe('Tooltip component', () => {
 
     // Hover to display the tooltip including the arrow.
     fireEvent.mouseEnter(triggerElement);
+    // Wait at least 1000 ms before checking for tooltip content.
+    await new Promise((res) => setTimeout(res, 1000));
 
     // Wait for the tooltip content to appear.
     await waitFor(() => {
