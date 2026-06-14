@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { getUserData } from '../utils/storageService';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -9,11 +8,6 @@ import Introduction from 'components/Introduction';
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const data = getUserData();
-    console.log('Laddade användardata:', data);
-  }, []);
 
   return (
     <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">

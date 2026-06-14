@@ -1,24 +1,27 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import {
-  getUserData,
-  saveUserData,
-  clearAllUserData,
-} from '@utils/storageService';
+import { removeUserData, clearAllUserData } from '@utils/storageService';
 
 describe('storageService', () => {
   beforeEach(() => {
     clearAllUserData();
   });
 
-  it('should return an empty object when no user data is stored', () => {
-    const data = getUserData();
-    expect(data).toEqual({});
+  it('removeUserData removes a single key without touching others', () => {
+    localStorage.setItem('tutorialCompleted', 'true');
+    localStorage.setItem('keepMe', 'yes');
+
+    removeUserData('tutorialCompleted');
+
+    expect(localStorage.getItem('tutorialCompleted')).toBeNull();
+    expect(localStorage.getItem('keepMe')).toBe('yes');
   });
 
-  it('should save and retrieve user data correctly', () => {
-    const sampleData = { name: 'Test', value: 123 };
-    saveUserData(sampleData);
-    const retrievedData = getUserData();
-    expect(retrievedData).toEqual(sampleData);
+  it('clearAllUserData clears every key', () => {
+    localStorage.setItem('a', '1');
+    localStorage.setItem('b', '2');
+
+    clearAllUserData();
+
+    expect(localStorage.length).toBe(0);
   });
 });

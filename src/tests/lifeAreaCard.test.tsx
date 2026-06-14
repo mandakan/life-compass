@@ -16,20 +16,10 @@ const sampleArea: LifeArea = {
 const defaultProps = {
   area: sampleArea,
   isEditing: false,
-  editName: sampleArea.name,
-  editDescription: sampleArea.description,
-  editImportance: sampleArea.importance,
-  editSatisfaction: sampleArea.satisfaction,
-  editDetails: sampleArea.details,
-  onChangeEditName: vi.fn(),
-  onChangeEditDescription: vi.fn(),
-  onChangeEditImportance: vi.fn(),
-  onChangeEditSatisfaction: vi.fn(),
-  onChangeEditDetails: vi.fn(),
-  onSaveEdit: vi.fn(),
-  onCancelEdit: vi.fn(),
   onEdit: vi.fn(),
   onRemove: vi.fn(),
+  onSave: vi.fn(),
+  onCancel: vi.fn(),
   existingNames: [],
 };
 
@@ -82,6 +72,15 @@ describe('LifeAreaCard', () => {
     expect(screen.getByText(/cancel/i)).toBeInTheDocument();
   });
 
-  // You can test dialog behavior on desktop by mocking window.innerWidth >= 768,
-  // but it's better done with E2E tests if you rely on responsive logic.
+  it('saves the edited draft as a full area on mobile save', () => {
+    // Simulate mobile so the inline edit form renders.
+    vi.stubGlobal('window', Object.assign(window, { innerWidth: 320 }));
+    const onSave = vi.fn();
+    render(<LifeAreaCard {...defaultProps} onSave={onSave} isEditing />);
+    fireEvent.click(screen.getByText(/spara/i));
+    expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave).toHaveBeenCalledWith(
+      expect.objectContaining({ id: sampleArea.id, name: sampleArea.name }),
+    );
+  });
 });

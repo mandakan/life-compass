@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
-import {
-  QuestionMarkCircleIcon,
-  InformationCircleIcon,
-} from '@heroicons/react/24/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/solid';
 import Slider from '@components/ui/Slider';
 import Textarea from '@components/ui/Textarea';
 import Popover from '@components/ui/Popover';
@@ -15,20 +12,10 @@ import LifeAreaEditForm from './LifeAreaEditForm';
 export interface LifeAreaCardProps {
   area: LifeArea;
   isEditing: boolean;
-  editName: string;
-  editDescription: string;
-  editImportance: number;
-  editSatisfaction: number;
-  editDetails: string;
-  onChangeEditName: (val: string) => void;
-  onChangeEditDescription: (val: string) => void;
-  onChangeEditImportance: (val: number) => void;
-  onChangeEditSatisfaction: (val: number) => void;
-  onChangeEditDetails: (val: string) => void;
-  onSaveEdit: () => void;
-  onCancelEdit: () => void;
   onEdit: (area: LifeArea) => void;
   onRemove: (id: string) => void;
+  onSave: (area: LifeArea) => void;
+  onCancel: () => void;
   existingNames: string[];
   style?: React.CSSProperties;
   onAutoUpdateRating?: (
@@ -41,33 +28,30 @@ export interface LifeAreaCardProps {
   className?: string;
 }
 
-const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
-  const {
-    area,
-    isEditing,
-    editName,
-    editDescription,
-    editDetails,
-    editImportance,
-    editSatisfaction,
-    onChangeEditName,
-    onChangeEditDescription,
-    onChangeEditDetails,
-    onChangeEditImportance,
-    onChangeEditSatisfaction,
-    onSaveEdit,
-    onCancelEdit,
-    onEdit,
-    onRemove,
-    existingNames,
-    onAutoUpdateRating,
-    dragHandle,
-    onInlineDetailsChange,
-    className,
-  } = props;
+const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
+  area,
+  isEditing,
+  onEdit,
+  onRemove,
+  onSave,
+  onCancel,
+  existingNames,
+  onAutoUpdateRating,
+  dragHandle,
+  onInlineDetailsChange,
+  className,
+}) => {
   const { t } = useTranslation();
   const [editing, setEditing] = useState(false);
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+
+  // Local edit draft. Owned by the card while `isEditing`; the parent only
+  // tracks which area is being edited and receives the finished area on save.
+  const [editName, setEditName] = useState(area.name);
+  const [editDescription, setEditDescription] = useState(area.description);
+  const [editDetails, setEditDetails] = useState(area.details);
+  const [editImportance, setEditImportance] = useState(area.importance);
+  const [editSatisfaction, setEditSatisfaction] = useState(area.satisfaction);
 
   const [editingDetailsInline, setEditingDetailsInline] = useState(false);
   const [inlineDetailsValue, setInlineDetailsValue] = useState(area.details);
@@ -81,8 +65,16 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
     }
   }, [editingDetailsInline]);
 
+  // When this card enters edit mode, seed the local draft from the live area
+  // and open the desktop dialog. Resetting on the rising edge of `isEditing`
+  // keeps the draft truthful without clobbering in-progress typing.
   useEffect(() => {
     if (isEditing) {
+      setEditName(area.name);
+      setEditDescription(area.description);
+      setEditDetails(area.details);
+      setEditImportance(area.importance);
+      setEditSatisfaction(area.satisfaction);
       if (isDesktop) {
         setEditing(true);
       } else {
@@ -91,11 +83,42 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
     }
   }, [isEditing, isDesktop]);
 
+  const buildUpdatedArea = (): LifeArea => ({
+    ...area,
+    name: editName.trim(),
+    description: editDescription.trim(),
+    details: editDetails.trim(),
+    importance: editImportance,
+    satisfaction: editSatisfaction,
+  });
+
+  const handleSave = () => {
+    if (editName.trim() === '') {
+      return;
+    }
+    onSave(buildUpdatedArea());
+  };
+
   const handleEditClick = () => {
     onEdit(area);
     if (isDesktop) {
       setEditing(true);
     }
+  };
+
+  const editFormProps = {
+    area,
+    editName,
+    editDescription,
+    editDetails,
+    editImportance,
+    editSatisfaction,
+    onChangeEditName: setEditName,
+    onChangeEditDescription: setEditDescription,
+    onChangeEditDetails: setEditDetails,
+    onChangeEditImportance: setEditImportance,
+    onChangeEditSatisfaction: setEditSatisfaction,
+    existingNames,
   };
 
   if (!isDesktop && isEditing) {
@@ -104,9 +127,9 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
         className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
       >
         <LifeAreaEditForm
-          {...props}
-          onCancelEdit={onCancelEdit}
-          onSaveEdit={onSaveEdit}
+          {...editFormProps}
+          onCancelEdit={onCancel}
+          onSaveEdit={handleSave}
         />
       </div>
     );
@@ -208,7 +231,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
               if (onInlineDetailsChange) {
                 onInlineDetailsChange(newValue, area);
               } else {
-                onChangeEditDetails(newValue);
+                setEditDetails(newValue);
               }
               setEditingDetailsInline(false);
             }}
@@ -256,7 +279,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('importance', val, area);
                   } else {
-                    onChangeEditImportance(val);
+                    setEditImportance(val);
                   }
                 }}
                 orientation="vertical"
@@ -293,7 +316,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
                   if (onAutoUpdateRating) {
                     onAutoUpdateRating('satisfaction', val, area);
                   } else {
-                    onChangeEditSatisfaction(val);
+                    setEditSatisfaction(val);
                   }
                 }}
                 orientation="vertical"
@@ -312,22 +335,25 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = props => {
           onOpenChange={isOpen => {
             setEditing(isOpen);
             if (!isOpen) {
-              onCancelEdit();
+              onCancel();
             }
           }}
           title={t('edit_life_area_title')}
           description={t('edit_life_area_description')}
         >
           <LifeAreaEditForm
-            {...props}
+            {...editFormProps}
             existingNames={existingNames}
             onCancelEdit={() => {
               setEditing(false);
-              onCancelEdit();
+              onCancel();
             }}
             onSaveEdit={() => {
+              if (editName.trim() === '') {
+                return;
+              }
               setEditing(false);
-              onSaveEdit();
+              handleSave();
             }}
           />
         </Dialog>
