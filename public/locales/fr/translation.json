@@ -108,7 +108,10 @@
     "toolbar_tooltip": "Regardez la barre d'outils flottante en bas à droite. Vous y accédez rapidement aux fonctionnalités telles que l'ajout de domaines prédéfinis, la réinitialisation, l'exportation/importation des données et le changement entre la vue carte et la vue radar.",
     "welcome_prompt": "Bienvenue à la boussole de vie !\nCommençons l'introduction. Voulez-vous démarrer avec des domaines prédéfinis ?\n(Vous pouvez toujours relancer l'introduction via le menu des paramètres.)",
     "with_predefined": "Avec des domaines prédéfinis (recommandé)",
-    "without_predefined": "Sans domaines prédéfinis"
+    "without_predefined": "Sans domaines prédéfinis",
+    "privacy_notice": "Nous respectons votre vie privée. Aucune de vos actions ou saisies n'est suivie ; toutes les données restent sur votre appareil.",
+    "actions": "Utilisez la barre d'actions pour ajouter des domaines de vie. Basculez entre les cartes et la vue radar avec le bouton Cartes / Radar, et accédez aux instantanés, à l'export et à l'import via \"Plus\". Vos paramètres et la langue se trouvent dans le menu en haut à droite.",
+    "title": "Introduction"
   },
   "plus_add_new_life_area": "+ Ajouter un nouveau domaine de vie",
   "privacyPolicy": {
@@ -181,5 +184,25 @@
   "radar_view_heading": "Votre boussole de vie en un coup d œil",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "contrast_theme_toggle": "Activer le thème à contraste élevé",
+  "goals": {
+    "open_goals": "Objectifs",
+    "dialog_title": "Objectifs pour {{area}}",
+    "dialog_description": "Définissez des objectifs pour ce domaine de vie et décomposez-les en étapes concrètes.",
+    "add_goal": "Ajouter un objectif",
+    "add_goal_placeholder": "Qu'est-ce que vous souhaitez accomplir ?",
+    "empty_state": "Aucun objectif pour l'instant. Ajoutez votre premier objectif pour commencer à agir dans ce domaine.",
+    "goal_title": "Titre de l'objectif",
+    "expand_goal": "Afficher les étapes",
+    "collapse_goal": "Masquer les étapes",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "Progression pour {{title}}",
+    "delete_goal_title": "Supprimer l'objectif",
+    "delete_goal_warning": "Cela supprimera l'objectif \"{{title}}\" et toutes ses étapes. Voulez-vous continuer ?",
+    "add_step": "Ajouter une étape",
+    "add_step_placeholder": "Ajouter une étape d'action",
+    "delete_step": "Supprimer l'étape"
+  },
+  "theme_system": "Système"
 }

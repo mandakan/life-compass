@@ -107,7 +107,10 @@
     "toolbar_tooltip": "Skoðaðu flottu verkfærabeltuna neðst til hægri. Þar færðu aðgang að fyrirfram skilgreindum sviðum, endurstillingum, útflutnings- og innflutningsgögnum og möguleika á að skipta milli kortsýningar og radar-sýnar.",
     "welcome_prompt": "Velkominn/nn í Lífsáttavituna!\nHefjum upphafsleiðbeininguna. Viltu byrja með fyrirfram skilgreindum sviðum?\n(Þú getur alltaf endurlesið leiðbeiningarnar í stillingavalmyndinni.)",
     "with_predefined": "Með fyrirfram skilgreindum sviðum (mælt með)",
-    "without_predefined": "Án fyrirfram skilgreinda sviða"
+    "without_predefined": "Án fyrirfram skilgreinda sviða",
+    "privacy_notice": "Við virðum friðhelgi þína. Engar aðgerðir þínar eða innsláttur eru raktar; öll gögn eru geymd á tækinu þínu.",
+    "actions": "Notaðu aðgerðarstikuna til að bæta við lífsvæðum. Skiptu á milli korta og ratsjáryfirlit með Kort / Ratsjá rofanum, og finndu skyndimyndir, útflutning og innflutning undir \"Meira\". Stillingar þínar og tungumál eru í valmyndinni efst til hægri.",
+    "title": "Kynning"
   },
   "plus_add_new_life_area": "+ Bæta við nýju sviði lífsins",
   "privacyPolicy": {
@@ -180,5 +183,26 @@
   "radar_view_heading": "Lífsáttavitinn þinn í yfirliti",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "contrast_theme_toggle": "Virkja háskýrleika þema",
+  "goals": {
+    "open_goals": "Markmið",
+    "dialog_title": "Markmið fyrir {{area}}",
+    "dialog_description": "Settu markmið fyrir þetta lífsvæði og skiptu þeim upp í aðgerðarskref.",
+    "add_goal": "Bæta við markmiði",
+    "add_goal_placeholder": "Hvað viltu ná fram?",
+    "empty_state": "Engin markmið enn. Bættu við fyrsta markmiðinu til að byrja að breyta þessu svæði í aðgerðir.",
+    "goal_title": "Heiti markmiðs",
+    "expand_goal": "Sýna skref",
+    "collapse_goal": "Fela skref",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "Framfarir fyrir {{title}}",
+    "delete_goal_title": "Eyða markmiði",
+    "delete_goal_warning": "Þetta mun eyða markmiðinu \"{{title}}\" og öllum skrefum þess. Viltu halda áfram?",
+    "add_step": "Bæta við skrefi",
+    "add_step_placeholder": "Bættu við aðgerðarskrefi",
+    "delete_step": "Eyða skrefi"
+  },
+  "name_is_required": "Nafn er nauðsynlegt",
+  "theme_system": "Kerfi"
 }

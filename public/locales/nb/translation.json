@@ -74,7 +74,28 @@
       "why_description": "Å ha klare verdier gir retning og motivasjon i livet. Uten disse kan vi føle oss fortapt eller usikre på valgene våre. Med et Livskompass kan du navigere utfordringer, ta beslutninger og leve mer i tråd med det som er meningsfullt for deg.",
       "why_title": "Hvorfor er det viktig?"
     },
-    "disclaimer_title": "Viktig å vite"
+    "disclaimer_title": "Viktig å vite",
+    "disclaimer_description": "Denne appen er ment som et selvrefleksjonsverktøy som hjelper deg å utforske hva som er viktig i livet ditt. Den er ikke ment å erstatte profesjonell hjelp, terapi eller kontakt med helsevesenet. Hvis du har det vanskelig eller trenger støtte, oppfordrer vi deg til å oppsøke profesjonell hjelp.",
+    "examples_description": "En verdi er ikke et mål, men en retning. Eksempler:",
+    "examples_family": "Relasjoner: \"Jeg vil være en tilstedeværende og omsorgsfull venn.\"",
+    "examples_health": "Helse: \"Jeg vil prioritere helsen min gjennom regelmessig trening og restitusjon.\"",
+    "examples_title": "Eksempler på verdier",
+    "examples_work": "Arbeid: \"Jeg vil bidra med noe meningsfullt og utvikle meg i faget mitt.\"",
+    "how_description": "Du reflekterer over ulike områder i livet ditt, for eksempel:",
+    "how_family": "Familie & relasjoner: Hvordan vil du være som partner, forelder eller venn?",
+    "how_health": "Helse & velvære: Hvordan tar du vare på deg selv fysisk og mentalt?",
+    "how_leisure": "Fritid & personlig utvikling: Hva gjør deg glad og engasjert?",
+    "how_title": "Hvordan fungerer det?",
+    "how_work": "Arbeid & karriere: Hva er viktigst for deg i arbeidet ditt?",
+    "next_steps_description": "Ved å utforske din egen Life Compass kan du begynne å handle i tråd med verdiene dine og skape et mer meningsfullt liv. Klikk på \"Start reisen din\" for å begynne!",
+    "next_steps_title": "Hva skjer videre?",
+    "privacy_description": "Vi respekterer personvernet ditt. Vi sporer ingen av handlingene dine eller det du skriver. Alle data lagres lokalt og deles ikke med noen ekstern part.",
+    "privacy_title": "Personvern og databeskyttelse",
+    "source_text": "Basert på materiale fra",
+    "what_is_description": "Life Compass er et verktøy for å reflektere over hva som virkelig er viktig i livet ditt. I stedet for å styres av kortsiktige mål eller ytre forventninger, hjelper det deg å identifisere dine kjerneverdier -- hva du står for og hvordan du vil leve livet ditt.",
+    "what_is_title": "Hva er Life Compass?",
+    "why_description": "Klare verdier gir retning og motivasjon i livet. Uten dem kan vi føle oss lost eller usikre i beslutningene våre. Med en Life Compass kan du navigere utfordringer, ta beslutninger og leve mer i tråd med det som er meningsfullt for deg.",
+    "why_title": "Hvorfor er det viktig?"
   },
   "language": "Språk",
   "life_areas_count": "Antall livsområder",
@@ -99,7 +120,9 @@
     "toolbar_tooltip": "Ta en titt på den flytende verktøylinjen nede til høyre. Den gir deg rask tilgang til handlinger som å legge til forhåndsdefinerte livsområder, tilbakestille, eksportere/importere data og bytte radarskjerm.",
     "welcome_prompt": "Velkommen til Livskompass!\nLa oss starte introduksjonen. Vil du begynne med forhåndsdefinerte livsområder?\n(Du kan alltid starte om introduksjonen fra innstillingsmenyen.)",
     "with_predefined": "Med forhåndsdefinerte livsområder (anbefales)",
-    "without_predefined": "Uten forhåndsdefinerte livsområder"
+    "without_predefined": "Uten forhåndsdefinerte livsområder",
+    "actions": "Bruk handlingslinjen til å legge til livsområder. Bytt mellom kortvisning og radaroversikt med Kort / Radar-bryteren, og finn øyeblikksbilder, eksport og import under \"Mer\". Innstillinger og språk finner du i menyen øverst til høyre.",
+    "title": "Introduksjon"
   },
   "plus_add_new_life_area": "+ Legg til nytt livsområde",
   "privacyPolicy": {
@@ -176,5 +199,25 @@
   "radar_view_heading": "Livskompasset ditt i oversikt",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "choose_theme": "Velg tema",
+  "contrast_theme_toggle": "Aktiver høykontrasttema",
+  "goals": {
+    "open_goals": "Mål",
+    "dialog_title": "Mål for {{area}}",
+    "dialog_description": "Sett mål for dette livsområdet og del dem opp i handlingssteg.",
+    "add_goal": "Legg til mål",
+    "add_goal_placeholder": "Hva ønsker du å oppnå?",
+    "empty_state": "Ingen mål ennå. Legg til ditt første mål for å begynne å omsette dette området til handling.",
+    "goal_title": "Måltittel",
+    "expand_goal": "Vis steg",
+    "collapse_goal": "Skjul steg",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "Fremgang for {{title}}",
+    "delete_goal_title": "Slett mål",
+    "delete_goal_warning": "Dette vil slette målet \"{{title}}\" og alle tilhørende steg. Vil du fortsette?",
+    "add_step": "Legg til steg",
+    "add_step_placeholder": "Legg til et handlingssteg",
+    "delete_step": "Slett steg"
+  }
 }
