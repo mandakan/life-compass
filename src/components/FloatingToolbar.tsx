@@ -58,7 +58,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
       {/* Toggle view button */}
       <button
         onClick={onToggleRadar}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg transition-colors hover:opacity-90 focus:outline-none"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-on-primary shadow-lg transition-colors hover:opacity-90 focus:outline-none"
         aria-label={showRadar ? t('show_card_view') : t('show_radar_view')}
       >
         {showRadar ? (
@@ -72,7 +72,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
       <Popover open={menuOpen} onOpenChange={setMenuOpen}>
         <PopoverTrigger asChild>
           <button
-            className="h-14 w-14 rounded-full bg-[var(--color-primary)] text-[var(--on-primary)] shadow-lg transition-colors hover:opacity-90 focus:outline-none"
+            className="h-14 w-14 rounded-full bg-primary text-on-primary shadow-lg transition-colors hover:opacity-90 focus:outline-none"
             aria-label={t('quick_actions')}
           >
             {menuOpen ? (
@@ -82,7 +82,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
             )}
           </button>
         </PopoverTrigger>
-        <PopoverContent className="z-50 w-64 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 shadow-lg">
+        <PopoverContent className="z-50 w-64 rounded-md border border-border bg-bg p-4 shadow-lg">
           <div className="flex flex-col gap-2">
             <Button variant="primary" onClick={onAddPredefinedAreas}>
               {t('add_predefined')}
@@ -95,7 +95,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
               onFileSelected={onImportFile}
               onError={handleImportError}
             />
-            <Button variant="accent" onClick={onRemoveAll}>
+            <Button variant="danger" onClick={onRemoveAll}>
               {t('delete_all')}
             </Button>
           </div>

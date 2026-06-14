@@ -19,7 +19,7 @@ function DesignPrinciplesDemo() {
   const { theme: themeMode } = useTheme();
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] p-8 font-sans text-[var(--color-text)] transition-colors duration-300">
+    <div className="min-h-screen bg-bg p-8 font-sans text-text transition-colors duration-300">
       <style>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
@@ -32,14 +32,14 @@ function DesignPrinciplesDemo() {
 
       {/* Language and Theme Switchers */}
       <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="rounded-md border border-[var(--border)] p-4">
+        <div className="rounded-md border border-border p-4">
           <h2 className="mb-4 text-xl font-semibold">
             {t('language_settings', 'Språkinställningar')}
           </h2>
           <LanguageSwitcher />
         </div>
 
-        <div className="rounded-md border border-[var(--border)] p-4">
+        <div className="rounded-md border border-border p-4">
           <h2 className="mb-4 text-xl font-semibold">
             {t('theme_settings', 'Temainställningar')}
           </h2>
@@ -47,7 +47,7 @@ function DesignPrinciplesDemo() {
         </div>
       </div>
       {/* Card Example */}
-      <div className="m-4 cursor-pointer rounded-md border bg-[var(--color-bg)] p-4 text-center text-[var(--color-text)] shadow transition-all duration-300 hover:shadow-lg hover:brightness-95 hover:filter">
+      <div className="m-4 cursor-pointer rounded-md border bg-bg p-4 text-center text-text shadow transition-all duration-300 hover:shadow-lg hover:brightness-95 hover:filter">
         <h2 className="mb-2 text-lg font-semibold">Kortkomponent</h2>
         <p>
           Detta kort demonstrerar användningen av design tokens för typografi,
@@ -56,7 +56,7 @@ function DesignPrinciplesDemo() {
       </div>
       {/* Button Example */}
       <div className="mt-8 text-center">
-        <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
+        <button className="mx-2 cursor-pointer rounded-sm bg-primary px-4 py-2 text-on-primary transition-all duration-150 hover:brightness-95 focus:ring focus:ring-focus focus:outline-none">
           Exempelkknapp
         </button>
       </div>
@@ -65,7 +65,7 @@ function DesignPrinciplesDemo() {
         <input
           type="text"
           placeholder="Exempel på inmatning"
-          className="m-2 w-full max-w-xs rounded border border-[var(--border)] bg-[var(--color-bg)] p-2 font-sans text-[var(--color-text)]"
+          className="m-2 w-full max-w-xs rounded border border-border bg-bg p-2 font-sans text-text"
         />
       </div>
       {/* Callout Example */}
@@ -81,7 +81,7 @@ function DesignPrinciplesDemo() {
       <div className="mt-8 text-center">
         <h3 className="mb-2 text-lg font-semibold">Tooltip Example</h3>
         <Tooltip content="Detta är en tooltip!">
-          <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
+          <button className="mx-2 cursor-pointer rounded-sm bg-primary px-4 py-2 text-on-primary transition-all duration-150 hover:brightness-95 focus:ring focus:ring-focus focus:outline-none">
             Hover me for Tooltip
           </button>
         </Tooltip>
@@ -92,7 +92,7 @@ function DesignPrinciplesDemo() {
         <h3 className="mb-2 text-lg font-semibold">Popover Example</h3>
         <Popover
           trigger={
-            <button className="mx-2 cursor-pointer rounded-sm bg-[var(--color-secondary)] px-4 py-2 text-[var(--color-text)] transition-all duration-150 hover:brightness-95 focus:ring focus:ring-[var(--focus-ring)] focus:outline-none">
+            <button className="mx-2 cursor-pointer rounded-sm bg-secondary px-4 py-2 text-text transition-all duration-150 hover:brightness-95 focus:ring focus:ring-focus focus:outline-none">
               Click for Popover
             </button>
           }
@@ -113,7 +113,7 @@ function DesignPrinciplesDemo() {
           Hovra över denna{' '}
           <span className="group relative inline-block border-b border-dotted border-gray-500">
             text
-            <span className="absolute bottom-full left-1/2 mb-2 w-[200px] -translate-x-1/2 transform rounded bg-[var(--color-bg)] px-2 py-1 text-center text-[var(--color-text)] opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+            <span className="absolute bottom-full left-1/2 mb-2 w-[200px] -translate-x-1/2 transform rounded bg-bg px-2 py-1 text-center text-text opacity-0 transition-opacity duration-150 group-hover:opacity-100">
               Detta är ytterligare information vid hovring.
             </span>
           </span>{' '}
@@ -123,9 +123,9 @@ function DesignPrinciplesDemo() {
       {/* Progress Bar Example */}
       <div className="mt-8 text-center">
         <h3 className="mb-2 text-lg font-semibold">Framstegsindikator</h3>
-        <div className="mx-auto my-4 w-full max-w-md overflow-hidden rounded-sm bg-[var(--border)]">
+        <div className="mx-auto my-4 w-full max-w-md overflow-hidden rounded-sm bg-border">
           <div
-            className="h-4 bg-[var(--color-primary)] transition-all duration-300"
+            className="h-4 bg-primary transition-all duration-300"
             style={{ width: '70%' }}
           ></div>
         </div>
@@ -133,7 +133,7 @@ function DesignPrinciplesDemo() {
       {/* Spinner Example */}
       <div className="mt-8 text-center">
         <h3 className="mb-2 text-lg font-semibold">Laddningssymbol</h3>
-        <div className="mx-auto my-4 h-10 w-10 animate-spin rounded-full border-4 border-[var(--border)] border-t-[var(--color-accent)]"></div>
+        <div className="mx-auto my-4 h-10 w-10 animate-spin rounded-full border-4 border-border border-t-primary"></div>
       </div>
       {/* Dropdown Menu Example */}
       <div className="mt-8 text-center">
@@ -141,7 +141,7 @@ function DesignPrinciplesDemo() {
         <select
           value={dropdownValue}
           onChange={e => setDropdownValue(e.target.value)}
-          className="m-2 w-full max-w-xs rounded border border-[var(--border)] bg-[var(--color-bg)] p-2 font-sans text-[var(--color-text)]"
+          className="m-2 w-full max-w-xs rounded border border-border bg-bg p-2 font-sans text-text"
         >
           <option value="option1">Alternativ 1</option>
           <option value="option2">Alternativ 2</option>
@@ -192,7 +192,7 @@ function DesignPrinciplesDemo() {
         <h3 className="mb-2 text-lg font-semibold">Dra mig</h3>
         <div
           draggable
-          className="mx-auto my-4 h-5 w-20 cursor-grab rounded-sm bg-[var(--color-secondary)] text-center leading-5"
+          className="mx-auto my-4 h-5 w-20 cursor-grab rounded-sm bg-secondary text-center leading-5"
           onDragStart={e => {
             e.dataTransfer.setData('text/plain', 'DraggingHandle');
           }}

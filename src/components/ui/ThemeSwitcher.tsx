@@ -11,37 +11,24 @@ export const ThemeSwitcher = () => {
   return (
     <Select.Root
       value={theme}
-      onValueChange={(
-        value:
-          | 'light'
-          | 'dark'
-          | 'high-contrast'
-          | 'sugar-sweet-light'
-          | 'sugar-sweet-dark',
-      ) => setTheme(value)}
+      onValueChange={(value: 'light' | 'dark' | 'high-contrast') =>
+        setTheme(value)
+      }
     >
-      <Select.Trigger className="inline-flex items-center justify-between rounded border px-3 py-1 text-sm shadow-sm focus:outline-none">
+      <Select.Trigger className="inline-flex min-h-[44px] items-center justify-between gap-2 rounded-md border border-border bg-surface px-3 py-2 text-base text-text shadow-warm-sm transition-colors duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
         <Select.Value placeholder={t('choose_theme')} />
         <Select.Icon>
           <ChevronDownIcon className="h-4 w-4" />
         </Select.Icon>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content className="z-50 rounded border bg-[var(--color-bg)] p-1 shadow-md">
+        <Select.Content className="z-50 rounded-md border border-border bg-surface p-1 text-text shadow-warm-md">
           <Select.Viewport>
-            {(
-              [
-                'light',
-                'dark',
-                'high-contrast',
-                'sugar-sweet-light',
-                'sugar-sweet-dark',
-              ] as const
-            ).map(value => (
+            {(['light', 'dark', 'high-contrast'] as const).map(value => (
               <Select.Item
                 key={value}
                 value={value}
-                className="cursor-pointer rounded px-2 py-1 text-sm select-none hover:bg-[var(--hover-bg)] focus:bg-[var(--focus-bg)]"
+                className="cursor-pointer rounded-sm px-2 py-2 text-base select-none hover:bg-surface-sunken focus-visible:bg-surface-sunken focus-visible:outline-none data-[state=checked]:font-medium data-[state=checked]:text-primary"
               >
                 <Select.ItemText>{t(`theme.${value}`)}</Select.ItemText>
               </Select.Item>

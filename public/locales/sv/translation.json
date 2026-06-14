@@ -154,9 +154,7 @@
     "dark": "Mörkt tema",
     "title": "Tema",
     "high-contrast": "Högkontrasttema",
-    "light": "Ljust tema",
-    "sugar-sweet-dark": "Sockersött tema (mörkt)",
-    "sugar-sweet-light": "Sockersött tema"
+    "light": "Ljust tema"
   },
   "theme_updated": "Temat har uppdaterats",
   "toggle_mobile_navigation": "Växla mobil navigering",

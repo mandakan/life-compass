@@ -91,8 +91,8 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
   const step = steps[currentStep];
 
   const buttonBaseClasses = 'px-3 py-1 rounded';
-  const primaryButtonClasses = `bg-[var(--color-primary)] text-[var(--on-primary)] ${buttonBaseClasses}`;
-  const detailsButtonClasses = `bg-[var(--details-bg)] text-[var(--color-text)] ${buttonBaseClasses}`;
+  const primaryButtonClasses = `bg-primary text-on-primary ${buttonBaseClasses}`;
+  const detailsButtonClasses = `bg-surface-sunken text-text ${buttonBaseClasses}`;
 
   const nextButtonText =
     currentStep === steps.length - 1
@@ -149,7 +149,7 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
       )}
       {step.type === 'tooltip' && (
         <Tooltip>
-          <div className="rounded-lg bg-[var(--color-bg)] p-4 shadow-lg">
+          <div className="rounded-lg bg-bg p-4 shadow-lg">
             <div className="mb-4">
               <ReactMarkdown>{step.content}</ReactMarkdown>
             </div>

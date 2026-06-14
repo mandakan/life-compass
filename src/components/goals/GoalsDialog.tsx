@@ -80,7 +80,7 @@ const GoalsDialog: React.FC<GoalsDialogProps> = ({
       </form>
 
       {goals.length === 0 ? (
-        <p className="mt-4 text-sm text-[var(--color-text)] opacity-70">
+        <p className="mt-4 text-sm text-text opacity-70">
           {t('goals.empty_state')}
         </p>
       ) : (

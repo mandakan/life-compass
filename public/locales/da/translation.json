@@ -144,9 +144,7 @@
     "dark": "Mørkt tema",
     "title": "Tema",
     "high-contrast": "Højkontrasttema",
-    "light": "Ljust tema",
-    "sugar-sweet-dark": "Sukkersødt tema (mørkt)",
-    "sugar-sweet-light": "Sukkersødt tema"
+    "light": "Ljust tema"
   },
   "theme_system": "Systemtema",
   "toggle_mobile_navigation": "Skift mobil navigation",

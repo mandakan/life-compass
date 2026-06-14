@@ -154,9 +154,7 @@
     "dark": "Thème sombre",
     "title": "Thème",
     "high-contrast": "Thème à contraste élevé",
-    "light": "Thème clair",
-    "sugar-sweet-dark": "Thème Sugar Sweet (sombre)",
-    "sugar-sweet-light": "Thème Sugar Sweet (clair)"
+    "light": "Thème clair"
   },
   "theme_updated": "Le thème a été mis à jour",
   "toggle_mobile_navigation": "Basculer la navigation mobile",

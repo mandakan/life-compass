@@ -160,9 +160,7 @@
     "dark": "Dark theme",
     "title": "Theme",
     "high-contrast": "High contrast theme",
-    "light": "Light theme",
-    "sugar-sweet-dark": "Sugar sweet theme (dark)",
-    "sugar-sweet-light": "Sugar sweet theme"
+    "light": "Light theme"
   },
   "theme_system": "System",
   "toggle_mobile_navigation": "Toggle mobile navigation",

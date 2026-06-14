@@ -91,14 +91,14 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           data-testid={testId || 'language-switcher'}
           id="language-switcher"
           variant="ghost"
-          className="flex items-center gap-2 border border-[var(--border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--hover-bg)]"
+          className="flex items-center gap-2 border border-border bg-bg text-text hover:bg-surface-sunken"
         >
           {displayLabel}
           {!compact && <ChevronDownIcon className="h-4 w-4" />}
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="z-50 w-52 rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-1 shadow-lg"
+        className="z-50 w-52 rounded-md border border-border bg-bg p-1 shadow-lg"
         align="start"
       >
         <ul className="space-y-1">
@@ -111,10 +111,10 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                   setSelectedLanguage(lang.code);
                   localStorage.setItem('selectedLanguage', lang.code);
                 }}
-                className={`w-full rounded px-3 py-2 text-left text-sm hover:bg-[var(--hover-bg)] focus:outline-none ${
+                className={`w-full rounded px-3 py-2 text-left text-sm hover:bg-surface-sunken focus:outline-none ${
                   selectedLanguage === lang.code
-                    ? 'text-[var(--accent)]'
-                    : 'text-[var(--color-text)]'
+                    ? 'text-primary'
+                    : 'text-text'
                 }`}
               >
                 {`${flagMap[lang.code] ?? lang.code.toUpperCase()} - ${lang.name}`}

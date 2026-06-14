@@ -87,14 +87,14 @@ const Popover: React.FC<PopoverProps> = ({
           sticky={sticky}
           hideWhenDetached={hideWhenDetached}
           className={cn(
-            'z-[9999] max-h-[80vh] w-[200px] max-w-[90vw] overflow-y-auto rounded-md border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-lg focus:outline-none sm:w-[280px] md:w-[350px]',
+            'z-[9999] max-h-[80vh] w-[200px] max-w-[90vw] overflow-y-auto rounded-lg border border-border bg-surface p-4 text-text shadow-warm-md focus:outline-none sm:w-[280px] md:w-[350px]',
             contentClassName,
           )}
         >
           {closeButton && (
             <RadixPopover.Close asChild>
               <button
-                className="absolute top-2 right-2 rounded-sm text-[var(--color-text)] hover:text-[var(--color-primary)] focus:ring-2 focus:ring-[var(--focus-ring)] focus:outline-none"
+                className="absolute top-2 right-2 inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md text-text transition-colors duration-base ease-out-soft hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                 aria-label="Close"
               >
                 <XMarkIcon className="h-4 w-4" />
@@ -103,7 +103,7 @@ const Popover: React.FC<PopoverProps> = ({
           )}
           {children}
           <RadixPopover.Arrow
-            className={cn('fill-[var(--border)]', arrowClassName)}
+            className={cn('fill-border', arrowClassName)}
           />
         </RadixPopover.Content>
       </RadixPopover.Portal>

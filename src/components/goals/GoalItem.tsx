@@ -52,7 +52,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
   };
 
   return (
-    <li className="rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-3">
+    <li className="rounded-sm border border-border bg-bg p-3">
       <div className="flex items-center gap-2">
         <button
           type="button"
@@ -63,7 +63,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
               ? t('goals.collapse_goal')
               : t('goals.expand_goal')
           }
-          className="flex-none cursor-pointer border-none bg-transparent text-[var(--color-text)] hover:opacity-70"
+          className="flex-none cursor-pointer border-none bg-transparent text-text hover:opacity-70"
         >
           {expanded ? (
             <ChevronDownIcon className="size-4" />
@@ -110,7 +110,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
           <button
             type="button"
             onClick={() => setExpanded(prev => !prev)}
-            className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-[var(--color-text)]"
+            className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-text"
             title={goal.title}
           >
             {goal.title}
@@ -119,7 +119,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
 
         {!editing && (
           <div className="flex flex-none items-center gap-2">
-            <span className="text-xs whitespace-nowrap text-[var(--color-text)] opacity-70">
+            <span className="text-xs whitespace-nowrap text-text opacity-70">
               {t('goals.progress_count', {
                 done: progress.done,
                 total: progress.total,
@@ -133,7 +133,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
               }}
               title={t('edit')}
               aria-label={`${t('edit')}: ${goal.title}`}
-              className="cursor-pointer border-none bg-transparent text-[var(--color-text)] hover:opacity-70"
+              className="cursor-pointer border-none bg-transparent text-text hover:opacity-70"
             >
               <PencilIcon className="size-4" />
             </button>
@@ -142,7 +142,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
               onClick={handleDelete}
               title={t('delete')}
               aria-label={`${t('delete')}: ${goal.title}`}
-              className="cursor-pointer border-none bg-transparent text-[var(--color-text)] hover:opacity-70"
+              className="cursor-pointer border-none bg-transparent text-text hover:opacity-70"
             >
               <TrashIcon className="size-4" />
             </button>

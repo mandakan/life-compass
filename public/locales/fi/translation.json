@@ -155,9 +155,7 @@
     "dark": "Tumma teema",
     "title": "Teema",
     "high-contrast": "Korkean kontrastin teema",
-    "light": "Vaalea teema",
-    "sugar-sweet-dark": "Sokerimainen tumma teema",
-    "sugar-sweet-light": "Sokerimainen vaalea teema"
+    "light": "Vaalea teema"
   },
   "toggle_mobile_navigation": "Vaihda mobiilinavigointi",
   "toggle_settings_menu": "Vaihda asetusvalikko",
