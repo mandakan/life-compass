@@ -35,7 +35,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         className,
       )}
     >
-      <span className="relative inline-flex h-5 w-5 flex-none items-center justify-center">
+      <span className="relative inline-flex h-11 w-11 flex-none items-center justify-center">
         <input
           id={id}
           type="checkbox"
@@ -48,16 +48,16 @@ const Checkbox: React.FC<CheckboxProps> = ({
         <span
           aria-hidden="true"
           className={cn(
-            'pointer-events-none flex h-5 w-5 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--input-bg)] text-[var(--on-primary)] transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--color-primary)]',
-            checked && 'border-[var(--color-primary)] bg-[var(--color-primary)]',
+            'pointer-events-none flex h-5 w-5 items-center justify-center rounded-sm border border-border bg-surface text-on-primary',
+            'transition-colors duration-base ease-out-soft',
+            'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus',
+            checked && 'border-primary bg-primary',
           )}
         >
           {checked && <CheckIcon className="h-4 w-4" strokeWidth={3} />}
         </span>
       </span>
-      {!hideLabel && (
-        <span className="text-sm text-[var(--color-text)]">{label}</span>
-      )}
+      {!hideLabel && <span className="text-base text-text">{label}</span>}
     </label>
   );
 };

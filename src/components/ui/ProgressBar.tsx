@@ -31,12 +31,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       aria-valuenow={clamped}
       aria-label={label}
       className={cn(
-        'h-2 w-full overflow-hidden rounded-full bg-[var(--details-bg)]',
+        'h-2 w-full overflow-hidden rounded-full bg-surface-sunken',
         className,
       )}
     >
       <div
-        className="h-full rounded-full bg-[var(--color-primary)] transition-[width] duration-200"
+        className="h-full rounded-full bg-primary transition-[width] duration-base ease-out-soft"
         style={{ width: `${pct}%` }}
       />
     </div>

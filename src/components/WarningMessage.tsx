@@ -9,7 +9,7 @@ export interface WarningMessageProps {
 const WarningMessage: React.FC<WarningMessageProps> = ({ message, title }) => {
   const { t } = useTranslation();
   return (
-    <div className="my-4 border-l-4 border-[var(--color-accent)] bg-[var(--color-bg)] p-4 text-[var(--color-text)]">
+    <div className="my-4 border-l-4 border-warning bg-bg p-4 text-text">
       <h3 className="mb-2 text-lg font-semibold">
         {title ? title : t('warning')}
       </h3>

@@ -143,9 +143,7 @@
     "dark": "Dunkles Thema",
     "title": "Thema",
     "high-contrast": "Hochkontrastthema",
-    "light": "Helles Thema",
-    "sugar-sweet-dark": "Zuckersüßes Thema (dunkel)",
-    "sugar-sweet-light": "Zuckersüßes Thema"
+    "light": "Helles Thema"
   },
   "theme_switcher_label": "Wählen Sie ein Thema",
   "toggle_high_contrast": "Hohen Kontrast ein-/ausschalten",

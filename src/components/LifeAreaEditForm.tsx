@@ -67,7 +67,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           </label>
           <Popover
             trigger={
-              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+              <QuestionMarkCircleIcon className="w-5 text-primary" />
             }
           >
             <p>{t('name_help')}</p>
@@ -94,7 +94,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           </label>
           <Popover
             trigger={
-              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+              <QuestionMarkCircleIcon className="w-5 text-primary" />
             }
           >
             <p>{t('description_help')}</p>
@@ -115,7 +115,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           </label>
           <Popover
             trigger={
-              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+              <QuestionMarkCircleIcon className="w-5 text-primary" />
             }
           >
             <p>{t('details_help')}</p>
@@ -136,7 +136,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           </label>
           <Popover
             trigger={
-              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+              <QuestionMarkCircleIcon className="w-5 text-primary" />
             }
           >
             <p>{t('importance_help')}</p>
@@ -162,7 +162,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
           </label>
           <Popover
             trigger={
-              <QuestionMarkCircleIcon className="w-5 text-[var(--color-primary)]" />
+              <QuestionMarkCircleIcon className="w-5 text-primary" />
             }
           >
             <p>{t('satisfaction_help')}</p>
@@ -185,7 +185,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
         <Button onClick={onSaveEdit} disabled={isDuplicate} className="w-full">
           {t('save')}
         </Button>
-        <Button onClick={onCancelEdit} variant="outline" className="w-full">
+        <Button onClick={onCancelEdit} variant="secondary" className="w-full">
           {t('cancel')}
         </Button>
       </div>

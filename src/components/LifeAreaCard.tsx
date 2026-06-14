@@ -133,7 +133,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   if (!isDesktop && isEditing) {
     return (
       <div
-        className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
+        className={`relative flex flex-grow flex-col rounded-sm border border-border bg-bg p-4 text-text shadow-sm transition-all ${className || ''}`}
       >
         <LifeAreaEditForm
           {...editFormProps}
@@ -146,7 +146,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   return (
     <div
-      className={`relative flex flex-grow flex-col rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] shadow-sm transition-all ${className || ''}`}
+      className={`relative flex flex-grow flex-col rounded-sm border border-border bg-bg p-4 text-text shadow-sm transition-all ${className || ''}`}
     >
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 cursor-grab opacity-90"
@@ -185,13 +185,13 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div className="flex items-center gap-2">
           <Popover
             trigger={
-              <InformationCircleIcon className="h-6 w-6 flex-none shrink-0 text-[var(--color-primary)]" />
+              <InformationCircleIcon className="h-6 w-6 flex-none shrink-0 text-primary" />
             }
             className="max-w-2xl"
           >
             {<p>{area.description}</p>}
           </Popover>
-          <h4 className="text-lg font-semibold text-[var(--color-primary)]">
+          <h4 className="text-lg font-semibold text-primary">
             {area.name}
           </h4>
         </div>
@@ -200,7 +200,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             onClick={() => setGoalsOpen(true)}
             title={t('goals.open_goals')}
             aria-label={`${t('goals.open_goals')} ${area.name}`}
-            className="flex cursor-pointer items-center gap-1 border-none bg-transparent text-[var(--color-text)]"
+            className="flex cursor-pointer items-center gap-1 border-none bg-transparent text-text"
           >
             <FlagIcon className="size-5" />
             <span className="text-sm">{goalCount}</span>
@@ -225,7 +225,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       </div>
       <div
         onClick={() => setEditingDetailsInline(true)}
-        className="h-[120px] cursor-text rounded-sm bg-[var(--details-bg)] px-0 py-0 font-sans transition-colors hover:bg-[var(--hover-bg)]"
+        className="h-[120px] cursor-text rounded-sm bg-surface-sunken px-0 py-0 font-sans transition-colors hover:bg-surface"
         role="button"
         tabIndex={0}
         onKeyDown={e => {
@@ -264,11 +264,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               }
             }}
             autoFocus
-            className="block h-[120px] w-full flex-1 resize-none bg-[var(--details-bg)] px-2 py-1 font-sans text-base outline-none"
+            className="block h-[120px] w-full flex-1 resize-none bg-surface-sunken px-2 py-1 font-sans text-base outline-none"
           />
         ) : (
           <div className="h-[120px] w-full px-2 py-1">
-            <span className="whitespace-pre-wrap text-[var(--color-text)]">
+            <span className="whitespace-pre-wrap text-text">
               {area.details || t('click_to_edit_details')}
             </span>
           </div>
@@ -280,7 +280,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <div className="flex items-center gap-1">{t('importance')}</div>
             <Popover
               trigger={
-                <div className="flex cursor-pointer items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
+                <div className="flex cursor-pointer items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-text">
                   <span role="img" aria-label="Importance">
                     ⭐
                   </span>
@@ -317,7 +317,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </div>
             <Popover
               trigger={
-                <div className="flex cursor-pointer items-center gap-1 rounded bg-[var(--details-bg)] px-2 py-0.5 text-sm text-[var(--color-text)]">
+                <div className="flex cursor-pointer items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-text">
                   <span role="img" aria-label="Satisfaction">
                     ❤️
                   </span>

@@ -8,20 +8,20 @@ const Introduction = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mx-auto max-w-4xl rounded-lg bg-[var(--callout-bg)] px-4 py-4 text-[var(--color-text)] shadow">
-      <h2 className="mb-4 text-3xl font-bold text-[var(--color-primary)]">
+    <div className="mx-auto max-w-4xl rounded-lg bg-surface px-4 py-4 text-text shadow">
+      <h2 className="mb-4 text-3xl font-bold text-primary">
         {t('introduction.what_is_title')}
       </h2>
       <p className="mb-6">{t('introduction.what_is_description')}</p>
 
-      <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+      <h3 className="mb-3 text-2xl font-semibold text-primary">
         {t('introduction.why_title')}
       </h3>
       <p className="mb-6">{t('introduction.why_description')}</p>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
-          <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+          <h3 className="mb-3 text-2xl font-semibold text-primary">
             {t('introduction.how_title')}
           </h3>
           <p className="mb-6">{t('introduction.how_description')}</p>
@@ -29,7 +29,7 @@ const Introduction = () => {
             {['how_family', 'how_work', 'how_health', 'how_leisure'].map(
               key => (
                 <li key={key} className="flex items-start space-x-3">
-                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-[var(--color-primary)]" />
+                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-primary" />
                   <span className="text-lg">{t(`introduction.${key}`)}</span>
                 </li>
               ),
@@ -37,7 +37,7 @@ const Introduction = () => {
           </ul>
         </div>
         <div>
-          <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+          <h3 className="mb-3 text-2xl font-semibold text-primary">
             {t('introduction.examples_title')}
           </h3>
           <p className="mb-6">{t('introduction.examples_description')}</p>
@@ -45,7 +45,7 @@ const Introduction = () => {
             {['examples_family', 'examples_work', 'examples_health'].map(
               key => (
                 <li key={key} className="flex items-start space-x-3">
-                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-[var(--color-primary)]" />
+                  <CheckCircleIcon className="h-6 w-6 flex-shrink-0 text-primary" />
                   <span className="text-lg">{t(`introduction.${key}`)}</span>
                 </li>
               ),
@@ -54,14 +54,14 @@ const Introduction = () => {
         </div>
       </div>
 
-      <div className="mt-4 mb-8 text-center text-sm text-[var(--color-primary)]">
+      <div className="mt-4 mb-8 text-center text-sm text-primary">
         <p>
           {t('introduction.source_text')}{' '}
           <a
             href="https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--accent)] underline"
+            className="text-primary underline"
           >
             KBT i primärvården
           </a>
@@ -69,7 +69,7 @@ const Introduction = () => {
       </div>
 
       <div className="mx-auto max-w-xl text-center">
-        <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+        <h3 className="mb-3 text-2xl font-semibold text-primary">
           {t('introduction.next_steps_title')}
         </h3>
         <p className="">{t('introduction.next_steps_description')}</p>
@@ -82,7 +82,7 @@ const Introduction = () => {
       </CustomButton>
 
       <div className="mt-8">
-        <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+        <h3 className="mb-3 text-2xl font-semibold text-primary">
           {t('introduction.disclaimer_title', 'Viktigt att veta')}
         </h3>
         <p className="mb-6">
@@ -94,7 +94,7 @@ const Introduction = () => {
       </div>
 
       <div className="mt-8">
-        <h3 className="mb-3 text-2xl font-semibold text-[var(--color-primary)]">
+        <h3 className="mb-3 text-2xl font-semibold text-primary">
           {t('introduction.privacy_title', 'Privacy and Data Protection')}
         </h3>
         <p className="mb-6">

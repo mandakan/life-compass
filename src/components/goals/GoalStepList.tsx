@@ -49,7 +49,7 @@ const GoalStepList: React.FC<GoalStepListProps> = ({ goalId, steps }) => {
               onClick={() => removeStep(goalId, step.id)}
               title={t('goals.delete_step')}
               aria-label={`${t('goals.delete_step')}: ${step.text}`}
-              className="flex-none cursor-pointer border-none bg-transparent text-[var(--color-text)] hover:opacity-70"
+              className="flex-none cursor-pointer border-none bg-transparent text-text hover:opacity-70"
             >
               <TrashIcon className="size-4" />
             </button>

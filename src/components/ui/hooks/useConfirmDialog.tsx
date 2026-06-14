@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import Dialog from '@components/ui/Dialog';
+import Button from '@components/ui/Button';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -70,19 +71,13 @@ export const useConfirmDialog = () => {
       type={type}
       description={message}
     >
-      <div className="mt-4 space-x-2 text-right">
-        <button
-          onClick={handleCancel}
-          className="rounded-sm bg-[var(--color-primary)] px-3 py-1 text-[var(--on-primary)]"
-        >
+      <div className="mt-4 flex justify-end gap-2">
+        <Button variant="secondary" size="sm" onClick={handleCancel}>
           {cancelLabel}
-        </button>
-        <button
-          onClick={handleConfirm}
-          className="rounded-sm bg-[var(--color-accent)] px-3 py-1 text-[var(--on-accent)]"
-        >
+        </Button>
+        <Button variant="danger" size="sm" onClick={handleConfirm}>
           {confirmLabel}
-        </button>
+        </Button>
       </div>
     </Dialog>
   ) : null;

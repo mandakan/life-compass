@@ -89,7 +89,7 @@ const RadarTooltip = ({
       <div
         style={{
           backgroundColor: 'var(--color-bg)',
-          border: `1px solid var(--border)`,
+          border: `1px solid var(--color-border)`,
           padding: 10,
           color: 'var(--color-text)',
         }}
@@ -142,7 +142,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
   }, [data]);
 
   return (
-    <div className="bg-[var(--bg)]">
+    <div className="bg-bg">
       <ResponsiveContainer
         width={width}
         {...(aspect ? { aspect } : { height })}
@@ -153,7 +153,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
           startAngle={90}
           endAngle={-270}
         >
-          <PolarGrid stroke="var(--border)" strokeWidth={axisStrokeWidth} />
+          <PolarGrid stroke="var(--color-border)" strokeWidth={axisStrokeWidth} />
           <PolarAngleAxis
             dataKey="area"
             tick={
@@ -167,7 +167,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
             domain={[0, 10]}
             tick={false}
             axisLine={{
-              stroke: 'var(--border)',
+              stroke: 'var(--color-border)',
               strokeWidth: axisStrokeWidth,
             }}
           />

@@ -1,5 +1,6 @@
 // components/ui/WarningDialog.tsx
 import Dialog from './Dialog';
+import Button from './Button';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 
@@ -27,20 +28,14 @@ const WarningDialog: React.FC<WarningDialogProps> = ({
       title={t('are_you_sure')}
       type="warning"
     >
-      <div className="text-sm">{message}</div>
-      <div className="mt-4 space-x-2 text-right">
-        <button
-          onClick={onCancel}
-          className="rounded-sm bg-[var(--color-primary)] px-3 py-1 text-[var(--on-primary)] transition-colors duration-150"
-        >
+      <div className="text-base">{message}</div>
+      <div className="mt-4 flex justify-end gap-2">
+        <Button variant="secondary" size="sm" onClick={onCancel}>
           {t('cancel')}
-        </button>
-        <button
-          onClick={onConfirm}
-          className="rounded-sm bg-[var(--color-accent)] px-3 py-1 text-[var(--on-accent)] transition-colors duration-150"
-        >
+        </Button>
+        <Button variant="danger" size="sm" onClick={onConfirm}>
           {t('continue')}
-        </button>
+        </Button>
       </div>
     </Dialog>
   );

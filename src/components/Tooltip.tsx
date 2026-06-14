@@ -1,6 +1,5 @@
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import React from 'react';
-import { tooltip } from '../designTokens';
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -25,7 +24,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
-            className="animate-fadeIn z-[9999] max-w-[200px] rounded-[4px] border border-[var(--color-primary)] bg-[var(--tooltip-bg)] p-[0.5rem] text-sm font-medium text-[var(--tooltip-text)] shadow-lg transition-opacity duration-300"
+            className="animate-fadeIn z-[9999] max-w-[200px] rounded-[4px] border border-primary bg-surface p-[0.5rem] text-sm font-medium text-text shadow-lg transition-opacity duration-300"
             side={side}
             align={align}
             sideOffset={sideOffset}
@@ -33,7 +32,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           >
             {content}
             <TooltipPrimitive.Arrow
-              className="fill-[var(--color-primary)]"
+              className="fill-primary"
               width={10}
               height={5}
             />

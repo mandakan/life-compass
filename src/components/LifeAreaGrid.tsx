@@ -76,7 +76,7 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
           onDrop={onDrop(index)}
           className={`flex h-full w-full ${
             dragOverIndex === index
-              ? 'border-2 border-dashed border-[var(--color-primary)]'
+              ? 'border-2 border-dashed border-primary'
               : ''
           }`}
         >
@@ -88,7 +88,7 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
             onSave={onSaveArea}
             onCancel={onCancelEdit}
             existingNames={existingNames}
-            className="w-full rounded-sm border border-[var(--border)] bg-[var(--color-bg)] p-4 font-sans"
+            className="w-full rounded-sm border border-border bg-bg p-4 font-sans"
             onAutoUpdateRating={onAutoUpdateRating}
             dragHandle={{
               draggable: editingAreaId === area.id ? false : true,
@@ -100,9 +100,9 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
       ))}
       <div
         onClick={() => onAddNewArea(areas.length)}
-        className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-[var(--color-primary)] p-4"
+        className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-primary p-4"
       >
-        <span className="text-[var(--color-primary)]">
+        <span className="text-primary">
           {t('plus_add_new_life_area')}
         </span>
       </div>

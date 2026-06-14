@@ -16,11 +16,11 @@ interface DialogProps {
 }
 
 const typeStyles: Record<DialogType, { iconColor: string }> = {
-  default: { iconColor: 'text-[var(--color-text)]' },
-  success: { iconColor: 'text-green-600' },
-  warning: { iconColor: 'text-yellow-600' },
-  error: { iconColor: 'text-red-600' },
-  info: { iconColor: 'text-blue-600' },
+  default: { iconColor: 'text-text' },
+  success: { iconColor: 'text-success' },
+  warning: { iconColor: 'text-warning' },
+  error: { iconColor: 'text-danger' },
+  info: { iconColor: 'text-secondary' },
 };
 
 const Dialog = ({
@@ -47,8 +47,8 @@ const Dialog = ({
         <RadixDialog.Overlay className="fixed inset-0 z-40 bg-black/50" />
         <RadixDialog.Content
           className={clsx(
-            'fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl p-6 shadow-lg',
-            'bg-[var(--color-bg)] text-[var(--color-text)]',
+            'fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border border-border p-6 shadow-warm-md',
+            'bg-surface text-text',
           )}
         >
           <div className="mb-4 flex items-start justify-between">
@@ -60,7 +60,7 @@ const Dialog = ({
                 </RadixDialog.Title>
               )}
             </div>
-            <RadixDialog.Close className="p-1 text-sm hover:opacity-70">
+            <RadixDialog.Close className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md p-1 text-sm transition-opacity duration-base ease-out-soft hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
               <Icon name="close" className="h-5 w-5" />
             </RadixDialog.Close>
           </div>

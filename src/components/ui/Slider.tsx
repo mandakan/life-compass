@@ -41,13 +41,13 @@ const Slider: React.FC<SliderProps> = ({
       style={{ width, height }}
     >
       <RadixSlider.Track
-        className={`relative mx-auto rounded-full bg-[var(--slider-track)] ${isVertical ? 'h-full w-1' : 'h-1 w-full'}`}
+        className={`relative mx-auto rounded-full bg-surface-sunken ${isVertical ? 'h-full w-1' : 'h-1 w-full'}`}
       >
         <RadixSlider.Range
-          className={`absolute rounded-full bg-[var(--slider-range)] ${isVertical ? 'w-full' : 'h-full'}`}
+          className={`absolute rounded-full bg-primary ${isVertical ? 'w-full' : 'h-full'}`}
         />
       </RadixSlider.Track>
-      <RadixSlider.Thumb className="block flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[var(--slider-handle)] font-bold text-[var(--on-primary)] shadow transition-colors">
+      <RadixSlider.Thumb className="flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-full bg-primary font-bold text-on-primary shadow-warm-md transition-colors duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
         {showValueInThumb && value}
       </RadixSlider.Thumb>
     </RadixSlider.Root>

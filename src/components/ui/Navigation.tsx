@@ -18,11 +18,14 @@ const HeaderNavigation: React.FC = () => {
   const toggleMobile = () => setMobileOpen(prev => !prev);
 
   return (
-    <header className="bg-primary border-b border-[var(--border)] text-[var(--on-primary)]">
+    <header className="bg-primary border-b border-border text-on-primary">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         {/* Left: Title + desktop links */}
         <div className="flex items-center gap-6">
-          <Link to="/" className="text-xl font-bold no-underline">
+          <Link
+            to="/"
+            className="font-display text-xl font-semibold no-underline"
+          >
             {t('life_compass')}
           </Link>
           <div className="hidden items-center gap-4 md:flex">
@@ -59,7 +62,7 @@ const HeaderNavigation: React.FC = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-[var(--border)] px-4 pb-4 md:hidden">
+        <div className="border-t border-border px-4 pb-4 md:hidden">
           <Link
             to="/"
             onClick={() => setMobileOpen(false)}

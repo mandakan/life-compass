@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme =
-  | 'light'
-  | 'dark'
-  | 'high-contrast'
-  | 'sugar-sweet-light'
-  | 'sugar-sweet-dark';
+type Theme = 'light' | 'dark' | 'high-contrast';
+
+const VALID_THEMES: readonly Theme[] = ['light', 'dark', 'high-contrast'];
+
+// An unknown or legacy persisted theme falls back to 'light'.
+const coerceTheme = (value: string | null): Theme =>
+  VALID_THEMES.includes(value as Theme) ? (value as Theme) : 'light';
 
 interface ThemeContextType {
   theme: Theme;
@@ -35,7 +36,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     if (localStorage.getItem('followSystem') === 'true') {
       return getSystemTheme();
     }
-    return (localStorage.getItem('theme') as Theme) || 'light';
+    return coerceTheme(localStorage.getItem('theme'));
   });
 
   const setTheme = (theme: Theme) => {

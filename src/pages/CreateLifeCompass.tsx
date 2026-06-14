@@ -328,7 +328,7 @@ const CreateLifeCompass: React.FC = () => {
         onPredefinedSelected={handleAddPredefinedAreas}
       />
       {!storageAvailable && (
-        <div className="mb-4 rounded-sm bg-[var(--color-accent)] p-2 font-sans text-[var(--on-accent)]">
+        <div className="mb-4 rounded-sm bg-warning p-2 font-sans text-text">
           {t('local_storage_not_available')}
         </div>
       )}
@@ -344,7 +344,7 @@ const CreateLifeCompass: React.FC = () => {
         footerVisible={footerVisible}
       />
       {error && (
-        <div className="mb-4 font-sans text-[var(--color-accent)]">{error}</div>
+        <div className="mb-4 font-sans text-warning">{error}</div>
       )}
       {showRadar ? (
         <div className="mx-auto mt-4 w-full">

@@ -1,237 +1,220 @@
 @import 'tailwindcss';
 
-/* Global styles including CSS variables for theming */
+/* =========================================================================
+   Life Compass design system -- Phase A foundation
+   Warm earthen journal: calm, warm, encouraging.
 
-/* Default Light Theme */
-:root {
-  --color-primary: #3490dc;
-  --color-secondary: #ffed4a;
-  --color-accent: #e3342f;
-  --color-bg: #ffffff; /* General background */
-  --callout-bg: #ebf8ff; /* Callout background */
-  --border: #2b6cb0; /* Borders */
-  --color-text: #1a202c; /* Text color */
-  --font-primary: 'Inter', sans-serif;
-  --slider-track: #dee2e6; /* Slider track */
-  --slider-handle: #3490dc; /* Primary color */
-  --accent: #e53e3e; /* Adjusted accent color (red for contrast) */
-  --on-accent: #ffffff; /* Text color on accent */
-  --focus-ring: #ffed4a; /* Focus outline */
-  --details-bg: #e6e6e6; /* Background for details box */
-  --primary: var(--color-primary); /* Primary color */
-  --on-primary: #ffffff; /* Text on primary */
-  --secondary: var(--color-secondary); /* Secondary color */
-  --hover-bg: #e2e8f0; /* Hover effect background */
-  /* Tooltip */
-  --tooltip-bg: #212529;
-  --tooltip-text: #ffffff;
-  --tooltip-width: 200px;
-  --tooltip-border-radius: 6px;
-  --tooltip-padding: 0.5rem;
-  /* Menu */
-  --menu-bg: #3490dc;
-  --menu-text: #ffffff;
-  /* Chart colors */
-  --chart-series-1: #1f77b4; /* Blue - Main data */
-  --chart-series-2: #ff7f0e; /* Orange - Complementary */
-  --chart-series-3: #2ca02c; /* Green - Positive trend */
-  --chart-series-4: #d62728; /* Red - Alerts, negative trends */
-  --chart-series-5: #9467bd; /* Purple - Additional category */
-  /* Warning Callout */
-  --warning-border: #e3342f;
-  --warning-bg: #e9ecef;
+   Two token layers:
+   1. Primitive tokens (theme-independent raw scales) registered through the
+      Tailwind 4 @theme block so they become real utilities
+      (radius / shadow / font / duration / easing / type scale).
+   2. Semantic tokens (theme-aware contract the components consume). The LIGHT
+      values live in @theme so they seed :root AND generate the color
+      utilities (bg-bg, text-text, bg-surface, text-primary, ...). DARK and
+      HIGH-CONTRAST reassign the same --color-* vars on [data-theme], so the
+      utilities stay theme-aware.
+
+   Contrast: AA (>=4.5:1) on light/dark, AAA (>=7:1) on high-contrast.
+   ========================================================================= */
+
+@theme {
+  /* ----- Fonts (self-hosted via @fontsource, imported in src/index.tsx) -- */
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Hanken Grotesk Variable', system-ui, sans-serif;
+
+  /* ----- Radius scale (soft, rounded) ----- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  /* ----- Warm-tinted elevation ----- */
+  --shadow-warm-sm: 0 1px 2px rgba(70, 45, 20, 0.08),
+    0 1px 3px rgba(70, 45, 20, 0.06);
+  --shadow-warm-md: 0 4px 10px rgba(70, 45, 20, 0.1),
+    0 2px 4px rgba(70, 45, 20, 0.08);
+
+  /* ----- Type scale ----- */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+
+  /* ----- Motion: durations + easing ----- */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* ----- Semantic colors -- LIGHT (default). Also generates utilities:
+     bg-bg, bg-surface, bg-surface-sunken, text-text, text-text-muted,
+     bg-primary, text-on-primary, bg-secondary, border-border,
+     ring-focus / outline-focus, text-success/warning/danger, etc. ----- */
+  --color-bg: #fbf7f0;
+  --color-surface: #fffdf9;
+  --color-surface-sunken: #f4ecdf;
+
+  --color-text: #2c2620;
+  --color-text-muted: #736857;
+
+  --color-primary: #a8542f;
+  --color-on-primary: #fdf6f0;
+  --color-secondary: #586e50;
+
+  --color-border: #e2d3bd;
+  --color-focus: #a8542f;
+
+  --color-success: #586e50;
+  --color-warning: #b9802c;
+  --color-danger: #b14a3a;
+
+  /* ----- Chart series: clay, sage, plus three harmonious earthen hues ----- */
+  --chart-series-1: #a8542f; /* clay (primary) */
+  --chart-series-2: #586e50; /* sage (secondary) */
+  --chart-series-3: #b9802c; /* amber */
+  --chart-series-4: #7d6b9e; /* muted plum */
+  --chart-series-5: #3f7d78; /* teal-pine */
 }
 
-/* Dark Theme */
+/* -------------------------------------------------------------------------
+   Semantic tokens -- DARK (reassigns the @theme color vars)
+   ------------------------------------------------------------------------- */
 [data-theme='dark'] {
-  --color-primary: #3490dc;
-  --color-secondary: #ffed4a;
-  --color-accent: #e3342f;
-  --color-bg: #2d3748;
-  --callout-bg: #343a40;
-  --border: #63b3ed;
-  --color-text: #edf2f7;
-  --slider-track: #495057;
-  --slider-handle: #3490dc;
-  --accent: #f56565; /* Adjusted accent color (red for contrast) */
-  --on-accent: #ffffff;
-  --focus-ring: #ffed4a;
-  --details-bg: #4a5568; /* Increased contrast from color-bg */
-  --primary: var(--color-primary);
-  --on-primary: #ffffff;
-  --secondary: var(--color-secondary);
-  --hover-bg: #4a5568; /* Hover effect background */
-  /* Tooltip */
-  --tooltip-bg: #1a202c;
-  --tooltip-text: #ffffff;
-  --tooltip-width: 200px;
-  --tooltip-border-radius: 6px;
-  --tooltip-padding: 0.5rem;
-  /* Menu */
-  --menu-bg: #1a202c; /* Darker menu background for contrast */
-  --menu-text: #e2e8f0; /* Slightly lighter text */
-  /* Chart colors */
-  --chart-series-1: #63b3ed; /* Lighter blue */
-  --chart-series-2: #ffb347; /* Softer orange */
-  --chart-series-3: #68d391; /* Brighter green */
-  --chart-series-4: #fc8181; /* Lighter red */
-  --chart-series-5: #b794f4; /* Brighter purple */
-  /* Warning Callout */
-  --warning-border: #e3342f;
-  --warning-bg: #495057;
+  --color-bg: #1f1b17;
+  --color-surface: #28231d;
+  --color-surface-sunken: #161310;
+
+  --color-text: #f2ebe0;
+  --color-text-muted: #b7a991;
+
+  --color-primary: #e08a5f;
+  --color-on-primary: #241a12;
+  --color-secondary: #9cb491;
+
+  --color-border: #3a332b;
+  --color-focus: #e08a5f;
+
+  --color-success: #9cb491;
+  --color-warning: #e0ad62;
+  --color-danger: #e08070;
+
+  --chart-series-1: #e08a5f; /* clay */
+  --chart-series-2: #9cb491; /* sage */
+  --chart-series-3: #e0ad62; /* amber */
+  --chart-series-4: #b3a0d4; /* muted plum */
+  --chart-series-5: #6fb3ac; /* teal-pine */
 }
 
-/* High Contrast Theme */
+/* -------------------------------------------------------------------------
+   Semantic tokens -- HIGH CONTRAST (WCAG AAA, every text/bg pair >= 7:1)
+   ------------------------------------------------------------------------- */
 [data-theme='high-contrast'] {
-  --color-primary: #00ffff;
-  --color-secondary: #ffed4a;
-  --color-accent: #ff00ff;
-  --color-bg: #000000;
-  --callout-bg: #000000;
-  --border: #ffff00;
-  --color-text: #ffffff;
-  --slider-track: #ffff00;
-  --slider-handle: #ffffff;
-  --accent: #ff00ff; /* Magenta for maximum contrast */
-  --on-accent: #000000;
-  --focus-ring: #ff00ff;
-  --details-bg: #000000;
-  --primary: var(--color-primary);
-  --on-primary: #000000;
-  --secondary: var(--color-secondary);
-  --hover-bg: #222222; /* Dark gray for hover feedback */
-  /* Tooltip */
-  --tooltip-bg: #000000;
-  --tooltip-text: #ffff00;
-  --tooltip-width: 200px;
-  --tooltip-border-radius: 6px;
-  --tooltip-padding: 0.5rem;
-  /* Menu */
-  --menu-bg: #000000;
-  --menu-text: #ffffff;
-  /* Chart colors */
-  --chart-series-1: #ffff00; /* Yellow */
-  --chart-series-2: #ff00ff; /* Magenta */
-  --chart-series-3: #00ffff; /* Cyan */
-  --chart-series-4: #ff0000; /* Red */
-  --chart-series-5: #ffffff; /* White */
-  /* Warning Callout */
-  --warning-border: #ff00ff;
-  --warning-bg: #000000;
+  --color-bg: #0d0b09;
+  --color-surface: #1a1612;
+  --color-surface-sunken: #000000;
+
+  --color-text: #fdfbf7;
+  --color-text-muted: #d8ccb8;
+
+  --color-primary: #ff9d6e; /* bright clay, 9.64:1 on bg */
+  --color-on-primary: #0d0b09;
+  --color-secondary: #a9d39a; /* bright sage, 11.67:1 on bg */
+
+  --color-border: #fdfbf7;
+  --color-focus: #ff9d6e;
+
+  --color-success: #a9d39a;
+  --color-warning: #f0bf78;
+  --color-danger: #ff9a86;
+
+  --chart-series-1: #ff9d6e;
+  --chart-series-2: #a9d39a;
+  --chart-series-3: #f0bf78;
+  --chart-series-4: #c9b3f0;
+  --chart-series-5: #7fd6cd;
 }
 
-/* Sugar Sweet Theme */
-[data-theme='sugar-sweet-light'] {
-  --color-primary: #ff69b4; /* Hot pink */
-  --color-secondary: #ffe4e1; /* Misty Rose */
-  --color-accent: #ff1493; /* Deep pink */
-  --color-bg: #fff0f5; /* Lavender blush */
-  --callout-bg: #ffe4e1; /* Light pink background for callouts */
-  --border: #ffb6c1; /* Light pink border */
-  --color-text: #800080; /* Purple text */
-  --slider-track: #ffb6c1; /* Light pink track */
-  --slider-handle: #ff1493; /* Deep pink handle */
-  --accent: #ff69b4; /* Reuse hot pink for accents */
-  --on-accent: #ffffff; /* White text on accent */
-  --focus-ring: #ffb6c1; /* Light pink focus ring */
-  --details-bg: #ffe4e1; /* Consistent details box bg */
-  --primary: var(--color-primary);
-  --on-primary: #ffffff;
-  --secondary: var(--color-secondary);
-  --hover-bg: #ffc0cb; /* Soft pink hover */
-  /* Tooltip */
-  --tooltip-bg: #ff1493;
-  --tooltip-text: #ffffff;
-  --tooltip-width: 200px;
-  --tooltip-border-radius: 6px;
-  --tooltip-padding: 0.5rem;
-  /* Menu */
-  --menu-bg: #ff69b4;
-  --menu-text: #ffffff;
-  /* Chart colors */
-  --chart-series-1: #ff69b4;
-  --chart-series-2: #ffc0cb;
-  --chart-series-3: #ff1493;
-  --chart-series-4: #db7093;
-  --chart-series-5: #ffb6c1;
-  /* Warning Callout */
-  --warning-border: #ff1493;
-  --warning-bg: #ffe4e1;
+/* -------------------------------------------------------------------------
+   Motion duration utilities.
+
+   Tailwind 4's `duration-*` namespace only accepts bare numbers / arbitrary
+   values -- it does NOT read the `--duration-*` theme tokens. Register the
+   named utilities explicitly so primitives can use duration-fast/base/slow and
+   they resolve to the motion tokens above.
+   ------------------------------------------------------------------------- */
+@utility duration-fast {
+  transition-duration: var(--duration-fast);
+}
+@utility duration-base {
+  transition-duration: var(--duration-base);
+}
+@utility duration-slow {
+  transition-duration: var(--duration-slow);
 }
 
-/* Dark Sugar Sweet Theme */
-[data-theme='sugar-sweet-dark'] {
-  --color-primary: #ff69b4; /* Hot pink */
-  --color-secondary: #ffe4e1; /* Misty Rose */
-  --color-accent: #ff1493; /* Deep pink */
-  --color-bg: #2b001a; /* Dark background */
-  --callout-bg: #3c0023; /* Slightly lighter dark background for callouts */
-  --border: #a64d79; /* Dark rose border */
-  --color-text: #f8f8f8; /* Light text color */
-  --slider-track: #a64d79; /* Dark rose track */
-  --slider-handle: #ff1493; /* Deep pink handle */
-  --accent: #ff69b4; /* Hot pink accent */
-  --on-accent: #ffffff; /* White text on accent */
-  --focus-ring: #a64d79; /* Dark rose focus ring */
-  --details-bg: #3c0023; /* Dark details background */
-  --primary: var(--color-primary);
-  --on-primary: #ffffff;
-  --secondary: var(--color-secondary);
-  --hover-bg: #3c0023; /* Dark hover background */
-  /* Tooltip */
-  --tooltip-bg: #3c0023;
-  --tooltip-text: #ff69b4;
-  --tooltip-width: 200px;
-  --tooltip-border-radius: 6px;
-  --tooltip-padding: 0.5rem;
-  /* Menu */
-  --menu-bg: #a64d79;
-  --menu-text: #ffffff;
-  /* Chart colors */
-  --chart-series-1: #ff69b4;
-  --chart-series-2: #ffc0cb;
-  --chart-series-3: #ff1493;
-  --chart-series-4: #db7093;
-  --chart-series-5: #ffb6c1;
-  /* Warning Callout */
-  --warning-border: #ff1493;
-  --warning-bg: #3c0023;
-}
-
-/* Global styles leveraging the defined CSS variables */
+/* -------------------------------------------------------------------------
+   Base element styles
+   ------------------------------------------------------------------------- */
 body {
   margin: 0;
-  font-family: var(--font-primary);
+  font-family: var(--font-body);
   background-color: var(--color-bg);
   color: var(--color-text);
 }
 
-a {
-  color: var(--accent, #3490dc);
+/* Display font utility for headings */
+.font-display {
+  font-family: var(--font-display);
 }
 
+/* Semantic headings use the warm display serif (Fraunces) by default. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+/* Visible focus ring driven by the focus token */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   Surface / decorative helpers (kept; retargeted to canonical tokens)
+   ------------------------------------------------------------------------- */
 .bg-primary {
   background-color: var(--color-primary);
 }
 
 .bg-primary a {
-  color: var(--on-primary);
+  color: var(--color-on-primary);
 }
 
 .mobile-nav-link {
-  color: var(--menu-text) !important;
+  color: var(--color-on-primary) !important;
 }
 
 .bg-gradient {
-  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
-}
-
-[data-theme='dark'] .bg-gradient {
-  background: linear-gradient(to bottom, var(--color-bg), var(--callout-bg));
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg),
+    var(--color-surface-sunken)
+  );
 }
 
 [data-theme='high-contrast'] .bg-gradient {
-  background: linear-gradient(to bottom, var(--color-bg), var(--accent));
+  background: var(--color-bg);
 }
 
 .bg-glass {
@@ -241,13 +224,13 @@ a {
 
 @keyframes gradientFade {
   0% {
-    background: var(--callout-bg);
+    background: var(--color-surface);
   }
   50% {
-    background: var(--details-bg);
+    background: var(--color-surface-sunken);
   }
   100% {
-    background: var(--callout-bg);
+    background: var(--color-surface);
   }
 }
 
@@ -257,15 +240,12 @@ a {
 
 @layer utilities {
   .bg-pattern {
-    background-image: url('/pattern.svg'); /* Update the path */
+    background-image: url('/pattern.svg');
     background-repeat: repeat;
   }
-}
 
-@layer utilities {
   .bg-escher {
     position: relative;
-    /*background-image: url('/escher-pattern.svg');*/
     background-repeat: repeat;
   }
 
@@ -273,8 +253,8 @@ a {
     content: '';
     position: absolute;
     inset: 0;
-    z-index: 0; /* Ensures it stays behind the content */
-    background-image: url('/escher-pattern.svg'); /* Manually duplicate background */
+    z-index: 0;
+    background-image: url('/escher-pattern.svg');
     background-repeat: repeat;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
     -webkit-mask-image: linear-gradient(
@@ -282,11 +262,25 @@ a {
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 1)
     );
-    pointer-events: none; /* Prevents blocking interactions */
+    pointer-events: none;
   }
 
   .bg-escher > * {
-    position: relative; /* Ensures content stays above */
+    position: relative;
     z-index: 1;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Reduced motion: disable transitions and animations globally
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

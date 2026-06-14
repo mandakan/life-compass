@@ -49,7 +49,7 @@ const SettingsPage: React.FC = () => {
   const handleDeleteCancel = () => setShowDeleteModal(false);
 
   return (
-    <div className="mx-auto max-w-xl p-6 font-sans text-[var(--color-text)]">
+    <div className="mx-auto max-w-xl p-6 font-sans text-text">
       <WarningDialog
         visible={showDeleteModal}
         message={t('delete_local_data_warning')}
@@ -106,7 +106,7 @@ const SettingsPage: React.FC = () => {
       <section className="mb-6">
         <button
           onClick={handleReplayTutorial}
-          className="w-full rounded bg-[var(--color-primary)] px-4 py-2 text-[var(--on-primary)] focus:ring"
+          className="w-full rounded bg-primary px-4 py-2 text-on-primary focus:ring"
         >
           {t('replay_onboarding', 'Replay Onboarding Tutorial')}
         </button>
@@ -115,7 +115,7 @@ const SettingsPage: React.FC = () => {
       <section>
         <button
           onClick={handleDeleteLocalData}
-          className="w-full rounded bg-[var(--color-accent)] px-4 py-2 text-[var(--on-primary)] focus:ring"
+          className="w-full rounded bg-danger px-4 py-2 text-on-primary focus:ring"
         >
           {t('delete_local_data', 'Delete local data')}
         </button>
