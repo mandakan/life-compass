@@ -66,9 +66,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   }, [editingDetailsInline]);
 
   // When this card enters edit mode, seed the local draft from the live area
-  // and open the desktop dialog. Resetting on the rising edge of `isEditing`
-  // keeps the draft truthful without clobbering in-progress typing.
-  useEffect(() => {
+  // and open the desktop dialog. Using the during-render "previous prop"
+  // pattern keeps the draft truthful on the rising edge of `isEditing` without
+  // an extra effect commit and without clobbering in-progress typing.
+  const [wasEditing, setWasEditing] = useState(isEditing);
+  if (isEditing !== wasEditing) {
+    setWasEditing(isEditing);
     if (isEditing) {
       setEditName(area.name);
       setEditDescription(area.description);
@@ -81,7 +84,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         setEditingDetailsInline(false);
       }
     }
-  }, [isEditing, isDesktop]);
+  }
 
   const buildUpdatedArea = (): LifeArea => ({
     ...area,

@@ -74,9 +74,11 @@ const CreateLifeCompass: React.FC = () => {
   const { dragOverIndex, handleDragStart, handleDragOver, handleDrop, setDragOverIndex } =
     useDragReorder(reorderAreas);
 
-  // Clear editing state if the edited area is no longer in lifeAreas.
+  // Reconcile local editing state with the store: if the edited area is
+  // removed elsewhere (delete, remove-all, import), stop editing it.
   useEffect(() => {
     if (editingAreaId && !lifeAreas.some(area => area.id === editingAreaId)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEditingAreaId(null);
     }
   }, [lifeAreas, editingAreaId]);

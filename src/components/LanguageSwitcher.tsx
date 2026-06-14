@@ -61,13 +61,14 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   const [selectedLanguage, setSelectedLanguage] = useState(initialLang);
 
   useEffect(() => {
-    if (!languages.some(lang => lang.code === selectedLanguage)) {
-      setSelectedLanguage('en');
+    const isValid = languages.some(lang => lang.code === selectedLanguage);
+    const target = isValid ? selectedLanguage : 'en';
+    if (!isValid) {
       localStorage.setItem('selectedLanguage', 'en');
-      i18next.changeLanguage('en');
-    } else {
-      i18next.changeLanguage(selectedLanguage);
     }
+    // Changing the language emits `languageChanged`, which the listener below
+    // turns into the state update -- so we never setState directly here.
+    i18next.changeLanguage(target);
   }, [selectedLanguage]);
 
   useEffect(() => {
