@@ -142,4 +142,38 @@ test.describe('Life Compass App End-to-End Tests', () => {
       page.getByRole('checkbox', { name: 'Buy shoes' }),
     ).toBeChecked();
   });
+
+  test('the compass has no horizontal overflow on a narrow viewport', async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('tutorialCompleted', 'true');
+    });
+    // 320px is the narrow floor (small phones); guards the header and the
+    // sticky bottom action bar.
+    await page.setViewportSize({ width: 320, height: 780 });
+
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page
+      .getByRole('button', { name: /start your journey/i })
+      .first()
+      .click();
+    await page.waitForLoadState('networkidle');
+    await page.evaluate(() => document.fonts.ready);
+
+    // The compass (incl. the fixed sticky bottom action bar) renders here.
+    // Nothing in the page may extend past the viewport's right edge, or mobile
+    // browsers allow sideways scrolling.
+    const maxRight = await page.evaluate(() => {
+      const vw = document.documentElement.clientWidth;
+      let max = 0;
+      document.querySelectorAll('body *').forEach((el) => {
+        const right = el.getBoundingClientRect().right;
+        if (right > max) max = right;
+      });
+      return Math.round(max - vw);
+    });
+    expect(maxRight).toBeLessThanOrEqual(1);
+  });
 });

@@ -91,6 +91,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           data-testid={testId || 'language-switcher'}
           id="language-switcher"
           variant="ghost"
+          size={compact ? 'icon' : 'md'}
           className="flex items-center gap-2 border border-border bg-bg text-text hover:bg-surface-sunken"
         >
           {displayLabel}

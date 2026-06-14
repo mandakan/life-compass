@@ -92,8 +92,19 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
     setMenuOpen(false);
   };
 
-  // Segmented Cards / Radar view toggle.
-  const viewToggle = (
+  // Segmented Cards / Radar view toggle. When `compact`, the segments are
+  // icon-only (with the label moved to aria-label) so the toggle stays narrow
+  // on small screens; the accessible name is unchanged either way.
+  const segClass = (active: boolean) =>
+    cn(
+      'inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium',
+      'transition-colors duration-base ease-out-soft',
+      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+      active
+        ? 'bg-primary text-on-primary'
+        : 'bg-transparent text-text hover:bg-surface-sunken',
+    );
+  const renderViewToggle = (compact: boolean) => (
     <div
       role="group"
       aria-label={t('cards_radar_view')}
@@ -105,17 +116,11 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
           if (showRadar) onToggleRadar();
         }}
         aria-pressed={!showRadar}
-        className={cn(
-          'inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium',
-          'transition-colors duration-base ease-out-soft',
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-          !showRadar
-            ? 'bg-primary text-on-primary'
-            : 'bg-transparent text-text hover:bg-surface-sunken',
-        )}
+        aria-label={compact ? t('view_cards') : undefined}
+        className={segClass(!showRadar)}
       >
         <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-        {t('view_cards')}
+        {!compact && t('view_cards')}
       </button>
       <button
         type="button"
@@ -123,30 +128,13 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
           if (!showRadar) onToggleRadar();
         }}
         aria-pressed={showRadar}
-        className={cn(
-          'inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium',
-          'transition-colors duration-base ease-out-soft',
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-          showRadar
-            ? 'bg-primary text-on-primary'
-            : 'bg-transparent text-text hover:bg-surface-sunken',
-        )}
+        aria-label={compact ? t('view_radar') : undefined}
+        className={segClass(showRadar)}
       >
         <ChartPieIcon className="h-5 w-5" aria-hidden="true" />
-        {t('view_radar')}
+        {!compact && t('view_radar')}
       </button>
     </div>
-  );
-
-  const addButton = (
-    <Button
-      variant="primary"
-      onClick={onAddArea}
-      className="shrink-0"
-    >
-      <PlusIcon className="h-5 w-5" aria-hidden="true" />
-      {t('add_life_area')}
-    </Button>
   );
 
   const overflowMenu = (
@@ -192,9 +180,12 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
     return (
       <>
         <div className="flex flex-wrap items-center gap-3">
-          {viewToggle}
+          {renderViewToggle(false)}
           <div className="ml-auto flex items-center gap-3">
-            {addButton}
+            <Button variant="primary" onClick={onAddArea} className="shrink-0">
+              <PlusIcon className="h-5 w-5" aria-hidden="true" />
+              {t('add_life_area')}
+            </Button>
             {overflowMenu}
           </div>
         </div>
@@ -203,19 +194,26 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
     );
   }
 
-  // Mobile: fixed sticky bottom bar, thumb-reachable, safe-area aware.
+  // Mobile: fixed sticky bottom bar, thumb-reachable, safe-area aware. The
+  // toggle is icon-only and the Add button flexes/truncates so the row always
+  // fits the viewport (no horizontal overflow on narrow screens).
   return (
     <>
       <div
         className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/95 shadow-warm-md backdrop-blur-sm"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
-        <div className="flex items-center gap-2 px-4 py-2">
-          {viewToggle}
-          <div className="ml-auto flex items-center gap-2">
-            {addButton}
-            {overflowMenu}
-          </div>
+        <div className="flex items-center gap-2 px-3 py-2">
+          {renderViewToggle(true)}
+          <Button
+            variant="primary"
+            onClick={onAddArea}
+            className="min-w-0 flex-1 justify-center"
+          >
+            <PlusIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+            <span className="truncate">{t('add_life_area')}</span>
+          </Button>
+          {overflowMenu}
         </div>
       </div>
       {ConfirmationDialog}

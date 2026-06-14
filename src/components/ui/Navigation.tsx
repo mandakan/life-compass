@@ -51,8 +51,11 @@ const HeaderNavigation: React.FC = () => {
   const desktopLinkClass =
     'rounded-md px-2 py-1 text-text-muted no-underline transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 
+  // No `display` here on purpose: `cn` is plain clsx (no tailwind-merge), so a
+  // base `inline-flex` would override a responsive `hidden`/`md:hidden`. Each
+  // button sets its own display so the responsive visibility actually applies.
   const iconButtonClass =
-    'inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-transparent bg-transparent text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+    'min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-transparent bg-transparent text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 
   const mobileLinkClass =
     'block rounded-md px-3 py-3 text-base text-text no-underline transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
@@ -61,13 +64,13 @@ const HeaderNavigation: React.FC = () => {
     <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur supports-[backdrop-filter]:bg-surface/75">
       <nav
         aria-label={t('primary_navigation', 'Primary')}
-        className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3"
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:gap-4 sm:px-4"
       >
         {/* Left: wordmark + desktop links */}
-        <div className="flex items-center gap-6">
+        <div className="flex min-w-0 items-center gap-6">
           <Link
             to="/"
-            className="font-display text-xl font-semibold text-primary no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="min-w-0 truncate font-display text-lg font-semibold text-primary no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:text-xl"
           >
             {t('life_compass')}
           </Link>
@@ -87,14 +90,14 @@ const HeaderNavigation: React.FC = () => {
         </div>
 
         {/* Right: language switcher, theme toggle, settings, mobile menu */}
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <LanguageSwitcher compact />
           <button
             type="button"
             onClick={toggleTheme}
             aria-label={t('toggle_theme', 'Toggle light and dark theme')}
             aria-pressed={isDark}
-            className={iconButtonClass}
+            className={`inline-flex ${iconButtonClass}`}
           >
             {isDark ? (
               <SunIcon className="h-6 w-6" />
@@ -113,7 +116,7 @@ const HeaderNavigation: React.FC = () => {
           <button
             ref={toggleButtonRef}
             type="button"
-            className={`md:hidden ${iconButtonClass}`}
+            className={`inline-flex md:hidden ${iconButtonClass}`}
             aria-label={t('toggle_mobile_navigation')}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation-menu"

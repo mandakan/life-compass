@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,6 +30,8 @@ const sizeClasses: Record<ButtonSize, string> = {
   sm: 'min-h-[36px] px-3 py-1.5 text-sm gap-1.5',
   md: 'min-h-[44px] px-4 py-2 text-base gap-2',
   lg: 'min-h-[52px] px-6 py-3 text-lg gap-2',
+  // Square, padding-free target for icon/emoji-only buttons.
+  icon: 'min-h-[44px] min-w-[44px] px-0 py-0 text-base',
 };
 
 const Spinner: React.FC = () => (
