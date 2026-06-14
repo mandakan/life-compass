@@ -88,27 +88,15 @@
   "new_life_area": "Nytt livsområde",
   "onboarding": {
     "back": "Tillbaka",
-    "default": {
-      "back": "Tillbaka",
-      "finish": "Avsluta introduktionen",
-      "next": "Nästa",
-      "privacy_notice": "Vi värdesätter din integritet. Inga av dina handlingar eller inmatningar spåras; all data förblir på din enhet.",
-      "settings_tooltip": "Titta på inställningsmenyn uppe till höger. Där kan du komma åt introduktionen, byta språk och mer.",
-      "skip": "Skippa intro",
-      "toolbar_tooltip": "Titta på den flytande verktygsfältet nere till höger. Där får du snabb åtkomst till funktioner som att lägga till fördefinierade livsområden, återställa, exportera/importera data och byta radarskärm.",
-      "welcome_prompt": "Välkommen till Livskompass!\nLåt oss börja introduktionen. Vill du börja med fördefinierade livsområden?\n(Du kan alltid köra om introduktionen via inställningsmenyn.)",
-      "with_predefined": "Med fördefinierade livsområden (rekommenderas)",
-      "without_predefined": "Utan fördefinierade livsområden"
-    },
     "finish": "Avsluta introduktionen",
     "next": "Nästa",
-    "radar": "Radar-grafen visar dina livsområden i en graf som gör det lätt att identifera vilka områden som är viktigast men som du inte lever enligt.",
-    "settings_tooltip": "Titta på inställningsmenyn uppe till höger. Där kan du komma åt introduktionen, byta språk och mer.",
     "skip": "Skippa intro",
-    "toolbar_tooltip": "Titta på den flytande verktygsfältet nere till höger. Där får du snabb åtkomst till funktioner som att lägga till fördefinierade livsområden, återställa, exportera/importera data och växla mellan kort-vy och radarvy.",
     "welcome_prompt": "Välkommen till Livskompass!\nLåt oss börja introduktionen. Vill du börja med fördefinierade livsområden?\n(Du kan alltid köra om introduktionen via inställningsmenyn.)",
     "with_predefined": "Med fördefinierade livsområden (rekommenderas)",
-    "without_predefined": "Utan fördefinierade livsområden"
+    "without_predefined": "Utan fördefinierade livsområden",
+    "privacy_notice": "Vi värnar om din integritet. Inga av dina handlingar eller inmatningar spåras; all data stannar på din enhet.",
+    "actions": "Använd åtgärdsfältet för att lägga till livsområden. Växla mellan kort- och radarvyn med Kort/Radar-knappen, och hitta ögonblicksbilder, export och import under \"Mer\". Dina inställningar och ditt språk finns i menyn uppe till höger.",
+    "title": "Introduktion"
   },
   "plus_add_new_life_area": "+ Lägg till nytt livsområde",
   "privacyPolicy": {
@@ -181,5 +169,25 @@
   "radar_view_heading": "Din livskompass i överblick",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "goals": {
+    "open_goals": "Mål",
+    "dialog_title": "Mål för {{area}}",
+    "dialog_description": "Sätt mål för det här livsområdet och dela upp dem i åtgärdssteg.",
+    "add_goal": "Lägg till mål",
+    "add_goal_placeholder": "Vad vill du uppnå?",
+    "empty_state": "Inga mål ännu. Lägg till ditt första mål för att omsätta området i handling.",
+    "goal_title": "Måltitel",
+    "expand_goal": "Visa steg",
+    "collapse_goal": "Dölj steg",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "Framsteg för {{title}}",
+    "delete_goal_title": "Ta bort mål",
+    "delete_goal_warning": "Detta tar bort målet \"{{title}}\" och alla dess steg. Vill du fortsätta?",
+    "add_step": "Lägg till steg",
+    "add_step_placeholder": "Lägg till ett åtgärdssteg",
+    "delete_step": "Ta bort steg"
+  },
+  "contrast_theme_toggle": "Aktivera tema med hög kontrast",
+  "theme_system": "System"
 }

@@ -38,27 +38,17 @@ const OnboardingTutorial: React.FC<OnboardingTutorialProps> = ({
     {
       id: 3,
       type: 'modal',
-      content: t('onboarding.toolbar_tooltip'),
+      content: t('brief_life_compass_instruction_1'),
     },
     {
       id: 4,
       type: 'modal',
-      content: t('onboarding.toolbar_tooltip'),
+      content: t('brief_life_compass_instruction_2'),
     },
     {
       id: 5,
       type: 'modal',
-      content: t('onboarding.radar'),
-    },
-    {
-      id: 6,
-      type: 'modal',
-      content: t('brief_life_compass_instruction_1'),
-    },
-    {
-      id: 7,
-      type: 'modal',
-      content: t('brief_life_compass_instruction_2'),
+      content: t('onboarding.actions'),
     },
   ];
 

@@ -110,12 +110,12 @@
     "finish": "Finish introduction",
     "next": "Next",
     "privacy_notice": "We value your privacy. None of your actions or inputs are tracked; all data remains on your device.",
-    "settings_tooltip": "Check out the settings menu at the top right. There you can access the introduction, change language, and more.",
     "skip": "Skip intro",
-    "toolbar_tooltip": "Take a look at the floating toolbar in the bottom right. There you get quick access to features such as adding predefined life areas, resetting, exporting/importing data, and switching the radar view.",
     "welcome_prompt": "Welcome to Life Compass!\nLet's begin the introduction. Would you like to start with predefined life areas?\n(You can always rerun the introduction via the settings menu.)",
     "with_predefined": "With predefined life areas (recommended)",
-    "without_predefined": "Without predefined life areas"
+    "without_predefined": "Without predefined life areas",
+    "actions": "Use the action bar to add life areas. Switch between the cards and the radar overview with the Cards / Radar toggle, and find snapshots, export, and import under \"More\". Your settings and language live in the menu at the top right.",
+    "title": "Introduction"
   },
   "plus_add_new_life_area": "+ Add new life area",
   "privacyPolicy": {
