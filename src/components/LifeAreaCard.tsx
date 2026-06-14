@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { FlagIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { InformationCircleIcon } from '@heroicons/react/24/solid';
 import Slider from '@components/ui/Slider';
 import Textarea from '@components/ui/Textarea';
 import Popover from '@components/ui/Popover';
 import Dialog from '@components/ui/Dialog';
 import LifeAreaEditForm from './LifeAreaEditForm';
+import GoalsDialog from './goals/GoalsDialog';
+import { useLifeCompassStore } from '@/store/lifeCompassStore';
 
 export interface LifeAreaCardProps {
   area: LifeArea;
@@ -43,6 +45,10 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 }) => {
   const { t } = useTranslation();
   const [editing, setEditing] = useState(false);
+  const [goalsOpen, setGoalsOpen] = useState(false);
+  const goalCount = useLifeCompassStore(
+    s => s.goals.filter(goal => goal.areaId === area.id).length,
+  );
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
 
   // Local edit draft. Owned by the card while `isEditing`; the parent only
@@ -190,6 +196,15 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </h4>
         </div>
         <div className="flex gap-2">
+          <button
+            onClick={() => setGoalsOpen(true)}
+            title={t('goals.open_goals')}
+            aria-label={`${t('goals.open_goals')} ${area.name}`}
+            className="flex cursor-pointer items-center gap-1 border-none bg-transparent text-[var(--color-text)]"
+          >
+            <FlagIcon className="size-5" />
+            <span className="text-sm">{goalCount}</span>
+          </button>
           <button
             onClick={handleEditClick}
             title={t('edit') || 'Edit'}
@@ -361,6 +376,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           />
         </Dialog>
       )}
+      <GoalsDialog area={area} open={goalsOpen} onOpenChange={setGoalsOpen} />
     </div>
   );
 };

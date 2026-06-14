@@ -10,10 +10,11 @@ const ExportButton: React.FC = () => {
   const { confirm, ConfirmationDialog } = useConfirmDialog();
   const lifeAreas = useLifeCompassStore(state => state.lifeAreas);
   const history = useLifeCompassStore(state => state.history);
+  const goals = useLifeCompassStore(state => state.goals);
 
   const handleExport = async () => {
     try {
-      const jsonData = exportData({ lifeAreas, history });
+      const jsonData = exportData({ lifeAreas, history, goals });
       const blob = new Blob([jsonData], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
 

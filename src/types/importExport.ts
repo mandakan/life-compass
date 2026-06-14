@@ -19,5 +19,18 @@ export type ImportedData = {
       [key: string]: unknown; // allows additional properties
     }[];
     history: Record<string, unknown>[]; // history items are loosely typed
+    goals?: {
+      id: string;
+      areaId: string;
+      title: string;
+      createdAt: string;
+      steps: {
+        id: string;
+        text: string;
+        done: boolean;
+        [key: string]: unknown;
+      }[];
+      [key: string]: unknown;
+    }[]; // optional: older exports without goals default to []
   };
 };

@@ -74,6 +74,33 @@
           "items": {
             "type": "object"
           }
+        },
+        "goals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "areaId": { "type": "string" },
+              "title": { "type": "string" },
+              "createdAt": { "type": "string" },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "text": { "type": "string" },
+                    "done": { "type": "boolean" }
+                  },
+                  "required": ["id", "text", "done"],
+                  "additionalProperties": true
+                }
+              }
+            },
+            "required": ["id", "areaId", "title", "createdAt", "steps"],
+            "additionalProperties": true
+          }
         }
       },
       "required": ["userSettings", "lifeAreas", "history"],

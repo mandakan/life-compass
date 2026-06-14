@@ -11,7 +11,7 @@ const STORE_KEY = 'life-compass';
 const LEGACY_KEY = 'lifeCompass';
 
 function resetStore(): void {
-  useLifeCompassStore.setState({ lifeAreas: [], history: [] });
+  useLifeCompassStore.setState({ lifeAreas: [], history: [], goals: [] });
 }
 
 function makeArea(overrides: Partial<LifeArea> = {}): LifeArea {
@@ -103,7 +103,7 @@ describe('lifeCompassStore actions', () => {
     store.addArea(makeArea({ name: 'Old' }));
 
     const doc: LifeCompassDocument = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       lifeAreas: [makeArea({ name: 'Imported' })],
       history: [
         {
@@ -114,6 +114,7 @@ describe('lifeCompassStore actions', () => {
           ],
         },
       ],
+      goals: [],
     };
     store.importDocument(doc);
 
@@ -190,6 +191,224 @@ describe('lifeCompassStore snapshots', () => {
     const after = useLifeCompassStore.getState().history;
     expect(after).toHaveLength(1);
     expect(after[0].label).toBe('second');
+  });
+});
+
+describe('lifeCompassStore goals and steps', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    resetStore();
+  });
+
+  function firstGoalId(): string {
+    return useLifeCompassStore.getState().goals[0].id;
+  }
+
+  it('addGoal appends a goal with a uuid, ISO createdAt, empty steps', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('area-1', 'Run a marathon');
+
+    const goals = useLifeCompassStore.getState().goals;
+    expect(goals).toHaveLength(1);
+    const goal = goals[0];
+    expect(typeof goal.id).toBe('string');
+    expect(goal.id.length).toBeGreaterThan(0);
+    expect(goal.areaId).toBe('area-1');
+    expect(goal.title).toBe('Run a marathon');
+    expect(goal.steps).toEqual([]);
+    expect(goal.createdAt).toBe(new Date(goal.createdAt).toISOString());
+  });
+
+  it('addGoal trims the title', () => {
+    useLifeCompassStore.getState().addGoal('a', '  Hydrate  ');
+    expect(useLifeCompassStore.getState().goals[0].title).toBe('Hydrate');
+  });
+
+  it('addGoal rejects an empty or whitespace-only title', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', '');
+    store.addGoal('a', '   ');
+    expect(useLifeCompassStore.getState().goals).toHaveLength(0);
+  });
+
+  it('updateGoal merges changes and preserves the id', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'Old');
+    const id = firstGoalId();
+    store.updateGoal(id, { title: 'New' });
+
+    const goal = useLifeCompassStore.getState().goals[0];
+    expect(goal.id).toBe(id);
+    expect(goal.title).toBe('New');
+  });
+
+  it('updateGoal cannot overwrite the id', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'G');
+    const id = firstGoalId();
+    store.updateGoal(id, { id: 'hacked' } as Partial<
+      ReturnType<typeof useLifeCompassStore.getState>['goals'][number]
+    >);
+    expect(useLifeCompassStore.getState().goals[0].id).toBe(id);
+  });
+
+  it('removeGoal removes only the matching goal', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'A');
+    store.addGoal('a', 'B');
+    const goals = useLifeCompassStore.getState().goals;
+    store.removeGoal(goals[0].id);
+
+    const after = useLifeCompassStore.getState().goals;
+    expect(after).toHaveLength(1);
+    expect(after[0].title).toBe('B');
+  });
+
+  it('addStep appends a step with a uuid, done=false', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'G');
+    const id = firstGoalId();
+    store.addStep(id, 'Buy shoes');
+
+    const step = useLifeCompassStore.getState().goals[0].steps[0];
+    expect(typeof step.id).toBe('string');
+    expect(step.id.length).toBeGreaterThan(0);
+    expect(step.text).toBe('Buy shoes');
+    expect(step.done).toBe(false);
+  });
+
+  it('addStep trims and rejects empty step text', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'G');
+    const id = firstGoalId();
+    store.addStep(id, '  Stretch  ');
+    store.addStep(id, '');
+    store.addStep(id, '   ');
+
+    const steps = useLifeCompassStore.getState().goals[0].steps;
+    expect(steps).toHaveLength(1);
+    expect(steps[0].text).toBe('Stretch');
+  });
+
+  it('updateStep merges changes and preserves the step id', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'G');
+    const gid = firstGoalId();
+    store.addStep(gid, 'Step');
+    const sid = useLifeCompassStore.getState().goals[0].steps[0].id;
+
+    store.updateStep(gid, sid, { text: 'Step edited', done: true });
+    const step = useLifeCompassStore.getState().goals[0].steps[0];
+    expect(step.id).toBe(sid);
+    expect(step.text).toBe('Step edited');
+    expect(step.done).toBe(true);
+  });
+
+  it('toggleStep flips done back and forth', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'G');
+    const gid = firstGoalId();
+    store.addStep(gid, 'Step');
+    const sid = useLifeCompassStore.getState().goals[0].steps[0].id;
+
+    store.toggleStep(gid, sid);
+    expect(useLifeCompassStore.getState().goals[0].steps[0].done).toBe(true);
+    store.toggleStep(gid, sid);
+    expect(useLifeCompassStore.getState().goals[0].steps[0].done).toBe(false);
+  });
+
+  it('removeStep removes only the matching step', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'G');
+    const gid = firstGoalId();
+    store.addStep(gid, 'One');
+    store.addStep(gid, 'Two');
+    const sid = useLifeCompassStore.getState().goals[0].steps[0].id;
+
+    store.removeStep(gid, sid);
+    const steps = useLifeCompassStore.getState().goals[0].steps;
+    expect(steps).toHaveLength(1);
+    expect(steps[0].text).toBe('Two');
+  });
+});
+
+describe('lifeCompassStore goal cascade rules', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    resetStore();
+  });
+
+  it('removeArea drops goals whose areaId matches and keeps the rest', () => {
+    const store = useLifeCompassStore.getState();
+    const a = makeArea({ name: 'A' });
+    const b = makeArea({ name: 'B' });
+    store.addArea(a);
+    store.addArea(b);
+    store.addGoal(a.id, 'Goal A');
+    store.addGoal(b.id, 'Goal B');
+
+    store.removeArea(a.id);
+
+    const goals = useLifeCompassStore.getState().goals;
+    expect(goals).toHaveLength(1);
+    expect(goals[0].areaId).toBe(b.id);
+    expect(goals[0].title).toBe('Goal B');
+  });
+
+  it('removeAllAreas clears goals too', () => {
+    const store = useLifeCompassStore.getState();
+    const a = makeArea({ name: 'A' });
+    store.addArea(a);
+    store.addGoal(a.id, 'Goal');
+    store.saveSnapshot();
+
+    store.removeAllAreas();
+
+    const state = useLifeCompassStore.getState();
+    expect(state.lifeAreas).toHaveLength(0);
+    expect(state.goals).toHaveLength(0);
+    // history is unaffected by the area/goal clear
+    expect(state.history).toHaveLength(1);
+  });
+
+  it('importDocument replaces goals wholesale', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('old-area', 'Old goal');
+
+    const doc: LifeCompassDocument = {
+      schemaVersion: 2,
+      lifeAreas: [makeArea({ name: 'Imported' })],
+      history: [],
+      goals: [
+        {
+          id: 'g1',
+          areaId: 'imported-area',
+          title: 'Imported goal',
+          steps: [{ id: 's1', text: 'Step', done: true }],
+          createdAt: new Date().toISOString(),
+        },
+      ],
+    };
+    store.importDocument(doc);
+
+    const goals = useLifeCompassStore.getState().goals;
+    expect(goals).toHaveLength(1);
+    expect(goals[0].title).toBe('Imported goal');
+    expect(goals[0].steps[0].done).toBe(true);
+  });
+
+  it('importDocument defaults goals to [] when the key is absent', () => {
+    const store = useLifeCompassStore.getState();
+    store.addGoal('a', 'Will be replaced');
+
+    const doc = {
+      schemaVersion: 2,
+      lifeAreas: [],
+      history: [],
+    } as unknown as LifeCompassDocument;
+    store.importDocument(doc);
+
+    expect(useLifeCompassStore.getState().goals).toEqual([]);
   });
 });
 

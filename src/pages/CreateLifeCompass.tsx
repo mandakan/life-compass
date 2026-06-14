@@ -13,7 +13,7 @@ import { ImportedData } from 'types/importExport';
 import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
 import { useSuccessDialog } from '@components/ui/hooks/useSuccessDialog';
 import { useLifeCompassStore } from '../store/lifeCompassStore';
-import { CURRENT_SCHEMA_VERSION, Snapshot } from '../types/LifeCompassDocument';
+import { CURRENT_SCHEMA_VERSION, Goal, Snapshot } from '../types/LifeCompassDocument';
 import { useDragReorder } from '../hooks/useDragReorder';
 import SnapshotHistory from '@components/SnapshotHistory';
 
@@ -316,6 +316,7 @@ const CreateLifeCompass: React.FC = () => {
         schemaVersion: CURRENT_SCHEMA_VERSION,
         lifeAreas: importedPayload.data.lifeAreas as LifeArea[],
         history: importedPayload.data.history as unknown as Snapshot[],
+        goals: (importedPayload.data.goals ?? []) as Goal[],
       });
       showSuccess(t('import_successful'));
     }
