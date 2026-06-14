@@ -41,10 +41,14 @@ interface RadarChartData {
   description: string;
 }
 
+// recharts 3 narrowed ResponsiveContainer's width/height to a number or a
+// `${number}%` string.
+type ChartDimension = number | `${number}%`;
+
 interface RadarChartProps {
   data: RadarChartData[];
-  width?: number | string;
-  height?: number | string;
+  width?: ChartDimension;
+  height?: ChartDimension;
   aspect?: number;
 }
 
@@ -151,7 +155,14 @@ const RadarChart: React.FC<RadarChartProps> = ({
           endAngle={-270}
         >
           <PolarGrid stroke="var(--border)" strokeWidth={axisStrokeWidth} />
-          <PolarAngleAxis dataKey="area" tick={renderTick} />
+          <PolarAngleAxis
+            dataKey="area"
+            tick={
+              renderTick as React.ComponentProps<
+                typeof PolarAngleAxis
+              >['tick']
+            }
+          />
           <PolarRadiusAxis
             angle={30}
             domain={[0, 10]}
