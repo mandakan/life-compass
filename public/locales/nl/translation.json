@@ -96,7 +96,9 @@
     "toolbar_tooltip": "Bekijk de zwevende werkbalk rechtsonder. Hiermee krijg je snelle toegang tot functies zoals het toevoegen van vooraf gedefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
     "welcome_prompt": "Welkom bij Levenskompas!\nLaten we de introductie beginnen. Wil je starten met vooraf gedefinieerde levensgebieden?\n(U kunt de introductie altijd opnieuw starten via het instellingenmenu.)",
     "with_predefined": "Met voordefinieerde levensgebieden (aanbevolen)",
-    "without_predefined": "Zonder voordefinieerde levensgebieden"
+    "without_predefined": "Zonder voordefinieerde levensgebieden",
+    "actions": "Gebruik de actiebalk om levensgebieden toe te voegen. Schakel tussen de kaarten en het radaroverzicht met de schakelaar Kaarten / Radar, en vind momentopnames, exporteren en importeren onder 'Meer'. Je instellingen en taal staan in het menu rechtsboven.",
+    "title": "Introductie"
   },
   "plus_add_new_life_area": "+ Nieuw levensgebied toevoegen",
   "privacyPolicy": {
@@ -169,5 +171,27 @@
   "radar_view_heading": "Jouw levenskompas in één oogopslag",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "contrast_theme_toggle": "Hoog-contrastthema inschakelen",
+  "goals": {
+    "open_goals": "Doelen",
+    "dialog_title": "Doelen voor {{area}}",
+    "dialog_description": "Stel doelen in voor dit levensgebied en verdeel ze in actiestappen.",
+    "add_goal": "Doel toevoegen",
+    "add_goal_placeholder": "Wat wil je bereiken?",
+    "empty_state": "Nog geen doelen. Voeg je eerste doel toe om dit gebied in actie te zetten.",
+    "goal_title": "Doelomschrijving",
+    "expand_goal": "Stappen tonen",
+    "collapse_goal": "Stappen verbergen",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "Voortgang voor {{title}}",
+    "delete_goal_title": "Doel verwijderen",
+    "delete_goal_warning": "Dit verwijdert het doel \"{{title}}\" en alle bijbehorende stappen. Wil je doorgaan?",
+    "add_step": "Stap toevoegen",
+    "add_step_placeholder": "Voeg een actiestap toe",
+    "delete_step": "Stap verwijderen"
+  },
+  "lived_according_to_past_week": "Nageleefd de afgelopen week",
+  "start_your_journey": "Begin je reis",
+  "theme_system": "Systeem"
 }
