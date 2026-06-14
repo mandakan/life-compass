@@ -161,5 +161,25 @@
   "toggle_settings_menu": "Basculer le menu des paramètres",
   "tools": "Outils",
   "unsaved_changes_warning": "Vous avez des modifications non enregistrées. Voulez-vous continuer ?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Boussole",
+    "about": "À propos"
+  },
+  "toggle_theme": "Basculer thème clair et sombre",
+  "your_life_compass": "Votre boussole de vie",
+  "compass_subline": "Cartographiez ce qui compte et le bilan de votre semaine.",
+  "add_life_area": "Ajouter un domaine de vie",
+  "view_cards": "Cartes",
+  "view_radar": "Radar",
+  "cards_radar_view": "Vue",
+  "more_actions": "Plus",
+  "gap": "Écart",
+  "empty_state_title": "Commencez votre boussole de vie",
+  "empty_state_body": "Ajoutez votre premier domaine de vie, ou commencez avec un ensemble prédéfini.",
+  "use_predefined": "Utiliser les prédéfinis",
+  "radar_view_heading": "Votre boussole de vie en un coup d œil",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }

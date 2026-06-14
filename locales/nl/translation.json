@@ -149,5 +149,25 @@
   "tools": "Tools",
   "unsaved_changes_warning": "Je hebt niet-opgeslagen wijzigingen. Wil je doorgaan?",
   "use_system_theme": "Systeemthema gebruiken",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Kompas",
+    "about": "Over"
+  },
+  "toggle_theme": "Licht en donker thema wisselen",
+  "your_life_compass": "Jouw levenskompas",
+  "compass_subline": "Breng in kaart wat telt en hoe je week verliep.",
+  "add_life_area": "Levensgebied toevoegen",
+  "view_cards": "Kaarten",
+  "view_radar": "Radar",
+  "cards_radar_view": "Weergave",
+  "more_actions": "Meer",
+  "gap": "Kloof",
+  "empty_state_title": "Start je levenskompas",
+  "empty_state_body": "Voeg je eerste levensgebied toe, of begin met een vooraf gedefinieerde set.",
+  "use_predefined": "Vooraf gedefinieerd gebruiken",
+  "radar_view_heading": "Jouw levenskompas in één oogopslag",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }

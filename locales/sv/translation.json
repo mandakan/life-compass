@@ -161,5 +161,25 @@
   "toggle_settings_menu": "Växla inställningsmeny",
   "tools": "Verktyg",
   "unsaved_changes_warning": "Du har osparade ändringar. Vill du fortsätta?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Kompass",
+    "about": "Om"
+  },
+  "toggle_theme": "Växla ljust och mörkt tema",
+  "your_life_compass": "Din livskompass",
+  "compass_subline": "Kartlägg vad som betyder något och hur din vecka blev.",
+  "add_life_area": "Lägg till livsområde",
+  "view_cards": "Kort",
+  "view_radar": "Radar",
+  "cards_radar_view": "Vy",
+  "more_actions": "Mer",
+  "gap": "Gap",
+  "empty_state_title": "Börja din livskompass",
+  "empty_state_body": "Lägg till ditt första livsområde, eller börja med en fördefinierad uppsättning vanliga områden.",
+  "use_predefined": "Använd fördefinierade",
+  "radar_view_heading": "Din livskompass i överblick",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }

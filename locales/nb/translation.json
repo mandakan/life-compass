@@ -156,5 +156,25 @@
   "toggle_settings_menu": "Bytt innstillingsmeny",
   "tools": "Verktøy",
   "unsaved_changes_warning": "Du har ikke lagrede endringer. Vil du fortsette?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Kompass",
+    "about": "Om"
+  },
+  "toggle_theme": "Veksle lyst og mørkt tema",
+  "your_life_compass": "Ditt livskompass",
+  "compass_subline": "Kartlegg hva som betyr noe og hvordan uken din ble.",
+  "add_life_area": "Legg til livsområde",
+  "view_cards": "Kort",
+  "view_radar": "Radar",
+  "cards_radar_view": "Visning",
+  "more_actions": "Mer",
+  "gap": "Gap",
+  "empty_state_title": "Start livskompasset ditt",
+  "empty_state_body": "Legg til ditt første livsområde, eller start med et forhåndsdefinert sett.",
+  "use_predefined": "Bruk forhåndsdefinerte",
+  "radar_view_heading": "Livskompasset ditt i oversikt",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }
