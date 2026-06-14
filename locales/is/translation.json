@@ -153,9 +153,7 @@
     "dark": "Myrkt þema",
     "title": "Þema",
     "high-contrast": "Háar andstæður þema",
-    "light": "Ljóst þema",
-    "sugar-sweet-dark": "Sykralegt þema (myrkt)",
-    "sugar-sweet-light": "Sykralegt þema (ljóst)"
+    "light": "Ljóst þema"
   },
   "theme_updated": "Þemað hefur verið uppfært",
   "toggle_mobile_navigation": "Virkja mobilnavigeringu",

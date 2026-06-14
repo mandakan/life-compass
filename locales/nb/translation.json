@@ -148,9 +148,7 @@
     "dark": "Mørkt tema",
     "title": "Tema",
     "high-contrast": "Høykontrasttema",
-    "light": "Lyst tema",
-    "sugar-sweet-dark": "Sukkersøtt tema (mørkt)",
-    "sugar-sweet-light": "Sukkersøtt tema"
+    "light": "Lyst tema"
   },
   "theme_settings": "Temainnstillinger",
   "theme_system": "Systemstandard",

@@ -140,9 +140,7 @@
     "dark": "Donker thema",
     "title": "Thema",
     "high-contrast": "Hoog contrast",
-    "light": "Licht thema",
-    "sugar-sweet-dark": "Suikerzoet donker",
-    "sugar-sweet-light": "Suikerzoet licht"
+    "light": "Licht thema"
   },
   "theme_settings": "Thema-instellingen",
   "theme_toggle_label": "Wissel van thema",
