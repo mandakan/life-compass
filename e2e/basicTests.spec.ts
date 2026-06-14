@@ -60,11 +60,16 @@ test.describe('Life Compass App End-to-End Tests', () => {
       .first()
       .click();
 
-    // Open the quick-actions popover and give the snapshot some content.
+    // Open the overflow "More" menu (action bar) and seed some content.
     await page.getByRole('button', { name: /quick actions/i }).click();
     await page.getByRole('button', { name: /add predefined/i }).click();
 
-    // Save a dated snapshot through the real UI.
+    // The segmented Cards / Radar view toggle replaces the old mystery FAB.
+    await page.getByRole('button', { name: /^radar/i }).click();
+    await page.getByRole('button', { name: /^cards/i }).click();
+
+    // Save a dated snapshot through the real UI (reopen the overflow menu).
+    await page.getByRole('button', { name: /quick actions/i }).click();
     await page.getByRole('button', { name: /save snapshot/i }).click();
 
     // The history section appears once at least one snapshot exists.

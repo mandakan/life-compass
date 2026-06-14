@@ -7,52 +7,51 @@ const Footer: React.FC = () => {
 
   const githubIcon = (
     <svg
-      className="mr-1 inline h-6 w-6 align-middle"
+      className="mr-1 inline h-5 w-5 align-middle"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
+      aria-hidden="true"
     >
       <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.387 0.6 0.113 0.82-0.258 0.82-0.577v-2.234c-3.338 0.726-4.033-1.416-4.033-1.416-0.546-1.387-1.333-1.756-1.333-1.756-1.089-0.744 0.084-0.729 0.084-0.729 1.205 0.084 1.838 1.234 1.838 1.234 1.07 1.834 2.809 1.304 3.495 0.997 0.108-0.776 0.418-1.304 0.762-1.604-2.665-0.304-5.467-1.332-5.467-5.93 0-1.31 0.468-2.381 1.236-3.221-0.124-0.303-0.536-1.524 0.117-3.176 0 0 1.008-0.322 3.3 1.23 0.957-0.266 1.983-0.399 3.003-0.404 1.02 0.005 2.047 0.138 3.006 0.404 2.29-1.552 3.296-1.23 3.296-1.23 0.655 1.653 0.243 2.874 0.12 3.176 0.77 0.84 1.234 1.911 1.234 3.221 0 4.61-2.807 5.624-5.481 5.921 0.43 0.372 0.823 1.102 0.823 2.222v3.293c0 0.321 0.218 0.694 0.825 0.576 4.765-1.589 8.2-6.085 8.2-11.386 0-6.627-5.373-12-12-12z" />
     </svg>
   );
 
+  const linkClass =
+    'rounded-sm text-text-muted no-underline transition-colors duration-base ease-out-soft hover:text-text hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+
   return (
-    <footer className="bg-primary mt-auto p-4 text-on-primary">
-      <div className="container mx-auto flex flex-col items-center md:flex-row md:justify-between">
-        <nav className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-8">
-          <Link
-            to="/about"
-            className="text-on-primary hover:underline"
-          >
+    <footer className="mt-auto border-t border-border bg-surface text-text-muted">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-6 md:flex-row md:justify-between">
+        <nav
+          aria-label={t('footer_navigation', 'Footer')}
+          className="flex flex-col items-center gap-3 md:flex-row md:gap-6"
+        >
+          <Link to="/about" className={linkClass}>
             {t('about', 'About')}
           </Link>
-          <Link
-            to="/privacy"
-            className="text-on-primary hover:underline"
-          >
+          <Link to="/privacy" className={linkClass}>
             {t('privacyPolicy.title', 'Privacy Policy')}
           </Link>
           <a
             href="https://github.com/mandakan/life-compass"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-on-primary hover:underline"
+            className={`inline-flex items-center ${linkClass}`}
           >
             {githubIcon}
             <span>{t('github', 'GitHub')}</span>
           </a>
-          <div className="text-center">
-            <a
-              href="https://www.buymeacoffee.com/thias"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-on-primary hover:underline"
-            >
-              ☕ {t('buy_me_coffee', 'Buy Me a Coffee')}
-            </a>
-          </div>
+          <a
+            href="https://www.buymeacoffee.com/thias"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            ☕ {t('buy_me_coffee', 'Buy Me a Coffee')}
+          </a>
         </nav>
-        <span className="mt-2 text-sm md:mt-0">
+        <span className="text-sm text-text-muted">
           {t('footer_text', '© 2025 Life Compass. MIT Licensed.')}
         </span>
       </div>

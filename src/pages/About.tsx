@@ -1,24 +1,120 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import ContentPage from '@components/ui/ContentPage';
+
+interface Attribution {
+  name: string;
+  license: string;
+  href: string;
+  label: string;
+}
 
 const About: React.FC = () => {
   const { t } = useTranslation();
 
+  const tools: Attribution[] = [
+    {
+      name: 'GitHub',
+      license: 'Proprietary / Various',
+      href: 'https://github.com',
+      label: 'https://github.com',
+    },
+    {
+      name: 'Aider',
+      license: 'Apache License 2.0',
+      href: 'https://aider.chat',
+      label: 'https://aider.chat',
+    },
+    {
+      name: 'ChatGPT',
+      license: 'Proprietary',
+      href: 'https://chat.openai.com',
+      label: 'https://chat.openai.com',
+    },
+    {
+      name: 'Playwright',
+      license: 'Apache License 2.0',
+      href: 'https://playwright.dev',
+      label: 'https://playwright.dev',
+    },
+  ];
+
+  const frameworks: Attribution[] = [
+    {
+      name: 'React',
+      license: 'MIT License',
+      href: 'https://reactjs.org',
+      label: 'https://reactjs.org',
+    },
+    {
+      name: 'React Router',
+      license: 'MIT License',
+      href: 'https://reactrouter.com',
+      label: 'https://reactrouter.com',
+    },
+    {
+      name: 'i18next',
+      license: 'MIT License',
+      href: 'https://www.i18next.com',
+      label: 'https://www.i18next.com',
+    },
+    {
+      name: 'Tailwind CSS',
+      license: 'MIT License',
+      href: 'https://tailwindcss.com',
+      label: 'https://tailwindcss.com',
+    },
+    {
+      name: 'Vite',
+      license: 'MIT License',
+      href: 'https://vitejs.dev',
+      label: 'https://vitejs.dev',
+    },
+    {
+      name: 'Heroicons',
+      license: 'MIT License',
+      href: 'https://heroicons.com',
+      label: 'https://heroicons.com',
+    },
+    {
+      name: 'Radix UI',
+      license: 'MIT License',
+      href: 'https://www.radix-ui.com',
+      label: 'https://www.radix-ui.com',
+    },
+  ];
+
+  const renderList = (items: Attribution[]) => (
+    <ul className="space-y-2 text-text">
+      {items.map(item => (
+        <li key={item.name}>
+          <strong>{item.name}:</strong> {item.license} -{' '}
+          <a
+            className="underline"
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <div className="bg-bg text-text h-full p-8 font-sans">
-      <header className="mb-8 text-center">
-        <h1 className="text-4xl font-bold">{t('about', 'About This App')}</h1>
-      </header>
-      <main className="mx-auto max-w-4xl">
-        <section className="mb-6">
-          <h2 className="mb-2 text-2xl font-semibold">
+    <ContentPage title={t('about', 'About This App')}>
+      <div className="space-y-10">
+        <section className="space-y-6">
+          <h2 className="font-display text-2xl font-semibold text-text">
             {t('attributions', 'Attributions')}
           </h2>
-          <div className="mb-4">
-            <h3 className="mb-2 text-xl font-semibold">
+
+          <div className="space-y-3">
+            <h3 className="font-display text-xl font-semibold text-text">
               {t('method', 'Method')}
             </h3>
-            <ul className="list-inside list-disc">
+            <ul className="space-y-2 text-text">
               <li>
                 <strong>KBT Primarvården:</strong>{' '}
                 <a
@@ -41,152 +137,32 @@ const About: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="mb-4">
-            <h3 className="mb-2 text-xl font-semibold">
+
+          <div className="space-y-3">
+            <h3 className="font-display text-xl font-semibold text-text">
               {t('tools', 'Tools')}
             </h3>
-            <ul className="list-inside list-disc">
-              <li>
-                <strong>GitHub:</strong> Proprietary / Various -{' '}
-                <a
-                  className="underline"
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://github.com
-                </a>
-              </li>
-              <li>
-                <strong>Aider:</strong> Apache License 2.0 -{' '}
-                <a
-                  className="underline"
-                  href="https://aider.chat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://aider.chat
-                </a>
-              </li>
-              <li>
-                <strong>ChatGPT:</strong> Proprietary -{' '}
-                <a
-                  className="underline"
-                  href="https://chat.openai.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://chat.openai.com
-                </a>
-              </li>
-              <li>
-                <strong>Playwright:</strong> Apache License 2.0 -{' '}
-                <a
-                  className="underline"
-                  href="https://playwright.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://playwright.dev
-                </a>
-              </li>
-            </ul>
+            {renderList(tools)}
           </div>
-          <div>
-            <h3 className="mb-2 text-xl font-semibold">
+
+          <div className="space-y-3">
+            <h3 className="font-display text-xl font-semibold text-text">
               {t('frameworksLibraries', 'Frameworks/Libraries')}
             </h3>
-            <ul className="list-inside list-disc">
-              <li>
-                <strong>React:</strong> MIT License -{' '}
-                <a
-                  className="underline"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://reactjs.org
-                </a>
-              </li>
-              <li>
-                <strong>React Router:</strong> MIT License -{' '}
-                <a
-                  className="underline"
-                  href="https://reactrouter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://reactrouter.com
-                </a>
-              </li>
-              <li>
-                <strong>i18next:</strong> MIT License -{' '}
-                <a
-                  className="underline"
-                  href="https://www.i18next.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://www.i18next.com
-                </a>
-              </li>
-              <li>
-                <strong>Tailwind CSS:</strong> MIT License -{' '}
-                <a
-                  className="underline"
-                  href="https://tailwindcss.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://tailwindcss.com
-                </a>
-              </li>
-              <li>
-                <strong>Vite:</strong> MIT License -{' '}
-                <a
-                  className="underline"
-                  href="https://vitejs.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://vitejs.dev
-                </a>
-              </li>
-              <li>
-                <strong>Heroicons:</strong> MIT License -{' '}
-                <a
-                  className="underline"
-                  href="https://heroicons.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://heroicons.com
-                </a>
-              </li>
-              <li>
-                <strong>Radix UI:</strong> MIT License –{' '}
-                <a
-                  className="underline"
-                  href="https://www.radix-ui.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://www.radix-ui.com
-                </a>
-              </li>
-            </ul>
+            {renderList(frameworks)}
           </div>
         </section>
+
         <section>
-          <p>
+          <p className="text-lg leading-relaxed text-text-muted">
             {t(
               'attribution_message',
               'This application was built with care using modern frameworks and tools. We are grateful to the open source community and all contributors for providing the resources that made this project possible.',
             )}
           </p>
         </section>
-      </main>
-    </div>
+      </div>
+    </ContentPage>
   );
 };
 

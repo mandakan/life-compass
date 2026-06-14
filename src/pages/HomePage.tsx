@@ -10,35 +10,38 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-bg text-text flex h-full flex-col items-center justify-center p-8 font-sans">
-      <div className="mb-24 text-center">
-        <h1 className="mb-4 text-4xl font-bold">
-          {t(
-            'life_compass_title',
-            'Utforska dina livsvärden med Livskompassen',
-          )}
-        </h1>
-        <h2 className="text-xl">
-          {t(
-            'life_compass_subtitle',
-            'Discover your life balance. Create your life compass.',
-          )}
-        </h2>
-      </div>
-      <main className="w-full max-w-4xl text-center">
-        <CustomButton
-          className="text-xl"
-          onClick={() => navigate('/create-life-compass')}
-        >
-          {t('start_your_journey', 'Börja din resa')}
-        </CustomButton>
-        <div className="mt-4 flex justify-center">
-          <LanguageSwitcher testId="language-switcher-home" />
+    <div className="bg-bg text-text flex flex-col">
+      {/* Editorial hero on warm sand */}
+      <section className="px-4 py-16 sm:py-24">
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <h1 className="font-display text-4xl font-semibold text-text sm:text-5xl">
+            {t(
+              'life_compass_title',
+              'Utforska dina livsvärden med Livskompassen',
+            )}
+          </h1>
+          <p className="mt-5 max-w-xl text-lg text-text-muted sm:text-xl">
+            {t(
+              'life_compass_subtitle',
+              'Discover your life balance. Create your life compass.',
+            )}
+          </p>
+          <div className="mt-8">
+            <CustomButton
+              className="text-lg"
+              onClick={() => navigate('/create-life-compass')}
+            >
+              {t('start_your_journey', 'Börja din resa')}
+            </CustomButton>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <LanguageSwitcher testId="language-switcher-home" />
+          </div>
         </div>
-        <div className="mt-24 justify-center">
-          <Introduction />
-        </div>
-      </main>
+      </section>
+
+      {/* Editorial sections */}
+      <Introduction />
     </div>
   );
 };

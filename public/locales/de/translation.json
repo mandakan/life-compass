@@ -151,5 +151,25 @@
   "toggle_settings_menu": "Einstellungsmenü umschalten",
   "tools": "Werkzeuge",
   "unsaved_changes_warning": "Sie haben ungespeicherte Änderungen. Möchten Sie fortfahren?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Kompass",
+    "about": "Über"
+  },
+  "toggle_theme": "Helles und dunkles Thema umschalten",
+  "your_life_compass": "Dein Lebenskompass",
+  "compass_subline": "Erfasse, was zählt, und wie deine Woche war.",
+  "add_life_area": "Lebensbereich hinzufügen",
+  "view_cards": "Karten",
+  "view_radar": "Radar",
+  "cards_radar_view": "Ansicht",
+  "more_actions": "Mehr",
+  "gap": "Lücke",
+  "empty_state_title": "Starte deinen Lebenskompass",
+  "empty_state_body": "Füge deinen ersten Lebensbereich hinzu oder beginne mit vordefinierten Bereichen.",
+  "use_predefined": "Vordefinierte verwenden",
+  "radar_view_heading": "Dein Lebenskompass im Überblick",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }

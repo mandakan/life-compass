@@ -160,5 +160,25 @@
   "toggle_settings_menu": "Skipta um stillingavalmynd",
   "tools": "Tól",
   "unsaved_changes_warning": "Þú hefur ósagðar breytingar. Viltu halda áfram?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Áttaviti",
+    "about": "Um"
+  },
+  "toggle_theme": "Skipta um ljóst og dökkt þema",
+  "your_life_compass": "Lífsáttavitinn þinn",
+  "compass_subline": "Kortleggðu hvað skiptir máli og hvernig vikan gekk.",
+  "add_life_area": "Bæta við lífssviði",
+  "view_cards": "Spjöld",
+  "view_radar": "Ratsjá",
+  "cards_radar_view": "Sýn",
+  "more_actions": "Meira",
+  "gap": "Bil",
+  "empty_state_title": "Byrjaðu lífsáttavitann",
+  "empty_state_body": "Bættu við fyrsta lífssviðinu eða byrjaðu með fyrirfram skilgreindum sviðum.",
+  "use_predefined": "Nota fyrirfram skilgreind",
+  "radar_view_heading": "Lífsáttavitinn þinn í yfirliti",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }

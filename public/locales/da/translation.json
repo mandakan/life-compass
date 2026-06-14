@@ -151,5 +151,25 @@
   "toggle_settings_menu": "Skift indstillingsmenu",
   "tools": "Værktøjer",
   "unsaved_changes_warning": "Du har ikke-gemte ændringer. Vil du fortsætte?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Kompas",
+    "about": "Om"
+  },
+  "toggle_theme": "Skift lyst og mørkt tema",
+  "your_life_compass": "Dit livskompas",
+  "compass_subline": "Kortlæg hvad der betyder noget, og hvordan din uge gik.",
+  "add_life_area": "Tilføj livsområde",
+  "view_cards": "Kort",
+  "view_radar": "Radar",
+  "cards_radar_view": "Visning",
+  "more_actions": "Mere",
+  "gap": "Gap",
+  "empty_state_title": "Start dit livskompas",
+  "empty_state_body": "Tilføj dit første livsområde, eller begynd med et foruddefineret sæt almindelige områder.",
+  "use_predefined": "Brug foruddefinerede",
+  "radar_view_heading": "Dit livskompas i overblik",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }
