@@ -20,22 +20,28 @@ const About: React.FC = () => {
       label: 'https://github.com',
     },
     {
+      name: 'Claude Code',
+      license: 'Proprietary (Anthropic)',
+      href: 'https://www.anthropic.com/claude-code',
+      label: 'https://www.anthropic.com/claude-code',
+    },
+    {
       name: 'Aider',
       license: 'Apache License 2.0',
       href: 'https://aider.chat',
       label: 'https://aider.chat',
     },
     {
-      name: 'ChatGPT',
-      license: 'Proprietary',
-      href: 'https://chat.openai.com',
-      label: 'https://chat.openai.com',
-    },
-    {
       name: 'Playwright',
       license: 'Apache License 2.0',
       href: 'https://playwright.dev',
       label: 'https://playwright.dev',
+    },
+    {
+      name: 'Vitest',
+      license: 'MIT License',
+      href: 'https://vitest.dev',
+      label: 'https://vitest.dev',
     },
   ];
 
@@ -71,6 +77,24 @@ const About: React.FC = () => {
       label: 'https://vitejs.dev',
     },
     {
+      name: 'TypeScript',
+      license: 'Apache License 2.0',
+      href: 'https://www.typescriptlang.org',
+      label: 'https://www.typescriptlang.org',
+    },
+    {
+      name: 'Zustand',
+      license: 'MIT License',
+      href: 'https://github.com/pmndrs/zustand',
+      label: 'https://github.com/pmndrs/zustand',
+    },
+    {
+      name: 'Recharts',
+      license: 'MIT License',
+      href: 'https://recharts.org',
+      label: 'https://recharts.org',
+    },
+    {
       name: 'Heroicons',
       license: 'MIT License',
       href: 'https://heroicons.com',
@@ -82,10 +106,22 @@ const About: React.FC = () => {
       href: 'https://www.radix-ui.com',
       label: 'https://www.radix-ui.com',
     },
+    {
+      name: 'Fraunces (font)',
+      license: 'SIL Open Font License 1.1',
+      href: 'https://fonts.google.com/specimen/Fraunces',
+      label: 'Fraunces',
+    },
+    {
+      name: 'Hanken Grotesk (font)',
+      license: 'SIL Open Font License 1.1',
+      href: 'https://fonts.google.com/specimen/Hanken+Grotesk',
+      label: 'Hanken Grotesk',
+    },
   ];
 
   const renderList = (items: Attribution[]) => (
-    <ul className="space-y-2 text-text">
+    <ul className="text-text space-y-2">
       {items.map(item => (
         <li key={item.name}>
           <strong>{item.name}:</strong> {item.license} -{' '}
@@ -106,15 +142,15 @@ const About: React.FC = () => {
     <ContentPage title={t('about', 'About This App')}>
       <div className="space-y-10">
         <section className="space-y-6">
-          <h2 className="font-display text-2xl font-semibold text-text">
+          <h2 className="font-display text-text text-2xl font-semibold">
             {t('attributions', 'Attributions')}
           </h2>
 
           <div className="space-y-3">
-            <h3 className="font-display text-xl font-semibold text-text">
+            <h3 className="font-display text-text text-xl font-semibold">
               {t('method', 'Method')}
             </h3>
-            <ul className="space-y-2 text-text">
+            <ul className="text-text space-y-2">
               <li>
                 <strong>KBT Primarvården:</strong>{' '}
                 <a
@@ -139,14 +175,14 @@ const About: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-display text-xl font-semibold text-text">
+            <h3 className="font-display text-text text-xl font-semibold">
               {t('tools', 'Tools')}
             </h3>
             {renderList(tools)}
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-display text-xl font-semibold text-text">
+            <h3 className="font-display text-text text-xl font-semibold">
               {t('frameworksLibraries', 'Frameworks/Libraries')}
             </h3>
             {renderList(frameworks)}
@@ -154,7 +190,7 @@ const About: React.FC = () => {
         </section>
 
         <section>
-          <p className="text-lg leading-relaxed text-text-muted">
+          <p className="text-text-muted text-lg leading-relaxed">
             {t(
               'attribution_message',
               'This application was built with care using modern frameworks and tools. We are grateful to the open source community and all contributors for providing the resources that made this project possible.',

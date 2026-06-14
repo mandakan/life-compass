@@ -12,15 +12,30 @@ This project aims to develop a web-based application that helps users reflect on
 
 ## AI-Assisted Development
 
-This project is being developed in collaboration with AI-assisted tools. A key aspect of this project is to **explore the potential of AI in software development**, including decision-making, structuring, and implementation details.
+This project is developed in collaboration with AI coding tools. A key aspect of the project is to **explore the potential of AI in software development** — decision-making, architecture, and implementation. The project was bootstrapped with [Aider](https://aider.chat) and is now developed with [Claude Code](https://www.anthropic.com/claude-code) (Anthropic), with human direction and review.
 
 ### AI's Role in the Project
 
-- **AI will make many decisions**: From technical choices to architecture and implementation details, AI-generated suggestions will often be accepted.
+- **AI makes many decisions**: From technical choices to architecture and implementation details, AI-generated suggestions are often accepted.
 - **Experimentation over perfection**: The project is not purely about producing the most optimized code, but about testing AI capabilities in real-world development.
-- **Guided by conventions**: While AI is given freedom, structured conventions are in place to maintain coherence.
+- **Guided by conventions**: While AI is given freedom, structured conventions (see [CONVENTIONS.md](CONVENTIONS.md)) and a CI pipeline keep things coherent.
 
-This means that the code and structure **may not always follow traditional best practices** but instead reflect an evolving collaboration between human input and AI-generated development.
+This means the code and structure reflect an evolving collaboration between human input and AI-generated development.
+
+---
+
+## 🧰 Tech Stack
+
+- **UI**: React 19 + TypeScript, [Vite](https://vitejs.dev) 8
+- **Styling**: Tailwind CSS 4 (CSS-first `@theme` tokens), self-hosted Fraunces + Hanken Grotesk fonts
+- **State & persistence**: [Zustand](https://zustand-demo.pmnd.rs) with `persist` to `localStorage` (a single versioned document with schema migrations)
+- **Components**: [Radix UI](https://www.radix-ui.com) primitives, [Heroicons](https://heroicons.com)
+- **Charts**: [Recharts](https://recharts.org) (radar view)
+- **i18n**: [i18next](https://www.i18next.com) / react-i18next
+- **Tooling**: Vitest + Testing Library (unit), Playwright (E2E), ESLint, Prettier, Knip
+- **Themes**: light, dark, and a WCAG-AAA high-contrast theme
+
+The app is **local-first**: there is no backend, and all data stays in the user's browser.
 
 ---
 
@@ -126,19 +141,19 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ### UI Enhancements
 
-- [ ] User Story 5.4: Optimize Navigation and Usability
+- [x] User Story 5.4: Optimize Navigation and Usability
 - [x] User Story 5.6: Dark Mode Support
 
 ### Additional Life Compass Features
 
-- [ ] User Story 1.7: Onboarding Tutorial
+- [x] User Story 1.7: Onboarding Tutorial
 - [ ] User Story 2.2: Sort Life Areas by Gap
 
 ### Data Export/Import & Warnings
 
 - [x] User Story 9.1: Export JSON
 - [x] User Story 9.4: Import JSON
-- [ ] User Story 9.5: Warn on Overwrite
+- [x] User Story 9.5: Warn on Overwrite (import shows a preview and confirmation)
 
 ## 🌟 Phase 4: Internationalization & Localization
 
@@ -162,24 +177,39 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 - [x] User Story 7.10: Implement Automated End-to-End Tests
 
+## 🌟 Phase 6: Goals & Action Planning (Epic 3)
+
+> Goal: Turn imbalances into action — let users set goals per life area and track them with checkable steps.
+
+- [x] User Story 3.1: Set Goals for Life Areas
+- [x] User Story 3.2: Track Goal Progress (derived from completed steps)
+- [x] User Story 3.3: Define Action Steps for Goals
+- [ ] User Story 3.4–3.7: Prioritization, deadlines, review-over-time, smart suggestions
+
+## 🌟 Phase 7: Design System, Redesign & Accessibility
+
+> Goal: A reusable design system and a polished, mobile-first, accessible UI.
+
+- [x] Tokenized design system via Tailwind 4 `@theme` (color, type, spacing, radius, shadow, motion)
+- [x] Three themes (light, dark, high-contrast) with verified WCAG contrast (AA, AAA on high-contrast)
+- [x] Rebuilt, accessible UI primitives (visible focus, 44px touch targets, reduced-motion)
+- [x] Mobile-first screen redesign (light sticky header, compass action bar, editorial pages)
+
 ---
 
 ## Currently Implemented Features
 
-Based on the analysis of the code base, the following features have been implemented:
-
-- Life Compass creation and management through the main page (CreateLifeCompass).
-- Customization of life areas, including adding, editing, and reordering.
-- Rating functionality for life areas using interactive sliders.
-- Visual representation of life area ratings through components like the Radar Chart.
-- Data persistence with save and load capabilities via localStorage.
-- Reset functionality to clear the current Life Compass.
-- Export of life compass data to JSON format.
-- Import of life compass data from JSON files, complete with preview and validation.
-- Multi-language support facilitated by the LanguageSwitcher component and i18next integration.
-- Adaptive theming, including dark mode support, managed through the ThemeContext.
-- Responsive design with both desktop and mobile navigation components.
-- Automated end-to-end tests to validate navigation between pages and component integration.
+- Create and manage a Life Compass: add, edit, reorder, and remove life areas (with predefined sets per language).
+- Rate each area's **importance** and **satisfaction**, with an at-a-glance **gap** indicator.
+- Visualize the compass as a **radar chart** (importance vs. satisfaction).
+- **Goals & action steps** per life area, with step-derived progress.
+- **Snapshots**: save dated snapshots of the compass to revisit later.
+- **Export/Import** to JSON, with import preview, validation, and confirmation.
+- **Local-first persistence** via a single versioned document in `localStorage` (Zustand `persist`, with schema migrations).
+- **Internationalization** (i18next) with an in-app language switcher.
+- **Theming**: light, dark, and a WCAG-AAA high-contrast theme; optional follow-system.
+- **Accessible, mobile-first UI** with an onboarding tour.
+- **Automated tests**: unit (Vitest) and end-to-end (Playwright), run in CI.
 
 ---
 
@@ -207,7 +237,7 @@ Instructions:
 
 ## 🔧 Development Guidelines
 
-To ensure maintainability and efficiency while using AI-assisted tools like Aider, follow these **core principles**:
+To ensure maintainability and efficiency while developing with AI tools (Claude Code), follow these **core principles**:
 
 ## 🏗️ **Architecture & Code Structure**
 
@@ -229,12 +259,14 @@ To ensure maintainability and efficiency while using AI-assisted tools like Aide
 ```
 life_compass/
 │── src/
-│   ├── components/  # Reusable UI components
+│   ├── components/  # Reusable UI components (ui/ holds the design-system primitives)
 │   ├── pages/       # Page-specific components
-│   ├── utils/       # Helper functions & utilities
-│   ├── hooks/       # Custom React hooks (if applicable)
-│   ├── state/       # Zustand/Redux/Context API state management
-│   ├── assets/      # Images, icons, styles
+│   ├── store/       # Zustand store (single source of truth + persistence)
+│   ├── context/     # React Context providers (theme, app settings)
+│   ├── hooks/       # Custom React hooks
+│   ├── utils/       # Helper functions & services
+│   ├── types/       # Shared TypeScript types
+│   ├── schemas/     # JSON schemas (import/export validation)
 │   ├── tests/       # Unit & integration tests
 ```
 
@@ -322,10 +354,12 @@ For more information about the concepts, tools, and methodologies used in this p
 - [Acceptance and Commitment Therapy for Stress Management](https://www.livskompass.se/wp-content/uploads/2012/11/Granberg_Westin_Psykologexamensuppsats_2012-1.pdf)  
   _A study on how the Life Compass is used as a tool for managing stress and promoting mental well-being among young people._
 
-### AI-Assisted Development and Aider
+### AI-Assisted Development
 
+- [Claude Code](https://www.anthropic.com/claude-code)  
+  _Anthropic's agentic coding tool; the project's current AI development environment._
 - [Aider: AI-Powered Code Collaboration](https://aider.chat/)  
-  _Aider is an AI-driven tool for pair programming directly in the terminal, integrated with your local Git repository._
+  _The terminal-based AI pair-programming tool used to bootstrap the project._
 
 ### Open Source and Contribution Guidelines
 
