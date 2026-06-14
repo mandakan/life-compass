@@ -80,4 +80,61 @@ test.describe('Life Compass App End-to-End Tests', () => {
       page.getByRole('heading', { name: /snapshot history/i }),
     ).toBeVisible();
   });
+
+  test('a goal with a checked step survives a page reload', async ({
+    page,
+  }) => {
+    // Skip onboarding; addInitScript re-runs on the reload below too.
+    await page.addInitScript(() => {
+      window.localStorage.setItem('tutorialCompleted', 'true');
+    });
+
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page
+      .getByRole('button', { name: /start your journey/i })
+      .first()
+      .click();
+
+    // Seed some life areas so a card with a Goals button exists.
+    await page.getByRole('button', { name: /quick actions/i }).click();
+    await page.getByRole('button', { name: /add predefined/i }).click();
+
+    // Open the first card's goals dialog (flag icon + count).
+    await page
+      .getByRole('button', { name: /^goals/i })
+      .first()
+      .click();
+
+    // Add a goal through the real UI.
+    const goalInput = page.getByLabel(/add goal/i);
+    await goalInput.fill('Run a 5k');
+    await page.getByRole('button', { name: /add goal/i }).click();
+    await expect(page.getByText('Run a 5k')).toBeVisible();
+
+    // Expand the goal and add a step.
+    await page.getByRole('button', { name: /show steps/i }).click();
+    const stepInput = page.getByLabel(/add step/i);
+    await stepInput.fill('Buy shoes');
+    await page.getByRole('button', { name: /add step/i }).click();
+
+    // Check the step off; progress should read 1/1.
+    await page.getByRole('checkbox', { name: 'Buy shoes' }).check();
+    await expect(page.getByText('1/1')).toBeVisible();
+
+    // The whole point: it must survive a full reload.
+    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    await page
+      .getByRole('button', { name: /^goals/i })
+      .first()
+      .click();
+    await expect(page.getByText('Run a 5k')).toBeVisible();
+    await page.getByRole('button', { name: /show steps/i }).click();
+    await expect(page.getByText('1/1')).toBeVisible();
+    await expect(
+      page.getByRole('checkbox', { name: 'Buy shoes' }),
+    ).toBeChecked();
+  });
 });

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { exportData } from '../utils/exportService';
 import { LifeArea } from '../types/LifeArea';
-import { Snapshot } from '../types/LifeCompassDocument';
+import { Goal, Snapshot } from '../types/LifeCompassDocument';
 
 describe('exportData', () => {
   beforeEach(() => {
@@ -25,6 +25,10 @@ describe('exportData', () => {
     expect(data.data).toHaveProperty('history');
     expect(Array.isArray(data.data.history)).toBe(true);
     expect(data.data.history.length).toBe(0);
+    // goals must always be present in the export envelope
+    expect(data.data).toHaveProperty('goals');
+    expect(Array.isArray(data.data.goals)).toBe(true);
+    expect(data.data.goals.length).toBe(0);
   });
 
   it('should export provided userSettings from localStorage plus life areas and history from input', () => {
@@ -129,5 +133,59 @@ describe('exportData', () => {
     expect(parsed.data.history[0].id).toBe('snap-a');
     expect(parsed.data.history[1].label).toBe('after checkup');
     expect(parsed.data.history[1].areas[0].satisfaction).toBe(7);
+  });
+
+  it('round-trip: goals with steps survive export and JSON.parse', () => {
+    const lifeAreas: LifeArea[] = [
+      {
+        id: 'area-1',
+        name: 'Health',
+        description: 'Staying healthy',
+        importance: 8,
+        satisfaction: 6,
+        details: '',
+      },
+    ];
+    const goals: Goal[] = [
+      {
+        id: 'goal-1',
+        areaId: 'area-1',
+        title: 'Exercise regularly',
+        createdAt: '2026-06-14T10:00:00.000Z',
+        steps: [
+          { id: 'step-1', text: 'Walk 30 min daily', done: false },
+          { id: 'step-2', text: 'Gym twice a week', done: true },
+        ],
+      },
+      {
+        id: 'goal-2',
+        areaId: 'area-1',
+        title: 'Eat better',
+        createdAt: '2026-06-14T11:00:00.000Z',
+        steps: [],
+      },
+    ];
+
+    const jsonString = exportData({ lifeAreas, history: [], goals });
+    const parsed = JSON.parse(jsonString);
+
+    expect(parsed.data.goals).toHaveLength(2);
+    expect(parsed.data.goals[0].id).toBe('goal-1');
+    expect(parsed.data.goals[0].title).toBe('Exercise regularly');
+    expect(parsed.data.goals[0].areaId).toBe('area-1');
+    expect(parsed.data.goals[0].steps).toHaveLength(2);
+    expect(parsed.data.goals[0].steps[0].text).toBe('Walk 30 min daily');
+    expect(parsed.data.goals[0].steps[0].done).toBe(false);
+    expect(parsed.data.goals[0].steps[1].done).toBe(true);
+    expect(parsed.data.goals[1].title).toBe('Eat better');
+    expect(parsed.data.goals[1].steps).toHaveLength(0);
+  });
+
+  it('omitting goals in input defaults to empty array in the export', () => {
+    const lifeAreas: LifeArea[] = [];
+    const jsonString = exportData({ lifeAreas, history: [] });
+    const parsed = JSON.parse(jsonString);
+    expect(Array.isArray(parsed.data.goals)).toBe(true);
+    expect(parsed.data.goals).toHaveLength(0);
   });
 });

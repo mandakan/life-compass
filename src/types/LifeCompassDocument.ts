@@ -24,13 +24,37 @@ export interface Snapshot {
 }
 
 /**
+ * A single checkable action step belonging to a goal. Step completion is the
+ * sole source of truth for goal progress; progress is never stored.
+ */
+export interface ActionStep {
+  id: string;
+  text: string;
+  done: boolean;
+}
+
+/**
+ * A goal attached to a life area via `areaId`. Goals live as a top-level array
+ * on the document (not nested in LifeArea) so they stay independently queryable
+ * and keep LifeArea unchanged.
+ */
+export interface Goal {
+  id: string;
+  areaId: string; // -> LifeArea.id
+  title: string;
+  steps: ActionStep[];
+  createdAt: string; // ISO 8601
+}
+
+/**
  * The single persisted document. Versioned so the schema can evolve via the
  * store's persist `migrate` hook.
  */
 export interface LifeCompassDocument {
-  schemaVersion: 1;
+  schemaVersion: 2;
   lifeAreas: LifeArea[];
   history: Snapshot[];
+  goals: Goal[];
 }
 
-export const CURRENT_SCHEMA_VERSION = 1 as const;
+export const CURRENT_SCHEMA_VERSION = 2 as const;
