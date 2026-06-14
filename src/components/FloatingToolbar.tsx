@@ -15,6 +15,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { useLifeCompassStore } from '../store/lifeCompassStore';
 
 interface FloatingToolbarProps {
   onAddPredefinedAreas: () => void;
@@ -33,8 +34,10 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
   onRemoveAll,
   footerVisible,
 }) => {
+  void footerVisible;
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const saveSnapshot = useLifeCompassStore(state => state.saveSnapshot);
 
   const { confirm, ConfirmationDialog } = useConfirmDialog();
   const handleImportError = async (error: string) => {
@@ -43,6 +46,11 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
       message: error,
       confirmLabel: t('ok'),
     });
+  };
+
+  const handleSaveSnapshot = () => {
+    saveSnapshot();
+    setMenuOpen(false);
   };
 
   return (
@@ -79,6 +87,9 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
             <Button variant="primary" onClick={onAddPredefinedAreas}>
               {t('add_predefined')}
             </Button>
+            <Button variant="primary" onClick={handleSaveSnapshot}>
+              {t('save_snapshot')}
+            </Button>
             <ExportButton />
             <ImportButton
               onFileSelected={onImportFile}
@@ -90,6 +101,7 @@ const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
           </div>
         </PopoverContent>
       </Popover>
+      {ConfirmationDialog}
     </div>
   );
 };

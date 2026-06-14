@@ -3,14 +3,17 @@ import { exportData } from '@utils/exportService';
 import { useTranslation } from 'react-i18next';
 import Button from '@components/ui/Button';
 import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
+import { useLifeCompassStore } from '../store/lifeCompassStore';
 
 const ExportButton: React.FC = () => {
   const { t } = useTranslation();
   const { confirm, ConfirmationDialog } = useConfirmDialog();
+  const lifeAreas = useLifeCompassStore(state => state.lifeAreas);
+  const history = useLifeCompassStore(state => state.history);
 
   const handleExport = async () => {
     try {
-      const jsonData = exportData();
+      const jsonData = exportData({ lifeAreas, history });
       const blob = new Blob([jsonData], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
 

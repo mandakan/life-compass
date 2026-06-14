@@ -1,12 +1,14 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { exportData } from '../utils/exportService';
+import { LifeArea } from '../types/LifeArea';
+import { Snapshot } from '../types/LifeCompassDocument';
 
 describe('exportData', () => {
   beforeEach(() => {
     localStorage.clear();
   });
 
-  it('should export default userSettings, empty life areas and history if not provided in localStorage', () => {
+  it('should export default userSettings, empty life areas and history if no input provided', () => {
     const jsonString = exportData();
     const data = JSON.parse(jsonString);
 
@@ -25,12 +27,46 @@ describe('exportData', () => {
     expect(data.data.history.length).toBe(0);
   });
 
-  it('should export provided userSettings, life areas and history from localStorage', () => {
+  it('should export provided userSettings from localStorage plus life areas and history from input', () => {
+    const customUserSettings = { language: 'sv', theme: 'dark', custom: true };
+    const customLifeAreas: LifeArea[] = [
+      {
+        id: '1',
+        name: 'Testomrade',
+        description: 'En kort beskrivning',
+        importance: 7,
+        satisfaction: 6,
+        details: 'Detaljerad information',
+      },
+    ];
+    const customHistory: Snapshot[] = [
+      {
+        id: 'snap-1',
+        createdAt: new Date().toISOString(),
+        label: 'test snapshot',
+        areas: [{ id: '1', name: 'Testomrade', importance: 7, satisfaction: 6 }],
+      },
+    ];
+
+    localStorage.setItem('userSettings', JSON.stringify(customUserSettings));
+
+    const jsonString = exportData({ lifeAreas: customLifeAreas, history: customHistory });
+    const data = JSON.parse(jsonString);
+
+    expect(data.data.userSettings).toEqual(customUserSettings);
+    expect(data.data.lifeAreas).toEqual(customLifeAreas);
+    expect(data.data.history).toHaveLength(1);
+    expect(data.data.history[0].id).toBe('snap-1');
+    expect(data.data.history[0].label).toBe('test snapshot');
+    expect(data.data.history[0].areas).toHaveLength(1);
+  });
+
+  it('should fall back to legacy localStorage keys when called without input', () => {
     const customUserSettings = { language: 'sv', theme: 'dark', custom: true };
     const customLifeAreas = [
       {
         id: '1',
-        name: 'Testområde',
+        name: 'Testomrade',
         description: 'En kort beskrivning',
         importance: 7,
         satisfaction: 6,
@@ -59,5 +95,39 @@ describe('exportData', () => {
     expect(() => {
       exportData();
     }).toThrow(/Export data does not conform to schema/);
+  });
+
+  it('round-trip: history exported via input survives JSON.parse', () => {
+    const lifeAreas: LifeArea[] = [
+      {
+        id: 'area-1',
+        name: 'Health',
+        description: 'Staying healthy',
+        importance: 8,
+        satisfaction: 6,
+        details: '',
+      },
+    ];
+    const history: Snapshot[] = [
+      {
+        id: 'snap-a',
+        createdAt: '2026-06-14T10:00:00.000Z',
+        areas: [{ id: 'area-1', name: 'Health', importance: 8, satisfaction: 6 }],
+      },
+      {
+        id: 'snap-b',
+        createdAt: '2026-06-14T11:00:00.000Z',
+        label: 'after checkup',
+        areas: [{ id: 'area-1', name: 'Health', importance: 8, satisfaction: 7 }],
+      },
+    ];
+
+    const jsonString = exportData({ lifeAreas, history });
+    const parsed = JSON.parse(jsonString);
+
+    expect(parsed.data.history).toHaveLength(2);
+    expect(parsed.data.history[0].id).toBe('snap-a');
+    expect(parsed.data.history[1].label).toBe('after checkup');
+    expect(parsed.data.history[1].areas[0].satisfaction).toBe(7);
   });
 });

@@ -37,8 +37,13 @@ const SettingsPage: React.FC = () => {
   const handleDeleteLocalData = () => setShowDeleteModal(true);
 
   const handleDeleteConfirm = () => {
+    // Full reset: clears the Life Compass store, snapshot history, and any
+    // other local flags. Navigate home and reload so the in-memory store and
+    // UI re-initialise empty rather than showing stale, already-deleted data.
     clearAllUserData();
     setShowDeleteModal(false);
+    navigate('/');
+    window.location.reload();
   };
 
   const handleDeleteCancel = () => setShowDeleteModal(false);

@@ -1,21 +1,35 @@
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import schema from '../schemas/exportImportSchema.json';
+import { LifeArea } from '../types/LifeArea';
+import { Snapshot } from '../types/LifeCompassDocument';
 
-export function exportData(): string {
-  // Gather data from local storage, adjust keys if needed
+export interface ExportInput {
+  lifeAreas: LifeArea[];
+  history: Snapshot[];
+}
+
+export function exportData(input?: ExportInput): string {
+  // Gather user settings from localStorage (theme/language live outside the store)
   const userSettingsStr = localStorage.getItem('userSettings');
-  // Previously, life areas were read from a non-existent or wrong key.
-  // Life areas are stored under the key "lifeCompass", so we update accordingly.
-  const lifeAreasStr = localStorage.getItem('lifeCompass');
-  const historyStr = localStorage.getItem('history');
-
-  // Provide default values for userSettings to satisfy the schema requirements
   const userSettings = userSettingsStr
     ? JSON.parse(userSettingsStr)
     : { language: 'en', theme: 'light' };
-  const lifeAreas = lifeAreasStr ? JSON.parse(lifeAreasStr) : [];
-  const history = historyStr ? JSON.parse(historyStr) : [];
+
+  // Life areas and history come from the store (passed in by the caller).
+  // Fall back to legacy localStorage keys only when called without input so
+  // that existing tests that set localStorage directly continue to work.
+  let lifeAreas: LifeArea[];
+  let history: Snapshot[];
+  if (input) {
+    lifeAreas = input.lifeAreas;
+    history = input.history;
+  } else {
+    const lifeAreasStr = localStorage.getItem('lifeCompass');
+    const historyStr = localStorage.getItem('history');
+    lifeAreas = lifeAreasStr ? JSON.parse(lifeAreasStr) : [];
+    history = historyStr ? JSON.parse(historyStr) : [];
+  }
 
   // Construct export object according to the schema
   const exportJsonObj = {
@@ -24,15 +38,15 @@ export function exportData(): string {
       version: '1.0.0',
     },
     data: {
-      userSettings: userSettings,
-      lifeAreas: lifeAreas,
-      history: history,
+      userSettings,
+      lifeAreas,
+      history,
     },
   };
 
   // Validate against the predetermined JSON schema
   const ajv = new Ajv();
-  addFormats(ajv); // ✅ Adds support for "date-time", "email", etc.
+  addFormats(ajv);
   const validate = ajv.compile(schema);
   const valid = validate(exportJsonObj);
   if (!valid) {
