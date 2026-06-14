@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'recharts';
 import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 
 type CustomTickProps = {
   x?: number;
@@ -52,6 +53,65 @@ interface RadarChartProps {
   aspect?: number;
 }
 
+// Defined at module scope (not inside RadarChart) so they are stable component
+// identities. recharts clones these elements with the tick/tooltip props it
+// computes; the extra props below are supplied by RadarChart.
+const RadarTick = ({
+  x,
+  y,
+  textAnchor,
+  payload,
+  tickFontSize,
+  isMobile,
+}: CustomTickProps & { tickFontSize?: number; isMobile?: boolean }) => (
+  <text
+    x={x}
+    y={y}
+    textAnchor={textAnchor}
+    fill="var(--color-text)"
+    fontSize={tickFontSize}
+  >
+    <tspan x={x} dy={0}>
+      {isMobile ? '' : payload.value}
+    </tspan>
+  </text>
+);
+
+const RadarTooltip = ({
+  active,
+  payload,
+  label,
+  t,
+}: CustomTooltipProps & { t: TFunction }) => {
+  if (active && payload && payload.length) {
+    const dataPoint = payload[0].payload;
+    return (
+      <div
+        style={{
+          backgroundColor: 'var(--color-bg)',
+          border: `1px solid var(--border)`,
+          padding: 10,
+          color: 'var(--color-text)',
+        }}
+      >
+        <p>
+          <strong>{label}</strong>
+        </p>
+        <p>
+          {t('importance')}: {dataPoint.importance}
+        </p>
+        <p>
+          {t('lived_according_to_past_week')}: {dataPoint.satisfaction}
+        </p>
+        <p>
+          {t('description')}: {dataPoint.description}
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const RadarChart: React.FC<RadarChartProps> = ({
   data,
   width = '100%',
@@ -81,67 +141,6 @@ const RadarChart: React.FC<RadarChartProps> = ({
     return data;
   }, [data]);
 
-  const renderTick = (props: CustomTickProps) => {
-    const { payload, x, y, textAnchor } = props;
-    const value = payload.value;
-    const lines = [value];
-    /*if ((textAnchor === 'start' || textAnchor === 'end') && value.length > 10) {
-      const mid = Math.floor(value.length / 2);
-      let breakIndex = value.lastIndexOf(' ', mid);
-      if (breakIndex === -1) {
-        breakIndex = mid;
-      }
-      const firstLine = value.substring(0, breakIndex).trim();
-      const secondLine = value.substring(breakIndex).trim();
-      lines = [firstLine, secondLine];
-    }*/
-    return (
-      <text
-        x={x}
-        y={y}
-        textAnchor={textAnchor}
-        fill="var(--color-text)"
-        fontSize={tickFontSize}
-      >
-        {lines.map((line, index) => (
-          <tspan key={index} x={x} dy={index === 0 ? 0 : '1.2em'}>
-            {isMobile ? '' : line}
-          </tspan>
-        ))}
-      </text>
-    );
-  };
-
-  const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
-    if (active && payload && payload.length) {
-      const dataPoint = payload[0].payload;
-      return (
-        <div
-          style={{
-            backgroundColor: 'var(--color-bg)',
-            border: `1px solid var(--border)`,
-            padding: 10,
-            color: 'var(--color-text)',
-          }}
-        >
-          <p>
-            <strong>{label}</strong>
-          </p>
-          <p>
-            {t('importance')}: {dataPoint.importance}
-          </p>
-          <p>
-            {t('lived_according_to_past_week')}: {dataPoint.satisfaction}
-          </p>
-          <p>
-            {t('description')}: {dataPoint.description}
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <div className="bg-[var(--bg)]">
       <ResponsiveContainer
@@ -158,9 +157,9 @@ const RadarChart: React.FC<RadarChartProps> = ({
           <PolarAngleAxis
             dataKey="area"
             tick={
-              renderTick as React.ComponentProps<
-                typeof PolarAngleAxis
-              >['tick']
+              (
+                <RadarTick tickFontSize={tickFontSize} isMobile={isMobile} />
+              ) as React.ComponentProps<typeof PolarAngleAxis>['tick']
             }
           />
           <PolarRadiusAxis
@@ -192,7 +191,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<RadarTooltip t={t} />} />
           <Legend />
         </RechartsRadarChart>
       </ResponsiveContainer>

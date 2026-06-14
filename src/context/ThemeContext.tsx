@@ -22,9 +22,21 @@ export const ThemeContext = createContext<ThemeContextType | undefined>(
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [theme, setThemeState] = useState<Theme>('light');
-  const [systemTheme, setSystemTheme] = useState<Theme>('light');
-  const [followSystem, setFollowSystemState] = useState<boolean>(false);
+  const getSystemTheme = (): Theme =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+
+  const [systemTheme, setSystemTheme] = useState<Theme>(getSystemTheme);
+  const [followSystem, setFollowSystemState] = useState<boolean>(
+    () => localStorage.getItem('followSystem') === 'true',
+  );
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (localStorage.getItem('followSystem') === 'true') {
+      return getSystemTheme();
+    }
+    return (localStorage.getItem('theme') as Theme) || 'light';
+  });
 
   const setTheme = (theme: Theme) => {
     setThemeState(theme);
@@ -45,21 +57,18 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     const updateSystemTheme = () => {
       setSystemTheme(media.matches ? 'dark' : 'light');
     };
-    updateSystemTheme();
     media.addEventListener('change', updateSystemTheme);
     return () => media.removeEventListener('change', updateSystemTheme);
   }, []);
 
+  // When following the OS preference, keep the applied theme in sync as that
+  // preference changes mid-session. A deliberate sync with an external system.
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme;
-    const storedFollow = localStorage.getItem('followSystem') === 'true';
-    setFollowSystemState(storedFollow);
-    if (storedFollow) {
+    if (followSystem) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setThemeState(systemTheme);
-    } else if (storedTheme) {
-      setThemeState(storedTheme);
     }
-  }, [systemTheme]);
+  }, [systemTheme, followSystem]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

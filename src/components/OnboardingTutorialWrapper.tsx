@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import OnboardingTutorial from './OnboardingTutorial';
 
 interface OnboardingTutorialWrapperProps {
@@ -13,15 +13,10 @@ interface OnboardingTutorialWrapperProps {
 const OnboardingTutorialWrapper: React.FC<OnboardingTutorialWrapperProps> = ({
   onPredefinedSelected,
 }) => {
-  const [showTutorial, setShowTutorial] = useState(false);
-
-  useEffect(() => {
-    // Check localStorage for a tutorial completed flag
-    const tutorialCompleted = localStorage.getItem('tutorialCompleted');
-    if (!tutorialCompleted) {
-      setShowTutorial(true);
-    }
-  }, []);
+  // Show the tutorial on first launch, i.e. until the completed flag is set.
+  const [showTutorial, setShowTutorial] = useState(
+    () => !localStorage.getItem('tutorialCompleted'),
+  );
 
   const handleTutorialComplete = () => {
     localStorage.setItem('tutorialCompleted', 'true');
