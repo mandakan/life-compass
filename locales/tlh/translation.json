@@ -65,7 +65,14 @@
     "how_title": "chay yIlo'?",
     "how_work": "SuvwI' Qapla', Heghmey nuch yIjatlh.",
     "next_steps_description": "Hurghmey yInobpu'. yItlhutlh 'ej Qapla' lo'vam yIghoS.",
-    "next_steps_title": "chay DaQuch?"
+    "next_steps_title": "chay DaQuch?",
+    "privacy_description": "We respect your privacy. We do not track any of your actions or what you write. All your data remains local and is not shared with any external party.",
+    "privacy_title": "pegh Data je",
+    "source_text": "ngan'e' Dalo'ta'",
+    "what_is_description": "Life Compass yIn Dalo'meH jan. tugh ngoQmey pIm 'ej reH chaw'be' ngoQmey -- DIS qawHaqDaj tIchel 'ej yInlIj yIbuSqa'.",
+    "what_is_title": "Life Compass nuq?",
+    "why_description": "vIHtaH ngoQmeyraj DarurmeH, DIvI' DaSuqlaH. 'ach ngoQmey Dachaw'be'chugh, bIQoSlaHbe'. Life Compass Dalo'chugh, Hegh DuHaD 'ej Dochmey DanIDlaH.",
+    "why_title": "qatlh potlh?"
   },
   "language": "Hol",
   "life_areas_count": "Hurghmey",
@@ -101,7 +108,10 @@
     "toolbar_tooltip": "Hurghmey Qapla' yIlo'.",
     "welcome_prompt": "Qapla'! loSDI' Hurghmey Dap. (vaj Qapla' yInobpu')",
     "with_predefined": "Hurghmey chu' (batlh je Qapla')",
-    "without_predefined": "Hurghmey QaQ"
+    "without_predefined": "Hurghmey QaQ",
+    "privacy_notice": "peghraj DatIvmoH. vangmeylIj ghItlhlIj joq wIqawbe'. Hoch DataDaj pa'DajlIjDaq 'oHtaH.",
+    "actions": "yIn Daq chu' yIchel -- vangmeH boq yIDalo'. \"QIn / QIn'a'\" choHwI' Dalo'taHvIS HIDjolev Quj legh. \"latlh\" bIngDaq, chenmoHta'bogh DataDaj, HolQeD, je bIQDaq Data' DaghItlhlaH. naSvaD ghojmoHmeH pat latlh Hap Saj chevwI'Daq tu'lu'.",
+    "title": "ngoQmey ngu'"
   },
   "plus_add_new_life_area": "+ Hurghmey",
   "privacyPolicy": {
@@ -115,7 +125,9 @@
     "noCookiesTitle": "cookie Sovbe'",
     "noTracking": "tracking Qapla'be'. qaStaHvIS mIw, tracking Sovbe'.",
     "noTrackingTitle": "Sovbe' tracking",
-    "title": "batlh data"
+    "title": "batlh data",
+    "userControl": "You have full control over your data. It is stored securely on your device, and you can export or remove it at any time by clearing your browser's local storage.",
+    "userControlTitle": "lo'wI' SeH"
   },
   "quick_actions": "Qapla' Qu'",
   "radar_view": "radar mIw",
@@ -172,5 +184,25 @@
   "radar_view_heading": "Your life compass at a glance",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "contrast_theme_toggle": "ghurmoH wovqu' qoH",
+  "goals": {
+    "open_goals": "ngoQmey",
+    "dialog_title": "{{area}} ngoQmey",
+    "dialog_description": "yInDaq ngoQmey tIchel. ngoQmey tIbuS 'ej laSvarghmeychajDaq tIghor.",
+    "add_goal": "ngoQ yIchel",
+    "add_goal_placeholder": "nuq DaSuqqang?",
+    "empty_state": "ngoQmey tu'lu'be'. wa'DIch ngoQ yIchel. reH ngoQ vIghro'vo' vItaghmoH.",
+    "goal_title": "ngoQ pong",
+    "expand_goal": "HeSmey yIlegh",
+    "collapse_goal": "HeSmey tIpoSmoH",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "{{title}} cha'bogh HoS",
+    "delete_goal_title": "ngoQ yIlel",
+    "delete_goal_warning": "\"{{title}}\" ngoQ HeSmeyraj je lIllaH. yIpISchoH?",
+    "add_step": "HeS yIchel",
+    "add_step_placeholder": "vangmeH HeS yIchel",
+    "delete_step": "HeS yIlel"
+  },
+  "theme_system": "pat"
 }

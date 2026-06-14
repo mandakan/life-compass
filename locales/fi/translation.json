@@ -108,7 +108,10 @@
     "toolbar_tooltip": "Katso kelluva työkalupalkki oikeassa alakulmassa. Sieltä saat pikalinkin toimintoihin, kuten esiasetettujen elämänalueiden lisäämiseen, palauttamiseen, tietojen vientiin/tuontiin ja tutkanäkymän vaihtamiseen.",
     "welcome_prompt": "Tervetuloa Elämänkompassiin!\nAloitetaan opastus. Haluatko aloittaa esiasetetuilla elämänalueilla?\n(Voit suorittaa oppaan uudelleen asetuksista.)",
     "with_predefined": "Esiasetettujen elämänalueiden kanssa (suositellaan)",
-    "without_predefined": "Ilman esiasetettuja elämänalueita"
+    "without_predefined": "Ilman esiasetettuja elämänalueita",
+    "privacy_notice": "Yksityisyytesi on meille tärkeä. Toimintojasi tai syötteitäsi ei seurata; kaikki tiedot pysyvät laitteellasi.",
+    "actions": "Lisää elämänalueita toimintopalkin avulla. Vaihda korttinäkymän ja tutkanäkymän välillä Kortit / Tutka -valitsimella, ja löydät tilannekuvat, viennin ja tuonnin kohdasta \"Lisää\". Asetukset ja kieli löytyvät oikeasta yläkulmasta.",
+    "title": "Johdanto"
   },
   "plus_add_new_life_area": "+ Lisää uusi elämänalue",
   "privacyPolicy": {
@@ -181,5 +184,26 @@
   "radar_view_heading": "Elämänkompassisi yhdellä silmäyksellä",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "accessibility_settings": "Saavutettavuusasetukset",
+  "contrast_theme_toggle": "Ota käyttöön korkean kontrastin teema",
+  "goals": {
+    "open_goals": "Tavoitteet",
+    "dialog_title": "Tavoitteet: {{area}}",
+    "dialog_description": "Aseta tavoitteet tälle elämänalueelle ja jaa ne toimintavaiheisiin.",
+    "add_goal": "Lisää tavoite",
+    "add_goal_placeholder": "Mitä haluat saavuttaa?",
+    "empty_state": "Ei vielä tavoitteita. Lisää ensimmäinen tavoitteesi ja muuta tämä alue teoiksi.",
+    "goal_title": "Tavoitteen nimi",
+    "expand_goal": "Näytä vaiheet",
+    "collapse_goal": "Piilota vaiheet",
+    "progress_count": "{{done}}/{{total}}",
+    "progress_label": "Edistyminen: {{title}}",
+    "delete_goal_title": "Poista tavoite",
+    "delete_goal_warning": "Tämä poistaa tavoitteen \"{{title}}\" ja kaikki sen vaiheet. Haluatko jatkaa?",
+    "add_step": "Lisää vaihe",
+    "add_step_placeholder": "Lisää toimintavaihe",
+    "delete_step": "Poista vaihe"
+  },
+  "theme_system": "Järjestelmä"
 }
