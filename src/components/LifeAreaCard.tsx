@@ -197,29 +197,12 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => setGoalsOpen(true)}
-            title={t('goals.open_goals')}
-            aria-label={`${t('goals.open_goals')} ${area.name}`}
-            className="flex cursor-pointer items-center gap-1 border-none bg-transparent text-text"
-          >
-            <FlagIcon className="size-5" />
-            <span className="text-sm">{goalCount}</span>
-          </button>
-          <button
-            onClick={handleEditClick}
-            title={t('edit') || 'Edit'}
-            aria-label={t('edit') || 'Edit'}
-            className="cursor-pointer border-none bg-transparent"
-          >
-            <PencilIcon className="size-5" />
-          </button>
-          <button
             onClick={() => onRemove(area.id)}
             title={t('delete') || 'Delete'}
             aria-label={`${t('delete') || 'Delete'} ${area.name}`}
-            className="cursor-pointer border-none bg-transparent"
+            className="inline-flex min-h-[36px] min-w-[36px] cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-text hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
           >
-            <TrashIcon className="size-5" />
+            <TrashIcon className="size-5" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -274,14 +257,15 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
           </div>
         )}
       </div>
-      <div className="mt-auto">
-        <div className="mt-2 font-sans">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">{t('importance')}</div>
+      <div className="mt-auto pt-3 font-sans">
+        {/* Importance meter row (clay). */}
+        <div className="mt-2">
+          <div className="mb-1 flex items-center justify-between text-sm">
+            <span className="text-text-muted">{t('importance')}</span>
             <Popover
               trigger={
                 <div className="flex cursor-pointer items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-text">
-                  <span role="img" aria-label="Importance">
+                  <span role="img" aria-label={t('importance')}>
                     ⭐
                   </span>
                   {area.importance}/10
@@ -308,17 +292,31 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               />
             </Popover>
           </div>
+          <div
+            className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
+            role="meter"
+            aria-label={t('importance')}
+            aria-valuenow={area.importance}
+            aria-valuemin={0}
+            aria-valuemax={10}
+          >
+            <div
+              className="h-full rounded-full bg-primary"
+              style={{ width: `${(area.importance / 10) * 100}%` }}
+            />
+          </div>
         </div>
 
-        <div className="mt-2 font-sans">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">
+        {/* Satisfaction meter row (sage). */}
+        <div className="mt-3">
+          <div className="mb-1 flex items-center justify-between text-sm">
+            <span className="text-text-muted">
               {t('lived_according_to_past_week')}
-            </div>
+            </span>
             <Popover
               trigger={
                 <div className="flex cursor-pointer items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-text">
-                  <span role="img" aria-label="Satisfaction">
+                  <span role="img" aria-label={t('satisfaction')}>
                     ❤️
                   </span>
                   {area.satisfaction}/10
@@ -344,6 +342,46 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
                 height={200}
               />
             </Popover>
+          </div>
+          <div
+            className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
+            role="meter"
+            aria-label={t('satisfaction')}
+            aria-valuenow={area.satisfaction}
+            aria-valuemin={0}
+            aria-valuemax={10}
+          >
+            <div
+              className="h-full rounded-full bg-secondary"
+              style={{ width: `${(area.satisfaction / 10) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Gap chip: the absolute distance between importance and satisfaction. */}
+        <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
+          <span className="inline-flex items-center gap-1 rounded-full bg-surface-sunken px-2.5 py-1 text-xs font-medium text-text">
+            {t('gap')}: {Math.abs(area.importance - area.satisfaction)}
+          </span>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setGoalsOpen(true)}
+              title={t('goals.open_goals')}
+              aria-label={`${t('goals.open_goals')} ${area.name}`}
+              className="inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-2 text-sm text-text hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              <FlagIcon className="size-5" aria-hidden="true" />
+              <span>{goalCount}</span>
+            </button>
+            <button
+              onClick={handleEditClick}
+              title={t('edit') || 'Edit'}
+              aria-label={t('edit') || 'Edit'}
+              className="inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-2 text-sm text-text hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              <PencilIcon className="size-5" aria-hidden="true" />
+              <span>{t('edit') || 'Edit'}</span>
+            </button>
           </div>
         </div>
       </div>

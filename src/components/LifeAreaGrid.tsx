@@ -32,11 +32,11 @@ export interface LifeAreaGridProps {
   onAddNewArea: (insertionIndex: number) => void;
 }
 
-const CONTAINER_CLASSES: Record<LifeAreaGridVariant, string> = {
-  desktop:
-    'mx-auto mt-4 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3',
-  mobile: 'mt-4 flex flex-wrap justify-center gap-4',
-};
+// Mobile-first reflow: one column, then two, then three as width grows. The
+// variant no longer changes the container layout (both branches reflow the
+// same way); it is retained for prop compatibility with the page.
+const CONTAINER_CLASSES =
+  'mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3';
 
 /**
  * The single life-area card grid shared by the desktop and mobile branches.
@@ -63,10 +63,11 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
   onAddNewArea,
 }) => {
   const { t } = useTranslation();
+  void variant;
   const existingNames = areas.map(a => a.name);
 
   return (
-    <div className={CONTAINER_CLASSES[variant]}>
+    <div className={CONTAINER_CLASSES}>
       {areas.map((area, index) => (
         <div
           key={area.id}
@@ -88,7 +89,7 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
             onSave={onSaveArea}
             onCancel={onCancelEdit}
             existingNames={existingNames}
-            className="w-full rounded-sm border border-border bg-bg p-4 font-sans"
+            className="w-full rounded-lg border border-border bg-surface p-4 font-sans shadow-warm-sm"
             onAutoUpdateRating={onAutoUpdateRating}
             dragHandle={{
               draggable: editingAreaId === area.id ? false : true,
@@ -98,14 +99,13 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
           />
         </div>
       ))}
-      <div
+      <button
+        type="button"
         onClick={() => onAddNewArea(areas.length)}
-        className="flex h-full w-full cursor-pointer items-center justify-center rounded-sm border-2 border-dashed border-primary p-4"
+        className="flex min-h-[120px] w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-border bg-surface/40 p-4 text-primary transition-colors duration-base ease-out-soft hover:border-primary hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
       >
-        <span className="text-primary">
-          {t('plus_add_new_life_area')}
-        </span>
-      </div>
+        <span>{t('plus_add_new_life_area')}</span>
+      </button>
     </div>
   );
 };

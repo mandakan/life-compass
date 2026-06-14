@@ -80,11 +80,11 @@ const GoalsDialog: React.FC<GoalsDialogProps> = ({
       </form>
 
       {goals.length === 0 ? (
-        <p className="mt-4 text-sm text-text opacity-70">
+        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
           {t('goals.empty_state')}
         </p>
       ) : (
-        <ul className="mt-4 flex max-h-[50vh] flex-col gap-2 overflow-y-auto">
+        <ul className="mt-5 flex max-h-[55vh] flex-col gap-3 overflow-y-auto pr-1">
           {goals.map(goal => (
             <GoalItem
               key={goal.id}

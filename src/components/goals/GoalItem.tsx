@@ -52,7 +52,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
   };
 
   return (
-    <li className="rounded-sm border border-border bg-bg p-3">
+    <li className="rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
       <div className="flex items-center gap-2">
         <button
           type="button"
@@ -63,12 +63,12 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
               ? t('goals.collapse_goal')
               : t('goals.expand_goal')
           }
-          className="flex-none cursor-pointer border-none bg-transparent text-text hover:opacity-70"
+          className="-m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
         >
           {expanded ? (
-            <ChevronDownIcon className="size-4" />
+            <ChevronDownIcon className="size-5" />
           ) : (
-            <ChevronRightIcon className="size-4" />
+            <ChevronRightIcon className="size-5" />
           )}
         </button>
 
@@ -118,8 +118,8 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
         )}
 
         {!editing && (
-          <div className="flex flex-none items-center gap-2">
-            <span className="text-xs whitespace-nowrap text-text opacity-70">
+          <div className="flex flex-none items-center gap-1">
+            <span className="rounded-full bg-surface-sunken px-2 py-0.5 text-xs font-medium whitespace-nowrap text-text-muted">
               {t('goals.progress_count', {
                 done: progress.done,
                 total: progress.total,
@@ -133,7 +133,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
               }}
               title={t('edit')}
               aria-label={`${t('edit')}: ${goal.title}`}
-              className="cursor-pointer border-none bg-transparent text-text hover:opacity-70"
+              className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
             >
               <PencilIcon className="size-4" />
             </button>
@@ -142,7 +142,7 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
               onClick={handleDelete}
               title={t('delete')}
               aria-label={`${t('delete')}: ${goal.title}`}
-              className="cursor-pointer border-none bg-transparent text-text hover:opacity-70"
+              className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
             >
               <TrashIcon className="size-4" />
             </button>
@@ -150,11 +150,12 @@ const GoalItem: React.FC<GoalItemProps> = ({ goal, onRequestDelete }) => {
         )}
       </div>
 
-      <div className="mt-2">
+      <div className="mt-3">
         <ProgressBar
           value={progress.done}
           max={progress.total}
           label={t('goals.progress_label', { title: goal.title })}
+          className="h-2.5"
         />
       </div>
 

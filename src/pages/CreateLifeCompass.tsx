@@ -5,8 +5,9 @@ import Callout from '../components/Callout';
 import { getPredefinedLifeAreas } from '@utils/lifeAreaService';
 import { useTheme } from '@context/ThemeContext';
 import RadarChart from '@components/RadarChart';
-import FloatingToolbar from '@components/FloatingToolbar';
+import CompassActionBar from '@components/CompassActionBar';
 import LifeAreaGrid from '@components/LifeAreaGrid';
+import Button from '@components/ui/Button';
 import { parseAndValidateJSON } from '@utils/importService';
 import { useTranslation } from 'react-i18next';
 import { ImportedData } from 'types/importExport';
@@ -65,9 +66,6 @@ const CreateLifeCompass: React.FC = () => {
   // Track newly created card ID so we know to remove it if editing is aborted.
   const [newAreaId, setNewAreaId] = useState<string | null>(null);
 
-  // New state to track if a footer is visible on the page.
-  const [footerVisible, setFooterVisible] = useState(false);
-
   // New state to control whether radar view is active.
   const [showRadar, setShowRadar] = useState<boolean>(false);
 
@@ -110,21 +108,6 @@ const CreateLifeCompass: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Use IntersectionObserver to detect when a footer element becomes visible
-  useEffect(() => {
-    const footer = document.querySelector('footer');
-    if (footer) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          setFooterVisible(entry.isIntersecting);
-        },
-        { root: null, threshold: 0 },
-      );
-      observer.observe(footer);
-      return () => observer.disconnect();
-    }
   }, []);
 
   const handleAddNewLifeArea = (insertionIndex?: number) => {
@@ -322,8 +305,12 @@ const CreateLifeCompass: React.FC = () => {
     }
   };
 
+  const hasAreas = lifeAreas.length > 0;
+
   return (
-    <div className="create-life-compass-page bg-bg text-text p-4">
+    // Bottom padding leaves room for the mobile sticky action bar; cleared at
+    // the ~720px breakpoint where the action bar moves into the page header.
+    <div className="create-life-compass-page bg-bg text-text p-4 pb-28 min-[720px]:pb-4">
       <OnboardingTutorialWrapper
         onPredefinedSelected={handleAddPredefinedAreas}
       />
@@ -332,45 +319,104 @@ const CreateLifeCompass: React.FC = () => {
           {t('local_storage_not_available')}
         </div>
       )}
+
+      <header className="mx-auto max-w-[1080px]">
+        <h1 className="font-display text-3xl font-semibold text-primary sm:text-4xl">
+          {t('your_life_compass')}
+        </h1>
+        <p className="mt-1 max-w-prose font-sans text-text-muted">
+          {t('compass_subline')}
+        </p>
+      </header>
+
       {lifeAreas.length > 10 && showRecommendationCallout && (
-        <Callout onDismiss={() => setShowRecommendationCallout(false)} />
-      )}
-      <FloatingToolbar
-        onAddPredefinedAreas={handleAddPredefinedAreas}
-        onToggleRadar={() => setShowRadar(prev => !prev)}
-        showRadar={showRadar}
-        onImportFile={handleImportFile}
-        onRemoveAll={handleRemoveAllLifeAreas}
-        footerVisible={footerVisible}
-      />
-      {error && (
-        <div className="mb-4 font-sans text-warning">{error}</div>
-      )}
-      {showRadar ? (
-        <div className="mx-auto mt-4 w-full">
-          <RadarChart data={radarData} width="100%" aspect={1} />
+        <div className="mx-auto mt-4 max-w-[1080px]">
+          <Callout onDismiss={() => setShowRecommendationCallout(false)} />
         </div>
-      ) : (
-        <LifeAreaGrid
-          areas={lifeAreas}
-          variant={isDesktop ? 'desktop' : 'mobile'}
-          editingAreaId={editingAreaId}
-          dragOverIndex={dragOverIndex}
-          onDragStart={handleDragStart}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          onDragEnter={index => setDragOverIndex(index)}
-          onDragLeave={() => setDragOverIndex(null)}
-          onEditArea={handleEditLifeArea}
-          onRemoveArea={handleRequestDeleteLifeArea}
-          onSaveArea={handleSaveArea}
-          onCancelEdit={handleCancelEdit}
-          onAutoUpdateRating={handleAutoUpdateRating}
-          onInlineDetailsChange={handleInlineDetailsChange}
-          onAddNewArea={handleAddNewLifeArea}
-        />
       )}
-      <SnapshotHistory />
+
+      <div className="mx-auto mt-4 max-w-[1080px]">
+        <CompassActionBar
+          onAddArea={() => handleAddNewLifeArea()}
+          onAddPredefinedAreas={handleAddPredefinedAreas}
+          onToggleRadar={() => setShowRadar(prev => !prev)}
+          showRadar={showRadar}
+          onImportFile={handleImportFile}
+          onRemoveAll={handleRemoveAllLifeAreas}
+        />
+      </div>
+
+      {error && (
+        <div className="mx-auto mt-4 max-w-[1080px] font-sans text-warning">
+          {error}
+        </div>
+      )}
+
+      <div className="mx-auto max-w-[1080px]">
+        {!hasAreas ? (
+          <section
+            aria-labelledby="compass-empty-heading"
+            className="mt-6 flex flex-col items-center rounded-lg border border-border bg-surface p-8 text-center shadow-warm-sm"
+          >
+            <h2
+              id="compass-empty-heading"
+              className="font-display text-2xl font-semibold text-primary"
+            >
+              {t('empty_state_title')}
+            </h2>
+            <p className="mt-2 max-w-prose font-sans text-text-muted">
+              {t('empty_state_body')}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Button
+                variant="primary"
+                onClick={() => handleAddNewLifeArea()}
+              >
+                {t('add_life_area')}
+              </Button>
+              <Button variant="secondary" onClick={handleAddPredefinedAreas}>
+                {t('use_predefined')}
+              </Button>
+            </div>
+          </section>
+        ) : showRadar ? (
+          <section
+            aria-labelledby="compass-radar-heading"
+            className="mt-4 w-full"
+          >
+            <h2
+              id="compass-radar-heading"
+              className="font-display text-xl font-semibold text-primary"
+            >
+              {t('radar_view_heading')}
+            </h2>
+            <RadarChart data={radarData} width="100%" aspect={1} />
+          </section>
+        ) : (
+          <LifeAreaGrid
+            areas={lifeAreas}
+            variant={isDesktop ? 'desktop' : 'mobile'}
+            editingAreaId={editingAreaId}
+            dragOverIndex={dragOverIndex}
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onDragEnter={index => setDragOverIndex(index)}
+            onDragLeave={() => setDragOverIndex(null)}
+            onEditArea={handleEditLifeArea}
+            onRemoveArea={handleRequestDeleteLifeArea}
+            onSaveArea={handleSaveArea}
+            onCancelEdit={handleCancelEdit}
+            onAutoUpdateRating={handleAutoUpdateRating}
+            onInlineDetailsChange={handleInlineDetailsChange}
+            onAddNewArea={handleAddNewLifeArea}
+          />
+        )}
+      </div>
+
+      <div className="mx-auto max-w-[1080px]">
+        <SnapshotHistory />
+      </div>
       {ConfirmationDialog}
       {SuccessDialog}
     </div>

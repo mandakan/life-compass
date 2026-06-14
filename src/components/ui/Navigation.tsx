@@ -1,54 +1,122 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppSettingsContext } from '@context/AppSettingsContext';
+import { useTheme } from '@context/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../LanguageSwitcher';
-import SettingsMenu from '../SettingsMenu';
 
 // Heroicons
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Cog6ToothIcon } from '@heroicons/react/24/outline';
+import {
+  Bars3Icon,
+  XMarkIcon,
+  Cog6ToothIcon,
+  MoonIcon,
+  SunIcon,
+} from '@heroicons/react/24/outline';
 
 const HeaderNavigation: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { showDevTools } = useContext(AppSettingsContext);
+  const { theme, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const isDark = theme === 'dark';
+  const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
+
+  const closeMobile = () => setMobileOpen(false);
   const toggleMobile = () => setMobileOpen(prev => !prev);
 
+  // Focus management: move focus into the menu when it opens, restore it to the
+  // toggle when it closes, and close on Escape.
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const firstLink = menuRef.current?.querySelector<HTMLElement>('a, button');
+    firstLink?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false);
+        toggleButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mobileOpen]);
+
+  const desktopLinkClass =
+    'rounded-md px-2 py-1 text-text-muted no-underline transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+
+  const iconButtonClass =
+    'inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-transparent bg-transparent text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+
+  const mobileLinkClass =
+    'block rounded-md px-3 py-3 text-base text-text no-underline transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+
   return (
-    <header className="bg-primary border-b border-border text-on-primary">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-        {/* Left: Title + desktop links */}
+    <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur supports-[backdrop-filter]:bg-surface/75">
+      <nav
+        aria-label={t('primary_navigation', 'Primary')}
+        className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3"
+      >
+        {/* Left: wordmark + desktop links */}
         <div className="flex items-center gap-6">
           <Link
             to="/"
-            className="font-display text-xl font-semibold no-underline"
+            className="font-display text-xl font-semibold text-primary no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
           >
             {t('life_compass')}
           </Link>
-          <div className="hidden items-center gap-4 md:flex">
-            <Link to="/create-life-compass">{t('create_life_compass')}</Link>
+          <div className="hidden items-center gap-1 md:flex">
+            <Link to="/create-life-compass" className={desktopLinkClass}>
+              {t('nav.compass', 'Compass')}
+            </Link>
+            <Link to="/about" className={desktopLinkClass}>
+              {t('nav.about', 'About')}
+            </Link>
             {showDevTools && (
-              <Link to="/design-principles">{t('design_principles')}</Link>
+              <Link to="/design-principles" className={desktopLinkClass}>
+                {t('design_principles')}
+              </Link>
             )}
           </div>
         </div>
 
-        {/* Right: language switcher and settings */}
-        <div className="flex items-center gap-4">
+        {/* Right: language switcher, theme toggle, settings, mobile menu */}
+        <div className="flex items-center gap-2">
           <LanguageSwitcher compact />
           <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={t('toggle_theme', 'Toggle light and dark theme')}
+            aria-pressed={isDark}
+            className={iconButtonClass}
+          >
+            {isDark ? (
+              <SunIcon className="h-6 w-6" />
+            ) : (
+              <MoonIcon className="h-6 w-6" />
+            )}
+          </button>
+          <button
+            type="button"
             onClick={() => navigate('/settings')}
             aria-label={t('go_to_settings_menu')}
-            className="border-0 bg-transparent p-0"
+            className={`hidden md:inline-flex ${iconButtonClass}`}
           >
             <Cog6ToothIcon className="h-6 w-6" />
           </button>
           <button
-            className="md:hidden"
+            ref={toggleButtonRef}
+            type="button"
+            className={`md:hidden ${iconButtonClass}`}
             aria-label={t('toggle_mobile_navigation')}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation-menu"
             onClick={toggleMobile}
           >
             {mobileOpen ? (
@@ -62,34 +130,37 @@ const HeaderNavigation: React.FC = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-border px-4 pb-4 md:hidden">
-          <Link
-            to="/"
-            onClick={() => setMobileOpen(false)}
-            className="block py-2"
-          >
+        <div
+          id="mobile-navigation-menu"
+          ref={menuRef}
+          className="border-t border-border bg-surface px-4 py-2 md:hidden"
+        >
+          <Link to="/" onClick={closeMobile} className={mobileLinkClass}>
             {t('home')}
           </Link>
           <Link
             to="/create-life-compass"
-            onClick={() => setMobileOpen(false)}
-            className="block py-2"
+            onClick={closeMobile}
+            className={mobileLinkClass}
           >
-            {t('create_life_compass')}
+            {t('nav.compass', 'Compass')}
+          </Link>
+          <Link to="/about" onClick={closeMobile} className={mobileLinkClass}>
+            {t('nav.about', 'About')}
           </Link>
           {showDevTools && (
             <Link
               to="/design-principles"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
+              onClick={closeMobile}
+              className={mobileLinkClass}
             >
               {t('design_principles')}
             </Link>
           )}
           <Link
             to="/settings"
-            onClick={() => setMobileOpen(false)}
-            className="block py-2"
+            onClick={closeMobile}
+            className={mobileLinkClass}
           >
             {t('settings')}
           </Link>

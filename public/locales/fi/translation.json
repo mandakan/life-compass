@@ -161,5 +161,25 @@
   "toggle_settings_menu": "Vaihda asetusvalikko",
   "tools": "Työkalut",
   "unsaved_changes_warning": "Sinulla on tallentamattomia muutoksia. Haluatko jatkaa?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Kompassi",
+    "about": "Tietoja"
+  },
+  "toggle_theme": "Vaihda vaalea ja tumma teema",
+  "your_life_compass": "Elämänkompassisi",
+  "compass_subline": "Kartoita mikä on tärkeää ja miten viikkosi sujui.",
+  "add_life_area": "Lisää elämänalue",
+  "view_cards": "Kortit",
+  "view_radar": "Tutka",
+  "cards_radar_view": "Näkymä",
+  "more_actions": "Lisää",
+  "gap": "Ero",
+  "empty_state_title": "Aloita elämänkompassisi",
+  "empty_state_body": "Lisää ensimmäinen elämänalueesi tai aloita valmiilla alueilla.",
+  "use_predefined": "Käytä valmiita",
+  "radar_view_heading": "Elämänkompassisi yhdellä silmäyksellä",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }

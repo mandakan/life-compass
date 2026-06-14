@@ -152,5 +152,25 @@
   "toggle_settings_menu": "QI'yaHmey yIchoH",
   "tools": "ghotpu'",
   "unsaved_changes_warning": "batlh: pInpu' data pagh, DaHjaj qatlh?",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "nav": {
+    "compass": "Compass",
+    "about": "About"
+  },
+  "toggle_theme": "Toggle light and dark theme",
+  "your_life_compass": "Your life compass",
+  "compass_subline": "Map what matters and how your week measured up.",
+  "add_life_area": "Add life area",
+  "view_cards": "Cards",
+  "view_radar": "Radar",
+  "cards_radar_view": "View",
+  "more_actions": "More",
+  "gap": "Gap",
+  "empty_state_title": "Start your life compass",
+  "empty_state_body": "Add your first life area, or begin with a predefined set of common areas.",
+  "use_predefined": "Use predefined",
+  "radar_view_heading": "Your life compass at a glance",
+  "settings_appearance": "Appearance",
+  "settings_language": "Language",
+  "settings_data": "Data"
 }
