@@ -75,7 +75,7 @@ const HeaderNavigation: React.FC = () => {
             {t('life_compass')}
           </Link>
           <div className="hidden items-center gap-1 md:flex">
-            <Link to="/create-life-compass" className={desktopLinkClass}>
+            <Link to="/" className={desktopLinkClass}>
               {t('nav.compass', 'Compass')}
             </Link>
             <Link to="/about" className={desktopLinkClass}>
@@ -141,11 +141,7 @@ const HeaderNavigation: React.FC = () => {
           <Link to="/" onClick={closeMobile} className={mobileLinkClass}>
             {t('home')}
           </Link>
-          <Link
-            to="/create-life-compass"
-            onClick={closeMobile}
-            className={mobileLinkClass}
-          >
+          <Link to="/" onClick={closeMobile} className={mobileLinkClass}>
             {t('nav.compass', 'Compass')}
           </Link>
           <Link to="/about" onClick={closeMobile} className={mobileLinkClass}>

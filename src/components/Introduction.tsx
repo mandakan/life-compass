@@ -3,7 +3,16 @@ import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import CustomButton from './CustomButton';
 import { useNavigate } from 'react-router-dom';
 
-const Introduction = () => {
+interface IntroductionProps {
+  /**
+   * Called by the "next steps" CTA. When provided (e.g. folded under the
+   * compass first-run hero) it drives the build flow; otherwise it falls back
+   * to navigating into the app.
+   */
+  onStart?: () => void;
+}
+
+const Introduction = ({ onStart }: IntroductionProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -88,7 +97,7 @@ const Introduction = () => {
           </p>
           <CustomButton
             className="mt-2 text-lg"
-            onClick={() => navigate('/create-life-compass')}
+            onClick={() => (onStart ? onStart() : navigate('/'))}
           >
             {t('start_your_journey', 'Börja din resa')}
           </CustomButton>
