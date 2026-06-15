@@ -105,18 +105,6 @@
   "name_help": "Life area's name. The name must be unique.",
   "name_is_required": "Name is required",
   "new_life_area": "New life area",
-  "onboarding": {
-    "back": "Back",
-    "finish": "Finish introduction",
-    "next": "Next",
-    "privacy_notice": "We value your privacy. None of your actions or inputs are tracked; all data remains on your device.",
-    "skip": "Skip intro",
-    "welcome_prompt": "Welcome to Life Compass!\nLet's begin the introduction. Would you like to start with predefined life areas?\n(You can always rerun the introduction via the settings menu.)",
-    "with_predefined": "With predefined life areas (recommended)",
-    "without_predefined": "Without predefined life areas",
-    "actions": "Use the action bar to add life areas. Switch between the cards and the radar overview with the Cards / Radar toggle, and find snapshots, export, and import under \"More\". Your settings and language live in the menu at the top right.",
-    "title": "Introduction"
-  },
   "plus_add_new_life_area": "+ Add new life area",
   "privacyPolicy": {
     "closing": "If you have any questions or concerns about your privacy, please contact us.",

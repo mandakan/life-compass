@@ -109,21 +109,6 @@
   "name_help": "Name des Lebensbereichs. Der Name muss eindeutig sein.",
   "name_is_required": "Name wird benötigt",
   "new_life_area": "Neuer Lebensbereich",
-  "onboarding": {
-    "back": "Zurück",
-    "finish": "Tutorial beenden",
-    "next": "Weiter",
-    "privacy_notice": "Wir schätzen Ihre Privatsphäre. Keine Ihrer Aktionen oder Eingaben werden verfolgt; alle Daten bleiben auf Ihrem Gerät.",
-    "radar": "Radaransicht zeigt Ihre Lebensbereiche in einem Diagramm, das es einfach macht, zu erkennen, welche Bereiche am wichtigsten sind, aber in denen Sie nicht so leben, wie Sie es möchten.",
-    "settings_tooltip": "Sehen Sie sich das Einstellungsmenü oben rechts an. Hier können Sie auf die Anleitung zugreifen, die Sprache ändern und mehr.",
-    "skip": "Tutorial überspringen",
-    "toolbar_tooltip": "Schauen Sie sich die schwebende Symbolleiste unten rechts an. Sie bietet Ihnen schnellen Zugriff auf Aktionen wie das Hinzufügen vordefinierter Lebensbereiche, das Zurücksetzen, Exportieren/Importieren von Daten und das Umschalten der Radaranzeige.",
-    "welcome_prompt": "Willkommen bei Lebenskompass!\nLassen Sie uns mit der Einführung beginnen. Möchten Sie mit vordefinierten Lebensbereichen starten?\n(Sie können die Anleitung jederzeit über das Einstellungsmenü erneut starten.)",
-    "with_predefined": "Mit vordefinierten Lebensbereichen (empfohlen)",
-    "without_predefined": "Ohne vordefinierte Lebensbereiche",
-    "actions": "Nutze die Aktionsleiste, um Lebensbereiche hinzuzufügen. Wechsle mit dem Karten-/Radar-Schalter zwischen der Kartenansicht und der Radarübersicht, und finde Momentaufnahmen, Export und Import unter \"Mehr\". Deine Einstellungen und Sprache findest du im Menü oben rechts.",
-    "title": "Einführung"
-  },
   "plus_add_new_life_area": "+ Neuen Lebensbereich hinzufügen",
   "privacyPolicy": {
     "closing": "Wenn Sie Fragen oder Bedenken bezüglich Ihrer Privatsphäre haben, kontaktieren Sie uns bitte.",

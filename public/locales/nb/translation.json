@@ -109,21 +109,6 @@
   "name_help": "Livsområdets navn. Navnet må være unikt.",
   "name_is_required": "Navn er påkrevd",
   "new_life_area": "Nytt livsområde",
-  "onboarding": {
-    "back": "Tilbake",
-    "finish": "Avslutt introduksjonen",
-    "next": "Neste",
-    "privacy_notice": "Vi verdsetter ditt personvern. Ingen av dine handlinger eller inndata spores; all data forblir på enheten din.",
-    "radar": "Radardiagrammet viser dine livsområder i et diagram som gjør det lett å se hvilke områder som er viktigst, men der du ikke lever i tråd med dine verdier.",
-    "settings_tooltip": "Se på innstillingsmenyen øverst til høyre. Der kan du få tilgang til introduksjonen, endre språk og mer.",
-    "skip": "Hopp over introduksjonen",
-    "toolbar_tooltip": "Ta en titt på den flytende verktøylinjen nede til høyre. Den gir deg rask tilgang til handlinger som å legge til forhåndsdefinerte livsområder, tilbakestille, eksportere/importere data og bytte radarskjerm.",
-    "welcome_prompt": "Velkommen til Livskompass!\nLa oss starte introduksjonen. Vil du begynne med forhåndsdefinerte livsområder?\n(Du kan alltid starte om introduksjonen fra innstillingsmenyen.)",
-    "with_predefined": "Med forhåndsdefinerte livsområder (anbefales)",
-    "without_predefined": "Uten forhåndsdefinerte livsområder",
-    "actions": "Bruk handlingslinjen til å legge til livsområder. Bytt mellom kortvisning og radaroversikt med Kort / Radar-bryteren, og finn øyeblikksbilder, eksport og import under \"Mer\". Innstillinger og språk finner du i menyen øverst til høyre.",
-    "title": "Introduksjon"
-  },
   "plus_add_new_life_area": "+ Legg til nytt livsområde",
   "privacyPolicy": {
     "closing": "Hvis du har spørsmål eller bekymringer om ditt privatliv, vennligst kontakt oss.",

@@ -86,20 +86,6 @@
   "name_help": "Naam van het levensgebied. De naam moet uniek zijn.",
   "name_is_required": "Naam is verplicht",
   "new_life_area": "Nieuw levensgebied",
-  "onboarding": {
-    "back": "Terug",
-    "finish": "Introductie voltooien",
-    "next": "Volgende",
-    "privacy_notice": "Wij waarderen je privacy. Geen van je acties of invoeren worden gevolgd; alle gegevens blijven op je apparaat.",
-    "settings_tooltip": "Bekijk het instellingenmenu rechtsboven. Daar kun je toegang krijgen tot de introductie, de taal wijzigen en meer.",
-    "skip": "Intro overslaan",
-    "toolbar_tooltip": "Bekijk de zwevende werkbalk rechtsonder. Hiermee krijg je snelle toegang tot functies zoals het toevoegen van vooraf gedefinieerde levensgebieden, resetten, exporteren/importeren van gegevens en het wisselen van de radarweergave.",
-    "welcome_prompt": "Welkom bij Levenskompas!\nLaten we de introductie beginnen. Wil je starten met vooraf gedefinieerde levensgebieden?\n(U kunt de introductie altijd opnieuw starten via het instellingenmenu.)",
-    "with_predefined": "Met voordefinieerde levensgebieden (aanbevolen)",
-    "without_predefined": "Zonder voordefinieerde levensgebieden",
-    "actions": "Gebruik de actiebalk om levensgebieden toe te voegen. Schakel tussen de kaarten en het radaroverzicht met de schakelaar Kaarten / Radar, en vind momentopnames, exporteren en importeren onder 'Meer'. Je instellingen en taal staan in het menu rechtsboven.",
-    "title": "Introductie"
-  },
   "plus_add_new_life_area": "+ Nieuw levensgebied toevoegen",
   "privacyPolicy": {
     "closing": "Als je vragen of opmerkingen hebt over je privacy, neem dan contact met ons op.",

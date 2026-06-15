@@ -86,18 +86,6 @@
   "name_help": "Livsområdets namn. Namnet måste vara unikt.",
   "name_is_required": "Namn krävs",
   "new_life_area": "Nytt livsområde",
-  "onboarding": {
-    "back": "Tillbaka",
-    "finish": "Avsluta introduktionen",
-    "next": "Nästa",
-    "skip": "Skippa intro",
-    "welcome_prompt": "Välkommen till Livskompass!\nLåt oss börja introduktionen. Vill du börja med fördefinierade livsområden?\n(Du kan alltid köra om introduktionen via inställningsmenyn.)",
-    "with_predefined": "Med fördefinierade livsområden (rekommenderas)",
-    "without_predefined": "Utan fördefinierade livsområden",
-    "privacy_notice": "Vi värnar om din integritet. Inga av dina handlingar eller inmatningar spåras; all data stannar på din enhet.",
-    "actions": "Använd åtgärdsfältet för att lägga till livsområden. Växla mellan kort- och radarvyn med Kort/Radar-knappen, och hitta ögonblicksbilder, export och import under \"Mer\". Dina inställningar och ditt språk finns i menyn uppe till höger.",
-    "title": "Introduktion"
-  },
   "plus_add_new_life_area": "+ Lägg till nytt livsområde",
   "privacyPolicy": {
     "closing": "Om du har några frågor eller funderingar kring din integritet, vänligen kontakta oss.",
@@ -119,7 +107,6 @@
   "recommend_max_ten_life_areas": "Vi rekommenderar att hålla antalet livsområden runt 10 för bästa översikt.",
   "remove_all_life_areas_warning": "Varning: Detta kommer att ta bort alla livsområden och all data. Vill du fortsätta?",
   "remove_life_area_warning": "Varning: Detta kommer att ta bort livsområdet och all dess data. Vill du fortsätta?",
-  "replay_onboarding": "Spela upp introduktionen igen",
   "reset": "Återställ",
   "reset_life_compass_warning": "Är du säker på att du vill återställa livsområdena till standard?",
   "satisfaction": "Tillfredsställelse",

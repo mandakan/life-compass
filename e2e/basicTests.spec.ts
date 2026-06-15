@@ -45,12 +45,6 @@ test.describe('Life Compass App End-to-End Tests', () => {
   });
 
   test('a saved snapshot survives a page reload', async ({ page }) => {
-    // Skip the onboarding overlay. addInitScript re-runs on every navigation,
-    // including the reload below, so the flag stays set.
-    await page.addInitScript(() => {
-      window.localStorage.setItem('tutorialCompleted', 'true');
-    });
-
     // Enter at the root. An empty store opens on the first-run Welcome.
     await page.goto('/');
     await page.waitForLoadState('networkidle');
@@ -86,11 +80,6 @@ test.describe('Life Compass App End-to-End Tests', () => {
   test('a goal with a checked step survives a page reload', async ({
     page,
   }) => {
-    // Skip onboarding; addInitScript re-runs on the reload below too.
-    await page.addInitScript(() => {
-      window.localStorage.setItem('tutorialCompleted', 'true');
-    });
-
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
@@ -138,9 +127,6 @@ test.describe('Life Compass App End-to-End Tests', () => {
   test('the compass has no horizontal overflow on a narrow viewport', async ({
     page,
   }) => {
-    await page.addInitScript(() => {
-      window.localStorage.setItem('tutorialCompleted', 'true');
-    });
     // 320px is the narrow floor (small phones); guards the header, the
     // perspective switcher, and the radial map.
     await page.setViewportSize({ width: 320, height: 780 });

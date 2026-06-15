@@ -8,7 +8,7 @@ import Button from '@components/ui/Button';
 import ContentPage from '@components/ui/ContentPage';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { clearAllUserData, removeUserData } from '@utils/storageService';
+import { clearAllUserData } from '@utils/storageService';
 import WarningDialog from '@components/ui/WarningDialog';
 
 interface SettingsSectionProps {
@@ -56,12 +56,6 @@ const SettingsPage: React.FC = () => {
     setFollowSystem(checked);
 
   const handleDevToolsToggle = (checked: boolean) => setShowDevTools(checked);
-
-  const handleReplayTutorial = () => {
-    removeUserData('tutorialCompleted');
-    navigate('/create-life-compass');
-    window.location.reload();
-  };
 
   const handleDeleteLocalData = () => setShowDeleteModal(true);
 
@@ -120,13 +114,6 @@ const SettingsPage: React.FC = () => {
               onChange={handleDevToolsToggle}
             />
           </SettingsRow>
-          <Button
-            variant="secondary"
-            className="w-full"
-            onClick={handleReplayTutorial}
-          >
-            {t('replay_onboarding', 'Replay Onboarding Tutorial')}
-          </Button>
           <Button
             variant="danger"
             className="w-full"
