@@ -162,7 +162,8 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Kompas",
-    "about": "Om"
+    "about": "Om",
+    "help": "Hjælp"
   },
   "toggle_theme": "Skift lyst og mørkt tema",
   "your_life_compass": "Dit livskompas",
@@ -199,5 +200,80 @@
     "add_step_placeholder": "Tilføj et handlingstrin",
     "delete_step": "Slet trin"
   },
-  "lived_according_to_past_week": "Levet efter i den forgangne uge"
+  "lived_according_to_past_week": "Levet efter i den forgangne uge",
+  "invalid_file_type": "Vælg en JSON-fil.",
+  "error_reading_file": "Kunne ikke læse filen. Prøv igen.",
+  "guide": {
+    "page": {
+      "eyebrow": "Hjælp og guide",
+      "title": "Det hele, med almindelige ord",
+      "subtitle": "Hvordan Life Compass fungerer, og hvor det kommer fra. Læs det, du har brug for, og lad resten ligge - der er ingen rækkefølge at følge.",
+      "replay_title": "Ny her, eller vil du bare genopfriske?",
+      "replay_body": "Gå roligt gennem den blide velkomst igen, når som helst.",
+      "replay_cta": "Se velkomsten igen",
+      "disclaimer": "Life Compass er et selvrefleksionsværktøj - ikke en erstatning for professionel hjælp eller terapi. Hvis tingene føles tunge, så ræk endelig ud til nogen, der kan støtte dig. Baseret på materiale fra KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Spring over",
+      "back": "Tilbage",
+      "continue": "Fortsæt",
+      "finish": "Åbn dit kompas",
+      "footer": "Stop når som helst - Alt bliver på din enhed",
+      "welcome": { "eyebrow": "Velkommen", "title": "Et roligt sted at mærke, hvad der betyder noget.", "body": "Et par korte kort, så er du i gang. Intet at sætte op, intet at skrive under - du kan springe videre, når du har lyst." },
+      "ready": { "eyebrow": "Det er hele idéen", "title": "Når du er klar.", "body": "Du kan altid åbne denne guide igen under Hjælp - intet her er kun for én gangs skyld." }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "Idéen",
+        "title": "En værdi er en retning, ikke et mål",
+        "lede": "Life Compass er et roligt sted at mærke, hvad der betyder noget for dig - og hvor tæt dine dage føles på det.",
+        "pull": "Du behøver ikke at løse noget. Du sætter bare ord på, hvad der betyder noget, og mærker efter.",
+        "body": [
+          "Du sætter ord på de områder af livet, der betyder noget - mennesker, arbejde, helbred, leg, hvad end der er dit - med dine egne ord.",
+          "En værdi er ikke et mål, du rammer og er færdig med. Det er en retning, du bliver ved med at vende dig mod. Så der er ikke noget at gøre færdigt her, og ingen måde at komme bagud på."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "Den ugentlige check-in",
+        "title": "En gang om ugen, ét blidt spørgsmål",
+        "lede": "Når du har lyst, spørger den, hvor tæt ugen føltes på det, der betyder noget - besvaret med almindelige ord, aldrig point.",
+        "pull": "Hvor tæt føltes denne uge på det, der betyder noget i hvert område?",
+        "body": [
+          "Der er ingen vurderinger at give og ingen tal at jage. Du svarer med ord - fra \"langt fra\" til \"helt\" - og du kan efterlade en kort note, hvis du vil, eller lade være.",
+          "Hvert trin er valgfrit. Svar på ét område, eller dem alle, eller ingen. Du kan stoppe når som helst, og det, du har skrevet, bliver."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "Ingen pres",
+        "title": "Ingen streaks. Intet at holde gang i",
+        "lede": "Misser du en uge, koster det dig ingenting. Der er intet at indhente.",
+        "pull": "Mis en uge, eller en måned. Det koster dig ingenting.",
+        "body": [
+          "Det her er ikke en vanesporing. Den belønner aldrig en stribe dage eller markerer et hul som et nederlag - for livet er ikke en streak.",
+          "Påmindelser er slået fra, medmindre du beder om dem, højst én om ugen og nemme at slå fra igen. Det er velkomment at vende tilbage efter lang tid, og helt stille og roligt: der er ikke noget at indhente."
+        ]
+      },
+      "method": {
+        "eyebrow": "Hvor det kommer fra",
+        "title": "Bygget gennem udbrændthed, blidt",
+        "lede": "Det voksede ud af én persons bedring med en værdiøvelse fra kognitiv adfærdsterapi.",
+        "pull": "Lavet af nogen, der havde brug for det - først til sig selv.",
+        "body": [
+          "Life Compass begyndte som et værktøj, dens skaber byggede for at komme gennem udbrændthed, med udgangspunkt i værdiøvelsen \"Livskompass\" fra KBT i primärvården (KBT i primærsektoren).",
+          "Den oprindelse sætter tonen: en følgesvend, ikke en coach eller en klinik. Det er et selvrefleksionsværktøj - ikke en erstatning for professionel hjælp. Hvis du har det svært, så ræk endelig ud til nogen, der kan støtte dig."
+        ]
+      },
+      "data": {
+        "eyebrow": "Dine data",
+        "title": "Alt bliver på din enhed",
+        "lede": "Intet bliver sporet eller uploadet. Gem en kopi, hent en ind, eller ryd det hele - når du vil.",
+        "pull": "Det er dit. Det bliver her, på din enhed.",
+        "body": [
+          "Der er ingen konto og ingen server. Alt, hvad du skriver, lever i denne browser, og intet forlader den.",
+          "Du har altid kontrol over din kopi: eksporter den til en fil for at gemme eller flytte, importer en tilbage, eller slet alt i ét trin."
+        ],
+        "actions": { "export": "Eksporter en kopi", "import": "Importer en fil", "delete": "Slet alt" }
+      }
+    }
+  }
 }

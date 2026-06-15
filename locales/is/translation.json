@@ -138,7 +138,80 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Áttaviti",
-    "about": "Um"
+    "about": "Um",
+    "help": "Hjálp"
+  },
+  "invalid_file_type": "Veldu JSON-skrá.",
+  "error_reading_file": "Ekki tókst að lesa skrána. Reyndu aftur.",
+  "guide": {
+    "page": {
+      "eyebrow": "Hjálp og leiðarvísir",
+      "title": "Allt, með einföldum orðum",
+      "subtitle": "Hvernig Lífsáttavitan virkar og hvaðan hún kemur. Lestu það sem þú þarft og slepptu hinu - það er engin röð sem þarf að fylgja.",
+      "replay_title": "Ný hér, eða viltu bara upprifjun?",
+      "replay_body": "Farðu aftur í gegnum hlýju kynninguna, hvenær sem er.",
+      "replay_cta": "Spila kynninguna aftur",
+      "disclaimer": "Lífsáttavitan er tól til sjálfsskoðunar - ekki staðgengill fyrir faglega aðstoð eða meðferð. Ef hlutirnir verða þungir skaltu hafa samband við einhvern sem getur stutt þig. Byggt á efni frá KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Sleppa",
+      "back": "Til baka",
+      "continue": "Halda áfram",
+      "finish": "Opna áttavitann þinn",
+      "footer": "Hættu hvenær sem er - Allt helst á tækinu þínu",
+      "welcome": {
+        "eyebrow": "Velkomin",
+        "title": "Rólegur staður til að taka eftir því sem skiptir máli.",
+        "body": "Nokkur stutt spjöld, svo ertu komin inn. Ekkert að setja upp, ekkert að skrá - þú getur farið áfram hvenær sem þú vilt."
+      },
+      "ready": {
+        "eyebrow": "Það er öll hugmyndin",
+        "title": "Hvenær sem þú ert tilbúin.",
+        "body": "Þú getur opnað þennan leiðarvísi aftur hvenær sem er undir Hjálp - ekkert hér er bara í eitt skipti."
+      }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "Hugmyndin",
+        "title": "Gildi er átt, ekki markmið",
+        "lede": "Lífsáttavitan er rólegur staður til að taka eftir því sem skiptir þig máli - og hversu nálægt dagarnir þínir eru því.",
+        "pull": "Þú þarft ekki að laga neitt. Þú bara nefnir það sem skiptir máli, og tekur eftir.",
+        "body": [ "Þú nefnir þau svið lífsins sem skipta máli - fólk, vinnu, heilsu, leik, hvað sem er þitt - með þínum eigin orðum.", "Gildi er ekki takmark sem þú nærð og ert búin með. Það er átt sem þú heldur áfram að snúa að. Svo það er ekkert að klára hér, og engin leið til að dragast aftur úr." ]
+      },
+      "weekly": {
+        "eyebrow": "Vikulega íhugunin",
+        "title": "Einu sinni í viku, ein blíð spurning",
+        "lede": "Þegar þú vilt spyr hún hversu nálægt vikan var því sem skiptir máli - svarað með einföldum orðum, aldrei stigum.",
+        "pull": "Hversu nálægt var þessi vika því sem skiptir máli á hverju sviði?",
+        "body": [ "Það eru engar einkunnir að gefa og engar tölur að elta. Þú svarar með orðum - frá \"langt frá því\" til \"algjörlega\" - og þú getur skilið eftir stutta athugasemd ef þú vilt, eða ekki.", "Hvert skref er valfrjálst. Svaraðu einu sviði, eða öllum, eða engu. Þú getur stoppað hvenær sem er og það sem þú hefur skrifað helst." ]
+      },
+      "pressure": {
+        "eyebrow": "Engin pressa",
+        "title": "Engar runur. Ekkert að halda í horfinu",
+        "lede": "Þú missir af viku og það kostar þig ekkert. Það er ekkert að vinna upp.",
+        "pull": "Misstu af viku, eða mánuði. Það kostar þig ekkert.",
+        "body": [ "Þetta er ekki vanaeftirlit. Það verðlaunar aldrei runu af dögum eða merkir gloppu sem mistök - því lífið er ekki runa.", "Áminningar eru af nema þú biðjir um þær, í mesta lagi ein í viku, og auðvelt að slökkva á þeim aftur. Að koma aftur eftir langan tíma er velkomið, og það í kyrrþey: það er ekkert að vinna upp." ]
+      },
+      "method": {
+        "eyebrow": "Hvaðan þetta kemur",
+        "title": "Smíðað í gegnum kulnun, með hægð",
+        "lede": "Hún spratt úr bata eins einstaklings, með gildaæfingu úr hugrænni atferlismeðferð.",
+        "pull": "Búin til af einhverjum sem þurfti hana - fyrst fyrir sjálfan sig.",
+        "body": [ "Lífsáttavitan byrjaði sem tól sem skapari hennar smíðaði til að komast í gegnum kulnun, með stuðningi af gildaæfingunni \"Livskompass\" úr KBT i primärvården (HAM í grunnheilsugæslu).", "Sá uppruni gefur tóninn: félagi, ekki þjálfari eða heilsugæsla. Þetta er tól til sjálfsskoðunar - ekki staðgengill fyrir faglega aðstoð. Ef þú átt í erfiðleikum skaltu hafa samband við einhvern sem getur stutt þig." ]
+      },
+      "data": {
+        "eyebrow": "Gögnin þín",
+        "title": "Allt helst á tækinu þínu",
+        "lede": "Ekkert er rakið eða sent upp. Geymdu afrit, sæktu eitt inn, eða hreinsaðu allt - hvenær sem þú vilt.",
+        "pull": "Þetta er þitt. Það helst hér, á tækinu þínu.",
+        "body": [ "Það er enginn aðgangur og enginn netþjónn. Allt sem þú skrifar lifir í þessum vafra, og ekkert fer úr honum.", "Þú hefur alltaf stjórn á afritinu þínu: flyttu það út í skrá til að geyma eða færa, flyttu eitt aftur inn, eða eyddu öllu í einu skrefi." ],
+        "actions": {
+          "export": "Flytja út afrit",
+          "import": "Flytja inn skrá",
+          "delete": "Eyða öllu"
+        }
+      }
+    }
   },
   "toggle_theme": "Skipta um ljóst og dökkt þema",
   "your_life_compass": "Lífsáttavitinn þinn",

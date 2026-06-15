@@ -139,7 +139,83 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Kompassi",
-    "about": "Tietoja"
+    "about": "Tietoja",
+    "help": "Ohje"
+  },
+  "invalid_file_type": "Valitse JSON-tiedosto.",
+  "error_reading_file": "Tiedostoa ei voitu lukea. Yritä uudelleen.",
+  "guide": {
+    "page": {
+      "eyebrow": "Ohje ja opas",
+      "title": "Kaikki, selkein sanoin",
+      "subtitle": "Miten Elämänkompassi toimii ja mistä se on saanut alkunsa. Lue mitä tarvitset ja jätä loput - mitään järjestystä ei tarvitse seurata.",
+      "replay_title": "Uusi täällä, vai haluatko vain kerrata?",
+      "replay_body": "Käy lempeä tervetulokierros läpi uudelleen, milloin tahansa.",
+      "replay_cta": "Katso tervetuloa uudelleen",
+      "disclaimer": "Elämänkompassi on itsearvioinnin työkalu - ei korvike ammattiavulle tai terapialle. Jos olo tuntuu raskaalta, ota yhteyttä johonkin, joka voi tukea sinua. Perustuu KBT i primärvården -materiaaliin."
+    },
+    "onboarding": {
+      "skip": "Ohita",
+      "back": "Takaisin",
+      "continue": "Jatka",
+      "finish": "Avaa kompassisi",
+      "footer": "Lopeta milloin tahansa - Kaikki pysyy laitteellasi",
+      "welcome": { "eyebrow": "Tervetuloa", "title": "Rauhallinen paikka huomata, mikä on tärkeää.", "body": "Muutama lyhyt kortti, sitten olet sisällä. Mitään ei tarvitse asentaa, mihinkään ei tarvitse kirjautua - voit hypätä eteenpäin milloin haluat." },
+      "ready": { "eyebrow": "Siinä koko ajatus", "title": "Aina kun olet valmis.", "body": "Voit avata tämän oppaan uudelleen koska tahansa Ohje-kohdasta - mikään täällä ei ole vain kertaluonteista." }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "Ajatus",
+        "title": "Arvo on suunta, ei tavoite",
+        "lede": "Elämänkompassi on rauhallinen paikka huomata, mikä on sinulle tärkeää - ja miten lähellä sitä päiväsi tuntuvat olevan.",
+        "pull": "Mitään ei tarvitse korjata. Nimeät vain sen, mikä on tärkeää, ja huomaat.",
+        "body": [
+          "Nimeät elämänalueet, jotka ovat sinulle tärkeitä - ihmiset, työ, terveys, leikki, mikä ikinä on sinun - omin sanoin.",
+          "Arvo ei ole maali, jonka saavutat ja jonka jälkeen olet valmis. Se on suunta, jota kohti jatkat. Joten täällä ei ole mitään suoritettavaa eikä mitään tapaa jäädä jälkeen."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "Viikoittainen katsaus",
+        "title": "Kerran viikossa, yksi lempeä kysymys",
+        "lede": "Kun haluat, se kysyy, miten lähellä viikko tuntui olevan sitä, mikä on tärkeää - vastattuna selkein sanoin, ei koskaan pistein.",
+        "pull": "Miten lähellä tämä viikko tuntui olevan sitä, mikä kullakin alueella on tärkeää?",
+        "body": [
+          "Mitään arvosanoja ei tarvitse antaa eikä numeroita tavoitella. Vastaat sanoin - \"kaukana siitä\" ja \"täysin\" välillä - ja voit halutessasi jättää lyhyen muistiinpanon, tai olla jättämättä.",
+          "Jokainen vaihe on vapaaehtoinen. Vastaa yhdellä alueella, tai kaikilla, tai ei yhdelläkään. Voit lopettaa milloin tahansa, ja kirjoittamasi pysyy tallessa."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "Ei painetta",
+        "title": "Ei putkia. Mitään ei tarvitse pitää yllä",
+        "lede": "Jos viikko jää väliin, se ei maksa sinulle mitään. Mitään ei tarvitse ottaa kiinni.",
+        "pull": "Viikko tai kuukausi saa jäädä väliin. Se ei maksa sinulle mitään.",
+        "body": [
+          "Tämä ei ole tapaseuranta. Se ei koskaan palkitse päivien putkesta eikä merkitse taukoa epäonnistumiseksi - sillä elämä ei ole putki.",
+          "Muistutukset ovat pois päältä, ellet pyydä niitä, enintään yksi viikossa, ja helposti taas pois kytkettävissä. Pitkän tauon jälkeen palaaminen on tervetullutta, ja hiljaa niin: mitään ei tarvitse korvata."
+        ]
+      },
+      "method": {
+        "eyebrow": "Mistä tämä tulee",
+        "title": "Rakennettu uupumuksen läpi, lempeästi",
+        "lede": "Se sai alkunsa yhden ihmisen toipumisesta, käyttäen kognitiivisen käyttäytymisterapian arvoharjoitusta.",
+        "pull": "Tehnyt joku, joka tarvitsi sitä - ensin itselleen.",
+        "body": [
+          "Elämänkompassi sai alkunsa työkaluna, jonka sen tekijä rakensi selvitäkseen uupumuksesta, ammentaen \"Livskompass\"-arvoharjoituksesta materiaalissa KBT i primärvården (KKT perusterveydenhuollossa).",
+          "Tuo alkuperä antaa sävyn: kumppani, ei valmentaja tai klinikka. Se on itsearvioinnin työkalu - ei korvike ammattiavulle. Jos sinulla on vaikeaa, ota yhteyttä johonkin, joka voi tukea sinua."
+        ]
+      },
+      "data": {
+        "eyebrow": "Sinun tietosi",
+        "title": "Kaikki pysyy laitteellasi",
+        "lede": "Mitään ei seurata eikä ladata verkkoon. Pidä kopio, tuo sellainen sisään tai tyhjennä kaikki - milloin haluat.",
+        "pull": "Se on sinun. Se pysyy täällä, laitteellasi.",
+        "body": [
+          "Tiliä ei ole eikä palvelinta. Kaikki kirjoittamasi elää tässä selaimessa, eikä mikään poistu siitä.",
+          "Sinulla on aina hallinta kopioosi: vie se tiedostoon säilytettäväksi tai siirrettäväksi, tuo sellainen takaisin, tai poista kaikki yhdellä vaiheella."
+        ],
+        "actions": { "export": "Vie kopio", "import": "Tuo tiedosto", "delete": "Poista kaikki" }
+      }
+    }
   },
   "toggle_theme": "Vaihda vaalea ja tumma teema",
   "your_life_compass": "Elämänkompassisi",

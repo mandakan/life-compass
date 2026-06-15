@@ -139,7 +139,95 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Boussole",
-    "about": "À propos"
+    "about": "À propos",
+    "help": "Aide"
+  },
+  "invalid_file_type": "Veuillez choisir un fichier JSON.",
+  "error_reading_file": "Impossible de lire le fichier. Veuillez réessayer.",
+  "guide": {
+    "page": {
+      "eyebrow": "Aide & guide",
+      "title": "Tout, en mots simples",
+      "subtitle": "Comment fonctionne Boussole de vie et d'où elle vient. Lisez ce dont vous avez besoin et laissez le reste - il n'y a pas d'ordre à suivre.",
+      "replay_title": "Nouveau, ou envie d'un rappel ?",
+      "replay_body": "Revoyez la douce bienvenue quand vous voulez.",
+      "replay_cta": "Revoir la bienvenue",
+      "disclaimer": "Boussole de vie est un outil d'autoréflexion - et non un substitut à une aide professionnelle ou à une thérapie. Si les choses vous pèsent, contactez quelqu'un qui peut vous soutenir. Basé sur du matériel de KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Passer",
+      "back": "Retour",
+      "continue": "Continuer",
+      "finish": "Ouvrir votre boussole",
+      "footer": "Arrêtez quand vous voulez - Tout reste sur votre appareil",
+      "welcome": {
+        "eyebrow": "Bienvenue",
+        "title": "Un endroit calme pour remarquer ce qui compte.",
+        "body": "Quelques courtes cartes, puis vous y êtes. Rien à configurer, rien à signer - vous pouvez passer à la suite quand vous le souhaitez."
+      },
+      "ready": {
+        "eyebrow": "C'est toute l'idée",
+        "title": "Quand vous êtes prêt.",
+        "body": "Vous pouvez rouvrir ce guide à tout moment depuis Aide - rien ici n'est à usage unique."
+      }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "L'idée",
+        "title": "Une valeur est une direction, pas un but",
+        "lede": "Boussole de vie est un endroit calme pour remarquer ce qui compte pour vous - et à quel point vos journées s'en rapprochent.",
+        "pull": "Vous n'avez rien à réparer. Vous nommez simplement ce qui compte, et vous remarquez.",
+        "body": [
+          "Vous nommez les domaines de vie qui comptent - les gens, le travail, la santé, le jeu, ce qui est à vous - avec vos propres mots.",
+          "Une valeur n'est pas une cible qu'on atteint puis qu'on termine. C'est une direction vers laquelle on continue de se tourner. Il n'y a donc rien à achever ici, et aucun moyen de prendre du retard."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "Le point hebdomadaire",
+        "title": "Une fois par semaine, une question douce",
+        "lede": "Quand vous le voulez, elle demande à quel point la semaine s'est rapprochée de ce qui compte - répondue en mots simples, jamais en notes.",
+        "pull": "À quel point cette semaine s'est-elle rapprochée de ce qui compte dans chaque domaine ?",
+        "body": [
+          "Il n'y a pas de notes à donner ni de chiffres à courir après. Vous répondez avec des mots - de \"loin de là\" à \"pleinement\" - et vous pouvez laisser une petite note si vous le souhaitez, ou non.",
+          "Chaque étape est facultative. Répondez pour un domaine, ou pour tous, ou pour aucun. Vous pouvez vous arrêter à tout moment et ce que vous avez écrit reste."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "Aucune pression",
+        "title": "Pas de séries. Rien à maintenir",
+        "lede": "Manquer une semaine ne vous coûte rien. Il n'y a rien à rattraper.",
+        "pull": "Manquez une semaine, ou un mois. Cela ne vous coûte rien.",
+        "body": [
+          "Ce n'est pas un suivi d'habitudes. Cela ne récompense jamais une suite de jours et ne marque pas un écart comme un échec - parce que la vie n'est pas une série.",
+          "Les rappels sont désactivés sauf si vous les demandez, au plus un par semaine, et faciles à désactiver de nouveau. Revenir après un long moment est bienvenu, et tout en douceur : il n'y a rien à rattraper."
+        ]
+      },
+      "method": {
+        "eyebrow": "D'où cela vient",
+        "title": "Construit à travers l'épuisement, en douceur",
+        "lede": "C'est né du rétablissement d'une personne, à partir d'un exercice de valeurs issu de la thérapie cognitivo-comportementale.",
+        "pull": "Fait par quelqu'un qui en avait besoin - d'abord pour lui-même.",
+        "body": [
+          "Boussole de vie a commencé comme un outil que son créateur a construit pour traverser l'épuisement, en s'appuyant sur l'exercice de valeurs \"Livskompass\" de KBT i primärvården (TCC en soins primaires).",
+          "Cette origine donne le ton : un compagnon, pas un coach ni une clinique. C'est un outil d'autoréflexion - et non un substitut à une aide professionnelle. Si vous traversez une période difficile, contactez quelqu'un qui peut vous soutenir."
+        ]
+      },
+      "data": {
+        "eyebrow": "Vos données",
+        "title": "Tout reste sur votre appareil",
+        "lede": "Rien n'est suivi ni envoyé. Gardez une copie, importez-en une, ou effacez tout - quand vous voulez.",
+        "pull": "Elles sont à vous. Elles restent ici, sur votre appareil.",
+        "body": [
+          "Il n'y a ni compte ni serveur. Tout ce que vous écrivez vit dans ce navigateur, et rien n'en sort.",
+          "Vous gardez toujours le contrôle de votre copie : exportez-la dans un fichier pour la conserver ou la déplacer, importez-en une, ou supprimez tout en une seule étape."
+        ],
+        "actions": {
+          "export": "Exporter une copie",
+          "import": "Importer un fichier",
+          "delete": "Tout supprimer"
+        }
+      }
+    }
   },
   "toggle_theme": "Basculer thème clair et sombre",
   "your_life_compass": "Votre boussole de vie",
