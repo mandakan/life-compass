@@ -4,12 +4,15 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import YourCompass from './pages/YourCompass';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import HelpGuide from './pages/HelpGuide';
+import WelcomePage from './pages/WelcomePage';
 import Navigation from '@components/ui/Navigation';
 import SettingsPage from './pages/SettingsPage';
 import { ThemeProvider } from './context/ThemeContext';
@@ -18,6 +21,11 @@ import Footer from './components/Footer';
 
 const Content = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  // The welcome flow is immersive: it carries its own minimal top bar, so the
+  // standard app header and footer step aside on that route.
+  const immersive = location.pathname === '/welcome';
+
   useEffect(() => {
     document.title = t('life_compass_title', 'Livskompass');
   }, [t]);
@@ -25,10 +33,12 @@ const Content = () => {
   return (
     <div className="bg-bg text-text bg-escher flex min-h-screen transition-colors duration-300">
       <div className="flex flex-1 flex-col">
-        <Navigation />
-        <main className="mb-16 flex-1 md:mb-0">
+        {!immersive && <Navigation />}
+        <main className={immersive ? 'flex-1' : 'mb-16 flex-1 md:mb-0'}>
           <Routes>
             <Route path="/" element={<YourCompass />} />
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/help" element={<HelpGuide />} />
             <Route
               path="/design-principles"
               element={<DesignPrinciplesDemo />}
@@ -42,7 +52,7 @@ const Content = () => {
             <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
-        <Footer />
+        {!immersive && <Footer />}
       </div>
     </div>
   );
