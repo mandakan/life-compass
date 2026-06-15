@@ -1,7 +1,45 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+// A brand-new visitor is sent through the immersive welcome tour first (see
+// YourCompass first-run + the /welcome route). Seeding the "seen" flag before
+// the page loads drops these tests straight into the app, which is what they
+// actually exercise. The dedicated welcome test below deliberately skips this.
+async function skipWelcome(page: Page) {
+  await page.addInitScript(() => {
+    try {
+      localStorage.setItem('tutorialCompleted', 'true');
+    } catch {
+      // ignore - a blocked localStorage just means the tour may show
+    }
+  });
+}
 
 test.describe('Life Compass App End-to-End Tests', () => {
+  test('a new visitor is welcomed and can skip into the app', async ({
+    page,
+  }) => {
+    // Fresh context (no seen flag): the root redirects into the immersive tour.
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveURL(/\/welcome$/);
+    await expect(
+      page.getByRole('heading', {
+        name: 'A quiet place to notice what matters.',
+      }),
+    ).toBeVisible();
+
+    // Skip hands off to the app (the area picker), with the app chrome back.
+    await page.getByRole('button', { name: 'Skip' }).click();
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Work', exact: true }),
+    ).toBeVisible();
+  });
+
   test('homepage loads and displays main navigation', async ({ page }) => {
+    await skipWelcome(page);
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     // Wait until document title is set
@@ -14,6 +52,7 @@ test.describe('Life Compass App End-to-End Tests', () => {
   });
 
   test('footer is visible on homepage', async ({ page }) => {
+    await skipWelcome(page);
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     const footer = await page.$('footer');
@@ -21,6 +60,7 @@ test.describe('Life Compass App End-to-End Tests', () => {
   });
 
   test('language switcher works correctly', async ({ page }) => {
+    await skipWelcome(page);
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     // Wait for the language switcher button to appear (now in the global nav)
@@ -45,14 +85,12 @@ test.describe('Life Compass App End-to-End Tests', () => {
   });
 
   test('a saved snapshot survives a page reload', async ({ page }) => {
-    // Enter at the root. An empty store opens on the first-run Welcome.
+    // Skip the welcome; an empty store then opens directly on the area picker.
+    await skipWelcome(page);
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
     // Build a compass from the suggestions so there is something to snapshot.
-    await page
-      .getByRole('button', { name: 'Start from a few common areas' })
-      .click();
     await page.getByRole('button', { name: 'Work', exact: true }).click();
     await page.getByRole('button', { name: /^Continue with/ }).click();
 
@@ -80,13 +118,11 @@ test.describe('Life Compass App End-to-End Tests', () => {
   test('a goal with a checked step survives a page reload', async ({
     page,
   }) => {
+    await skipWelcome(page);
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
     // Build a compass and open the "Work" area's editor.
-    await page
-      .getByRole('button', { name: 'Start from a few common areas' })
-      .click();
     await page.getByRole('button', { name: 'Work', exact: true }).click();
     await page.getByRole('button', { name: /^Continue with/ }).click();
     await page.getByRole('button', { name: 'Open Work' }).click();
@@ -131,12 +167,10 @@ test.describe('Life Compass App End-to-End Tests', () => {
     // perspective switcher, and the radial map.
     await page.setViewportSize({ width: 320, height: 780 });
 
+    await skipWelcome(page);
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     // Build a compass so the map, header, and switcher all render.
-    await page
-      .getByRole('button', { name: 'Start from a few common areas' })
-      .click();
     await page.getByRole('button', { name: 'Work', exact: true }).click();
     await page.getByRole('button', { name: /^Continue with/ }).click();
     await page.waitForLoadState('networkidle');

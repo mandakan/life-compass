@@ -140,7 +140,80 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Kompas",
-    "about": "Over"
+    "about": "Over",
+    "help": "Help"
+  },
+  "invalid_file_type": "Kies een JSON-bestand.",
+  "error_reading_file": "Kon het bestand niet lezen. Probeer het opnieuw.",
+  "guide": {
+    "page": {
+      "eyebrow": "Help & gids",
+      "title": "Alles, in gewone woorden",
+      "subtitle": "Hoe Levenskompas werkt en waar het vandaan komt. Lees wat je nodig hebt en laat de rest - er is geen volgorde die je moet volgen.",
+      "replay_title": "Nieuw, of gewoon zin in een opfrisser?",
+      "replay_body": "Loop wanneer je wilt nog eens rustig door het welkom heen.",
+      "replay_cta": "Bekijk het welkom opnieuw",
+      "disclaimer": "Levenskompas is een hulpmiddel voor zelfreflectie - geen vervanging voor professionele hulp of therapie. Als het zwaar voelt, neem dan alsjeblieft contact op met iemand die je kan steunen. Gebaseerd op materiaal van KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Overslaan",
+      "back": "Terug",
+      "continue": "Doorgaan",
+      "finish": "Open je kompas",
+      "footer": "Stop wanneer je wilt - Alles blijft op je apparaat",
+      "welcome": {
+        "eyebrow": "Welkom",
+        "title": "Een rustige plek om op te merken wat ertoe doet.",
+        "body": "Een paar korte kaarten, en dan ben je binnen. Niets om in te stellen, niets om te ondertekenen - je kunt altijd vooruitspringen wanneer je wilt."
+      },
+      "ready": {
+        "eyebrow": "Dat is het hele idee",
+        "title": "Wanneer je er klaar voor bent.",
+        "body": "Je kunt deze gids altijd opnieuw openen via Help - niets hier is eenmalig."
+      }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "Het idee",
+        "title": "Een waarde is een richting, geen doel",
+        "lede": "Levenskompas is een rustige plek om op te merken wat voor jou belangrijk is - en hoe dichtbij je dagen daarbij voelen.",
+        "pull": "Je hoeft niets op te lossen. Je benoemt gewoon wat ertoe doet, en merkt het op.",
+        "body": [ "Je benoemt de gebieden in je leven die ertoe doen - mensen, werk, gezondheid, plezier, wat het voor jou ook is - in je eigen woorden.", "Een waarde is geen doelwit dat je raakt en daarna afvinkt. Het is een richting die je blijft volgen. Er valt hier dus niets af te ronden, en je kunt niet achterop raken." ]
+      },
+      "weekly": {
+        "eyebrow": "De wekelijkse check-in",
+        "title": "Eens per week, een rustige vraag",
+        "lede": "Wanneer je wilt, vraagt het hoe dichtbij de week voelde bij wat ertoe doet - beantwoord in gewone woorden, nooit met cijfers.",
+        "pull": "Hoe dichtbij voelde deze week bij wat in elk gebied belangrijk is?",
+        "body": [ "Er zijn geen beoordelingen te geven en geen cijfers om na te jagen. Je antwoordt in woorden - van \"ver weg\" tot \"helemaal\" - en je kunt een kort notitie achterlaten als je wilt, of niet.", "Elke stap is optioneel. Beantwoord één gebied, of allemaal, of geen. Je kunt op elk moment stoppen en wat je hebt geschreven blijft bewaard." ]
+      },
+      "pressure": {
+        "eyebrow": "Geen druk",
+        "title": "Geen reeksen. Niets om bij te houden",
+        "lede": "Een week overslaan kost je niets. Er is niets in te halen.",
+        "pull": "Sla een week over, of een maand. Het kost je niets.",
+        "body": [ "Dit is geen gewoontetracker. Het beloont nooit een reeks dagen en markeert een gat nooit als een mislukking - want het leven is geen reeks.", "Herinneringen staan uit tenzij je erom vraagt, hoogstens één per week, en weer makkelijk uit te zetten. Terugkomen na een lange tijd is welkom, en stilletjes zo: er is niets in te halen." ]
+      },
+      "method": {
+        "eyebrow": "Waar dit vandaan komt",
+        "title": "Ontstaan tijdens een burn-out, zachtjes",
+        "lede": "Het groeide uit het herstel van één persoon, met behulp van een waardenoefening uit de cognitieve gedragstherapie.",
+        "pull": "Gemaakt door iemand die het nodig had - eerst voor zichzelf.",
+        "body": [ "Levenskompas begon als een hulpmiddel dat de maker bouwde om door een burn-out heen te komen, gebaseerd op de waardenoefening \"Livskompass\" uit KBT i primärvården (CGT in de eerstelijnszorg).", "Die oorsprong bepaalt de toon: een metgezel, geen coach of kliniek. Het is een hulpmiddel voor zelfreflectie - geen vervanging voor professionele hulp. Als je het moeilijk hebt, neem dan alsjeblieft contact op met iemand die je kan steunen." ]
+      },
+      "data": {
+        "eyebrow": "Jouw gegevens",
+        "title": "Alles blijft op je apparaat",
+        "lede": "Niets wordt bijgehouden of geüpload. Bewaar een kopie, breng er een in, of wis alles - wanneer je maar wilt.",
+        "pull": "Het is van jou. Het blijft hier, op je apparaat.",
+        "body": [ "Er is geen account en geen server. Alles wat je schrijft leeft in deze browser, en niets verlaat hem.", "Je houdt altijd de controle over je kopie: exporteer hem naar een bestand om te bewaren of te verplaatsen, importeer er een terug, of verwijder alles in één stap." ],
+        "actions": {
+          "export": "Een kopie exporteren",
+          "import": "Een bestand importeren",
+          "delete": "Alles verwijderen"
+        }
+      }
+    }
   },
   "toggle_theme": "Licht en donker thema wisselen",
   "your_life_compass": "Jouw levenskompas",

@@ -139,7 +139,8 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Compass",
-    "about": "About"
+    "about": "About",
+    "help": "QaH"
   },
   "toggle_theme": "Toggle light and dark theme",
   "your_life_compass": "Your life compass",
@@ -176,5 +177,92 @@
     "add_step_placeholder": "vangmeH HeS yIchel",
     "delete_step": "HeS yIlel"
   },
-  "theme_system": "pat"
+  "theme_system": "pat",
+  "invalid_file_type": "JSON De'wI'ghItlh yIwIv.",
+  "error_reading_file": "De'wI'ghItlh laDlaHbe'. yInIDqa'.",
+  "guide": {
+    "page": {
+      "eyebrow": "QaH je mIw",
+      "title": "Hoch, mu'mey QaQ",
+      "subtitle": "chay Qap Life Compass 'ej nuqvo' Sor. Dochmey DaSeghbogh tIlaD, latlh yIlI'Ha' - mIw poS pagh.",
+      "replay_title": "chu', pagh Daqawqa'qang neH'a'?",
+      "replay_body": "reH nuqneH tammoHbogh Daleghqa'laH.",
+      "replay_cta": "nuqneH yIleghqa'",
+      "disclaimer": "Life Compass 'oH yInbuS jan'e' - QuchHa'pu' QaH pagh mIw qaSDI' qaSlu'meH jan ghaHbe'. 'ugh ghu' DaSIQchugh, DuQaHlaHbogh ghotvaD yIjatlh. KBT i primärvården Doch lo'."
+    },
+    "onboarding": {
+      "skip": "yIlI'Ha'",
+      "back": "ghoS",
+      "continue": "tera'ghom",
+      "finish": "loSDI'lIj yIpoSmoH",
+      "footer": "reH yImev - janlIjDaq ratlh Hoch",
+      "welcome": {
+        "eyebrow": "nuqneH",
+        "title": "potlhbogh Dochmey Dalegh'a' tammoHbogh Daq.",
+        "body": "puS qImroqmey ngaj, vaj bIngaH. pagh chenmoH, pagh ghItlh - reH bIlI'Ha'laH."
+      },
+      "ready": {
+        "eyebrow": "ngoQ naQ 'oH",
+        "title": "bISaHchu'DI'.",
+        "body": "reH QaHvo' mIwvam DapoSqa'laH - naDev pagh wa'logh-neH 'oH."
+      }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "ngoQ",
+        "title": "Hugh 'oH potlh'e', ngoQbe'",
+        "lede": "Life Compass 'oH potlhbogh Dochmey DaSaHbogh Dalegh'e' tammoHbogh Daq - 'ej jajmeylIj chay rurchu'.",
+        "pull": "pagh DalIHnIS. potlhbogh Doch yIpong neH, 'ej yISaH.",
+        "body": [
+          "yIn HurghmeylIj DaSaHbogh tIpong - ghotpu', SuvwI', yuch, reH-Hot, nuqDaq SoHbogh - mu'meylIjDaq.",
+          "Hugh 'oH ngoQbe' DabuptaH 'ej DachoHbogh. 'oH Hugh DaqIHtaHbogh'e'. vaj naDev pagh rInmoHlu', 'ej pagh DaSlaHbe'."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "Hogh nuD",
+        "title": "Hoghvad wa'logh, wa' tammoHbogh ghel",
+        "lede": "DaSaHDI', chay potlh rurchu' Hogh ghel - mu'mey QaQ jang, not pat.",
+        "pull": "Hugh Hurghmey chay rurchu' Hoghvam?",
+        "body": [
+          "patmey lI'lu'be' 'ej mISmey tlha'lu'be'. mu'mey Dajang - \"Hopqu'\" vo' \"naQqu'\"vaD - 'ej DaneHchugh nuch ghIt yIghIt, pagh ghIt.",
+          "Hoch mIw 'oH wIvbogh'e'. wa' Hurgh yIjang, pagh Hoch, pagh pagh. reH bImevlaH 'ej ghIlaHbogh ratlh."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "ghuHbe'",
+        "title": "tlha'be'. pagh polnISlu'",
+        "lede": "Hogh DaSpu'chugh pagh DaQellaH. tlha'meH pagh tu'lu'.",
+        "pull": "Hogh DaSpu', pagh jar. pagh DaQellaH.",
+        "body": [
+          "wapDaj tlha'wI' ghaHbe'. not jaj tlha' naDmoH pagh ghIl Qaghvad maq - yIn tlha'be'mo'.",
+          "qaQongmoHmey Daghonpu'be'chugh chuHa'lu', Hoghvad wa'logh neH, 'ej HurghHa'choH neH. nI'bogh poH 'ej choH bIcheghchugh yIqeghqu', tammoHchu': pagh DalIHqa'nISbogh tu'lu'be'."
+        ]
+      },
+      "method": {
+        "eyebrow": "nuqvo' Sor",
+        "title": "Sutmey Doypu'Daq chenta', tammoHchu'",
+        "lede": "wa' ghot chegh ghu' chenta', QeD tIQ vangtaHvIS Hugh QuD.",
+        "pull": "neHbogh ghotvo' chenmoHta' - wa'DIch ghaHvaD.",
+        "body": [
+          "Life Compass taghpu' chenmoHwI'Daj jan chenmoHbogh'e' Sutmey Doypu' DaSpu'meH, KBT i primärvården \"Livskompass\" Hugh QuD lo'taHvIS (KBT primärvård).",
+          "ghu'vam wagh 'oH bIchotwI': jup, ghojmoHwI' pagh ghISDen ghaHbe'. yInbuS jan 'oH - QuchHa'pu' QaH lo'mo' jan ghaHbe'. DaQubchugh, DuQaHlaHbogh ghotvaD yIjatlh."
+        ]
+      },
+      "data": {
+        "eyebrow": "De'lIj",
+        "title": "janlIjDaq ratlh Hoch",
+        "lede": "pagh tlha'lu' pagh nge'lu'. mojaq yIpol, wa' yIqem, pagh Hoch yIngaSHa' - reH DaneHDI'.",
+        "pull": "SoHbogh ghaH. naDev ratlh, janlIjDaq.",
+        "body": [
+          "patlh tu'lu'be' 'ej De'wI' qach tu'lu'be'. Hoch DaghItlhbogh naDev browser-Daq yIntaH, 'ej pagh mejtaH.",
+          "reH mojaqlIj DaSeH: De'wI'ghItlhDaq yIchoq DapolmeH pagh DavangmeH, wa' yIqem, pagh wa' mIwDaq Hoch yIlel."
+        ],
+        "actions": {
+          "export": "mojaq yIchoq",
+          "import": "De'wI'ghItlh yIqem",
+          "delete": "Hoch yIlel"
+        }
+      }
+    }
+  }
 }

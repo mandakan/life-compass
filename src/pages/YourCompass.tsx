@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
 import {
@@ -10,6 +11,7 @@ import type { ImportedData } from 'types/importExport';
 import { useLifeCompassStore } from '../store/lifeCompassStore';
 import { getPredefinedLifeAreas } from '@utils/lifeAreaService';
 import { parseAndValidateJSON } from '@utils/importService';
+import { hasSeenOnboarding } from '@utils/storageService';
 
 import Button from '@components/ui/Button';
 import Dialog from '@components/ui/Dialog';
@@ -20,8 +22,6 @@ import ImportButton from '@components/ImportButton';
 import ExportButton from '@components/ExportButton';
 import GoalsDialog from '@components/goals/GoalsDialog';
 
-import Introduction from '@components/Introduction';
-import Welcome from '@components/your-compass/Welcome';
 import Suggest from '@components/your-compass/Suggest';
 import MapView from '@components/your-compass/MapView';
 import ListView from '@components/your-compass/ListView';
@@ -33,7 +33,7 @@ import { VIEWS, type ViewId } from '@components/your-compass/views';
 
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
-type Phase = 'welcome' | 'suggest' | 'app';
+type Phase = 'suggest' | 'app';
 
 // Fresh id for a cloned or brand-new area. crypto.randomUUID with a Date.now
 // fallback mirrors the existing CreateLifeCompass behavior.
@@ -53,7 +53,7 @@ const YourCompass: React.FC = () => {
   const importDocument = useLifeCompassStore(state => state.importDocument);
 
   const [phase, setPhase] = useState<Phase>(() =>
-    lifeAreas.length === 0 ? 'welcome' : 'app',
+    lifeAreas.length === 0 ? 'suggest' : 'app',
   );
   const [view, setView] = useState<ViewId>('map');
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -83,8 +83,6 @@ const YourCompass: React.FC = () => {
     : null;
 
   // ----- first-run flow -----
-
-  const handleSuggest = () => setPhase('suggest');
 
   const handleBuildOwn = () => {
     setPhase('app');
@@ -138,7 +136,7 @@ const YourCompass: React.FC = () => {
     setEditingId(null);
     setNewAreaId(null);
     setView('map');
-    setPhase('welcome');
+    setPhase('suggest');
   };
 
   // ----- import -----
@@ -161,16 +159,11 @@ const YourCompass: React.FC = () => {
     setPhase('app');
   };
 
-  if (phase === 'welcome') {
-    // Brand-new / empty visitor: the calm first-run hero, with the editorial
-    // explainer (what it is, why, how, the disclaimer and privacy) folded
-    // beneath for anyone who wants the fuller picture before starting.
-    return (
-      <div className="bg-bg text-text">
-        <Welcome onSuggest={handleSuggest} onOwn={handleBuildOwn} />
-        <Introduction onStart={handleSuggest} />
-      </div>
-    );
+  // Brand-new visitor who hasn't met the gentle welcome yet: send them through
+  // the immersive tour first. It marks itself seen on finish/skip and returns
+  // here, where an empty store lands on the area picker.
+  if (lifeAreas.length === 0 && !hasSeenOnboarding()) {
+    return <Navigate to="/welcome" replace />;
   }
 
   if (phase === 'suggest') {

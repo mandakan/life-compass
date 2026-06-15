@@ -61,12 +61,99 @@
     "delete_step": "Delete step"
   },
   "go_to_settings_menu": "Navigate to settings menu",
+  "guide": {
+    "page": {
+      "eyebrow": "Help & guide",
+      "title": "Everything, in plain words",
+      "subtitle": "How Life Compass works and where it comes from. Read what you need and leave the rest - there's no order to follow.",
+      "replay_title": "New, or just want a refresher?",
+      "replay_body": "Walk through the gentle welcome again, anytime.",
+      "replay_cta": "Replay the welcome",
+      "disclaimer": "Life Compass is a self-reflection tool - not a substitute for professional help or therapy. If things feel heavy, please reach out to someone who can support you. Based on material from KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Skip",
+      "back": "Back",
+      "continue": "Continue",
+      "finish": "Open your compass",
+      "footer": "Stop anytime - Everything stays on your device",
+      "welcome": {
+        "eyebrow": "Welcome",
+        "title": "A quiet place to notice what matters.",
+        "body": "A few short cards, then you're in. Nothing to set up, nothing to sign - you can skip ahead whenever you like."
+      },
+      "ready": {
+        "eyebrow": "That's the whole idea",
+        "title": "Whenever you're ready.",
+        "body": "You can reopen this guide anytime from Help - nothing here is one-time-only."
+      }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "The idea",
+        "title": "A value is a direction, not a goal",
+        "lede": "Life Compass is a quiet place to notice what matters to you - and how close your days feel to it.",
+        "pull": "You don't have to fix anything. You just name what matters, and notice.",
+        "body": [
+          "You name the areas of life that matter - people, work, health, play, whatever is yours - in your own words.",
+          "A value isn't a target you hit and finish. It's a direction you keep facing. So there's nothing to complete here, and no way to fall behind."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "The weekly check-in",
+        "title": "Once a week, one gentle question",
+        "lede": "When you like, it asks how close the week felt to what matters - answered in plain words, never scores.",
+        "pull": "How close did this week feel to what matters in each area?",
+        "body": [
+          "There are no ratings to give and no numbers to chase. You answer in words - from \"far from it\" to \"fully\" - and you can leave a short note if you want to, or not.",
+          "Every step is optional. Answer one area, or all of them, or none. You can stop at any point and what you've written stays."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "No pressure",
+        "title": "No streaks. Nothing to keep up",
+        "lede": "Miss a week and it costs you nothing. There is no catching up to do.",
+        "pull": "Miss a week, or a month. It costs you nothing.",
+        "body": [
+          "This isn't a habit tracker. It never rewards a run of days or marks a gap as a failure - because life isn't a streak.",
+          "Reminders are off unless you ask for them, at most one a week, and easy to turn off again. Coming back after a long while is welcome, and quietly so: there's nothing to make up."
+        ]
+      },
+      "method": {
+        "eyebrow": "Where this comes from",
+        "title": "Built through burnout, gently",
+        "lede": "It grew out of one person's recovery, using a values exercise from cognitive behavioural therapy.",
+        "pull": "Made by someone who needed it - first for themselves.",
+        "body": [
+          "Life Compass began as a tool its maker built to get through burnout, drawing on the \"Livskompass\" values exercise from KBT i primärvården (CBT in primary care).",
+          "That origin sets the tone: a companion, not a coach or a clinic. It's a self-reflection tool - not a substitute for professional help. If you're struggling, please reach out to someone who can support you."
+        ]
+      },
+      "data": {
+        "eyebrow": "Your data",
+        "title": "Everything stays on your device",
+        "lede": "Nothing is tracked or uploaded. Keep a copy, bring one in, or clear it all - whenever you want.",
+        "pull": "It's yours. It stays here, on your device.",
+        "body": [
+          "There is no account and no server. Everything you write lives in this browser, and nothing leaves it.",
+          "You're always in control of your copy: export it to a file to keep or move, import one back, or delete everything in a single step."
+        ],
+        "actions": {
+          "export": "Export a copy",
+          "import": "Import a file",
+          "delete": "Delete everything"
+        }
+      }
+    }
+  },
   "history_count": "History",
   "home": "Home",
   "import": "Import",
   "import_data_prompt": "Data import prompt",
   "import_error": "Error during import:",
   "import_successful": "Import successful.",
+  "invalid_file_type": "Please choose a JSON file.",
+  "error_reading_file": "Could not read the file. Please try again.",
   "importance": "Importance",
   "importance_help": "Specify how important this area is in your life on a scale of 1-10, where 1 means not important and 10 means very important. Consider how your life would be if everything looked exactly as you wished.",
   "introduction": {
@@ -158,6 +245,7 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Compass",
+    "help": "Help",
     "about": "About"
   },
   "toggle_theme": "Toggle light and dark theme",
