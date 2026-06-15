@@ -162,7 +162,83 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Kompass",
-    "about": "Über"
+    "about": "Über",
+    "help": "Hilfe"
+  },
+  "invalid_file_type": "Bitte wähle eine JSON-Datei.",
+  "error_reading_file": "Die Datei konnte nicht gelesen werden. Bitte versuche es noch einmal.",
+  "guide": {
+    "page": {
+      "eyebrow": "Hilfe & Anleitung",
+      "title": "Alles, in klaren Worten",
+      "subtitle": "Wie Life Compass funktioniert und woher er kommt. Lies, was du brauchst, und lass den Rest - es gibt keine Reihenfolge, der du folgen musst.",
+      "replay_title": "Neu hier oder einfach Lust auf eine Auffrischung?",
+      "replay_body": "Geh die sanfte Einführung jederzeit noch einmal durch.",
+      "replay_cta": "Einführung erneut ansehen",
+      "disclaimer": "Life Compass ist ein Werkzeug zur Selbstreflexion - kein Ersatz für professionelle Hilfe oder Therapie. Wenn dir etwas schwer auf dem Herzen liegt, wende dich bitte an jemanden, der dich unterstützen kann. Basierend auf Material von KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Überspringen",
+      "back": "Zurück",
+      "continue": "Weiter",
+      "finish": "Deinen Kompass öffnen",
+      "footer": "Du kannst jederzeit aufhören - Alles bleibt auf deinem Gerät",
+      "welcome": { "eyebrow": "Willkommen", "title": "Ein ruhiger Ort, um wahrzunehmen, was zählt.", "body": "Ein paar kurze Karten, dann bist du drin. Nichts einzurichten, nichts zu unterschreiben - du kannst jederzeit weiterspringen." },
+      "ready": { "eyebrow": "Das ist die ganze Idee", "title": "Wann immer du bereit bist.", "body": "Du kannst diese Anleitung jederzeit über die Hilfe wieder öffnen - nichts hier ist nur einmalig." }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "Die Idee",
+        "title": "Ein Wert ist eine Richtung, kein Ziel",
+        "lede": "Life Compass ist ein ruhiger Ort, um wahrzunehmen, was dir wichtig ist - und wie nah deine Tage dem kommen.",
+        "pull": "Du musst nichts in Ordnung bringen. Du benennst nur, was zählt, und nimmst es wahr.",
+        "body": [
+          "Du benennst die Lebensbereiche, die dir wichtig sind - Menschen, Arbeit, Gesundheit, Spiel, was auch immer deins ist - in deinen eigenen Worten.",
+          "Ein Wert ist kein Ziel, das du erreichst und dann abhakst. Es ist eine Richtung, der du weiter zugewandt bleibst. Es gibt hier also nichts abzuschließen und keine Möglichkeit, zurückzufallen."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "Der wöchentliche Check-in",
+        "title": "Einmal die Woche, eine sanfte Frage",
+        "lede": "Wenn du magst, fragt er, wie nah die Woche dem kam, was dir wichtig ist - beantwortet in klaren Worten, nie mit Punkten.",
+        "pull": "Wie nah kam diese Woche dem, was dir in jedem Bereich wichtig ist?",
+        "body": [
+          "Es gibt keine Bewertungen abzugeben und keine Zahlen zu jagen. Du antwortest in Worten - von \"weit davon entfernt\" bis \"ganz und gar\" - und du kannst eine kurze Notiz hinterlassen, wenn du möchtest, oder auch nicht.",
+          "Jeder Schritt ist freiwillig. Beantworte einen Bereich, oder alle, oder keinen. Du kannst jederzeit aufhören, und was du geschrieben hast, bleibt erhalten."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "Kein Druck",
+        "title": "Keine Serien. Nichts, das du durchhalten musst",
+        "lede": "Wenn du eine Woche auslässt, kostet dich das nichts. Es gibt nichts nachzuholen.",
+        "pull": "Lass eine Woche aus, oder einen Monat. Es kostet dich nichts.",
+        "body": [
+          "Das ist kein Gewohnheits-Tracker. Er belohnt nie eine Serie von Tagen und markiert eine Lücke nicht als Versagen - denn das Leben ist keine Serie.",
+          "Erinnerungen sind aus, solange du nicht darum bittest, höchstens einmal die Woche und leicht wieder abzuschalten. Nach langer Zeit zurückzukommen ist willkommen, ganz leise: Es gibt nichts nachzuholen."
+        ]
+      },
+      "method": {
+        "eyebrow": "Woher das kommt",
+        "title": "Sanft durch ein Burnout entstanden",
+        "lede": "Es entstand aus der Genesung eines Menschen, mithilfe einer Werteübung aus der kognitiven Verhaltenstherapie.",
+        "pull": "Gemacht von jemandem, der es brauchte - zuerst für sich selbst.",
+        "body": [
+          "Life Compass begann als Werkzeug, das sein Schöpfer baute, um durch ein Burnout zu kommen, gestützt auf die Werteübung \"Livskompass\" aus KBT i primärvården (Verhaltenstherapie in der Grundversorgung).",
+          "Dieser Ursprung gibt den Ton an: ein Begleiter, kein Coach und keine Klinik. Es ist ein Werkzeug zur Selbstreflexion - kein Ersatz für professionelle Hilfe. Wenn es dir schwerfällt, wende dich bitte an jemanden, der dich unterstützen kann."
+        ]
+      },
+      "data": {
+        "eyebrow": "Deine Daten",
+        "title": "Alles bleibt auf deinem Gerät",
+        "lede": "Nichts wird verfolgt oder hochgeladen. Behalte eine Kopie, bring eine mit oder lösche alles - wann immer du willst.",
+        "pull": "Es gehört dir. Es bleibt hier, auf deinem Gerät.",
+        "body": [
+          "Es gibt kein Konto und keinen Server. Alles, was du schreibst, lebt in diesem Browser, und nichts verlässt ihn.",
+          "Du hast immer die Kontrolle über deine Kopie: Exportiere sie in eine Datei, um sie zu behalten oder mitzunehmen, importiere eine zurück oder lösche in einem einzigen Schritt alles."
+        ],
+        "actions": { "export": "Eine Kopie exportieren", "import": "Eine Datei importieren", "delete": "Alles löschen" }
+      }
+    }
   },
   "toggle_theme": "Helles und dunkles Thema umschalten",
   "your_life_compass": "Dein Lebenskompass",

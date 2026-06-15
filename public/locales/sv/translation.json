@@ -139,8 +139,11 @@
   "version": "1.0.0",
   "nav": {
     "compass": "Kompass",
-    "about": "Om"
+    "about": "Om",
+    "help": "Hjälp"
   },
+  "invalid_file_type": "Välj en JSON-fil.",
+  "error_reading_file": "Kunde inte läsa filen. Försök igen.",
   "toggle_theme": "Växla ljust och mörkt tema",
   "your_life_compass": "Din livskompass",
   "compass_subline": "Kartlägg vad som betyder något och hur din vecka blev.",
@@ -286,6 +289,91 @@
       "radar": "Balanshjul",
       "history": "Historik",
       "import_export": "Importera / exportera"
+    }
+  },
+  "guide": {
+    "page": {
+      "eyebrow": "Hjälp och guide",
+      "title": "Allt, med enkla ord",
+      "subtitle": "Hur Livskompass fungerar och var den kommer ifrån. Läs det du behöver och lämna resten - det finns ingen ordning att följa.",
+      "replay_title": "Ny, eller vill du bara fräscha upp minnet?",
+      "replay_body": "Gå igenom det milda välkomnandet igen, när du vill.",
+      "replay_cta": "Spela upp välkomnandet igen",
+      "disclaimer": "Livskompass är ett verktyg för självreflektion - inte en ersättning för professionell hjälp eller terapi. Om det känns tungt, vänd dig gärna till någon som kan stötta dig. Baserad på material från KBT i primärvården."
+    },
+    "onboarding": {
+      "skip": "Hoppa över",
+      "back": "Tillbaka",
+      "continue": "Fortsätt",
+      "finish": "Öppna din kompass",
+      "footer": "Sluta när du vill - Allt stannar på din enhet",
+      "welcome": {
+        "eyebrow": "Välkommen",
+        "title": "En lugn plats att lägga märke till det som betyder något.",
+        "body": "Några korta kort, sedan är du inne. Inget att ställa in, inget att skriva på - du kan hoppa vidare när du vill."
+      },
+      "ready": {
+        "eyebrow": "Det är hela tanken",
+        "title": "När du är redo.",
+        "body": "Du kan öppna den här guiden igen när som helst via Hjälp - inget här är bara en gång."
+      }
+    },
+    "topics": {
+      "what": {
+        "eyebrow": "Tanken",
+        "title": "En värdering är en riktning, inte ett mål",
+        "lede": "Livskompass är en lugn plats att lägga märke till det som betyder något för dig - och hur nära dina dagar känns det.",
+        "pull": "Du behöver inte fixa något. Du sätter bara ord på det som betyder något, och lägger märke till.",
+        "body": [
+          "Du sätter ord på de livsområden som betyder något - människor, arbete, hälsa, lek, vad som än är ditt - med dina egna ord.",
+          "En värdering är inte ett mål du når och blir klar med. Det är en riktning du fortsätter vända dig mot. Så det finns inget att slutföra här, och inget sätt att hamna efter."
+        ]
+      },
+      "weekly": {
+        "eyebrow": "Veckans avstämning",
+        "title": "En gång i veckan, en mild fråga",
+        "lede": "När du vill frågar den hur nära veckan kändes det som betyder något - besvarat med enkla ord, aldrig poäng.",
+        "pull": "Hur nära kändes den här veckan det som betyder något inom varje område?",
+        "body": [
+          "Det finns inga betyg att ge och inga siffror att jaga. Du svarar med ord - från \"långt ifrån\" till \"helt och hållet\" - och du kan lämna en kort anteckning om du vill, eller inte.",
+          "Varje steg är frivilligt. Svara på ett område, eller alla, eller inget. Du kan sluta när som helst och det du har skrivit stannar kvar."
+        ]
+      },
+      "pressure": {
+        "eyebrow": "Ingen press",
+        "title": "Inga streak. Inget att hålla igång",
+        "lede": "Missa en vecka och det kostar dig ingenting. Det finns inget att ta igen.",
+        "pull": "Missa en vecka, eller en månad. Det kostar dig ingenting.",
+        "body": [
+          "Det här är ingen vaneräknare. Den belönar aldrig en rad dagar eller markerar ett uppehåll som ett misslyckande - för livet är ingen streak.",
+          "Påminnelser är avstängda om du inte ber om dem, högst en i veckan, och lätta att stänga av igen. Att komma tillbaka efter lång tid är välkommet, och stilla så: det finns inget att ta igen."
+        ]
+      },
+      "method": {
+        "eyebrow": "Var det här kommer ifrån",
+        "title": "Byggd genom utbrändhet, varsamt",
+        "lede": "Den växte fram ur en persons återhämtning, med en värderingsövning från kognitiv beteendeterapi.",
+        "pull": "Gjord av någon som behövde den - först för sig själv.",
+        "body": [
+          "Livskompass började som ett verktyg som skaparen byggde för att ta sig genom en utbrändhet, med stöd i värderingsövningen \"Livskompass\" från KBT i primärvården.",
+          "Det ursprunget sätter tonen: en följeslagare, inte en coach eller en klinik. Det är ett verktyg för självreflektion - inte en ersättning för professionell hjälp. Om du har det svårt, vänd dig gärna till någon som kan stötta dig."
+        ]
+      },
+      "data": {
+        "eyebrow": "Dina data",
+        "title": "Allt stannar på din enhet",
+        "lede": "Inget spåras eller laddas upp. Behåll en kopia, ta in en, eller rensa allt - när du vill.",
+        "pull": "Det är ditt. Det stannar här, på din enhet.",
+        "body": [
+          "Det finns inget konto och ingen server. Allt du skriver lever i den här webbläsaren, och inget lämnar den.",
+          "Du har alltid kontroll över din kopia: exportera den till en fil för att behålla eller flytta, importera tillbaka en, eller ta bort allt i ett enda steg."
+        ],
+        "actions": {
+          "export": "Exportera en kopia",
+          "import": "Importera en fil",
+          "delete": "Ta bort allt"
+        }
+      }
     }
   }
 }
