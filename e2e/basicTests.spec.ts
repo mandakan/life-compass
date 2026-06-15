@@ -23,8 +23,8 @@ test.describe('Life Compass App End-to-End Tests', () => {
   test('language switcher works correctly', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    // Wait for the language switcher button to appear
-    const languageSwitcher = await page.getByTestId('language-switcher-home');
+    // Wait for the language switcher button to appear (now in the global nav)
+    const languageSwitcher = await page.getByTestId('language-switcher');
 
     expect(languageSwitcher).not.toBeNull();
 
@@ -51,28 +51,23 @@ test.describe('Life Compass App End-to-End Tests', () => {
       window.localStorage.setItem('tutorialCompleted', 'true');
     });
 
-    // Enter at the root and navigate via the app's own router so the URL keeps
-    // whatever base path the build uses (e.g. /life-compass on GitHub Pages).
+    // Enter at the root. An empty store opens on the first-run Welcome.
     await page.goto('/');
     await page.waitForLoadState('networkidle');
+
+    // Build a compass from the suggestions so there is something to snapshot.
     await page
-      .getByRole('button', { name: /start your journey/i })
-      .first()
+      .getByRole('button', { name: 'Start from a few common areas' })
       .click();
+    await page.getByRole('button', { name: 'Work', exact: true }).click();
+    await page.getByRole('button', { name: /^Continue with/ }).click();
 
-    // Open the overflow "More" menu (action bar) and seed some content.
-    await page.getByRole('button', { name: /quick actions/i }).click();
-    await page.getByRole('button', { name: /add predefined/i }).click();
+    // Save a dated snapshot via the quiet overflow menu -> History dialog.
+    await page.getByRole('button', { name: 'More' }).click();
+    await page.getByRole('button', { name: 'History' }).click();
+    await page.getByRole('button', { name: 'Save snapshot' }).click();
 
-    // The segmented Cards / Radar view toggle replaces the old mystery FAB.
-    await page.getByRole('button', { name: /^radar/i }).click();
-    await page.getByRole('button', { name: /^cards/i }).click();
-
-    // Save a dated snapshot through the real UI (reopen the overflow menu).
-    await page.getByRole('button', { name: /quick actions/i }).click();
-    await page.getByRole('button', { name: /save snapshot/i }).click();
-
-    // The history section appears once at least one snapshot exists.
+    // The history list appears once at least one snapshot exists.
     await expect(
       page.getByRole('heading', { name: /snapshot history/i }),
     ).toBeVisible();
@@ -81,6 +76,8 @@ test.describe('Life Compass App End-to-End Tests', () => {
     await page.reload();
     await page.waitForLoadState('networkidle');
 
+    await page.getByRole('button', { name: 'More' }).click();
+    await page.getByRole('button', { name: 'History' }).click();
     await expect(
       page.getByRole('heading', { name: /snapshot history/i }),
     ).toBeVisible();
@@ -96,32 +93,29 @@ test.describe('Life Compass App End-to-End Tests', () => {
 
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await page
-      .getByRole('button', { name: /start your journey/i })
-      .first()
-      .click();
 
-    // Seed some life areas so a card with a Goals button exists.
-    await page.getByRole('button', { name: /quick actions/i }).click();
-    await page.getByRole('button', { name: /add predefined/i }).click();
-
-    // Open the first card's goals dialog (flag icon + count).
+    // Build a compass and open the "Work" area's editor.
     await page
-      .getByRole('button', { name: /^goals/i })
-      .first()
+      .getByRole('button', { name: 'Start from a few common areas' })
       .click();
+    await page.getByRole('button', { name: 'Work', exact: true }).click();
+    await page.getByRole('button', { name: /^Continue with/ }).click();
+    await page.getByRole('button', { name: 'Open Work' }).click();
+
+    // Goals live behind the quiet affordance in the area editor.
+    await page.getByRole('button', { name: 'Goals' }).click();
 
     // Add a goal through the real UI.
-    const goalInput = page.getByLabel(/add goal/i);
+    const goalInput = page.getByLabel('Add goal');
     await goalInput.fill('Run a 5k');
-    await page.getByRole('button', { name: /add goal/i }).click();
+    await page.getByRole('button', { name: 'Add goal' }).click();
     await expect(page.getByText('Run a 5k')).toBeVisible();
 
     // Expand the goal and add a step.
-    await page.getByRole('button', { name: /show steps/i }).click();
-    const stepInput = page.getByLabel(/add step/i);
+    await page.getByRole('button', { name: 'Show steps' }).click();
+    const stepInput = page.getByLabel('Add step');
     await stepInput.fill('Buy shoes');
-    await page.getByRole('button', { name: /add step/i }).click();
+    await page.getByRole('button', { name: 'Add step' }).click();
 
     // Check the step off; progress should read 1/1.
     await page.getByRole('checkbox', { name: 'Buy shoes' }).check();
@@ -131,12 +125,10 @@ test.describe('Life Compass App End-to-End Tests', () => {
     await page.reload();
     await page.waitForLoadState('networkidle');
 
-    await page
-      .getByRole('button', { name: /^goals/i })
-      .first()
-      .click();
+    await page.getByRole('button', { name: 'Open Work' }).click();
+    await page.getByRole('button', { name: 'Goals' }).click();
     await expect(page.getByText('Run a 5k')).toBeVisible();
-    await page.getByRole('button', { name: /show steps/i }).click();
+    await page.getByRole('button', { name: 'Show steps' }).click();
     await expect(page.getByText('1/1')).toBeVisible();
     await expect(
       page.getByRole('checkbox', { name: 'Buy shoes' }),
@@ -149,22 +141,24 @@ test.describe('Life Compass App End-to-End Tests', () => {
     await page.addInitScript(() => {
       window.localStorage.setItem('tutorialCompleted', 'true');
     });
-    // 320px is the narrow floor (small phones); guards the header and the
-    // sticky bottom action bar.
+    // 320px is the narrow floor (small phones); guards the header, the
+    // perspective switcher, and the radial map.
     await page.setViewportSize({ width: 320, height: 780 });
 
     await page.goto('/');
     await page.waitForLoadState('networkidle');
+    // Build a compass so the map, header, and switcher all render.
     await page
-      .getByRole('button', { name: /start your journey/i })
-      .first()
+      .getByRole('button', { name: 'Start from a few common areas' })
       .click();
+    await page.getByRole('button', { name: 'Work', exact: true }).click();
+    await page.getByRole('button', { name: /^Continue with/ }).click();
     await page.waitForLoadState('networkidle');
     await page.evaluate(() => document.fonts.ready);
 
-    // The compass (incl. the fixed sticky bottom action bar) renders here.
-    // Nothing in the page may extend past the viewport's right edge, or mobile
-    // browsers allow sideways scrolling.
+    // The compass (header, switcher, radial map) renders here. Nothing may
+    // extend past the viewport's right edge, or mobile browsers allow sideways
+    // scrolling.
     const maxRight = await page.evaluate(() => {
       const vw = document.documentElement.clientWidth;
       let max = 0;
