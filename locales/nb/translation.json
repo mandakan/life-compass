@@ -69,7 +69,7 @@
       "privacy_description": "Vi respekterer ditt privatliv. Vi sporer ikke dine handlinger eller det du skriver. Alle dine data forblir lokale og deles ikke med noen eksterne parter.",
       "privacy_title": "Privatliv og Databeskyttelse",
       "source_text": "Basert på materiale fra",
-      "what_is_description": "Livskompass er et verktøy for å reflektere over hva som virkelig er viktig i livet ditt. I stedet for å la korte mål eller eksterne forventninger styre, hjelper det deg med å identifisere dine kjerneverdier – hva du står for og hvordan du ønsker å leve.",
+      "what_is_description": "Livskompass er et verktøy for å reflektere over hva som virkelig er viktig i livet ditt. I stedet for å la korte mål eller eksterne forventninger styre, hjelper det deg med å identifisere dine kjerneverdier - hva du står for og hvordan du ønsker å leve.",
       "what_is_title": "Hva er Livskompass?",
       "why_description": "Å ha klare verdier gir retning og motivasjon i livet. Uten disse kan vi føle oss fortapt eller usikre på valgene våre. Med et Livskompass kan du navigere utfordringer, ta beslutninger og leve mer i tråd med det som er meningsfullt for deg.",
       "why_title": "Hvorfor er det viktig?"
@@ -92,7 +92,7 @@
     "privacy_description": "Vi respekterer personvernet ditt. Vi sporer ingen av handlingene dine eller det du skriver. Alle data lagres lokalt og deles ikke med noen ekstern part.",
     "privacy_title": "Personvern og databeskyttelse",
     "source_text": "Basert på materiale fra",
-    "what_is_description": "Life Compass er et verktøy for å reflektere over hva som virkelig er viktig i livet ditt. I stedet for å styres av kortsiktige mål eller ytre forventninger, hjelper det deg å identifisere dine kjerneverdier -- hva du står for og hvordan du vil leve livet ditt.",
+    "what_is_description": "Life Compass er et verktøy for å reflektere over hva som virkelig er viktig i livet ditt. I stedet for å styres av kortsiktige mål eller ytre forventninger, hjelper det deg å identifisere dine kjerneverdier - hva du står for og hvordan du vil leve livet ditt.",
     "what_is_title": "Hva er Life Compass?",
     "why_description": "Klare verdier gir retning og motivasjon i livet. Uten dem kan vi føle oss lost eller usikre i beslutningene våre. Med en Life Compass kan du navigere utfordringer, ta beslutninger og leve mer i tråd med det som er meningsfullt for deg.",
     "why_title": "Hvorfor er det viktig?"
@@ -109,21 +109,6 @@
   "name_help": "Livsområdets navn. Navnet må være unikt.",
   "name_is_required": "Navn er påkrevd",
   "new_life_area": "Nytt livsområde",
-  "onboarding": {
-    "back": "Tilbake",
-    "finish": "Avslutt introduksjonen",
-    "next": "Neste",
-    "privacy_notice": "Vi verdsetter ditt personvern. Ingen av dine handlinger eller inndata spores; all data forblir på enheten din.",
-    "radar": "Radardiagrammet viser dine livsområder i et diagram som gjør det lett å se hvilke områder som er viktigst, men der du ikke lever i tråd med dine verdier.",
-    "settings_tooltip": "Se på innstillingsmenyen øverst til høyre. Der kan du få tilgang til introduksjonen, endre språk og mer.",
-    "skip": "Hopp over introduksjonen",
-    "toolbar_tooltip": "Ta en titt på den flytende verktøylinjen nede til høyre. Den gir deg rask tilgang til handlinger som å legge til forhåndsdefinerte livsområder, tilbakestille, eksportere/importere data og bytte radarskjerm.",
-    "welcome_prompt": "Velkommen til Livskompass!\nLa oss starte introduksjonen. Vil du begynne med forhåndsdefinerte livsområder?\n(Du kan alltid starte om introduksjonen fra innstillingsmenyen.)",
-    "with_predefined": "Med forhåndsdefinerte livsområder (anbefales)",
-    "without_predefined": "Uten forhåndsdefinerte livsområder",
-    "actions": "Bruk handlingslinjen til å legge til livsområder. Bytt mellom kortvisning og radaroversikt med Kort / Radar-bryteren, og finn øyeblikksbilder, eksport og import under \"Mer\". Innstillinger og språk finner du i menyen øverst til høyre.",
-    "title": "Introduksjon"
-  },
   "plus_add_new_life_area": "+ Legg til nytt livsområde",
   "privacyPolicy": {
     "closing": "Hvis du har spørsmål eller bekymringer om ditt privatliv, vennligst kontakt oss.",
