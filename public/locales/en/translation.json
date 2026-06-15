@@ -88,7 +88,7 @@
     "privacy_description": "We respect your privacy. We do not track any of your actions or what you write. All your data remains local and is not shared with any external party.",
     "privacy_title": "Privacy and Data Protection",
     "source_text": "Based on material from",
-    "what_is_description": "Life Compass is a tool to reflect on what is truly important in your life. Instead of being driven by short-term goals or external expectations, it helps you identify your core values – what you stand for and how you want to live your life.",
+    "what_is_description": "Life Compass is a tool to reflect on what is truly important in your life. Instead of being driven by short-term goals or external expectations, it helps you identify your core values - what you stand for and how you want to live your life.",
     "what_is_title": "What is the Life Compass?",
     "why_description": "Having clear values gives direction and motivation in life. Without them, we may feel lost or uncertain in our decisions. With a Life Compass, you can navigate challenges, make decisions, and live more in line with what is meaningful for you.",
     "why_title": "Why is it important?"
@@ -105,18 +105,6 @@
   "name_help": "Life area's name. The name must be unique.",
   "name_is_required": "Name is required",
   "new_life_area": "New life area",
-  "onboarding": {
-    "back": "Back",
-    "finish": "Finish introduction",
-    "next": "Next",
-    "privacy_notice": "We value your privacy. None of your actions or inputs are tracked; all data remains on your device.",
-    "skip": "Skip intro",
-    "welcome_prompt": "Welcome to Life Compass!\nLet's begin the introduction. Would you like to start with predefined life areas?\n(You can always rerun the introduction via the settings menu.)",
-    "with_predefined": "With predefined life areas (recommended)",
-    "without_predefined": "Without predefined life areas",
-    "actions": "Use the action bar to add life areas. Switch between the cards and the radar overview with the Cards / Radar toggle, and find snapshots, export, and import under \"More\". Your settings and language live in the menu at the top right.",
-    "title": "Introduction"
-  },
   "plus_add_new_life_area": "+ Add new life area",
   "privacyPolicy": {
     "closing": "If you have any questions or concerns about your privacy, please contact us.",
@@ -187,5 +175,116 @@
   "radar_view_heading": "Your life compass at a glance",
   "settings_appearance": "Appearance",
   "settings_language": "Language",
-  "settings_data": "Data"
+  "settings_data": "Data",
+  "your_compass": {
+    "heading": {
+      "eyebrow": "Your compass",
+      "title": "What matters to you, and how this week has felt."
+    },
+    "start_fresh": "Start fresh",
+    "start_over_q": "Start over?",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "welcome": {
+      "title": "Let's build your compass.",
+      "body": "This is the whole idea: you in the middle, and the handful of things that matter most around you. We'll add them one at a time. There's no right answer, and you can change anything later.",
+      "cta_suggest": "Start from a few common areas",
+      "cta_own": "Add my own first",
+      "privacy": "Everything stays on your device. Nothing is tracked or shared."
+    },
+    "suggest": {
+      "title": "Which of these matter to you?",
+      "body": "Just starting points - choose any that fit, skip the rest, and add your own later. Nothing here is fixed.",
+      "cta_zero": "Choose a few to continue",
+      "cta_n": "Continue with {{count}}",
+      "cta_own": "Add my own instead"
+    },
+    "views": {
+      "map": {
+        "label": "Map",
+        "sub": "You, and the things that matter around you"
+      },
+      "list": {
+        "label": "List",
+        "sub": "What matters, in plain words"
+      },
+      "today": {
+        "label": "Today",
+        "sub": "Just one gentle thing"
+      },
+      "week": {
+        "label": "This week",
+        "sub": "How the week has felt"
+      }
+    },
+    "map": {
+      "helper_empty": "Tap a + to name something that matters to you. Add as few or as many as you like.",
+      "helper_populated": "Tap anything to open it and reflect. A faded box means you've drifted a little from what matters there.",
+      "add_aria": "Add something that matters",
+      "open_aria": "Open {{name}}",
+      "untitled": "Untitled"
+    },
+    "today": {
+      "eyebrow": "Just one thing today.",
+      "question": "How close did this past week feel?",
+      "open_save": "Open & save",
+      "show_another": "Show me another"
+    },
+    "week": {
+      "affirm": "You showed up and noticed how things are. That matters more than any number.",
+      "delta": {
+        "new": "Newly added - nothing to compare yet.",
+        "closer": "A little closer than last week.",
+        "same": "About the same as last week.",
+        "further": "A bit further - be gentle with yourself."
+      },
+      "tender": "This one matters to you - somewhere to be kind to yourself."
+    },
+    "scale": {
+      "lived": {
+        "1": "Far from it",
+        "2": "A little",
+        "3": "Some of the time",
+        "4": "Mostly",
+        "5": "Fully"
+      },
+      "matters": {
+        "1": "A little",
+        "2": "Somewhat",
+        "3": "Quite a bit",
+        "4": "A lot",
+        "5": "Deeply"
+      }
+    },
+    "detail": {
+      "name_placeholder": "Name this area",
+      "name_aria": "Name this area",
+      "prompt_placeholder": "a few words for what this means to you",
+      "prompt_aria": "A few words for what this means",
+      "value_label": "What you value here",
+      "value_help": "In your own words. There's no right answer.",
+      "value_placeholder": "What does living well in this area look like for you?",
+      "matters_label": "How much does this matter to you?",
+      "matters_help": "Your compass needle - this rarely changes week to week.",
+      "lived_label": "How close did you live to it this past week?",
+      "lived_help": "Just this week. Be honest and kind - both at once.",
+      "remove": "Remove",
+      "done": "Done",
+      "close": "Close",
+      "goals": "Goals",
+      "new_area_aria": "New area"
+    },
+    "reflection": {
+      "far_off": "This matters a lot to you, and lately it's felt far off. Not a failure - just a gentle signal of where your attention wants to go.",
+      "close": "This matters to you, and you've been living close to it. Worth noticing what's helping.",
+      "aligned": "What you value here and how you've lived it are close together right now.",
+      "small_distance": "A small distance between what you value and how the week felt. Nothing to fix - just something to see."
+    },
+    "overflow": {
+      "menu": "More",
+      "radar": "Balance wheel",
+      "history": "History",
+      "import_export": "Import / export"
+    }
+  }
 }

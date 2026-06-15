@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import HomePage from './pages/HomePage';
+import YourCompass from './pages/YourCompass';
 import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
-import CreateLifeCompass from './pages/CreateLifeCompass';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Navigation from '@components/ui/Navigation';
@@ -24,14 +28,14 @@ const Content = () => {
         <Navigation />
         <main className="mb-16 flex-1 md:mb-0">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<YourCompass />} />
             <Route
               path="/design-principles"
               element={<DesignPrinciplesDemo />}
             />
             <Route
               path="/create-life-compass"
-              element={<CreateLifeCompass />}
+              element={<Navigate to="/" replace />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/settings" element={<SettingsPage />} />

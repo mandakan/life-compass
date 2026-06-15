@@ -30,7 +30,7 @@ This means the code and structure reflect an evolving collaboration between huma
 - **Styling**: Tailwind CSS 4 (CSS-first `@theme` tokens), self-hosted Fraunces + Hanken Grotesk fonts
 - **State & persistence**: [Zustand](https://zustand-demo.pmnd.rs) with `persist` to `localStorage` (a single versioned document with schema migrations)
 - **Components**: [Radix UI](https://www.radix-ui.com) primitives, [Heroicons](https://heroicons.com)
-- **Charts**: [Recharts](https://recharts.org) (radar view)
+- **Charts**: [Recharts](https://recharts.org) (the balance-wheel / radar view)
 - **i18n**: [i18next](https://www.i18next.com) / react-i18next
 - **Tooling**: Vitest + Testing Library (unit), Playwright (E2E), ESLint, Prettier, Knip
 - **Themes**: light, dark, and a WCAG-AAA high-contrast theme
@@ -50,25 +50,19 @@ The Life Compass is a tool for **self-reflection and personal sustainability**. 
 1. **Define Life Areas**  
    The user defines key life areas (e.g., Health, Career, Relationships, Personal Development).
 
-2. **Rate Importance and Satisfaction**  
-   Each life area is rated on a scale from **1 to 10** for:
+2. **Set how much each area matters, and how you have lived it**  
+   For each area you set how much it **matters** to you and how closely you have **lived by it this past week**. These are shown in plain words (e.g. _A little -> Deeply_ and _Far from it -> Fully_), not numbers -- there are no scores in the interface.
 
-   - **Importance**: How important is this aspect of life?
-   - **Satisfaction**: How satisfied is the user with their current situation?
-
-3. **Analyze Gaps and Prioritize**  
-   The difference between **importance and satisfaction** reveals areas of imbalance.
-
-   - Large gaps indicate areas that may need more attention.
-   - Small gaps suggest a balanced or fulfilled aspect of life.
+3. **Notice the gap, kindly**  
+   The distance between what matters and how the week felt is surfaced gently -- never a score, never a streak. A larger gap is just a quiet signal of where your attention may want to go.
 
 4. **Set Goals and Take Action**  
-   The user creates goals and action steps to improve specific life areas.
+   You can attach goals and checkable action steps to any area; progress is derived from the steps you complete.
 
-   - Goals should be clear, actionable, and measurable.
+5. **Track Over Time**  
+   Save a snapshot whenever you like; the **This week** view shows how each area has moved, with no pressure to keep a streak.
 
-5. **Track Progress Over Time**  
-   Regular check-ins help the user track improvements and adjust their strategies.
+The same data is offered as four switchable perspectives -- a calm **Map** (you at the centre, with the things that matter around you), a plain **List**, a single-focus **Today**, and a reflective **This week** -- so you can engage however suits you.
 
 ### Why Use the Life Compass?
 
@@ -146,7 +140,7 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ### Additional Life Compass Features
 
-- [x] User Story 1.7: Onboarding Tutorial
+- [x] User Story 1.7: Onboarding Tutorial (superseded by the first-run Welcome flow in the Your Compass redesign)
 - [ ] User Story 2.2: Sort Life Areas by Gap
 
 ### Data Export/Import & Warnings
