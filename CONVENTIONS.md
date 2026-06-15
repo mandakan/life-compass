@@ -1,86 +1,93 @@
 # Life Compass Code Conventions
 
-This document outlines coding conventions to ensure consistency, maintainability, and clarity. These rules should be strictly followed when developing the project, including when using AI-assisted tools like Aider.
+This document outlines coding conventions to keep the project consistent, maintainable, and clear. Follow these when developing, including with AI-assisted tools. The project was bootstrapped with Aider and is now developed with Claude Code.
 
 ## General Coding Principles
 
-- Follow the SOLID principles (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).
-- Follow DRY (Don't Repeat Yourself) and KISS (Keep It Simple, Stupid) principles.
-- Use modular, reusable components to avoid redundant code.
-- Use functional components in React with TypeScript.
+- Follow SOLID, DRY, and KISS. Favor composition over inheritance.
+- Use modular, reusable components.
+- Use functional React components with TypeScript.
+- Keep business logic out of UI components; put it in `src/utils/` services and the store.
 
 ## File and Folder Structure
 
-life_compass/
-│── src/
-│ ├── components/ # Reusable UI components
-│ ├── pages/ # Page-specific components
-│ ├── utils/ # Helper functions and utilities
-│ ├── hooks/ # Custom React hooks (if applicable)
-│ ├── state/ # Zustand/Redux/Context API state management
-│ ├── assets/ # Images, icons, styles
-│ ├── tests/ # Unit and integration tests
+```
+src/
+  components/   # Reusable UI components (ui/ holds design-system primitives;
+                # your-compass/ holds the four compass views; goals/, guide/)
+  pages/        # Route-level components (one per screen)
+  store/        # Zustand store -- single source of truth + persistence
+  context/      # React Context providers (theme, app settings)
+  hooks/        # Custom React hooks
+  utils/        # Helper functions and services (export/import, model, theme)
+  types/        # Shared TypeScript types (aliased as @models)
+  schemas/      # JSON schemas (import/export validation)
+  data/         # Predefined life areas per language
+  lib/          # Small shared helpers (i18n re-export, class utils)
+  tests/        # Unit and integration tests (*.test.tsx / *.spec.tsx)
+```
 
-- Keep business logic separate from UI components (no direct API calls inside components).
-- Use named exports for all utility functions and services.
+- Use named exports for utility functions and services.
+- Import via the path aliases (`@components/*`, `@utils/*`, `@pages/*`, `@context/*`, `@models/*`, `@tests/*`, `@/*`) rather than long relative paths.
 
 ## Naming Conventions
 
-- Functions and variables: camelCase (handleClick, fetchData)
-- Components and classes: PascalCase (LifeCompassChart, RatingInput)
-- Constants and enums: UPPER_CASE (DEFAULT_LANGUAGE, MAX_SCORE)
-- File names: Use dash-separated lowercase (life-compass-chart.tsx)
-- Tests: Use _.test.tsx or _.spec.tsx for test files
+- Functions and variables: camelCase (`handleClick`, `fetchData`)
+- Components: PascalCase (`MapView`, `ScaleChooser`)
+- Constants: UPPER_CASE (`STORE_KEY`, `PERSIST_VERSION`)
+- File names: dash-separated lowercase for non-component files; PascalCase for components
+- Tests: `*.test.tsx` or `*.spec.tsx`, kept in `src/tests/`
 
 ## TypeScript Conventions
 
-- Always define types explicitly for components and functions.
-- Use interfaces instead of types where possible.
-- Example:
-  interface User {
-  id: number;
-  name: string;
-  }
+- Define types explicitly for component props and function signatures.
+- Prefer `interface` for object shapes.
+- Strict mode is on; keep it clean (no implicit `any`).
 
-## State Management Strategy
+## State Management and Persistence
 
-- Use lightweight state management (React Context API or Zustand).
-- Persist data in Local Storage as structured JSON.
-- Encapsulate state management in dedicated services (storageService.ts).
+- The Zustand store in `src/store/lifeCompassStore.ts` is the single source of truth for compass data (`lifeAreas`, `history`, `goals`). Read and write through it.
+- Persistence uses Zustand's `persist` middleware to a single versioned document in `localStorage` (key `life-compass`). Do not write compass data to `localStorage` directly.
+- `src/utils/storageService.ts` handles only non-document flags (e.g. the onboarding `tutorialCompleted` flag).
+- When the persisted shape changes, bump `PERSIST_VERSION` and add a branch to the store's `migrate` hook. The exported/imported document shape is versioned separately by `CURRENT_SCHEMA_VERSION` in `src/types/LifeCompassDocument.ts`.
+- Ratings are stored as 1-10 integers but shown as 1-5 word buckets. Convert with the helpers in `src/utils/compassModel.ts` instead of reading raw values.
 
-## Security and Privacy
+## Privacy
 
-- All user data remains in Local Storage (no backend storage).
-- Warn users before overwriting or deleting data.
-- Encrypt sensitive data before storing it.
+- All user data stays in the browser; there is no backend.
+- Warn users before overwriting or deleting data (import shows a preview and confirmation).
+- At-rest encryption of local data is not implemented; see the roadmap in `README.md`.
 
-## UI and UX Best Practices
+## UI and UX
 
-- Mobile-first design with responsive scaling.
-- Keep UI components consistent (use Tailwind CSS for styling).
-- Follow WCAG 2.1 for accessibility (contrast, keyboard navigation, aria-labels).
+- Mobile-first, responsive design.
+- Keep components consistent; style with Tailwind CSS.
+- Follow WCAG 2.1 (contrast, keyboard navigation, aria labels). The app ships light, dark, and a WCAG-AAA high-contrast theme.
 
-## Styling & Tailwind CSS Conventions
+## Styling and Tailwind
 
-- Use utility-first approach, avoid unnecessary custom CSS.
-- Use src/designTokens.ts as much as possible instead of local definitions to ensure consistent design across the app.
+- Utility-first; avoid unnecessary custom CSS.
+- Design tokens are defined as Tailwind 4 `@theme` variables in `src/index.css`. Use the token-backed utilities (e.g. `bg-bg`, `text-text`) for consistency rather than ad-hoc colors.
 
-## Routing (React Router)
+## Routing
 
-- Define routes in App.tsx, follow nested routing where needed.
+- Routes are defined in `src/App.tsx` (React Router). The router uses `import.meta.env.BASE_URL` as its basename so it works under the GitHub Pages base path.
 
-## Performance and Optimization
+## Internationalization
 
-- Minimize re-renders (use useMemo, useCallback when needed).
-- Lazy load charts and reports to improve performance.
-- Cache language files instead of loading them repeatedly.
+- Strings go through i18next/react-i18next. Translation files load at runtime from `public/locales/<lng>/translation.json`.
+- After adding or changing UI strings, run `npm run extract` to update translation keys.
 
-## Testing Best Practices
+## Performance
 
-- Write testable code.
-- Write unit tests.
+- Minimize re-renders (`useMemo`/`useCallback` where it helps).
+- Keep the initial render light.
+
+## Testing
+
+- Write testable code and unit tests (Vitest + Testing Library). End-to-end flows are covered by Playwright in `e2e/`.
 
 ## AI-Assisted Development
 
-- Any AI-generated code must strictly follow these conventions.
-- If in doubt, ask before assuming structure.
+- AI-generated code must follow these conventions.
+- If the structure is unclear, ask before assuming.

@@ -12,7 +12,7 @@ This project aims to develop a web-based application that helps users reflect on
 
 ## AI-Assisted Development
 
-This project is developed in collaboration with AI coding tools. A key aspect of the project is to **explore the potential of AI in software development** — decision-making, architecture, and implementation. The project was bootstrapped with [Aider](https://aider.chat) and is now developed with [Claude Code](https://www.anthropic.com/claude-code) (Anthropic), with human direction and review.
+This project is developed in collaboration with AI coding tools. A key aspect of the project is to **explore the potential of AI in software development** -- decision-making, architecture, and implementation. The project was bootstrapped with [Aider](https://aider.chat) and is now developed with [Claude Code](https://www.anthropic.com/claude-code) (Anthropic), with human direction and review.
 
 ### AI's Role in the Project
 
@@ -173,12 +173,12 @@ This roadmap outlines the different development phases of the Life Compass proje
 
 ## 🌟 Phase 6: Goals & Action Planning (Epic 3)
 
-> Goal: Turn imbalances into action — let users set goals per life area and track them with checkable steps.
+> Goal: Turn imbalances into action -- let users set goals per life area and track them with checkable steps.
 
 - [x] User Story 3.1: Set Goals for Life Areas
 - [x] User Story 3.2: Track Goal Progress (derived from completed steps)
 - [x] User Story 3.3: Define Action Steps for Goals
-- [ ] User Story 3.4–3.7: Prioritization, deadlines, review-over-time, smart suggestions
+- [ ] User Story 3.4-3.7: Prioritization, deadlines, review-over-time, smart suggestions
 
 ## 🌟 Phase 7: Design System, Redesign & Accessibility
 
@@ -231,99 +231,21 @@ Instructions:
 
 ## 🔧 Development Guidelines
 
-To ensure maintainability and efficiency while developing with AI tools (Claude Code), follow these **core principles**:
+The full coding conventions are in [CONVENTIONS.md](CONVENTIONS.md). The essentials:
 
-## 🏗️ **Architecture & Code Structure**
+- **Local-first**: all data stays in the browser's `localStorage`; there is no backend.
+- **Single source of truth**: a Zustand store (`src/store/lifeCompassStore.ts`) holds the compass data and persists it as one versioned document. Don't write compass data to `localStorage` directly -- go through the store.
+- **Separation of concerns**: keep business logic in `src/utils/` services and the store, not in UI components. Import with the path aliases (`@components`, `@utils`, `@models`, ...).
+- **Styling**: Tailwind 4 utility-first, with design tokens defined as `@theme` variables in `src/index.css`.
+- **Accessibility**: mobile-first, WCAG 2.1, with light, dark, and high-contrast themes.
 
-✅ **Follow SOLID Principles**
+### Planned, not yet implemented
 
-- **Single Responsibility Principle (SRP)**: Each component or module should have only **one reason to change**.
-- **Open-Closed Principle (OCP)**: Code should be **extendable** without modifying existing logic.
-- **Liskov Substitution Principle (LSP)**: Avoid deep class inheritance—favor composition over inheritance.
-- **Interface Segregation Principle (ISP)**: Avoid "fat interfaces"; use smaller, more specific interfaces.
-- **Dependency Inversion Principle (DIP)**: Rely on **abstractions rather than concrete implementations**.
+A few privacy and hardening ideas are intended but not built yet:
 
-✅ **Modular Design**
-
-- **Component-based architecture**: UI elements should be reusable across different views.
-- **Separation of Concerns (SoC)**: Keep **business logic separate** from UI and state management.
-
-✅ **File & Folder Structure**
-
-```
-life_compass/
-│── src/
-│   ├── components/  # Reusable UI components (ui/ holds the design-system primitives)
-│   ├── pages/       # Page-specific components
-│   ├── store/       # Zustand store (single source of truth + persistence)
-│   ├── context/     # React Context providers (theme, app settings)
-│   ├── hooks/       # Custom React hooks
-│   ├── utils/       # Helper functions & services
-│   ├── types/       # Shared TypeScript types
-│   ├── schemas/     # JSON schemas (import/export validation)
-│   ├── tests/       # Unit & integration tests
-```
-
-✅ **Naming Conventions**
-
-- **Functions & Variables**: Use `camelCase` (`handleClick`, `fetchData`).
-- **Components**: Use `PascalCase` (`LifeCompassChart`, `RatingInput`).
-- **Constants & Enums**: Use `UPPER_CASE` (`DEFAULT_LANGUAGE`, `MAX_SCORE`).
-
-## 🏗️ **State Management Strategy**
-
-✅ **Use Local Storage for persistence**
-
-- Store structured JSON objects, not raw strings.
-- Avoid excessive writes to prevent performance issues.
-
-✅ **Favor lightweight state management**
-
-- Use **React Context API, Zustand, or similar** instead of complex global stores (Redux).
-- Minimize re-renders by structuring state updates efficiently.
-
-✅ **Data Flow & API Abstraction**
-
-- Encapsulate Local Storage interactions within utility functions (`storageService.ts`).
-- Prepare for potential backend integration by **abstracting data handling**.
-
-## 🔐 **Security & Privacy Guidelines**
-
-✅ **Ensure user data privacy**
-
-- No backend means **all data is stored locally**—users must have control over their data.
-- Encrypt sensitive user data (e.g., goals, personal reflections) **before storing** it in Local Storage.
-
-✅ **Warn users before deleting or overwriting data**
-
-- Show a confirmation dialog before **overwriting imported data**.
-- Implement **automatic backups before major actions** (see User Story 9.7).
-
-✅ **Implement Content Security Policy (CSP)**
-
-- Restrict external scripts to prevent XSS attacks.
-- Validate imported JSON files before applying changes.
-
-## 🚀 **Performance & Optimization**
-
-✅ **Minimize render blocking operations**
-
-- Use **lazy loading** for charts, reports, and heavy components.
-- Keep the **initial render lightweight**—defer loading non-essential data.
-
-✅ **Optimize for Mobile Performance**
-
-- **Avoid heavy animations**—prefer CSS transitions over JS-based motion libraries.
-- **Reduce reflows and repaints**—structure UI elements efficiently.
-
-✅ **Cache & Optimize Language Loading**
-
-- **Load only the active language file** instead of bundling all translations at once.
-- **Use caching** to minimize redundant translation requests (see User Story 8.7).
-
----
-
-📌 **Next Steps:** Pick a phase and start implementing the listed user stories. Happy coding! 🚀
+- At-rest encryption of local data (User Story 6.3).
+- Automatic backups before destructive actions (User Story 9.7).
+- A Content Security Policy to restrict external scripts.
 
 ---
 
@@ -340,8 +262,8 @@ For more information about the concepts, tools, and methodologies used in this p
 
 ### Life Compass and values (in Swedish)
 
-- [KBT i Primärvården: Modul 4 – Värderingar](https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/)  
-  _The “Life Compass” is a therapeutic tool used in cognitive behavioral therapy to help patients identify and articulate their core life values across various domains, facilitating alignment of their actions with these values to enhance behavioral activation._
+- [KBT i Primärvården: Modul 4 - Värderingar](https://kbtiprimarvarden.se/behandling/kbt-manualer/primarvardsanpassad-kbt-vid-depression/modul-varderingar/)  
+  _The "Life Compass" is a therapeutic tool used in cognitive behavioral therapy to help patients identify and articulate their core life values across various domains, facilitating alignment of their actions with these values to enhance behavioral activation._
 
 ### Life Compass and Self-Reflection
 
