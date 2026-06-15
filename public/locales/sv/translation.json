@@ -8,7 +8,7 @@
   "attributions": "Krediteringar",
   "back": "Tillbaka",
   "brief_life_compass_instruction_1": "Livskompassen innehåller tio områden som brukar vara viktiga för de flesta människor. I varje ruta ska du skriva ned några ord om vad du skulle värdesätta eller tycka var viktigt inom just detta området. I varje område finns också reglage. Med den övre anger du hur viktigt vart och ett av områdena är i ditt liv på en skala 1-10 där 1 är oviktigt och 10 är väldigt viktigt. Utgå från hur livet skulle vara om allt såg ut precis som du ville.",
-  "brief_life_compass_instruction_2": "Med det undre anger du hur “mycket” du levt i enlighet med dina värderingar den senaste veckan, där 1 är att du inte alls levt enligt dina värderingar och 10 är att du levt helt enligt dina värderingar. Undersök därefter skillnaden mellan de olika siffrorna. Kan du hitta några områden som är viktiga för dig där du inte lever som du vill leva? Fundera i så fall på vad som hindrar dig!",
+  "brief_life_compass_instruction_2": "Med det undre anger du hur \"mycket\" du levt i enlighet med dina värderingar den senaste veckan, där 1 är att du inte alls levt enligt dina värderingar och 10 är att du levt helt enligt dina värderingar. Undersök därefter skillnaden mellan de olika siffrorna. Kan du hitta några områden som är viktiga för dig där du inte lever som du vill leva? Fundera i så fall på vad som hindrar dig!",
   "cancel": "Avbryt",
   "card_view": "Kortvisning",
   "choose_theme": "Välj tema",
@@ -69,7 +69,7 @@
     "privacy_description": "Vi respekterar din integritet. Vi spårar inte några av dina handlingar eller vad du skriver. Alla dina data förblir lokala och delas inte med någon extern part.",
     "privacy_title": "Integritet och Dataskydd",
     "source_text": "Baserad på material från",
-    "what_is_description": "Livskompass är ett verktyg för att reflektera över vad som är verkligen viktigt i ditt liv. I stället för att drivas av kortsiktiga mål eller yttre förväntningar, hjälper den dig att identifiera dina kärnvärderingar – det du vill stå för och hur du vill leva ditt liv.",
+    "what_is_description": "Livskompass är ett verktyg för att reflektera över vad som är verkligen viktigt i ditt liv. I stället för att drivas av kortsiktiga mål eller yttre förväntningar, hjälper den dig att identifiera dina kärnvärderingar - det du vill stå för och hur du vill leva ditt liv.",
     "what_is_title": "Vad är Livskompassen?",
     "why_description": "Att ha tydliga värderingar ger riktning och motivation i livet. Utan dem kan vi känna oss vilsna eller osäkra på våra val. Med en livskompass kan du navigera utmaningar, fatta beslut och leva mer i linje med det som är meningsfullt för dig.",
     "why_title": "Varför är det viktigt?"
@@ -123,7 +123,7 @@
   "reset": "Återställ",
   "reset_life_compass_warning": "Är du säker på att du vill återställa livsområdena till standard?",
   "satisfaction": "Tillfredsställelse",
-  "satisfaction_help": "Ange hur “mycket” du levt i enlighet med dina värderingar den senaste veckan, där 1 är att du inte alls levt enligt dina värderingar och 10 är att du levt helt enligt dina värderingar.",
+  "satisfaction_help": "Ange hur \"mycket\" du levt i enlighet med dina värderingar den senaste veckan, där 1 är att du inte alls levt enligt dina värderingar och 10 är att du levt helt enligt dina värderingar.",
   "save": "Spara",
   "save_snapshot": "Spara ögonblicksbild",
   "settings": "Inställningar",
@@ -189,5 +189,116 @@
     "delete_step": "Ta bort steg"
   },
   "contrast_theme_toggle": "Aktivera tema med hög kontrast",
-  "theme_system": "System"
+  "theme_system": "System",
+  "your_compass": {
+    "heading": {
+      "eyebrow": "Din kompass",
+      "title": "Det som betyder något för dig, och hur veckan har känts."
+    },
+    "start_fresh": "Börja om",
+    "start_over_q": "Börja om?",
+    "cancel": "Avbryt",
+    "yes": "Ja",
+    "welcome": {
+      "title": "Låt oss bygga din kompass.",
+      "body": "Det är hela tanken: du i mitten, och de få saker som betyder mest runt omkring dig. Vi lägger till dem en i taget. Det finns inget rätt svar, och du kan ändra allt senare.",
+      "cta_suggest": "Börja med några vanliga områden",
+      "cta_own": "Lägg till mina egna först",
+      "privacy": "Allt stannar på din enhet. Inget spåras eller delas."
+    },
+    "suggest": {
+      "title": "Vilka av dessa betyder något för dig?",
+      "body": "Bara utgångspunkter - välj de som passar, hoppa över resten och lägg till egna senare. Inget här är fast.",
+      "cta_zero": "Välj några för att fortsätta",
+      "cta_n": "Fortsätt med {{count}}",
+      "cta_own": "Lägg till mina egna i stället"
+    },
+    "views": {
+      "map": {
+        "label": "Karta",
+        "sub": "Du, och det som betyder något runt dig"
+      },
+      "list": {
+        "label": "Lista",
+        "sub": "Det som betyder något, med enkla ord"
+      },
+      "today": {
+        "label": "Idag",
+        "sub": "Bara en mild sak"
+      },
+      "week": {
+        "label": "Den här veckan",
+        "sub": "Hur veckan har känts"
+      }
+    },
+    "map": {
+      "helper_empty": "Tryck på ett + för att sätta ord på något som betyder något för dig. Lägg till så få eller så många du vill.",
+      "helper_populated": "Tryck på vad som helst för att öppna det och reflektera. En tonad ruta betyder att du glidit lite från det som betyder något där.",
+      "add_aria": "Lägg till något som betyder något",
+      "open_aria": "Öppna {{name}}",
+      "untitled": "Namnlöst"
+    },
+    "today": {
+      "eyebrow": "Bara en sak idag.",
+      "question": "Hur nära kändes den senaste veckan?",
+      "open_save": "Öppna och spara",
+      "show_another": "Visa en annan"
+    },
+    "week": {
+      "affirm": "Du kom hit och märkte hur det är. Det betyder mer än någon siffra.",
+      "delta": {
+        "new": "Nyss tillagt - inget att jämföra med ännu.",
+        "closer": "Lite närmare än förra veckan.",
+        "same": "Ungefär som förra veckan.",
+        "further": "Lite längre bort - var snäll mot dig själv."
+      },
+      "tender": "Det här betyder något för dig - en plats att vara snäll mot dig själv."
+    },
+    "scale": {
+      "lived": {
+        "1": "Långt ifrån",
+        "2": "Lite grann",
+        "3": "Ibland",
+        "4": "Mestadels",
+        "5": "Helt och hållet"
+      },
+      "matters": {
+        "1": "Lite grann",
+        "2": "Ganska",
+        "3": "En hel del",
+        "4": "Mycket",
+        "5": "Djupt"
+      }
+    },
+    "detail": {
+      "name_placeholder": "Sätt namn på området",
+      "name_aria": "Sätt namn på området",
+      "prompt_placeholder": "några ord om vad det betyder för dig",
+      "prompt_aria": "Några ord om vad det betyder",
+      "value_label": "Vad du värdesätter här",
+      "value_help": "Med dina egna ord. Det finns inget rätt svar.",
+      "value_placeholder": "Hur ser det ut för dig att leva väl inom det här området?",
+      "matters_label": "Hur mycket betyder det här för dig?",
+      "matters_help": "Din kompassnål - den ändras sällan från vecka till vecka.",
+      "lived_label": "Hur nära levde du det den senaste veckan?",
+      "lived_help": "Bara den här veckan. Var ärlig och snäll - båda samtidigt.",
+      "remove": "Ta bort",
+      "done": "Klar",
+      "close": "Stäng",
+      "goals": "Mål",
+      "new_area_aria": "Nytt område"
+    },
+    "reflection": {
+      "far_off": "Det här betyder mycket för dig, och på sista tiden har det känts långt borta. Inget misslyckande - bara en mild signal om vart din uppmärksamhet vill gå.",
+      "close": "Det här betyder något för dig, och du har levt nära det. Värt att lägga märke till vad som hjälper.",
+      "aligned": "Det du värdesätter här och hur du levt det ligger nära varandra just nu.",
+      "small_distance": "Ett litet avstånd mellan det du värdesätter och hur veckan kändes. Inget att fixa - bara något att se."
+    },
+    "overflow": {
+      "menu": "Mer",
+      "radar": "Balanshjul",
+      "history": "Historik",
+      "import_export": "Importera / exportera"
+    }
+  }
 }

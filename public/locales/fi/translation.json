@@ -7,7 +7,7 @@
   "attribution_message": "Tämä sovellus on luotu huolella käyttäen moderneja frameworkeja ja työkaluja. Olemme kiitollisia open source -yhteisölle ja kaikille kehittäjille, jotka ovat mahdollistaneet tämän projektin.",
   "attributions": "Kiitokset",
   "back": "Takaisin",
-  "brief_life_compass_instruction_1": "Elämänkompassi sisältää tavallisesti kymmenen elämänaluetta, jotka ovat useimmille ihmisille tärkeitä. Jokaisessa ruudussa sinun tulee kirjoittaa muutama sana siitä, mitä arvostat tai pidät tärkeänä kyseisellä alueella. Jokaisessa alueessa on myös liukusäätimet. Yläosassa ilmoitat, kuinka tärkeä kukin alue on elämässäsi asteikolla 1–10, missä 1 tarkoittaa vähäistä ja 10 erittäin tärkeää. Kuvittele, miltä elämäsi näyttäisi, jos kaikki olisi juuri niin kuin haluaisit.",
+  "brief_life_compass_instruction_1": "Elämänkompassi sisältää tavallisesti kymmenen elämänaluetta, jotka ovat useimmille ihmisille tärkeitä. Jokaisessa ruudussa sinun tulee kirjoittaa muutama sana siitä, mitä arvostat tai pidät tärkeänä kyseisellä alueella. Jokaisessa alueessa on myös liukusäätimet. Yläosassa ilmoitat, kuinka tärkeä kukin alue on elämässäsi asteikolla 1-10, missä 1 tarkoittaa vähäistä ja 10 erittäin tärkeää. Kuvittele, miltä elämäsi näyttäisi, jos kaikki olisi juuri niin kuin haluaisit.",
   "brief_life_compass_instruction_2": "Alareunassa ilmoitat, kuinka paljon olet elänyt arvojesi mukaisesti viime viikon aikana, missä 1 tarkoittaa, ettet ole lainkaan elänyt niiden mukaisesti ja 10 tarkoittaa, että olet täysin elänyt niiden mukaisesti. Tarkastele sitten lukujen eroja. Voitko tunnistaa alueita, jotka ovat sinulle tärkeitä, mutta joissa et elä toivomallasi tavalla? Mieti, mikä saattaa estää sinua!",
   "cancel": "Peruuta",
   "card_view": "Korttinäkymä",
@@ -49,7 +49,7 @@
   "import_error": "Virhe tuonnissa:",
   "import_successful": "Tuonti onnistui.",
   "importance": "Tärkeys",
-  "importance_help": "Määritä, kuinka tärkeä tämä alue on elämässäsi asteikolla 1–10, missä 1 tarkoittaa, ettei ole tärkeä ja 10 tarkoittaa erittäin tärkeä. Kuvittele, miltä elämäsi näyttäisi, jos kaikki olisi juuri niin kuin haluaisit.",
+  "importance_help": "Määritä, kuinka tärkeä tämä alue on elämässäsi asteikolla 1-10, missä 1 tarkoittaa, ettei ole tärkeä ja 10 tarkoittaa erittäin tärkeä. Kuvittele, miltä elämäsi näyttäisi, jos kaikki olisi juuri niin kuin haluaisit.",
   "introduction": {
     "disclaimer_description": "Tämä sovellus on suunniteltu auttamaan itsearvioinnissa, jotta voit tutkia, mikä elämässäsi on tärkeää. Se ei ole tarkoitettu korvaamaan ammattimaista apua, terapiaa tai yhteydenottoa terveydenhuoltoon. Jos joudut vaikeuksiin tai tarvitset tukea, suosittelemme ottamaan yhteyttä terveydenhuollon ammattilaiseen.",
     "disclaimer_title": "Tärkeää tietää",
@@ -69,7 +69,7 @@
     "privacy_description": "Kunnioitamme yksityisyyttäsi. Emme seuraa toimiasi tai kirjoituksiasi. Kaikki tietosi pysyvät paikallisina, eikä niitä jaeta ulkopuolisille.",
     "privacy_title": "Tietosuoja ja tietoturva",
     "source_text": "Perustuu materiaalin pohjalta:",
-    "what_is_description": "Elämänkompassi on työkalu, joka auttaa sinua pohtimaan, mikä on todella tärkeää elämässäsi. Sen sijaan, että ajautuisit lyhyen aikavälin tavoitteiden tai ulkoisten odotusten valtaan, se auttaa sinua tunnistamaan ydinarvosi – mitä haluat edustaa ja miten haluat elää.",
+    "what_is_description": "Elämänkompassi on työkalu, joka auttaa sinua pohtimaan, mikä on todella tärkeää elämässäsi. Sen sijaan, että ajautuisit lyhyen aikavälin tavoitteiden tai ulkoisten odotusten valtaan, se auttaa sinua tunnistamaan ydinarvosi - mitä haluat edustaa ja miten haluat elää.",
     "what_is_title": "Mitä on elämänkompassi?",
     "why_description": "Selkeät arvot antavat suuntaa ja motivaatiota elämään. Ilman niitä voimme tuntea itsemme eksyneiksi tai epävarmoiksi päätöksissämme. Elämänkompassin avulla voit kohdata haasteita, tehdä päätöksiä ja elää enemmän niiden arvojesi mukaisesti, jotka ovat sinulle merkityksellisiä.",
     "why_title": "Miksi se on tärkeää?"

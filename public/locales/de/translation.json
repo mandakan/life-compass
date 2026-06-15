@@ -7,7 +7,7 @@
   "attribution_message": "Diese Anwendung wurde mit Sorgfalt unter Verwendung moderner Frameworks und Werkzeuge erstellt. Wir sind der Open-Source-Community und allen Mitwirkenden dankbar, die die Ressourcen bereitgestellt haben, die dieses Projekt ermöglicht haben.",
   "attributions": "Danksagungen",
   "back": "Zurück",
-  "brief_life_compass_instruction_1": "Der Lebenskompass enthält typischerweise zehn Bereiche, die für die meisten Menschen wichtig sind. In jedem Feld sollten Sie ein paar Worte darüber notieren, was Sie in diesem speziellen Bereich als wertvoll oder wichtig empfinden. Jeder Bereich umfasst zudem zwei Bewertungen. Im oberen Feld geben Sie an, wie wichtig der Bereich für Ihr Leben ist – auf einer Skala von 1 bis 10, wobei 1 unwichtig und 10 sehr wichtig ist. Stellen Sie sich vor, wie Ihr Leben aussehen würde, wenn alles genau so wäre, wie Sie es sich wünschen.",
+  "brief_life_compass_instruction_1": "Der Lebenskompass enthält typischerweise zehn Bereiche, die für die meisten Menschen wichtig sind. In jedem Feld sollten Sie ein paar Worte darüber notieren, was Sie in diesem speziellen Bereich als wertvoll oder wichtig empfinden. Jeder Bereich umfasst zudem zwei Bewertungen. Im oberen Feld geben Sie an, wie wichtig der Bereich für Ihr Leben ist - auf einer Skala von 1 bis 10, wobei 1 unwichtig und 10 sehr wichtig ist. Stellen Sie sich vor, wie Ihr Leben aussehen würde, wenn alles genau so wäre, wie Sie es sich wünschen.",
   "brief_life_compass_instruction_2": "Im unteren Feld geben Sie an, inwieweit Sie in der vergangenen Woche im Einklang mit Ihren Werten gelebt haben, wobei 1 bedeutet, dass Sie überhaupt nicht nach Ihren Werten gelebt haben, und 10 bedeutet, dass Sie vollständig danach gelebt haben. Untersuchen Sie anschließend die Unterschiede zwischen den Zahlen. Können Sie Bereiche identifizieren, die Ihnen wichtig sind, in denen Sie jedoch nicht so leben, wie Sie es sich wünschen? Überlegen Sie, was Sie möglicherweise zurückhält.",
   "cancel": "Abbrechen",
   "card_view": "Kartenansicht",
@@ -70,7 +70,7 @@
       "privacy_description": "Wir respektieren Ihre Privatsphäre. Wir verfolgen keine Ihrer Handlungen oder das, was Sie schreiben. Alle Ihre Daten bleiben lokal und werden nicht mit Dritten geteilt.",
       "privacy_title": "Datenschutz und Datensicherheit",
       "source_text": "Basierend auf Material von",
-      "what_is_description": "Lebenskompass ist ein Werkzeug, um darüber nachzudenken, was im Leben wirklich wichtig ist. Anstatt von kurzfristigen Zielen oder äußeren Erwartungen getrieben zu werden, hilft es Ihnen, Ihre Kernwerte zu erkennen – wofür Sie stehen und wie Sie Ihr Leben gestalten möchten.",
+      "what_is_description": "Lebenskompass ist ein Werkzeug, um darüber nachzudenken, was im Leben wirklich wichtig ist. Anstatt von kurzfristigen Zielen oder äußeren Erwartungen getrieben zu werden, hilft es Ihnen, Ihre Kernwerte zu erkennen - wofür Sie stehen und wie Sie Ihr Leben gestalten möchten.",
       "what_is_title": "Was ist Lebenskompass?",
       "why_description": "Klare Werte geben im Leben Richtung und Motivation. Ohne sie fühlen wir uns möglicherweise verloren oder unsicher bei unseren Entscheidungen. Mit einem Lebenskompass können Sie Herausforderungen meistern, Entscheidungen treffen und mehr im Einklang mit dem leben, was Ihnen wirklich wichtig ist.",
       "why_title": "Warum ist es wichtig?"
@@ -93,7 +93,7 @@
     "privacy_description": "Wir respektieren deine Privatsphäre. Wir erfassen weder deine Aktionen noch das, was du schreibst. Alle deine Daten bleiben lokal gespeichert und werden nicht an Dritte weitergegeben.",
     "privacy_title": "Datenschutz",
     "source_text": "Basierend auf Material von",
-    "what_is_description": "Life Compass ist ein Werkzeug, um darüber nachzudenken, was wirklich wichtig in deinem Leben ist. Anstatt von kurzfristigen Zielen oder äußeren Erwartungen geleitet zu werden, hilft es dir, deine Kernwerte zu erkennen -- wofür du stehst und wie du dein Leben gestalten möchtest.",
+    "what_is_description": "Life Compass ist ein Werkzeug, um darüber nachzudenken, was wirklich wichtig in deinem Leben ist. Anstatt von kurzfristigen Zielen oder äußeren Erwartungen geleitet zu werden, hilft es dir, deine Kernwerte zu erkennen - wofür du stehst und wie du dein Leben gestalten möchtest.",
     "what_is_title": "Was ist der Life Compass?",
     "why_description": "Klare Werte geben Richtung und Motivation im Leben. Ohne sie können wir uns bei Entscheidungen verloren oder unsicher fühlen. Mit einem Life Compass kannst du Herausforderungen meistern, Entscheidungen treffen und mehr im Einklang mit dem leben, was dir wichtig ist.",
     "why_title": "Warum ist das wichtig?"
