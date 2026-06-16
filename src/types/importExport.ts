@@ -32,5 +32,19 @@ export type ImportedData = {
       }[];
       [key: string]: unknown;
     }[]; // optional: older exports without goals default to []
+    behavioralExperiments?: {
+      id: string;
+      areaId?: string;
+      title: string;
+      createdAt: string;
+      outcome: string;
+      steps: {
+        id: string;
+        text: string;
+        done: boolean;
+        [key: string]: unknown;
+      }[];
+      [key: string]: unknown;
+    }[];
   };
 };

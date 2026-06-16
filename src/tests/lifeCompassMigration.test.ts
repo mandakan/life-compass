@@ -17,8 +17,8 @@ function makeArea(name: string): LifeArea {
 }
 
 describe('lifeCompassStore persist migration', () => {
-  it('PERSIST_VERSION is bumped to 1 for the goals migration', () => {
-    expect(PERSIST_VERSION).toBe(1);
+  it('PERSIST_VERSION is bumped to 2 for the behavioralExperiments migration', () => {
+    expect(PERSIST_VERSION).toBe(2);
   });
 
   it('migrate adds goals:[] to a v0 persisted state without goals', () => {
