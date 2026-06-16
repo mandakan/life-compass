@@ -12,5 +12,3 @@ const behavioralExperimentTool: ToolDef = {
 };
 
 TOOLS.push(behavioralExperimentTool);
-
-export default behavioralExperimentTool;

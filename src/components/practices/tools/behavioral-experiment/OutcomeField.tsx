@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface OutcomeFieldProps {
@@ -16,6 +16,7 @@ const PREFIX = 'practices.tools.behavioral_experiment';
  */
 const OutcomeField: React.FC<OutcomeFieldProps> = ({ value, onCommit }) => {
   const { t } = useTranslation();
+  const fieldId = useId();
   const ref = React.useRef<HTMLTextAreaElement>(null);
   const [draft, setDraft] = React.useState(value);
 
@@ -38,11 +39,11 @@ const OutcomeField: React.FC<OutcomeFieldProps> = ({ value, onCommit }) => {
 
   return (
     <div className="mt-3 border-t border-border pt-3">
-      <label htmlFor="experiment-outcome" className="block text-sm font-medium text-text">
+      <label htmlFor={fieldId} className="block text-sm font-medium text-text">
         {t(`${PREFIX}.outcome_label`)}
       </label>
       <textarea
-        id="experiment-outcome"
+        id={fieldId}
         ref={ref}
         rows={1}
         value={draft}
