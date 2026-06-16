@@ -32,11 +32,13 @@ describe('lifeCompassStore persist migration', () => {
       lifeAreas: LifeArea[];
       history: unknown[];
       goals: unknown[];
+      behavioralExperiments: unknown[];
     };
 
     expect(result.lifeAreas).toHaveLength(1);
     expect(result.lifeAreas[0].name).toBe('Legacy');
     expect(result.goals).toEqual([]);
+    expect(result.behavioralExperiments).toEqual([]);
   });
 
   it('migrate preserves existing goals on a v1 persisted state', () => {
