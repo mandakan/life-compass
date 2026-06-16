@@ -17,7 +17,7 @@ const PerspectiveSwitcher: React.FC<PerspectiveSwitcherProps> = ({
     <div
       role="tablist"
       aria-label={t('your_compass.heading.eyebrow')}
-      className="flex flex-wrap gap-1 rounded-xl border border-border bg-surface-sunken p-1"
+      className="flex gap-1 overflow-x-auto rounded-xl border border-border bg-surface-sunken p-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {VIEWS.map(v => {
         const active = v.id === view;
@@ -28,7 +28,7 @@ const PerspectiveSwitcher: React.FC<PerspectiveSwitcherProps> = ({
             aria-selected={active}
             aria-pressed={active}
             onClick={() => onChange(v.id)}
-            className="cursor-pointer rounded-lg px-4 py-2 min-h-[44px] font-body text-sm transition-[background-color,color,box-shadow] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="shrink-0 cursor-pointer rounded-lg px-3 py-2 min-h-[44px] font-body text-sm whitespace-nowrap transition-[background-color,color,box-shadow] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:px-4"
             style={{
               background: active ? 'var(--color-surface)' : 'transparent',
               color: active ? 'var(--color-text)' : 'var(--color-text-muted)',
