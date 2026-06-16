@@ -80,15 +80,16 @@ const AreaDetail: React.FC<AreaDetailProps> = ({
         <RadixDialog.Overlay className="fixed inset-0 z-40 bg-black/50" />
         <RadixDialog.Content
           aria-label={isNew ? t('your_compass.detail.new_area_aria') : area.name}
-          className="fixed bottom-0 left-1/2 z-50 max-h-[92vh] w-full max-w-[600px] -translate-x-1/2 overflow-y-auto rounded-t-xl border border-border bg-surface text-text shadow-warm-md"
-          style={{
-            padding:
-              '20px clamp(20px, 5vw, 28px) calc(28px + env(safe-area-inset-bottom))',
-          }}
+          className="fixed bottom-0 left-1/2 z-50 flex max-h-[92dvh] w-full max-w-[600px] -translate-x-1/2 flex-col overflow-hidden rounded-t-xl border border-border bg-surface text-text shadow-warm-md"
         >
-          {/* Grab handle + close. The handle centers in the row; the 44x44
-              close button overlaps to the right without pushing it off-center. */}
-          <div className="mb-3.5 flex items-center justify-between">
+          {/* Fixed header so the grab handle + close stay reachable while the
+              form below scrolls. dvh (not vh) keeps the top clear of the mobile
+              browser chrome. The handle centers in the row; the 44x44 close
+              button overlaps to the right without pushing it off-center. */}
+          <div
+            className="flex flex-none items-center justify-between"
+            style={{ padding: '16px clamp(20px, 5vw, 28px) 12px' }}
+          >
             <div
               aria-hidden="true"
               className="mx-auto h-1 w-10 rounded-full bg-border"
@@ -100,6 +101,15 @@ const AreaDetail: React.FC<AreaDetailProps> = ({
               <span aria-hidden="true">&times;</span>
             </RadixDialog.Close>
           </div>
+
+          {/* Scrollable body. */}
+          <div
+            className="min-h-0 overflow-y-auto"
+            style={{
+              padding:
+                '0 clamp(20px, 5vw, 28px) calc(28px + env(safe-area-inset-bottom))',
+            }}
+          >
 
           {/* Editable name. Transparent until focus, then a clay underline. */}
           <RadixDialog.Title asChild>
@@ -205,6 +215,7 @@ const AreaDetail: React.FC<AreaDetailProps> = ({
                 {t('your_compass.detail.done')}
               </Button>
             </div>
+          </div>
           </div>
         </RadixDialog.Content>
       </RadixDialog.Portal>
