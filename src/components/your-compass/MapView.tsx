@@ -118,7 +118,9 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
               height: figure,
             }}
           >
-            <Figure />
+            {/* ~half the circle so the figure sits with even padding inside it
+                (the svg is 24:30, so its height drives the fit). */}
+            <Figure size={Math.round(figure * 0.5)} />
           </div>
 
           {nodes.map(p => {
