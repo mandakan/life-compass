@@ -163,12 +163,12 @@
       "welcome": {
         "eyebrow": "Bienvenue",
         "title": "Un endroit calme pour remarquer ce qui compte.",
-        "body": "Quelques courtes cartes, puis vous y êtes. Rien à configurer, rien à signer - vous pouvez passer à la suite quand vous le souhaitez."
+        "body": "Quelques courtes cartes, puis vous y êtes. Rien à configurer - passez à la suite quand vous le souhaitez."
       },
       "ready": {
         "eyebrow": "C'est toute l'idée",
         "title": "Quand vous êtes prêt.",
-        "body": "Vous pouvez rouvrir ce guide à tout moment depuis Aide - rien ici n'est à usage unique."
+        "body": "Vous pouvez rouvrir ce guide à tout moment depuis Aide."
       }
     },
     "topics": {
@@ -176,7 +176,7 @@
         "eyebrow": "L'idée",
         "title": "Une valeur est une direction, pas un but",
         "lede": "Boussole de vie est un endroit calme pour remarquer ce qui compte pour vous - et à quel point vos journées s'en rapprochent.",
-        "pull": "Vous n'avez rien à réparer. Vous nommez simplement ce qui compte, et vous remarquez.",
+        "pull": "Vous n'avez rien à réparer - nommez simplement ce qui compte, et remarquez.",
         "body": [
           "Vous nommez les domaines de vie qui comptent - les gens, le travail, la santé, le jeu, ce qui est à vous - avec vos propres mots.",
           "Une valeur n'est pas une cible qu'on atteint puis qu'on termine. C'est une direction vers laquelle on continue de se tourner. Il n'y a donc rien à achever ici, et aucun moyen de prendre du retard."
@@ -186,7 +186,7 @@
         "eyebrow": "Le point hebdomadaire",
         "title": "Une fois par semaine, une question douce",
         "lede": "Quand vous le voulez, elle demande à quel point la semaine s'est rapprochée de ce qui compte - répondue en mots simples, jamais en notes.",
-        "pull": "À quel point cette semaine s'est-elle rapprochée de ce qui compte dans chaque domaine ?",
+        "pull": "À quel point la semaine s'est-elle rapprochée de ce qui compte ?",
         "body": [
           "Il n'y a pas de notes à donner ni de chiffres à courir après. Vous répondez avec des mots - de \"loin de là\" à \"pleinement\" - et vous pouvez laisser une petite note si vous le souhaitez, ou non.",
           "Chaque étape est facultative. Répondez pour un domaine, ou pour tous, ou pour aucun. Vous pouvez vous arrêter à tout moment et ce que vous avez écrit reste."
@@ -219,7 +219,7 @@
         "pull": "Elles sont à vous. Elles restent ici, sur votre appareil.",
         "body": [
           "Il n'y a ni compte ni serveur. Tout ce que vous écrivez vit dans ce navigateur, et rien n'en sort.",
-          "Vous gardez toujours le contrôle de votre copie : exportez-la dans un fichier pour la conserver ou la déplacer, importez-en une, ou supprimez tout en une seule étape."
+          "Votre copie vous appartient : exportez-la dans un fichier, importez-en une, ou supprimez tout en une étape."
         ],
         "actions": {
           "export": "Exporter une copie",

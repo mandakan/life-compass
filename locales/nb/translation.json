@@ -191,12 +191,12 @@
       "welcome": {
         "eyebrow": "Velkommen",
         "title": "Et rolig sted å legge merke til hva som betyr noe.",
-        "body": "Noen få korte kort, så er du i gang. Ingenting å sette opp, ingenting å signere - du kan hoppe videre når du vil."
+        "body": "Noen få korte kort, så er du i gang. Ingenting å sette opp - hopp videre når du vil."
       },
       "ready": {
         "eyebrow": "Det er hele idéen",
         "title": "Når du er klar.",
-        "body": "Du kan åpne denne veiledningen igjen når som helst fra Hjelp - ingenting her er bare for én gangs skyld."
+        "body": "Du kan åpne denne veiledningen igjen når som helst fra Hjelp."
       }
     },
     "topics": {
@@ -204,7 +204,7 @@
         "eyebrow": "Idéen",
         "title": "En verdi er en retning, ikke et mål",
         "lede": "Life Compass er et rolig sted å legge merke til hva som betyr noe for deg - og hvor nær dagene dine kjennes det.",
-        "pull": "Du trenger ikke å fikse noe. Du setter bare ord på hva som betyr noe, og legger merke til det.",
+        "pull": "Du trenger ikke å fikse noe - bare sett ord på hva som betyr noe, og legg merke til det.",
         "body": [
           "Du gir navn til områdene i livet som betyr noe - mennesker, arbeid, helse, lek, hva enn som er ditt - med dine egne ord.",
           "En verdi er ikke et mål du når og blir ferdig med. Det er en retning du fortsetter å vende deg mot. Så det finnes ingenting å fullføre her, og ingen måte å havne bakpå."
@@ -214,7 +214,7 @@
         "eyebrow": "Den ukentlige innsjekkingen",
         "title": "En gang i uken, ett mildt spørsmål",
         "lede": "Når du vil, spør den hvor nær uken kjentes det som betyr noe - besvart med enkle ord, aldri poeng.",
-        "pull": "Hvor nær kjentes denne uken det som betyr noe på hvert område?",
+        "pull": "Hvor nær kjentes uken det som betyr noe?",
         "body": [
           "Det er ingen vurderinger å gi og ingen tall å jage. Du svarer med ord - fra \"langt unna\" til \"fullt og helt\" - og du kan legge igjen en kort notis om du vil, eller la være.",
           "Hvert steg er valgfritt. Svar på ett område, eller alle, eller ingen. Du kan stoppe når som helst, og det du har skrevet blir værende."
@@ -247,7 +247,7 @@
         "pull": "Det er ditt. Det blir værende her, på enheten din.",
         "body": [
           "Det finnes ingen konto og ingen server. Alt du skriver lever i denne nettleseren, og ingenting forlater den.",
-          "Du har alltid kontroll over kopien din: eksporter den til en fil for å ta vare på eller flytte, importer en tilbake, eller slett alt i ett enkelt steg."
+          "Kopien din er alltid din: eksporter den til en fil, importer en tilbake, eller slett alt i ett steg."
         ],
         "actions": {
           "export": "Eksporter en kopi",

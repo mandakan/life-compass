@@ -183,7 +183,7 @@
   "your_compass": {
     "heading": {
       "eyebrow": "Din kompass",
-      "title": "Det som betyder något för dig, och hur veckan har känts."
+      "title": "Det som betyder något för dig - och hur veckan känts."
     },
     "start_fresh": "Börja om",
     "start_over_q": "Börja om?",
@@ -218,12 +218,12 @@
       },
       "week": {
         "label": "Den här veckan",
-        "sub": "Hur veckan har känts"
+        "sub": "Hur veckan känts"
       }
     },
     "map": {
-      "helper_empty": "Tryck på ett + för att sätta ord på något som betyder något för dig. Lägg till så få eller så många du vill.",
-      "helper_populated": "Tryck på vad som helst för att öppna det och reflektera. En tonad ruta betyder att du glidit lite från det som betyder något där.",
+      "helper_empty": "Tryck på + för att namnge något som betyder något. Lägg till så få eller många du vill.",
+      "helper_populated": "Tryck på ett område för att öppna och reflektera. En tonad ruta betyder att du glidit lite ifrån det.",
       "add_aria": "Lägg till något som betyder något",
       "open_aria": "Öppna {{name}}",
       "untitled": "Namnlöst"
@@ -310,12 +310,12 @@
       "welcome": {
         "eyebrow": "Välkommen",
         "title": "En lugn plats att lägga märke till det som betyder något.",
-        "body": "Några korta kort, sedan är du inne. Inget att ställa in, inget att skriva på - du kan hoppa vidare när du vill."
+        "body": "Några korta kort, sedan är du inne. Inget att ställa in - hoppa vidare när du vill."
       },
       "ready": {
         "eyebrow": "Det är hela tanken",
         "title": "När du är redo.",
-        "body": "Du kan öppna den här guiden igen när som helst via Hjälp - inget här är bara en gång."
+        "body": "Du kan öppna guiden igen när som helst via Hjälp."
       }
     },
     "topics": {
@@ -323,7 +323,7 @@
         "eyebrow": "Tanken",
         "title": "En värdering är en riktning, inte ett mål",
         "lede": "Livskompass är en lugn plats att lägga märke till det som betyder något för dig - och hur nära dina dagar känns det.",
-        "pull": "Du behöver inte fixa något. Du sätter bara ord på det som betyder något, och lägger märke till.",
+        "pull": "Du behöver inte fixa något - bara sätta ord på det som betyder något, och märka det.",
         "body": [
           "Du sätter ord på de livsområden som betyder något - människor, arbete, hälsa, lek, vad som än är ditt - med dina egna ord.",
           "En värdering är inte ett mål du når och blir klar med. Det är en riktning du fortsätter vända dig mot. Så det finns inget att slutföra här, och inget sätt att hamna efter."
@@ -333,7 +333,7 @@
         "eyebrow": "Veckans avstämning",
         "title": "En gång i veckan, en mild fråga",
         "lede": "När du vill frågar den hur nära veckan kändes det som betyder något - besvarat med enkla ord, aldrig poäng.",
-        "pull": "Hur nära kändes den här veckan det som betyder något inom varje område?",
+        "pull": "Hur nära kändes veckan det som betyder något?",
         "body": [
           "Det finns inga betyg att ge och inga siffror att jaga. Du svarar med ord - från \"långt ifrån\" till \"helt och hållet\" - och du kan lämna en kort anteckning om du vill, eller inte.",
           "Varje steg är frivilligt. Svara på ett område, eller alla, eller inget. Du kan sluta när som helst och det du har skrivit stannar kvar."
@@ -366,7 +366,7 @@
         "pull": "Det är ditt. Det stannar här, på din enhet.",
         "body": [
           "Det finns inget konto och ingen server. Allt du skriver lever i den här webbläsaren, och inget lämnar den.",
-          "Du har alltid kontroll över din kopia: exportera den till en fil för att behålla eller flytta, importera tillbaka en, eller ta bort allt i ett enda steg."
+          "Din kopia är alltid din: exportera den till en fil, importera tillbaka en, eller ta bort allt i ett steg."
         ],
         "actions": {
           "export": "Exportera en kopia",

@@ -80,12 +80,12 @@
       "welcome": {
         "eyebrow": "Welcome",
         "title": "A quiet place to notice what matters.",
-        "body": "A few short cards, then you're in. Nothing to set up, nothing to sign - you can skip ahead whenever you like."
+        "body": "A few short cards, then you're in. Nothing to set up - skip ahead whenever you like."
       },
       "ready": {
         "eyebrow": "That's the whole idea",
         "title": "Whenever you're ready.",
-        "body": "You can reopen this guide anytime from Help - nothing here is one-time-only."
+        "body": "You can reopen this guide anytime from Help."
       }
     },
     "topics": {
@@ -93,7 +93,7 @@
         "eyebrow": "The idea",
         "title": "A value is a direction, not a goal",
         "lede": "Life Compass is a quiet place to notice what matters to you - and how close your days feel to it.",
-        "pull": "You don't have to fix anything. You just name what matters, and notice.",
+        "pull": "You don't have to fix anything - just name what matters, and notice.",
         "body": [
           "You name the areas of life that matter - people, work, health, play, whatever is yours - in your own words.",
           "A value isn't a target you hit and finish. It's a direction you keep facing. So there's nothing to complete here, and no way to fall behind."
@@ -103,7 +103,7 @@
         "eyebrow": "The weekly check-in",
         "title": "Once a week, one gentle question",
         "lede": "When you like, it asks how close the week felt to what matters - answered in plain words, never scores.",
-        "pull": "How close did this week feel to what matters in each area?",
+        "pull": "How close did the week feel to what matters?",
         "body": [
           "There are no ratings to give and no numbers to chase. You answer in words - from \"far from it\" to \"fully\" - and you can leave a short note if you want to, or not.",
           "Every step is optional. Answer one area, or all of them, or none. You can stop at any point and what you've written stays."
@@ -136,7 +136,7 @@
         "pull": "It's yours. It stays here, on your device.",
         "body": [
           "There is no account and no server. Everything you write lives in this browser, and nothing leaves it.",
-          "You're always in control of your copy: export it to a file to keep or move, import one back, or delete everything in a single step."
+          "Your copy is always yours: export it to a file, import one back, or delete everything in one step."
         ],
         "actions": {
           "export": "Export a copy",
@@ -267,7 +267,7 @@
   "your_compass": {
     "heading": {
       "eyebrow": "Your compass",
-      "title": "What matters to you, and how this week has felt."
+      "title": "What matters to you, and how the week felt."
     },
     "start_fresh": "Start fresh",
     "start_over_q": "Start over?",
@@ -302,12 +302,12 @@
       },
       "week": {
         "label": "This week",
-        "sub": "How the week has felt"
+        "sub": "How the week felt"
       }
     },
     "map": {
-      "helper_empty": "Tap a + to name something that matters to you. Add as few or as many as you like.",
-      "helper_populated": "Tap anything to open it and reflect. A faded box means you've drifted a little from what matters there.",
+      "helper_empty": "Tap a + to name something that matters. Add as few or as many as you like.",
+      "helper_populated": "Tap any area to open and reflect. A faded box means you've drifted a little from it.",
       "add_aria": "Add something that matters",
       "open_aria": "Open {{name}}",
       "untitled": "Untitled"

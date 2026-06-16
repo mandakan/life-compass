@@ -160,15 +160,15 @@
       "continue": "Jatka",
       "finish": "Avaa kompassisi",
       "footer": "Lopeta milloin tahansa - Kaikki pysyy laitteellasi",
-      "welcome": { "eyebrow": "Tervetuloa", "title": "Rauhallinen paikka huomata, mikä on tärkeää.", "body": "Muutama lyhyt kortti, sitten olet sisällä. Mitään ei tarvitse asentaa, mihinkään ei tarvitse kirjautua - voit hypätä eteenpäin milloin haluat." },
-      "ready": { "eyebrow": "Siinä koko ajatus", "title": "Aina kun olet valmis.", "body": "Voit avata tämän oppaan uudelleen koska tahansa Ohje-kohdasta - mikään täällä ei ole vain kertaluonteista." }
+      "welcome": { "eyebrow": "Tervetuloa", "title": "Rauhallinen paikka huomata, mikä on tärkeää.", "body": "Muutama lyhyt kortti, sitten olet sisällä. Mitään ei tarvitse asentaa - voit hypätä eteenpäin milloin haluat." },
+      "ready": { "eyebrow": "Siinä koko ajatus", "title": "Aina kun olet valmis.", "body": "Voit avata tämän oppaan uudelleen koska tahansa Ohje-kohdasta." }
     },
     "topics": {
       "what": {
         "eyebrow": "Ajatus",
         "title": "Arvo on suunta, ei tavoite",
         "lede": "Elämänkompassi on rauhallinen paikka huomata, mikä on sinulle tärkeää - ja miten lähellä sitä päiväsi tuntuvat olevan.",
-        "pull": "Mitään ei tarvitse korjata. Nimeät vain sen, mikä on tärkeää, ja huomaat.",
+        "pull": "Mitään ei tarvitse korjata - nimeät vain sen, mikä on tärkeää, ja huomaat.",
         "body": [
           "Nimeät elämänalueet, jotka ovat sinulle tärkeitä - ihmiset, työ, terveys, leikki, mikä ikinä on sinun - omin sanoin.",
           "Arvo ei ole maali, jonka saavutat ja jonka jälkeen olet valmis. Se on suunta, jota kohti jatkat. Joten täällä ei ole mitään suoritettavaa eikä mitään tapaa jäädä jälkeen."
@@ -178,7 +178,7 @@
         "eyebrow": "Viikoittainen katsaus",
         "title": "Kerran viikossa, yksi lempeä kysymys",
         "lede": "Kun haluat, se kysyy, miten lähellä viikko tuntui olevan sitä, mikä on tärkeää - vastattuna selkein sanoin, ei koskaan pistein.",
-        "pull": "Miten lähellä tämä viikko tuntui olevan sitä, mikä kullakin alueella on tärkeää?",
+        "pull": "Miten lähellä viikko tuntui olevan sitä, mikä on tärkeää?",
         "body": [
           "Mitään arvosanoja ei tarvitse antaa eikä numeroita tavoitella. Vastaat sanoin - \"kaukana siitä\" ja \"täysin\" välillä - ja voit halutessasi jättää lyhyen muistiinpanon, tai olla jättämättä.",
           "Jokainen vaihe on vapaaehtoinen. Vastaa yhdellä alueella, tai kaikilla, tai ei yhdelläkään. Voit lopettaa milloin tahansa, ja kirjoittamasi pysyy tallessa."
@@ -211,7 +211,7 @@
         "pull": "Se on sinun. Se pysyy täällä, laitteellasi.",
         "body": [
           "Tiliä ei ole eikä palvelinta. Kaikki kirjoittamasi elää tässä selaimessa, eikä mikään poistu siitä.",
-          "Sinulla on aina hallinta kopioosi: vie se tiedostoon säilytettäväksi tai siirrettäväksi, tuo sellainen takaisin, tai poista kaikki yhdellä vaiheella."
+          "Kopiosi on aina sinun: vie se tiedostoon, tuo sellainen takaisin, tai poista kaikki yhdellä vaiheella."
         ],
         "actions": { "export": "Vie kopio", "import": "Tuo tiedosto", "delete": "Poista kaikki" }
       }

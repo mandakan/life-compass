@@ -162,12 +162,12 @@
       "welcome": {
         "eyebrow": "Velkomin",
         "title": "Rólegur staður til að taka eftir því sem skiptir máli.",
-        "body": "Nokkur stutt spjöld, svo ertu komin inn. Ekkert að setja upp, ekkert að skrá - þú getur farið áfram hvenær sem þú vilt."
+        "body": "Nokkur stutt spjöld, svo ertu komin inn. Ekkert að setja upp - farðu áfram hvenær sem þú vilt."
       },
       "ready": {
         "eyebrow": "Það er öll hugmyndin",
         "title": "Hvenær sem þú ert tilbúin.",
-        "body": "Þú getur opnað þennan leiðarvísi aftur hvenær sem er undir Hjálp - ekkert hér er bara í eitt skipti."
+        "body": "Þú getur opnað þennan leiðarvísi aftur hvenær sem er undir Hjálp."
       }
     },
     "topics": {
@@ -175,14 +175,14 @@
         "eyebrow": "Hugmyndin",
         "title": "Gildi er átt, ekki markmið",
         "lede": "Lífsáttavitan er rólegur staður til að taka eftir því sem skiptir þig máli - og hversu nálægt dagarnir þínir eru því.",
-        "pull": "Þú þarft ekki að laga neitt. Þú bara nefnir það sem skiptir máli, og tekur eftir.",
+        "pull": "Þú þarft ekki að laga neitt - bara nefna það sem skiptir máli, og taka eftir.",
         "body": [ "Þú nefnir þau svið lífsins sem skipta máli - fólk, vinnu, heilsu, leik, hvað sem er þitt - með þínum eigin orðum.", "Gildi er ekki takmark sem þú nærð og ert búin með. Það er átt sem þú heldur áfram að snúa að. Svo það er ekkert að klára hér, og engin leið til að dragast aftur úr." ]
       },
       "weekly": {
         "eyebrow": "Vikulega íhugunin",
         "title": "Einu sinni í viku, ein blíð spurning",
         "lede": "Þegar þú vilt spyr hún hversu nálægt vikan var því sem skiptir máli - svarað með einföldum orðum, aldrei stigum.",
-        "pull": "Hversu nálægt var þessi vika því sem skiptir máli á hverju sviði?",
+        "pull": "Hversu nálægt var vikan því sem skiptir máli?",
         "body": [ "Það eru engar einkunnir að gefa og engar tölur að elta. Þú svarar með orðum - frá \"langt frá því\" til \"algjörlega\" - og þú getur skilið eftir stutta athugasemd ef þú vilt, eða ekki.", "Hvert skref er valfrjálst. Svaraðu einu sviði, eða öllum, eða engu. Þú getur stoppað hvenær sem er og það sem þú hefur skrifað helst." ]
       },
       "pressure": {
@@ -204,7 +204,7 @@
         "title": "Allt helst á tækinu þínu",
         "lede": "Ekkert er rakið eða sent upp. Geymdu afrit, sæktu eitt inn, eða hreinsaðu allt - hvenær sem þú vilt.",
         "pull": "Þetta er þitt. Það helst hér, á tækinu þínu.",
-        "body": [ "Það er enginn aðgangur og enginn netþjónn. Allt sem þú skrifar lifir í þessum vafra, og ekkert fer úr honum.", "Þú hefur alltaf stjórn á afritinu þínu: flyttu það út í skrá til að geyma eða færa, flyttu eitt aftur inn, eða eyddu öllu í einu skrefi." ],
+        "body": [ "Það er enginn aðgangur og enginn netþjónn. Allt sem þú skrifar lifir í þessum vafra, og ekkert fer úr honum.", "Afritið þitt er alltaf þitt: flyttu það út í skrá, flyttu eitt aftur inn, eða eyddu öllu í einu skrefi." ],
         "actions": {
           "export": "Flytja út afrit",
           "import": "Flytja inn skrá",
