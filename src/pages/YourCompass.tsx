@@ -212,14 +212,14 @@ const YourCompass: React.FC = () => {
 
   return (
     <div className="bg-bg text-text px-4 pb-16">
-      <div className="mx-auto w-full max-w-[640px] pt-8">
+      <div className="mx-auto w-full max-w-[640px] pt-6 sm:pt-8">
         {/* Header: eyebrow + title, with overflow menu and start-fresh. */}
-        <header className="mb-6 flex items-start justify-between gap-3">
+        <header className="mb-5 flex items-start justify-between gap-3 sm:mb-6">
           <div className="min-w-0">
             <p className="font-body text-sm tracking-[0.02em] text-text-muted">
               {t('your_compass.heading.eyebrow')}
             </p>
-            <h1 className="mt-1 font-display text-2xl font-semibold leading-snug text-text sm:text-3xl">
+            <h1 className="mt-1 font-display text-lg font-semibold leading-snug text-text sm:text-2xl md:text-3xl">
               {t('your_compass.heading.title')}
             </h1>
           </div>

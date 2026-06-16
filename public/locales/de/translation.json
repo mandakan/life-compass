@@ -183,15 +183,15 @@
       "continue": "Weiter",
       "finish": "Deinen Kompass öffnen",
       "footer": "Du kannst jederzeit aufhören - Alles bleibt auf deinem Gerät",
-      "welcome": { "eyebrow": "Willkommen", "title": "Ein ruhiger Ort, um wahrzunehmen, was zählt.", "body": "Ein paar kurze Karten, dann bist du drin. Nichts einzurichten, nichts zu unterschreiben - du kannst jederzeit weiterspringen." },
-      "ready": { "eyebrow": "Das ist die ganze Idee", "title": "Wann immer du bereit bist.", "body": "Du kannst diese Anleitung jederzeit über die Hilfe wieder öffnen - nichts hier ist nur einmalig." }
+      "welcome": { "eyebrow": "Willkommen", "title": "Ein ruhiger Ort, um wahrzunehmen, was zählt.", "body": "Ein paar kurze Karten, dann bist du drin. Nichts einzurichten - du kannst jederzeit weiterspringen." },
+      "ready": { "eyebrow": "Das ist die ganze Idee", "title": "Wann immer du bereit bist.", "body": "Du kannst diese Anleitung jederzeit über die Hilfe wieder öffnen." }
     },
     "topics": {
       "what": {
         "eyebrow": "Die Idee",
         "title": "Ein Wert ist eine Richtung, kein Ziel",
         "lede": "Life Compass ist ein ruhiger Ort, um wahrzunehmen, was dir wichtig ist - und wie nah deine Tage dem kommen.",
-        "pull": "Du musst nichts in Ordnung bringen. Du benennst nur, was zählt, und nimmst es wahr.",
+        "pull": "Du musst nichts in Ordnung bringen - benenne nur, was zählt, und nimm es wahr.",
         "body": [
           "Du benennst die Lebensbereiche, die dir wichtig sind - Menschen, Arbeit, Gesundheit, Spiel, was auch immer deins ist - in deinen eigenen Worten.",
           "Ein Wert ist kein Ziel, das du erreichst und dann abhakst. Es ist eine Richtung, der du weiter zugewandt bleibst. Es gibt hier also nichts abzuschließen und keine Möglichkeit, zurückzufallen."
@@ -201,7 +201,7 @@
         "eyebrow": "Der wöchentliche Check-in",
         "title": "Einmal die Woche, eine sanfte Frage",
         "lede": "Wenn du magst, fragt er, wie nah die Woche dem kam, was dir wichtig ist - beantwortet in klaren Worten, nie mit Punkten.",
-        "pull": "Wie nah kam diese Woche dem, was dir in jedem Bereich wichtig ist?",
+        "pull": "Wie nah kam die Woche dem, was dir wichtig ist?",
         "body": [
           "Es gibt keine Bewertungen abzugeben und keine Zahlen zu jagen. Du antwortest in Worten - von \"weit davon entfernt\" bis \"ganz und gar\" - und du kannst eine kurze Notiz hinterlassen, wenn du möchtest, oder auch nicht.",
           "Jeder Schritt ist freiwillig. Beantworte einen Bereich, oder alle, oder keinen. Du kannst jederzeit aufhören, und was du geschrieben hast, bleibt erhalten."
@@ -234,7 +234,7 @@
         "pull": "Es gehört dir. Es bleibt hier, auf deinem Gerät.",
         "body": [
           "Es gibt kein Konto und keinen Server. Alles, was du schreibst, lebt in diesem Browser, und nichts verlässt ihn.",
-          "Du hast immer die Kontrolle über deine Kopie: Exportiere sie in eine Datei, um sie zu behalten oder mitzunehmen, importiere eine zurück oder lösche in einem einzigen Schritt alles."
+          "Deine Kopie gehört dir: Exportiere sie in eine Datei, importiere eine zurück oder lösche in einem Schritt alles."
         ],
         "actions": { "export": "Eine Kopie exportieren", "import": "Eine Datei importieren", "delete": "Alles löschen" }
       }

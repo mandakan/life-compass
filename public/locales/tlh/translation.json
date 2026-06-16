@@ -199,12 +199,12 @@
       "welcome": {
         "eyebrow": "nuqneH",
         "title": "potlhbogh Dochmey Dalegh'a' tammoHbogh Daq.",
-        "body": "puS qImroqmey ngaj, vaj bIngaH. pagh chenmoH, pagh ghItlh - reH bIlI'Ha'laH."
+        "body": "puS qImroqmey ngaj, vaj bIngaH. pagh chenmoH - reH bIlI'Ha'laH."
       },
       "ready": {
         "eyebrow": "ngoQ naQ 'oH",
         "title": "bISaHchu'DI'.",
-        "body": "reH QaHvo' mIwvam DapoSqa'laH - naDev pagh wa'logh-neH 'oH."
+        "body": "reH QaHvo' mIwvam DapoSqa'laH."
       }
     },
     "topics": {
@@ -212,7 +212,7 @@
         "eyebrow": "ngoQ",
         "title": "Hugh 'oH potlh'e', ngoQbe'",
         "lede": "Life Compass 'oH potlhbogh Dochmey DaSaHbogh Dalegh'e' tammoHbogh Daq - 'ej jajmeylIj chay rurchu'.",
-        "pull": "pagh DalIHnIS. potlhbogh Doch yIpong neH, 'ej yISaH.",
+        "pull": "pagh DalIHnIS - potlhbogh Doch yIpong neH, 'ej yISaH.",
         "body": [
           "yIn HurghmeylIj DaSaHbogh tIpong - ghotpu', SuvwI', yuch, reH-Hot, nuqDaq SoHbogh - mu'meylIjDaq.",
           "Hugh 'oH ngoQbe' DabuptaH 'ej DachoHbogh. 'oH Hugh DaqIHtaHbogh'e'. vaj naDev pagh rInmoHlu', 'ej pagh DaSlaHbe'."
@@ -222,7 +222,7 @@
         "eyebrow": "Hogh nuD",
         "title": "Hoghvad wa'logh, wa' tammoHbogh ghel",
         "lede": "DaSaHDI', chay potlh rurchu' Hogh ghel - mu'mey QaQ jang, not pat.",
-        "pull": "Hugh Hurghmey chay rurchu' Hoghvam?",
+        "pull": "Hugh chay rurchu' Hoghvam?",
         "body": [
           "patmey lI'lu'be' 'ej mISmey tlha'lu'be'. mu'mey Dajang - \"Hopqu'\" vo' \"naQqu'\"vaD - 'ej DaneHchugh nuch ghIt yIghIt, pagh ghIt.",
           "Hoch mIw 'oH wIvbogh'e'. wa' Hurgh yIjang, pagh Hoch, pagh pagh. reH bImevlaH 'ej ghIlaHbogh ratlh."
@@ -255,7 +255,7 @@
         "pull": "SoHbogh ghaH. naDev ratlh, janlIjDaq.",
         "body": [
           "patlh tu'lu'be' 'ej De'wI' qach tu'lu'be'. Hoch DaghItlhbogh naDev browser-Daq yIntaH, 'ej pagh mejtaH.",
-          "reH mojaqlIj DaSeH: De'wI'ghItlhDaq yIchoq DapolmeH pagh DavangmeH, wa' yIqem, pagh wa' mIwDaq Hoch yIlel."
+          "reH mojaqlIj DaSeH: De'wI'ghItlhDaq yIchoq, wa' yIqem, pagh wa' mIwDaq Hoch yIlel."
         ],
         "actions": {
           "export": "mojaq yIchoq",

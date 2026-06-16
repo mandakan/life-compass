@@ -50,14 +50,25 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
 
   // Until measured (width 0), render at 0 so the square cannot stretch the
   // layout; the layout effect fills in the real width before the browser paints.
-  const SIZE = width > 0 ? Math.max(248, Math.min(380, width)) : 0;
+  const SIZE = width > 0 ? Math.max(248, Math.min(420, width)) : 0;
   const cx = SIZE / 2;
   const cy = SIZE / 2;
-  const R = SIZE * 0.33;
-  const box = SIZE < 320 ? 88 : 104;
 
   const empty = areas.length === 0;
   const slots = empty ? 8 : areas.length + 2;
+
+  // Fit the ring inside the square while keeping neighbouring cards from
+  // colliding. `gap` is the half-chord between adjacent nodes per unit radius;
+  // we pick the largest card that stays within that gap, then place the ring so
+  // a card never spills past the square's edge (R + box/2 + PAD = SIZE/2). On a
+  // narrow phone this yields small cards -- long names truncate (2-line clamp)
+  // rather than overlap. The figure scales gently with the canvas.
+  const PAD = 6;
+  const gap = Math.sin(Math.PI / slots);
+  const maxBox = (2 * gap * (SIZE / 2 - PAD)) / (1 + gap);
+  const box = Math.max(56, Math.min(108, Math.floor(maxBox)));
+  const R = SIZE / 2 - box / 2 - PAD;
+  const figure = Math.round(Math.min(64, Math.max(48, SIZE * 0.16)));
 
   const nodes = Array.from({ length: slots }, (_, i) => {
     const ang = ((-90 + (i * 360) / slots) * Math.PI) / 180;
@@ -103,8 +114,8 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
               left: cx,
               top: cy,
               transform: 'translate(-50%, -50%)',
-              width: 66,
-              height: 66,
+              width: figure,
+              height: figure,
             }}
           >
             <Figure />
@@ -140,7 +151,7 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
                 type="button"
                 onClick={() => onOpen(area.id)}
                 aria-label={t('your_compass.map.open_aria', { name })}
-                className="absolute rounded-md border-[1.5px] border-border bg-surface px-2 py-2 text-center text-xs leading-tight font-semibold text-text shadow-warm-sm transition-[border-color,background-color] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                className="absolute flex items-center justify-center rounded-md border-[1.5px] border-border bg-surface px-1.5 py-2 text-center font-semibold text-text shadow-warm-sm transition-[border-color,background-color] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                 style={{
                   left: p.x,
                   top: p.y,
@@ -150,7 +161,14 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
                   opacity: 1 - drift(area) * 0.1,
                 }}
               >
-                {name}
+                {/* Clamp on a span: a <button> ignores display:-webkit-box,
+                    so line-clamp must live on a child element. */}
+                <span
+                  className="line-clamp-2 break-words leading-tight"
+                  style={{ fontSize: box < 76 ? 11 : 12 }}
+                >
+                  {name}
+                </span>
               </button>
             );
           })}
