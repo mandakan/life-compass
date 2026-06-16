@@ -17,4 +17,13 @@ describe('tool registry', () => {
       expect(tool.component).toBeDefined();
     });
   });
+
+  it('registers the behavioral-experiment tool', async () => {
+    await import('../practices'); // triggers side-effect registration
+    const { TOOLS: registered } = await import('../practices/toolRegistry');
+    const tool = registered.find(x => x.id === 'behavioral-experiment');
+    expect(tool).toBeDefined();
+    expect(tool?.labelKey).toBe('practices.tools.behavioral_experiment.label');
+    expect(tool?.component).toBeDefined();
+  });
 });
