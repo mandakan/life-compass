@@ -12,6 +12,7 @@ import DesignPrinciplesDemo from './pages/DesignPrinciplesDemo';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import HelpGuide from './pages/HelpGuide';
+import PracticesPage from './pages/PracticesPage';
 import WelcomePage from './pages/WelcomePage';
 import Navigation from '@components/ui/Navigation';
 import SettingsPage from './pages/SettingsPage';
@@ -39,6 +40,8 @@ const Content = () => {
             <Route path="/" element={<YourCompass />} />
             <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/help" element={<HelpGuide />} />
+            <Route path="/practices" element={<PracticesPage />} />
+            <Route path="/practices/:toolId" element={<PracticesPage />} />
             <Route
               path="/design-principles"
               element={<DesignPrinciplesDemo />}

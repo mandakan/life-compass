@@ -81,6 +81,9 @@ const HeaderNavigation: React.FC = () => {
             <Link to="/help" className={desktopLinkClass}>
               {t('nav.help', 'Help')}
             </Link>
+            <Link to="/practices" className={desktopLinkClass}>
+              {t('nav.practices', 'Practices')}
+            </Link>
             <Link to="/about" className={desktopLinkClass}>
               {t('nav.about', 'About')}
             </Link>
@@ -149,6 +152,9 @@ const HeaderNavigation: React.FC = () => {
           </Link>
           <Link to="/help" onClick={closeMobile} className={mobileLinkClass}>
             {t('nav.help', 'Help')}
+          </Link>
+          <Link to="/practices" onClick={closeMobile} className={mobileLinkClass}>
+            {t('nav.practices', 'Practices')}
           </Link>
           <Link to="/about" onClick={closeMobile} className={mobileLinkClass}>
             {t('nav.about', 'About')}
