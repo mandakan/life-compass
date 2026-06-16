@@ -140,7 +140,8 @@
   "nav": {
     "compass": "Kompass",
     "about": "Om",
-    "help": "Hjälp"
+    "help": "Hjälp",
+    "practices": "Övningar"
   },
   "invalid_file_type": "Välj en JSON-fil.",
   "error_reading_file": "Kunde inte läsa filen. Försök igen.",
@@ -177,6 +178,34 @@
     "add_step": "Lägg till steg",
     "add_step_placeholder": "Lägg till ett åtgärdssteg",
     "delete_step": "Ta bort steg"
+  },
+  "practices": {
+    "heading": "Övningar",
+    "intro": "Ett litet, stilla bibliotek. Öppna något när du känner dig redo -- det finns inget att bli klar med här.",
+    "back": "Tillbaka till övningar",
+    "empty": "Inga övningar ännu.",
+    "tools": {
+      "behavioral_experiment": {
+        "label": "Prova ett litet experiment",
+        "description": "Testa varsamt en oro genom att prova något och lägga märke till vad som faktiskt händer.",
+        "add_experiment": "Lägg till experiment",
+        "add_experiment_placeholder": "Det jag var orolig för att skulle hända...",
+        "empty_state": "Inget här ännu. När du är redo, sätt ord på en oro du vill utforska.",
+        "experiment_title": "Det jag var orolig för att skulle hända",
+        "expand": "Visa steg",
+        "collapse": "Dölj steg",
+        "step_count": "{{done}}/{{total}} steg provade",
+        "delete_experiment_title": "Ta bort experiment",
+        "delete_experiment_warning": "Det här tar bort \"{{title}}\" och allt som noterats med det. Vill du fortsätta?",
+        "add_step": "Lägg till något att prova",
+        "add_step_placeholder": "En liten sak jag skulle kunna prova...",
+        "delete_step": "Ta bort steg",
+        "area_label": "Koppla till ett livsområde (valfritt)",
+        "area_none": "Inte kopplat till ett område",
+        "outcome_label": "Vad som faktiskt hände",
+        "outcome_help": "Det finns inga rätta svar. Lägg bara märke till det du märkte."
+      }
+    }
   },
   "contrast_theme_toggle": "Aktivera tema med hög kontrast",
   "theme_system": "System",
