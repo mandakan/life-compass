@@ -60,6 +60,12 @@
     "add_step_placeholder": "Add an action step",
     "delete_step": "Delete step"
   },
+  "practices": {
+    "heading": "Practices",
+    "intro": "A small, calm library. Open something when you feel ready -- there is nothing to finish here.",
+    "back": "Back to practices",
+    "empty": "No practices yet."
+  },
   "go_to_settings_menu": "Navigate to settings menu",
   "guide": {
     "page": {
@@ -246,7 +252,8 @@
   "nav": {
     "compass": "Compass",
     "help": "Help",
-    "about": "About"
+    "about": "About",
+    "practices": "Practices"
   },
   "toggle_theme": "Toggle light and dark theme",
   "your_life_compass": "Your life compass",
