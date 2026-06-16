@@ -194,4 +194,37 @@ describe('parseAndValidateJSON', () => {
     // goals is optional in the schema; its absence does not invalidate the file.
     expect(returned.data.goals).toBeUndefined();
   });
+
+  it('older export without behavioralExperiments key passes validation (field is optional)', () => {
+    // Simulates importing a file created before behavioralExperiments were added.
+    const oldExport = {
+      metadata: {
+        exportTimestamp: '2025-06-01T00:00:00.000Z',
+        version: '1.0.0',
+      },
+      data: {
+        userSettings: { language: 'en', theme: 'light' as const },
+        lifeAreas: [
+          {
+            id: 'area-1',
+            name: 'Career',
+            description: '',
+            importance: 8,
+            satisfaction: 5,
+            details: '',
+          },
+        ],
+        history: [],
+        goals: [],
+        // no behavioralExperiments key intentionally
+      },
+    };
+
+    const result = parseAndValidateJSON(JSON.stringify(oldExport));
+
+    expect(result.valid).toBe(true);
+    const returned = result.data as { data: { behavioralExperiments?: unknown[] } };
+    // behavioralExperiments is optional in the schema; its absence is valid.
+    expect(returned.data.behavioralExperiments).toBeUndefined();
+  });
 });

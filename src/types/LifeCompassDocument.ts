@@ -47,14 +47,31 @@ export interface Goal {
 }
 
 /**
+ * A behavioral experiment: a worry the user wants to test, the steps they try
+ * in order to test it, and a free-text reflection on what actually happened.
+ * It mirrors Goal (steps reuse ActionStep) but the area link is optional and
+ * it carries an outcome. There are no scores: completing steps means "I ran
+ * the experiment", never "I achieved a goal".
+ */
+export interface BehavioralExperiment {
+  id: string;
+  areaId?: string; // optional link to LifeArea.id (unlike Goal, which requires it)
+  title: string; // the answer to "what I was worried might happen"
+  steps: ActionStep[]; // reuse ActionStep verbatim
+  outcome: string; // free-text reflection; starts empty
+  createdAt: string; // ISO 8601
+}
+
+/**
  * The single persisted document. Versioned so the schema can evolve via the
  * store's persist `migrate` hook.
  */
 export interface LifeCompassDocument {
-  schemaVersion: 2;
+  schemaVersion: 3;
   lifeAreas: LifeArea[];
   history: Snapshot[];
   goals: Goal[];
+  behavioralExperiments: BehavioralExperiment[];
 }
 
-export const CURRENT_SCHEMA_VERSION = 2 as const;
+export const CURRENT_SCHEMA_VERSION = 3 as const;

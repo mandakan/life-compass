@@ -1,7 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { exportData } from '../utils/exportService';
 import { LifeArea } from '../types/LifeArea';
-import { Goal, Snapshot } from '../types/LifeCompassDocument';
+import {
+  BehavioralExperiment,
+  Goal,
+  Snapshot,
+} from '../types/LifeCompassDocument';
 
 describe('exportData', () => {
   beforeEach(() => {
@@ -187,5 +191,56 @@ describe('exportData', () => {
     const parsed = JSON.parse(jsonString);
     expect(Array.isArray(parsed.data.goals)).toBe(true);
     expect(parsed.data.goals).toHaveLength(0);
+  });
+
+  it('round-trip: behavioralExperiments survive export and JSON.parse', () => {
+    const lifeAreas: LifeArea[] = [
+      {
+        id: 'area-1',
+        name: 'Health',
+        description: 'Staying healthy',
+        importance: 8,
+        satisfaction: 6,
+        details: '',
+      },
+    ];
+    const behavioralExperiments: BehavioralExperiment[] = [
+      {
+        id: 'exp-1',
+        areaId: 'area-1',
+        title: 'I worry that I will fail if I try something new',
+        steps: [],
+        outcome: '',
+        createdAt: '2026-06-14T10:00:00.000Z',
+      },
+    ];
+
+    const jsonString = exportData({
+      lifeAreas,
+      history: [],
+      goals: [],
+      behavioralExperiments,
+    });
+    const parsed = JSON.parse(jsonString);
+
+    expect(parsed.data.behavioralExperiments).toHaveLength(1);
+    expect(parsed.data.behavioralExperiments[0].id).toBe('exp-1');
+    expect(parsed.data.behavioralExperiments[0].areaId).toBe('area-1');
+    expect(parsed.data.behavioralExperiments[0].title).toBe(
+      'I worry that I will fail if I try something new',
+    );
+    expect(parsed.data.behavioralExperiments[0].steps).toHaveLength(0);
+    expect(parsed.data.behavioralExperiments[0].outcome).toBe('');
+    expect(parsed.data.behavioralExperiments[0].createdAt).toBe(
+      '2026-06-14T10:00:00.000Z',
+    );
+  });
+
+  it('omitting behavioralExperiments in input defaults to empty array in the export', () => {
+    const lifeAreas: LifeArea[] = [];
+    const jsonString = exportData({ lifeAreas, history: [] });
+    const parsed = JSON.parse(jsonString);
+    expect(Array.isArray(parsed.data.behavioralExperiments)).toBe(true);
+    expect(parsed.data.behavioralExperiments).toHaveLength(0);
   });
 });

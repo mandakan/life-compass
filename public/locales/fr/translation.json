@@ -140,7 +140,8 @@
   "nav": {
     "compass": "Boussole",
     "about": "À propos",
-    "help": "Aide"
+    "help": "Aide",
+    "practices": "Practices"
   },
   "invalid_file_type": "Veuillez choisir un fichier JSON.",
   "error_reading_file": "Impossible de lire le fichier. Veuillez réessayer.",
@@ -264,5 +265,33 @@
     "add_step_placeholder": "Ajouter une étape d'action",
     "delete_step": "Supprimer l'étape"
   },
-  "theme_system": "Système"
+  "theme_system": "Système",
+  "practices": {
+    "heading": "Practices",
+    "intro": "A small, calm library. Open something when you feel ready -- there is nothing to finish here.",
+    "back": "Back to practices",
+    "empty": "No practices yet.",
+    "tools": {
+      "behavioral_experiment": {
+        "label": "Try a small experiment",
+        "description": "Gently test a worry by trying something and noticing what actually happens.",
+        "add_experiment": "Add experiment",
+        "add_experiment_placeholder": "What I was worried might happen...",
+        "empty_state": "Nothing here yet. When you are ready, name a worry you would like to test.",
+        "experiment_title": "What I was worried might happen",
+        "expand": "Show steps",
+        "collapse": "Hide steps",
+        "step_count": "{{done}}/{{total}} steps tried",
+        "delete_experiment_title": "Remove experiment",
+        "delete_experiment_warning": "This will remove \"{{title}}\" and everything noted with it. Do you want to continue?",
+        "add_step": "Add something to try",
+        "add_step_placeholder": "A small thing I could try...",
+        "delete_step": "Remove step",
+        "area_label": "Attach to a life area (optional)",
+        "area_none": "Not attached to an area",
+        "outcome_label": "What actually happened",
+        "outcome_help": "There are no right answers. Just notice what you noticed."
+      }
+    }
+  }
 }
