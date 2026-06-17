@@ -51,12 +51,12 @@ const BehavioralExperiment: React.FC = () => {
         />
 
         {lifeAreas.length > 0 && (
-          <label className="flex flex-col gap-1 text-sm text-text-muted">
+          <label className="flex min-w-0 flex-col gap-1 text-sm text-text-muted">
             {t(`${PREFIX}.area_label`)}
             <select
               value={areaId}
               onChange={e => setAreaId(e.target.value)}
-              className="min-h-[44px] rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="min-h-[44px] w-full min-w-0 max-w-full truncate rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
             >
               <option value="">{t(`${PREFIX}.area_none`)}</option>
               {lifeAreas.map(area => (

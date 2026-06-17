@@ -33,7 +33,7 @@ const Content = () => {
 
   return (
     <div className="bg-bg text-text bg-escher flex min-h-screen transition-colors duration-300">
-      <div className="flex flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col">
         {!immersive && <Navigation />}
         <main className={immersive ? 'flex-1' : 'mb-16 flex-1 md:mb-0'}>
           <Routes>
