@@ -77,6 +77,7 @@ const ThoughtRecordFlow: React.FC<ThoughtRecordFlowProps> = ({
             </select>
           </label>
           <label className={LABEL_CLASS}>
+            {t(`${PREFIX}.step1.situation_label`)}
             <textarea
               rows={4}
               value={record.situation}

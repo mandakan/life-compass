@@ -22,10 +22,10 @@ const ThoughtRecord: React.FC = () => {
     setOpenId(id);
   };
 
-  const requestDelete = () =>
+  const requestDelete = (title: string) =>
     confirm({
       title: t(`${PREFIX}.delete`),
-      message: t(`${PREFIX}.delete_confirm`),
+      message: t(`${PREFIX}.delete_confirm`, { title }),
       type: 'warning',
     });
 
@@ -58,7 +58,9 @@ const ThoughtRecord: React.FC = () => {
               key={record.id}
               record={record}
               onEdit={() => setOpenId(record.id)}
-              onRequestDelete={requestDelete}
+              onRequestDelete={() =>
+                requestDelete(record.situation.trim() || t(`${PREFIX}.untitled`))
+              }
             />
           ))}
         </ul>
