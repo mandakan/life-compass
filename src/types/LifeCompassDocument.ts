@@ -63,15 +63,37 @@ export interface BehavioralExperiment {
 }
 
 /**
+ * A thought record: a distressing situation, the automatic thought, the feeling
+ * (named + a 1-5 word-bucket strength), a gentle widening of the view, and the
+ * feeling noticed again afterwards. The hybrid "capture then widen" framing --
+ * never disputing the thought, never showing a before/after delta. The area
+ * link is optional, like BehavioralExperiment.
+ */
+export interface ThoughtRecord {
+  id: string;
+  areaId?: string; // optional link to LifeArea.id
+  situation: string; // what happened
+  thought: string; // the automatic thought
+  feeling: string; // named emotion(s), free text
+  feelingBefore?: number; // 1-5 word-bucket strength, omitted when not chosen
+  supports: string; // what supports the thought
+  widerView: string; // what else might be true
+  kinderView: string; // a kinder, wider way to hold it
+  feelingAfter?: number; // 1-5 word-bucket strength, omitted when not chosen
+  createdAt: string; // ISO 8601
+}
+
+/**
  * The single persisted document. Versioned so the schema can evolve via the
  * store's persist `migrate` hook.
  */
 export interface LifeCompassDocument {
-  schemaVersion: 3;
+  schemaVersion: 4;
   lifeAreas: LifeArea[];
   history: Snapshot[];
   goals: Goal[];
   behavioralExperiments: BehavioralExperiment[];
+  thoughtRecords: ThoughtRecord[];
 }
 
-export const CURRENT_SCHEMA_VERSION = 3 as const;
+export const CURRENT_SCHEMA_VERSION = 4 as const;
