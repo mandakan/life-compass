@@ -46,5 +46,19 @@ export type ImportedData = {
       }[];
       [key: string]: unknown;
     }[];
+    thoughtRecords?: {
+      id: string;
+      areaId?: string;
+      situation: string;
+      thought: string;
+      feeling: string;
+      feelingBefore?: number;
+      supports: string;
+      widerView: string;
+      kinderView: string;
+      feelingAfter?: number;
+      createdAt: string;
+      [key: string]: unknown;
+    }[];
   };
 };

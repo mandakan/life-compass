@@ -7,6 +7,7 @@ import {
   type BehavioralExperiment,
   type Goal,
   type Snapshot,
+  type ThoughtRecord,
 } from '@models/LifeCompassDocument';
 import type { ImportedData } from 'types/importExport';
 import { useLifeCompassStore } from '../store/lifeCompassStore';
@@ -157,6 +158,7 @@ const YourCompass: React.FC = () => {
       goals: (payload.data.goals ?? []) as Goal[],
       behavioralExperiments: (payload.data.behavioralExperiments ??
         []) as BehavioralExperiment[],
+      thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],
     });
     setShowImportExport(false);
     setPhase('app');

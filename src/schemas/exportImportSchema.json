@@ -129,6 +129,27 @@
             "required": ["id", "title", "createdAt", "steps"],
             "additionalProperties": true
           }
+        },
+        "thoughtRecords": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "areaId": { "type": "string" },
+              "situation": { "type": "string" },
+              "thought": { "type": "string" },
+              "feeling": { "type": "string" },
+              "feelingBefore": { "type": "number" },
+              "supports": { "type": "string" },
+              "widerView": { "type": "string" },
+              "kinderView": { "type": "string" },
+              "feelingAfter": { "type": "number" },
+              "createdAt": { "type": "string" }
+            },
+            "required": ["id", "situation", "thought", "feeling", "supports", "widerView", "kinderView", "createdAt"],
+            "additionalProperties": true
+          }
         }
       },
       "required": ["userSettings", "lifeAreas", "history"],
