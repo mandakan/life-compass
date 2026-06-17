@@ -117,7 +117,70 @@
           "prompt_aligned": "Nothing feels far off right now. If you like, pick any area to nurture with a small step.",
           "cta": "Open your compass to add a step"
         }
+      },
+      "thought_record": {
+        "label": "Thought record",
+        "description": "Notice a sticky thought, then gently widen the view.",
+        "empty_state": "No thought records yet. Start one when a thought is weighing on you.",
+        "new": "New thought record",
+        "step_label": "Step {{current}} of {{total}}",
+        "back": "Back",
+        "next": "Next",
+        "save": "Save",
+        "done": "Done",
+        "delete": "Delete",
+        "edit": "Edit",
+        "untitled": "Untitled situation",
+        "step1": {
+          "title": "What happened?",
+          "prompt": "Where were you, who was there, what was going on?",
+          "placeholder": "Describe the situation in a sentence or two.",
+          "area_label": "Relates to (optional)",
+          "area_none": "Not linked to an area"
+        },
+        "step2": {
+          "title": "What went through your mind?",
+          "prompt": "The thought that stings most. Write it as it came.",
+          "placeholder": "e.g. I always let people down."
+        },
+        "step3": {
+          "title": "How does it feel?",
+          "prompt": "Name the feeling, and notice how strong it is right now.",
+          "feeling_placeholder": "e.g. sad, anxious, ashamed",
+          "strength_label": "How strong does it feel?"
+        },
+        "step4": {
+          "title": "Widen the view",
+          "prompt": "Gently, without arguing with yourself.",
+          "supports_label": "What supports this thought?",
+          "supports_placeholder": "What makes it feel true?",
+          "wider_label": "What else might be true?",
+          "wider_placeholder": "What might you say to a friend in this spot?",
+          "kinder_label": "A kinder, wider way to hold this",
+          "kinder_placeholder": "If you stepped back, how else could you carry it?"
+        },
+        "step5": {
+          "title": "How does it feel now?",
+          "prompt": "Just notice how the same feeling sits now. There is no right answer.",
+          "strength_label": "How strong does it feel now?"
+        },
+        "feeling_scale": {
+          "1": "faint",
+          "2": "mild",
+          "3": "noticeable",
+          "4": "strong",
+          "5": "overwhelming"
+        }
       }
+    },
+    "crisis": {
+      "trigger": "If things feel overwhelming right now",
+      "intro": "You don't have to sit with this alone.",
+      "resources": [
+        "Emergency: call 112",
+        "Healthcare advice: call 1177",
+        "Mind Suicide Line: call 90101 or chat at mind.se"
+      ]
     }
   },
   "go_to_settings_menu": "Navigate to settings menu",
