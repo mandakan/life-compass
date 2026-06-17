@@ -243,4 +243,23 @@ describe('exportData', () => {
     expect(Array.isArray(parsed.data.behavioralExperiments)).toBe(true);
     expect(parsed.data.behavioralExperiments).toHaveLength(0);
   });
+
+  it('includes thoughtRecords in the exported document', () => {
+    const json = exportData({
+      lifeAreas: [],
+      history: [],
+      goals: [],
+      behavioralExperiments: [],
+      thoughtRecords: [
+        {
+          id: 't1', situation: 's', thought: 'th', feeling: 'sad',
+          feelingBefore: 4, supports: '', widerView: '', kinderView: '',
+          feelingAfter: 2, createdAt: '2026-06-17T00:00:00.000Z',
+        },
+      ],
+    });
+    const parsed = JSON.parse(json);
+    expect(parsed.data.thoughtRecords).toHaveLength(1);
+    expect(parsed.data.thoughtRecords[0].feelingAfter).toBe(2);
+  });
 });

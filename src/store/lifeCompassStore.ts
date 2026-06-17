@@ -9,6 +9,7 @@ import {
   LifeCompassDocument,
   Snapshot,
   SnapshotArea,
+  ThoughtRecord,
 } from '../types/LifeCompassDocument';
 import { migrateLegacyData, clearLegacyData } from './migrateLegacyData';
 
@@ -21,13 +22,14 @@ export const STORE_KEY = 'life-compass';
 /**
  * Bump this when the persisted shape changes and add a branch to `migrate`.
  */
-export const PERSIST_VERSION = 2;
+export const PERSIST_VERSION = 3;
 
 export interface LifeCompassState {
   lifeAreas: LifeArea[];
   history: Snapshot[];
   goals: Goal[];
   behavioralExperiments: BehavioralExperiment[];
+  thoughtRecords: ThoughtRecord[];
 
   addArea: (area: LifeArea) => void;
   updateArea: (id: string, changes: Partial<LifeArea>) => void;
@@ -65,6 +67,10 @@ export interface LifeCompassState {
   toggleExperimentStep: (experimentId: string, stepId: string) => void;
   removeExperimentStep: (experimentId: string, stepId: string) => void;
   setExperimentOutcome: (experimentId: string, outcome: string) => void;
+
+  addThoughtRecord: (areaId?: string) => void;
+  updateThoughtRecord: (recordId: string, changes: Partial<ThoughtRecord>) => void;
+  removeThoughtRecord: (recordId: string) => void;
 }
 
 function toSnapshotAreas(areas: LifeArea[]): SnapshotArea[] {
@@ -83,6 +89,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
       history: [],
       goals: [],
       behavioralExperiments: [],
+      thoughtRecords: [],
 
       addArea: area =>
         set(state => ({ lifeAreas: [...state.lifeAreas, area] })),
@@ -103,6 +110,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           behavioralExperiments: state.behavioralExperiments.filter(
             exp => exp.areaId !== id,
           ),
+          thoughtRecords: state.thoughtRecords.filter(rec => rec.areaId !== id),
         })),
 
       reorderAreas: (fromIndex, toIndex) =>
@@ -122,7 +130,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         }),
 
       removeAllAreas: () =>
-        set({ lifeAreas: [], goals: [], behavioralExperiments: [] }),
+        set({ lifeAreas: [], goals: [], behavioralExperiments: [], thoughtRecords: [] }),
 
       importDocument: doc =>
         set({
@@ -130,6 +138,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           history: doc.history ?? [],
           goals: doc.goals ?? [],
           behavioralExperiments: doc.behavioralExperiments ?? [],
+          thoughtRecords: doc.thoughtRecords ?? [],
         }),
 
       saveSnapshot: label =>
@@ -345,18 +354,47 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             exp.id === experimentId ? { ...exp, outcome: outcome.trim() } : exp,
           ),
         })),
+
+      addThoughtRecord: areaId =>
+        set(state => {
+          const record: ThoughtRecord = {
+            id: crypto.randomUUID(),
+            situation: '',
+            thought: '',
+            feeling: '',
+            supports: '',
+            widerView: '',
+            kinderView: '',
+            createdAt: new Date().toISOString(),
+            ...(areaId ? { areaId } : {}),
+          };
+          return { thoughtRecords: [...state.thoughtRecords, record] };
+        }),
+
+      updateThoughtRecord: (recordId, changes) =>
+        set(state => ({
+          thoughtRecords: state.thoughtRecords.map(rec =>
+            rec.id === recordId ? { ...rec, ...changes, id: rec.id } : rec,
+          ),
+        })),
+
+      removeThoughtRecord: recordId =>
+        set(state => ({
+          thoughtRecords: state.thoughtRecords.filter(rec => rec.id !== recordId),
+        })),
     }),
     {
       name: STORE_KEY,
       version: PERSIST_VERSION,
 
-      // Only `lifeAreas`, `history`, `goals`, and `behavioralExperiments` are
-      // persisted; actions are recreated.
+      // Only `lifeAreas`, `history`, `goals`, `behavioralExperiments`, and
+      // `thoughtRecords` are persisted; actions are recreated.
       partialize: state => ({
         lifeAreas: state.lifeAreas,
         history: state.history,
         goals: state.goals,
         behavioralExperiments: state.behavioralExperiments,
+        thoughtRecords: state.thoughtRecords,
       }),
 
       // Owns schema evolution of the persisted document. Add branches as
@@ -365,7 +403,11 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         const state = persistedState as Partial<
           Pick<
             LifeCompassState,
-            'lifeAreas' | 'history' | 'goals' | 'behavioralExperiments'
+            | 'lifeAreas'
+            | 'history'
+            | 'goals'
+            | 'behavioralExperiments'
+            | 'thoughtRecords'
           >
         >;
         // v0 -> v1: goals did not exist; seed an empty array.
@@ -376,7 +418,11 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             behavioralExperiments: state.behavioralExperiments ?? [],
           } as Pick<
             LifeCompassState,
-            'lifeAreas' | 'history' | 'goals' | 'behavioralExperiments'
+            | 'lifeAreas'
+            | 'history'
+            | 'goals'
+            | 'behavioralExperiments'
+            | 'thoughtRecords'
           >;
         }
         // v1 -> v2: behavioralExperiments did not exist; seed an empty array.
@@ -386,12 +432,34 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             behavioralExperiments: state.behavioralExperiments ?? [],
           } as Pick<
             LifeCompassState,
-            'lifeAreas' | 'history' | 'goals' | 'behavioralExperiments'
+            | 'lifeAreas'
+            | 'history'
+            | 'goals'
+            | 'behavioralExperiments'
+            | 'thoughtRecords'
+          >;
+        }
+        // v2 -> v3: thoughtRecords did not exist; seed an empty array.
+        if (version < 3) {
+          return {
+            ...state,
+            thoughtRecords: state.thoughtRecords ?? [],
+          } as Pick<
+            LifeCompassState,
+            | 'lifeAreas'
+            | 'history'
+            | 'goals'
+            | 'behavioralExperiments'
+            | 'thoughtRecords'
           >;
         }
         return state as Pick<
           LifeCompassState,
-          'lifeAreas' | 'history' | 'goals' | 'behavioralExperiments'
+          | 'lifeAreas'
+          | 'history'
+          | 'goals'
+          | 'behavioralExperiments'
+          | 'thoughtRecords'
         >;
       },
 
@@ -409,6 +477,9 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         }
         if (!Array.isArray(state.behavioralExperiments)) {
           state.behavioralExperiments = [];
+        }
+        if (!Array.isArray(state.thoughtRecords)) {
+          state.thoughtRecords = [];
         }
         const seeded = migrateLegacyData();
         if (seeded && state.lifeAreas.length === 0) {

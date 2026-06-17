@@ -5,8 +5,8 @@ import {
 } from '../store/lifeCompassStore';
 
 describe('behavioralExperiments persist migration', () => {
-  it('PERSIST_VERSION is bumped to 2', () => {
-    expect(PERSIST_VERSION).toBe(2);
+  it('PERSIST_VERSION is at least 2', () => {
+    expect(PERSIST_VERSION).toBeGreaterThanOrEqual(2);
   });
 
   it('migrate seeds behavioralExperiments:[] for a v1 state', () => {

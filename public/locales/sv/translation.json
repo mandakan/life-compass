@@ -236,7 +236,73 @@
           "prompt_aligned": "Inget känns långt borta just nu. Om du vill, välj vilket område som helst att vårda med ett litet steg.",
           "cta": "Öppna din kompass för att lägga till ett steg"
         }
+      },
+      "thought_record": {
+        "label": "Tankeregistrering",
+        "description": "Lägg märke till en envis tanke och vidga vyn varsamt.",
+        "empty_state": "Inga tankeregistreringar än. Börja en när en tanke tynger dig.",
+        "new": "Ny tankeregistrering",
+        "step_label": "Steg {{current}} av {{total}}",
+        "back": "Tillbaka",
+        "next": "Nästa",
+        "done": "Klar",
+        "delete": "Ta bort",
+        "edit": "Redigera",
+        "untitled": "Namnlös situation",
+        "expand": "Visa mer",
+        "collapse": "Visa mindre",
+        "delete_confirm": "Ta bort \"{{title}}\"? Det går inte att ångra.",
+        "step1": {
+          "title": "Vad hände?",
+          "prompt": "Var var du, vem var där, vad var på gång?",
+          "situation_label": "Situationen",
+          "placeholder": "Beskriv situationen i en eller två meningar.",
+          "area_label": "Hör samman med (valfritt)",
+          "area_none": "Inte kopplad till ett område"
+        },
+        "step2": {
+          "title": "Vad for genom ditt huvud?",
+          "prompt": "Den tanke som svider mest. Skriv den som den kom.",
+          "placeholder": "t.ex. Jag sviker alltid folk."
+        },
+        "step3": {
+          "title": "Hur känns det?",
+          "prompt": "Sätt ord på känslan, och lägg märke till hur stark den är just nu.",
+          "feeling_placeholder": "t.ex. ledsen, orolig, skamsen",
+          "strength_label": "Hur stark känns den?"
+        },
+        "step4": {
+          "title": "Vidga vyn",
+          "prompt": "Varsamt, utan att argumentera med dig själv.",
+          "supports_label": "Vad stöder den här tanken?",
+          "supports_placeholder": "Vad får det att kännas sant?",
+          "wider_label": "Vad annat kan vara sant?",
+          "wider_placeholder": "Vad skulle du säga till en vän i den här situationen?",
+          "kinder_label": "Ett snällare, vidare sätt att bära det här",
+          "kinder_placeholder": "Om du tog ett steg tillbaka, hur annars skulle du kunna bära det?"
+        },
+        "step5": {
+          "title": "Hur känns det nu?",
+          "prompt": "Lägg bara märke till hur samma känsla sitter nu. Det finns inget rätt svar.",
+          "strength_label": "Hur stark känns den nu?"
+        },
+        "feeling_scale": {
+          "1": "svag",
+          "2": "mild",
+          "3": "märkbar",
+          "4": "stark",
+          "5": "överväldigande"
+        }
       }
+    },
+    "crisis": {
+      "trigger": "Om det känns överväldigande just nu",
+      "intro": "Du behöver inte bära det här ensam.",
+      "resources": [
+        "Nödsituation: ring 112",
+        "Sjukvårdsrådgivning: ring 1177",
+        "Mind Självmordslinjen: ring 90101 eller chatta på mind.se"
+      ]
     }
   },
   "contrast_theme_toggle": "Aktivera tema med hög kontrast",
