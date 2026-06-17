@@ -204,6 +204,38 @@
         "area_none": "Inte kopplat till ett område",
         "outcome_label": "Vad som faktiskt hände",
         "outcome_help": "Det finns inga rätta svar. Lägg bara märke till det du märkte."
+      },
+      "values_clarity": {
+        "label": "En stund för klarhet",
+        "description": "En kort, guidad vandring genom vad som betyder något, hur det levs och ett litet steg.",
+        "step_label": "Steg {{current}} av {{total}}",
+        "back": "Tillbaka",
+        "next": "Nästa",
+        "done": "Avsluta",
+        "empty_state": "Sätt först ord på några livsområden, så har den här vandringen något att utgå från.",
+        "empty_cta": "Gå till din kompass",
+        "step1": {
+          "title": "Vad som betyder något",
+          "prompt": "Det här är riktningarna du har satt ord på. Lägg märke till vilka som drar mest i dig."
+        },
+        "step2": {
+          "title": "Hur det levs",
+          "prompt": "Tänk på den senaste tiden. Hur nära kändes var och en? Inget dömande -- bara lägg märke."
+        },
+        "step3": {
+          "title": "Var glappet finns",
+          "prompt": "Där det som betyder något och hur du lever glider isär finns ofta något värt att ta hand om.",
+          "gap_far": "känns långt från det som betyder något",
+          "gap_near": "ett litet avstånd",
+          "gap_aligned": "känns i samklang",
+          "all_aligned": "Just nu känns inget långt borta. Det är värt att vila i."
+        },
+        "step4": {
+          "title": "Ett litet steg",
+          "prompt_focus": "{{area}} känns längst från det som betyder något. Om du vill, välj ett litet steg i den riktningen.",
+          "prompt_aligned": "Inget känns långt borta just nu. Om du vill, välj vilket område som helst att vårda med ett litet steg.",
+          "cta": "Öppna din kompass för att lägga till ett steg"
+        }
       }
     }
   },
