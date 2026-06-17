@@ -85,6 +85,38 @@
         "area_none": "Not attached to an area",
         "outcome_label": "What actually happened",
         "outcome_help": "There are no right answers. Just notice what you noticed."
+      },
+      "values_clarity": {
+        "label": "A clarity session",
+        "description": "A short, guided walk through what matters, how it's lived, and one small step.",
+        "step_label": "Step {{current}} of {{total}}",
+        "back": "Back",
+        "next": "Next",
+        "done": "Finish",
+        "empty_state": "Name a few life areas first, and this walk will have something to reflect on.",
+        "empty_cta": "Go to your compass",
+        "step1": {
+          "title": "What matters",
+          "prompt": "These are the directions you've named. Notice which ones pull at you most."
+        },
+        "step2": {
+          "title": "How it's lived",
+          "prompt": "Think of recent life. How close did each one feel? No judgement -- just notice."
+        },
+        "step3": {
+          "title": "Where the gap is",
+          "prompt": "Where what matters and how you're living drift apart, there's often something worth tending.",
+          "gap_far": "feels far from what matters",
+          "gap_near": "a small distance",
+          "gap_aligned": "feels aligned",
+          "all_aligned": "Right now nothing feels far off. That's worth resting in."
+        },
+        "step4": {
+          "title": "One small step",
+          "prompt_focus": "{{area}} feels furthest from what matters. If you'd like, choose one small step toward it.",
+          "prompt_aligned": "Nothing feels far off right now. If you like, pick any area to nurture with a small step.",
+          "cta": "Open your compass to add a step"
+        }
       }
     }
   },
