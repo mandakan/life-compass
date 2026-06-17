@@ -131,6 +131,9 @@
         "delete": "Delete",
         "edit": "Edit",
         "untitled": "Untitled situation",
+        "expand": "Expand",
+        "collapse": "Collapse",
+        "delete_confirm": "Delete this thought record? This can't be undone.",
         "step1": {
           "title": "What happened?",
           "prompt": "Where were you, who was there, what was going on?",

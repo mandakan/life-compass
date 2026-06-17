@@ -250,6 +250,9 @@
         "delete": "Ta bort",
         "edit": "Redigera",
         "untitled": "Namnlös situation",
+        "expand": "Visa mer",
+        "collapse": "Visa mindre",
+        "delete_confirm": "Ta bort den här tankeregistreringen? Det går inte att ångra.",
         "step1": {
           "title": "Vad hände?",
           "prompt": "Var var du, vem var där, vad var på gång?",

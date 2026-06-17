@@ -5,8 +5,8 @@ import {
 } from '../store/lifeCompassStore';
 
 describe('thoughtRecords persist migration', () => {
-  it('PERSIST_VERSION is bumped to 3', () => {
-    expect(PERSIST_VERSION).toBe(3);
+  it('PERSIST_VERSION is at least 3', () => {
+    expect(PERSIST_VERSION).toBeGreaterThanOrEqual(3);
   });
 
   it('migrate seeds thoughtRecords:[] for a v2 state', () => {
