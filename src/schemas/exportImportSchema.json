@@ -209,6 +209,31 @@
             ],
             "additionalProperties": true
           }
+        },
+        "behavioralActivations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "areaId": { "type": "string" },
+              "activity": { "type": "string" },
+              "plannedDate": { "type": "string" },
+              "timeOfDay": {
+                "type": "string",
+                "enum": ["morning", "afternoon", "evening"]
+              },
+              "done": { "type": "boolean" },
+              "pleasureExpected": { "type": "number" },
+              "pleasureActual": { "type": "number" },
+              "masteryExpected": { "type": "number" },
+              "masteryActual": { "type": "number" },
+              "outcome": { "type": "string" },
+              "createdAt": { "type": "string" }
+            },
+            "required": ["id", "activity", "done", "outcome", "createdAt"],
+            "additionalProperties": true
+          }
         }
       },
       "required": ["userSettings", "lifeAreas", "history"],
