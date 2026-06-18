@@ -350,6 +350,73 @@
           "prompt": "När du har provat, lägg märke till vad som faktiskt hände. Det finns inget rätt svar.",
           "outcome_placeholder": "Vad hände när du provade?"
         }
+      },
+      "behavioral_activation": {
+        "label": "Beteendeaktivering",
+        "description": "Planera något som kan kännas bra eller meningsfullt, och märk sedan hur det faktiskt blev.",
+        "new": "Planera en aktivitet",
+        "empty_state": "Inget planerat än. Planera en liten aktivitet -- något som kan kännas bra eller meningsfullt.",
+        "untitled": "Namnlös aktivitet",
+        "step_label": "Steg {{current}} av {{total}}",
+        "back": "Tillbaka",
+        "next": "Nästa",
+        "done": "Klar",
+        "edit": "Redigera",
+        "delete": "Ta bort",
+        "delete_confirm": "Ta bort \"{{title}}\"? Det går inte att ångra.",
+        "expand": "Visa detaljer",
+        "collapse": "Dölj detaljer",
+        "status_planned": "Planerad",
+        "status_done": "Gjord",
+        "step1": {
+          "title": "Vad ska du göra?",
+          "prompt": "Planera något som kan kännas bra eller meningsfullt.",
+          "area_label": "Livsområde (valfritt)",
+          "area_none": "Inget särskilt område",
+          "activity_label": "Aktiviteten",
+          "placeholder": "t.ex. en kort promenad, ringa en vän, städa en låda"
+        },
+        "step2": {
+          "title": "När?",
+          "prompt": "Välj en ungefärlig tid om det hjälper. Båda är valfria.",
+          "date_label": "Dag (valfritt)",
+          "time_label": "Tid på dagen (valfritt)",
+          "time_none": "Ingen särskild tid",
+          "time_morning": "Morgon",
+          "time_afternoon": "Eftermiddag",
+          "time_evening": "Kväll"
+        },
+        "step3": {
+          "title": "Hur tror du att det känns?",
+          "prompt": "Bara en gissning -- det finns inget rätt svar.",
+          "pleasure_label": "Hur bra tror du att det känns?",
+          "meaning_label": "Tror du att det känns meningsfullt?"
+        },
+        "step4": {
+          "title": "Efteråt",
+          "prompt": "Kom tillbaka hit när du har gjort det.",
+          "done_label": "Jag gjorde det här",
+          "outcome_label": "Hur gick det?",
+          "outcome_placeholder": "Några ord om hur det faktiskt blev",
+          "pleasure_label": "Hur bra kändes det?",
+          "meaning_label": "Kändes det meningsfullt?",
+          "expected_tag": "Förväntat",
+          "actual_tag": "Faktiskt"
+        },
+        "pleasure_scale": {
+          "1": "Inte bra",
+          "2": "Lite bra",
+          "3": "Okej",
+          "4": "Bra",
+          "5": "Riktigt bra"
+        },
+        "meaning_scale": {
+          "1": "Inte direkt",
+          "2": "Lite",
+          "3": "Något",
+          "4": "Ganska",
+          "5": "Mycket meningsfullt"
+        }
       }
     },
     "crisis": {
