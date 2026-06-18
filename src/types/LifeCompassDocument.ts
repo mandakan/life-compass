@@ -84,16 +84,48 @@ export interface ThoughtRecord {
 }
 
 /**
+ * One brainstormed solution inside a ProblemSolving record. `pros`/`cons` are
+ * free text ("what's good about this / what's hard about this") -- never rated,
+ * counted, or tallied. There is no "best" option; the user simply marks the one
+ * they chose to try via ProblemSolving.chosenOptionId.
+ */
+export interface SolutionOption {
+  id: string;
+  text: string;
+  pros: string; // "what's good about this", free text, starts empty
+  cons: string; // "what's hard about this", free text, starts empty
+}
+
+/**
+ * A structured problem-solving record: a concrete problem, a set of
+ * brainstormed options (each optionally weighed), the option chosen to try, a
+ * self-contained plan (reusing ActionStep), and a free-text review of how it
+ * went. The area link is optional, like BehavioralExperiment / ThoughtRecord.
+ * No scores: completing plan steps means "I tried it", never "I succeeded".
+ */
+export interface ProblemSolving {
+  id: string;
+  areaId?: string; // optional link to LifeArea.id
+  problem: string; // the problem, concretely
+  options: SolutionOption[]; // brainstormed options, each optionally weighed
+  chosenOptionId?: string; // which option is being tried; cleared if that option is removed
+  steps: ActionStep[]; // the plan; reuse ActionStep verbatim
+  outcome: string; // review reflection; starts empty
+  createdAt: string; // ISO 8601
+}
+
+/**
  * The single persisted document. Versioned so the schema can evolve via the
  * store's persist `migrate` hook.
  */
 export interface LifeCompassDocument {
-  schemaVersion: 4;
+  schemaVersion: 5;
   lifeAreas: LifeArea[];
   history: Snapshot[];
   goals: Goal[];
   behavioralExperiments: BehavioralExperiment[];
   thoughtRecords: ThoughtRecord[];
+  problemSolvings: ProblemSolving[];
 }
 
-export const CURRENT_SCHEMA_VERSION = 4 as const;
+export const CURRENT_SCHEMA_VERSION = 5 as const;
