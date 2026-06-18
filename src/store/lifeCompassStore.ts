@@ -25,7 +25,7 @@ export const STORE_KEY = 'life-compass';
 /**
  * Bump this when the persisted shape changes and add a branch to `migrate`.
  */
-export const PERSIST_VERSION = 4;
+export const PERSIST_VERSION = 5;
 
 export interface LifeCompassState {
   lifeAreas: LifeArea[];
@@ -616,6 +616,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'behavioralExperiments'
             | 'thoughtRecords'
             | 'problemSolvings'
+            | 'behavioralActivations'
           >
         >;
         // v0 -> v1: goals did not exist; seed an empty array.
@@ -632,6 +633,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'behavioralExperiments'
             | 'thoughtRecords'
             | 'problemSolvings'
+            | 'behavioralActivations'
           >;
         }
         // v1 -> v2: behavioralExperiments did not exist; seed an empty array.
@@ -647,6 +649,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'behavioralExperiments'
             | 'thoughtRecords'
             | 'problemSolvings'
+            | 'behavioralActivations'
           >;
         }
         // v2 -> v3: thoughtRecords did not exist; seed an empty array.
@@ -662,6 +665,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'behavioralExperiments'
             | 'thoughtRecords'
             | 'problemSolvings'
+            | 'behavioralActivations'
           >;
         }
         // v3 -> v4: problemSolvings did not exist; seed an empty array.
@@ -677,6 +681,23 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'behavioralExperiments'
             | 'thoughtRecords'
             | 'problemSolvings'
+            | 'behavioralActivations'
+          >;
+        }
+        // v4 -> v5: behavioralActivations did not exist; seed an empty array.
+        if (version < 5) {
+          return {
+            ...state,
+            behavioralActivations: state.behavioralActivations ?? [],
+          } as Pick<
+            LifeCompassState,
+            | 'lifeAreas'
+            | 'history'
+            | 'goals'
+            | 'behavioralExperiments'
+            | 'thoughtRecords'
+            | 'problemSolvings'
+            | 'behavioralActivations'
           >;
         }
         return state as Pick<
@@ -687,6 +708,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           | 'behavioralExperiments'
           | 'thoughtRecords'
           | 'problemSolvings'
+          | 'behavioralActivations'
         >;
       },
 
@@ -710,6 +732,9 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         }
         if (!Array.isArray(state.problemSolvings)) {
           state.problemSolvings = [];
+        }
+        if (!Array.isArray(state.behavioralActivations)) {
+          state.behavioralActivations = [];
         }
         const seeded = migrateLegacyData();
         if (seeded && state.lifeAreas.length === 0) {
