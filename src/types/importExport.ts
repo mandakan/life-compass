@@ -82,5 +82,20 @@ export type ImportedData = {
       createdAt: string;
       [key: string]: unknown;
     }[];
+    behavioralActivations?: {
+      id: string;
+      areaId?: string;
+      activity: string;
+      plannedDate?: string;
+      timeOfDay?: 'morning' | 'afternoon' | 'evening';
+      done: boolean;
+      pleasureExpected?: number;
+      pleasureActual?: number;
+      masteryExpected?: number;
+      masteryActual?: number;
+      outcome: string;
+      createdAt: string;
+      [key: string]: unknown;
+    }[];
   };
 };

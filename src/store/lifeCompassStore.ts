@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import { LifeArea } from '../types/LifeArea';
 import {
   ActionStep,
+  BehavioralActivation,
   BehavioralExperiment,
   CURRENT_SCHEMA_VERSION,
   Goal,
@@ -33,6 +34,7 @@ export interface LifeCompassState {
   behavioralExperiments: BehavioralExperiment[];
   thoughtRecords: ThoughtRecord[];
   problemSolvings: ProblemSolving[];
+  behavioralActivations: BehavioralActivation[];
 
   addArea: (area: LifeArea) => void;
   updateArea: (id: string, changes: Partial<LifeArea>) => void;
@@ -94,6 +96,13 @@ export interface LifeCompassState {
   addProblemSolvingStep: (recordId: string, text: string) => void;
   toggleProblemSolvingStep: (recordId: string, stepId: string) => void;
   removeProblemSolvingStep: (recordId: string, stepId: string) => void;
+
+  addBehavioralActivation: (areaId?: string) => void;
+  updateBehavioralActivation: (
+    recordId: string,
+    changes: Partial<BehavioralActivation>,
+  ) => void;
+  removeBehavioralActivation: (recordId: string) => void;
 }
 
 function toSnapshotAreas(areas: LifeArea[]): SnapshotArea[] {
@@ -114,6 +123,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
       behavioralExperiments: [],
       thoughtRecords: [],
       problemSolvings: [],
+      behavioralActivations: [],
 
       addArea: area =>
         set(state => ({ lifeAreas: [...state.lifeAreas, area] })),
@@ -136,6 +146,9 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           ),
           thoughtRecords: state.thoughtRecords.filter(rec => rec.areaId !== id),
           problemSolvings: state.problemSolvings.filter(
+            rec => rec.areaId !== id,
+          ),
+          behavioralActivations: state.behavioralActivations.filter(
             rec => rec.areaId !== id,
           ),
         })),
@@ -163,6 +176,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           behavioralExperiments: [],
           thoughtRecords: [],
           problemSolvings: [],
+          behavioralActivations: [],
         }),
 
       importDocument: doc =>
@@ -173,6 +187,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           behavioralExperiments: doc.behavioralExperiments ?? [],
           thoughtRecords: doc.thoughtRecords ?? [],
           problemSolvings: doc.problemSolvings ?? [],
+          behavioralActivations: doc.behavioralActivations ?? [],
         }),
 
       saveSnapshot: label =>
@@ -542,13 +557,43 @@ export const useLifeCompassStore = create<LifeCompassState>()(
               : rec,
           ),
         })),
+
+      addBehavioralActivation: areaId =>
+        set(state => {
+          const record: BehavioralActivation = {
+            id: crypto.randomUUID(),
+            activity: '',
+            done: false,
+            outcome: '',
+            createdAt: new Date().toISOString(),
+            ...(areaId ? { areaId } : {}),
+          };
+          return {
+            behavioralActivations: [...state.behavioralActivations, record],
+          };
+        }),
+
+      updateBehavioralActivation: (recordId, changes) =>
+        set(state => ({
+          behavioralActivations: state.behavioralActivations.map(rec =>
+            rec.id === recordId ? { ...rec, ...changes, id: rec.id } : rec,
+          ),
+        })),
+
+      removeBehavioralActivation: recordId =>
+        set(state => ({
+          behavioralActivations: state.behavioralActivations.filter(
+            rec => rec.id !== recordId,
+          ),
+        })),
     }),
     {
       name: STORE_KEY,
       version: PERSIST_VERSION,
 
       // Only `lifeAreas`, `history`, `goals`, `behavioralExperiments`,
-      // `thoughtRecords`, and `problemSolvings` are persisted; actions are recreated.
+      // `thoughtRecords`, `problemSolvings`, and `behavioralActivations` are
+      // persisted; actions are recreated.
       partialize: state => ({
         lifeAreas: state.lifeAreas,
         history: state.history,
@@ -556,6 +601,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         behavioralExperiments: state.behavioralExperiments,
         thoughtRecords: state.thoughtRecords,
         problemSolvings: state.problemSolvings,
+        behavioralActivations: state.behavioralActivations,
       }),
 
       // Owns schema evolution of the persisted document. Add branches as

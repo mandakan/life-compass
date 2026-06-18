@@ -115,17 +115,42 @@ export interface ProblemSolving {
 }
 
 /**
+ * A planned activity for behavioral activation: something the user means to do,
+ * optionally on a date/time-of-day, then reviewed after the fact. The two
+ * feeling axes -- pleasure ("how good it felt") and meaning (mastery, reframed
+ * toward values) -- are captured as predicted + experienced 1-5 word-buckets.
+ * They are never rendered as numbers or a before/after delta. `done` encodes
+ * activation-vs-avoidance ("I did it"), never achievement. The area link is
+ * optional, like BehavioralExperiment / ThoughtRecord / ProblemSolving.
+ */
+export interface BehavioralActivation {
+  id: string;
+  areaId?: string; // optional link to LifeArea.id
+  activity: string; // what I plan to do
+  plannedDate?: string; // ISO date (day granularity), optional
+  timeOfDay?: 'morning' | 'afternoon' | 'evening'; // optional schedule slot
+  done: boolean; // did it happen? starts false
+  pleasureExpected?: number; // 1-5 word-bucket, "how good do you expect it to feel?"
+  pleasureActual?: number; // 1-5 word-bucket, "how good did it feel?"
+  masteryExpected?: number; // 1-5 word-bucket, "do you expect it to feel meaningful?"
+  masteryActual?: number; // 1-5 word-bucket, "did it feel meaningful?"
+  outcome: string; // free-text "how it went"; starts empty
+  createdAt: string; // ISO 8601
+}
+
+/**
  * The single persisted document. Versioned so the schema can evolve via the
  * store's persist `migrate` hook.
  */
 export interface LifeCompassDocument {
-  schemaVersion: 5;
+  schemaVersion: 6;
   lifeAreas: LifeArea[];
   history: Snapshot[];
   goals: Goal[];
   behavioralExperiments: BehavioralExperiment[];
   thoughtRecords: ThoughtRecord[];
   problemSolvings: ProblemSolving[];
+  behavioralActivations: BehavioralActivation[];
 }
 
-export const CURRENT_SCHEMA_VERSION = 5 as const;
+export const CURRENT_SCHEMA_VERSION = 6 as const;
