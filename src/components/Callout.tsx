@@ -9,7 +9,7 @@ interface CalloutProps {
 const Callout: React.FC<CalloutProps> = ({ children, onDismiss }) => {
   const { t } = useTranslation();
   return (
-    <div className="mt-4 mb-4 flex items-center justify-between rounded-sm border border-l-6 border-border bg-surface p-2 font-sans text-text">
+    <div className="border-border bg-surface text-text mt-4 mb-4 flex items-center justify-between rounded-sm border border-l-6 p-2 font-sans">
       <span>{children || t('recommend_max_ten_life_areas')}</span>
       {onDismiss && (
         <button

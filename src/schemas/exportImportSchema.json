@@ -147,7 +147,66 @@
               "feelingAfter": { "type": "number" },
               "createdAt": { "type": "string" }
             },
-            "required": ["id", "situation", "thought", "feeling", "supports", "widerView", "kinderView", "createdAt"],
+            "required": [
+              "id",
+              "situation",
+              "thought",
+              "feeling",
+              "supports",
+              "widerView",
+              "kinderView",
+              "createdAt"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "problemSolvings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "areaId": { "type": "string" },
+              "problem": { "type": "string" },
+              "chosenOptionId": { "type": "string" },
+              "outcome": { "type": "string" },
+              "createdAt": { "type": "string" },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "text": { "type": "string" },
+                    "pros": { "type": "string" },
+                    "cons": { "type": "string" }
+                  },
+                  "required": ["id", "text", "pros", "cons"],
+                  "additionalProperties": true
+                }
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "text": { "type": "string" },
+                    "done": { "type": "boolean" }
+                  },
+                  "required": ["id", "text", "done"],
+                  "additionalProperties": true
+                }
+              }
+            },
+            "required": [
+              "id",
+              "problem",
+              "options",
+              "steps",
+              "outcome",
+              "createdAt"
+            ],
             "additionalProperties": true
           }
         }

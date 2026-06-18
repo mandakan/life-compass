@@ -133,7 +133,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
   if (!isDesktop && isEditing) {
     return (
       <div
-        className={`relative flex flex-grow flex-col rounded-sm border border-border bg-bg p-4 text-text shadow-sm transition-all ${className || ''}`}
+        className={`border-border bg-bg text-text relative flex flex-grow flex-col rounded-sm border p-4 shadow-sm transition-all ${className || ''}`}
       >
         <LifeAreaEditForm
           {...editFormProps}
@@ -146,7 +146,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
 
   return (
     <div
-      className={`relative flex flex-grow flex-col rounded-sm border border-border bg-bg p-4 text-text shadow-sm transition-all ${className || ''}`}
+      className={`border-border bg-bg text-text relative flex flex-grow flex-col rounded-sm border p-4 shadow-sm transition-all ${className || ''}`}
     >
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 cursor-grab opacity-90"
@@ -185,22 +185,20 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
         <div className="flex items-center gap-2">
           <Popover
             trigger={
-              <InformationCircleIcon className="h-6 w-6 flex-none shrink-0 text-primary" />
+              <InformationCircleIcon className="text-primary h-6 w-6 flex-none shrink-0" />
             }
             className="max-w-2xl"
           >
             {<p>{area.description}</p>}
           </Popover>
-          <h4 className="text-lg font-semibold text-primary">
-            {area.name}
-          </h4>
+          <h4 className="text-primary text-lg font-semibold">{area.name}</h4>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => onRemove(area.id)}
             title={t('delete') || 'Delete'}
             aria-label={`${t('delete') || 'Delete'} ${area.name}`}
-            className="inline-flex min-h-[36px] min-w-[36px] cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-text hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text hover:bg-surface-sunken focus-visible:outline-focus inline-flex min-h-[36px] min-w-[36px] cursor-pointer items-center justify-center rounded-md border-none bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <TrashIcon className="size-5" aria-hidden="true" />
           </button>
@@ -208,7 +206,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
       </div>
       <div
         onClick={() => setEditingDetailsInline(true)}
-        className="h-[120px] cursor-text rounded-sm bg-surface-sunken px-0 py-0 font-sans transition-colors hover:bg-surface"
+        className="bg-surface-sunken hover:bg-surface h-[120px] cursor-text rounded-sm px-0 py-0 font-sans transition-colors"
         role="button"
         tabIndex={0}
         onKeyDown={e => {
@@ -247,11 +245,11 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               }
             }}
             autoFocus
-            className="block h-[120px] w-full flex-1 resize-none bg-surface-sunken px-2 py-1 font-sans text-base outline-none"
+            className="bg-surface-sunken block h-[120px] w-full flex-1 resize-none px-2 py-1 font-sans text-base outline-none"
           />
         ) : (
           <div className="h-[120px] w-full px-2 py-1">
-            <span className="whitespace-pre-wrap text-text">
+            <span className="text-text whitespace-pre-wrap">
               {area.details || t('click_to_edit_details')}
             </span>
           </div>
@@ -264,7 +262,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             <span className="text-text-muted">{t('importance')}</span>
             <Popover
               trigger={
-                <div className="flex cursor-pointer items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-text">
+                <div className="bg-surface-sunken text-text flex cursor-pointer items-center gap-1 rounded px-2 py-0.5 text-sm">
                   <span role="img" aria-label={t('importance')}>
                     ⭐
                   </span>
@@ -293,7 +291,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </Popover>
           </div>
           <div
-            className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
+            className="bg-surface-sunken h-2 w-full overflow-hidden rounded-full"
             role="meter"
             aria-label={t('importance')}
             aria-valuenow={area.importance}
@@ -301,7 +299,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             aria-valuemax={10}
           >
             <div
-              className="h-full rounded-full bg-primary"
+              className="bg-primary h-full rounded-full"
               style={{ width: `${(area.importance / 10) * 100}%` }}
             />
           </div>
@@ -315,7 +313,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </span>
             <Popover
               trigger={
-                <div className="flex cursor-pointer items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-text">
+                <div className="bg-surface-sunken text-text flex cursor-pointer items-center gap-1 rounded px-2 py-0.5 text-sm">
                   <span role="img" aria-label={t('satisfaction')}>
                     ❤️
                   </span>
@@ -344,7 +342,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             </Popover>
           </div>
           <div
-            className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
+            className="bg-surface-sunken h-2 w-full overflow-hidden rounded-full"
             role="meter"
             aria-label={t('satisfaction')}
             aria-valuenow={area.satisfaction}
@@ -352,15 +350,15 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
             aria-valuemax={10}
           >
             <div
-              className="h-full rounded-full bg-secondary"
+              className="bg-secondary h-full rounded-full"
               style={{ width: `${(area.satisfaction / 10) * 100}%` }}
             />
           </div>
         </div>
 
         {/* Gap chip: the absolute distance between importance and satisfaction. */}
-        <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
-          <span className="inline-flex items-center gap-1 rounded-full bg-surface-sunken px-2.5 py-1 text-xs font-medium text-text">
+        <div className="border-border mt-3 flex items-center justify-between border-t pt-3">
+          <span className="bg-surface-sunken text-text inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium">
             {t('gap')}: {Math.abs(area.importance - area.satisfaction)}
           </span>
           <div className="flex items-center gap-1">
@@ -368,7 +366,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               onClick={() => setGoalsOpen(true)}
               title={t('goals.open_goals')}
               aria-label={`${t('goals.open_goals')} ${area.name}`}
-              className="inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-2 text-sm text-text hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text hover:bg-surface-sunken focus-visible:outline-focus inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <FlagIcon className="size-5" aria-hidden="true" />
               <span>{goalCount}</span>
@@ -377,7 +375,7 @@ const LifeAreaCard: React.FC<LifeAreaCardProps> = ({
               onClick={handleEditClick}
               title={t('edit') || 'Edit'}
               aria-label={t('edit') || 'Edit'}
-              className="inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-2 text-sm text-text hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text hover:bg-surface-sunken focus-visible:outline-focus inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <PencilIcon className="size-5" aria-hidden="true" />
               <span>{t('edit') || 'Edit'}</span>

@@ -47,7 +47,7 @@ export function weeksFor(a: LifeArea, history: Snapshot[]): number[] {
 
   const points: number[] = [];
   for (const snap of sorted) {
-    const sa = snap.areas.find((sa) => sa.id === a.id);
+    const sa = snap.areas.find(sa => sa.id === a.id);
     if (sa) {
       points.push(toBucket(sa.satisfaction));
     }

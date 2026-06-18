@@ -58,7 +58,9 @@ describe('HelpGuide', () => {
     expect(
       screen.getByText('Once a week, one gentle question'),
     ).toBeInTheDocument();
-    expect(screen.getByText('Everything stays on your device')).toBeInTheDocument();
+    expect(
+      screen.getByText('Everything stays on your device'),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Replay the welcome' }),
     ).toBeInTheDocument();

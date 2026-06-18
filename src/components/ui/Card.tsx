@@ -28,7 +28,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          'rounded-lg border border-border bg-surface text-text',
+          'border-border bg-surface text-text rounded-lg border',
           elevation === 'raised' && 'shadow-warm-md',
           paddingClasses[padding],
           className,

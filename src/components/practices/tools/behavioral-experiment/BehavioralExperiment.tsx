@@ -51,12 +51,12 @@ const BehavioralExperiment: React.FC = () => {
         />
 
         {lifeAreas.length > 0 && (
-          <label className="flex min-w-0 flex-col gap-1 text-sm text-text-muted">
+          <label className="text-text-muted flex min-w-0 flex-col gap-1 text-sm">
             {t(`${PREFIX}.area_label`)}
             <select
               value={areaId}
               onChange={e => setAreaId(e.target.value)}
-              className="min-h-[44px] w-full min-w-0 max-w-full truncate rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="border-border bg-surface text-text focus-visible:outline-focus min-h-[44px] w-full max-w-full min-w-0 truncate rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <option value="">{t(`${PREFIX}.area_none`)}</option>
               {lifeAreas.map(area => (
@@ -79,7 +79,7 @@ const BehavioralExperiment: React.FC = () => {
       </form>
 
       {experiments.length === 0 ? (
-        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
+        <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t(`${PREFIX}.empty_state`)}
         </p>
       ) : (

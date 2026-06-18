@@ -77,7 +77,7 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
           onDrop={onDrop(index)}
           className={`flex h-full w-full ${
             dragOverIndex === index
-              ? 'border-2 border-dashed border-primary'
+              ? 'border-primary border-2 border-dashed'
               : ''
           }`}
         >
@@ -89,7 +89,7 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
             onSave={onSaveArea}
             onCancel={onCancelEdit}
             existingNames={existingNames}
-            className="w-full rounded-lg border border-border bg-surface p-4 font-sans shadow-warm-sm"
+            className="border-border bg-surface shadow-warm-sm w-full rounded-lg border p-4 font-sans"
             onAutoUpdateRating={onAutoUpdateRating}
             dragHandle={{
               draggable: editingAreaId === area.id ? false : true,
@@ -102,7 +102,7 @@ const LifeAreaGrid: React.FC<LifeAreaGridProps> = ({
       <button
         type="button"
         onClick={() => onAddNewArea(areas.length)}
-        className="flex min-h-[120px] w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-border bg-surface/40 p-4 text-primary transition-colors duration-base ease-out-soft hover:border-primary hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        className="border-border bg-surface/40 text-primary duration-base ease-out-soft hover:border-primary hover:bg-surface focus-visible:outline-focus flex min-h-[120px] w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed p-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <span>{t('plus_add_new_life_area')}</span>
       </button>

@@ -48,16 +48,16 @@ const Checkbox: React.FC<CheckboxProps> = ({
         <span
           aria-hidden="true"
           className={cn(
-            'pointer-events-none flex h-5 w-5 items-center justify-center rounded-sm border border-border bg-surface text-on-primary',
-            'transition-colors duration-base ease-out-soft',
-            'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus',
+            'border-border bg-surface text-on-primary pointer-events-none flex h-5 w-5 items-center justify-center rounded-sm border',
+            'duration-base ease-out-soft transition-colors',
+            'peer-focus-visible:outline-focus peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2',
             checked && 'border-primary bg-primary',
           )}
         >
           {checked && <CheckIcon className="h-4 w-4" strokeWidth={3} />}
         </span>
       </span>
-      {!hideLabel && <span className="text-base text-text">{label}</span>}
+      {!hideLabel && <span className="text-text text-base">{label}</span>}
     </label>
   );
 };

@@ -5,7 +5,12 @@ import ContentPage from '@components/ui/ContentPage';
 const PrivacyPolicy: React.FC = () => {
   const { t } = useTranslation();
 
-  const sections: { titleKey: string; titleFallback: string; bodyKey: string; bodyFallback: string }[] = [
+  const sections: {
+    titleKey: string;
+    titleFallback: string;
+    bodyKey: string;
+    bodyFallback: string;
+  }[] = [
     {
       titleKey: 'privacyPolicy.dataStorageTitle',
       titleFallback: 'Local Data Storage',
@@ -54,16 +59,16 @@ const PrivacyPolicy: React.FC = () => {
       <div className="space-y-8">
         {sections.map(section => (
           <section key={section.titleKey} className="space-y-2">
-            <h2 className="font-display text-2xl font-semibold text-text">
+            <h2 className="font-display text-text text-2xl font-semibold">
               {t(section.titleKey, section.titleFallback)}
             </h2>
-            <p className="text-lg leading-relaxed text-text">
+            <p className="text-text text-lg leading-relaxed">
               {t(section.bodyKey, section.bodyFallback)}
             </p>
           </section>
         ))}
 
-        <p className="text-lg leading-relaxed text-text-muted">
+        <p className="text-text-muted text-lg leading-relaxed">
           {t(
             'privacyPolicy.closing',
             'If you have any questions or concerns about your privacy, please feel free to contact us.',

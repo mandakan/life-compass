@@ -109,7 +109,7 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
           </svg>
 
           <div
-            className="absolute flex items-center justify-center rounded-full border-2 border-primary bg-surface shadow-warm-sm"
+            className="border-primary bg-surface shadow-warm-sm absolute flex items-center justify-center rounded-full border-2"
             style={{
               left: cx,
               top: cy,
@@ -131,7 +131,7 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
                   type="button"
                   onClick={onAdd}
                   aria-label={t('your_compass.map.add_aria')}
-                  className="absolute flex items-center justify-center rounded-full border-[1.5px] border-dashed border-border bg-transparent text-2xl text-text transition-[border-color,background-color] duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="border-border text-text duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus absolute flex items-center justify-center rounded-full border-[1.5px] border-dashed bg-transparent text-2xl transition-[border-color,background-color] focus-visible:outline-2 focus-visible:outline-offset-2"
                   style={{
                     left: p.x,
                     top: p.y,
@@ -153,7 +153,7 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
                 type="button"
                 onClick={() => onOpen(area.id)}
                 aria-label={t('your_compass.map.open_aria', { name })}
-                className="absolute flex items-center justify-center rounded-md border-[1.5px] border-border bg-surface px-1.5 py-2 text-center font-semibold text-text shadow-warm-sm transition-[border-color,background-color] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                className="border-border bg-surface text-text shadow-warm-sm duration-base ease-out-soft focus-visible:outline-focus absolute flex items-center justify-center rounded-md border-[1.5px] px-1.5 py-2 text-center font-semibold transition-[border-color,background-color] focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
                   left: p.x,
                   top: p.y,
@@ -166,7 +166,7 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
                 {/* Clamp on a span: a <button> ignores display:-webkit-box,
                     so line-clamp must live on a child element. */}
                 <span
-                  className="line-clamp-2 break-words leading-tight"
+                  className="line-clamp-2 leading-tight break-words"
                   style={{ fontSize: box < 76 ? 11 : 12 }}
                 >
                   {name}
@@ -177,7 +177,7 @@ const MapView: React.FC<MapViewProps> = ({ areas, onOpen, onAdd }) => {
         </div>
       </div>
 
-      <p className="mt-3.5 text-center text-sm leading-normal text-text-muted">
+      <p className="text-text-muted mt-3.5 text-center text-sm leading-normal">
         {empty
           ? t('your_compass.map.helper_empty')
           : t('your_compass.map.helper_populated')}

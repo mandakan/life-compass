@@ -26,7 +26,7 @@ const StepDots: React.FC<{ count: number; index: number }> = ({
     {Array.from({ length: count }).map((_, i) => (
       <span
         key={i}
-        className="h-1.5 rounded-full transition-[width,background-color] duration-base ease-out-soft"
+        className="duration-base ease-out-soft h-1.5 rounded-full transition-[width,background-color]"
         style={{
           width: i === index ? 22 : 6,
           background:
@@ -44,7 +44,7 @@ const FlowBar: React.FC<{ onSkip: () => void }> = ({ onSkip }) => {
     <div className="mx-auto flex w-full max-w-[760px] items-center justify-between px-6 py-5">
       <span className="inline-flex items-center gap-2.5">
         <CompassMark size={24} />
-        <span className="font-display text-lg font-semibold text-primary">
+        <span className="font-display text-primary text-lg font-semibold">
           {t('life_compass')}
         </span>
       </span>
@@ -89,16 +89,15 @@ const Onboarding: React.FC<OnboardingProps> = ({ onFinish }) => {
       <FlowBar onSkip={onFinish} />
 
       <div className="flex w-full flex-1 flex-col items-center justify-center overflow-y-auto px-6 pt-2 pb-6 sm:pb-10">
-        <div
-          key={i}
-          className="wg-anim w-full max-w-[540px] text-center"
-        >
+        <div key={i} className="wg-anim w-full max-w-[540px] text-center">
           {step.kind === 'welcome' && (
             <>
               <div className="mb-5 flex justify-center sm:mb-[26px]">
                 <CompassMark size={64} />
               </div>
-              <p className={eyebrowClass}>{t('guide.onboarding.welcome.eyebrow')}</p>
+              <p className={eyebrowClass}>
+                {t('guide.onboarding.welcome.eyebrow')}
+              </p>
               <h1 className={titleClass}>
                 {t('guide.onboarding.welcome.title')}
               </h1>
@@ -111,7 +110,11 @@ const Onboarding: React.FC<OnboardingProps> = ({ onFinish }) => {
           {step.kind === 'topic' && (
             <>
               <div className="mb-4 flex justify-center sm:mb-[22px]">
-                <TopicGlyph icon={step.topic.icon} tone={step.topic.tone} size={62} />
+                <TopicGlyph
+                  icon={step.topic.icon}
+                  tone={step.topic.tone}
+                  size={62}
+                />
               </div>
               <p className={eyebrowClass}>
                 {t(`guide.topics.${step.topic.id}.eyebrow`)}
@@ -128,10 +131,18 @@ const Onboarding: React.FC<OnboardingProps> = ({ onFinish }) => {
           {step.kind === 'ready' && (
             <>
               <div className="mb-4 flex justify-center sm:mb-[22px]">
-                <TopicGlyph icon="check-circle" tone="var(--color-secondary)" size={62} />
+                <TopicGlyph
+                  icon="check-circle"
+                  tone="var(--color-secondary)"
+                  size={62}
+                />
               </div>
-              <p className={eyebrowClass}>{t('guide.onboarding.ready.eyebrow')}</p>
-              <h1 className={titleClass}>{t('guide.onboarding.ready.title')}</h1>
+              <p className={eyebrowClass}>
+                {t('guide.onboarding.ready.eyebrow')}
+              </p>
+              <h1 className={titleClass}>
+                {t('guide.onboarding.ready.title')}
+              </h1>
               <p className={supportClass}>{t('guide.onboarding.ready.body')}</p>
             </>
           )}
@@ -165,7 +176,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onFinish }) => {
             {t(last ? 'guide.onboarding.finish' : 'guide.onboarding.continue')}
           </Button>
         </div>
-        <p className="mx-auto mt-4 max-w-[540px] px-6 pb-5 text-center text-sm text-text-muted sm:mt-5 sm:pb-7">
+        <p className="text-text-muted mx-auto mt-4 max-w-[540px] px-6 pb-5 text-center text-sm sm:mt-5 sm:pb-7">
           {t('guide.onboarding.footer')}
         </p>
       </div>

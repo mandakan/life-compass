@@ -6,6 +6,7 @@ import {
   CURRENT_SCHEMA_VERSION,
   type BehavioralExperiment,
   type Goal,
+  type ProblemSolving,
   type Snapshot,
   type ThoughtRecord,
 } from '@models/LifeCompassDocument';
@@ -81,7 +82,7 @@ const YourCompass: React.FC = () => {
   }, [lifeAreas, editingId]);
 
   const editingArea = editingId
-    ? lifeAreas.find(area => area.id === editingId) ?? null
+    ? (lifeAreas.find(area => area.id === editingId) ?? null)
     : null;
 
   // ----- first-run flow -----
@@ -159,6 +160,7 @@ const YourCompass: React.FC = () => {
       behavioralExperiments: (payload.data.behavioralExperiments ??
         []) as BehavioralExperiment[],
       thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],
+      problemSolvings: (payload.data.problemSolvings ?? []) as ProblemSolving[],
     });
     setShowImportExport(false);
     setPhase('app');
@@ -221,10 +223,10 @@ const YourCompass: React.FC = () => {
         {/* Header: eyebrow + title, with overflow menu and start-fresh. */}
         <header className="mb-5 flex items-start justify-between gap-3 sm:mb-6">
           <div className="min-w-0">
-            <p className="font-body text-sm tracking-[0.02em] text-text-muted">
+            <p className="font-body text-text-muted text-sm tracking-[0.02em]">
               {t('your_compass.heading.eyebrow')}
             </p>
-            <h1 className="mt-1 font-display text-lg font-semibold leading-snug text-text sm:text-2xl md:text-3xl">
+            <h1 className="font-display text-text mt-1 text-lg leading-snug font-semibold sm:text-2xl md:text-3xl">
               {t('your_compass.heading.title')}
             </h1>
           </div>
@@ -233,7 +235,7 @@ const YourCompass: React.FC = () => {
             {/* Start-fresh inline confirm. */}
             {confirmFresh ? (
               <div className="flex items-center gap-1">
-                <span className="font-body text-sm text-text-muted">
+                <span className="font-body text-text-muted text-sm">
                   {t('your_compass.start_over_q')}
                 </span>
                 <Button
@@ -266,7 +268,7 @@ const YourCompass: React.FC = () => {
                 <button
                   type="button"
                   aria-label={t('your_compass.overflow.menu')}
-                  className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-transparent bg-transparent text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="text-text duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md border border-transparent bg-transparent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   <EllipsisHorizontalIcon className="h-6 w-6" />
                 </button>
@@ -276,21 +278,21 @@ const YourCompass: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowRadar(true)}
-                  className="cursor-pointer rounded-md px-3 py-2 text-left font-body text-sm text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="font-body text-text duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus cursor-pointer rounded-md px-3 py-2 text-left text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   {t('your_compass.overflow.radar')}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowHistory(true)}
-                  className="cursor-pointer rounded-md px-3 py-2 text-left font-body text-sm text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="font-body text-text duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus cursor-pointer rounded-md px-3 py-2 text-left text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   {t('your_compass.overflow.history')}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowImportExport(true)}
-                  className="cursor-pointer rounded-md px-3 py-2 text-left font-body text-sm text-text transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="font-body text-text duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus cursor-pointer rounded-md px-3 py-2 text-left text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   {t('your_compass.overflow.import_export')}
                 </button>
@@ -303,7 +305,7 @@ const YourCompass: React.FC = () => {
         {hasAreas && (
           <div className="mb-6">
             <PerspectiveSwitcher view={view} onChange={setView} />
-            <p className="mt-3 font-body text-sm text-text-muted">
+            <p className="font-body text-text-muted mt-3 text-sm">
               {t(activeView.subKey)}
             </p>
           </div>
@@ -382,7 +384,7 @@ const YourCompass: React.FC = () => {
           <ExportButton />
         </div>
         {importError && (
-          <p className="mt-3 font-body text-sm text-danger">{importError}</p>
+          <p className="font-body text-danger mt-3 text-sm">{importError}</p>
         )}
       </Dialog>
     </div>

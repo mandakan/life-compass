@@ -9,7 +9,11 @@ export interface SuggestProps {
   onOwn: () => void;
 }
 
-const Suggest: React.FC<SuggestProps> = ({ suggestions, onContinue, onOwn }) => {
+const Suggest: React.FC<SuggestProps> = ({
+  suggestions,
+  onContinue,
+  onOwn,
+}) => {
   const { t } = useTranslation();
   const [picked, setPicked] = useState<Record<string, boolean>>({});
 
@@ -28,11 +32,11 @@ const Suggest: React.FC<SuggestProps> = ({ suggestions, onContinue, onOwn }) => 
       className="mx-auto w-full max-w-[560px]"
       style={{ padding: 'clamp(32px, 7vw, 56px) clamp(16px, 5vw, 24px) 80px' }}
     >
-      <h1 className="font-display text-2xl font-semibold leading-tight text-text">
+      <h1 className="font-display text-text text-2xl leading-tight font-semibold">
         {t('your_compass.suggest.title')}
       </h1>
 
-      <p className="mt-[10px] mb-[22px] text-base leading-relaxed text-text-muted">
+      <p className="text-text-muted mt-[10px] mb-[22px] text-base leading-relaxed">
         {t('your_compass.suggest.body')}
       </p>
 
@@ -45,7 +49,7 @@ const Suggest: React.FC<SuggestProps> = ({ suggestions, onContinue, onOwn }) => 
               key={s.id}
               onClick={() => toggle(s.id)}
               aria-pressed={on}
-              className="cursor-pointer min-h-[44px] rounded-full px-4 py-[10px] box-border font-body text-base text-text transition-[border-color,background-color] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="font-body text-text duration-base ease-out-soft focus-visible:outline-focus box-border min-h-[44px] cursor-pointer rounded-full px-4 py-[10px] text-base transition-[border-color,background-color] focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 border: `2px solid ${on ? 'var(--color-primary)' : 'var(--color-border)'}`,
                 background: on
@@ -79,7 +83,7 @@ const Suggest: React.FC<SuggestProps> = ({ suggestions, onContinue, onOwn }) => 
 
         <button
           onClick={onOwn}
-          className="min-h-[44px] cursor-pointer border-none bg-transparent font-body text-base text-text underline [text-underline-offset:3px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          className="font-body text-text focus-visible:outline-focus min-h-[44px] cursor-pointer border-none bg-transparent text-base underline [text-underline-offset:3px] focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {t('your_compass.suggest.cta_own')}
         </button>

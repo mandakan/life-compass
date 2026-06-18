@@ -61,7 +61,7 @@ const HeaderNavigation: React.FC = () => {
     'block rounded-md px-3 py-3 text-base text-text no-underline transition-colors duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur supports-[backdrop-filter]:bg-surface/75">
+    <header className="border-border bg-surface/85 supports-[backdrop-filter]:bg-surface/75 sticky top-0 z-40 border-b backdrop-blur">
       <nav
         aria-label={t('primary_navigation', 'Primary')}
         className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:gap-4 sm:px-4"
@@ -70,7 +70,7 @@ const HeaderNavigation: React.FC = () => {
         <div className="flex min-w-0 items-center gap-6">
           <Link
             to="/"
-            className="min-w-0 truncate font-display text-lg font-semibold text-primary no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:text-xl"
+            className="font-display text-primary focus-visible:outline-focus min-w-0 truncate text-lg font-semibold no-underline focus-visible:outline-2 focus-visible:outline-offset-2 sm:text-xl"
           >
             {t('life_compass')}
           </Link>
@@ -142,7 +142,7 @@ const HeaderNavigation: React.FC = () => {
         <div
           id="mobile-navigation-menu"
           ref={menuRef}
-          className="border-t border-border bg-surface px-4 py-2 md:hidden"
+          className="border-border bg-surface border-t px-4 py-2 md:hidden"
         >
           <Link to="/" onClick={closeMobile} className={mobileLinkClass}>
             {t('home')}
@@ -153,7 +153,11 @@ const HeaderNavigation: React.FC = () => {
           <Link to="/help" onClick={closeMobile} className={mobileLinkClass}>
             {t('nav.help', 'Help')}
           </Link>
-          <Link to="/practices" onClick={closeMobile} className={mobileLinkClass}>
+          <Link
+            to="/practices"
+            onClick={closeMobile}
+            className={mobileLinkClass}
+          >
             {t('nav.practices', 'Practices')}
           </Link>
           <Link to="/about" onClick={closeMobile} className={mobileLinkClass}>

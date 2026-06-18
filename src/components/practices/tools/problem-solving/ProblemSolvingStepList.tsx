@@ -7,25 +7,25 @@ import Checkbox from '@components/ui/Checkbox';
 import Input from '@components/ui/Input';
 import Button from '@components/ui/Button';
 
-export interface ExperimentStepListProps {
-  experimentId: string;
+export interface ProblemSolvingStepListProps {
+  recordId: string;
   steps: ActionStep[];
 }
 
-const PREFIX = 'practices.tools.behavioral_experiment';
+const PREFIX = 'practices.tools.problem_solving';
 
 /**
- * The "things to try" list inside one experiment. Toggling a step is just
- * noticing what was tried -- it is never framed as progress toward a target.
+ * The small-steps plan inside one record. Toggling a step is just noticing what
+ * was tried -- never framed as progress toward a target.
  */
-const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
-  experimentId,
+const ProblemSolvingStepList: React.FC<ProblemSolvingStepListProps> = ({
+  recordId,
   steps,
 }) => {
   const { t } = useTranslation();
-  const toggleStep = useLifeCompassStore(s => s.toggleExperimentStep);
-  const removeStep = useLifeCompassStore(s => s.removeExperimentStep);
-  const addStep = useLifeCompassStore(s => s.addExperimentStep);
+  const toggleStep = useLifeCompassStore(s => s.toggleProblemSolvingStep);
+  const removeStep = useLifeCompassStore(s => s.removeProblemSolvingStep);
+  const addStep = useLifeCompassStore(s => s.addProblemSolvingStep);
 
   const [newStep, setNewStep] = useState('');
 
@@ -33,12 +33,12 @@ const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
     if (newStep.trim() === '') {
       return;
     }
-    addStep(experimentId, newStep);
+    addStep(recordId, newStep);
     setNewStep('');
   };
 
   return (
-    <div className="border-border mt-3 flex flex-col gap-3 border-t pt-3">
+    <div className="mt-3 flex flex-col gap-3">
       <ul className="flex flex-col gap-1">
         {steps.map(step => (
           <li
@@ -47,15 +47,15 @@ const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
           >
             <Checkbox
               checked={step.done}
-              onChange={() => toggleStep(experimentId, step.id)}
+              onChange={() => toggleStep(recordId, step.id)}
               label={step.text}
               className="min-w-0 flex-1"
             />
             <button
               type="button"
-              onClick={() => removeStep(experimentId, step.id)}
-              title={t(`${PREFIX}.delete_step`)}
-              aria-label={`${t(`${PREFIX}.delete_step`)}: ${step.text}`}
+              onClick={() => removeStep(recordId, step.id)}
+              title={t(`${PREFIX}.step4.delete_step`)}
+              aria-label={`${t(`${PREFIX}.step4.delete_step`)}: ${step.text}`}
               className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
@@ -74,8 +74,8 @@ const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
         <Input
           value={newStep}
           onChange={e => setNewStep(e.target.value)}
-          placeholder={t(`${PREFIX}.add_step_placeholder`)}
-          aria-label={t(`${PREFIX}.add_step`)}
+          placeholder={t(`${PREFIX}.step4.add_step_placeholder`)}
+          aria-label={t(`${PREFIX}.step4.add_step`)}
         />
         <Button
           type="submit"
@@ -83,11 +83,11 @@ const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
           className="flex-none"
           disabled={newStep.trim() === ''}
         >
-          {t(`${PREFIX}.add_step`)}
+          {t(`${PREFIX}.step4.add_step`)}
         </Button>
       </form>
     </div>
   );
 };
 
-export default ExperimentStepList;
+export default ProblemSolvingStepList;

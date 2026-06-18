@@ -53,14 +53,16 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
   };
 
   return (
-    <li className="rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
+    <li className="border-border bg-surface shadow-warm-sm rounded-lg border p-4">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
           aria-expanded={expanded}
-          aria-label={expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)}
-          className="-m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          aria-label={
+            expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)
+          }
+          className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus -m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {expanded ? (
             <ChevronDownIcon className="size-5" />
@@ -107,7 +109,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
           <button
             type="button"
             onClick={() => setExpanded(prev => !prev)}
-            className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-text"
+            className="text-text min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium"
             title={experiment.title}
           >
             {experiment.title}
@@ -117,7 +119,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
         {!editing && (
           <div className="flex flex-none items-center gap-1">
             {total > 0 && (
-              <span className="rounded-full bg-surface-sunken px-2 py-0.5 text-xs font-medium whitespace-nowrap text-text-muted">
+              <span className="bg-surface-sunken text-text-muted rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap">
                 {t(`${PREFIX}.step_count`, { done, total })}
               </span>
             )}
@@ -129,7 +131,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
               }}
               title={t('edit')}
               aria-label={`${t('edit')}: ${experiment.title}`}
-              className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <PencilIcon className="size-4" />
             </button>
@@ -138,7 +140,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
               onClick={handleDelete}
               title={t('delete')}
               aria-label={`${t('delete')}: ${experiment.title}`}
-              className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
             </button>

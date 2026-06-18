@@ -3,22 +3,22 @@ import { useTranslation } from 'react-i18next';
 import { useLifeCompassStore } from '@/store/lifeCompassStore';
 import { useConfirmDialog } from '@components/ui/hooks/useConfirmDialog';
 import Button from '@components/ui/Button';
-import ThoughtRecordFlow from './ThoughtRecordFlow';
-import ThoughtRecordItem from './ThoughtRecordItem';
+import ProblemSolvingFlow from './ProblemSolvingFlow';
+import ProblemSolvingItem from './ProblemSolvingItem';
 
-const PREFIX = 'practices.tools.thought_record';
+const PREFIX = 'practices.tools.problem_solving';
 
-const ThoughtRecord: React.FC = () => {
+const ProblemSolving: React.FC = () => {
   const { t } = useTranslation();
-  const thoughtRecords = useLifeCompassStore(s => s.thoughtRecords);
-  const addThoughtRecord = useLifeCompassStore(s => s.addThoughtRecord);
+  const records = useLifeCompassStore(s => s.problemSolvings);
+  const addRecord = useLifeCompassStore(s => s.addProblemSolving);
   const { confirm, ConfirmationDialog } = useConfirmDialog();
 
   const [openId, setOpenId] = useState<string | null>(null);
 
   const handleNew = () => {
-    addThoughtRecord();
-    const id = useLifeCompassStore.getState().thoughtRecords.at(-1)!.id;
+    addRecord();
+    const id = useLifeCompassStore.getState().problemSolvings.at(-1)!.id;
     setOpenId(id);
   };
 
@@ -30,11 +30,10 @@ const ThoughtRecord: React.FC = () => {
     });
 
   if (openId !== null) {
-    const record = thoughtRecords.find(r => r.id === openId);
-    // If for some reason the record was removed, fall back to list
+    const record = records.find(r => r.id === openId);
     if (record != null) {
       return (
-        <ThoughtRecordFlow record={record} onClose={() => setOpenId(null)} />
+        <ProblemSolvingFlow record={record} onClose={() => setOpenId(null)} />
       );
     }
   }
@@ -47,21 +46,19 @@ const ThoughtRecord: React.FC = () => {
         </Button>
       </div>
 
-      {thoughtRecords.length === 0 ? (
+      {records.length === 0 ? (
         <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t(`${PREFIX}.empty_state`)}
         </p>
       ) : (
         <ul className="mt-5 flex flex-col gap-3">
-          {[...thoughtRecords].reverse().map(record => (
-            <ThoughtRecordItem
+          {[...records].reverse().map(record => (
+            <ProblemSolvingItem
               key={record.id}
               record={record}
               onEdit={() => setOpenId(record.id)}
               onRequestDelete={() =>
-                requestDelete(
-                  record.situation.trim() || t(`${PREFIX}.untitled`),
-                )
+                requestDelete(record.problem.trim() || t(`${PREFIX}.untitled`))
               }
             />
           ))}
@@ -73,4 +70,4 @@ const ThoughtRecord: React.FC = () => {
   );
 };
 
-export default ThoughtRecord;
+export default ProblemSolving;

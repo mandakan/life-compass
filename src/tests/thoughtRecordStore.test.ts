@@ -35,7 +35,9 @@ describe('thoughtRecords store slice', () => {
 
   it('adds a thought record linked to an area', () => {
     useLifeCompassStore.getState().addThoughtRecord('area-1');
-    expect(useLifeCompassStore.getState().thoughtRecords[0].areaId).toBe('area-1');
+    expect(useLifeCompassStore.getState().thoughtRecords[0].areaId).toBe(
+      'area-1',
+    );
   });
 
   it('updates a thought record but never changes its id', () => {
@@ -75,7 +77,7 @@ describe('thoughtRecords store slice', () => {
 
   it('imports thought records from a document', () => {
     useLifeCompassStore.getState().importDocument({
-      schemaVersion: 4,
+      schemaVersion: 5,
       lifeAreas: [],
       history: [],
       goals: [],
@@ -92,6 +94,7 @@ describe('thoughtRecords store slice', () => {
           createdAt: '2026-06-17T00:00:00.000Z',
         },
       ],
+      problemSolvings: [],
     });
     expect(useLifeCompassStore.getState().thoughtRecords).toHaveLength(1);
   });

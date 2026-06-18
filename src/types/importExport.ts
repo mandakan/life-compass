@@ -60,5 +60,27 @@ export type ImportedData = {
       createdAt: string;
       [key: string]: unknown;
     }[];
+    problemSolvings?: {
+      id: string;
+      areaId?: string;
+      problem: string;
+      options: {
+        id: string;
+        text: string;
+        pros: string;
+        cons: string;
+        [key: string]: unknown;
+      }[];
+      chosenOptionId?: string;
+      steps: {
+        id: string;
+        text: string;
+        done: boolean;
+        [key: string]: unknown;
+      }[];
+      outcome: string;
+      createdAt: string;
+      [key: string]: unknown;
+    }[];
   };
 };

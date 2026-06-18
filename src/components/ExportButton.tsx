@@ -15,10 +15,18 @@ const ExportButton: React.FC = () => {
     state => state.behavioralExperiments,
   );
   const thoughtRecords = useLifeCompassStore(state => state.thoughtRecords);
+  const problemSolvings = useLifeCompassStore(state => state.problemSolvings);
 
   const handleExport = async () => {
     try {
-      const jsonData = exportData({ lifeAreas, history, goals, behavioralExperiments, thoughtRecords });
+      const jsonData = exportData({
+        lifeAreas,
+        history,
+        goals,
+        behavioralExperiments,
+        thoughtRecords,
+        problemSolvings,
+      });
       const blob = new Blob([jsonData], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
 

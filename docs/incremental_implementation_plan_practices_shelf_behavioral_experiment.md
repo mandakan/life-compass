@@ -22,6 +22,7 @@ Each task is TDD-shaped: write a failing test, run it and watch it fail, write t
 React 18 + TypeScript, Zustand (`persist` middleware), Tailwind 4 (`@theme` tokens in `src/index.css`), React Router (`basename={import.meta.env.BASE_URL}`), i18next + react-i18next (HTTP backend, files under `public/locales/{lng}/translation.json`, version-gated on `"1.0.0"`), Ajv for import validation, Vitest for unit/component tests.
 
 Commands used throughout:
+
 - `npx vitest run <path>` -- run one test file once.
 - `npx vitest run -t "name"` -- filter by test name.
 - `npm run extract` -- i18next-parser pulls keys from source.
@@ -34,6 +35,7 @@ Node 22 is required (`.nvmrc`).
 ## File Structure
 
 New files:
+
 ```
 src/practices/toolRegistry.ts
 src/practices/index.ts
@@ -52,6 +54,7 @@ src/tests/behavioralExperiment.test.tsx
 ```
 
 Modified files:
+
 ```
 src/types/LifeCompassDocument.ts
 src/store/lifeCompassStore.ts
@@ -199,16 +202,16 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   return (
     <Link
       to={`/practices/${tool.id}`}
-      className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4 shadow-warm-sm transition-[background-color,box-shadow] duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+      className="border-border bg-surface shadow-warm-sm duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus flex items-start gap-3 rounded-xl border p-4 transition-[background-color,box-shadow] focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {Icon && (
-        <span className="mt-0.5 flex-none text-text-muted">
+        <span className="text-text-muted mt-0.5 flex-none">
           <Icon className="size-6" />
         </span>
       )}
       <span className="min-w-0">
-        <span className="block font-medium text-text">{t(tool.labelKey)}</span>
-        <span className="mt-1 block text-sm text-text-muted">
+        <span className="text-text block font-medium">{t(tool.labelKey)}</span>
+        <span className="text-text-muted mt-1 block text-sm">
           {t(tool.descriptionKey)}
         </span>
       </span>
@@ -247,13 +250,13 @@ const ToolShell: React.FC<ToolShellProps> = ({
     <section className="mx-auto w-full max-w-2xl px-4 py-8">
       <Link
         to="/practices"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-text-muted underline-offset-4 transition-colors duration-base ease-out-soft hover:text-text hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus mb-6 inline-flex items-center gap-1 text-sm underline-offset-4 transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <ArrowLeftIcon className="size-4" />
         {t('practices.back')}
       </Link>
-      <h1 className="font-display text-2xl text-text">{t(titleKey)}</h1>
-      <p className="mt-2 text-text-muted">{t(descriptionKey)}</p>
+      <h1 className="font-display text-text text-2xl">{t(titleKey)}</h1>
+      <p className="text-text-muted mt-2">{t(descriptionKey)}</p>
       <div className="mt-6">{children}</div>
     </section>
   );
@@ -332,13 +335,13 @@ const PracticesPage: React.FC = () => {
 
   return (
     <section className="mx-auto w-full max-w-2xl px-4 py-8">
-      <h1 className="font-display text-2xl text-text">
+      <h1 className="font-display text-text text-2xl">
         {t('practices.heading')}
       </h1>
-      <p className="mt-2 text-text-muted">{t('practices.intro')}</p>
+      <p className="text-text-muted mt-2">{t('practices.intro')}</p>
 
       {TOOLS.length === 0 ? (
-        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
+        <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t('practices.empty')}
         </p>
       ) : (
@@ -493,7 +496,9 @@ describe('behavioralExperiments slice', () => {
   it('addExperiment trims the title and ignores empty input', () => {
     const s = useLifeCompassStore.getState();
     s.addExperiment('   ');
-    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(0);
+    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(
+      0,
+    );
     s.addExperiment('  I will be judged  ');
     const exps = useLifeCompassStore.getState().behavioralExperiments;
     expect(exps).toHaveLength(1);
@@ -507,9 +512,9 @@ describe('behavioralExperiments slice', () => {
     const area = makeArea('Friends');
     useLifeCompassStore.getState().addArea(area);
     useLifeCompassStore.getState().addExperiment('Call a friend', area.id);
-    expect(
-      useLifeCompassStore.getState().behavioralExperiments[0].areaId,
-    ).toBe(area.id);
+    expect(useLifeCompassStore.getState().behavioralExperiments[0].areaId).toBe(
+      area.id,
+    );
   });
 
   it('updateExperiment merges changes but preserves id', () => {
@@ -877,9 +882,9 @@ import {
 - [ ] Update `onRehydrateStorage` (lines 257-276): add the defensive guard after the existing `goals` guard (after line 265):
 
 ```ts
-        if (!Array.isArray(state.behavioralExperiments)) {
-          state.behavioralExperiments = [];
-        }
+if (!Array.isArray(state.behavioralExperiments)) {
+  state.behavioralExperiments = [];
+}
 ```
 
 - [ ] Run the two store/migration tests green:
@@ -930,7 +935,11 @@ npx vitest run src/tests/behavioralExperimentStore.test.ts src/tests/behavioralE
 - [ ] In `src/utils/exportService.ts`, import the type and extend `ExportInput`:
 
 ```ts
-import { BehavioralExperiment, Goal, Snapshot } from '../types/LifeCompassDocument';
+import {
+  BehavioralExperiment,
+  Goal,
+  Snapshot,
+} from '../types/LifeCompassDocument';
 
 export interface ExportInput {
   lifeAreas: LifeArea[];
@@ -980,14 +989,14 @@ export interface ExportInput {
 - [ ] In `src/pages/YourCompass.tsx`, add `BehavioralExperiment` to the existing `@models/LifeCompassDocument` import. Update the `importDocument` call (lines 152-157):
 
 ```ts
-    importDocument({
-      schemaVersion: CURRENT_SCHEMA_VERSION,
-      lifeAreas: payload.data.lifeAreas as LifeArea[],
-      history: payload.data.history as unknown as Snapshot[],
-      goals: (payload.data.goals ?? []) as Goal[],
-      behavioralExperiments: (payload.data.behavioralExperiments ??
-        []) as BehavioralExperiment[],
-    });
+importDocument({
+  schemaVersion: CURRENT_SCHEMA_VERSION,
+  lifeAreas: payload.data.lifeAreas as LifeArea[],
+  history: payload.data.history as unknown as Snapshot[],
+  goals: (payload.data.goals ?? []) as Goal[],
+  behavioralExperiments: (payload.data.behavioralExperiments ??
+    []) as BehavioralExperiment[],
+});
 ```
 
 - [ ] In `src/pages/YourCompass.tsx`, find the existing `goals` selector and the `exportData({ lifeAreas, history, goals })` call (read the export handler first). Add `const behavioralExperiments = useLifeCompassStore(state => state.behavioralExperiments);` alongside the `goals` selector and include `behavioralExperiments` in the `exportData(...)` argument object.
@@ -995,14 +1004,14 @@ export interface ExportInput {
 - [ ] In `src/components/guide/GuideDataActions.tsx`, mirror both edits. Add `BehavioralExperiment` to its `@models/LifeCompassDocument` import. Update the `importDocument` call (lines 57-62):
 
 ```ts
-    importDocument({
-      schemaVersion: CURRENT_SCHEMA_VERSION,
-      lifeAreas: payload.data.lifeAreas as LifeArea[],
-      history: payload.data.history as unknown as Snapshot[],
-      goals: (payload.data.goals ?? []) as Goal[],
-      behavioralExperiments: (payload.data.behavioralExperiments ??
-        []) as BehavioralExperiment[],
-    });
+importDocument({
+  schemaVersion: CURRENT_SCHEMA_VERSION,
+  lifeAreas: payload.data.lifeAreas as LifeArea[],
+  history: payload.data.history as unknown as Snapshot[],
+  goals: (payload.data.goals ?? []) as Goal[],
+  behavioralExperiments: (payload.data.behavioralExperiments ??
+    []) as BehavioralExperiment[],
+});
 ```
 
 - [ ] In `GuideDataActions.tsx`, add `const behavioralExperiments = useLifeCompassStore(state => state.behavioralExperiments);` and include it in the `exportData({ lifeAreas, history, goals })` argument (line 38).
@@ -1111,12 +1120,12 @@ const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
   };
 
   return (
-    <div className="mt-3 flex flex-col gap-3 border-t border-border pt-3">
+    <div className="border-border mt-3 flex flex-col gap-3 border-t pt-3">
       <ul className="flex flex-col gap-1">
         {steps.map(step => (
           <li
             key={step.id}
-            className="flex items-center justify-between gap-2 rounded-md px-1 py-1 hover:bg-surface-sunken"
+            className="hover:bg-surface-sunken flex items-center justify-between gap-2 rounded-md px-1 py-1"
           >
             <Checkbox
               checked={step.done}
@@ -1129,7 +1138,7 @@ const ExperimentStepList: React.FC<ExperimentStepListProps> = ({
               onClick={() => removeStep(experimentId, step.id)}
               title={t(`${PREFIX}.delete_step`)}
               aria-label={`${t(`${PREFIX}.delete_step`)}: ${step.text}`}
-              className="flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
             </button>
@@ -1213,8 +1222,11 @@ const OutcomeField: React.FC<OutcomeFieldProps> = ({ value, onCommit }) => {
   }, [draft, autosize]);
 
   return (
-    <div className="mt-3 border-t border-border pt-3">
-      <label htmlFor="experiment-outcome" className="block text-sm font-medium text-text">
+    <div className="border-border mt-3 border-t pt-3">
+      <label
+        htmlFor="experiment-outcome"
+        className="text-text block text-sm font-medium"
+      >
         {t(`${PREFIX}.outcome_label`)}
       </label>
       <textarea
@@ -1225,9 +1237,11 @@ const OutcomeField: React.FC<OutcomeFieldProps> = ({ value, onCommit }) => {
         onInput={autosize}
         onChange={e => setDraft(e.target.value)}
         onBlur={() => onCommit(draft)}
-        className="mt-2 min-h-[60px] w-full resize-none overflow-hidden rounded-md border border-border bg-surface px-3 py-2 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        className="border-border bg-surface text-text focus-visible:outline-focus mt-2 min-h-[60px] w-full resize-none overflow-hidden rounded-md border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2"
       />
-      <p className="mt-1 text-xs text-text-muted">{t(`${PREFIX}.outcome_help`)}</p>
+      <p className="text-text-muted mt-1 text-xs">
+        {t(`${PREFIX}.outcome_help`)}
+      </p>
     </div>
   );
 };
@@ -1301,14 +1315,16 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
   };
 
   return (
-    <li className="rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
+    <li className="border-border bg-surface shadow-warm-sm rounded-lg border p-4">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
           aria-expanded={expanded}
-          aria-label={expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)}
-          className="-m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          aria-label={
+            expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)
+          }
+          className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus -m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {expanded ? (
             <ChevronDownIcon className="size-5" />
@@ -1355,7 +1371,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
           <button
             type="button"
             onClick={() => setExpanded(prev => !prev)}
-            className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-text"
+            className="text-text min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium"
             title={experiment.title}
           >
             {experiment.title}
@@ -1365,7 +1381,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
         {!editing && (
           <div className="flex flex-none items-center gap-1">
             {total > 0 && (
-              <span className="rounded-full bg-surface-sunken px-2 py-0.5 text-xs font-medium whitespace-nowrap text-text-muted">
+              <span className="bg-surface-sunken text-text-muted rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap">
                 {t(`${PREFIX}.step_count`, { done, total })}
               </span>
             )}
@@ -1377,7 +1393,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
               }}
               title={t('edit')}
               aria-label={`${t('edit')}: ${experiment.title}`}
-              className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <PencilIcon className="size-4" />
             </button>
@@ -1386,7 +1402,7 @@ const ExperimentItem: React.FC<ExperimentItemProps> = ({
               onClick={handleDelete}
               title={t('delete')}
               aria-label={`${t('delete')}: ${experiment.title}`}
-              className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
             </button>
@@ -1475,12 +1491,12 @@ const BehavioralExperiment: React.FC = () => {
         />
 
         {lifeAreas.length > 0 && (
-          <label className="flex flex-col gap-1 text-sm text-text-muted">
+          <label className="text-text-muted flex flex-col gap-1 text-sm">
             {t(`${PREFIX}.area_label`)}
             <select
               value={areaId}
               onChange={e => setAreaId(e.target.value)}
-              className="min-h-[44px] rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="border-border bg-surface text-text focus-visible:outline-focus min-h-[44px] rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <option value="">{t(`${PREFIX}.area_none`)}</option>
               {lifeAreas.map(area => (
@@ -1503,7 +1519,7 @@ const BehavioralExperiment: React.FC = () => {
       </form>
 
       {experiments.length === 0 ? (
-        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
+        <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t(`${PREFIX}.empty_state`)}
         </p>
       ) : (
@@ -1643,7 +1659,9 @@ describe('Behavioral Experiment tool', () => {
     const input = screen.getByLabelText(/add experiment/i);
     fireEvent.change(input, { target: { value: 'People will laugh' } });
     fireEvent.submit(input.closest('form')!);
-    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(1);
+    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(
+      1,
+    );
     expect(screen.getByText('People will laugh')).toBeTruthy();
   });
 

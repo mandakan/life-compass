@@ -31,7 +31,7 @@ export function ListView({ areas, onOpen }: ListViewProps) {
             key={area.id}
             onClick={() => onOpen(area.id)}
             aria-label={t('your_compass.map.open_aria', { name: area.name })}
-            className="flex w-full cursor-pointer items-center gap-3 bg-transparent py-[15px] px-1 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="focus-visible:outline-focus flex w-full cursor-pointer items-center gap-3 bg-transparent px-1 py-[15px] text-left focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{
               border: 'none',
               borderBottom: isLast ? 'none' : '1px solid var(--color-border)',
@@ -39,11 +39,11 @@ export function ListView({ areas, onOpen }: ListViewProps) {
           >
             {/* Left: name + description */}
             <div className="min-w-0 flex-1">
-              <div className="text-base font-semibold text-text">
+              <div className="text-text text-base font-semibold">
                 {area.name}
               </div>
               {area.description && (
-                <div className="mt-px text-sm text-text-muted">
+                <div className="text-text-muted mt-px text-sm">
                   {area.description}
                 </div>
               )}
@@ -51,7 +51,7 @@ export function ListView({ areas, onOpen }: ListViewProps) {
 
             {/* Right: lived word colored by tone */}
             <span
-              className="flex-none whitespace-nowrap pl-3 text-sm"
+              className="flex-none pl-3 text-sm whitespace-nowrap"
               style={{ color: toneColor(areaTone) }}
             >
               {t(LIVED_KEY(livedBucket))}

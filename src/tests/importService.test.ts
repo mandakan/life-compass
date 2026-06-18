@@ -223,7 +223,9 @@ describe('parseAndValidateJSON', () => {
     const result = parseAndValidateJSON(JSON.stringify(oldExport));
 
     expect(result.valid).toBe(true);
-    const returned = result.data as { data: { behavioralExperiments?: unknown[] } };
+    const returned = result.data as {
+      data: { behavioralExperiments?: unknown[] };
+    };
     // behavioralExperiments is optional in the schema; its absence is valid.
     expect(returned.data.behavioralExperiments).toBeUndefined();
   });

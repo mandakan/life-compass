@@ -24,7 +24,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
-            className="animate-fadeIn z-[9999] max-w-[200px] rounded-[4px] border border-primary bg-surface p-[0.5rem] text-sm font-medium text-text shadow-lg transition-opacity duration-300"
+            className="animate-fadeIn border-primary bg-surface text-text z-[9999] max-w-[200px] rounded-[4px] border p-[0.5rem] text-sm font-medium shadow-lg transition-opacity duration-300"
             side={side}
             align={align}
             sideOffset={sideOffset}

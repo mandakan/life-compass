@@ -5,8 +5,7 @@ export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   /** Shows a spinner and marks the button busy + disabled. */
@@ -74,8 +73,8 @@ const Button: React.FC<ButtonProps> = ({
       aria-busy={loading || undefined}
       className={cn(
         'inline-flex cursor-pointer items-center justify-center rounded-md font-medium',
-        'transition-[background-color,color,opacity,box-shadow] duration-base ease-out-soft',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+        'duration-base ease-out-soft transition-[background-color,color,opacity,box-shadow]',
+        'focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
         'disabled:cursor-not-allowed disabled:opacity-60',
         variantClasses[variant],
         sizeClasses[size],

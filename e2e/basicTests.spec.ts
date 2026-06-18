@@ -182,7 +182,7 @@ test.describe('Life Compass App End-to-End Tests', () => {
     const maxRight = await page.evaluate(() => {
       const vw = document.documentElement.clientWidth;
       let max = 0;
-      document.querySelectorAll('body *').forEach((el) => {
+      document.querySelectorAll('body *').forEach(el => {
         const right = el.getBoundingClientRect().right;
         if (right > max) max = right;
       });

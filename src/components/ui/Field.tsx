@@ -54,8 +54,9 @@ const Field: React.FC<FieldProps> = ({
   const control = React.cloneElement(child, {
     id: child.props.id ?? fieldId,
     'aria-describedby':
-      [child.props['aria-describedby'], describedBy].filter(Boolean).join(' ') ||
-      undefined,
+      [child.props['aria-describedby'], describedBy]
+        .filter(Boolean)
+        .join(' ') || undefined,
     'aria-invalid': error ? true : child.props['aria-invalid'],
   });
 
@@ -63,21 +64,18 @@ const Field: React.FC<FieldProps> = ({
     <div className={cn('flex flex-col gap-1.5', className)}>
       <label
         htmlFor={fieldId}
-        className={cn(
-          'text-sm font-medium text-text',
-          hideLabel && 'sr-only',
-        )}
+        className={cn('text-text text-sm font-medium', hideLabel && 'sr-only')}
       >
         {label}
         {required && (
-          <span aria-hidden="true" className="ml-0.5 text-danger">
+          <span aria-hidden="true" className="text-danger ml-0.5">
             *
           </span>
         )}
       </label>
 
       {description && (
-        <p id={descriptionId} className="text-sm text-text-muted">
+        <p id={descriptionId} className="text-text-muted text-sm">
           {description}
         </p>
       )}
@@ -85,7 +83,7 @@ const Field: React.FC<FieldProps> = ({
       {control}
 
       {error && (
-        <p id={errorId} role="alert" className="text-sm text-danger">
+        <p id={errorId} role="alert" className="text-danger text-sm">
           {error}
         </p>
       )}

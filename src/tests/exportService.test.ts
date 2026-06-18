@@ -52,13 +52,18 @@ describe('exportData', () => {
         id: 'snap-1',
         createdAt: new Date().toISOString(),
         label: 'test snapshot',
-        areas: [{ id: '1', name: 'Testomrade', importance: 7, satisfaction: 6 }],
+        areas: [
+          { id: '1', name: 'Testomrade', importance: 7, satisfaction: 6 },
+        ],
       },
     ];
 
     localStorage.setItem('userSettings', JSON.stringify(customUserSettings));
 
-    const jsonString = exportData({ lifeAreas: customLifeAreas, history: customHistory });
+    const jsonString = exportData({
+      lifeAreas: customLifeAreas,
+      history: customHistory,
+    });
     const data = JSON.parse(jsonString);
 
     expect(data.data.userSettings).toEqual(customUserSettings);
@@ -120,13 +125,17 @@ describe('exportData', () => {
       {
         id: 'snap-a',
         createdAt: '2026-06-14T10:00:00.000Z',
-        areas: [{ id: 'area-1', name: 'Health', importance: 8, satisfaction: 6 }],
+        areas: [
+          { id: 'area-1', name: 'Health', importance: 8, satisfaction: 6 },
+        ],
       },
       {
         id: 'snap-b',
         createdAt: '2026-06-14T11:00:00.000Z',
         label: 'after checkup',
-        areas: [{ id: 'area-1', name: 'Health', importance: 8, satisfaction: 7 }],
+        areas: [
+          { id: 'area-1', name: 'Health', importance: 8, satisfaction: 7 },
+        ],
       },
     ];
 
@@ -252,14 +261,55 @@ describe('exportData', () => {
       behavioralExperiments: [],
       thoughtRecords: [
         {
-          id: 't1', situation: 's', thought: 'th', feeling: 'sad',
-          feelingBefore: 4, supports: '', widerView: '', kinderView: '',
-          feelingAfter: 2, createdAt: '2026-06-17T00:00:00.000Z',
+          id: 't1',
+          situation: 's',
+          thought: 'th',
+          feeling: 'sad',
+          feelingBefore: 4,
+          supports: '',
+          widerView: '',
+          kinderView: '',
+          feelingAfter: 2,
+          createdAt: '2026-06-17T00:00:00.000Z',
         },
       ],
     });
     const parsed = JSON.parse(json);
     expect(parsed.data.thoughtRecords).toHaveLength(1);
     expect(parsed.data.thoughtRecords[0].feelingAfter).toBe(2);
+  });
+
+  it('includes problemSolvings in the exported document', () => {
+    const json = exportData({
+      lifeAreas: [],
+      history: [],
+      goals: [],
+      behavioralExperiments: [],
+      thoughtRecords: [],
+      problemSolvings: [
+        {
+          id: 'p1',
+          problem: 'too much on at once',
+          options: [
+            {
+              id: 'o1',
+              text: 'drop one thing',
+              pros: 'breathing room',
+              cons: 'guilt',
+            },
+          ],
+          chosenOptionId: 'o1',
+          steps: [{ id: 's1', text: 'email the team', done: false }],
+          outcome: '',
+          createdAt: '2026-06-18T00:00:00.000Z',
+        },
+      ],
+    });
+    const parsed = JSON.parse(json);
+    expect(parsed.data.problemSolvings).toHaveLength(1);
+    expect(parsed.data.problemSolvings[0].options[0].pros).toBe(
+      'breathing room',
+    );
+    expect(parsed.data.problemSolvings[0].chosenOptionId).toBe('o1');
   });
 });

@@ -153,7 +153,10 @@ const RadarChart: React.FC<RadarChartProps> = ({
           startAngle={90}
           endAngle={-270}
         >
-          <PolarGrid stroke="var(--color-border)" strokeWidth={axisStrokeWidth} />
+          <PolarGrid
+            stroke="var(--color-border)"
+            strokeWidth={axisStrokeWidth}
+          />
           <PolarAngleAxis
             dataKey="area"
             tick={

@@ -21,22 +21,20 @@ const SnapshotRow: React.FC<{
 }> = ({ snapshot, onDelete }) => {
   const { t } = useTranslation();
   return (
-    <div className="flex items-center justify-between gap-2 rounded border border-border px-3 py-2 text-sm">
+    <div className="border-border flex items-center justify-between gap-2 rounded border px-3 py-2 text-sm">
       <div className="min-w-0 flex-1">
         <span className="font-medium">{formatDate(snapshot.createdAt)}</span>
         {snapshot.label && (
-          <span className="ml-2 text-text-muted">
-            {snapshot.label}
-          </span>
+          <span className="text-text-muted ml-2">{snapshot.label}</span>
         )}
-        <span className="ml-2 text-text-muted">
+        <span className="text-text-muted ml-2">
           &mdash; {snapshot.areas.length}{' '}
           {t('snapshot_areas_count', { count: snapshot.areas.length })}
         </span>
       </div>
       <button
         onClick={() => onDelete(snapshot.id)}
-        className="shrink-0 rounded px-2 py-1 text-primary hover:opacity-80 focus:outline-none focus:ring"
+        className="text-primary shrink-0 rounded px-2 py-1 hover:opacity-80 focus:ring focus:outline-none"
         aria-label={t('delete_snapshot')}
       >
         {t('delete')}
@@ -57,12 +55,12 @@ const SnapshotHistory: React.FC = () => {
   const lastSaved = history[history.length - 1];
 
   return (
-    <section className="mt-6 font-sans text-text">
+    <section className="text-text mt-6 font-sans">
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-base font-semibold">
           {t('snapshot_history_title')}
         </h2>
-        <span className="text-xs text-text-muted">
+        <span className="text-text-muted text-xs">
           {t('snapshot_count', { count: history.length })} &middot;{' '}
           {t('snapshot_last_saved')}: {formatDate(lastSaved.createdAt)}
         </span>

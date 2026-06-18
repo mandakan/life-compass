@@ -17,7 +17,7 @@ export function WeekView({ areas, history, onOpen }: WeekViewProps) {
   return (
     <div className="mx-auto w-full max-w-[520px]">
       {/* Affirming opening line */}
-      <p className="mb-[18px] mt-0 text-lg leading-relaxed text-text">
+      <p className="text-text mt-0 mb-[18px] text-lg leading-relaxed">
         {t('your_compass.week.affirm')}
       </p>
 
@@ -33,7 +33,7 @@ export function WeekView({ areas, history, onOpen }: WeekViewProps) {
             key={area.id}
             onClick={() => onOpen(area.id)}
             aria-label={t('your_compass.map.open_aria', { name: area.name })}
-            className="flex w-full cursor-pointer items-center gap-3 bg-transparent py-[13px] px-1 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="focus-visible:outline-focus flex w-full cursor-pointer items-center gap-3 bg-transparent px-1 py-[13px] text-left focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{
               border: 'none',
               borderBottom: isLast ? 'none' : '1px solid var(--color-border)',
@@ -41,14 +41,14 @@ export function WeekView({ areas, history, onOpen }: WeekViewProps) {
           >
             {/* Left: name + delta line + optional tender note */}
             <div className="min-w-0 flex-1">
-              <div className="text-base font-semibold text-text">
+              <div className="text-text text-base font-semibold">
                 {area.name}
               </div>
-              <div className="mt-px text-sm text-text-muted">
+              <div className="text-text-muted mt-px text-sm">
                 {t(`your_compass.week.delta.${deltaKey}`)}
               </div>
               {tender && (
-                <div className="mt-[3px] text-sm font-semibold text-text">
+                <div className="text-text mt-[3px] text-sm font-semibold">
                   {t('your_compass.week.tender')}
                 </div>
               )}

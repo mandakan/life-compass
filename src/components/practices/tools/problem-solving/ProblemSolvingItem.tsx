@@ -6,13 +6,13 @@ import {
   PencilIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline';
-import type { ThoughtRecord } from '@models/LifeCompassDocument';
+import type { ProblemSolving } from '@models/LifeCompassDocument';
 import { useLifeCompassStore } from '@/store/lifeCompassStore';
 
-const PREFIX = 'practices.tools.thought_record';
+const PREFIX = 'practices.tools.problem_solving';
 
-export interface ThoughtRecordItemProps {
-  record: ThoughtRecord;
+export interface ProblemSolvingItemProps {
+  record: ProblemSolving;
   onEdit: () => void;
   /** Confirms removal; resolves true when the user accepts. */
   onRequestDelete: () => Promise<boolean>;
@@ -23,21 +23,22 @@ const LABEL_CLASS =
   'text-xs font-medium text-text-muted uppercase tracking-wide';
 const VALUE_CLASS = 'text-sm text-text';
 
-const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
+const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
   record,
   onEdit,
   onRequestDelete,
 }) => {
   const { t } = useTranslation();
-  const removeThoughtRecord = useLifeCompassStore(s => s.removeThoughtRecord);
+  const removeRecord = useLifeCompassStore(s => s.removeProblemSolving);
   const [expanded, setExpanded] = useState(false);
 
-  const title = record.situation.trim() || t(`${PREFIX}.untitled`);
+  const title = record.problem.trim() || t(`${PREFIX}.untitled`);
+  const chosen = record.options.find(o => o.id === record.chosenOptionId);
 
   const handleDelete = async () => {
     const ok = await onRequestDelete();
     if (ok) {
-      removeThoughtRecord(record.id);
+      removeRecord(record.id);
     }
   };
 
@@ -93,61 +94,45 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
 
       {expanded && (
         <div className="border-border mt-4 flex flex-col gap-4 border-t pt-4">
-          {record.thought && (
+          {record.options.length > 0 && (
             <div className={FIELD_CLASS}>
               <span className={LABEL_CLASS}>{t(`${PREFIX}.step2.title`)}</span>
-              <p className={VALUE_CLASS}>{record.thought}</p>
+              <ul className="list-disc pl-5">
+                {record.options.map(opt => (
+                  <li key={opt.id} className={VALUE_CLASS}>
+                    {opt.text}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
-          {(record.feeling || record.feelingBefore != null) && (
-            <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>{t(`${PREFIX}.step3.title`)}</span>
-              <p className={VALUE_CLASS}>
-                {record.feeling}
-                {record.feelingBefore != null && (
-                  <span
-                    className={record.feeling ? 'text-text-muted ml-2' : ''}
-                  >
-                    {record.feeling ? '(' : ''}
-                    {t(`${PREFIX}.feeling_scale.${record.feelingBefore}`)}
-                    {record.feeling ? ')' : ''}
-                  </span>
-                )}
-              </p>
-            </div>
-          )}
-          {record.supports && (
+          {chosen && (
             <div className={FIELD_CLASS}>
               <span className={LABEL_CLASS}>
-                {t(`${PREFIX}.step4.supports_label`)}
+                {t(`${PREFIX}.step4.choose_label`)}
               </span>
-              <p className={VALUE_CLASS}>{record.supports}</p>
+              <p className={VALUE_CLASS}>{chosen.text}</p>
             </div>
           )}
-          {record.widerView && (
+          {record.steps.length > 0 && (
             <div className={FIELD_CLASS}>
               <span className={LABEL_CLASS}>
-                {t(`${PREFIX}.step4.wider_label`)}
+                {t(`${PREFIX}.step4.steps_intro`)}
               </span>
-              <p className={VALUE_CLASS}>{record.widerView}</p>
+              <ul className="flex flex-col gap-1">
+                {record.steps.map(step => (
+                  <li key={step.id} className={VALUE_CLASS}>
+                    {step.done ? '✓ ' : '· '}
+                    {step.text}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
-          {record.kinderView && (
+          {record.outcome && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>
-                {t(`${PREFIX}.step4.kinder_label`)}
-              </span>
-              <p className={VALUE_CLASS}>{record.kinderView}</p>
-            </div>
-          )}
-          {record.feelingAfter != null && (
-            <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>
-                {t(`${PREFIX}.step5.strength_label`)}
-              </span>
-              <p className={VALUE_CLASS}>
-                {t(`${PREFIX}.feeling_scale.${record.feelingAfter}`)}
-              </p>
+              <span className={LABEL_CLASS}>{t(`${PREFIX}.step5.title`)}</span>
+              <p className={VALUE_CLASS}>{record.outcome}</p>
             </div>
           )}
         </div>
@@ -156,4 +141,4 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
   );
 };
 
-export default ThoughtRecordItem;
+export default ProblemSolvingItem;

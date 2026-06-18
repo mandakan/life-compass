@@ -104,12 +104,7 @@ export function Spark({ weeks }: SparkProps) {
   const lastY = y(weeks[weeks.length - 1]);
 
   return (
-    <svg
-      width={W}
-      height={H}
-      aria-hidden="true"
-      style={{ flex: 'none' }}
-    >
+    <svg width={W} height={H} aria-hidden="true" style={{ flex: 'none' }}>
       <path
         d={d}
         fill="none"

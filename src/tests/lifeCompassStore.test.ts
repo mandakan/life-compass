@@ -1,9 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useLifeCompassStore } from '../store/lifeCompassStore';
-import {
-  migrateLegacyData,
-  clearLegacyData,
-} from '../store/migrateLegacyData';
+import { migrateLegacyData, clearLegacyData } from '../store/migrateLegacyData';
 import { LifeArea } from '../types/LifeArea';
 import { LifeCompassDocument } from '../types/LifeCompassDocument';
 
@@ -474,7 +471,10 @@ describe('migrateLegacyData', () => {
   it('does not overwrite existing store data, and still clears the legacy key', () => {
     resetStore();
     useLifeCompassStore.getState().addArea(makeArea({ name: 'Current' }));
-    localStorage.setItem(LEGACY_KEY, JSON.stringify([makeArea({ name: 'Legacy' })]));
+    localStorage.setItem(
+      LEGACY_KEY,
+      JSON.stringify([makeArea({ name: 'Legacy' })]),
+    );
 
     const seeded = migrateLegacyData();
     if (seeded && useLifeCompassStore.getState().lifeAreas.length === 0) {
@@ -483,9 +483,9 @@ describe('migrateLegacyData', () => {
     clearLegacyData();
 
     // Newer store data wins; the redundant legacy key is dropped, not applied.
-    expect(
-      useLifeCompassStore.getState().lifeAreas.map(a => a.name),
-    ).toEqual(['Current']);
+    expect(useLifeCompassStore.getState().lifeAreas.map(a => a.name)).toEqual([
+      'Current',
+    ]);
     expect(localStorage.getItem(LEGACY_KEY)).toBeNull();
   });
 });

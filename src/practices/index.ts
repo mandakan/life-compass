@@ -5,3 +5,4 @@ export type { ToolDef, ToolId } from './toolRegistry';
 import '@components/practices/tools/behavioral-experiment';
 import '@components/practices/tools/values-clarity';
 import '@components/practices/tools/thought-record';
+import '@components/practices/tools/problem-solving';

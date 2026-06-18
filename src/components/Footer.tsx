@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
     'rounded-sm text-text-muted no-underline transition-colors duration-base ease-out-soft hover:text-text hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 
   return (
-    <footer className="mt-auto border-t border-border bg-surface text-text-muted">
+    <footer className="border-border bg-surface text-text-muted mt-auto border-t">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-6 md:flex-row md:justify-between">
         <nav
           aria-label={t('footer_navigation', 'Footer')}
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
             ☕ {t('buy_me_coffee', 'Buy Me a Coffee')}
           </a>
         </nav>
-        <span className="text-sm text-text-muted">
+        <span className="text-text-muted text-sm">
           {t('footer_text', '© 2025 Life Compass. MIT Licensed.')}
         </span>
       </div>

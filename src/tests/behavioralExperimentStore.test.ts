@@ -31,7 +31,9 @@ describe('behavioralExperiments slice', () => {
   it('addExperiment trims the title and ignores empty input', () => {
     const s = useLifeCompassStore.getState();
     s.addExperiment('   ');
-    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(0);
+    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(
+      0,
+    );
     s.addExperiment('  I will be judged  ');
     const exps = useLifeCompassStore.getState().behavioralExperiments;
     expect(exps).toHaveLength(1);
@@ -45,9 +47,9 @@ describe('behavioralExperiments slice', () => {
     const area = makeArea('Friends');
     useLifeCompassStore.getState().addArea(area);
     useLifeCompassStore.getState().addExperiment('Call a friend', area.id);
-    expect(
-      useLifeCompassStore.getState().behavioralExperiments[0].areaId,
-    ).toBe(area.id);
+    expect(useLifeCompassStore.getState().behavioralExperiments[0].areaId).toBe(
+      area.id,
+    );
   });
 
   it('updateExperiment merges changes but preserves id', () => {

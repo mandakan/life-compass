@@ -7,8 +7,10 @@ import {
   CURRENT_SCHEMA_VERSION,
   Goal,
   LifeCompassDocument,
+  ProblemSolving,
   Snapshot,
   SnapshotArea,
+  SolutionOption,
   ThoughtRecord,
 } from '../types/LifeCompassDocument';
 import { migrateLegacyData, clearLegacyData } from './migrateLegacyData';
@@ -22,7 +24,7 @@ export const STORE_KEY = 'life-compass';
 /**
  * Bump this when the persisted shape changes and add a branch to `migrate`.
  */
-export const PERSIST_VERSION = 3;
+export const PERSIST_VERSION = 4;
 
 export interface LifeCompassState {
   lifeAreas: LifeArea[];
@@ -30,6 +32,7 @@ export interface LifeCompassState {
   goals: Goal[];
   behavioralExperiments: BehavioralExperiment[];
   thoughtRecords: ThoughtRecord[];
+  problemSolvings: ProblemSolving[];
 
   addArea: (area: LifeArea) => void;
   updateArea: (id: string, changes: Partial<LifeArea>) => void;
@@ -69,8 +72,28 @@ export interface LifeCompassState {
   setExperimentOutcome: (experimentId: string, outcome: string) => void;
 
   addThoughtRecord: (areaId?: string) => void;
-  updateThoughtRecord: (recordId: string, changes: Partial<ThoughtRecord>) => void;
+  updateThoughtRecord: (
+    recordId: string,
+    changes: Partial<ThoughtRecord>,
+  ) => void;
   removeThoughtRecord: (recordId: string) => void;
+
+  addProblemSolving: (areaId?: string) => void;
+  updateProblemSolving: (
+    recordId: string,
+    changes: Partial<ProblemSolving>,
+  ) => void;
+  removeProblemSolving: (recordId: string) => void;
+  addProblemSolvingOption: (recordId: string, text: string) => void;
+  updateProblemSolvingOption: (
+    recordId: string,
+    optionId: string,
+    changes: Partial<SolutionOption>,
+  ) => void;
+  removeProblemSolvingOption: (recordId: string, optionId: string) => void;
+  addProblemSolvingStep: (recordId: string, text: string) => void;
+  toggleProblemSolvingStep: (recordId: string, stepId: string) => void;
+  removeProblemSolvingStep: (recordId: string, stepId: string) => void;
 }
 
 function toSnapshotAreas(areas: LifeArea[]): SnapshotArea[] {
@@ -90,6 +113,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
       goals: [],
       behavioralExperiments: [],
       thoughtRecords: [],
+      problemSolvings: [],
 
       addArea: area =>
         set(state => ({ lifeAreas: [...state.lifeAreas, area] })),
@@ -111,6 +135,9 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             exp => exp.areaId !== id,
           ),
           thoughtRecords: state.thoughtRecords.filter(rec => rec.areaId !== id),
+          problemSolvings: state.problemSolvings.filter(
+            rec => rec.areaId !== id,
+          ),
         })),
 
       reorderAreas: (fromIndex, toIndex) =>
@@ -130,7 +157,13 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         }),
 
       removeAllAreas: () =>
-        set({ lifeAreas: [], goals: [], behavioralExperiments: [], thoughtRecords: [] }),
+        set({
+          lifeAreas: [],
+          goals: [],
+          behavioralExperiments: [],
+          thoughtRecords: [],
+          problemSolvings: [],
+        }),
 
       importDocument: doc =>
         set({
@@ -139,6 +172,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           goals: doc.goals ?? [],
           behavioralExperiments: doc.behavioralExperiments ?? [],
           thoughtRecords: doc.thoughtRecords ?? [],
+          problemSolvings: doc.problemSolvings ?? [],
         }),
 
       saveSnapshot: label =>
@@ -178,9 +212,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
       updateGoal: (goalId, changes) =>
         set(state => ({
           goals: state.goals.map(goal =>
-            goal.id === goalId
-              ? { ...goal, ...changes, id: goal.id }
-              : goal,
+            goal.id === goalId ? { ...goal, ...changes, id: goal.id } : goal,
           ),
         })),
 
@@ -232,9 +264,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
               ? {
                   ...goal,
                   steps: goal.steps.map(step =>
-                    step.id === stepId
-                      ? { ...step, done: !step.done }
-                      : step,
+                    step.id === stepId ? { ...step, done: !step.done } : step,
                   ),
                 }
               : goal,
@@ -380,21 +410,152 @@ export const useLifeCompassStore = create<LifeCompassState>()(
 
       removeThoughtRecord: recordId =>
         set(state => ({
-          thoughtRecords: state.thoughtRecords.filter(rec => rec.id !== recordId),
+          thoughtRecords: state.thoughtRecords.filter(
+            rec => rec.id !== recordId,
+          ),
+        })),
+
+      addProblemSolving: areaId =>
+        set(state => {
+          const record: ProblemSolving = {
+            id: crypto.randomUUID(),
+            problem: '',
+            options: [],
+            steps: [],
+            outcome: '',
+            createdAt: new Date().toISOString(),
+            ...(areaId ? { areaId } : {}),
+          };
+          return { problemSolvings: [...state.problemSolvings, record] };
+        }),
+
+      updateProblemSolving: (recordId, changes) =>
+        set(state => ({
+          problemSolvings: state.problemSolvings.map(rec =>
+            rec.id === recordId ? { ...rec, ...changes, id: rec.id } : rec,
+          ),
+        })),
+
+      removeProblemSolving: recordId =>
+        set(state => ({
+          problemSolvings: state.problemSolvings.filter(
+            rec => rec.id !== recordId,
+          ),
+        })),
+
+      addProblemSolvingOption: (recordId, text) =>
+        set(state => {
+          const trimmed = text.trim();
+          if (trimmed === '') {
+            return {};
+          }
+          const option: SolutionOption = {
+            id: crypto.randomUUID(),
+            text: trimmed,
+            pros: '',
+            cons: '',
+          };
+          return {
+            problemSolvings: state.problemSolvings.map(rec =>
+              rec.id === recordId
+                ? { ...rec, options: [...rec.options, option] }
+                : rec,
+            ),
+          };
+        }),
+
+      updateProblemSolvingOption: (recordId, optionId, changes) =>
+        set(state => ({
+          problemSolvings: state.problemSolvings.map(rec =>
+            rec.id === recordId
+              ? {
+                  ...rec,
+                  options: rec.options.map(opt =>
+                    opt.id === optionId
+                      ? { ...opt, ...changes, id: opt.id }
+                      : opt,
+                  ),
+                }
+              : rec,
+          ),
+        })),
+
+      removeProblemSolvingOption: (recordId, optionId) =>
+        set(state => ({
+          problemSolvings: state.problemSolvings.map(rec =>
+            rec.id === recordId
+              ? {
+                  ...rec,
+                  options: rec.options.filter(opt => opt.id !== optionId),
+                  // Never let chosenOptionId dangle against a deleted option.
+                  chosenOptionId:
+                    rec.chosenOptionId === optionId
+                      ? undefined
+                      : rec.chosenOptionId,
+                }
+              : rec,
+          ),
+        })),
+
+      addProblemSolvingStep: (recordId, text) =>
+        set(state => {
+          const trimmed = text.trim();
+          if (trimmed === '') {
+            return {};
+          }
+          const step: ActionStep = {
+            id: crypto.randomUUID(),
+            text: trimmed,
+            done: false,
+          };
+          return {
+            problemSolvings: state.problemSolvings.map(rec =>
+              rec.id === recordId
+                ? { ...rec, steps: [...rec.steps, step] }
+                : rec,
+            ),
+          };
+        }),
+
+      toggleProblemSolvingStep: (recordId, stepId) =>
+        set(state => ({
+          problemSolvings: state.problemSolvings.map(rec =>
+            rec.id === recordId
+              ? {
+                  ...rec,
+                  steps: rec.steps.map(step =>
+                    step.id === stepId ? { ...step, done: !step.done } : step,
+                  ),
+                }
+              : rec,
+          ),
+        })),
+
+      removeProblemSolvingStep: (recordId, stepId) =>
+        set(state => ({
+          problemSolvings: state.problemSolvings.map(rec =>
+            rec.id === recordId
+              ? {
+                  ...rec,
+                  steps: rec.steps.filter(step => step.id !== stepId),
+                }
+              : rec,
+          ),
         })),
     }),
     {
       name: STORE_KEY,
       version: PERSIST_VERSION,
 
-      // Only `lifeAreas`, `history`, `goals`, `behavioralExperiments`, and
-      // `thoughtRecords` are persisted; actions are recreated.
+      // Only `lifeAreas`, `history`, `goals`, `behavioralExperiments`,
+      // `thoughtRecords`, and `problemSolvings` are persisted; actions are recreated.
       partialize: state => ({
         lifeAreas: state.lifeAreas,
         history: state.history,
         goals: state.goals,
         behavioralExperiments: state.behavioralExperiments,
         thoughtRecords: state.thoughtRecords,
+        problemSolvings: state.problemSolvings,
       }),
 
       // Owns schema evolution of the persisted document. Add branches as
@@ -408,6 +569,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'goals'
             | 'behavioralExperiments'
             | 'thoughtRecords'
+            | 'problemSolvings'
           >
         >;
         // v0 -> v1: goals did not exist; seed an empty array.
@@ -423,6 +585,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'goals'
             | 'behavioralExperiments'
             | 'thoughtRecords'
+            | 'problemSolvings'
           >;
         }
         // v1 -> v2: behavioralExperiments did not exist; seed an empty array.
@@ -437,6 +600,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'goals'
             | 'behavioralExperiments'
             | 'thoughtRecords'
+            | 'problemSolvings'
           >;
         }
         // v2 -> v3: thoughtRecords did not exist; seed an empty array.
@@ -451,6 +615,22 @@ export const useLifeCompassStore = create<LifeCompassState>()(
             | 'goals'
             | 'behavioralExperiments'
             | 'thoughtRecords'
+            | 'problemSolvings'
+          >;
+        }
+        // v3 -> v4: problemSolvings did not exist; seed an empty array.
+        if (version < 4) {
+          return {
+            ...state,
+            problemSolvings: state.problemSolvings ?? [],
+          } as Pick<
+            LifeCompassState,
+            | 'lifeAreas'
+            | 'history'
+            | 'goals'
+            | 'behavioralExperiments'
+            | 'thoughtRecords'
+            | 'problemSolvings'
           >;
         }
         return state as Pick<
@@ -460,6 +640,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
           | 'goals'
           | 'behavioralExperiments'
           | 'thoughtRecords'
+          | 'problemSolvings'
         >;
       },
 
@@ -480,6 +661,9 @@ export const useLifeCompassStore = create<LifeCompassState>()(
         }
         if (!Array.isArray(state.thoughtRecords)) {
           state.thoughtRecords = [];
+        }
+        if (!Array.isArray(state.problemSolvings)) {
+          state.problemSolvings = [];
         }
         const seeded = migrateLegacyData();
         if (seeded && state.lifeAreas.length === 0) {

@@ -21,8 +21,8 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   children,
 }) => (
   <section className="space-y-3">
-    <h2 className="font-display text-xl font-semibold text-text">{title}</h2>
-    <div className="space-y-3 rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
+    <h2 className="font-display text-text text-xl font-semibold">{title}</h2>
+    <div className="border-border bg-surface shadow-warm-sm space-y-3 rounded-lg border p-4">
       {children}
     </div>
   </section>
