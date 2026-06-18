@@ -231,7 +231,7 @@
               "outcome": { "type": "string" },
               "createdAt": { "type": "string" }
             },
-            "required": ["id", "activity", "done", "outcome", "createdAt"],
+            "required": ["id", "activity", "done", "createdAt"],
             "additionalProperties": true
           }
         }
