@@ -295,60 +295,60 @@
         }
       },
       "problem_solving": {
-        "label": "Problemlosning",
-        "description": "Los upp en knut: satt ord pa den, hitta alternativ, vag dem, planera ett litet steg.",
-        "empty_state": "Inga problem genomarbetade an. Borja ett nar nagot kanns fast.",
+        "label": "Problemlösning",
+        "description": "Lös upp en knut: sätt ord på den, hitta alternativ, väg dem, planera ett litet steg.",
+        "empty_state": "Inga problem genomarbetade än. Börja ett när något känns fast.",
         "new": "Nytt problem att arbeta igenom",
         "step_label": "Steg {{current}} av {{total}}",
         "back": "Tillbaka",
-        "next": "Nasta",
+        "next": "Nästa",
         "done": "Klar",
         "delete": "Ta bort",
         "edit": "Redigera",
-        "untitled": "Namnlost problem",
+        "untitled": "Namnlöst problem",
         "expand": "Visa mer",
         "collapse": "Visa mindre",
-        "delete_confirm": "Ta bort \"{{title}}\"? Det gar inte att angra.",
+        "delete_confirm": "Ta bort \"{{title}}\"? Det går inte att ångra.",
         "step1": {
-          "title": "Vad ar knuten?",
-          "prompt": "Satt ord pa problemet sa konkret du kan.",
+          "title": "Vad är knuten?",
+          "prompt": "Sätt ord på problemet så konkret du kan.",
           "problem_label": "Problemet",
-          "placeholder": "t.ex. Jag far aldrig tiden att racka till pa kvallarna.",
-          "area_label": "Hor samman med (valfritt)",
-          "area_none": "Inte kopplad till ett omrade"
+          "placeholder": "t.ex. Jag får aldrig tiden att räcka till på kvällarna.",
+          "area_label": "Hör samman med (valfritt)",
+          "area_none": "Inte kopplad till ett område"
         },
         "step2": {
-          "title": "Brainstorma alternativ",
-          "prompt": "Lagg till nagra. Alla ideer ar valkomna, aven de osannolika.",
-          "add_option": "Lagg till alternativ",
-          "add_option_placeholder": "Ett alternativ vart att notera",
+          "title": "Spåna fram alternativ",
+          "prompt": "Lägg till några. Alla idéer är välkomna, även de osannolika.",
+          "add_option": "Lägg till alternativ",
+          "add_option_placeholder": "Ett alternativ värt att notera",
           "delete_option": "Ta bort alternativ",
-          "empty": "Inga alternativ an. Lagg till den forsta iden som dyker upp."
+          "empty": "Inga alternativ än. Lägg till den första idén som dyker upp."
         },
         "step3": {
-          "title": "Vag varje alternativ",
-          "prompt": "Lagg for varje ett marke till vad som ar bra och vad som ar svart. Du behover inte poangsatta nagot.",
-          "pros_label": "Vad ar bra med det har?",
+          "title": "Väg varje alternativ",
+          "prompt": "Lägg märke till vad som är bra och vad som är svårt med vart och ett. Du behöver inte poängsätta något.",
+          "pros_label": "Vad är bra med det här?",
           "pros_placeholder": "Vad lockar dig till det?",
-          "cons_label": "Vad ar svart med det har?",
-          "cons_placeholder": "Vad far dig att tveka?",
-          "empty": "Lagg till nagra alternativ forst, kom sedan tillbaka hit och vag dem."
+          "cons_label": "Vad är svårt med det här?",
+          "cons_placeholder": "Vad får dig att tveka?",
+          "empty": "Lägg till några alternativ först, kom sedan tillbaka hit och väg dem."
         },
         "step4": {
-          "title": "Valj och planera",
-          "prompt": "Valj ett att prova, och dela sedan upp det i sma steg.",
+          "title": "Välj och planera",
+          "prompt": "Välj ett att prova, och dela sedan upp det i små steg.",
           "choose_label": "Vilket vill du prova?",
-          "choose_none": "Inte valt an",
-          "steps_intro": "Sma steg for alternativet du valde",
-          "add_step": "Lagg till steg",
+          "choose_none": "Inte valt än",
+          "steps_intro": "Små steg för alternativet du valde",
+          "add_step": "Lägg till steg",
           "add_step_placeholder": "Ett litet steg",
           "delete_step": "Ta bort steg",
-          "choose_first": "Valj ett alternativ ovan for att borja planera."
+          "choose_first": "Välj ett alternativ ovan för att börja planera."
         },
         "step5": {
           "title": "Hur gick det?",
-          "prompt": "Nar du har provat, lagg marke till vad som faktiskt hande. Det finns inget ratt svar.",
-          "outcome_placeholder": "Vad hande nar du provade?"
+          "prompt": "När du har provat, lägg märke till vad som faktiskt hände. Det finns inget rätt svar.",
+          "outcome_placeholder": "Vad hände när du provade?"
         }
       }
     },
