@@ -147,7 +147,16 @@
               "feelingAfter": { "type": "number" },
               "createdAt": { "type": "string" }
             },
-            "required": ["id", "situation", "thought", "feeling", "supports", "widerView", "kinderView", "createdAt"],
+            "required": [
+              "id",
+              "situation",
+              "thought",
+              "feeling",
+              "supports",
+              "widerView",
+              "kinderView",
+              "createdAt"
+            ],
             "additionalProperties": true
           }
         },
@@ -190,7 +199,14 @@
                 }
               }
             },
-            "required": ["id", "problem", "options", "steps", "outcome", "createdAt"],
+            "required": [
+              "id",
+              "problem",
+              "options",
+              "steps",
+              "outcome",
+              "createdAt"
+            ],
             "additionalProperties": true
           }
         }

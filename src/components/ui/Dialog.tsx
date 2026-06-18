@@ -47,7 +47,7 @@ const Dialog = ({
         <RadixDialog.Overlay className="fixed inset-0 z-40 bg-black/50" />
         <RadixDialog.Content
           className={clsx(
-            'fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border border-border p-6 shadow-warm-md',
+            'border-border shadow-warm-md fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border p-6',
             'bg-surface text-text',
           )}
         >
@@ -60,7 +60,7 @@ const Dialog = ({
                 </RadixDialog.Title>
               )}
             </div>
-            <RadixDialog.Close className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md p-1 text-sm transition-opacity duration-base ease-out-soft hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+            <RadixDialog.Close className="duration-base ease-out-soft focus-visible:outline-focus inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md p-1 text-sm transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2">
               <Icon name="close" className="h-5 w-5" />
             </RadixDialog.Close>
           </div>

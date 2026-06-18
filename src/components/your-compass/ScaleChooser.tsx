@@ -45,7 +45,7 @@ const ScaleChooser: React.FC<ScaleChooserProps> = ({
             type="button"
             onClick={() => onChange(n)}
             aria-pressed={on}
-            className="box-border inline-flex min-h-[44px] cursor-pointer items-center rounded-full border-2 bg-surface px-[15px] py-[9px] font-body text-sm text-text transition-[border-color,background-color] duration-base ease-out-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="bg-surface font-body text-text duration-base ease-out-soft focus-visible:outline-focus box-border inline-flex min-h-[44px] cursor-pointer items-center rounded-full border-2 px-[15px] py-[9px] text-sm transition-[border-color,background-color] focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{
               borderColor: on ? accentVar : 'var(--color-border)',
               background: on

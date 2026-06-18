@@ -35,7 +35,9 @@ describe('thoughtRecords store slice', () => {
 
   it('adds a thought record linked to an area', () => {
     useLifeCompassStore.getState().addThoughtRecord('area-1');
-    expect(useLifeCompassStore.getState().thoughtRecords[0].areaId).toBe('area-1');
+    expect(useLifeCompassStore.getState().thoughtRecords[0].areaId).toBe(
+      'area-1',
+    );
   });
 
   it('updates a thought record but never changes its id', () => {

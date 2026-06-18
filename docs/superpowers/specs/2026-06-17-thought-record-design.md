@@ -62,16 +62,16 @@ Add to `src/types/LifeCompassDocument.ts` (next to `BehavioralExperiment`):
 ```ts
 export interface ThoughtRecord {
   id: string;
-  areaId?: string;          // optional link to LifeArea.id (like BehavioralExperiment)
-  situation: string;        // what happened
-  thought: string;          // the automatic thought
-  feeling: string;          // named emotion(s), free text
-  feelingBefore?: number;   // 1-5 word-bucket, or undefined when not chosen
-  supports: string;         // what supports the thought
-  widerView: string;        // what else might be true
-  kinderView: string;       // a kinder, wider way to hold it
-  feelingAfter?: number;    // 1-5 word-bucket, or undefined when not chosen
-  createdAt: string;        // ISO 8601
+  areaId?: string; // optional link to LifeArea.id (like BehavioralExperiment)
+  situation: string; // what happened
+  thought: string; // the automatic thought
+  feeling: string; // named emotion(s), free text
+  feelingBefore?: number; // 1-5 word-bucket, or undefined when not chosen
+  supports: string; // what supports the thought
+  widerView: string; // what else might be true
+  kinderView: string; // a kinder, wider way to hold it
+  feelingAfter?: number; // 1-5 word-bucket, or undefined when not chosen
+  createdAt: string; // ISO 8601
 }
 ```
 

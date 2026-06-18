@@ -32,13 +32,13 @@ const PracticesPage: React.FC = () => {
 
   return (
     <section className="mx-auto w-full max-w-2xl px-4 py-8">
-      <h1 className="font-display text-2xl text-text">
+      <h1 className="font-display text-text text-2xl">
         {t('practices.heading')}
       </h1>
-      <p className="mt-2 text-text-muted">{t('practices.intro')}</p>
+      <p className="text-text-muted mt-2">{t('practices.intro')}</p>
 
       {TOOLS.length === 0 ? (
-        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
+        <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t('practices.empty')}
         </p>
       ) : (

@@ -71,7 +71,9 @@ describe('Behavioral Experiment tool', () => {
     const input = screen.getByLabelText(/add experiment/i);
     fireEvent.change(input, { target: { value: 'People will laugh' } });
     fireEvent.submit(input.closest('form')!);
-    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(1);
+    expect(useLifeCompassStore.getState().behavioralExperiments).toHaveLength(
+      1,
+    );
     expect(screen.getByText('People will laugh')).toBeTruthy();
   });
 

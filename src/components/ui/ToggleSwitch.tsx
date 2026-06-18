@@ -15,20 +15,20 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   return (
     <div className="flex items-center space-x-3">
       {label && (
-        <label className="text-base font-medium text-text">{label}</label>
+        <label className="text-text text-base font-medium">{label}</label>
       )}
       <Switch.Root
         checked={checked}
         onCheckedChange={onChange}
         className={[
-          'relative h-6 w-11 rounded-full bg-surface-sunken outline-none',
-          'border border-border',
-          'transition-colors duration-base ease-out-soft',
+          'bg-surface-sunken relative h-6 w-11 rounded-full outline-none',
+          'border-border border',
+          'duration-base ease-out-soft transition-colors',
           'data-[state=checked]:bg-primary data-[state=checked]:border-primary',
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+          'focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
         ].join(' ')}
       >
-        <Switch.Thumb className="block h-5 w-5 translate-x-0.5 rounded-full bg-text transition-transform duration-base ease-out-soft will-change-transform data-[state=checked]:translate-x-[1.375rem] data-[state=checked]:bg-on-primary" />
+        <Switch.Thumb className="bg-text duration-base ease-out-soft data-[state=checked]:bg-on-primary block h-5 w-5 translate-x-0.5 rounded-full transition-transform will-change-transform data-[state=checked]:translate-x-[1.375rem]" />
       </Switch.Root>
     </div>
   );

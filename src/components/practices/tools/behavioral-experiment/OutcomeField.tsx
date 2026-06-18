@@ -38,8 +38,8 @@ const OutcomeField: React.FC<OutcomeFieldProps> = ({ value, onCommit }) => {
   }, [draft, autosize]);
 
   return (
-    <div className="mt-3 border-t border-border pt-3">
-      <label htmlFor={fieldId} className="block text-sm font-medium text-text">
+    <div className="border-border mt-3 border-t pt-3">
+      <label htmlFor={fieldId} className="text-text block text-sm font-medium">
         {t(`${PREFIX}.outcome_label`)}
       </label>
       <textarea
@@ -50,9 +50,11 @@ const OutcomeField: React.FC<OutcomeFieldProps> = ({ value, onCommit }) => {
         onInput={autosize}
         onChange={e => setDraft(e.target.value)}
         onBlur={() => onCommit(draft)}
-        className="mt-2 min-h-[60px] w-full resize-none overflow-hidden rounded-md border border-border bg-surface px-3 py-2 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        className="border-border bg-surface text-text focus-visible:outline-focus mt-2 min-h-[60px] w-full resize-none overflow-hidden rounded-md border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2"
       />
-      <p className="mt-1 text-xs text-text-muted">{t(`${PREFIX}.outcome_help`)}</p>
+      <p className="text-text-muted mt-1 text-xs">
+        {t(`${PREFIX}.outcome_help`)}
+      </p>
     </div>
   );
 };

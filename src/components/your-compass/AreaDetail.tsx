@@ -79,8 +79,10 @@ const AreaDetail: React.FC<AreaDetailProps> = ({
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="fixed inset-0 z-40 bg-black/50" />
         <RadixDialog.Content
-          aria-label={isNew ? t('your_compass.detail.new_area_aria') : area.name}
-          className="fixed bottom-0 left-1/2 z-50 flex max-h-[92dvh] w-full max-w-[600px] -translate-x-1/2 flex-col overflow-hidden rounded-t-xl border border-border bg-surface text-text shadow-warm-md"
+          aria-label={
+            isNew ? t('your_compass.detail.new_area_aria') : area.name
+          }
+          className="border-border bg-surface text-text shadow-warm-md fixed bottom-0 left-1/2 z-50 flex max-h-[92dvh] w-full max-w-[600px] -translate-x-1/2 flex-col overflow-hidden rounded-t-xl border"
         >
           {/* Fixed header so the grab handle + close stay reachable while the
               form below scrolls. dvh (not vh) keeps the top clear of the mobile
@@ -92,11 +94,11 @@ const AreaDetail: React.FC<AreaDetailProps> = ({
           >
             <div
               aria-hidden="true"
-              className="mx-auto h-1 w-10 rounded-full bg-border"
+              className="bg-border mx-auto h-1 w-10 rounded-full"
             />
             <RadixDialog.Close
               aria-label={t('your_compass.detail.close')}
-              className="-ml-11 inline-flex min-h-[44px] min-w-[44px] flex-none cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-2xl leading-none text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text focus-visible:outline-focus -ml-11 inline-flex min-h-[44px] min-w-[44px] flex-none cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-2xl leading-none focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <span aria-hidden="true">&times;</span>
             </RadixDialog.Close>
@@ -110,112 +112,111 @@ const AreaDetail: React.FC<AreaDetailProps> = ({
                 '0 clamp(20px, 5vw, 28px) calc(28px + env(safe-area-inset-bottom))',
             }}
           >
+            {/* Editable name. Transparent until focus, then a clay underline. */}
+            <RadixDialog.Title asChild>
+              <input
+                value={area.name}
+                onChange={e => onChange({ name: e.target.value })}
+                onFocus={() => setNameFocus(true)}
+                onBlur={() => setNameFocus(false)}
+                aria-label={t('your_compass.detail.name_aria')}
+                placeholder={t('your_compass.detail.name_placeholder')}
+                autoFocus={isNew}
+                className="font-display text-primary placeholder:text-text-muted mb-2 box-border w-full border-0 border-b-2 bg-transparent px-0 py-0.5 text-2xl font-semibold outline-none"
+                style={{
+                  borderBottomColor: nameFocus
+                    ? 'var(--color-primary)'
+                    : 'transparent',
+                }}
+              />
+            </RadixDialog.Title>
 
-          {/* Editable name. Transparent until focus, then a clay underline. */}
-          <RadixDialog.Title asChild>
-            <input
-              value={area.name}
-              onChange={e => onChange({ name: e.target.value })}
-              onFocus={() => setNameFocus(true)}
-              onBlur={() => setNameFocus(false)}
-              aria-label={t('your_compass.detail.name_aria')}
-              placeholder={t('your_compass.detail.name_placeholder')}
-              autoFocus={isNew}
-              className="mb-2 box-border w-full border-0 border-b-2 bg-transparent px-0 py-0.5 font-display text-2xl font-semibold text-primary outline-none placeholder:text-text-muted"
-              style={{
-                borderBottomColor: nameFocus
-                  ? 'var(--color-primary)'
-                  : 'transparent',
-              }}
+            {/* Editable short description -- wraps and grows to fit long prompts. */}
+            <textarea
+              ref={descRef}
+              value={area.description}
+              onChange={e => onChange({ description: e.target.value })}
+              onInput={autosizeDescription}
+              rows={1}
+              aria-label={t('your_compass.detail.prompt_aria')}
+              placeholder={t('your_compass.detail.prompt_placeholder')}
+              className="font-body text-text-muted placeholder:text-text-muted box-border w-full resize-none overflow-hidden border-none bg-transparent px-0 pt-0 pb-[18px] text-base leading-normal outline-none"
             />
-          </RadixDialog.Title>
 
-          {/* Editable short description -- wraps and grows to fit long prompts. */}
-          <textarea
-            ref={descRef}
-            value={area.description}
-            onChange={e => onChange({ description: e.target.value })}
-            onInput={autosizeDescription}
-            rows={1}
-            aria-label={t('your_compass.detail.prompt_aria')}
-            placeholder={t('your_compass.detail.prompt_placeholder')}
-            className="box-border w-full resize-none overflow-hidden border-none bg-transparent px-0 pt-0 pb-[18px] font-body text-base leading-normal text-text-muted outline-none placeholder:text-text-muted"
-          />
+            {/* What you value here. */}
+            <p className="font-body text-text mb-1 text-base font-semibold">
+              {t('your_compass.detail.value_label')}
+            </p>
+            <p className="font-body text-text-muted mb-3 text-sm">
+              {t('your_compass.detail.value_help')}
+            </p>
+            <Textarea
+              rows={3}
+              value={area.details}
+              onChange={e => onChange({ details: e.target.value })}
+              placeholder={t('your_compass.detail.value_placeholder')}
+            />
 
-          {/* What you value here. */}
-          <p className="mb-1 font-body text-base font-semibold text-text">
-            {t('your_compass.detail.value_label')}
-          </p>
-          <p className="mb-3 font-body text-sm text-text-muted">
-            {t('your_compass.detail.value_help')}
-          </p>
-          <Textarea
-            rows={3}
-            value={area.details}
-            onChange={e => onChange({ details: e.target.value })}
-            placeholder={t('your_compass.detail.value_placeholder')}
-          />
+            {/* How much does this matter (clay). */}
+            <p className="font-body text-text mt-6 mb-1 text-base font-semibold">
+              {t('your_compass.detail.matters_label')}
+            </p>
+            <p className="font-body text-text-muted mb-3 text-sm">
+              {t('your_compass.detail.matters_help')}
+            </p>
+            <ScaleChooser
+              labels={mattersLabels}
+              value={mattersValue}
+              onChange={n => onChange({ importance: fromBucket(n) })}
+              accent="clay"
+            />
 
-          {/* How much does this matter (clay). */}
-          <p className="mt-6 mb-1 font-body text-base font-semibold text-text">
-            {t('your_compass.detail.matters_label')}
-          </p>
-          <p className="mb-3 font-body text-sm text-text-muted">
-            {t('your_compass.detail.matters_help')}
-          </p>
-          <ScaleChooser
-            labels={mattersLabels}
-            value={mattersValue}
-            onChange={n => onChange({ importance: fromBucket(n) })}
-            accent="clay"
-          />
+            {/* How close did you live to it (sage). */}
+            <p className="font-body text-text mt-6 mb-1 text-base font-semibold">
+              {t('your_compass.detail.lived_label')}
+            </p>
+            <p className="font-body text-text-muted mb-3 text-sm">
+              {t('your_compass.detail.lived_help')}
+            </p>
+            <ScaleChooser
+              labels={livedLabels}
+              value={livedValue}
+              onChange={n => onChange({ satisfaction: fromBucket(n) })}
+              accent="sage"
+            />
 
-          {/* How close did you live to it (sage). */}
-          <p className="mt-6 mb-1 font-body text-base font-semibold text-text">
-            {t('your_compass.detail.lived_label')}
-          </p>
-          <p className="mb-3 font-body text-sm text-text-muted">
-            {t('your_compass.detail.lived_help')}
-          </p>
-          <ScaleChooser
-            labels={livedLabels}
-            value={livedValue}
-            onChange={n => onChange({ satisfaction: fromBucket(n) })}
-            accent="sage"
-          />
-
-          {/* Derived reflection. */}
-          <div className="mt-6 rounded-md bg-surface-sunken px-4 py-3.5 font-body text-sm leading-normal text-text">
-            {t(`your_compass.reflection.${reflectionKey(area)}`)}
-          </div>
-
-          {/* Footer: remove (ghost) + done (primary). Goals sits quietly
-              between them when an opener is provided. */}
-          <div className="mt-6 flex items-center justify-between gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onRemove(area.id)}
-              className="px-2 underline underline-offset-[3px]"
-            >
-              {t('your_compass.detail.remove')}
-            </Button>
-            <div className="flex items-center gap-2">
-              {onOpenGoals && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onOpenGoals}
-                  className="px-2 underline underline-offset-[3px]"
-                >
-                  {t('your_compass.detail.goals')}
-                </Button>
-              )}
-              <Button variant="primary" onClick={onClose}>
-                {t('your_compass.detail.done')}
-              </Button>
+            {/* Derived reflection. */}
+            <div className="bg-surface-sunken font-body text-text mt-6 rounded-md px-4 py-3.5 text-sm leading-normal">
+              {t(`your_compass.reflection.${reflectionKey(area)}`)}
             </div>
-          </div>
+
+            {/* Footer: remove (ghost) + done (primary). Goals sits quietly
+              between them when an opener is provided. */}
+            <div className="mt-6 flex items-center justify-between gap-3">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => onRemove(area.id)}
+                className="px-2 underline underline-offset-[3px]"
+              >
+                {t('your_compass.detail.remove')}
+              </Button>
+              <div className="flex items-center gap-2">
+                {onOpenGoals && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={onOpenGoals}
+                    className="px-2 underline underline-offset-[3px]"
+                  >
+                    {t('your_compass.detail.goals')}
+                  </Button>
+                )}
+                <Button variant="primary" onClick={onClose}>
+                  {t('your_compass.detail.done')}
+                </Button>
+              </div>
+            </div>
           </div>
         </RadixDialog.Content>
       </RadixDialog.Portal>

@@ -34,12 +34,12 @@ const GoalStepList: React.FC<GoalStepListProps> = ({ goalId, steps }) => {
   };
 
   return (
-    <div className="mt-3 flex flex-col gap-3 border-t border-border pt-3">
+    <div className="border-border mt-3 flex flex-col gap-3 border-t pt-3">
       <ul className="flex flex-col gap-1">
         {steps.map(step => (
           <li
             key={step.id}
-            className="flex items-center justify-between gap-2 rounded-md px-1 py-1 hover:bg-surface-sunken"
+            className="hover:bg-surface-sunken flex items-center justify-between gap-2 rounded-md px-1 py-1"
           >
             <Checkbox
               checked={step.done}
@@ -52,7 +52,7 @@ const GoalStepList: React.FC<GoalStepListProps> = ({ goalId, steps }) => {
               onClick={() => removeStep(goalId, step.id)}
               title={t('goals.delete_step')}
               aria-label={`${t('goals.delete_step')}: ${step.text}`}
-              className="flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
             </button>

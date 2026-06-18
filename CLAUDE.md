@@ -28,6 +28,7 @@ Run a single unit test: `npx vitest run src/tests/compassModel.test.ts` (or `npx
 **State & persistence (the core).** A single Zustand store, `src/store/lifeCompassStore.ts`, is the source of truth. It holds `lifeAreas`, `history` (snapshots), and `goals`, and persists them to `localStorage` under the key `life-compass` via Zustand's `persist` middleware. Components read/write through this store -- do not touch `localStorage` directly for compass data.
 
 There are **two independent version numbers**, don't conflate them:
+
 - `PERSIST_VERSION` in the store -- bump when the persisted shape changes, and add a branch to the `migrate` hook. `onRehydrateStorage` also seeds from the legacy bare-array key (`lifeCompass`) for existing users, then clears it.
 - `CURRENT_SCHEMA_VERSION` in `src/types/LifeCompassDocument.ts` -- the schema version stamped into exported/imported JSON documents.
 

@@ -2,7 +2,13 @@ import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import schema from '../schemas/exportImportSchema.json';
 import { LifeArea } from '../types/LifeArea';
-import { BehavioralExperiment, Goal, ProblemSolving, Snapshot, ThoughtRecord } from '../types/LifeCompassDocument';
+import {
+  BehavioralExperiment,
+  Goal,
+  ProblemSolving,
+  Snapshot,
+  ThoughtRecord,
+} from '../types/LifeCompassDocument';
 
 export interface ExportInput {
   lifeAreas: LifeArea[];

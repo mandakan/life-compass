@@ -148,9 +148,7 @@ describe('ProblemSolving tool', () => {
 
     const recs = useLifeCompassStore.getState().problemSolvings;
     expect(recs).toHaveLength(1);
-    expect(recs[0].problem).toBe(
-      'Evenings disappear before I get to anything',
-    );
+    expect(recs[0].problem).toBe('Evenings disappear before I get to anything');
   });
 
   it('never renders a numeric score or progress bar', () => {

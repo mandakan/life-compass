@@ -2,8 +2,7 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
@@ -13,10 +12,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={ref}
         className={cn(
-          'min-h-[44px] w-full rounded-md border border-border bg-surface px-3 py-2 text-base text-text shadow-warm-sm',
+          'border-border bg-surface text-text shadow-warm-sm min-h-[44px] w-full rounded-md border px-3 py-2 text-base',
           'placeholder:text-text-muted',
-          'transition-[border-color,box-shadow] duration-base ease-out-soft',
-          'focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus',
+          'duration-base ease-out-soft transition-[border-color,box-shadow]',
+          'focus-visible:border-primary focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-1',
           'disabled:cursor-not-allowed disabled:opacity-60',
           className,
         )}

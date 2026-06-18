@@ -43,7 +43,7 @@ const ProblemSolvingStepList: React.FC<ProblemSolvingStepListProps> = ({
         {steps.map(step => (
           <li
             key={step.id}
-            className="flex items-center justify-between gap-2 rounded-md px-1 py-1 hover:bg-surface-sunken"
+            className="hover:bg-surface-sunken flex items-center justify-between gap-2 rounded-md px-1 py-1"
           >
             <Checkbox
               checked={step.done}
@@ -56,7 +56,7 @@ const ProblemSolvingStepList: React.FC<ProblemSolvingStepListProps> = ({
               onClick={() => removeStep(recordId, step.id)}
               title={t(`${PREFIX}.step4.delete_step`)}
               aria-label={`${t(`${PREFIX}.step4.delete_step`)}: ${step.text}`}
-              className="flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
             </button>

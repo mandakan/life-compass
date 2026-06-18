@@ -72,7 +72,12 @@ export type ImportedData = {
         [key: string]: unknown;
       }[];
       chosenOptionId?: string;
-      steps: { id: string; text: string; done: boolean; [key: string]: unknown }[];
+      steps: {
+        id: string;
+        text: string;
+        done: boolean;
+        [key: string]: unknown;
+      }[];
       outcome: string;
       createdAt: string;
       [key: string]: unknown;

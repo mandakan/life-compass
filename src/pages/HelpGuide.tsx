@@ -24,26 +24,26 @@ const GuideItem: React.FC<{
   }) as string[];
 
   return (
-    <div className="border-b border-border">
+    <div className="border-border border-b">
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="flex w-full cursor-pointer items-start gap-[18px] border-none bg-transparent px-1 py-[22px] text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        className="focus-visible:outline-focus flex w-full cursor-pointer items-start gap-[18px] border-none bg-transparent px-1 py-[22px] text-left focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <TopicGlyph icon={topic.icon} tone={topic.tone} size={48} />
         <span className="min-w-0 flex-1">
           <span className="flex items-center justify-between gap-3">
-            <span className="font-display text-xl font-semibold leading-snug text-text">
+            <span className="font-display text-text text-xl leading-snug font-semibold">
               {t(`guide.topics.${topic.id}.title`)}
             </span>
             <ChevronDownIcon
-              className="h-5 w-5 flex-none text-text-muted transition-transform duration-base ease-out-soft"
+              className="text-text-muted duration-base ease-out-soft h-5 w-5 flex-none transition-transform"
               style={{ transform: open ? 'rotate(180deg)' : 'none' }}
             />
           </span>
           {!open && (
-            <span className="mt-1.5 block text-base leading-relaxed text-text-muted [text-wrap:pretty]">
+            <span className="text-text-muted mt-1.5 block text-base leading-relaxed [text-wrap:pretty]">
               {t(`guide.topics.${topic.id}.lede`)}
             </span>
           )}
@@ -55,7 +55,7 @@ const GuideItem: React.FC<{
           {body.map((p, idx) => (
             <p
               key={idx}
-              className="text-lg leading-relaxed text-text-muted [text-wrap:pretty]"
+              className="text-text-muted text-lg leading-relaxed [text-wrap:pretty]"
               style={{ marginTop: idx === 0 ? 0 : 14 }}
             >
               {p}
@@ -86,13 +86,13 @@ const HelpGuide: React.FC = () => {
   return (
     <div className="bg-bg text-text px-4 pb-16">
       <div className="mx-auto w-full max-w-[720px] pt-11">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-text-muted">
+        <p className="text-text-muted text-xs font-semibold tracking-[0.08em] uppercase">
           {t('guide.page.eyebrow')}
         </p>
-        <h1 className="mt-2.5 font-display text-4xl font-semibold leading-tight tracking-[-0.015em] text-text [text-wrap:pretty]">
+        <h1 className="font-display text-text mt-2.5 text-4xl leading-tight font-semibold tracking-[-0.015em] [text-wrap:pretty]">
           {t('guide.page.title')}
         </h1>
-        <p className="mt-4 max-w-[580px] text-xl leading-relaxed text-text-muted [text-wrap:pretty]">
+        <p className="text-text-muted mt-4 max-w-[580px] text-xl leading-relaxed [text-wrap:pretty]">
           {t('guide.page.subtitle')}
         </p>
 
@@ -103,10 +103,10 @@ const HelpGuide: React.FC = () => {
           <span className="inline-flex min-w-0 items-center gap-3.5">
             <CompassMark size={30} />
             <span className="min-w-0">
-              <span className="block text-base font-semibold text-text">
+              <span className="text-text block text-base font-semibold">
                 {t('guide.page.replay_title')}
               </span>
-              <span className="mt-0.5 block text-sm text-text-muted">
+              <span className="text-text-muted mt-0.5 block text-sm">
                 {t('guide.page.replay_body')}
               </span>
             </span>
@@ -116,7 +116,7 @@ const HelpGuide: React.FC = () => {
           </Button>
         </Card>
 
-        <div className="mt-4 border-t border-border">
+        <div className="border-border mt-4 border-t">
           {GUIDE_TOPICS.map(topic => (
             <GuideItem
               key={topic.id}
@@ -127,7 +127,7 @@ const HelpGuide: React.FC = () => {
           ))}
         </div>
 
-        <p className="mt-10 text-sm leading-relaxed text-text-muted [text-wrap:pretty]">
+        <p className="text-text-muted mt-10 text-sm leading-relaxed [text-wrap:pretty]">
           {t('guide.page.disclaimer')}
         </p>
       </div>

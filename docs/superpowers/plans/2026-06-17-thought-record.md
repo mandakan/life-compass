@@ -11,6 +11,7 @@
 **Spec:** `docs/superpowers/specs/2026-06-17-thought-record-design.md`.
 
 **Reference files to mirror (read these before the UI tasks):**
+
 - Stepped flow: `src/components/practices/tools/values-clarity/ValuesClarity.tsx` (`StepFrame`, `step` state, next/back buttons).
 - Persisted card list: `src/components/practices/tools/behavioral-experiment/BehavioralExperiment.tsx`, `ExperimentItem.tsx`, `ExperimentStepList.tsx`, `OutcomeField.tsx`.
 - Tool registration: `src/components/practices/tools/behavioral-experiment/index.ts`, `src/practices/index.ts`.
@@ -24,6 +25,7 @@
 ## Task 1: Data model (`ThoughtRecord` type + document)
 
 **Files:**
+
 - Modify: `src/types/LifeCompassDocument.ts`
 
 - [ ] **Step 1: Add the `ThoughtRecord` interface** after the `BehavioralExperiment` interface
@@ -76,6 +78,7 @@ git commit -m "feat(thought-record): add ThoughtRecord type and bump schema to v
 ## Task 2: Store slice (TDD)
 
 **Files:**
+
 - Modify: `src/store/lifeCompassStore.ts`
 - Test: `src/tests/thoughtRecordStore.test.ts` (new)
 - Test: `src/tests/thoughtRecordMigration.test.ts` (new)
@@ -122,7 +125,9 @@ describe('thoughtRecords store slice', () => {
 
   it('adds a thought record linked to an area', () => {
     useLifeCompassStore.getState().addThoughtRecord('area-1');
-    expect(useLifeCompassStore.getState().thoughtRecords[0].areaId).toBe('area-1');
+    expect(useLifeCompassStore.getState().thoughtRecords[0].areaId).toBe(
+      'area-1',
+    );
   });
 
   it('updates a thought record but never changes its id', () => {
@@ -254,16 +259,20 @@ Expected: FAIL -- `addThoughtRecord` is not a function / `thoughtRecords` undefi
 10. `migrate`: widen every `Pick<LifeCompassState, ...>` union in this function to include `'thoughtRecords'`, and add a new branch BEFORE the final `return`:
 
 ```ts
-        // v2 -> v3: thoughtRecords did not exist; seed an empty array.
-        if (version < 3) {
-          return {
-            ...state,
-            thoughtRecords: state.thoughtRecords ?? [],
-          } as Pick<
-            LifeCompassState,
-            'lifeAreas' | 'history' | 'goals' | 'behavioralExperiments' | 'thoughtRecords'
-          >;
-        }
+// v2 -> v3: thoughtRecords did not exist; seed an empty array.
+if (version < 3) {
+  return {
+    ...state,
+    thoughtRecords: state.thoughtRecords ?? [],
+  } as Pick<
+    LifeCompassState,
+    | 'lifeAreas'
+    | 'history'
+    | 'goals'
+    | 'behavioralExperiments'
+    | 'thoughtRecords'
+  >;
+}
 ```
 
 Also update the `persistedState as Partial<Pick<...>>` cast at the top of `migrate` to include `'thoughtRecords'`.
@@ -271,9 +280,9 @@ Also update the `persistedState as Partial<Pick<...>>` cast at the top of `migra
 11. `onRehydrateStorage`: add a guard mirroring the experiments one:
 
 ```ts
-        if (!Array.isArray(state.thoughtRecords)) {
-          state.thoughtRecords = [];
-        }
+if (!Array.isArray(state.thoughtRecords)) {
+  state.thoughtRecords = [];
+}
 ```
 
 - [ ] **Step 4: Run the store test, verify it passes**
@@ -302,6 +311,7 @@ git commit -m "feat(thought-record): add thoughtRecords store slice with cascade
 ## Task 3: Export / import wiring (TDD)
 
 **Files:**
+
 - Modify: `src/types/importExport.ts`
 - Modify: `src/utils/exportService.ts`
 - Modify: `src/schemas/exportImportSchema.json`
@@ -419,12 +429,14 @@ After the `behavioralExperiments?` block inside `data`, add:
 In `src/components/ExportButton.tsx`: add a selector `const thoughtRecords = useLifeCompassStore(state => state.thoughtRecords);` and pass `thoughtRecords` in the `exportData({ ... })` call.
 
 In `src/components/guide/GuideDataActions.tsx`:
+
 - add `type ThoughtRecord` to the `@models/LifeCompassDocument` import,
 - add a selector `const thoughtRecords = useLifeCompassStore(state => state.thoughtRecords);`,
 - pass `thoughtRecords` in the `exportData({ ... })` call,
 - in `applyImport`, add to the `importDocument({ ... })` object: `thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],`.
 
 In `src/pages/YourCompass.tsx` (the `handleImportFile` function has its OWN `importDocument({ ... })` mapping, ~line 153):
+
 - add `type ThoughtRecord` to the `@models/LifeCompassDocument` import (or wherever `BehavioralExperiment` is imported there),
 - add `thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],` to that `importDocument` object too.
 
@@ -447,6 +459,7 @@ git commit -m "feat(thought-record): export/import thoughtRecords through schema
 ## Task 4: i18n copy (en + sv)
 
 **Files:**
+
 - Modify: `public/locales/en/translation.json`
 - Modify: `public/locales/sv/translation.json`
 
@@ -548,6 +561,7 @@ git commit -m "feat(thought-record): add en + sv copy and crisis resources"
 ## Task 5: Crisis resources component
 
 **Files:**
+
 - Create: `src/components/practices/CrisisResources.tsx`
 
 - [ ] **Step 1: Write the component** -- a quiet `<details>` line, collapsed by default, locale copy via i18next (uses the `practices.crisis` keys from Task 4). `returnObjects` gives the resource array.
@@ -569,13 +583,13 @@ const CrisisResources: React.FC = () => {
   }) as string[];
 
   return (
-    <details className="w-full min-w-0 rounded-lg border border-border bg-surface-sunken px-4 py-3">
-      <summary className="cursor-pointer text-sm text-text-muted">
+    <details className="border-border bg-surface-sunken w-full min-w-0 rounded-lg border px-4 py-3">
+      <summary className="text-text-muted cursor-pointer text-sm">
         {t('practices.crisis.trigger')}
       </summary>
       <div className="mt-2 flex flex-col gap-1">
-        <p className="text-sm text-text">{t('practices.crisis.intro')}</p>
-        <ul className="list-none text-sm text-text-muted">
+        <p className="text-text text-sm">{t('practices.crisis.intro')}</p>
+        <ul className="text-text-muted list-none text-sm">
           {(Array.isArray(resources) ? resources : []).map(line => (
             <li key={line}>{line}</li>
           ))}
@@ -605,6 +619,7 @@ git commit -m "feat(thought-record): add reusable CrisisResources component"
 ## Task 6: Thought Record UI + registration (TDD)
 
 **Files:**
+
 - Create: `src/components/practices/tools/thought-record/ThoughtRecord.tsx` (list + "new" + renders the flow / cards)
 - Create: `src/components/practices/tools/thought-record/ThoughtRecordFlow.tsx` (the 5-step guided reveal for one record)
 - Create: `src/components/practices/tools/thought-record/ThoughtRecordItem.tsx` (saved card, expand to view/edit, delete)
@@ -615,6 +630,7 @@ git commit -m "feat(thought-record): add reusable CrisisResources component"
 Read `BehavioralExperiment.tsx` + `ExperimentItem.tsx` (card list, expand, delete via `useConfirmDialog`) and `ValuesClarity.tsx` (`StepFrame`, `step` state, next/back) before writing. Mirror their structure, styles, and the `PREFIX` constant convention (`const PREFIX = 'practices.tools.thought_record';`).
 
 **Component contracts:**
+
 - `ThoughtRecord.tsx`: subscribes to `thoughtRecords` and `addThoughtRecord`; shows the empty state (`${PREFIX}.empty_state`) when none; a "New thought record" primary button that calls `addThoughtRecord()` then opens the flow for the new record's id; and a `<ul>` of `ThoughtRecordItem` for saved records (newest first). Use `useConfirmDialog` for delete confirmation, passing an `onRequestDelete` to each item exactly like `BehavioralExperiment.tsx` does.
 - `ThoughtRecordFlow.tsx`: props `{ record: ThoughtRecord; onClose: () => void }`. Local `step` state 1..5 with `StepFrame` (copy `StepFrame` from ValuesClarity or extract a shared one -- copying is fine, keep it local). Each field writes through `updateThoughtRecord(record.id, { ... })` on change (controlled inputs bound to the live record). Steps:
   1. `Input`/textarea for `situation` + the optional area `<select>` (reuse the select markup from `ExperimentItem`/`BehavioralExperiment`; remember `w-full min-w-0 max-w-full truncate` on the select to avoid mobile overflow). Options come from `useLifeCompassStore(s => s.lifeAreas)`; the empty option uses `${PREFIX}.step1.area_none`.
@@ -622,7 +638,7 @@ Read `BehavioralExperiment.tsx` + `ExperimentItem.tsx` (card list, expand, delet
   3. text input for `feeling` + `ScaleChooser` (`labels` = the five `${PREFIX}.feeling_scale.1..5`, `value={record.feelingBefore ?? null}`, `accent="clay"`, `onChange={n => updateThoughtRecord(record.id, { feelingBefore: n })}`).
   4. three textareas: `supports`, `widerView`, `kinderView`.
   5. `ScaleChooser` for `feelingAfter` (same labels; `value={record.feelingAfter ?? null}`). Render the before + after words as plain text side by side, e.g. `t(scaleKey(record.feelingBefore))` and `t(scaleKey(record.feelingAfter))` -- **never compute or render a difference.**
-  Footer: Back/Next buttons (disable Back on step 1); on step 5 a "Done" button calls `onClose()`. Mount `<CrisisResources />` once at the bottom of the flow.
+     Footer: Back/Next buttons (disable Back on step 1); on step 5 a "Done" button calls `onClose()`. Mount `<CrisisResources />` once at the bottom of the flow.
 - `ThoughtRecordItem.tsx`: props `{ record; onRequestDelete: () => Promise<boolean> }`. Collapsed shows `record.situation || t('${PREFIX}.untitled')` as title and the dated `record.thought`; expanded shows all fields read-only plus an Edit button that opens `ThoughtRecordFlow` inline (or toggles editing), and a Delete (Trash) button that calls `onRequestDelete()` then `removeThoughtRecord(record.id)`. Mirror `ExperimentItem.tsx` exactly for the expand/delete affordances.
 
 Add `scaleKey` helper inline where used: `const scaleKey = (n?: number) => n ? \`${PREFIX}.feeling_scale.${n}\` : null;` and only render the word when non-null.
@@ -653,6 +669,7 @@ Add the import line next to the existing tool imports (match the existing style,
 - [ ] **Step 3: Write the failing component test** `src/tests/thoughtRecord.test.tsx`
 
 Read `src/tests/behavioralExperiment.test.tsx` first and mirror its setup (it wraps in the i18n provider and adds a resource bundle for the dynamic tool keys). The test must:
+
 - add the `practices.tools.thought_record.*` + `practices.crisis.*` keys via `i18n.addResourceBundle('sv','translation',{ practices: { tools: { thought_record: {...} }, crisis: {...} } }, true, true)`,
 - render `ThoughtRecord` inside a Router + i18n provider,
 - assert the empty state shows,

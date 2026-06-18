@@ -2,8 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import type { ButtonVariant, ButtonSize } from './Button';
 
-interface LinkButtonProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
 }
@@ -36,8 +35,8 @@ const LinkButton: React.FC<LinkButtonProps> = ({
     <a
       className={cn(
         'inline-flex cursor-pointer items-center justify-center rounded-md font-medium no-underline',
-        'transition-[background-color,color,opacity] duration-base ease-out-soft',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+        'duration-base ease-out-soft transition-[background-color,color,opacity]',
+        'focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
         variantClasses[variant],
         sizeClasses[size],
         className,

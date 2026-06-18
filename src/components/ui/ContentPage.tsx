@@ -29,11 +29,11 @@ const ContentPage: React.FC<ContentPageProps> = ({
     <div className="bg-bg text-text px-4 py-10 sm:py-14">
       <article className={cn('mx-auto w-full max-w-2xl', className)}>
         <header className="mb-8">
-          <h1 className="font-display text-3xl font-semibold text-text sm:text-4xl">
+          <h1 className="font-display text-text text-3xl font-semibold sm:text-4xl">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-3 text-lg text-text-muted">{subtitle}</p>
+            <p className="text-text-muted mt-3 text-lg">{subtitle}</p>
           )}
         </header>
         {children}

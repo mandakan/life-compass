@@ -18,16 +18,16 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   return (
     <Link
       to={`/practices/${tool.id}`}
-      className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4 shadow-warm-sm transition-[background-color,box-shadow] duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+      className="border-border bg-surface shadow-warm-sm duration-base ease-out-soft hover:bg-surface-sunken focus-visible:outline-focus flex items-start gap-3 rounded-xl border p-4 transition-[background-color,box-shadow] focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {Icon && (
-        <span className="mt-0.5 flex-none text-text-muted">
+        <span className="text-text-muted mt-0.5 flex-none">
           <Icon className="size-6" />
         </span>
       )}
       <span className="min-w-0">
-        <span className="block font-medium text-text">{t(tool.labelKey)}</span>
-        <span className="mt-1 block text-sm text-text-muted">
+        <span className="text-text block font-medium">{t(tool.labelKey)}</span>
+        <span className="text-text-muted mt-1 block text-sm">
           {t(tool.descriptionKey)}
         </span>
       </span>

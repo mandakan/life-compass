@@ -66,7 +66,7 @@ const ThoughtRecordFlow: React.FC<ThoughtRecordFlowProps> = ({
                   areaId: e.target.value || undefined,
                 })
               }
-              className="min-h-[44px] w-full min-w-0 max-w-full truncate rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="border-border bg-surface text-text focus-visible:outline-focus min-h-[44px] w-full max-w-full min-w-0 truncate rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <option value="">{t(`${PREFIX}.step1.area_none`)}</option>
               {lifeAreas.map(area => (
@@ -123,18 +123,20 @@ const ThoughtRecordFlow: React.FC<ThoughtRecordFlowProps> = ({
                 updateThoughtRecord(record.id, { feeling: e.target.value })
               }
               placeholder={t(`${PREFIX}.step3.feeling_placeholder`)}
-              className="min-h-[44px] w-full min-w-0 rounded-md border border-border bg-surface px-3 text-text placeholder:text-text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="border-border bg-surface text-text placeholder:text-text-muted focus-visible:outline-focus min-h-[44px] w-full min-w-0 rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             />
           </label>
           <div className="flex flex-col gap-2">
-            <p className="text-sm text-text-muted">
+            <p className="text-text-muted text-sm">
               {t(`${PREFIX}.step3.strength_label`)}
             </p>
             <ScaleChooser
               labels={feelingLabels}
               value={record.feelingBefore ?? null}
               accent="clay"
-              onChange={n => updateThoughtRecord(record.id, { feelingBefore: n })}
+              onChange={n =>
+                updateThoughtRecord(record.id, { feelingBefore: n })
+              }
             />
           </div>
         </StepFrame>
@@ -190,23 +192,29 @@ const ThoughtRecordFlow: React.FC<ThoughtRecordFlowProps> = ({
           prompt={t(`${PREFIX}.step5.prompt`)}
         >
           <div className="flex flex-col gap-2">
-            <p className="text-sm text-text-muted">
+            <p className="text-text-muted text-sm">
               {t(`${PREFIX}.step5.strength_label`)}
             </p>
             <ScaleChooser
               labels={feelingLabels}
               value={record.feelingAfter ?? null}
               accent="clay"
-              onChange={n => updateThoughtRecord(record.id, { feelingAfter: n })}
+              onChange={n =>
+                updateThoughtRecord(record.id, { feelingAfter: n })
+              }
             />
           </div>
           {(record.feelingBefore != null || record.feelingAfter != null) && (
-            <div className="flex gap-4 text-sm text-text-muted">
+            <div className="text-text-muted flex gap-4 text-sm">
               {record.feelingBefore != null && (
-                <span>{t(`${PREFIX}.feeling_scale.${record.feelingBefore}`)}</span>
+                <span>
+                  {t(`${PREFIX}.feeling_scale.${record.feelingBefore}`)}
+                </span>
               )}
               {record.feelingAfter != null && (
-                <span>{t(`${PREFIX}.feeling_scale.${record.feelingAfter}`)}</span>
+                <span>
+                  {t(`${PREFIX}.feeling_scale.${record.feelingAfter}`)}
+                </span>
               )}
             </div>
           )}

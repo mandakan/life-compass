@@ -24,10 +24,10 @@ export function TodayView({ areas, onOpen }: TodayViewProps) {
   );
   const [selected, setSelected] = useState<number | null>(null);
 
-  const area = areas.find((a) => a.id === pickId) ?? areas[0];
+  const area = areas.find(a => a.id === pickId) ?? areas[0];
 
   const handleShowAnother = () => {
-    const idx = areas.findIndex((a) => a.id === pickId);
+    const idx = areas.findIndex(a => a.id === pickId);
     const next = areas[(idx + 1) % areas.length];
     setPickId(next.id);
     setSelected(null);
@@ -38,37 +38,37 @@ export function TodayView({ areas, onOpen }: TodayViewProps) {
   return (
     <div className="mx-auto w-full max-w-[460px]">
       {/* Eyebrow */}
-      <p className="m-0 text-sm tracking-[0.02em] text-text-muted">
+      <p className="text-text-muted m-0 text-sm tracking-[0.02em]">
         {t('your_compass.today.eyebrow')}
       </p>
 
       {/* Area name */}
-      <h3 className="mb-0.5 mt-2 font-display text-2xl font-semibold leading-snug text-text">
+      <h3 className="font-display text-text mt-2 mb-0.5 text-2xl leading-snug font-semibold">
         {area.name}
       </h3>
 
       {/* Area description */}
       {area.description && (
-        <p className="mb-[18px] mt-0 text-base text-text-muted">
+        <p className="text-text-muted mt-0 mb-[18px] text-base">
           {area.description}
         </p>
       )}
 
       {/* Scale prompt */}
-      <div className="mb-3 text-base text-text">
+      <div className="text-text mb-3 text-base">
         {t('your_compass.today.question')}
       </div>
 
       {/* Vertical 5-option word scale */}
       <div className="flex flex-col gap-2">
-        {SCALE_BUCKETS.map((n) => {
+        {SCALE_BUCKETS.map(n => {
           const isOn = selected === n;
           return (
             <button
               key={n}
               onClick={() => setSelected(n)}
               aria-pressed={isOn}
-              className="flex w-full cursor-pointer items-center gap-3 rounded-lg py-[13px] px-4 text-left text-lg text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text focus-visible:outline-focus flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-[13px] text-left text-lg focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 minHeight: 44,
                 border: `1.5px solid ${isOn ? 'var(--color-primary)' : 'var(--color-border)'}`,
@@ -106,7 +106,7 @@ export function TodayView({ areas, onOpen }: TodayViewProps) {
         </Button>
         <button
           onClick={handleShowAnother}
-          className="cursor-pointer whitespace-nowrap bg-transparent text-base text-text underline underline-offset-[3px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          className="text-text focus-visible:outline-focus cursor-pointer bg-transparent text-base whitespace-nowrap underline underline-offset-[3px] focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{
             minHeight: 44,
             border: 'none',

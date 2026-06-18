@@ -66,9 +66,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
             {t('name')}
           </label>
           <Popover
-            trigger={
-              <QuestionMarkCircleIcon className="w-5 text-primary" />
-            }
+            trigger={<QuestionMarkCircleIcon className="text-primary w-5" />}
           >
             <p>{t('name_help')}</p>
           </Popover>
@@ -93,9 +91,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
             {t('description')}
           </label>
           <Popover
-            trigger={
-              <QuestionMarkCircleIcon className="w-5 text-primary" />
-            }
+            trigger={<QuestionMarkCircleIcon className="text-primary w-5" />}
           >
             <p>{t('description_help')}</p>
           </Popover>
@@ -114,9 +110,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
             {t('details')}
           </label>
           <Popover
-            trigger={
-              <QuestionMarkCircleIcon className="w-5 text-primary" />
-            }
+            trigger={<QuestionMarkCircleIcon className="text-primary w-5" />}
           >
             <p>{t('details_help')}</p>
           </Popover>
@@ -135,9 +129,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
             {t('importance')}
           </label>
           <Popover
-            trigger={
-              <QuestionMarkCircleIcon className="w-5 text-primary" />
-            }
+            trigger={<QuestionMarkCircleIcon className="text-primary w-5" />}
           >
             <p>{t('importance_help')}</p>
           </Popover>
@@ -161,9 +153,7 @@ const LifeAreaEditForm: React.FC<LifeAreaEditFormProps> = ({
             {t('lived_according_to_past_week')}
           </label>
           <Popover
-            trigger={
-              <QuestionMarkCircleIcon className="w-5 text-primary" />
-            }
+            trigger={<QuestionMarkCircleIcon className="text-primary w-5" />}
           >
             <p>{t('satisfaction_help')}</p>
           </Popover>

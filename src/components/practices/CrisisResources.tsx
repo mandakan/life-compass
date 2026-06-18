@@ -14,13 +14,13 @@ const CrisisResources: React.FC = () => {
   }) as string[];
 
   return (
-    <details className="w-full min-w-0 rounded-lg border border-border bg-surface-sunken px-4 py-3">
-      <summary className="cursor-pointer text-sm text-text-muted">
+    <details className="border-border bg-surface-sunken w-full min-w-0 rounded-lg border px-4 py-3">
+      <summary className="text-text-muted cursor-pointer text-sm">
         {t('practices.crisis.trigger')}
       </summary>
       <div className="mt-2 flex flex-col gap-1">
-        <p className="text-sm text-text">{t('practices.crisis.intro')}</p>
-        <ul className="list-none text-sm text-text-muted">
+        <p className="text-text text-sm">{t('practices.crisis.intro')}</p>
+        <ul className="text-text-muted list-none text-sm">
           {(Array.isArray(resources) ? resources : []).map(line => (
             <li key={line}>{line}</li>
           ))}

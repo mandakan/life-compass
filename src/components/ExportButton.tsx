@@ -19,7 +19,14 @@ const ExportButton: React.FC = () => {
 
   const handleExport = async () => {
     try {
-      const jsonData = exportData({ lifeAreas, history, goals, behavioralExperiments, thoughtRecords, problemSolvings });
+      const jsonData = exportData({
+        lifeAreas,
+        history,
+        goals,
+        behavioralExperiments,
+        thoughtRecords,
+        problemSolvings,
+      });
       const blob = new Blob([jsonData], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
 

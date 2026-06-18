@@ -60,11 +60,13 @@ i18n.addResourceBundle(
             wider_label: 'What else might be true?',
             wider_placeholder: 'What might you say to a friend in this spot?',
             kinder_label: 'A kinder, wider way to hold this',
-            kinder_placeholder: 'If you stepped back, how else could you carry it?',
+            kinder_placeholder:
+              'If you stepped back, how else could you carry it?',
           },
           step5: {
             title: 'How does it feel now?',
-            prompt: 'Just notice how the same feeling sits now. There is no right answer.',
+            prompt:
+              'Just notice how the same feeling sits now. There is no right answer.',
             strength_label: 'How strong does it feel now?',
           },
           feeling_scale: {
@@ -102,14 +104,14 @@ const renderTool = () =>
 describe('ThoughtRecord tool', () => {
   it('shows the empty state when there are no records', () => {
     renderTool();
-    expect(
-      screen.getByText(/no thought records yet/i),
-    ).toBeTruthy();
+    expect(screen.getByText(/no thought records yet/i)).toBeTruthy();
   });
 
   it('creates a new record and opens the flow when clicking "New thought record"', () => {
     renderTool();
-    fireEvent.click(screen.getByRole('button', { name: /new thought record/i }));
+    fireEvent.click(
+      screen.getByRole('button', { name: /new thought record/i }),
+    );
     // Should now show the flow (step 1 heading)
     expect(screen.getByText('What happened?')).toBeTruthy();
     expect(useLifeCompassStore.getState().thoughtRecords).toHaveLength(1);
@@ -119,7 +121,9 @@ describe('ThoughtRecord tool', () => {
     renderTool();
 
     // Start a new record
-    fireEvent.click(screen.getByRole('button', { name: /new thought record/i }));
+    fireEvent.click(
+      screen.getByRole('button', { name: /new thought record/i }),
+    );
 
     // Step 1: type the situation
     const textarea = screen.getByPlaceholderText(
@@ -142,9 +146,7 @@ describe('ThoughtRecord tool', () => {
 
     // Back on list view, the card title should be the situation text
     await waitFor(() => {
-      expect(
-        screen.getByText('I felt ignored in the meeting'),
-      ).toBeTruthy();
+      expect(screen.getByText('I felt ignored in the meeting')).toBeTruthy();
     });
 
     // Verify store has the record with the correct situation
@@ -179,7 +181,9 @@ describe('ThoughtRecord tool', () => {
     renderTool();
 
     // Open the flow for this record
-    fireEvent.click(screen.getByRole('button', { name: /new thought record/i }));
+    fireEvent.click(
+      screen.getByRole('button', { name: /new thought record/i }),
+    );
 
     // Navigate to step 3 to see the feeling scale
     const clickNext = () =>

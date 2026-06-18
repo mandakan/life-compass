@@ -19,7 +19,8 @@ export interface ProblemSolvingItemProps {
 }
 
 const FIELD_CLASS = 'flex flex-col gap-1';
-const LABEL_CLASS = 'text-xs font-medium text-text-muted uppercase tracking-wide';
+const LABEL_CLASS =
+  'text-xs font-medium text-text-muted uppercase tracking-wide';
 const VALUE_CLASS = 'text-sm text-text';
 
 const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
@@ -42,14 +43,16 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
   };
 
   return (
-    <li className="rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
+    <li className="border-border bg-surface shadow-warm-sm rounded-lg border p-4">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
           aria-expanded={expanded}
-          aria-label={expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)}
-          className="-m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          aria-label={
+            expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)
+          }
+          className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus -m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {expanded ? (
             <ChevronDownIcon className="size-5" />
@@ -61,7 +64,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
-          className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-text"
+          className="text-text min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium"
           title={title}
         >
           {title}
@@ -73,7 +76,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
             onClick={onEdit}
             title={t(`${PREFIX}.edit`)}
             aria-label={`${t(`${PREFIX}.edit`)}: ${title}`}
-            className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <PencilIcon className="size-4" />
           </button>
@@ -82,7 +85,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
             onClick={handleDelete}
             title={t(`${PREFIX}.delete`)}
             aria-label={`${t(`${PREFIX}.delete`)}: ${title}`}
-            className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <TrashIcon className="size-4" />
           </button>
@@ -90,7 +93,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
       </div>
 
       {expanded && (
-        <div className="mt-4 flex flex-col gap-4 border-t border-border pt-4">
+        <div className="border-border mt-4 flex flex-col gap-4 border-t pt-4">
           {record.options.length > 0 && (
             <div className={FIELD_CLASS}>
               <span className={LABEL_CLASS}>{t(`${PREFIX}.step2.title`)}</span>
@@ -105,13 +108,17 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
           )}
           {chosen && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>{t(`${PREFIX}.step4.choose_label`)}</span>
+              <span className={LABEL_CLASS}>
+                {t(`${PREFIX}.step4.choose_label`)}
+              </span>
               <p className={VALUE_CLASS}>{chosen.text}</p>
             </div>
           )}
           {record.steps.length > 0 && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>{t(`${PREFIX}.step4.steps_intro`)}</span>
+              <span className={LABEL_CLASS}>
+                {t(`${PREFIX}.step4.steps_intro`)}
+              </span>
               <ul className="flex flex-col gap-1">
                 {record.steps.map(step => (
                   <li key={step.id} className={VALUE_CLASS}>

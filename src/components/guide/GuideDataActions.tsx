@@ -43,7 +43,14 @@ const GuideDataActions: React.FC = () => {
   const [error, setError] = useState('');
 
   const handleExport = () => {
-    const json = exportData({ lifeAreas, history, goals, behavioralExperiments, thoughtRecords, problemSolvings });
+    const json = exportData({
+      lifeAreas,
+      history,
+      goals,
+      behavioralExperiments,
+      thoughtRecords,
+      problemSolvings,
+    });
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -136,7 +143,7 @@ const GuideDataActions: React.FC = () => {
         </Button>
       </div>
 
-      {error && <p className="mt-3 text-sm text-danger">{error}</p>}
+      {error && <p className="text-danger mt-3 text-sm">{error}</p>}
       {ConfirmationDialog}
     </div>
   );

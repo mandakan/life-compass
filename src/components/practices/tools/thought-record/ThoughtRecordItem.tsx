@@ -19,7 +19,8 @@ export interface ThoughtRecordItemProps {
 }
 
 const FIELD_CLASS = 'flex flex-col gap-1';
-const LABEL_CLASS = 'text-xs font-medium text-text-muted uppercase tracking-wide';
+const LABEL_CLASS =
+  'text-xs font-medium text-text-muted uppercase tracking-wide';
 const VALUE_CLASS = 'text-sm text-text';
 
 const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
@@ -41,14 +42,16 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
   };
 
   return (
-    <li className="rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
+    <li className="border-border bg-surface shadow-warm-sm rounded-lg border p-4">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
           aria-expanded={expanded}
-          aria-label={expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)}
-          className="-m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          aria-label={
+            expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)
+          }
+          className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus -m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {expanded ? (
             <ChevronDownIcon className="size-5" />
@@ -60,7 +63,7 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
-          className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-text"
+          className="text-text min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium"
           title={title}
         >
           {title}
@@ -72,7 +75,7 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
             onClick={onEdit}
             title={t(`${PREFIX}.edit`)}
             aria-label={`${t(`${PREFIX}.edit`)}: ${title}`}
-            className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <PencilIcon className="size-4" />
           </button>
@@ -81,7 +84,7 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
             onClick={handleDelete}
             title={t(`${PREFIX}.delete`)}
             aria-label={`${t(`${PREFIX}.delete`)}: ${title}`}
-            className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <TrashIcon className="size-4" />
           </button>
@@ -89,24 +92,22 @@ const ThoughtRecordItem: React.FC<ThoughtRecordItemProps> = ({
       </div>
 
       {expanded && (
-        <div className="mt-4 flex flex-col gap-4 border-t border-border pt-4">
+        <div className="border-border mt-4 flex flex-col gap-4 border-t pt-4">
           {record.thought && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>
-                {t(`${PREFIX}.step2.title`)}
-              </span>
+              <span className={LABEL_CLASS}>{t(`${PREFIX}.step2.title`)}</span>
               <p className={VALUE_CLASS}>{record.thought}</p>
             </div>
           )}
           {(record.feeling || record.feelingBefore != null) && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>
-                {t(`${PREFIX}.step3.title`)}
-              </span>
+              <span className={LABEL_CLASS}>{t(`${PREFIX}.step3.title`)}</span>
               <p className={VALUE_CLASS}>
                 {record.feeling}
                 {record.feelingBefore != null && (
-                  <span className={record.feeling ? 'ml-2 text-text-muted' : ''}>
+                  <span
+                    className={record.feeling ? 'text-text-muted ml-2' : ''}
+                  >
                     {record.feeling ? '(' : ''}
                     {t(`${PREFIX}.feeling_scale.${record.feelingBefore}`)}
                     {record.feeling ? ')' : ''}

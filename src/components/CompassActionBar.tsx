@@ -59,7 +59,10 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
       window.matchMedia('(min-width: 720px)').matches,
   );
   useEffect(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function')
+    if (
+      typeof window === 'undefined' ||
+      typeof window.matchMedia !== 'function'
+    )
       return;
     const mql = window.matchMedia('(min-width: 720px)');
     const handler = (e: MediaQueryListEvent) => setIsWide(e.matches);
@@ -108,7 +111,7 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
     <div
       role="group"
       aria-label={t('cards_radar_view')}
-      className="inline-flex shrink-0 rounded-md border border-border bg-surface p-1 shadow-warm-sm"
+      className="border-border bg-surface shadow-warm-sm inline-flex shrink-0 rounded-md border p-1"
     >
       <button
         type="button"
@@ -200,7 +203,7 @@ const CompassActionBar: React.FC<CompassActionBarProps> = ({
   return (
     <>
       <div
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/95 shadow-warm-md backdrop-blur-sm"
+        className="border-border bg-surface/95 shadow-warm-md fixed inset-x-0 bottom-0 z-40 border-t backdrop-blur-sm"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         <div className="flex items-center gap-2 px-3 py-2">

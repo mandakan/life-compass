@@ -39,7 +39,9 @@ describe('problemSolvings store slice', () => {
 
   it('adds a record linked to an area', () => {
     useLifeCompassStore.getState().addProblemSolving('area-1');
-    expect(useLifeCompassStore.getState().problemSolvings[0].areaId).toBe('area-1');
+    expect(useLifeCompassStore.getState().problemSolvings[0].areaId).toBe(
+      'area-1',
+    );
   });
 
   it('updates a record but never changes its id', () => {
@@ -96,9 +98,9 @@ describe('problemSolvings store slice', () => {
     const optionId =
       useLifeCompassStore.getState().problemSolvings[0].options[0].id;
     s.updateProblemSolving(id, { chosenOptionId: optionId });
-    expect(useLifeCompassStore.getState().problemSolvings[0].chosenOptionId).toBe(
-      optionId,
-    );
+    expect(
+      useLifeCompassStore.getState().problemSolvings[0].chosenOptionId,
+    ).toBe(optionId);
     s.removeProblemSolvingOption(id, optionId);
     expect(
       useLifeCompassStore.getState().problemSolvings[0].chosenOptionId,

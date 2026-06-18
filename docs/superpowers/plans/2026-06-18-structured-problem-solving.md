@@ -16,6 +16,7 @@
 ## File Structure
 
 **Create:**
+
 - `src/components/practices/tools/problem-solving/index.ts` -- `ToolDef` registration
 - `src/components/practices/tools/problem-solving/ProblemSolving.tsx` -- list + "new" entry point
 - `src/components/practices/tools/problem-solving/ProblemSolvingFlow.tsx` -- the 5-step guided flow
@@ -26,6 +27,7 @@
 - `src/tests/problemSolving.test.tsx` -- component smoke test
 
 **Modify:**
+
 - `src/types/LifeCompassDocument.ts` -- add `SolutionOption` + `ProblemSolving`, add to doc, bump version
 - `src/types/importExport.ts` -- add optional `problemSolvings` field
 - `src/store/lifeCompassStore.ts` -- state, actions, cascade, clear, import, partialize, persist version + migrate + rehydrate guard
@@ -44,6 +46,7 @@
 ## Task 1: Data model + store slice
 
 **Files:**
+
 - Test: `src/tests/problemSolvingStore.test.ts` (create)
 - Modify: `src/types/LifeCompassDocument.ts`, `src/types/importExport.ts`, `src/store/lifeCompassStore.ts`, `src/tests/thoughtRecordStore.test.ts`
 
@@ -93,7 +96,9 @@ describe('problemSolvings store slice', () => {
 
   it('adds a record linked to an area', () => {
     useLifeCompassStore.getState().addProblemSolving('area-1');
-    expect(useLifeCompassStore.getState().problemSolvings[0].areaId).toBe('area-1');
+    expect(useLifeCompassStore.getState().problemSolvings[0].areaId).toBe(
+      'area-1',
+    );
   });
 
   it('updates a record but never changes its id', () => {
@@ -150,9 +155,9 @@ describe('problemSolvings store slice', () => {
     const optionId =
       useLifeCompassStore.getState().problemSolvings[0].options[0].id;
     s.updateProblemSolving(id, { chosenOptionId: optionId });
-    expect(useLifeCompassStore.getState().problemSolvings[0].chosenOptionId).toBe(
-      optionId,
-    );
+    expect(
+      useLifeCompassStore.getState().problemSolvings[0].chosenOptionId,
+    ).toBe(optionId);
     s.removeProblemSolvingOption(id, optionId);
     expect(
       useLifeCompassStore.getState().problemSolvings[0].chosenOptionId,
@@ -305,26 +310,26 @@ In `src/types/importExport.ts`, add directly after the `thoughtRecords?: {...}[]
 In `src/tests/thoughtRecordStore.test.ts`, the `importDocument` call passes `schemaVersion: 4`. Change that single line to `schemaVersion: 5,` and add `problemSolvings: [],` to that same document object so it satisfies the new `LifeCompassDocument` shape:
 
 ```ts
-    useLifeCompassStore.getState().importDocument({
-      schemaVersion: 5,
-      lifeAreas: [],
-      history: [],
-      goals: [],
-      behavioralExperiments: [],
-      thoughtRecords: [
-        {
-          id: 't1',
-          situation: 's',
-          thought: 'th',
-          feeling: 'sad',
-          supports: '',
-          widerView: '',
-          kinderView: '',
-          createdAt: '2026-06-17T00:00:00.000Z',
-        },
-      ],
-      problemSolvings: [],
-    });
+useLifeCompassStore.getState().importDocument({
+  schemaVersion: 5,
+  lifeAreas: [],
+  history: [],
+  goals: [],
+  behavioralExperiments: [],
+  thoughtRecords: [
+    {
+      id: 't1',
+      situation: 's',
+      thought: 'th',
+      feeling: 'sad',
+      supports: '',
+      widerView: '',
+      kinderView: '',
+      createdAt: '2026-06-17T00:00:00.000Z',
+    },
+  ],
+  problemSolvings: [],
+});
 ```
 
 - [ ] **Step 6: Add the store state, action types, and actions**
@@ -557,6 +562,7 @@ git commit -m "feat(practices): add problemSolvings data model + store slice"
 ## Task 2: Persist migration (v3 -> v4)
 
 **Files:**
+
 - Test: `src/tests/problemSolvingMigration.test.ts` (create)
 - Modify: `src/store/lifeCompassStore.ts`
 
@@ -609,21 +615,21 @@ export const PERSIST_VERSION = 4;
 In the `migrate` hook (lines 402-464), every `Pick<LifeCompassState, ...>` union currently ends at `'thoughtRecords'`. Add `| 'problemSolvings'` to each of those unions (the `persistedState as Partial<Pick<...>>` cast at the top, the three `return ... as Pick<...>` casts, and the final `return state as Pick<...>`). Then add a new branch directly before the final `return state` (after the `if (version < 3)` block, line 455):
 
 ```ts
-        // v3 -> v4: problemSolvings did not exist; seed an empty array.
-        if (version < 4) {
-          return {
-            ...state,
-            problemSolvings: state.problemSolvings ?? [],
-          } as Pick<
-            LifeCompassState,
-            | 'lifeAreas'
-            | 'history'
-            | 'goals'
-            | 'behavioralExperiments'
-            | 'thoughtRecords'
-            | 'problemSolvings'
-          >;
-        }
+// v3 -> v4: problemSolvings did not exist; seed an empty array.
+if (version < 4) {
+  return {
+    ...state,
+    problemSolvings: state.problemSolvings ?? [],
+  } as Pick<
+    LifeCompassState,
+    | 'lifeAreas'
+    | 'history'
+    | 'goals'
+    | 'behavioralExperiments'
+    | 'thoughtRecords'
+    | 'problemSolvings'
+  >;
+}
 ```
 
 The earlier branches (`version < 1`, `< 2`, `< 3`) fall through to later branches, so a genuinely old state still reaches this branch and gets `problemSolvings` seeded. The `Partial<Pick<...>>` cast must also include `'problemSolvings'` so `state.problemSolvings` type-checks.
@@ -633,9 +639,9 @@ The earlier branches (`version < 1`, `< 2`, `< 3`) fall through to later branche
 In `onRehydrateStorage` (after the `thoughtRecords` guard, line 481-483), add:
 
 ```ts
-        if (!Array.isArray(state.problemSolvings)) {
-          state.problemSolvings = [];
-        }
+if (!Array.isArray(state.problemSolvings)) {
+  state.problemSolvings = [];
+}
 ```
 
 - [ ] **Step 6: Run the migration test to verify it passes**
@@ -655,6 +661,7 @@ git commit -m "feat(practices): bump persist version, migrate problemSolvings"
 ## Task 3: Export / import wiring
 
 **Files:**
+
 - Modify: `src/utils/exportService.ts`, `src/schemas/exportImportSchema.json`, `src/components/ExportButton.tsx`, `src/components/guide/GuideDataActions.tsx`, `src/pages/YourCompass.tsx`
 - Test: `src/tests/exportService.test.ts` (append one case)
 
@@ -663,32 +670,37 @@ git commit -m "feat(practices): bump persist version, migrate problemSolvings"
 In `src/tests/exportService.test.ts`, add this case directly after the existing `'includes thoughtRecords in the exported document'` test:
 
 ```ts
-  it('includes problemSolvings in the exported document', () => {
-    const json = exportData({
-      lifeAreas: [],
-      history: [],
-      goals: [],
-      behavioralExperiments: [],
-      thoughtRecords: [],
-      problemSolvings: [
-        {
-          id: 'p1',
-          problem: 'too much on at once',
-          options: [
-            { id: 'o1', text: 'drop one thing', pros: 'breathing room', cons: 'guilt' },
-          ],
-          chosenOptionId: 'o1',
-          steps: [{ id: 's1', text: 'email the team', done: false }],
-          outcome: '',
-          createdAt: '2026-06-18T00:00:00.000Z',
-        },
-      ],
-    });
-    const parsed = JSON.parse(json);
-    expect(parsed.data.problemSolvings).toHaveLength(1);
-    expect(parsed.data.problemSolvings[0].options[0].pros).toBe('breathing room');
-    expect(parsed.data.problemSolvings[0].chosenOptionId).toBe('o1');
+it('includes problemSolvings in the exported document', () => {
+  const json = exportData({
+    lifeAreas: [],
+    history: [],
+    goals: [],
+    behavioralExperiments: [],
+    thoughtRecords: [],
+    problemSolvings: [
+      {
+        id: 'p1',
+        problem: 'too much on at once',
+        options: [
+          {
+            id: 'o1',
+            text: 'drop one thing',
+            pros: 'breathing room',
+            cons: 'guilt',
+          },
+        ],
+        chosenOptionId: 'o1',
+        steps: [{ id: 's1', text: 'email the team', done: false }],
+        outcome: '',
+        createdAt: '2026-06-18T00:00:00.000Z',
+      },
+    ],
   });
+  const parsed = JSON.parse(json);
+  expect(parsed.data.problemSolvings).toHaveLength(1);
+  expect(parsed.data.problemSolvings[0].options[0].pros).toBe('breathing room');
+  expect(parsed.data.problemSolvings[0].chosenOptionId).toBe('o1');
+});
 ```
 
 - [ ] **Step 2: Run it to verify it fails**
@@ -784,7 +796,7 @@ Expected: PASS.
 (a) `src/components/ExportButton.tsx`: after the `thoughtRecords` selector line add:
 
 ```ts
-  const problemSolvings = useLifeCompassStore(state => state.problemSolvings);
+const problemSolvings = useLifeCompassStore(state => state.problemSolvings);
 ```
 
 and add `problemSolvings` to the `exportData({ ... })` call args.
@@ -820,6 +832,7 @@ git commit -m "feat(practices): export/import problemSolvings"
 ## Task 4: i18n copy (en + sv)
 
 **Files:**
+
 - Modify: `public/locales/en/translation.json`, `public/locales/sv/translation.json`
 
 Do **NOT** run `npm run extract` -- it deletes dynamic tool keys.
@@ -969,6 +982,7 @@ git commit -m "feat(practices): add problem-solving i18n copy (en + sv)"
 ## Task 5: Tool components + registration
 
 **Files:**
+
 - Create: `src/components/practices/tools/problem-solving/{index.ts,ProblemSolving.tsx,ProblemSolvingFlow.tsx,ProblemSolvingItem.tsx,ProblemSolvingStepList.tsx}`
 - Modify: `src/practices/index.ts`
 - Test: `src/tests/problemSolving.test.tsx` (create)
@@ -1023,7 +1037,7 @@ const ProblemSolvingStepList: React.FC<ProblemSolvingStepListProps> = ({
         {steps.map(step => (
           <li
             key={step.id}
-            className="flex items-center justify-between gap-2 rounded-md px-1 py-1 hover:bg-surface-sunken"
+            className="hover:bg-surface-sunken flex items-center justify-between gap-2 rounded-md px-1 py-1"
           >
             <Checkbox
               checked={step.done}
@@ -1036,7 +1050,7 @@ const ProblemSolvingStepList: React.FC<ProblemSolvingStepListProps> = ({
               onClick={() => removeStep(recordId, step.id)}
               title={t(`${PREFIX}.step4.delete_step`)}
               aria-label={`${t(`${PREFIX}.step4.delete_step`)}: ${step.text}`}
-              className="flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <TrashIcon className="size-4" />
             </button>
@@ -1153,7 +1167,7 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
               onChange={e =>
                 update(record.id, { areaId: e.target.value || undefined })
               }
-              className="min-h-[44px] w-full min-w-0 max-w-full truncate rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="border-border bg-surface text-text focus-visible:outline-focus min-h-[44px] w-full max-w-full min-w-0 truncate rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <option value="">{t(`${PREFIX}.step1.area_none`)}</option>
               {lifeAreas.map(area => (
@@ -1185,9 +1199,9 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
             {record.options.map(opt => (
               <li
                 key={opt.id}
-                className="flex items-center justify-between gap-2 rounded-md px-1 py-1 hover:bg-surface-sunken"
+                className="hover:bg-surface-sunken flex items-center justify-between gap-2 rounded-md px-1 py-1"
               >
-                <span className="min-w-0 flex-1 truncate text-sm text-text">
+                <span className="text-text min-w-0 flex-1 truncate text-sm">
                   {opt.text}
                 </span>
                 <button
@@ -1195,7 +1209,7 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
                   onClick={() => removeOption(record.id, opt.id)}
                   title={t(`${PREFIX}.step2.delete_option`)}
                   aria-label={`${t(`${PREFIX}.step2.delete_option`)}: ${opt.text}`}
-                  className="flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus flex-none cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   <TrashIcon className="size-4" />
                 </button>
@@ -1203,7 +1217,9 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
             ))}
           </ul>
           {record.options.length === 0 && (
-            <p className="text-sm text-text-muted">{t(`${PREFIX}.step2.empty`)}</p>
+            <p className="text-text-muted text-sm">
+              {t(`${PREFIX}.step2.empty`)}
+            </p>
           )}
           <form
             className="flex items-center gap-2"
@@ -1236,22 +1252,26 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
           prompt={t(`${PREFIX}.step3.prompt`)}
         >
           {record.options.length === 0 ? (
-            <p className="text-sm text-text-muted">{t(`${PREFIX}.step3.empty`)}</p>
+            <p className="text-text-muted text-sm">
+              {t(`${PREFIX}.step3.empty`)}
+            </p>
           ) : (
             <div className="flex flex-col gap-5">
               {record.options.map(opt => (
                 <div
                   key={opt.id}
-                  className="flex flex-col gap-2 rounded-lg border border-border p-3"
+                  className="border-border flex flex-col gap-2 rounded-lg border p-3"
                 >
-                  <p className="font-medium text-text">{opt.text}</p>
+                  <p className="text-text font-medium">{opt.text}</p>
                   <label className={LABEL_CLASS}>
                     {t(`${PREFIX}.step3.pros_label`)}
                     <textarea
                       rows={2}
                       value={opt.pros}
                       onChange={e =>
-                        updateOption(record.id, opt.id, { pros: e.target.value })
+                        updateOption(record.id, opt.id, {
+                          pros: e.target.value,
+                        })
                       }
                       placeholder={t(`${PREFIX}.step3.pros_placeholder`)}
                       className={TEXTAREA_CLASS}
@@ -1263,7 +1283,9 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
                       rows={2}
                       value={opt.cons}
                       onChange={e =>
-                        updateOption(record.id, opt.id, { cons: e.target.value })
+                        updateOption(record.id, opt.id, {
+                          cons: e.target.value,
+                        })
                       }
                       placeholder={t(`${PREFIX}.step3.cons_placeholder`)}
                       className={TEXTAREA_CLASS}
@@ -1290,7 +1312,7 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
                   chosenOptionId: e.target.value || undefined,
                 })
               }
-              className="min-h-[44px] w-full min-w-0 max-w-full truncate rounded-md border border-border bg-surface px-3 text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              className="border-border bg-surface text-text focus-visible:outline-focus min-h-[44px] w-full max-w-full min-w-0 truncate rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <option value="">{t(`${PREFIX}.step4.choose_none`)}</option>
               {record.options.map(opt => (
@@ -1302,7 +1324,7 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
           </label>
           {record.chosenOptionId ? (
             <div className="flex flex-col gap-2">
-              <p className="text-sm text-text-muted">
+              <p className="text-text-muted text-sm">
                 {t(`${PREFIX}.step4.steps_intro`)}
               </p>
               <ProblemSolvingStepList
@@ -1311,7 +1333,7 @@ const ProblemSolvingFlow: React.FC<ProblemSolvingFlowProps> = ({
               />
             </div>
           ) : (
-            <p className="text-sm text-text-muted">
+            <p className="text-text-muted text-sm">
               {t(`${PREFIX}.step4.choose_first`)}
             </p>
           )}
@@ -1391,7 +1413,8 @@ export interface ProblemSolvingItemProps {
 }
 
 const FIELD_CLASS = 'flex flex-col gap-1';
-const LABEL_CLASS = 'text-xs font-medium text-text-muted uppercase tracking-wide';
+const LABEL_CLASS =
+  'text-xs font-medium text-text-muted uppercase tracking-wide';
 const VALUE_CLASS = 'text-sm text-text';
 
 const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
@@ -1414,14 +1437,16 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
   };
 
   return (
-    <li className="rounded-lg border border-border bg-surface p-4 shadow-warm-sm">
+    <li className="border-border bg-surface shadow-warm-sm rounded-lg border p-4">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
           aria-expanded={expanded}
-          aria-label={expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)}
-          className="-m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          aria-label={
+            expanded ? t(`${PREFIX}.collapse`) : t(`${PREFIX}.expand`)
+          }
+          className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus -m-1 flex-none cursor-pointer rounded-md border-none bg-transparent p-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {expanded ? (
             <ChevronDownIcon className="size-5" />
@@ -1433,7 +1458,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
         <button
           type="button"
           onClick={() => setExpanded(prev => !prev)}
-          className="min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium text-text"
+          className="text-text min-w-0 flex-1 cursor-pointer truncate border-none bg-transparent text-left font-medium"
           title={title}
         >
           {title}
@@ -1445,7 +1470,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
             onClick={onEdit}
             title={t(`${PREFIX}.edit`)}
             aria-label={`${t(`${PREFIX}.edit`)}: ${title}`}
-            className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text-muted duration-base ease-out-soft hover:text-text focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <PencilIcon className="size-4" />
           </button>
@@ -1454,7 +1479,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
             onClick={handleDelete}
             title={t(`${PREFIX}.delete`)}
             aria-label={`${t(`${PREFIX}.delete`)}: ${title}`}
-            className="cursor-pointer rounded-md border-none bg-transparent p-1.5 text-text-muted transition-colors duration-base ease-out-soft hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            className="text-text-muted duration-base ease-out-soft hover:text-danger focus-visible:outline-focus cursor-pointer rounded-md border-none bg-transparent p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <TrashIcon className="size-4" />
           </button>
@@ -1462,7 +1487,7 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
       </div>
 
       {expanded && (
-        <div className="mt-4 flex flex-col gap-4 border-t border-border pt-4">
+        <div className="border-border mt-4 flex flex-col gap-4 border-t pt-4">
           {record.options.length > 0 && (
             <div className={FIELD_CLASS}>
               <span className={LABEL_CLASS}>{t(`${PREFIX}.step2.title`)}</span>
@@ -1477,13 +1502,17 @@ const ProblemSolvingItem: React.FC<ProblemSolvingItemProps> = ({
           )}
           {chosen && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>{t(`${PREFIX}.step4.choose_label`)}</span>
+              <span className={LABEL_CLASS}>
+                {t(`${PREFIX}.step4.choose_label`)}
+              </span>
               <p className={VALUE_CLASS}>{chosen.text}</p>
             </div>
           )}
           {record.steps.length > 0 && (
             <div className={FIELD_CLASS}>
-              <span className={LABEL_CLASS}>{t(`${PREFIX}.step4.steps_intro`)}</span>
+              <span className={LABEL_CLASS}>
+                {t(`${PREFIX}.step4.steps_intro`)}
+              </span>
               <ul className="flex flex-col gap-1">
                 {record.steps.map(step => (
                   <li key={step.id} className={VALUE_CLASS}>
@@ -1563,7 +1592,7 @@ const ProblemSolving: React.FC = () => {
       </div>
 
       {records.length === 0 ? (
-        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
+        <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t(`${PREFIX}.empty_state`)}
         </p>
       ) : (
@@ -1773,9 +1802,7 @@ describe('ProblemSolving tool', () => {
 
     const recs = useLifeCompassStore.getState().problemSolvings;
     expect(recs).toHaveLength(1);
-    expect(recs[0].problem).toBe(
-      'Evenings disappear before I get to anything',
-    );
+    expect(recs[0].problem).toBe('Evenings disappear before I get to anything');
   });
 
   it('never renders a numeric score or progress bar', () => {
@@ -1856,4 +1883,7 @@ Run: `npm run dev`, open `/practices`, confirm the "Problem solving" card appear
 - **Type consistency:** action names are identical across the store interface, implementations, tests, and components (`addProblemSolving`, `updateProblemSolving`, `removeProblemSolving`, `addProblemSolvingOption`, `updateProblemSolvingOption`, `removeProblemSolvingOption`, `addProblemSolvingStep`, `toggleProblemSolvingStep`, `removeProblemSolvingStep`). The `ProblemSolving` / `SolutionOption` field names match the spec, the schema, and the importExport interface.
 - **Ethos guards:** no scores/percentages/ranks anywhere; the component test asserts no `%` and no `progressbar`; pros/cons are free text; the chosen option is a plain selection, never a winner computed from counts.
 - **Dangling reference safety:** `removeProblemSolvingOption` clears `chosenOptionId` when it points at the removed option (covered by a store test).
+
+```
+
 ```

@@ -72,7 +72,10 @@ export interface LifeCompassState {
   setExperimentOutcome: (experimentId: string, outcome: string) => void;
 
   addThoughtRecord: (areaId?: string) => void;
-  updateThoughtRecord: (recordId: string, changes: Partial<ThoughtRecord>) => void;
+  updateThoughtRecord: (
+    recordId: string,
+    changes: Partial<ThoughtRecord>,
+  ) => void;
   removeThoughtRecord: (recordId: string) => void;
 
   addProblemSolving: (areaId?: string) => void;
@@ -209,9 +212,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
       updateGoal: (goalId, changes) =>
         set(state => ({
           goals: state.goals.map(goal =>
-            goal.id === goalId
-              ? { ...goal, ...changes, id: goal.id }
-              : goal,
+            goal.id === goalId ? { ...goal, ...changes, id: goal.id } : goal,
           ),
         })),
 
@@ -263,9 +264,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
               ? {
                   ...goal,
                   steps: goal.steps.map(step =>
-                    step.id === stepId
-                      ? { ...step, done: !step.done }
-                      : step,
+                    step.id === stepId ? { ...step, done: !step.done } : step,
                   ),
                 }
               : goal,
@@ -411,7 +410,9 @@ export const useLifeCompassStore = create<LifeCompassState>()(
 
       removeThoughtRecord: recordId =>
         set(state => ({
-          thoughtRecords: state.thoughtRecords.filter(rec => rec.id !== recordId),
+          thoughtRecords: state.thoughtRecords.filter(
+            rec => rec.id !== recordId,
+          ),
         })),
 
       addProblemSolving: areaId =>
@@ -523,9 +524,7 @@ export const useLifeCompassStore = create<LifeCompassState>()(
               ? {
                   ...rec,
                   steps: rec.steps.map(step =>
-                    step.id === stepId
-                      ? { ...step, done: !step.done }
-                      : step,
+                    step.id === stepId ? { ...step, done: !step.done } : step,
                   ),
                 }
               : rec,

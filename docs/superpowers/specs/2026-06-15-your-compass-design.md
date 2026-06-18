@@ -65,6 +65,7 @@ fallback) is NOT stored -- track the newly-added area id in page state (see
 New dir `src/components/your-compass/`. Components are function components in TSX.
 
 ### Foundation (no UI)
+
 - `src/utils/compassModel.ts` -- pure, i18n-free adapter. Exports:
   - `toBucket(v: number): number` = `Math.min(5, Math.max(1, Math.round(v / 2)))`
   - `fromBucket(b: number): number` = `b * 2`
@@ -86,14 +87,16 @@ New dir `src/components/your-compass/`. Components are function components in TS
   - `LIVED_KEY`/`MATTERS_KEY` helpers returning the i18n key for a bucket
     (`your_compass.scale.lived.<n>` / `your_compass.scale.matters.<n>`).
 - `src/components/your-compass/views.ts` -- `export type ViewId =
-  'map'|'list'|'today'|'week'`; `export const VIEWS: {id: ViewId; labelKey:
-  string; subKey: string}[]` (keys `your_compass.views.<id>.label/.sub`).
+'map'|'list'|'today'|'week'`; `export const VIEWS: {id: ViewId; labelKey:
+string; subKey: string}[]` (keys `your_compass.views.<id>.label/.sub`).
 
 ### Primitives -- `src/components/your-compass/primitives.tsx`
+
 - `CompassMark({ size? })`, `Figure({ size?, className? })`,
   `Spark({ weeks: number[] })`. Inline SVG, ports of the prototype. `aria-hidden`.
 
 ### Components (each its own file in `src/components/your-compass/`)
+
 - `MapView.tsx` -- `MapView({ areas, history, onOpen, onAdd })`. Radial canvas
   sized via `ResizeObserver` (`SIZE = clamp(248, width, 380)`), figure centered,
   nodes on circle `R = SIZE*0.33` from -90deg, drift pushes out (`+drift*6`) and
@@ -114,7 +117,7 @@ New dir `src/components/your-compass/`. Components are function components in TS
   border, selected = accent border + `color-mix(accent 14%, surface)` + dark
   label + weight 700 + `aria-pressed`.
 - `AreaDetail.tsx` -- `AreaDetail({ area, isNew, history, onClose, onChange,
-  onRemove, onOpenGoals })`. Bottom-sheet built on **Radix Dialog** (use existing
+onRemove, onOpenGoals })`. Bottom-sheet built on **Radix Dialog** (use existing
   `ui/Dialog.tsx` if it fits a bottom sheet; otherwise Radix `Dialog` primitive
   directly) for focus-trap + Escape + scrim; top corners `rounded-xl`,
   `shadow-warm-md`, max-width 600, max-height 92vh, safe-area bottom padding,
@@ -136,6 +139,7 @@ New dir `src/components/your-compass/`. Components are function components in TS
   ghost "Add my own instead". `onContinue(chosen: LifeArea[])`.
 
 ### Page -- `src/pages/YourCompass.tsx`
+
 - Reads `lifeAreas`, `history`, actions (`addArea`, `updateArea`, `removeArea`,
   `removeAllAreas`) from `useLifeCompassStore`.
 - Phase machine: `phase: 'welcome'|'suggest'|'app'` initialized to `'welcome'`
@@ -153,6 +157,7 @@ New dir `src/components/your-compass/`. Components are function components in TS
   for the editing area when goals opened.
 
 ### Wiring (shared files -- single owner to avoid conflicts)
+
 - `src/App.tsx`: route `/` -> `YourCompass`; `/create-life-compass` -> `<Navigate to="/" replace />`. Leave `/about /settings /privacy /design-principles`.
 - `src/components/ui/Navigation.tsx` + `Footer`/any links: point "home"/start to `/`.
 - `public/locales/en/translation.json` and `public/locales/sv/translation.json`:

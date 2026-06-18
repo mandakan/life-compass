@@ -48,7 +48,7 @@ const ThoughtRecord: React.FC = () => {
       </div>
 
       {thoughtRecords.length === 0 ? (
-        <p className="mt-6 rounded-lg border border-dashed border-border bg-surface-sunken px-4 py-6 text-center text-sm text-text-muted">
+        <p className="border-border bg-surface-sunken text-text-muted mt-6 rounded-lg border border-dashed px-4 py-6 text-center text-sm">
           {t(`${PREFIX}.empty_state`)}
         </p>
       ) : (
@@ -59,7 +59,9 @@ const ThoughtRecord: React.FC = () => {
               record={record}
               onEdit={() => setOpenId(record.id)}
               onRequestDelete={() =>
-                requestDelete(record.situation.trim() || t(`${PREFIX}.untitled`))
+                requestDelete(
+                  record.situation.trim() || t(`${PREFIX}.untitled`),
+                )
               }
             />
           ))}
