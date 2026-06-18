@@ -6,3 +6,4 @@ import '@components/practices/tools/behavioral-experiment';
 import '@components/practices/tools/values-clarity';
 import '@components/practices/tools/thought-record';
 import '@components/practices/tools/problem-solving';
+import '@components/practices/tools/behavioral-activation';
