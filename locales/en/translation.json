@@ -174,6 +174,63 @@
           "4": "strong",
           "5": "overwhelming"
         }
+      },
+      "problem_solving": {
+        "label": "Problem solving",
+        "description": "Work a knot loose: name it, find options, weigh them, plan a small step.",
+        "empty_state": "No problems worked through yet. Start one when something feels stuck.",
+        "new": "New problem to work through",
+        "step_label": "Step {{current}} of {{total}}",
+        "back": "Back",
+        "next": "Next",
+        "done": "Done",
+        "delete": "Delete",
+        "edit": "Edit",
+        "untitled": "Untitled problem",
+        "expand": "Expand",
+        "collapse": "Collapse",
+        "delete_confirm": "Delete \"{{title}}\"? This can't be undone.",
+        "step1": {
+          "title": "What's the knot?",
+          "prompt": "Name the problem as concretely as you can.",
+          "problem_label": "The problem",
+          "placeholder": "e.g. I keep running out of time in the evenings.",
+          "area_label": "Relates to (optional)",
+          "area_none": "Not linked to an area"
+        },
+        "step2": {
+          "title": "Brainstorm options",
+          "prompt": "Add a few. All ideas welcome, even the unlikely ones.",
+          "add_option": "Add option",
+          "add_option_placeholder": "An option worth jotting down",
+          "delete_option": "Remove option",
+          "empty": "No options yet. Add the first idea that comes to mind."
+        },
+        "step3": {
+          "title": "Weigh each option",
+          "prompt": "For each one, notice what's good and what's hard. No need to score anything.",
+          "pros_label": "What's good about this?",
+          "pros_placeholder": "What draws you to it?",
+          "cons_label": "What's hard about this?",
+          "cons_placeholder": "What gives you pause?",
+          "empty": "Add some options first, then come back here to weigh them."
+        },
+        "step4": {
+          "title": "Choose and plan",
+          "prompt": "Pick one to try, then break it into small steps.",
+          "choose_label": "Which will you try?",
+          "choose_none": "Not chosen yet",
+          "steps_intro": "Small steps for the option you chose",
+          "add_step": "Add step",
+          "add_step_placeholder": "One small step",
+          "delete_step": "Remove step",
+          "choose_first": "Choose an option above to start planning."
+        },
+        "step5": {
+          "title": "How did it go?",
+          "prompt": "After you've tried it, notice what actually happened. There's no right answer.",
+          "outcome_placeholder": "What happened when you tried it?"
+        }
       }
     },
     "crisis": {

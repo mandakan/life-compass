@@ -293,6 +293,63 @@
           "4": "stark",
           "5": "överväldigande"
         }
+      },
+      "problem_solving": {
+        "label": "Problemlosning",
+        "description": "Los upp en knut: satt ord pa den, hitta alternativ, vag dem, planera ett litet steg.",
+        "empty_state": "Inga problem genomarbetade an. Borja ett nar nagot kanns fast.",
+        "new": "Nytt problem att arbeta igenom",
+        "step_label": "Steg {{current}} av {{total}}",
+        "back": "Tillbaka",
+        "next": "Nasta",
+        "done": "Klar",
+        "delete": "Ta bort",
+        "edit": "Redigera",
+        "untitled": "Namnlost problem",
+        "expand": "Visa mer",
+        "collapse": "Visa mindre",
+        "delete_confirm": "Ta bort \"{{title}}\"? Det gar inte att angra.",
+        "step1": {
+          "title": "Vad ar knuten?",
+          "prompt": "Satt ord pa problemet sa konkret du kan.",
+          "problem_label": "Problemet",
+          "placeholder": "t.ex. Jag far aldrig tiden att racka till pa kvallarna.",
+          "area_label": "Hor samman med (valfritt)",
+          "area_none": "Inte kopplad till ett omrade"
+        },
+        "step2": {
+          "title": "Brainstorma alternativ",
+          "prompt": "Lagg till nagra. Alla ideer ar valkomna, aven de osannolika.",
+          "add_option": "Lagg till alternativ",
+          "add_option_placeholder": "Ett alternativ vart att notera",
+          "delete_option": "Ta bort alternativ",
+          "empty": "Inga alternativ an. Lagg till den forsta iden som dyker upp."
+        },
+        "step3": {
+          "title": "Vag varje alternativ",
+          "prompt": "Lagg for varje ett marke till vad som ar bra och vad som ar svart. Du behover inte poangsatta nagot.",
+          "pros_label": "Vad ar bra med det har?",
+          "pros_placeholder": "Vad lockar dig till det?",
+          "cons_label": "Vad ar svart med det har?",
+          "cons_placeholder": "Vad far dig att tveka?",
+          "empty": "Lagg till nagra alternativ forst, kom sedan tillbaka hit och vag dem."
+        },
+        "step4": {
+          "title": "Valj och planera",
+          "prompt": "Valj ett att prova, och dela sedan upp det i sma steg.",
+          "choose_label": "Vilket vill du prova?",
+          "choose_none": "Inte valt an",
+          "steps_intro": "Sma steg for alternativet du valde",
+          "add_step": "Lagg till steg",
+          "add_step_placeholder": "Ett litet steg",
+          "delete_step": "Ta bort steg",
+          "choose_first": "Valj ett alternativ ovan for att borja planera."
+        },
+        "step5": {
+          "title": "Hur gick det?",
+          "prompt": "Nar du har provat, lagg marke till vad som faktiskt hande. Det finns inget ratt svar.",
+          "outcome_placeholder": "Vad hande nar du provade?"
+        }
       }
     },
     "crisis": {
