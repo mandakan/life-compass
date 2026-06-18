@@ -14,6 +14,7 @@ import {
   CURRENT_SCHEMA_VERSION,
   type BehavioralExperiment,
   type Goal,
+  type ProblemSolving,
   type Snapshot,
   type ThoughtRecord,
 } from '@models/LifeCompassDocument';
@@ -35,13 +36,14 @@ const GuideDataActions: React.FC = () => {
     state => state.behavioralExperiments,
   );
   const thoughtRecords = useLifeCompassStore(state => state.thoughtRecords);
+  const problemSolvings = useLifeCompassStore(state => state.problemSolvings);
   const importDocument = useLifeCompassStore(state => state.importDocument);
   const removeAllAreas = useLifeCompassStore(state => state.removeAllAreas);
 
   const [error, setError] = useState('');
 
   const handleExport = () => {
-    const json = exportData({ lifeAreas, history, goals, behavioralExperiments, thoughtRecords });
+    const json = exportData({ lifeAreas, history, goals, behavioralExperiments, thoughtRecords, problemSolvings });
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -68,6 +70,7 @@ const GuideDataActions: React.FC = () => {
       behavioralExperiments: (payload.data.behavioralExperiments ??
         []) as BehavioralExperiment[],
       thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],
+      problemSolvings: (payload.data.problemSolvings ?? []) as ProblemSolving[],
     });
   };
 

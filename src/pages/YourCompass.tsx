@@ -6,6 +6,7 @@ import {
   CURRENT_SCHEMA_VERSION,
   type BehavioralExperiment,
   type Goal,
+  type ProblemSolving,
   type Snapshot,
   type ThoughtRecord,
 } from '@models/LifeCompassDocument';
@@ -159,6 +160,7 @@ const YourCompass: React.FC = () => {
       behavioralExperiments: (payload.data.behavioralExperiments ??
         []) as BehavioralExperiment[],
       thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],
+      problemSolvings: (payload.data.problemSolvings ?? []) as ProblemSolving[],
     });
     setShowImportExport(false);
     setPhase('app');

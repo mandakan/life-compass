@@ -2,7 +2,7 @@ import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import schema from '../schemas/exportImportSchema.json';
 import { LifeArea } from '../types/LifeArea';
-import { BehavioralExperiment, Goal, Snapshot, ThoughtRecord } from '../types/LifeCompassDocument';
+import { BehavioralExperiment, Goal, ProblemSolving, Snapshot, ThoughtRecord } from '../types/LifeCompassDocument';
 
 export interface ExportInput {
   lifeAreas: LifeArea[];
@@ -10,6 +10,7 @@ export interface ExportInput {
   goals?: Goal[];
   behavioralExperiments?: BehavioralExperiment[];
   thoughtRecords?: ThoughtRecord[];
+  problemSolvings?: ProblemSolving[];
 }
 
 export function exportData(input?: ExportInput): string {
@@ -28,12 +29,14 @@ export function exportData(input?: ExportInput): string {
   let goals: Goal[];
   let behavioralExperiments: BehavioralExperiment[];
   let thoughtRecords: ThoughtRecord[];
+  let problemSolvings: ProblemSolving[];
   if (input) {
     lifeAreas = input.lifeAreas;
     history = input.history;
     goals = input.goals ?? [];
     behavioralExperiments = input.behavioralExperiments ?? [];
     thoughtRecords = input.thoughtRecords ?? [];
+    problemSolvings = input.problemSolvings ?? [];
   } else {
     const lifeAreasStr = localStorage.getItem('lifeCompass');
     const historyStr = localStorage.getItem('history');
@@ -42,6 +45,7 @@ export function exportData(input?: ExportInput): string {
     goals = [];
     behavioralExperiments = [];
     thoughtRecords = [];
+    problemSolvings = [];
   }
 
   // Construct export object according to the schema
@@ -57,6 +61,7 @@ export function exportData(input?: ExportInput): string {
       goals,
       behavioralExperiments,
       thoughtRecords,
+      problemSolvings,
     },
   };
 

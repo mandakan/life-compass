@@ -262,4 +262,31 @@ describe('exportData', () => {
     expect(parsed.data.thoughtRecords).toHaveLength(1);
     expect(parsed.data.thoughtRecords[0].feelingAfter).toBe(2);
   });
+
+  it('includes problemSolvings in the exported document', () => {
+    const json = exportData({
+      lifeAreas: [],
+      history: [],
+      goals: [],
+      behavioralExperiments: [],
+      thoughtRecords: [],
+      problemSolvings: [
+        {
+          id: 'p1',
+          problem: 'too much on at once',
+          options: [
+            { id: 'o1', text: 'drop one thing', pros: 'breathing room', cons: 'guilt' },
+          ],
+          chosenOptionId: 'o1',
+          steps: [{ id: 's1', text: 'email the team', done: false }],
+          outcome: '',
+          createdAt: '2026-06-18T00:00:00.000Z',
+        },
+      ],
+    });
+    const parsed = JSON.parse(json);
+    expect(parsed.data.problemSolvings).toHaveLength(1);
+    expect(parsed.data.problemSolvings[0].options[0].pros).toBe('breathing room');
+    expect(parsed.data.problemSolvings[0].chosenOptionId).toBe('o1');
+  });
 });
