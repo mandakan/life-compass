@@ -136,4 +136,31 @@ describe('BehavioralActivation tool', () => {
     // The flow shows step 1's title.
     expect(screen.getByText('What will you do?')).toBeInTheDocument();
   });
+
+  // Ethos guard: predicted vs experienced feelings must read as two words side
+  // by side, never a computed delta, percentage, or score.
+  it('shows predicted and experienced feelings as words, never a numeric delta', () => {
+    useLifeCompassStore.setState({
+      behavioralActivations: [
+        {
+          id: 'b1',
+          activity: 'walk by the river',
+          done: true,
+          outcome: 'fine',
+          pleasureExpected: 2,
+          pleasureActual: 4,
+          createdAt: '2026-06-18T00:00:00.000Z',
+        },
+      ],
+    });
+    const { container } = renderTool();
+    // Expand the saved card to reveal the feelings.
+    fireEvent.click(screen.getByRole('button', { name: 'Show details' }));
+    // Both feelings render as their word labels, side by side.
+    expect(container.textContent).toContain('Expected: A little good');
+    expect(container.textContent).toContain('Actual: Good');
+    // No percentage, score, or computed delta/arrow anywhere in the card.
+    expect(container.textContent).not.toMatch(/%/);
+    expect(container.textContent).not.toMatch(/[→↑↓]|->|\+\d/);
+  });
 });
