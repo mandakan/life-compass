@@ -125,7 +125,9 @@ const BehavioralActivationItem: React.FC<BehavioralActivationItemProps> = ({
                   </span>
                 )}
                 {record.pleasureActual != null && (
-                  <span className={record.pleasureExpected != null ? 'ml-3' : ''}>
+                  <span
+                    className={record.pleasureExpected != null ? 'ml-3' : ''}
+                  >
                     {t(`${PREFIX}.step4.actual_tag`)}:{' '}
                     {t(`${PREFIX}.pleasure_scale.${record.pleasureActual}`)}
                   </span>
@@ -133,8 +135,7 @@ const BehavioralActivationItem: React.FC<BehavioralActivationItemProps> = ({
               </p>
             </div>
           )}
-          {(record.masteryExpected != null ||
-            record.masteryActual != null) && (
+          {(record.masteryExpected != null || record.masteryActual != null) && (
             <div className={FIELD_CLASS}>
               <span className={LABEL_CLASS}>
                 {t(`${PREFIX}.step4.meaning_label`)}
@@ -147,7 +148,9 @@ const BehavioralActivationItem: React.FC<BehavioralActivationItemProps> = ({
                   </span>
                 )}
                 {record.masteryActual != null && (
-                  <span className={record.masteryExpected != null ? 'ml-3' : ''}>
+                  <span
+                    className={record.masteryExpected != null ? 'ml-3' : ''}
+                  >
                     {t(`${PREFIX}.step4.actual_tag`)}:{' '}
                     {t(`${PREFIX}.meaning_scale.${record.masteryActual}`)}
                   </span>

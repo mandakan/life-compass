@@ -121,11 +121,15 @@ const BehavioralActivationFlow: React.FC<BehavioralActivationFlowProps> = ({
               className="border-border bg-surface text-text focus-visible:outline-focus min-h-[44px] w-full max-w-full min-w-0 truncate rounded-md border px-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <option value="">{t(`${PREFIX}.step2.time_none`)}</option>
-              <option value="morning">{t(`${PREFIX}.step2.time_morning`)}</option>
+              <option value="morning">
+                {t(`${PREFIX}.step2.time_morning`)}
+              </option>
               <option value="afternoon">
                 {t(`${PREFIX}.step2.time_afternoon`)}
               </option>
-              <option value="evening">{t(`${PREFIX}.step2.time_evening`)}</option>
+              <option value="evening">
+                {t(`${PREFIX}.step2.time_evening`)}
+              </option>
             </select>
           </label>
         </StepFrame>

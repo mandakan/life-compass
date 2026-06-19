@@ -39,9 +39,9 @@ describe('behavioralActivations store slice', () => {
 
   it('adds a behavioral activation linked to an area', () => {
     useLifeCompassStore.getState().addBehavioralActivation('area-1');
-    expect(
-      useLifeCompassStore.getState().behavioralActivations[0].areaId,
-    ).toBe('area-1');
+    expect(useLifeCompassStore.getState().behavioralActivations[0].areaId).toBe(
+      'area-1',
+    );
   });
 
   it('updates a behavioral activation but never changes its id', () => {
@@ -63,9 +63,9 @@ describe('behavioralActivations store slice', () => {
     useLifeCompassStore.getState().addBehavioralActivation();
     const { id } = useLifeCompassStore.getState().behavioralActivations[0];
     useLifeCompassStore.getState().removeBehavioralActivation(id);
-    expect(
-      useLifeCompassStore.getState().behavioralActivations,
-    ).toHaveLength(0);
+    expect(useLifeCompassStore.getState().behavioralActivations).toHaveLength(
+      0,
+    );
   });
 
   it('cascade-deletes activations when their linked area is removed', () => {
@@ -81,9 +81,9 @@ describe('behavioralActivations store slice', () => {
   it('clears activations on removeAllAreas', () => {
     useLifeCompassStore.getState().addBehavioralActivation();
     useLifeCompassStore.getState().removeAllAreas();
-    expect(
-      useLifeCompassStore.getState().behavioralActivations,
-    ).toHaveLength(0);
+    expect(useLifeCompassStore.getState().behavioralActivations).toHaveLength(
+      0,
+    );
   });
 
   it('imports behavioral activations from a document', () => {
@@ -105,8 +105,8 @@ describe('behavioralActivations store slice', () => {
         },
       ],
     });
-    expect(
-      useLifeCompassStore.getState().behavioralActivations,
-    ).toHaveLength(1);
+    expect(useLifeCompassStore.getState().behavioralActivations).toHaveLength(
+      1,
+    );
   });
 });
