@@ -312,4 +312,34 @@ describe('exportData', () => {
     );
     expect(parsed.data.problemSolvings[0].chosenOptionId).toBe('o1');
   });
+
+  it('includes behavioralActivations in the exported document', () => {
+    const json = exportData({
+      lifeAreas: [],
+      history: [],
+      goals: [],
+      behavioralExperiments: [],
+      thoughtRecords: [],
+      problemSolvings: [],
+      behavioralActivations: [
+        {
+          id: 'b1',
+          activity: 'walk by the river',
+          plannedDate: '2026-06-20',
+          timeOfDay: 'morning',
+          done: true,
+          pleasureExpected: 2,
+          pleasureActual: 4,
+          outcome: 'better than I expected',
+          createdAt: '2026-06-18T00:00:00.000Z',
+        },
+      ],
+    });
+    const parsed = JSON.parse(json);
+    expect(parsed.data.behavioralActivations).toHaveLength(1);
+    expect(parsed.data.behavioralActivations[0].activity).toBe(
+      'walk by the river',
+    );
+    expect(parsed.data.behavioralActivations[0].pleasureActual).toBe(4);
+  });
 });

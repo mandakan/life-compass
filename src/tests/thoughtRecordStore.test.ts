@@ -77,7 +77,7 @@ describe('thoughtRecords store slice', () => {
 
   it('imports thought records from a document', () => {
     useLifeCompassStore.getState().importDocument({
-      schemaVersion: 5,
+      schemaVersion: 6,
       lifeAreas: [],
       history: [],
       goals: [],
@@ -95,6 +95,7 @@ describe('thoughtRecords store slice', () => {
         },
       ],
       problemSolvings: [],
+      behavioralActivations: [],
     });
     expect(useLifeCompassStore.getState().thoughtRecords).toHaveLength(1);
   });

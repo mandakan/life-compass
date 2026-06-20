@@ -3,6 +3,7 @@ import addFormats from 'ajv-formats';
 import schema from '../schemas/exportImportSchema.json';
 import { LifeArea } from '../types/LifeArea';
 import {
+  BehavioralActivation,
   BehavioralExperiment,
   Goal,
   ProblemSolving,
@@ -17,6 +18,7 @@ export interface ExportInput {
   behavioralExperiments?: BehavioralExperiment[];
   thoughtRecords?: ThoughtRecord[];
   problemSolvings?: ProblemSolving[];
+  behavioralActivations?: BehavioralActivation[];
 }
 
 export function exportData(input?: ExportInput): string {
@@ -36,6 +38,7 @@ export function exportData(input?: ExportInput): string {
   let behavioralExperiments: BehavioralExperiment[];
   let thoughtRecords: ThoughtRecord[];
   let problemSolvings: ProblemSolving[];
+  let behavioralActivations: BehavioralActivation[];
   if (input) {
     lifeAreas = input.lifeAreas;
     history = input.history;
@@ -43,6 +46,7 @@ export function exportData(input?: ExportInput): string {
     behavioralExperiments = input.behavioralExperiments ?? [];
     thoughtRecords = input.thoughtRecords ?? [];
     problemSolvings = input.problemSolvings ?? [];
+    behavioralActivations = input.behavioralActivations ?? [];
   } else {
     const lifeAreasStr = localStorage.getItem('lifeCompass');
     const historyStr = localStorage.getItem('history');
@@ -52,6 +56,7 @@ export function exportData(input?: ExportInput): string {
     behavioralExperiments = [];
     thoughtRecords = [];
     problemSolvings = [];
+    behavioralActivations = [];
   }
 
   // Construct export object according to the schema
@@ -68,6 +73,7 @@ export function exportData(input?: ExportInput): string {
       behavioralExperiments,
       thoughtRecords,
       problemSolvings,
+      behavioralActivations,
     },
   };
 

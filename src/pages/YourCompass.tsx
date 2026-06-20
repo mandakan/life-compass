@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import type { LifeArea } from '@models/LifeArea';
 import {
   CURRENT_SCHEMA_VERSION,
+  type BehavioralActivation,
   type BehavioralExperiment,
   type Goal,
   type ProblemSolving,
@@ -161,6 +162,8 @@ const YourCompass: React.FC = () => {
         []) as BehavioralExperiment[],
       thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],
       problemSolvings: (payload.data.problemSolvings ?? []) as ProblemSolving[],
+      behavioralActivations: (payload.data.behavioralActivations ??
+        []) as BehavioralActivation[],
     });
     setShowImportExport(false);
     setPhase('app');

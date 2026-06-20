@@ -144,7 +144,7 @@ describe('problemSolvings store slice', () => {
 
   it('imports records from a document', () => {
     useLifeCompassStore.getState().importDocument({
-      schemaVersion: 5,
+      schemaVersion: 6,
       lifeAreas: [],
       history: [],
       goals: [],
@@ -160,6 +160,7 @@ describe('problemSolvings store slice', () => {
           createdAt: '2026-06-18T00:00:00.000Z',
         },
       ],
+      behavioralActivations: [],
     });
     expect(useLifeCompassStore.getState().problemSolvings).toHaveLength(1);
   });

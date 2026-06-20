@@ -12,6 +12,7 @@ import { parseAndValidateJSON } from '@utils/importService';
 import { useLifeCompassStore } from '../../store/lifeCompassStore';
 import {
   CURRENT_SCHEMA_VERSION,
+  type BehavioralActivation,
   type BehavioralExperiment,
   type Goal,
   type ProblemSolving,
@@ -37,6 +38,9 @@ const GuideDataActions: React.FC = () => {
   );
   const thoughtRecords = useLifeCompassStore(state => state.thoughtRecords);
   const problemSolvings = useLifeCompassStore(state => state.problemSolvings);
+  const behavioralActivations = useLifeCompassStore(
+    state => state.behavioralActivations,
+  );
   const importDocument = useLifeCompassStore(state => state.importDocument);
   const removeAllAreas = useLifeCompassStore(state => state.removeAllAreas);
 
@@ -50,6 +54,7 @@ const GuideDataActions: React.FC = () => {
       behavioralExperiments,
       thoughtRecords,
       problemSolvings,
+      behavioralActivations,
     });
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -78,6 +83,8 @@ const GuideDataActions: React.FC = () => {
         []) as BehavioralExperiment[],
       thoughtRecords: (payload.data.thoughtRecords ?? []) as ThoughtRecord[],
       problemSolvings: (payload.data.problemSolvings ?? []) as ProblemSolving[],
+      behavioralActivations: (payload.data.behavioralActivations ??
+        []) as BehavioralActivation[],
     });
   };
 
